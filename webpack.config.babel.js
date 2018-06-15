@@ -1,5 +1,4 @@
 import webpack from "webpack";
-import nodeExternals from "webpack-node-externals";
 import path from "path";
 
 module.exports = [{
@@ -20,6 +19,5 @@ module.exports = [{
   module: {
     rules: [{ test: /\.js$/, use: "babel-loader", exclude: /node_modules/ }]
   },
-  target: "node",
-  externals: [nodeExternals()],
+  target: "node"
 }];
