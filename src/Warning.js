@@ -1,16 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const colors = {
-  background: "#fcf8e3",
-  border: "#faebcc",
-  font: "#8a6d3b"
-};
+import { warning } from "./common.json";
 
 const Container = styled.div`
-  background-color: ${colors.background};
-  color: ${colors.font};
-  border: 1px solid ${colors.border};
+  background-color: ${warning.background};
+  color: ${warning.font};
+  border: 1px solid ${warning.border};
   margin-bottom: 20px;
   padding: 15px;
 `;
