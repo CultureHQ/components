@@ -1,4 +1,10 @@
 {
+  "common": {
+    "primaryBlue": "#6a89af"
+  },
+  "info": {
+    "background": "#d7e5f1"
+  },
   "warning": {
     "background": "#fcf8e3",
     "border": "#faebcc",
