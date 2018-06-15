@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [0.0.2] - 2018-06-15
 ### Added
 - The Info component.
+- The Success component.
 
 ## [0.0.1] - 2018-06-15
 ### Added

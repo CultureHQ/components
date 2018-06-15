@@ -5,6 +5,11 @@
   "info": {
     "background": "#d7e5f1"
   },
+  "success": {
+    "background": "#dff0d8",
+    "border": "#d6e9c6",
+    "font": "#3c763d"
+  },
   "warning": {
     "background": "#fcf8e3",
     "border": "#faebcc",
