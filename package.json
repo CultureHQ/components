@@ -2,11 +2,10 @@
   "name": "chq-components",
   "version": "0.0.1",
   "description": "CultureHQ's component library",
-  "main": "src/index.js",
+  "main": "dist/main.js",
   "scripts": {
     "build": "webpack --config webpack.config.babel.js --mode production --progress",
-    "start": "webpack-dev-server --config webpack.config.babel.js --mode development --hot",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --config webpack.config.babel.js --mode development --hot"
   },
   "repository": {
     "type": "git",
@@ -30,7 +29,6 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "jest": "^23.1.0",
     "packfiles": "^0.0.2",
     "prettier": "^1.13.4",
     "react": "^16.4.1",
