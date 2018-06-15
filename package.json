@@ -1,5 +1,5 @@
 {
-  "name": "chq-components",
+  "name": "culturehq-components",
   "version": "0.0.1",
   "description": "CultureHQ's component library",
   "main": "dist/main.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CultureHQ/chq-components.git"
+    "url": "git+https://github.com/CultureHQ/components.git"
   },
   "author": "Kevin Deisz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CultureHQ/chq-components/issues"
+    "url": "https://github.com/CultureHQ/components/issues"
   },
-  "homepage": "https://github.com/CultureHQ/chq-components#readme",
+  "homepage": "https://github.com/CultureHQ/components#readme",
   "peerDependencies": {
     "react": "^16",
     "react-dom": "^16"

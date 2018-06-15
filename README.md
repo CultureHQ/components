@@ -1,4 +1,4 @@
-# chq-components
+# culturehq-components
 
 CultureHQ's component library.
 
