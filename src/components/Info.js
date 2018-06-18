@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import { warning } from "./common.json";
+import { common, info } from "../common.json";
 
 const Container = styled.div`
-  background-color: ${warning.background};
-  color: ${warning.font};
-  border: 1px solid ${warning.border};
+  background-color: ${info.background};
+  color: ${common.primaryBlue};
   margin-bottom: 20px;
   padding: 15px;
 `;
@@ -15,10 +14,10 @@ const Text = styled.p`
   margin: 0;
 `;
 
-const Warning = ({ children }) => (
+const Info = ({ children }) => (
   <Container>
     <Text>{children}</Text>
   </Container>
 );
 
-export default Warning;
+export default Info;

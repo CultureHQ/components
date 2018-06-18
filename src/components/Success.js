@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { success } from "./common.json";
+import { success } from "../common.json";
 
 const Container = styled.div`
   background-color: ${success.background};
