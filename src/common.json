@@ -1,18 +1,24 @@
 {
-  "common": {
-    "primaryBlue": "#6a89af"
+  "colors": {
+    "linkBlue": "#6a89af",
+    "primaryBlue": "#8cb4d6",
+    "primaryRed": "#c14c4c",
+    "secondaryFont": "#888",
+    "info": {
+      "background": "#d7e5f1"
+    },
+    "success": {
+      "background": "#dff0d8",
+      "border": "#d6e9c6",
+      "font": "#3c763d"
+    },
+    "warning": {
+      "background": "#fcf8e3",
+      "border": "#faebcc",
+      "font": "#8a6d3b"
+    }
   },
-  "info": {
-    "background": "#d7e5f1"
-  },
-  "success": {
-    "background": "#dff0d8",
-    "border": "#d6e9c6",
-    "font": "#3c763d"
-  },
-  "warning": {
-    "background": "#fcf8e3",
-    "border": "#faebcc",
-    "font": "#8a6d3b"
+  "fontSizes": {
+    "small": "13px"
   }
 }

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 
-import { Icon, Info, Success, Warning } from "../src";
+import { Icon, Info, Success, Tag, Warning } from "../src";
 import paths from "../src/icons.json";
 
 const Heading = ({ children }) => <h1>{"<"}{children}{">"}</h1>;
@@ -16,7 +16,7 @@ const Icons = () => (
 
 const App = () => (
   <Fragment>
-    <Heading>Icon</Heading>
+    <Heading>Icon icon=string</Heading>
     <Icons />
 
     <Heading>Info</Heading>
@@ -24,6 +24,11 @@ const App = () => (
 
     <Heading>Success</Heading>
     <Success>This is a success.</Success>
+
+    <Heading>Tag color=string</Heading>
+    <Tag>Blue</Tag>
+    <Tag color="gray">Gray</Tag>
+    <Tag color="red">Red</Tag>
 
     <Heading>Warning</Heading>
     <Warning>This is a warning.</Warning>

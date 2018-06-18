@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import { success } from "../common.json";
+import { colors } from "../common.json";
 
 const Container = styled.div`
-  background-color: ${success.background};
-  border: 1px solid ${success.border};
-  color: ${success.font};
+  background-color: ${colors.success.background};
+  border: 1px solid ${colors.success.border};
+  color: ${colors.success.font};
   margin-bottom: 20px;
   padding: 15px;
 `;

@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The Icon component, as well as the dev libraries needed to support dynamic import in webpack.
+- The Tag component.
 
 ## [0.0.3] - 2018-06-15
 ### Changed

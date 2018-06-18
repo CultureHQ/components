@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import { common, info } from "../common.json";
+import { colors } from "../common.json";
 
 const Container = styled.div`
-  background-color: ${info.background};
-  color: ${common.primaryBlue};
+  background-color: ${colors.info.background};
+  color: ${colors.primaryBlue};
   margin-bottom: 20px;
   padding: 15px;
 `;

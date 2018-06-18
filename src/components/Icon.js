@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 class AsyncPath extends PureComponent {
   constructor(props) {
     super(props);
+
     this.state = { d: null };
   }
 
@@ -23,8 +24,10 @@ class AsyncPath extends PureComponent {
 
   loadIcon() {
     return import(/* webpackChunkName: "icons" */ "../icons.json").then(paths => {
+      const { icon } = this.props;
+
       if (this.componentIsMounted) {
-        this.setState({ d: paths[this.props.icon].join(" ") });
+        this.setState({ d: paths[icon].join(" ") });
       }
     });
   }
