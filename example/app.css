@@ -17,3 +17,11 @@ body {
   margin: 50px auto;
   width: 66%;
 }
+
+svg {
+  margin: 0 8px 2px 0;
+}
+
+path {
+  fill: #333;
+}
