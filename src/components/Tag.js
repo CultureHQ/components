@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 import { colors, fontSizes } from "../common.json";
 
-const colors = {
+const colorAliases = {
   blue: colors.linkBlue,
   gray: colors.secondaryFont,
   red: colors.primaryRed
 };
 
 const Container = styled.div`
-  background-color: ${props => colors[props.color]};
+  background-color: ${props => colorAliases[props.color]};
   color: white;
   display: inline-block;
   font-size: ${fontSizes.small};
