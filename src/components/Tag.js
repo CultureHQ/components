@@ -3,19 +3,14 @@ import styled from "styled-components";
 
 import { colors, fontSizes } from "../common.json";
 
-const colorFrom = color => {
-  switch (color) {
-    case "blue":
-      return colors.linkBlue;
-    case "gray":
-      return colors.secondaryFont;
-    case "red":
-      return colors.primaryRed;
-  }
+const colors = {
+  blue: colors.linkBlue,
+  gray: colors.secondaryFont,
+  red: colors.primaryRed
 };
 
 const Container = styled.div`
-  background-color: ${props => colorFrom(props.color)};
+  background-color: ${props => colors[props.color]};
   color: white;
   display: inline-block;
   font-size: ${fontSizes.small};
