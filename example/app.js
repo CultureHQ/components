@@ -4,15 +4,20 @@ import ReactDOM from "react-dom";
 import { Icon, Info, Success, Tag, Thumbnail, Warning } from "../src";
 import paths from "../src/icons.json";
 
-const Heading = ({ children }) => <h1>{"<"}{children}{">"}</h1>;
+const Heading = ({ children }) => (
+  <h1>
+    {"<"}
+    {children}
+    {">"}
+  </h1>
+);
 
-const Icons = () => (
+const Icons = () =>
   Object.keys(paths).map(icon => (
     <span key={icon} title={icon}>
       <Icon icon={icon} />
     </span>
-  ))
-);
+  ));
 
 const App = () => (
   <Fragment>

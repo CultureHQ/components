@@ -18,8 +18,10 @@ const Container = styled.div`
   padding: 0px 6px;
 `;
 
-const Tag = ({ children, color = "blue" }) => (
-  <Container color={color}>{children}</Container>
+const Tag = ({ children, color = "blue", ...props }) => (
+  <Container color={color} {...props}>
+    {children}
+  </Container>
 );
 
 export default Tag;

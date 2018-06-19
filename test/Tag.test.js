@@ -9,3 +9,9 @@ test("renders without crashing", () => {
 
   expect(component.html()).toContain(message);
 });
+
+test("passes on extra props", () => {
+  const component = shallow(<Tag className="tag" />);
+
+  expect(component.hasClass("tag")).toBe(true);
+});

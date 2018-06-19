@@ -15,8 +15,8 @@ const Text = styled.p`
   margin: 0;
 `;
 
-const Warning = ({ children }) => (
-  <Container>
+const Warning = ({ children, ...props }) => (
+  <Container {...props}>
     <Text>{children}</Text>
   </Container>
 );

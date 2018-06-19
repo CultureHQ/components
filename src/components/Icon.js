@@ -38,8 +38,8 @@ class AsyncPath extends PureComponent {
   }
 }
 
-const Icon = ({ icon }) => (
-  <svg width="22px" height="22px" viewBox="0 0 1024 1024">
+const Icon = ({ icon, ...props }) => (
+  <svg width="22px" height="22px" viewBox="0 0 1024 1024" {...props}>
     <AsyncPath icon={icon} />
   </svg>
 );

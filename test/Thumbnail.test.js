@@ -8,3 +8,9 @@ test("renders without crashing", () => {
 
   expect(component.type()).toEqual("div");
 });
+
+test("passes on extra props", () => {
+  const component = shallow(<Thumbnail image="https://robohash.org/1" className="thumbnail" />);
+
+  expect(component.hasClass("thumbnail")).toBe(true);
+});

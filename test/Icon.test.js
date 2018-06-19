@@ -1,7 +1,7 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow, mount } from "enzyme";
 
-import { AsyncPath } from "../src/components/Icon";
+import Icon, { AsyncPath } from "../src/components/Icon";
 
 test("renders without crashing", async () => {
   const component = mount(<AsyncPath icon="checkmark" />);
@@ -11,4 +11,10 @@ test("renders without crashing", async () => {
   component.update();
 
   expect(component.find("path")).toHaveLength(1);
+});
+
+test("passes on extra props", () => {
+  const component = shallow(<Icon icon="checkmark" className="icon" />);
+
+  expect(component.hasClass("icon")).toBe(true);
 });

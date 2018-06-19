@@ -14,8 +14,8 @@ const Text = styled.p`
   margin: 0;
 `;
 
-const Info = ({ children }) => (
-  <Container>
+const Info = ({ children, ...props }) => (
+  <Container {...props}>
     <Text>{children}</Text>
   </Container>
 );
