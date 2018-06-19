@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.6] - 2018-06-19
+### Changed
+- The font color on the `Info` component to use the primary font color.
+
 ## [0.0.5] - 2018-06-19
 ### Added
 - `eslint` and the corresponding `yarn lint` command.

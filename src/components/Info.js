@@ -5,7 +5,7 @@ import { colors } from "../common.json";
 
 const Container = styled.div`
   background-color: ${colors.info.background};
-  color: ${colors.primaryBlue};
+  color: ${colors.primaryFont};
   margin-bottom: 20px;
   padding: 15px;
 `;
