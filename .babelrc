@@ -1,9 +1,4 @@
 {
-  "plugins": ["syntax-dynamic-import", "transform-object-rest-spread"],
-  "presets": ["env", "react"],
-  "env": {
-    "test": {
-      "plugins": ["dynamic-import-node"]
-    }
-  }
+  "plugins": ["transform-object-rest-spread"],
+  "presets": ["env", "react"]
 }
