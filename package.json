@@ -25,7 +25,6 @@
     "react-dom": "^16"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
     "styled-components": "^3.3.2"
   },
   "devDependencies": {
