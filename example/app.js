@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Button, Icon, Info, Success, Tag, Thumbnail, Warning } from "../src";
 import paths from "../src/icons.json";
 
-const Code = styled.pre`font-size: 2em;`
+const Code = styled.pre`font-size: 2em;`;
 
 const Heading = ({ children }) => <Code>{"<"}{children}{">"}</Code>;
 
@@ -16,25 +16,23 @@ const Icons = () =>
     </span>
   ));
 
-const onClick = message => () => alert(`${message} button clicked`);
-
 const App = () => (
   <Fragment>
     <Heading>Button</Heading>
 
-    <Button onClick={onClick("Default")}>Default</Button>{" "}
-    <Button icon="clipboard" onClick={onClick("Icon")}>Icon</Button>{" "}
-    <Button loading onClick={onClick("Loading")}>Loading</Button>{" "}
+    <Button>Default</Button>{" "}
+    <Button icon="clipboard">Icon</Button>{" "}
+    <Button loading>Loading</Button>{" "}
     <Button disabled>Disabled</Button>{" "}
- 
-    <Button primary onClick={onClick("Primary")}>Primary</Button>{" "}
-    <Button icon="clipboard" primary onClick={onClick("Primary Icon")}>Primary Icon</Button>{" "}
- 
-    <Button small onClick={onClick("Small")}>Small</Button>{" "}
-    <Button icon="clipboard" small onClick={onClick("Small Icon")}>Small Icon</Button>{" "}
 
-    <Button inverted onClick={onClick("Inverted")}>Inverted</Button>{" "}
-    <Button icon="clipboard" inverted onClick={onClick("Inverted Icon")}>Inverted Icon</Button>
+    <Button primary>Primary</Button>{" "}
+    <Button icon="clipboard" primary>Primary Icon</Button>{" "}
+
+    <Button small>Small</Button>{" "}
+    <Button icon="clipboard" small>Small Icon</Button>{" "}
+
+    <Button inverted>Inverted</Button>{" "}
+    <Button icon="clipboard" inverted>Inverted Icon</Button>
 
     <Heading>Icon</Heading>
     <Icons />

@@ -64,7 +64,8 @@ const Container = styled.button`
   font-size: ${props => props.theme.fontSize};
   font-weight: 400;
   outline: 0;
-  padding: ${props => props.theme.verticalPadding}px ${props => props.theme.horizontalPadding}px;
+  padding: ${props => props.theme.verticalPadding}px
+    ${props => props.theme.horizontalPadding}px;
 
   svg {
     height: ${props => props.theme.svgHeight}px;
@@ -86,11 +87,12 @@ const Container = styled.button`
     background-color: ${props => props.theme.hoverBackgroundColor};
     border: ${colors.lightenedGreen} solid 2px;
     color: ${props => props.theme.hoverColor};
-    padding: ${props => props.theme.verticalPadding - 1}px ${props => props.theme.horizontalPadding - 1}px;
+    padding: ${props => props.theme.verticalPadding - 1}px
+      ${props => props.theme.horizontalPadding - 1}px;
     text-decoration: none;
 
     path {
-      fill: ${props => props.theme.hoverColor}
+      fill: ${props => props.theme.hoverColor};
     }
   }
 
@@ -98,25 +100,31 @@ const Container = styled.button`
     background-color: ${props => props.theme.activeBackgroundColor};
     border: ${colors.darkenedGreen} solid 2px;
     color: ${props => props.theme.activeColor};
-    padding: ${props => props.theme.verticalPadding - 1}px ${props => props.theme.horizontalPadding - 1}px;
+    padding: ${props => props.theme.verticalPadding - 1}px
+      ${props => props.theme.horizontalPadding - 1}px;
 
     path {
-      fill: ${props => props.theme.activeColor}
+      fill: ${props => props.theme.activeColor};
     }
   }
 
   &:disabled {
     cursor: not-allowed;
-    opacity: .6;
+    opacity: 0.6;
   }
 `;
 
+const ButtonIcon = ({ icon, loading }) => (
+  <Fragment>
+    <Icon icon={loading ? "load-c" : icon} />{" "}
+  </Fragment>
+);
+
 const Button = ({ icon, children, ...props }) => (
   <Container theme={themeFrom(props)} {...props}>
-    {props.loading ?
-      <Fragment><Icon icon="load-c" />{" "}</Fragment> :
-      icon && <Fragment><Icon icon={icon} />{" "}</Fragment>
-    }
+    {(props.loading || icon) && (
+      <ButtonIcon icon={icon} loading={props.loading} />
+    )}
     {children}
   </Container>
 );
