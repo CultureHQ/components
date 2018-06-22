@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Container = styled.div`
   background: url(${props => props.image}) no-repeat center;
-  border: #aaa solid 1px;
   background-size: cover;
   border-radius: ${props => props.size}px;
   display: inline-block;
