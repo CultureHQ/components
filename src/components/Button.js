@@ -5,86 +5,103 @@ import Icon from "./Icon";
 
 import { colors } from "../common.json";
 
-const styles = {
-  horizontalPadding: 5,
-  verticalPadding: 10,
-  lightenedGreen: '#89ba8d',
-  darkenedGreen: '#69a86d'
-};
-
-const horizontalPaddingFrom = ({ primary, small }) => {
-  if (primary) {
-    return styles.horizontalPadding + 4;
-  }
-  if (small) {
-    return styles.horizontalPadding - 3;
-  }
-  return styles.horizontalPadding;
-};
-
-const verticalPaddingFrom = ({ primary, small }) => {
-  if (primary) {
-    return styles.verticalPadding + 3;
-  }
-  if (small) {
-    return styles.verticalPadding - 3;
-  }
-  return styles.verticalPadding;
-};
-
 const spinAnimation = keyframes`
   0% { transform: rotate(0deg); }
   100% { transform: rotate(359deg); }
 `;
 
+const defaultTheme = {
+  activeBackgroundColor: colors.darkenedGreen,
+  activeColor: "white",
+  backgroundColor: colors.primaryGreen,
+  color: "white",
+  fontSize: "1em",
+  hoverBackgroundColor: colors.lightenedGreen,
+  hoverColor: "white",
+  verticalPadding: 5,
+  horizontalPadding: 10,
+  svgAnimation: "none",
+  svgHeight: 18
+};
+
+const themes = {
+  inverted: {
+    activeBackgroundColor: "white",
+    activeColor: colors.darkenedGreen,
+    backgroundColor: "white",
+    color: colors.primaryGreen,
+    hoverBackgroundColor: "white",
+    hoverColor: colors.lightenedGreen
+  },
+  primary: {
+    verticalPadding: 9,
+    horizontalPadding: 13
+  },
+  small: {
+    fontSize: "0.8em",
+    verticalPadding: 2,
+    horizontalPadding: 7,
+    svgHeight: 15
+  },
+  loading: {
+    svgAnimation: `${spinAnimation} 1s linear infinite`
+  }
+};
+
+const themeFrom = props => (
+  Object.keys(themes).reduce((currentTheme, themeName) => (
+    props[themeName] ? { ...currentTheme, ...themes[themeName] } : currentTheme
+  ), defaultTheme)
+);
+
 const Container = styled.button`
-  background-color: ${props => props.inverted ? "white" : colors.primaryGreen};
+  background-color: ${props => props.theme.backgroundColor};
   border: ${colors.primaryGreen} solid 1px;
   border-radius: 5px;
-  color: ${props => props.inverted ? colors.primaryGreen : "white"};
+  color: ${props => props.theme.color};
   cursor: pointer;
   display: inline-block;
-  font-size: ${props => props.small ? 0.8 : 1}em;
+  font-size: ${props => props.theme.fontSize};
   font-weight: 400;
   outline: 0;
-  padding: ${props => horizontalPaddingFrom(props)}px ${props => verticalPaddingFrom(props)}px;
+  padding: ${props => props.theme.verticalPadding}px ${props => props.theme.horizontalPadding}px;
 
   svg {
-    height: ${props => styles.verticalPadding + (props.small ? 5 : 8)}px;
+    height: ${props => props.theme.svgHeight}px;
     margin: 0 0 -3px -3px;
-    ${props => props.loading && `animation: ${spinAnimation} 1s linear infinite;`}
+    animation: ${props => props.theme.svgAnimation};
   }
 
   path {
-    fill: ${props => props.inverted ? colors.primaryGreen : "white"};
+    fill: ${props => props.theme.color};
   }
 
   &:focus {
-    background-color: ${props => props.inverted ? "white" : colors.primaryGreen};
-    color: ${props => props.inverted ? colors.primaryGreen : "white"};
+    background-color: ${props => props.theme.backgroundColor};
+    color: ${props => props.theme.color};
     text-decoration: none;
   }
 
   &:hover {
-    background-color: ${props => props.inverted ? "white" : styles.lightenedGreen};
-    border: ${styles.lightenedGreen} solid 2px;
-    color: ${props => props.inverted ? styles.lightenedGreen : "white"};
-    padding: ${props => horizontalPaddingFrom(props) - 1}px ${props => verticalPaddingFrom(props) - 1}px;
+    background-color: ${props => props.theme.hoverBackgroundColor};
+    border: ${colors.lightenedGreen} solid 2px;
+    color: ${props => props.theme.hoverColor};
+    padding: ${props => props.theme.verticalPadding - 1}px ${props => props.theme.horizontalPadding - 1}px;
     text-decoration: none;
 
     path {
-      fill: ${props => props.inverted ? styles.lightenedGreen : "white"}
+      fill: ${props => props.theme.hoverColor}
     }
   }
 
   &:active {
-    background-color: ${props => props.inverted ? "white" : styles.darkenedGreen};
-    border: ${styles.darkenedGreen} solid 2px;
-    color: ${props => props.inverted ? styles.darkenedGreen : "white"};
-    padding: ${props => horizontalPaddingFrom(props) - 1}px ${props => verticalPaddingFrom(props) - 1}px;
+    background-color: ${props => props.theme.activeBackgroundColor};
+    border: ${colors.darkenedGreen} solid 2px;
+    color: ${props => props.theme.activeColor};
+    padding: ${props => props.theme.verticalPadding - 1}px ${props => props.theme.horizontalPadding - 1}px;
 
     path {
-      fill: ${props => props.inverted ? styles.darkenedGreen : "white"}
+      fill: ${props => props.theme.activeColor}
     }
   }
 
@@ -94,9 +111,9 @@ const Container = styled.button`
   }
 `;
 
-const Button = ({ loading, icon, children, ...props }) => (
-  <Container loading={loading} {...props}>
-    {loading ?
+const Button = ({ icon, children, ...props }) => (
+  <Container theme={themeFrom(props)} {...props}>
+    {props.loading ?
       <Fragment><Icon icon="load-c" />{" "}</Fragment> :
       icon && <Fragment><Icon icon={icon} />{" "}</Fragment>
     }
