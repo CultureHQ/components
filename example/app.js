@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
-import { Button, Icon, Info, Success, Tag, Thumbnail, Warning } from "../src";
+import { Button, Icon, Info, Subnav, Success, Tag, Thumbnail, Warning } from "../src";
 import paths from "../src/icons.json";
 
 const Code = styled.pre`font-size: 2em;`;
@@ -39,6 +39,13 @@ const App = () => (
 
     <Heading>Info</Heading>
     <Info>This is an info.</Info>
+
+    <Heading>Subnav</Heading>
+    <Subnav>
+      <Subnav.Item>One</Subnav.Item>
+      <Subnav.Item>Two</Subnav.Item>
+      <Subnav.Item>Three</Subnav.Item>
+    </Subnav>
 
     <Heading>Success</Heading>
     <Success>This is a success.</Success>
