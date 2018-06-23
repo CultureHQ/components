@@ -9,12 +9,15 @@ const Code = styled.pre`font-size: 2em;`;
 
 const Heading = ({ children }) => <Code>{"<"}{children}{">"}</Code>;
 
-const Icons = () =>
-  Object.keys(paths).map(icon => (
-    <span key={icon} title={icon}>
-      <Icon icon={icon} />
-    </span>
-  ));
+const Icons = () => (
+  <div className="icons">
+    {Object.keys(paths).map(icon => (
+      <span key={icon} title={icon}>
+        <Icon icon={icon} />
+      </span>
+    ))}
+  </div>
+);
 
 const App = () => (
   <Fragment>

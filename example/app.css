@@ -18,10 +18,10 @@ body {
   width: 66%;
 }
 
-svg {
+.icons svg {
   margin: 0 8px 2px 0;
 }
 
-path {
+.icons path {
   fill: #333;
 }

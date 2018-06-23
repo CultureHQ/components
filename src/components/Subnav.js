@@ -29,6 +29,8 @@ const ItemContainer = styled.a`
 
   &:hover {
     background-color: ${colors.border};
+    color: ${props => props.theme.color};
+    text-decoration: none;
   }
 
   & + a {
