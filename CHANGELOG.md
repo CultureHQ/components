@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.13] - 2018-06-25
+### Added
+- The `calendar-add`, `calendar-check`, `calendar-clock`, `calendar-date`, `calendar-gear`, `feedback`, `image-add`, `people`, `person-check`, `thumbsup-outline`, and `trophy-star` icons.
+
 ## [0.0.12] - 2018-06-25
 ### Removed
 - The unnecessary `example.js` file from the distribution directory by properly using webpack dev and prod builds.
