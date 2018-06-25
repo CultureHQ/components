@@ -19,25 +19,6 @@ const activeTheme = {
   color: colors.primaryGreen
 };
 
-const ItemContainer = styled.a`
-  border-bottom: ${props => props.theme.borderBottom};
-  border-radius: ${props => props.theme.borderRadius};
-  color: ${props => props.theme.color};
-  cursor: pointer;
-  padding: 4px 5px;
-  text-decoration: none;
-
-  &:hover {
-    background-color: ${colors.border};
-    color: ${props => props.theme.color};
-    text-decoration: none;
-  }
-
-  & + a {
-    margin-left: 10px;
-  }
-`;
-
 class Subnav extends Component {
   constructor(props) {
     super(props);
@@ -66,7 +47,7 @@ class Subnav extends Component {
       <NavContainer {...otherProps}>
         {React.Children.map(children, (child, index) => (
           React.cloneElement(child, {
-            active: index === activeIndex,
+            theme: index === activeIndex ? activeTheme : defaultTheme,
             onClick: () => this.handleClick(index)
           })
         ))}
@@ -75,17 +56,23 @@ class Subnav extends Component {
   }
 }
 
-Subnav.Item = ({
-  to, active, children, ...props
-}) => (
-  <ItemContainer
-    theme={active ? activeTheme : defaultTheme}
-    href={to}
-    active={active}
-    {...props}
-  >
-    {children}
-  </ItemContainer>
-);
+Subnav.Item = styled.a`
+  border-bottom: ${props => props.theme.borderBottom};
+  border-radius: ${props => props.theme.borderRadius};
+  color: ${props => props.theme.color};
+  cursor: pointer;
+  padding: 4px 5px;
+  text-decoration: none;
+
+  &:hover {
+    background-color: ${colors.border};
+    color: ${props => props.theme.color};
+    text-decoration: none;
+  }
+
+  & + a {
+    margin-left: 10px;
+  }
+`;
 
 export default Subnav;

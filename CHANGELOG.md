@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.10] - 2018-06-25
+### Changed
+- Simplified the `Subnav` component, assuming everything functions off the `onChange` prop.
+
 ## [0.0.9] - 2018-06-23
 ### Changed
 - Enforce `text-decoration` and `color` on hover of the `Subnav.Item` component.
@@ -54,7 +58,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/v0.0.9...HEAD
+[Unreleased]: https://github.com/CultureHQ/components/compare/v0.0.10...HEAD
+[0.0.10]: https://github.com/CultureHQ/components/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/CultureHQ/components/compare/v0.0.8...v0.0.9
 [0.0.8]: https://github.com/CultureHQ/components/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/CultureHQ/components/compare/v0.0.6...v0.0.7
