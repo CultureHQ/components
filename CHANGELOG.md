@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.15] - 2018-06-25
+### Added
+- The `FeedItem` component.
+
 ## [0.0.14] - 2018-06-25
 ### Added
 - The `trophy-cup` icon.
@@ -74,7 +78,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/v0.0.10...HEAD
+[Unreleased]: https://github.com/CultureHQ/components/compare/v0.0.15...HEAD
+[0.0.15]: https://github.com/CultureHQ/components/compare/v0.0.14...v0.0.15
+[0.0.14]: https://github.com/CultureHQ/components/compare/v0.0.13...v0.0.14
+[0.0.13]: https://github.com/CultureHQ/components/compare/v0.0.12...v0.0.13
+[0.0.12]: https://github.com/CultureHQ/components/compare/v0.0.11...v0.0.12
+[0.0.11]: https://github.com/CultureHQ/components/compare/v0.0.10...v0.0.11
 [0.0.10]: https://github.com/CultureHQ/components/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/CultureHQ/components/compare/v0.0.8...v0.0.9
 [0.0.8]: https://github.com/CultureHQ/components/compare/v0.0.7...v0.0.8

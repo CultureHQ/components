@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
-import { Button, Icon, Info, Subnav, Success, Tag, Thumbnail, Warning } from "../src";
+import { Button, FeedItem, Icon, Info, Subnav, Success, Tag, Thumbnail, Warning } from "../src";
 import paths from "../src/icons.json";
 
 const Code = styled.pre`font-size: 2em;`;
@@ -36,6 +36,12 @@ const App = () => (
 
     <Button inverted>Inverted</Button>{" "}
     <Button icon="clipboard" inverted>Inverted Icon</Button>
+
+    <Heading>FeedItem</Heading>
+    <FeedItem>
+      <FeedItem.Body>This is a feed item.</FeedItem.Body>
+      <FeedItem.Footer>This is the footer of the feed item.</FeedItem.Footer>
+    </FeedItem>
 
     <Heading>Icon</Heading>
     <Icons />
