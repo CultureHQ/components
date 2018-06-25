@@ -6,6 +6,6 @@
 /dist/example.js
 /example/
 /test/
-/webpack.config.babel.js
+/webpack.{dev,prod}.js
 /yarn.lock
 /yarn-error.log

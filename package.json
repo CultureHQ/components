@@ -5,10 +5,10 @@
   "main": "dist/main.js",
   "scripts": {
     "analyze": "source-map-explorer dist/main.*",
-    "build": "webpack --config webpack.config.babel.js --mode production --progress",
+    "build": "webpack --config webpack.prod.js --progress",
     "lint": "eslint .",
     "prettier": "prettier --write '**/*.js'",
-    "start": "webpack-dev-server --config webpack.config.babel.js --mode development --hot",
+    "start": "webpack-dev-server --config webpack.dev.js --hot",
     "test": "jest"
   },
   "repository": {
@@ -49,7 +49,6 @@
     "prettier": "^1.13.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "source-map-explorer": "^1.5.0",
     "webpack": "^4.10.2",
     "webpack-cli": "^3.0.2",
     "webpack-dev-server": "^3.1.4"
