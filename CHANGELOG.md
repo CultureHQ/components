@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.14] - 2018-06-25
+### Added
+- The `trophy-cup` icon.
+
 ## [0.0.13] - 2018-06-25
 ### Added
 - The `calendar-add`, `calendar-check`, `calendar-clock`, `calendar-date`, `calendar-gear`, `feedback`, `image-add`, `people`, `person-check`, `thumbsup-outline`, and `trophy-star` icons.
