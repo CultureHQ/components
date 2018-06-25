@@ -1,4 +1,11 @@
 /.babelrc
-/example
+/.eslintignore
+/.eslintrc.json
+/.prettierignore
+/.travis.yml
+/dist/example.js
+/example/
+/test/
 /webpack.config.babel.js
 /yarn.lock
+/yarn-error.log

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.11] - 2018-06-25
+### Changed
+- Readded the dynamic import of the `icons.json` file.
+
 ## [0.0.10] - 2018-06-25
 ### Changed
 - Simplified the `Subnav` component, assuming everything functions off the `onChange` prop.

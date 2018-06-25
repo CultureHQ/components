@@ -4,6 +4,7 @@
   "description": "CultureHQ's component library",
   "main": "dist/main.js",
   "scripts": {
+    "analyze": "source-map-explorer dist/main.*",
     "build": "webpack --config webpack.config.babel.js --mode production --progress",
     "lint": "eslint .",
     "prettier": "prettier --write '**/*.js'",
@@ -31,6 +32,8 @@
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
@@ -46,6 +49,7 @@
     "prettier": "^1.13.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "source-map-explorer": "^1.5.0",
     "webpack": "^4.10.2",
     "webpack-cli": "^3.0.2",
     "webpack-dev-server": "^3.1.4"

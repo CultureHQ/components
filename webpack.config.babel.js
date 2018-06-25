@@ -20,6 +20,7 @@ module.exports = [
     module: {
       rules: [{ test: /\.js$/, use: "babel-loader", exclude: /node_modules/ }]
     },
-    target: "node"
+    target: "node",
+    devtool: "source-map"
   }
 ];
