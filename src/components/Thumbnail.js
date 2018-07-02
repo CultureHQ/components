@@ -4,14 +4,14 @@ import styled from "styled-components";
 const Container = styled.div`
   background: url(${props => props.image}) no-repeat center;
   background-size: cover;
-  border-radius: ${props => props.size}px;
+  border-radius: ${props => props.square ? 0 : `${props.imageSize}px`};
   display: inline-block;
-  height: ${props => props.size}px;
-  width: ${props => props.size}px;
+  height: ${props => props.imageSize}px;
+  width: ${props => props.imageSize}px;
 `;
 
-const Thumbnail = ({ size = 25, ...props }) => (
-  <Container size={size} {...props} />
+const Thumbnail = ({ square = false, size = 25, ...props }) => (
+  <Container square={square} imageSize={size} {...props} />
 );
 
 export default Thumbnail;

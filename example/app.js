@@ -65,12 +65,14 @@ const App = () => (
     <Tag color="red">Red</Tag>
 
     <Heading>Thumbnail</Heading>
-    {[0, 1, 2, 3, 4, 5].map(ident => (
+    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(ident => (
       <Thumbnail
         key={ident}
+        className="thumbnail"
         image={`https://robohash.org/${ident}`}
         title={`Robot ${ident}`}
-        size={(Math.floor(ident / 3) + 1) * 25}
+        size={(Math.floor((ident % 6) / 3) + 1) * 25}
+        square={ident >= 6}
       />
     ))}
 

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.16] - 2018-07-02
+### Added
+- The optional `square` prop on the `Thumbnail` component for turning off rounded borders.
+
 ## [0.0.15] - 2018-06-25
 ### Added
 - The `FeedItem` component.

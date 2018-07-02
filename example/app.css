@@ -25,3 +25,11 @@ body {
 .icons path {
   fill: #333;
 }
+
+.thumbnail {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.thumbnail + .thumbnail {
+  margin-left: 10px;
+}
