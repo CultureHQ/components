@@ -2,7 +2,18 @@ import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
-import { Button, FeedItem, Icon, Info, Subnav, Success, Tag, Thumbnail, Warning } from "../src";
+import {
+  Badge,
+  Button,
+  FeedItem,
+  Icon,
+  Info,
+  Subnav,
+  Success,
+  Tag,
+  Thumbnail,
+  Warning
+} from "../src";
 import paths from "../src/icons.json";
 
 const Code = styled.pre`font-size: 2em;`;
@@ -21,6 +32,10 @@ const Icons = () => (
 
 const App = () => (
   <Fragment>
+    <Heading>Badge</Heading>
+    <Badge className="badge">Default</Badge>
+    <Badge className="badge" primary>Primary</Badge>
+
     <Heading>Button</Heading>
 
     <Button>Default</Button>{" "}

@@ -18,6 +18,10 @@ body {
   width: 66%;
 }
 
+.badge + .badge {
+  margin-left: 10px;
+}
+
 .icons svg {
   margin: 0 8px 2px 0;
 }
