@@ -1,22 +1,22 @@
-import styled from "styled-components";
+import React from "react";
+import classnames from "classnames";
 
-import { colors } from "../common.json";
+const FeedItem = ({ children, className, ...props }) => (
+  <div className={classnames(className, "chq-fdi")} {...props}>
+    {children}
+  </div>
+);
 
-const FeedItem = styled.div`
-  background-color: white;
-  border-radius: 3px;
-  box-shadow: .5px .5px 3px rgba(0, 0, 0, .2);
-  margin-bottom: 15px;
-  min-height: 100px;
-`;
+FeedItem.Body = ({ children, className, ...props }) => (
+  <div className={classnames(className, "chq-fdi--bd")} {...props}>
+    {children}
+  </div>
+);
 
-FeedItem.Body = styled.div`
-  padding: 15px;
-`;
-
-FeedItem.Footer = styled.div`
-  border-top: 1px solid ${colors.border};
-  padding: 15px;
-`;
+FeedItem.Footer = ({ children, className, ...props }) => (
+  <div className={classnames(className, "chq-fdi--ft")} {...props}>
+    {children}
+  </div>
+);
 
 export default FeedItem;

@@ -1,0 +1,18 @@
+@import 'common';
+
+.chq-fdi {
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: .5px .5px 3px rgba(0, 0, 0, .2);
+  margin-bottom: 15px;
+  min-height: 100px;
+
+  &--bd {
+    padding: 15px;
+  }
+
+  &--ft {
+    border-top: 1px solid $color-border;
+    padding: 15px;
+  }
+}
