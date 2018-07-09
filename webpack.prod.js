@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies: "off" */
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {

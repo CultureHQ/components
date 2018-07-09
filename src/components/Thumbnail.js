@@ -1,7 +1,9 @@
 import React from "react";
 import classnames from "classnames";
 
-const Thumbnail = ({ className, image, size = "small", square = false, ...props }) => (
+const Thumbnail = ({
+  className, image, size = "small", square = false, ...props
+}) => (
   <div
     className={
       classnames(className, "chq-tmb", {

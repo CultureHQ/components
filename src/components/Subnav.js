@@ -22,7 +22,9 @@ class Subnav extends Component {
   }
 
   render() {
-    const { children, className, onChange, ...props } = this.props;
+    const {
+      children, className, onChange, ...props
+    } = this.props;
     const { activeIndex } = this.state;
 
     return (
@@ -38,7 +40,9 @@ class Subnav extends Component {
   }
 }
 
-Subnav.Item = ({ children, className, active, ...props }) => (
+Subnav.Item = ({
+  children, className, active, ...props
+}) => (
   <a
     className={
       classnames(className, "chq-snv--it", { "chq-snv--it-active": active })
