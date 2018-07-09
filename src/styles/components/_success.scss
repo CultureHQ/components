@@ -1,0 +1,13 @@
+@import '../common';
+
+.chq-scs {
+  background-color: $success-background;
+  border: 1px solid $success-border;
+  color: $success-font;
+  margin-bottom: 20px;
+  padding: 15px;
+
+  p {
+    margin: 0;
+  }
+}

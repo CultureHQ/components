@@ -13,6 +13,10 @@ body {
   padding: 0;
 }
 
+pre {
+  font-size: 2rem;
+}
+
 #main {
   margin: 50px auto;
   width: 66%;

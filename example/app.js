@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
-import styled from "styled-components";
 
 import {
   Badge,
@@ -16,9 +15,7 @@ import {
 } from "../src";
 import paths from "../src/icons.json";
 
-const Code = styled.pre`font-size: 2em;`;
-
-const Heading = ({ children }) => <Code>{"<"}{children}{">"}</Code>;
+const Heading = ({ children }) => <pre>{"<"}{children}{">"}</pre>;
 
 const Icons = () => (
   <div className="icons">
@@ -86,8 +83,8 @@ const App = () => (
         className="thumbnail"
         image={`https://robohash.org/${ident}`}
         title={`Robot ${ident}`}
-        size={(Math.floor((ident % 6) / 3) + 1) * 25}
-        square={ident >= 6}
+        size={["small", "medium", "large"][Math.floor(ident / 4)]}
+        square={Math.floor(ident % 4) >= 2}
       />
     ))}
 

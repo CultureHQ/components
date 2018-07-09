@@ -1,0 +1,13 @@
+@import '../common';
+
+.chq-wrn {
+  background-color: $warning-background;
+  border: 1px solid $warning-border;
+  color: $warning-font;
+  margin-bottom: 20px;
+  padding: 15px;
+
+  p {
+    margin: 0;
+  }
+}

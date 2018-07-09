@@ -1,0 +1,126 @@
+@import '../common';
+
+.chq-btn {
+  background-color: $color-primary-green;
+  border: $color-primary-green solid 1px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1em;
+  font-weight: 400;
+  outline: 0;
+  padding: 5px 10px;
+
+  svg {
+    height: 18px;
+    margin: 0 0 -3px -3px;
+  }
+
+  path {
+    fill: white;
+  }
+
+  &:focus {
+    background-color: $color-primary-green;
+    color: white;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: $color-lightened-green;
+    border: $color-lightened-green solid 2px;
+    color: white;
+    padding: 4px 9px;
+    text-decoration: none;
+
+    path {
+      fill: white;
+    }
+  }
+
+  &:active {
+    background-color: $color-darkened-green;
+    border: $color-darkened-green solid 2px;
+    color: white;
+    padding: 4px 9px;
+
+    path {
+      fill: white;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &-iv {
+    background-color: white;
+    color: $color-primary-green;
+
+    path {
+      fill: $color-primary-green;
+    }
+
+    &:focus {
+      background-color: white;
+      color: $color-primary-green;
+    }
+
+    &:hover {
+      background-color: white;
+      color: $color-lightened-green;
+
+      path {
+        fill: $color-lightened-green;
+      }
+    }
+
+    &:active {
+      background-color: white;
+      color: $color-darkened-green;
+
+      path {
+        fill: $color-darkened-green;
+      }
+    }
+  }
+
+  &-pr {
+    padding: 9px 13px;
+
+    &:hover,
+    &:active {
+      padding: 8px 12px;
+    }
+  }
+
+  &-sm {
+    font-size: 0.8em;
+    padding: 2px 7px;
+
+    &:hover,
+    &:active {
+      padding: 1px 6px;
+    }
+
+    svg {
+      height: 15px;
+    }
+  }
+
+  &-ld svg {
+    animation: chq-spn 1s linear infinite;
+  }
+}
+
+@keyframes chq-spn {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}

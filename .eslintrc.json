@@ -12,6 +12,7 @@
     "comma-dangle": 0,
     "quotes": [2, "double"],
     "react/jsx-filename-extension": 0,
+    "react/jsx-one-expression-per-line": 0,
     "react/prop-types": 0
   }
 }
