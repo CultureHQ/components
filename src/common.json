@@ -9,12 +9,6 @@
     "primaryRed": "#c14c4c",
     "primaryFont": "#5c5f67",
     "primaryLightFont": "#9c9fa7",
-    "secondaryFont": "#888",
-    "info": {
-      "background": "#d7e5f1"
-    }
-  },
-  "fontSizes": {
-    "small": "13px"
+    "secondaryFont": "#888"
   }
 }

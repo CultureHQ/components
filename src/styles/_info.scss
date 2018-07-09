@@ -1,0 +1,12 @@
+@import 'common';
+
+.chq-inf {
+  background-color: $info-background;
+  color: $color-primary-font;
+  margin-bottom: 20px;
+  padding: 15px;
+
+  p {
+    margin: 0;
+  }
+}
