@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
-import styled from "styled-components";
 
 import {
   Badge,
@@ -16,9 +15,7 @@ import {
 } from "../src";
 import paths from "../src/icons.json";
 
-const Code = styled.pre`font-size: 2em;`;
-
-const Heading = ({ children }) => <Code>{"<"}{children}{">"}</Code>;
+const Heading = ({ children }) => <pre>{"<"}{children}{">"}</pre>;
 
 const Icons = () => (
   <div className="icons">
