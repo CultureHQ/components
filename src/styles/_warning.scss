@@ -1,0 +1,15 @@
+$warning-background: #fcf8e3;
+$warning-border: #faebcc;
+$warning-font: #8a6d3b;
+
+.chq-warn {
+  background-color: $warning-background;
+  color: $warning-font;
+  border: 1px solid $warning-border;
+  margin-bottom: 20px;
+  padding: 15px;
+
+  p {
+    margin: 0;
+  }
+}
