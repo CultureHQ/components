@@ -86,8 +86,8 @@ const App = () => (
         className="thumbnail"
         image={`https://robohash.org/${ident}`}
         title={`Robot ${ident}`}
-        size={(Math.floor((ident % 6) / 3) + 1) * 25}
-        square={ident >= 6}
+        size={["small", "medium", "large"][Math.floor(ident / 4)]}
+        square={Math.floor(ident % 4) >= 2}
       />
     ))}
 
