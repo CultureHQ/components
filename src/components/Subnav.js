@@ -9,10 +9,12 @@ class Subnav extends Component {
   }
 
   handleClick(activeIndex) {
+    const { onChange } = this.props;
+
     this.setState(prevState => {
       if (prevState.activeIndex !== activeIndex) {
-        if (this.props.onChange) {
-          this.props.onChange(activeIndex);
+        if (onChange) {
+          onChange(activeIndex);
         }
 
         return { activeIndex };

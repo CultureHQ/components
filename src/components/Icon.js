@@ -13,7 +13,9 @@ class AsyncPath extends Component {
   }
 
   componentDidUpdate({ icon }) {
-    if (icon !== this.props.icon) {
+    const { icon: prevIcon } = this.props;
+
+    if (icon !== prevIcon) {
       this.loadIcon();
     }
   }

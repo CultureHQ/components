@@ -5,6 +5,7 @@ const Badge = ({
   children, className, primary = false, ...props
 }) => (
   <button
+    type="button"
     className={classnames(className, "chq-bdg", { "chq-bdg-pr": primary })}
     {...props}
   >

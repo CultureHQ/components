@@ -10,11 +10,18 @@ const ButtonIcon = ({ icon, loading }) => (
 );
 
 const Button = ({
-  children, className, type = "button", icon,
-  inverted, primary, small, loading, ...props
+  children,
+  className,
+  type = "button",
+  icon,
+  inverted,
+  primary,
+  small,
+  loading,
+  ...props
 }) => (
   <button
-    type={type}
+    type={type} /* eslint react/button-has-type: "off" */
     className={
       classnames(className, "chq-btn", {
         "chq-btn-iv": inverted,
