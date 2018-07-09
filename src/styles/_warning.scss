@@ -1,11 +1,9 @@
-$warning-background: #fcf8e3;
-$warning-border: #faebcc;
-$warning-font: #8a6d3b;
+@import 'common';
 
 .chq-wrn {
   background-color: $warning-background;
-  color: $warning-font;
   border: 1px solid $warning-border;
+  color: $warning-font;
   margin-bottom: 20px;
   padding: 15px;
 
