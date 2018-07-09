@@ -5,8 +5,8 @@ const Thumbnail = ({ className, image, size = "small", square = false, ...props 
   <div
     className={
       classnames(
-        "chq-tmb",
         className,
+        "chq-tmb",
         { "chq-tmb-md": size === "medium" },
         { "chq-tmb-lg": size === "large" },
         { "chq-tmb-sq": square }

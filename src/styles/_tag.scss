@@ -1,0 +1,21 @@
+@import 'common';
+
+.chq-tag {
+  background-color: $color-link-blue;
+  color: white;
+  display: inline-block;
+  font-size: 13px;
+  padding: 0 6px;
+
+  & + & {
+    margin-left: 5px;
+  }
+
+  &-gy {
+    background-color: $color-secondary-font;
+  }
+
+  &-rd {
+    background-color: $color-primary-red;
+  }
+}
