@@ -3,13 +3,7 @@ import classnames from "classnames";
 
 const Badge = ({ children, className, primary = false, ...props }) => (
   <button
-    className={
-      classnames(
-        className,
-        "chq-bdg",
-        { "chq-bdg-pr": primary }
-      )
-    }
+    className={classnames(className, "chq-bdg", { "chq-bdg-pr": primary })}
     {...props}
   >
     {children}

@@ -41,11 +41,7 @@ class Subnav extends Component {
 Subnav.Item = ({ children, className, active, ...props }) => (
   <a
     className={
-      classnames(
-        className,
-        "chq-snv--it",
-        { "chq-snv--it-active": active }
-      )
+      classnames(className, "chq-snv--it", { "chq-snv--it-active": active })
     }
     {...props}
   >
