@@ -14,16 +14,12 @@ body {
 }
 
 pre {
-  font-size: 2rem;
+  font-size: 2em;
 }
 
 #main {
   margin: 50px auto;
   width: 66%;
-}
-
-.badge + .badge {
-  margin-left: 10px;
 }
 
 .icons svg {
@@ -35,7 +31,7 @@ pre {
 }
 
 .thumbnail {
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 1px rgba(0, 0, 0, .2);
 }
 
 .thumbnail + .thumbnail {
