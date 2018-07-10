@@ -58,5 +58,5 @@ test("additionally functions as a controlled component", () => {
 
   component.find(Subnav.Item).at(1).simulate("click");
   expect(component.find(Subnav).props().activeIndex).toEqual(1);
-  expect(component.find(Subnav.Item).at(1).props().active).toBe(true)
+  expect(component.find(Subnav.Item).at(1).props().active).toBe(true);
 });
