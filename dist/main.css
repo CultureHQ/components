@@ -117,12 +117,17 @@
     cursor: pointer;
     padding: 4px 5px;
     text-decoration: none; }
+    .chq-snv--it:hover {
+      color: #9c9fa7;
+      text-decoration: none; }
     .chq-snv--it + .chq-snv--it {
       margin-left: 10px; }
     .chq-snv--it-active {
       border-bottom: 2px solid #79b17d;
       border-radius: 0;
       color: #79b17d; }
+      .chq-snv--it-active:hover {
+        color: #79b17d; }
 
 .chq-scs {
   background-color: #dff0d8;

@@ -80,7 +80,6 @@ const App = () => (
     {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(ident => (
       <Thumbnail
         key={ident}
-        className="thumbnail"
         image={`https://robohash.org/${ident}`}
         title={`Robot ${ident}`}
         size={["small", "medium", "large"][Math.floor(ident / 4)]}

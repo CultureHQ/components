@@ -13,6 +13,11 @@ body {
   padding: 0;
 }
 
+a:hover {
+  color: #23527c;
+  text-decoration: underline;
+}
+
 pre {
   font-size: 2em;
 }
@@ -30,10 +35,14 @@ pre {
   fill: #333;
 }
 
-.thumbnail {
+.chq-bdg + .chq-bdg {
+  margin-left: 10px;
+}
+
+.chq-tmb {
   box-shadow: 0 0 1px rgba(0, 0, 0, .2);
 }
 
-.thumbnail + .thumbnail {
+.chq-tmb + .chq-tmb {
   margin-left: 10px;
 }
