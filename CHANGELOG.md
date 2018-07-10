@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.0.3] - 2018-07-10
+### Changed
+- Allow `Subnav` to function as a controller component properly.
+
 ## [1.0.2] - 2018-07-10
 ### Changed
 - Added explicit rules for the `Subnav.Item` component's hover.

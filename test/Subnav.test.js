@@ -1,7 +1,31 @@
-import React from "react";
+import React, { Component } from "react";
 import { mount } from "enzyme";
 
 import Subnav from "../src/components/Subnav";
+
+class SubnavContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { activeIndex: 0 };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(activeIndex) {
+    this.setState({ activeIndex });
+  }
+
+  render() {
+    const { children } = this.props;
+    const { activeIndex } = this.state;
+
+    return (
+      <Subnav activeIndex={activeIndex} onChange={this.handleChange}>
+        {children}
+      </Subnav>
+    );
+  }
+}
 
 test("renders without crashing", () => {
   const clicks = [];
@@ -21,4 +45,18 @@ test("renders without crashing", () => {
   });
 
   expect(clicks).toEqual(pattern);
+});
+
+test("additionally functions as a controlled component", () => {
+  const component = mount(
+    <SubnavContainer>
+      <Subnav.Item>One</Subnav.Item>
+      <Subnav.Item>Two</Subnav.Item>
+      <Subnav.Item>Three</Subnav.Item>
+    </SubnavContainer>
+  );
+
+  component.find(Subnav.Item).at(1).simulate("click");
+  expect(component.find(Subnav).props().activeIndex).toEqual(1);
+  expect(component.find(Subnav.Item).at(1).props().active).toBe(true)
 });

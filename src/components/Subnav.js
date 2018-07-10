@@ -8,26 +8,31 @@ class Subnav extends Component {
     this.state = { activeIndex: props.activeIndex || 0 };
   }
 
-  handleClick(activeIndex) {
+  componentDidUpdate(prevProps, prevState) {
     const { onChange } = this.props;
+    const { activeIndex } = this.state;
 
-    this.setState(prevState => {
-      if (prevState.activeIndex !== activeIndex) {
-        if (onChange) {
-          onChange(activeIndex);
-        }
+    if (onChange && (prevState.activeIndex !== activeIndex)) {
+      onChange(activeIndex);
+    }
+  }
 
-        return { activeIndex };
-      }
-      return null;
-    });
+  handleClick(activeIndex) {
+    this.setState({ activeIndex });
   }
 
   render() {
     const {
-      children, className, onChange, ...props
+      children,
+      className,
+      activeIndex: givenIndex,
+      onChange,
+      ...props
     } = this.props;
-    const { activeIndex } = this.state;
+
+    const { activeIndex: currentIndex } = this.state;
+
+    const activeIndex = Number.isInteger(givenIndex) ? givenIndex : currentIndex;
 
     return (
       <nav className={classnames(className, "chq-snv")} {...props}>
