@@ -2,14 +2,14 @@
 
 .chq-nav {
   background-color: $color-dark-blue;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+  box-shadow: 0 2px 3px $color-box-shadow;
   color: $color-background;
   min-height: 50px;
-  padding: 5px 20px 0 20px;
+  padding: 5px 20px 0;
   position: fixed;
-  width: 100%;
   top: 0;
-  transition: top 0.35s;
+  transition: top .35s;
+  width: 100%;
 
   &-hd {
     box-shadow: none;
