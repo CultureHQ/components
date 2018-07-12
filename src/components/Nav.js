@@ -4,7 +4,7 @@ import classnames from "classnames";
 class Nav extends Component {
   state = {
     navDisplayed: true,
-    prevScroll: 0
+    prevScroll: window.pageYOffset
   };
 
   componentDidMount() {
@@ -30,13 +30,10 @@ class Nav extends Component {
     const { prevScroll } = this.state;
     const nextScroll = window.pageYOffset;
 
-    if (nextScroll <= 30 || prevScroll > nextScroll) {
-      this.setState({ navDisplayed: true });
-    } else {
-      this.setState({ navDisplayed: false });
-    }
-
-    this.setState({ prevScroll: nextScroll });
+    this.setState({
+      navDisplayed: nextScroll <= 30 || prevScroll > nextScroll,
+      prevScroll: nextScroll
+    });
   };
 
   render() {

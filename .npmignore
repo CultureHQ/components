@@ -3,6 +3,7 @@
 /.eslintrc.json
 /.prettierignore
 /.travis.yml
+/coverage/
 /dist/example.js
 /example/
 /test/
