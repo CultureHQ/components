@@ -7,6 +7,7 @@
     "analyze": "source-map-explorer dist/main.*",
     "build": "webpack --config webpack.prod.js --progress",
     "lint": "eslint .",
+    "lint-css": "sass-lint -c .sass-lint.yml -v --max-warnings 0",
     "prettier": "prettier --write '**/*.js'",
     "start": "webpack-dev-server --config webpack.dev.js --hot",
     "test": "jest"
@@ -53,6 +54,7 @@
     "prettier": "^1.13.7",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "sass-lint": "^1.12.1",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "webpack": "^4.15.1",
