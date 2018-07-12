@@ -6,6 +6,7 @@
   cursor: pointer;
   display: inline-block;
   font-size: 1em;
+  outline: none;
   padding: 5px 12px;
   text-decoration: none; }
   .chq-bdg-pr {
@@ -16,7 +17,7 @@
   background-color: #79b17d;
   border: #79b17d solid 1px;
   border-radius: 5px;
-  color: white;
+  color: #fff;
   cursor: pointer;
   display: inline-block;
   font-size: 1em;
@@ -27,44 +28,44 @@
     height: 18px;
     margin: 0 0 -3px -3px; }
   .chq-btn path {
-    fill: white; }
+    fill: #fff; }
   .chq-btn:focus {
     background-color: #79b17d;
-    color: white;
+    color: #fff;
     text-decoration: none; }
   .chq-btn:hover {
     background-color: #89ba8d;
     border: #89ba8d solid 2px;
-    color: white;
+    color: #fff;
     padding: 4px 9px;
     text-decoration: none; }
     .chq-btn:hover path {
-      fill: white; }
+      fill: #fff; }
   .chq-btn:active {
     background-color: #69a86d;
     border: #69a86d solid 2px;
-    color: white;
+    color: #fff;
     padding: 4px 9px; }
     .chq-btn:active path {
-      fill: white; }
+      fill: #fff; }
   .chq-btn:disabled {
     cursor: not-allowed;
-    opacity: 0.6; }
+    opacity: .6; }
   .chq-btn-iv {
-    background-color: white;
+    background-color: #fff;
     color: #79b17d; }
     .chq-btn-iv path {
       fill: #79b17d; }
     .chq-btn-iv:focus {
-      background-color: white;
+      background-color: #fff;
       color: #79b17d; }
     .chq-btn-iv:hover {
-      background-color: white;
+      background-color: #fff;
       color: #89ba8d; }
       .chq-btn-iv:hover path {
         fill: #89ba8d; }
     .chq-btn-iv:active {
-      background-color: white;
+      background-color: #fff;
       color: #69a86d; }
       .chq-btn-iv:active path {
         fill: #69a86d; }
@@ -73,7 +74,7 @@
     .chq-btn-pr:hover, .chq-btn-pr:active {
       padding: 8px 12px; }
   .chq-btn-sm {
-    font-size: 0.8em;
+    font-size: .8em;
     padding: 2px 7px; }
     .chq-btn-sm:hover, .chq-btn-sm:active {
       padding: 1px 6px; }
@@ -89,7 +90,7 @@
     transform: rotate(359deg); } }
 
 .chq-fdi {
-  background-color: white;
+  background-color: #fff;
   border-radius: 3px;
   box-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.2);
   margin-bottom: 15px;
@@ -108,10 +109,24 @@
   .chq-inf p {
     margin: 0; }
 
+.chq-nav {
+  background-color: #2c3e4f;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  color: #f7f7f7;
+  min-height: 50px;
+  padding: 5px 20px 0;
+  position: fixed;
+  top: 0;
+  transition: top .35s;
+  width: 100%; }
+  .chq-nav-hd {
+    box-shadow: none;
+    top: -55px; }
+
 .chq-snv {
   margin-bottom: 15px; }
   .chq-snv--it {
-    border-bottom: none;
+    border-bottom: 0;
     border-radius: 4px;
     color: #9c9fa7;
     cursor: pointer;
@@ -140,7 +155,7 @@
 
 .chq-tag {
   background-color: #6a89af;
-  color: white;
+  color: #fff;
   display: inline-block;
   font-size: 13px;
   padding: 0 6px; }
@@ -152,8 +167,8 @@
     background-color: #c14c4c; }
 
 .chq-tmb {
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   border-radius: 25px;
   display: inline-block;
