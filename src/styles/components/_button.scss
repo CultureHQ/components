@@ -4,7 +4,7 @@
   background-color: $color-primary-green;
   border: $color-primary-green solid 1px;
   border-radius: 5px;
-  color: white;
+  color: $color-white;
   cursor: pointer;
   display: inline-block;
   font-size: 1em;
@@ -18,45 +18,45 @@
   }
 
   path {
-    fill: white;
+    fill: $color-white;
   }
 
   &:focus {
     background-color: $color-primary-green;
-    color: white;
+    color: $color-white;
     text-decoration: none;
   }
 
   &:hover {
     background-color: $color-lightened-green;
     border: $color-lightened-green solid 2px;
-    color: white;
+    color: $color-white;
     padding: 4px 9px;
     text-decoration: none;
 
     path {
-      fill: white;
+      fill: $color-white;
     }
   }
 
   &:active {
     background-color: $color-darkened-green;
     border: $color-darkened-green solid 2px;
-    color: white;
+    color: $color-white;
     padding: 4px 9px;
 
     path {
-      fill: white;
+      fill: $color-white;
     }
   }
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: .6;
   }
 
   &-iv {
-    background-color: white;
+    background-color: $color-white;
     color: $color-primary-green;
 
     path {
@@ -64,12 +64,12 @@
     }
 
     &:focus {
-      background-color: white;
+      background-color: $color-white;
       color: $color-primary-green;
     }
 
     &:hover {
-      background-color: white;
+      background-color: $color-white;
       color: $color-lightened-green;
 
       path {
@@ -78,7 +78,7 @@
     }
 
     &:active {
-      background-color: white;
+      background-color: $color-white;
       color: $color-darkened-green;
 
       path {
@@ -97,7 +97,7 @@
   }
 
   &-sm {
-    font-size: 0.8em;
+    font-size: .8em;
     padding: 2px 7px;
 
     &:hover,
@@ -110,8 +110,10 @@
     }
   }
 
-  &-ld svg {
-    animation: chq-spn 1s linear infinite;
+  &-ld {
+    svg {
+      animation: chq-spn 1s linear infinite;
+    }
   }
 }
 
