@@ -7,6 +7,7 @@ import {
   FeedItem,
   Icon,
   Info,
+  Nav,
   Subnav,
   Success,
   Tag,
@@ -29,66 +30,70 @@ const Icons = () => (
 
 const App = () => (
   <Fragment>
-    <Heading>Badge</Heading>
-    <Badge className="badge">Default</Badge>
-    <Badge className="badge" primary>Primary</Badge>
+    <Nav>{"<Nav>"}</Nav>
 
-    <Heading>Button</Heading>
+    <div className="container">
+      <Heading>Badge</Heading>
+      <Badge className="badge">Default</Badge>
+      <Badge className="badge" primary>Primary</Badge>
 
-    <Button>Default</Button>{" "}
-    <Button icon="clipboard">Icon</Button>{" "}
-    <Button loading>Loading</Button>{" "}
-    <Button disabled>Disabled</Button>{" "}
+      <Heading>Button</Heading>
 
-    <Button primary>Primary</Button>{" "}
-    <Button icon="clipboard" primary>Primary Icon</Button>{" "}
+      <Button>Default</Button>{" "}
+      <Button icon="clipboard">Icon</Button>{" "}
+      <Button loading>Loading</Button>{" "}
+      <Button disabled>Disabled</Button>{" "}
 
-    <Button small>Small</Button>{" "}
-    <Button icon="clipboard" small>Small Icon</Button>{" "}
+      <Button primary>Primary</Button>{" "}
+      <Button icon="clipboard" primary>Primary Icon</Button>{" "}
 
-    <Button inverted>Inverted</Button>{" "}
-    <Button icon="clipboard" inverted>Inverted Icon</Button>
+      <Button small>Small</Button>{" "}
+      <Button icon="clipboard" small>Small Icon</Button>{" "}
 
-    <Heading>FeedItem</Heading>
-    <FeedItem>
-      <FeedItem.Body>This is a feed item.</FeedItem.Body>
-      <FeedItem.Footer>This is the footer of the feed item.</FeedItem.Footer>
-    </FeedItem>
+      <Button inverted>Inverted</Button>{" "}
+      <Button icon="clipboard" inverted>Inverted Icon</Button>
 
-    <Heading>Icon</Heading>
-    <Icons />
+      <Heading>FeedItem</Heading>
+      <FeedItem>
+        <FeedItem.Body>This is a feed item.</FeedItem.Body>
+        <FeedItem.Footer>This is the footer of the feed item.</FeedItem.Footer>
+      </FeedItem>
 
-    <Heading>Info</Heading>
-    <Info>This is an info.</Info>
+      <Heading>Icon</Heading>
+      <Icons />
 
-    <Heading>Subnav</Heading>
-    <Subnav>
-      <Subnav.Item>One</Subnav.Item>
-      <Subnav.Item>Two</Subnav.Item>
-      <Subnav.Item>Three</Subnav.Item>
-    </Subnav>
+      <Heading>Info</Heading>
+      <Info>This is an info.</Info>
 
-    <Heading>Success</Heading>
-    <Success>This is a success.</Success>
+      <Heading>Subnav</Heading>
+      <Subnav>
+        <Subnav.Item>One</Subnav.Item>
+        <Subnav.Item>Two</Subnav.Item>
+        <Subnav.Item>Three</Subnav.Item>
+      </Subnav>
 
-    <Heading>Tag</Heading>
-    <Tag>Blue</Tag>
-    <Tag color="gray">Gray</Tag>
-    <Tag color="red">Red</Tag>
+      <Heading>Success</Heading>
+      <Success>This is a success.</Success>
 
-    <Heading>Thumbnail</Heading>
-    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(ident => (
-      <Thumbnail
-        key={ident}
-        image={`https://robohash.org/${ident}`}
-        title={`Robot ${ident}`}
-        size={["small", "medium", "large"][Math.floor(ident / 4)]}
-        square={Math.floor(ident % 4) >= 2}
-      />
-    ))}
+      <Heading>Tag</Heading>
+      <Tag>Blue</Tag>
+      <Tag color="gray">Gray</Tag>
+      <Tag color="red">Red</Tag>
 
-    <Heading>Warning</Heading>
-    <Warning>This is a warning.</Warning>
+      <Heading>Thumbnail</Heading>
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(ident => (
+        <Thumbnail
+          key={ident}
+          image={`https://robohash.org/${ident}`}
+          title={`Robot ${ident}`}
+          size={["small", "medium", "large"][Math.floor(ident / 4)]}
+          square={Math.floor(ident % 4) >= 2}
+        />
+      ))}
+
+      <Heading>Warning</Heading>
+      <Warning>This is a warning.</Warning>
+    </div>
   </Fragment>
 );
 

@@ -5,6 +5,7 @@ import Button from "./components/Button";
 import FeedItem from "./components/FeedItem";
 import Icon from "./components/Icon";
 import Info from "./components/Info";
+import Nav from "./components/Nav";
 import Subnav from "./components/Subnav";
 import Success from "./components/Success";
 import Tag from "./components/Tag";
@@ -17,6 +18,7 @@ export {
   FeedItem,
   Icon,
   Info,
+  Nav,
   Subnav,
   Success,
   Tag,
