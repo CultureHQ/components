@@ -22,8 +22,8 @@ pre {
   font-size: 2em;
 }
 
-#main {
-  margin: 50px auto;
+.container {
+  margin: 70px auto;
   width: 66%;
 }
 
@@ -33,6 +33,11 @@ pre {
 
 .icons path {
   fill: #333;
+}
+
+.chq-nav {
+  font-size: 18px;
+  line-height: 42px;
 }
 
 .chq-bdg + .chq-bdg {

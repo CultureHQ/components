@@ -5,7 +5,9 @@ class Subnav extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { activeIndex: props.activeIndex || 0 };
+    const { activeIndex } = props;
+
+    this.state = { activeIndex: activeIndex || 0 };
   }
 
   componentDidUpdate(prevProps, prevState) {

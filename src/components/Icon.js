@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 
 class AsyncPath extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { d: null };
-  }
+  state = { d: null };
 
   componentDidMount() {
     this.componentIsMounted = true;

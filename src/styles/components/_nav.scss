@@ -1,0 +1,19 @@
+@import 'common';
+
+.chq-nav {
+  background-color: $color-dark-blue;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  color: $color-background;
+  margin-bottom: 30px;
+  min-height: 50px;
+  padding: 5px 20px 0 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  transition: top 0.35s;
+
+  &-hd {
+    box-shadow: none;
+    top: -55px;
+  }
+}

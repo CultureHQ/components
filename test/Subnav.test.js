@@ -4,16 +4,11 @@ import { mount } from "enzyme";
 import Subnav from "../src/components/Subnav";
 
 class SubnavContainer extends Component {
-  constructor(props) {
-    super(props);
+  state = { activeIndex: 0 };
 
-    this.state = { activeIndex: 0 };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(activeIndex) {
+  handleChange = activeIndex => {
     this.setState({ activeIndex });
-  }
+  };
 
   render() {
     const { children } = this.props;
