@@ -101,6 +101,48 @@
     border-top: 1px solid #eaeaea;
     padding: 15px; }
 
+.chq-ham {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  height: 45px;
+  outline: none;
+  position: relative;
+  transform: rotate(0deg) scale(0.5);
+  transition: .5s ease-in-out;
+  width: 60px; }
+  .chq-ham span {
+    background: #fff;
+    border-radius: 9px;
+    display: block;
+    height: 9px;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+    width: 100%; }
+    .chq-ham span:nth-child(1) {
+      top: 0;
+      transform-origin: left center; }
+    .chq-ham span:nth-child(2) {
+      top: 18px;
+      transform-origin: left center; }
+    .chq-ham span:nth-child(3) {
+      top: 36px;
+      transform-origin: left center; }
+  .chq-ham-op span:nth-child(1) {
+    left: 8px;
+    top: -3px;
+    transform: rotate(45deg); }
+  .chq-ham-op span:nth-child(2) {
+    opacity: 0;
+    width: 0%; }
+  .chq-ham-op span:nth-child(3) {
+    left: 8px;
+    top: 39px;
+    transform: rotate(-45deg); }
+
 .chq-inf {
   background-color: #d7e5f1;
   color: #5c5f67;
