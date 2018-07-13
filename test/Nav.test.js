@@ -14,6 +14,7 @@ test("passes on extra props", () => {
   const component = shallow(<Nav className="nav" />);
 
   expect(component.hasClass("nav")).toBe(true);
+  expect(component.hasClass("chq-nav")).toBe(true);
 });
 
 test("hides the nav when the page is scrolled down", () => {

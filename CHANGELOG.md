@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.1.1] - 2018-07-12
+### Changed
+- Fixed the `className` prop overriding other classes on the `Nav` component.
+
 ## [1.1.0] - 2018-07-12
 ### Added
 - The `Nav` component.

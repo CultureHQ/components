@@ -9,3 +9,10 @@ test("renders without crashing", () => {
 
   expect(component.html()).toContain(message);
 });
+
+test("passes on extra props", () => {
+  const component = shallow(<Badge className="badge" />);
+
+  expect(component.hasClass("badge")).toBe(true);
+  expect(component.hasClass("chq-bdg")).toBe(true);
+});

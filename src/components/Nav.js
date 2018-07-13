@@ -37,7 +37,7 @@ class Nav extends Component {
   };
 
   render() {
-    const { children, ...props } = this.props;
+    const { children, className, ...props } = this.props;
 
     return <nav className={this.getClassList()} {...props}>{children}</nav>;
   }
