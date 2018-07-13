@@ -3,6 +3,7 @@ import "./styles/app.scss";
 import Badge from "./components/Badge";
 import Button from "./components/Button";
 import FeedItem from "./components/FeedItem";
+import Hamburger from "./components/Hamburger";
 import Icon from "./components/Icon";
 import Info from "./components/Info";
 import Nav from "./components/Nav";
@@ -16,6 +17,7 @@ export {
   Badge,
   Button,
   FeedItem,
+  Hamburger,
   Icon,
   Info,
   Nav,
