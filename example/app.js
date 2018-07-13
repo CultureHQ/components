@@ -1,10 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import ReactDOM from "react-dom";
 
 import {
   Badge,
   Button,
   FeedItem,
+  Hamburger,
   Icon,
   Info,
   Nav,
@@ -27,6 +28,28 @@ const Icons = () => (
     ))}
   </div>
 );
+
+class HamburgerContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { open: props.open };
+  }
+
+  handleToggle = () => {
+    this.setState(({ open }) => ({ open: !open }));
+  };
+
+  render() {
+    const { open } = this.state;
+
+    return (
+      <div className="ham-wrap">
+        <Hamburger open={open} onToggle={this.handleToggle} />
+      </div>
+    );
+  }
+}
 
 const App = () => (
   <Fragment>
@@ -58,6 +81,9 @@ const App = () => (
         <FeedItem.Body>This is a feed item.</FeedItem.Body>
         <FeedItem.Footer>This is the footer of the feed item.</FeedItem.Footer>
       </FeedItem>
+
+      <Heading>Hamburger</Heading>
+      <HamburgerContainer />
 
       <Heading>Icon</Heading>
       <Icons />

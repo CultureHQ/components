@@ -1,0 +1,62 @@
+@import 'common';
+
+.chq-ham {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  height: 45px;
+  outline: none;
+  position: relative;
+  transform: rotate(0deg) scale(.5);
+  transition: .5s ease-in-out;
+  width: 60px;
+
+  span {
+    background: $color-white;
+    border-radius: 9px;
+    display: block;
+    height: 9px;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+    width: 100%;
+
+    &:nth-child(1) {
+      top: 0;
+      transform-origin: left center;
+    }
+
+    &:nth-child(2) {
+      top: 18px;
+      transform-origin: left center;
+    }
+
+    &:nth-child(3) {
+      top: 36px;
+      transform-origin: left center;
+    }
+  }
+
+  &-op {
+    span {
+      &:nth-child(1) {
+        left: 8px;
+        top: -3px;
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+        width: 0%;
+      }
+
+      &:nth-child(3) {
+        left: 8px;
+        top: 39px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
