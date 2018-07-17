@@ -4,11 +4,15 @@
   "description": "CultureHQ's component library",
   "main": "dist/index.js",
   "scripts": {
-    "build": "bin/build",
-    "lint": "eslint .",
-    "lint-css": "sass-lint -c .sass-lint.yml -v --max-warnings 0",
+    "build": "yarn build:css && yarn build:js",
+    "build:js": "babel src --out-dir ./dist --copy-files && rm -r dist/styles",
+    "build:css": "node-sass src/styles/app.scss > src/components.css",
+    "build:example": "webpack --mode production",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint .",
+    "lint:css": "sass-lint -c .sass-lint.yml -v --max-warnings 0",
     "prettier": "prettier --write '**/*.js'",
-    "start": "webpack-dev-server --config webpack.dev.js --hot",
+    "start": "webpack-dev-server --mode development --hot",
     "test": "jest"
   },
   "repository": {
@@ -32,12 +36,14 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
+    "babel-loader": "^7.1.5",
     "babel-plugin-dynamic-import-node": "^2.0.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^5.1.0",
@@ -51,7 +57,12 @@
     "prettier": "^1.13.7",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "sass-lint": "^1.12.1"
+    "sass-lint": "^1.12.1",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./test/setup-tests.js"

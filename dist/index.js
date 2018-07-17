@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Warning = exports.Thumbnail = exports.Tag = exports.Success = exports.Subnav = exports.Nav = exports.Info = exports.Icon = exports.Hamburger = exports.FeedItem = exports.Button = exports.Badge = undefined;
 
-require("./styles/app.scss");
+require("./components.css");
 
 var _Badge = require("./components/Badge");
 

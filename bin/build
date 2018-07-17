@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-./node_modules/.bin/babel src --out-dir ./dist
-cp ./src/icons.json ./dist/icons.json
-
-mkdir -p ./dist/styles
-./node_modules/.bin/node-sass ./src/styles/app.scss > ./dist/styles/app.css
