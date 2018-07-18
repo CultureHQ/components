@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "yarn build:css && yarn build:js && yarn build:example",
-    "build:js": "babel src --out-dir ./dist && sed -i '' -e \"s/styles\\/app.scss/components.css/\" dist/index.js",
-    "build:css": "node-sass src/styles/app.scss > dist/components.css",
+    "build:js": "babel src --out-dir ./dist && sed -i '' -e \"s/styles\\/app.scss/main.css/\" dist/index.js",
+    "build:css": "node-sass src/styles/app.scss > dist/main.css",
     "build:example": "webpack --mode production",
     "clean": "git ls-files -o | grep -v node_modules | xargs rm",
     "lint": "yarn lint:js && yarn lint:css",
