@@ -1,17 +1,18 @@
-/* eslint import/no-extraneous-dependencies: "off" */
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require("path");
 
 module.exports = {
   output: {
-    libraryTarget: "umd"
+    path: path.resolve(__dirname, "example"),
+    filename: "index.js"
   },
+  entry: path.join(__dirname, "example", "app.js"),
   module: {
     rules: [
       { test: /\.js$/, use: "babel-loader", exclude: /node_modules/ },
       {
         test: /\.scss$/,
         use: [
-          { loader: MiniCssExtractPlugin.loader },
+          { loader: "style-loader" },
           { loader: "css-loader" },
           { loader: "sass-loader" }
         ],
@@ -19,7 +20,7 @@ module.exports = {
       }
     ]
   },
-  target: "node",
-  mode: "production",
-  plugins: [new MiniCssExtractPlugin()]
+  devServer: {
+    contentBase: path.join(__dirname, "example")
+  }
 };

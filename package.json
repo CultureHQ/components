@@ -1,15 +1,19 @@
 {
   "name": "culturehq-components",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "CultureHQ's component library",
-  "main": "dist/main.js",
+  "main": "dist/index.js",
   "scripts": {
-    "analyze": "source-map-explorer dist/main.*",
-    "build": "webpack --config webpack.prod.js --progress",
-    "lint": "eslint .",
-    "lint-css": "sass-lint -c .sass-lint.yml -v --max-warnings 0",
+    "build": "yarn build:css && yarn build:js && yarn build:example",
+    "build:js": "babel src --out-dir ./dist && sed -i '' -e \"s/styles\\/app.scss/main.css/\" dist/index.js",
+    "build:css": "node-sass src/styles/app.scss > dist/main.css",
+    "build:example": "webpack --mode production",
+    "clean": "git ls-files -o | grep -v node_modules | xargs rm",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint .",
+    "lint:css": "sass-lint -c .sass-lint.yml -v --max-warnings 0",
     "prettier": "prettier --write '**/*.js'",
-    "start": "webpack-dev-server --config webpack.dev.js --hot",
+    "start": "webpack-dev-server --mode development --hot",
     "test": "jest"
   },
   "repository": {
@@ -30,6 +34,7 @@
     "classnames": "^2.2.6"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
     "babel-loader": "^7.1.5",
@@ -45,10 +50,9 @@
     "eslint": "^5.1.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.1.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
-    "jest": "^23.4.0",
-    "mini-css-extract-plugin": "^0.4.1",
+    "jest": "^23.4.1",
     "node-sass": "^4.9.2",
     "packfiles": "^0.0.2",
     "prettier": "^1.13.7",
@@ -57,7 +61,7 @@
     "sass-lint": "^1.12.1",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
-    "webpack": "^4.16.0",
+    "webpack": "^4.16.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4"
   },
