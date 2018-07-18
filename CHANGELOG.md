@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.3.0] - 2018-07-18
+### Changed
+- Don't use webpack to build the final release, just use babel.
+
 ## [1.2.0] - 2018-07-13
 ### Added
 - The `Hamburger` component.
