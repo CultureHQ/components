@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.4.1] - 2018-07-23
+### Changed
+- Scale down the `checklist` and `calendar-filled` icons by 20%.
+
 ## [1.4.0] - 2018-07-23
 ### Added
 - The `checklist` icon.
