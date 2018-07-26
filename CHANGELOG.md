@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [1.5.0] - 2018-07-26
+### Added
+- The `pin` icon.
+- The `pin-outline` icon.
+
 ## [1.4.1] - 2018-07-23
 ### Changed
 - Scale down the `checklist` and `calendar-filled` icons by 20%.
