@@ -30,3 +30,10 @@ test("updates the icon when the prop changes", async () => {
 
   expect(component.state().d).toEqual(close.join(" "));
 });
+
+test("does not attempt to set state once it been unmounted", async () => {
+  const component = shallow(<AsyncPath icon="checkmark" />);
+
+  component.instance().loadIcon();
+  component.unmount();
+});
