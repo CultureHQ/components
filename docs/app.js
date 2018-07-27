@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import {
   Badge,
   Button,
+  Checklist,
+  Checkmark,
   FeedItem,
   Hamburger,
   Icon,
@@ -45,9 +47,24 @@ class HamburgerContainer extends Component {
 
     return (
       <div className="ham-wrap">
-        <Hamburger open={open} onToggle={this.handleToggle} />
+        <Hamburger open={open} onToggle={this.handleToggle} />{" "}
+        {open ? "Open" : "Closed"}
       </div>
     );
+  }
+}
+
+class CheckmarkContainer extends Component {
+  state = { checked: false };
+
+  handleClick = () => {
+    this.setState(({ checked }) => ({ checked: !checked }));
+  };
+
+  render() {
+    const { checked } = this.state;
+
+    return <Checkmark checked={checked} onClick={this.handleClick} />
   }
 }
 
@@ -75,6 +92,15 @@ const App = () => (
 
       <Button inverted>Inverted</Button>{" "}
       <Button icon="clipboard" inverted>Inverted Icon</Button>
+
+      <Heading>Checklist</Heading>
+      <Checklist>
+        <Checklist.Item checked>Checked</Checklist.Item>
+        <Checklist.Item>Unchecked</Checklist.Item>
+      </Checklist>
+
+      <Heading>Checkmark</Heading>
+      <CheckmarkContainer />
 
       <Heading>FeedItem</Heading>
       <FeedItem>

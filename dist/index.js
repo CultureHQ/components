@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Warning = exports.Thumbnail = exports.Tag = exports.Success = exports.Subnav = exports.Nav = exports.Info = exports.Icon = exports.Hamburger = exports.FeedItem = exports.Button = exports.Badge = undefined;
+exports.Warning = exports.Thumbnail = exports.Tag = exports.Success = exports.Subnav = exports.Nav = exports.Info = exports.Icon = exports.Hamburger = exports.FeedItem = exports.Checkmark = exports.Checklist = exports.Button = exports.Badge = undefined;
 
 require("./main.css");
 
@@ -14,6 +14,14 @@ var _Badge2 = _interopRequireDefault(_Badge);
 var _Button = require("./components/Button");
 
 var _Button2 = _interopRequireDefault(_Button);
+
+var _Checklist = require("./components/Checklist");
+
+var _Checklist2 = _interopRequireDefault(_Checklist);
+
+var _Checkmark = require("./components/Checkmark");
+
+var _Checkmark2 = _interopRequireDefault(_Checkmark);
 
 var _FeedItem = require("./components/FeedItem");
 
@@ -59,6 +67,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.Badge = _Badge2.default;
 exports.Button = _Button2.default;
+exports.Checklist = _Checklist2.default;
+exports.Checkmark = _Checkmark2.default;
 exports.FeedItem = _FeedItem2.default;
 exports.Hamburger = _Hamburger2.default;
 exports.Icon = _Icon2.default;
