@@ -37,6 +37,11 @@ pre {
 
 .ham-wrap {
   background-color: #2c3e4f;
+  color: #f7f7f7;
+}
+
+.ham-wrap .chq-ham {
+  vertical-align: middle;
 }
 
 .chq-nav {

@@ -1,0 +1,79 @@
+@import '../common';
+
+.chq-cmk {
+  background: none;
+  border: 0;
+  font-size: 1em;
+  outline: none;
+  padding: 0;
+
+  svg {
+    border: $color-primary-green solid 1px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 $color-primary-green;
+    display: inline-block;
+    height: 1.2em;
+    stroke: $color-white;
+    stroke-miterlimit: 10;
+    stroke-width: 2;
+    vertical-align: text-top;
+    width: 1.2em;
+  }
+
+  circle {
+    fill: none;
+    stroke: $color-primary-green;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-miterlimit: 10;
+    stroke-width: 2;
+  }
+
+  path {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    transform-origin: 50% 50%;
+  }
+
+  &-cl {
+    cursor: pointer;
+  }
+
+  &-ck {
+    svg {
+      animation: animCheckmarkFill .2s ease-in-out .2s forwards, animCheckmarkScale .15s ease-in-out .45s both;
+      border: 0;
+    }
+
+    circle {
+      animation: animCheckmarkStroke .3s cubic-bezier(.65, 0, .45, 1) forwards;
+    }
+
+    path {
+      animation: animCheckmarkStroke .15s cubic-bezier(.65, 0, .45, 1) .4s forwards;
+    }
+  }
+}
+
+@keyframes animCheckmarkStroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes animCheckmarkScale {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes animCheckmarkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px $color-primary-green;
+  }
+}
