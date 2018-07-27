@@ -1,8 +1,8 @@
 import React from "react";
 import classnames from "classnames";
 
-const Info = ({ children, className, ...props }) => (
-  <div className={classnames(className, "chq-inf")} {...props}>
+const Info = ({ children, className }) => (
+  <div className={classnames(className, "chq-inf")}>
     <p>{children}</p>
   </div>
 );

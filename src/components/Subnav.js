@@ -24,20 +24,13 @@ class Subnav extends Component {
   }
 
   render() {
-    const {
-      children,
-      className,
-      activeIndex: givenIndex,
-      onChange,
-      ...props
-    } = this.props;
-
+    const { children, className, activeIndex: givenIndex } = this.props;
     const { activeIndex: currentIndex } = this.state;
 
     const activeIndex = Number.isInteger(givenIndex) ? givenIndex : currentIndex;
 
     return (
-      <nav className={classnames(className, "chq-snv")} {...props}>
+      <nav className={classnames(className, "chq-snv")}>
         {React.Children.map(children, (child, index) => (
           React.cloneElement(child, {
             active: index === activeIndex,
@@ -50,16 +43,15 @@ class Subnav extends Component {
 }
 
 Subnav.Item = ({
-  children, className, active, ...props
-}) => (
-  <a
-    className={
-      classnames(className, "chq-snv--it", { "chq-snv--it-active": active })
-    }
-    {...props}
-  >
-    {children}
-  </a>
-);
+  children, className, active, onClick
+}) => {
+  const classNames = classnames(
+    className,
+    "chq-snv--it",
+    { "chq-snv--it-active": active }
+  );
+
+  return <button type="button" className={classNames} onClick={onClick}>{children}</button>;
+};
 
 export default Subnav;

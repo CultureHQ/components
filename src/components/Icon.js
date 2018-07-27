@@ -36,8 +36,8 @@ class AsyncPath extends Component {
   }
 }
 
-const Icon = ({ icon, ...props }) => (
-  <svg width="22px" height="22px" viewBox="0 0 1024 1024" {...props}>
+const Icon = ({ icon, className }) => (
+  <svg width="22px" height="22px" viewBox="0 0 1024 1024" className={className}>
     <AsyncPath icon={icon} />
   </svg>
 );

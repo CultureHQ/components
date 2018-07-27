@@ -1,9 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 
-const Tag = ({
-  children, className, color = "blue", ...props
-}) => (
+const Tag = ({ children, className, color = "blue" }) => (
   <div
     className={
       classnames(className, "chq-tag", {
@@ -11,7 +9,6 @@ const Tag = ({
         "chq-tag-rd": color === "red"
       })
     }
-    {...props}
   >
     {children}
   </div>

@@ -9,7 +9,7 @@ test("renders without crashing", () => {
   expect(component.html()).toContain("div");
 });
 
-test("passes on extra props", () => {
+test("passes on className", () => {
   const component = shallow(<Thumbnail image="https://robohash.org/1" className="thumbnail" />);
 
   expect(component.hasClass("thumbnail")).toBe(true);

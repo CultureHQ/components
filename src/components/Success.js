@@ -1,8 +1,8 @@
 import React from "react";
 import classnames from "classnames";
 
-const Success = ({ children, className, ...props }) => (
-  <div className={classnames(className, "chq-scs")} {...props}>
+const Success = ({ children, className }) => (
+  <div className={classnames(className, "chq-scs")}>
     <p>{children}</p>
   </div>
 );

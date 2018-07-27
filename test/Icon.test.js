@@ -15,7 +15,7 @@ test("renders without crashing", async () => {
   component.unmount();
 });
 
-test("passes on extra props", () => {
+test("passes on className", () => {
   const component = shallow(<Icon icon="checkmark" className="icon" />);
 
   expect(component.hasClass("icon")).toBe(true);

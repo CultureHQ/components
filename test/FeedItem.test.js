@@ -18,7 +18,7 @@ test("renders without crashing", () => {
   expect(component.html()).toContain(footerMessage);
 });
 
-test("passes on extra props", () => {
+test("passes on className", () => {
   const component = shallow(<FeedItem className="feed-item" />);
 
   expect(component.hasClass("feed-item")).toBe(true);

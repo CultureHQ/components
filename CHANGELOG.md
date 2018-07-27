@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.0.0] - 2018-07-27
+### Added
+- A ton of documentation to the README.
+
+### Changed
+- The package name from "culturehq-components" to "@CultureHQ/components".
+
+### Removed
+- The ability to pass arbitrary props beyond normally expected ones such as `className` or `onClick`.
+
 ## [1.6.0] - 2018-07-27
 ### Added
 - The `Checklist` component.
@@ -145,7 +155,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/CultureHQ/components/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/CultureHQ/components/compare/v1.6.0...v2.0.0
 [1.6.0]: https://github.com/CultureHQ/components/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/CultureHQ/components/compare/v1.4.1...v1.5.0
 [1.4.1]: https://github.com/CultureHQ/components/compare/v1.4.0...v1.4.1
