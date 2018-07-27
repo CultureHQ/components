@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.0.1] - 2018-07-27
+### Changed
+- Package names can't have capital letters anymore: "@culturehq/components".
+
 ## [2.0.0] - 2018-07-27
 ### Added
 - A ton of documentation to the README.

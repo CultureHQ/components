@@ -1,4 +1,4 @@
-# @CultureHQ/components
+# @culturehq/components
 
 CultureHQ's component library.
 
@@ -7,7 +7,7 @@ CultureHQ's component library.
 You can import all of the components as separate named exports from the main package. As in:
 
 ```javascript
-import { Button } from "@CultureHQ/components";
+import { Button } from "@culturehq/components";
 
 const App = () => (
   <Button primary icon="clipboard">Take Survey</Button>
@@ -16,7 +16,7 @@ const App = () => (
 export default App;
 ```
 
-To get the styles, be sure to also import `@CultureHQ/components/dist/main.css` into whatever stylesheet you're using.
+To get the styles, be sure to also import `@culturehq/components/dist/main.css` into whatever stylesheet you're using.
 
 Below are listed each component with their various semantics.
 
