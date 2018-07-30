@@ -16,14 +16,14 @@ test("passes on className", () => {
 });
 
 test("passes on onClick", () => {
-  let clicked = false;
-  const onClick = () => {
-    clicked = true;
+  let returnValue;
+  const onClick = checked => {
+    returnValue = checked;
   };
 
-  const component = shallow(<Checkmark onClick={onClick} />);
-  expect(clicked).toBe(false);
+  const component = shallow(<Checkmark checked onClick={onClick} />);
+  expect(returnValue).toBe(undefined);
 
   component.simulate("click");
-  expect(clicked).toBe(true);
+  expect(returnValue).toBe(false);
 });

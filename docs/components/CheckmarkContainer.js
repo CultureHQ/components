@@ -5,8 +5,8 @@ import { Checkmark } from "../../src";
 class CheckmarkContainer extends Component {
   state = { checked: false };
 
-  handleClick = () => {
-    this.setState(({ checked }) => ({ checked: !checked }));
+  handleClick = checked => {
+    this.setState({ checked });
   };
 
   render() {

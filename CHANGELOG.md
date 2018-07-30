@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.0.2] - 2018-07-30
+### Changed
+- Added the new "checked" value to the callback for the `Checkmark` component.
+
 ## [2.0.1] - 2018-07-27
 ### Changed
 - Package names can't have capital letters anymore: "@culturehq/components".
