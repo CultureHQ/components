@@ -88,6 +88,15 @@ Displays a informational message.
 * `children` - displayed inside the box
 * `className?` - an extra class name
 
+### Pagination
+
+Displays pagination information with buttons for looking through different pages.
+
+* `className?` - an extra class name
+* `currentPage` - an integer representing the current page number
+* `onClick` - a callback function that will be called with the new page number when the page is changed
+* `totalPages` - an integer representing the total number of pages
+
 ### Subnav
 
 A navigation menu for within the application. Can function as either a controlled component or an uncontrolled component.

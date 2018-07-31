@@ -9,6 +9,7 @@ import Hamburger from "./components/Hamburger";
 import Icon from "./components/Icon";
 import Info from "./components/Info";
 import Nav from "./components/Nav";
+import Pagination from "./components/Pagination";
 import Subnav from "./components/Subnav";
 import Success from "./components/Success";
 import Tag from "./components/Tag";
@@ -25,6 +26,7 @@ export {
   Icon,
   Info,
   Nav,
+  Pagination,
   Subnav,
   Success,
   Tag,
