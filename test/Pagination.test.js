@@ -26,6 +26,12 @@ test("passes on className", () => {
   expect(component.find("nav").hasClass("chq-pag")).toBe(true);
 });
 
+test("displays nothing if there are fewer than two pages", () => {
+  const component = mounted(1, 1);
+
+  expect(component.html()).toBe(null);
+});
+
 test("deactivates the prev and next buttons correctly on the first page", () => {
   const component = mounted(1, 10);
   const buttons = component.find("button");
