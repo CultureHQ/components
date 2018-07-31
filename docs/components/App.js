@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import CheckmarkContainer from "./CheckmarkContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
+import PaginationContainer from "./PaginationContainer";
 
 import {
   Badge,
@@ -68,6 +69,13 @@ const App = () => (
 
       <Heading>Info</Heading>
       <Info>This is an info.</Info>
+
+      <Heading>Pagination</Heading>
+      <PaginationContainer totalPages={1} />
+      <PaginationContainer totalPages={2} />
+      <PaginationContainer totalPages={4} />
+      <PaginationContainer totalPages={8} />
+      <PaginationContainer totalPages={16} />
 
       <Heading>Subnav</Heading>
       <Subnav>

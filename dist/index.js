@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Warning = exports.Thumbnail = exports.Tag = exports.Success = exports.Subnav = exports.Nav = exports.Info = exports.Icon = exports.Hamburger = exports.FeedItem = exports.Checkmark = exports.Checklist = exports.Button = exports.Badge = undefined;
+exports.Warning = exports.Thumbnail = exports.Tag = exports.Success = exports.Subnav = exports.Pagination = exports.Nav = exports.Info = exports.Icon = exports.Hamburger = exports.FeedItem = exports.Checkmark = exports.Checklist = exports.Button = exports.Badge = undefined;
 
 require("./main.css");
 
@@ -43,6 +43,10 @@ var _Nav = require("./components/Nav");
 
 var _Nav2 = _interopRequireDefault(_Nav);
 
+var _Pagination = require("./components/Pagination");
+
+var _Pagination2 = _interopRequireDefault(_Pagination);
+
 var _Subnav = require("./components/Subnav");
 
 var _Subnav2 = _interopRequireDefault(_Subnav);
@@ -74,6 +78,7 @@ exports.Hamburger = _Hamburger2.default;
 exports.Icon = _Icon2.default;
 exports.Info = _Info2.default;
 exports.Nav = _Nav2.default;
+exports.Pagination = _Pagination2.default;
 exports.Subnav = _Subnav2.default;
 exports.Success = _Success2.default;
 exports.Tag = _Tag2.default;
