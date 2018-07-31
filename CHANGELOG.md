@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [2.1.1] - 2018-07-31
+### Changed
+- The main color on the `Pagination` component to be the primary blue instead of the weird other blue.
+
 ## [2.1.0] - 2018-07-31
 ### Added
 - The `Pagination` component.
@@ -167,7 +171,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/CultureHQ/components/compare/v2.1.1...HEAD
+[2.1.1]: https://github.com/CultureHQ/components/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/CultureHQ/components/compare/v2.0.2...v2.1.0
 [2.0.2]: https://github.com/CultureHQ/components/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/CultureHQ/components/compare/v2.0.0...v2.0.1

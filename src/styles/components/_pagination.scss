@@ -42,12 +42,12 @@
     }
 
     &-ac {
-      background-color: $pagination-active;
-      border-color: $pagination-active;
+      background-color: $color-primary-blue;
+      border-color: $color-primary-blue;
       color: $color-white;
 
       &:hover {
-        background-color: $pagination-active;
+        background-color: $color-primary-blue;
         color: $color-white;
       }
     }
