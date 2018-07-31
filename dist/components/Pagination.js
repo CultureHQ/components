@@ -69,7 +69,6 @@ var PageLink = function (_Component) {
       var _props = this.props,
           disabled = _props.disabled,
           children = _props.children,
-          page = _props.page,
           isActive = _props.isActive;
 
 

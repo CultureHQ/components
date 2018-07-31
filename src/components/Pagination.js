@@ -13,7 +13,7 @@ class PageLink extends Component {
   };
 
   render() {
-    const { disabled, children, page, isActive } = this.props;
+    const { disabled, children, isActive } = this.props;
 
     const className = classnames("chq-pag--bn", {
       "chq-pag--bn-ac": isActive
@@ -56,7 +56,12 @@ const NextPage = ({ currentPage, totalPages, onClick }) => (
   </PageLink>
 );
 
-const Pagination = ({ className, currentPage: current, totalPages: total, onClick }) => {
+const Pagination = ({
+  className,
+  currentPage: current,
+  totalPages: total,
+  onClick
+}) => {
   if (total < 2) {
     return null;
   }
