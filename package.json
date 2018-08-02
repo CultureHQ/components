@@ -66,6 +66,7 @@
     "webpack-dev-server": "^3.1.5"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "./test/setup-tests.js"
+    "setupTestFrameworkScriptFile": "./test/setup-tests.js",
+    "testURL": "http://localhost"
   }
 }
