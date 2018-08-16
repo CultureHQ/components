@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Success from "../src/components/Success";
+import { Success } from "../src";
 
 test("renders without crashing", () => {
   const message = "This is a success.";

@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import FeedItem from "../src/components/FeedItem";
+import { FeedItem } from "../src";
 
 test("renders without crashing", () => {
   const bodyMessage = "This is a feed item body.";

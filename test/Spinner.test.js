@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Spinner from "../src/components/Spinner";
+import { Spinner } from "../src";
 
 test("renders without crashing", async () => {
   const component = shallow(<Spinner />);

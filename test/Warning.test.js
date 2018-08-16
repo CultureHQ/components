@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Warning from "../src/components/Warning";
+import { Warning } from "../src";
 
 test("renders without crashing", () => {
   const message = "This is a warning.";

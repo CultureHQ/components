@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 
-import Checklist from "../src/components/Checklist";
+import { Checklist } from "../src";
 
 test("renders without crashing", () => {
   const component = shallow(<Checklist />);

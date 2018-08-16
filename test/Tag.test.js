@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Tag from "../src/components/Tag";
+import { Tag } from "../src";
 
 test("renders without crashing", () => {
   const message = "Tag.";

@@ -1,7 +1,8 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 
-import Icon, { AsyncPath } from "../src/components/Icon";
+import { Icon } from "../src";
+import { AsyncPath } from "../src/components/Icon";
 import { close } from "../src/icons.json";
 
 test("renders without crashing", async () => {

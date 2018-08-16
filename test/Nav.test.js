@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Nav from "../src/components/Nav";
+import { Nav } from "../src";
 
 test("renders without crashing", () => {
   const message = "This is a nav.";
