@@ -1,0 +1,42 @@
+@import '../common';
+
+.chq-spn {
+  position: relative;
+
+  div {
+    animation: animSpin 2s linear infinite;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-top-color: $color-primary-blue;
+    height: 60px;
+    margin: 0 auto;
+    position: relative;
+    width: 60px;
+
+    &::before,
+    &::after {
+      border: 3px solid transparent;
+      border-radius: 50%;
+      content: '';
+      position: absolute;
+    }
+
+    &::before {
+      animation: animSpin 3s linear infinite;
+      border-top-color: $color-primary-green;
+      bottom: 1px;
+      left: 1px;
+      right: 1px;
+      top: 1px;
+    }
+
+    &::after {
+      animation: animSpin 1.5s linear infinite;
+      border-top-color: $color-primary-yellow;
+      bottom: 5px;
+      left: 5px;
+      right: 5px;
+      top: 5px;
+    }
+  }
+}

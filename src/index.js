@@ -10,6 +10,7 @@ import Icon from "./components/Icon";
 import Info from "./components/Info";
 import Nav from "./components/Nav";
 import Pagination from "./components/Pagination";
+import Spinner from "./components/Spinner";
 import Subnav from "./components/Subnav";
 import Success from "./components/Success";
 import Tag from "./components/Tag";
@@ -27,6 +28,7 @@ export {
   Info,
   Nav,
   Pagination,
+  Spinner,
   Subnav,
   Success,
   Tag,

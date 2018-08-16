@@ -12,6 +12,7 @@ import {
   FeedItem,
   Info,
   Nav,
+  Spinner,
   Subnav,
   Success,
   Tag,
@@ -76,6 +77,9 @@ const App = () => (
       <PaginationContainer totalPages={4} />
       <PaginationContainer totalPages={8} />
       <PaginationContainer totalPages={16} />
+
+      <Heading>Spinner</Heading>
+      <Spinner />
 
       <Heading>Subnav</Heading>
       <Subnav>
