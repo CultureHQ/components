@@ -4,7 +4,7 @@
   position: relative;
 
   div {
-    animation: animSpin 2s linear infinite;
+    animation: chqSpin 2s linear infinite;
     border: 3px solid transparent;
     border-radius: 50%;
     border-top-color: $color-primary-blue;
@@ -22,7 +22,7 @@
     }
 
     &::before {
-      animation: animSpin 3s linear infinite;
+      animation: chqSpin 3s linear infinite;
       border-top-color: $color-primary-green;
       bottom: 1px;
       left: 1px;
@@ -31,7 +31,7 @@
     }
 
     &::after {
-      animation: animSpin 1.5s linear infinite;
+      animation: chqSpin 1.5s linear infinite;
       border-top-color: $color-primary-yellow;
       bottom: 5px;
       left: 5px;

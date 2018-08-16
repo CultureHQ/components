@@ -28,13 +28,13 @@ $warning-background: #fcf8e3;
 $warning-border: #faebcc;
 $warning-font: #8a6d3b;
 
-@keyframes animCheckmarkStroke {
+@keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0;
   }
 }
 
-@keyframes animCheckmarkScale {
+@keyframes chqCmkScale {
   0%,
   100% {
     transform: none;
@@ -45,13 +45,13 @@ $warning-font: #8a6d3b;
   }
 }
 
-@keyframes animCheckmarkFill {
+@keyframes chqCmkFill {
   100% {
     box-shadow: inset 0 0 0 30px $color-primary-green;
   }
 }
 
-@keyframes animSpin {
+@keyframes chqSpin {
   0% {
     transform: rotate(0deg);
   }

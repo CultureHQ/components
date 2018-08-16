@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - The `Spinner` component.
 
+### Changed
+- Renamed animations to be consistent with naming style throughout the rest of the component library e.g., `chqSpin`.
+
 ## [2.1.1] - 2018-07-31
 ### Changed
 - The main color on the `Pagination` component to be the primary blue instead of the weird other blue.
