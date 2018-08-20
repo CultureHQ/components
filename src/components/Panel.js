@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import classnames from "classnames";
 
 const Panel = ({ className, children }) => (

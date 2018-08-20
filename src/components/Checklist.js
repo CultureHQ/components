@@ -9,11 +9,15 @@ const Checklist = ({ children, className }) => (
   </dl>
 );
 
-Checklist.Item = ({ children, checked }) => (
+const ChecklistItem = ({ children, checked }) => (
   <Fragment>
     <dt><Checkmark checked={checked} /></dt>
     <dd>{children}</dd>
   </Fragment>
 );
+
+Object.assign(Checklist, {
+  Item: ChecklistItem
+});
 
 export default Checklist;

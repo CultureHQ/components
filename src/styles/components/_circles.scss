@@ -5,41 +5,43 @@
   margin: 4px 10px 0 0;
   width: 40px;
 
-  &__sm,
-  &__yl {
+  &--sm,
+  &--yl {
     fill: lighten($color-primary-yellow, 5%);
   }
 
-  &__gr {
+  &--gr {
     fill: lighten($color-primary-green, 5%);
   }
 
-  &__bl {
+  &--bl {
     fill: lighten($color-primary-blue, 5%);
   }
 
-  &:hover .chq-cir {
-    &--sm {
-      animation: chqCirSm;
-      animation-duration: .8s;
-    }
+  &:hover {
+    .chq-cir {
+      &--sm {
+        animation: chqCirSm;
+        animation-duration: .8s;
+      }
 
-    &--yl {
-      animation: chqCirYl;
-      animation-delay: .1s;
-      animation-duration: .8s;
-    }
+      &--yl {
+        animation: chqCirYl;
+        animation-delay: .1s;
+        animation-duration: .8s;
+      }
 
-    &--gr {
-      animation: chqCirGr;
-      animation-delay: .2s;
-      animation-duration: .8s;
-    }
+      &--gr {
+        animation: chqCirGr;
+        animation-delay: .2s;
+        animation-duration: .8s;
+      }
 
-    &--bl {
-      animation: chqCirBl;
-      animation-delay: .3s;
-      animation-duration: .8s;
+      &--bl {
+        animation: chqCirBl;
+        animation-delay: .3s;
+        animation-duration: .8s;
+      }
     }
   }
 }

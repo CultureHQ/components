@@ -7,16 +7,21 @@ const FeedItem = ({ children, className }) => (
   </div>
 );
 
-FeedItem.Body = ({ children, className }) => (
+const FeedItemBody = ({ children, className }) => (
   <div className={classnames(className, "chq-fdi--bd")}>
     {children}
   </div>
 );
 
-FeedItem.Footer = ({ children, className }) => (
+const FeedItemFooter = ({ children, className }) => (
   <div className={classnames(className, "chq-fdi--ft")}>
     {children}
   </div>
 );
+
+Object.assign(FeedItem, {
+  Body: FeedItemBody,
+  Footer: FeedItemFooter
+});
 
 export default FeedItem;
