@@ -12,6 +12,7 @@ export { default as Icon } from "./components/Icon";
 export { default as Info } from "./components/Info";
 export { default as Nav } from "./components/Nav";
 export { default as Pagination } from "./components/Pagination";
+export { default as Panel } from "./components/Panel";
 export { default as Spinner } from "./components/Spinner";
 export { default as Subnav } from "./components/Subnav";
 export { default as Success } from "./components/Success";
