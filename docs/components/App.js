@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import CheckmarkContainer from "./CheckmarkContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
+import LoaderContainer from "./LoaderContainer";
 import PaginationContainer from "./PaginationContainer";
 
 import {
@@ -70,6 +71,9 @@ const App = () => (
 
       <Heading>Info</Heading>
       <Info>This is an info.</Info>
+
+      <Heading>Loader</Heading>
+      <LoaderContainer />
 
       <Heading>Pagination</Heading>
       <PaginationContainer totalPages={1} />
