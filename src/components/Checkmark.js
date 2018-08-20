@@ -14,7 +14,7 @@ class Checkmark extends Component {
     return (
       <button
         type="button"
-        className={classnames(className, "chq-cmk", {
+        className={classnames("chq-cmk", className, {
           "chq-cmk-ck": checked,
           "chq-cmk-cl": onClick
         })}

@@ -46,9 +46,9 @@ const SubnavItem = ({
   children, className, active, onClick
 }) => {
   const classNames = classnames(
-    className,
     "chq-snv--it",
-    { "chq-snv--it-active": active }
+    { "chq-snv--it-active": active },
+    className
   );
 
   return <button type="button" className={classNames} onClick={onClick}>{children}</button>;

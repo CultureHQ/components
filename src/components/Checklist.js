@@ -4,7 +4,7 @@ import classnames from "classnames";
 import Checkmark from "./Checkmark";
 
 const Checklist = ({ children, className }) => (
-  <dl className={classnames(className, "chq-chl")}>
+  <dl className={classnames("chq-chl", className)}>
     {children}
   </dl>
 );

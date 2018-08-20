@@ -23,7 +23,7 @@ const Button = ({
   <button
     type={type} /* eslint react/button-has-type: "off" */
     className={
-      classnames(className, "chq-btn", {
+      classnames("chq-btn", className, {
         "chq-btn-iv": inverted,
         "chq-btn-pr": primary,
         "chq-btn-sm": small,

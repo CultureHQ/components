@@ -2,19 +2,19 @@ import React from "react";
 import classnames from "classnames";
 
 const FeedItem = ({ children, className }) => (
-  <div className={classnames(className, "chq-fdi")}>
+  <div className={classnames("chq-fdi", className)}>
     {children}
   </div>
 );
 
 const FeedItemBody = ({ children, className }) => (
-  <div className={classnames(className, "chq-fdi--bd")}>
+  <div className={classnames("chq-fdi--bd", className)}>
     {children}
   </div>
 );
 
 const FeedItemFooter = ({ children, className }) => (
-  <div className={classnames(className, "chq-fdi--ft")}>
+  <div className={classnames("chq-fdi--ft", className)}>
     {children}
   </div>
 );

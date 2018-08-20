@@ -20,9 +20,9 @@ class Nav extends Component {
     const { navDisplayed } = this.state;
 
     return classnames(
-      className,
       "chq-nav",
-      { "chq-nav-hd": !navDisplayed }
+      { "chq-nav-hd": !navDisplayed },
+      className
     );
   }
 

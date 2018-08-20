@@ -6,7 +6,7 @@ const Badge = ({
 }) => (
   <button
     type="button"
-    className={classnames(className, "chq-bdg", { "chq-bdg-pr": primary })}
+    className={classnames("chq-bdg", className, { "chq-bdg-pr": primary })}
     onClick={onClick}
   >
     {children}

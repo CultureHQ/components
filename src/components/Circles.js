@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 
 const Circles = ({ className }) => (
-  <svg className={classnames(className, "chq-cir")} viewBox="0 0 300 300">
+  <svg className={classnames("chq-cir", className)} viewBox="0 0 300 300">
     <circle
       className="chq-cir--sm"
       r="16"

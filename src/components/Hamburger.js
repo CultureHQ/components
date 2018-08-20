@@ -4,7 +4,7 @@ import classnames from "classnames";
 const Hamburger = ({ className, open, onToggle }) => (
   <button
     type="button"
-    className={classnames(className, "chq-ham", { "chq-ham-op": open })}
+    className={classnames("chq-ham", className, { "chq-ham-op": open })}
     onClick={onToggle}
   >
     <span />
