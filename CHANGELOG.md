@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ### Changed
 - Renamed animations to be consistent with naming style throughout the rest of the component library e.g., `chqSpin`.
+- The `Nav` component now displays on scroll if the previous scroll position was zero. This fixes the behavior of hiding the nav when the page first loads.
 
 ## [2.1.1] - 2018-07-31
 ### Changed

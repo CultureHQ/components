@@ -18,6 +18,8 @@ test("passes on className", () => {
 });
 
 test("hides the nav when the page is scrolled down", () => {
+  window.pageYOffset = 25;
+
   const component = shallow(<Nav />);
   expect(component.hasClass("chq-nav-hd")).toBe(false);
 
