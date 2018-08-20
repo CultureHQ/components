@@ -10,6 +10,7 @@ import {
   Badge,
   Button,
   Checklist,
+  Circles,
   FeedItem,
   Info,
   Nav,
@@ -56,6 +57,9 @@ const App = () => (
 
       <Heading>Checkmark</Heading>
       <CheckmarkContainer />
+
+      <Heading>Circles</Heading>
+      <Circles />
 
       <Heading>FeedItem</Heading>
       <FeedItem>

@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 
 import { Spinner } from "../src";
 
-test("renders without crashing", async () => {
+test("renders without crashing", () => {
   const component = shallow(<Spinner />);
   expect(component.type()).toEqual("div");
 });
