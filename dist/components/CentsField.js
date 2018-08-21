@@ -29,19 +29,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var CentsField = function (_Component) {
   _inherits(CentsField, _Component);
 
-  function CentsField() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
+  function CentsField(props) {
     _classCallCheck(this, CentsField);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (CentsField.__proto__ || Object.getPrototypeOf(CentsField)).call(this, props));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CentsField.__proto__ || Object.getPrototypeOf(CentsField)).call.apply(_ref, [this].concat(args))), _this), _this.state = { touched: false, value: null }, _this.handleChange = function (_ref2) {
-      var value = _ref2.target.value;
+    _this.handleChange = function (_ref) {
+      var value = _ref.target.value;
       var _this$props = _this.props,
           name = _this$props.name,
           onValueChange = _this$props.onValueChange;
@@ -53,7 +47,13 @@ var CentsField = function (_Component) {
       }
 
       _this.setState({ touched: true, value: amount });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    };
+
+    _this.state = {
+      touched: false,
+      value: (props.initialValues || {})[props.name] || null
+    };
+    return _this;
   }
 
   _createClass(CentsField, [{

@@ -30,19 +30,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var FormField = function (_Component) {
   _inherits(FormField, _Component);
 
-  function FormField() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
+  function FormField(props) {
     _classCallCheck(this, FormField);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (FormField.__proto__ || Object.getPrototypeOf(FormField)).call(this, props));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = FormField.__proto__ || Object.getPrototypeOf(FormField)).call.apply(_ref, [this].concat(args))), _this), _this.state = { touched: false, value: null }, _this.handleChange = function (_ref2) {
-      var value = _ref2.target.value;
+    _this.handleChange = function (_ref) {
+      var value = _ref.target.value;
       var _this$props = _this.props,
           name = _this$props.name,
           onValueChange = _this$props.onValueChange;
@@ -53,7 +47,13 @@ var FormField = function (_Component) {
       }
 
       _this.setState({ touched: true, value: value });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    };
+
+    _this.state = {
+      touched: false,
+      value: (props.initialValues || {})[props.name] || null
+    };
+    return _this;
   }
 
   _createClass(FormField, [{

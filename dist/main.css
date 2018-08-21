@@ -939,6 +939,13 @@
   .chq-inf p {
     margin: 0; }
 
+.chq-ldr {
+  padding: 70px; }
+  .chq-ldr .chq-spn {
+    visibility: hidden; }
+  .chq-ldr-sp .chq-spn {
+    visibility: visible; }
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }

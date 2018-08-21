@@ -31,34 +31,32 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Form = function (_Component) {
   _inherits(Form, _Component);
 
-  function Form() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
+  function Form(props) {
     _classCallCheck(this, Form);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Form.__proto__ || Object.getPrototypeOf(Form)).call.apply(_ref, [this].concat(args))), _this), _this.state = { submitting: false, touched: false, values: {} }, _this.getIsValidSubmission = function () {
+    _this.getIsValidSubmission = function () {
       var children = _this.props.children;
       var values = _this.state.values;
 
 
-      return children.every(function (_ref2) {
-        var _ref2$props = _ref2.props,
-            required = _ref2$props.required,
-            name = _ref2$props.name;
+      return children.every(function (_ref) {
+        var _ref$props = _ref.props,
+            required = _ref$props.required,
+            name = _ref$props.name;
         return !required || values[name];
       });
-    }, _this.handleValueChange = function (mutation) {
-      _this.setState(function (_ref3) {
-        var values = _ref3.values;
+    };
+
+    _this.handleValueChange = function (mutation) {
+      _this.setState(function (_ref2) {
+        var values = _ref2.values;
         return { values: _extends({}, values, mutation) };
       });
-    }, _this.handleSubmit = function (event) {
+    };
+
+    _this.handleSubmit = function (event) {
       var onSubmit = _this.props.onSubmit;
       var values = _this.state.values;
 
@@ -77,7 +75,14 @@ var Form = function (_Component) {
 
       onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
       return true;
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    };
+
+    _this.state = {
+      submitting: false,
+      touched: false,
+      values: props.initialValues || {}
+    };
+    return _this;
   }
 
   _createClass(Form, [{
@@ -87,7 +92,8 @@ var Form = function (_Component) {
 
       var _props = this.props,
           children = _props.children,
-          className = _props.className;
+          className = _props.className,
+          initialValues = _props.initialValues;
       var _state = this.state,
           submitting = _state.submitting,
           touched = _state.touched;
@@ -99,6 +105,7 @@ var Form = function (_Component) {
         _react2.default.Children.map(children, function (child) {
           return _react2.default.cloneElement(child, {
             onValueChange: _this2.handleValueChange,
+            initialValues: initialValues,
             touched: touched
           });
         }),

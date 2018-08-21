@@ -10,6 +10,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _classnames = require("classnames");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 var _Spinner = require("./Spinner");
 
 var _Spinner2 = _interopRequireDefault(_Spinner);
@@ -37,9 +41,21 @@ var Loader = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Loader.__proto__ || Object.getPrototypeOf(Loader)).call.apply(_ref, [this].concat(args))), _this), _this.state = { spinning: false }, _this.componentDidMount = function () {
+      var loading = _this.props.loading;
+
+
       _this.componentIsMounted = true;
 
-      _this.timeout = setTimeout(_this.handleSpinnerTriggered, 250);
+      if (loading) {
+        _this.timeout = setTimeout(_this.handleSpinnerTriggered, 250);
+      }
+    }, _this.componentWillUnmount = function () {
+      _this.componentIsMounted = false;
+
+      if (_this.timeout) {
+        clearTimeout(_this.timeout);
+        _this.timeout = null;
+      }
     }, _this.handleSpinnerTriggered = function () {
       var loading = _this.props.loading;
 
@@ -53,20 +69,12 @@ var Loader = function (_Component) {
   }
 
   _createClass(Loader, [{
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.componentIsMounted = false;
-
-      if (this.timeout) {
-        clearTimeout(this.timeout);
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
       var _props = this.props,
-          loading = _props.loading,
-          children = _props.children;
+          children = _props.children,
+          className = _props.className,
+          loading = _props.loading;
       var spinning = this.state.spinning;
 
 
@@ -78,11 +86,11 @@ var Loader = function (_Component) {
         );
       }
 
-      if (spinning) {
-        return _react2.default.createElement(_Spinner2.default, null);
-      }
-
-      return null;
+      return _react2.default.createElement(
+        "div",
+        { className: (0, _classnames2.default)("chq-ldr", className, { "chq-ldr-sp": spinning }) },
+        _react2.default.createElement(_Spinner2.default, null)
+      );
     }
   }]);
 
