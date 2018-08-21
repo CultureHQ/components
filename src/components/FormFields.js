@@ -3,7 +3,14 @@ import React, { Component } from "react";
 import FormFieldInput from "./FormFieldInput";
 
 class FormField extends Component {
-  state = { touched: false, value: null };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      touched: false,
+      value: (props.initialValues || {})[props.name] || null
+    };
+  }
 
   componentDidUpdate(prevProps) {
     const { touched } = this.props;

@@ -1,7 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { Form, EmailField, StringField } from "../src";
+import {
+  Form,
+  CentsField,
+  EmailField,
+  StringField
+} from "../src";
 
 test("passes on className", () => {
   const component = mount(<Form className="form" />);
@@ -17,16 +22,13 @@ test("gathers values as they change and submits them", () => {
   };
 
   const component = mount(
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit} initialValues={{ email: "kevin@culturehq.com" }}>
       <StringField label="Name" name="name" />
       <EmailField label="Email" name="email" />
     </Form>
   );
 
   component.find("#name").simulate("change", { target: { value: "Kevin" } });
-  component.find("#email").simulate("change", {
-    target: { value: "kevin@culturehq.com" }
-  });
   component.find("button").simulate("click");
 
   expect(submitted).toEqual({ name: "Kevin", email: "kevin@culturehq.com" });
@@ -40,15 +42,26 @@ test("disallows submission until all required values are present", () => {
   };
 
   const component = mount(
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit} initialValues={{ name: "Kevin" }}>
       <StringField label="Name" name="name" />
       <EmailField label="Email" name="email" required />
     </Form>
   );
 
-  component.find("#name").simulate("change", { target: { value: "Kevin" } });
   component.find("button").simulate("click");
 
   expect(submitted).toBe(null);
   expect(component.state().touched).toBe(true);
+});
+
+test("passes down initialValues", () => {
+  const component = mount(
+    <Form initialValues={{ cents: 523, name: "Kevin" }}>
+      <CentsField label="Cents" name="cents" />
+      <StringField label="Name" name="name" />
+    </Form>
+  );
+
+  expect(component.find("#cents").props().value).toEqual(5.23);
+  expect(component.find("#name").props().value).toEqual("Kevin");
 });

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import classnames from "classnames";
 
 import Spinner from "./Spinner";
 
@@ -6,18 +7,23 @@ class Loader extends Component {
   state = { spinning: false };
 
   componentDidMount = () => {
+    const { loading } = this.props;
+
     this.componentIsMounted = true;
 
-    this.timeout = setTimeout(this.handleSpinnerTriggered, 250);
+    if (loading) {
+      this.timeout = setTimeout(this.handleSpinnerTriggered, 250);
+    }
   };
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     this.componentIsMounted = false;
 
     if (this.timeout) {
       clearTimeout(this.timeout);
+      this.timeout = null;
     }
-  }
+  };
 
   handleSpinnerTriggered = () => {
     const { loading } = this.props;
@@ -30,18 +36,18 @@ class Loader extends Component {
   };
 
   render() {
-    const { loading, children } = this.props;
+    const { children, className, loading } = this.props;
     const { spinning } = this.state;
 
     if (!loading) {
       return <Fragment>{children}</Fragment>;
     }
 
-    if (spinning) {
-      return <Spinner />;
-    }
-
-    return null;
+    return (
+      <div className={classnames("chq-ldr", className, { "chq-ldr-sp": spinning })}>
+        <Spinner />
+      </div>
+    );
   }
 }
 

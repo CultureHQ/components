@@ -1,0 +1,13 @@
+.chq-ldr {
+  padding: 70px;
+
+  .chq-spn {
+    visibility: hidden;
+  }
+
+  &-sp {
+    .chq-spn {
+      visibility: visible;
+    }
+  }
+}

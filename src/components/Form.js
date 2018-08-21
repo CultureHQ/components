@@ -4,7 +4,15 @@ import classnames from "classnames";
 import Button from "./Button";
 
 class Form extends Component {
-  state = { submitting: false, touched: false, values: {} };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      submitting: false,
+      touched: false,
+      values: props.initialValues || {}
+    };
+  }
 
   getIsValidSubmission = () => {
     const { children } = this.props;
@@ -38,7 +46,7 @@ class Form extends Component {
   };
 
   render() {
-    const { children, className } = this.props;
+    const { children, className, initialValues } = this.props;
     const { submitting, touched } = this.state;
 
     return (
@@ -46,6 +54,7 @@ class Form extends Component {
         {React.Children.map(children, child => (
           React.cloneElement(child, {
             onValueChange: this.handleValueChange,
+            initialValues,
             touched
           })
         ))}
