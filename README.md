@@ -29,6 +29,30 @@ A component for displaying associated metadata.
 * `onClick?` - a click handler
 * `primary? = false` - indicates a primary badge
 
+### Button
+
+A generic button component.
+
+* `children` - displayed inside the button
+* `className?` - an extra class name
+* `disabled?` - disallows clicking on the button
+* `icon?` - an icon to display inside the button
+* `inverted?` - indicates the inverted theme
+* `loading?` - displays a spinner inside the button
+* `onClick` - the callback when the button is clicked
+* `primary?` - indicates a larger primary button
+* `small?` - indicates a small button
+* `type? = "button"` - the type of the button component
+
+### CentsField
+
+A number form field that tracks in cents and displays in dollar amounts.
+
+* `className?` - an extra class name
+* `label` - the label to display for the field
+* `name` - the name of the field
+* `required?` - indicates this field is required for submission
+
 ### Checklist
 
 A list of items and their associated status.
@@ -49,6 +73,21 @@ A boolean value represented by a circle with an optional check.
 * `className?` - an extra class name
 * `onClick?` - a click handler (allows this to be a controller component)
 
+### Circles
+
+The CultureHQ circles.
+
+* `className?` - an extra class name
+
+### EmailField
+
+A string form field that accepts an email.
+
+* `className?` - an extra class name
+* `label` - the label to display for the field
+* `name` - the name of the field
+* `required?` - indicates this field is required for submission
+
 ### FeedItem
 
 A contained item in a feed.
@@ -65,6 +104,14 @@ A contained item in a feed.
 
 * `children` - displayed inside the footer
 * `className?` - an extra class name
+
+### Form
+
+A generic form component.
+
+* `children` - the fields to display inside the form (expected to be one of the form fields in this component library)
+* `className?` - an extra class name
+* `onSubmit` - a callback when the form has been submitted (expected to return a `Promise`)
 
 ### Hamburger
 
@@ -88,6 +135,29 @@ Displays a informational message.
 * `children` - displayed inside the box
 * `className?` - an extra class name
 
+### Loader
+
+A component that waits for something to be loaded, and displays a spinner if it takes too long to load.
+
+* `children` - the components to display once `loading` is false
+* `loading` - whether or not `loading` is taking place
+
+### Nav
+
+A top-level nav that displays at the top of the page. It hides when you scroll down and shows when you scroll up.
+
+* `children` - the components to display inside the nav
+* `className?` - an extra class name
+
+### NumberField
+
+A number form field.
+
+* `className?` - an extra class name
+* `label` - the label to display for the field
+* `name` - the name of the field
+* `required?` - indicates this field is required for submission
+
 ### Pagination
 
 Displays pagination information with buttons for looking through different pages.
@@ -96,6 +166,52 @@ Displays pagination information with buttons for looking through different pages
 * `currentPage` - an integer representing the current page number
 * `onClick` - a callback function that will be called with the new page number when the page is changed
 * `totalPages` - an integer representing the total number of pages
+
+### Panel
+
+Boxed information to be displayed. Always has a header and sometimes has a footer.
+
+* `children` - the components to be displayed inside the panel, expected to be instances of `Panel.Heading`, `Panel.Body`, or `Panel.Footer`
+* `className?` - an extra class name
+
+`Panel.Heading` subcomponent:
+
+* `children` - the content of the heading
+* `className?` - an extra class name
+
+`Panel.Body` subcomponent:
+
+* `children` - the content of the body
+* `className?` - an extra class name
+
+`Panel.Footer` subcomponent:
+
+* `children` - the content of the footer
+* `className?` - an extra class name
+
+### PasswordField
+
+A password form field.
+
+* `className?` - an extra class name
+* `label` - the label to display for the field
+* `name` - the name of the field
+* `required?` - indicates this field is required for submission
+
+### Spinner
+
+A circular spinner using the CultureHQ colors.
+
+* `className?` - an extra class name
+
+### StringField
+
+A string form field.
+
+* `className?` - an extra class name
+* `label` - the label to display for the field
+* `name` - the name of the field
+* `required?` - indicates this field is required for submission
 
 ### Subnav
 

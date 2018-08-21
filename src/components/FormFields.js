@@ -43,5 +43,5 @@ const buildFormField = type => props => <FormField {...props} type={type} />;
 
 export const EmailField = buildFormField("email");
 export const NumberField = buildFormField("number");
-export const StringField = buildFormField("text");
 export const PasswordField = buildFormField("password");
+export const StringField = buildFormField("text");
