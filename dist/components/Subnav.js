@@ -85,13 +85,13 @@ var Subnav = function (_Component) {
   return Subnav;
 }(_react.Component);
 
-Subnav.Item = function (_ref) {
+var SubnavItem = function SubnavItem(_ref) {
   var children = _ref.children,
       className = _ref.className,
       active = _ref.active,
       onClick = _ref.onClick;
 
-  var classNames = (0, _classnames2.default)(className, "chq-snv--it", { "chq-snv--it-active": active });
+  var classNames = (0, _classnames2.default)("chq-snv--it", { "chq-snv--it-active": active }, className);
 
   return _react2.default.createElement(
     "button",
@@ -99,5 +99,9 @@ Subnav.Item = function (_ref) {
     children
   );
 };
+
+Object.assign(Subnav, {
+  Item: SubnavItem
+});
 
 exports.default = Subnav;

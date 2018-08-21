@@ -1,3 +1,88 @@
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
 .chq-bdg {
   background: none;
   border: 1px solid #eaeaea;
@@ -12,6 +97,91 @@
   .chq-bdg-pr {
     border: 1px solid #8cb4d6;
     color: #8cb4d6; }
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
 
 .chq-btn {
   background-color: #79b17d;
@@ -81,13 +251,7 @@
     .chq-btn-sm svg {
       height: 15px; }
   .chq-btn-ld svg {
-    animation: chq-spn 1s linear infinite; }
-
-@keyframes chq-spn {
-  0% {
-    transform: rotate(0deg); }
-  100% {
-    transform: rotate(359deg); } }
+    animation: chqSpin 1s linear infinite; }
 
 .chq-chl {
   position: relative; }
@@ -96,6 +260,91 @@
     position: absolute; }
   .chq-chl dd {
     margin: 0 0 1em 30px; }
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
 
 .chq-cmk {
   background: none;
@@ -128,27 +377,208 @@
   .chq-cmk-cl {
     cursor: pointer; }
   .chq-cmk-ck svg {
-    animation: animCheckmarkFill .2s ease-in-out .2s forwards, animCheckmarkScale .15s ease-in-out .45s both;
+    animation: chqCmkFill .2s ease-in-out .2s forwards, chqCmkScale .15s ease-in-out .45s both;
     border: 0; }
   .chq-cmk-ck circle {
-    animation: animCheckmarkStroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
+    animation: chqCmkStroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
   .chq-cmk-ck path {
-    animation: animCheckmarkStroke 0.15s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards; }
+    animation: chqCmkStroke 0.15s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards; }
 
-@keyframes animCheckmarkStroke {
+@keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }
 
-@keyframes animCheckmarkScale {
+@keyframes chqCmkScale {
   0%,
   100% {
     transform: none; }
   50% {
     transform: scale3d(1.1, 1.1, 1); } }
 
-@keyframes animCheckmarkFill {
+@keyframes chqCmkFill {
   100% {
     box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+.chq-cir {
+  height: 40px;
+  margin: 4px 10px 0 0;
+  width: 40px; }
+  .chq-cir--sm, .chq-cir--yl {
+    fill: #ffd865; }
+  .chq-cir--gr {
+    fill: #89ba8d; }
+  .chq-cir--bl {
+    fill: #9fc0dd; }
+  .chq-cir:hover .chq-cir--sm {
+    animation: chqCirSm;
+    animation-duration: .8s; }
+  .chq-cir:hover .chq-cir--yl {
+    animation: chqCirYl;
+    animation-delay: .1s;
+    animation-duration: .8s; }
+  .chq-cir:hover .chq-cir--gr {
+    animation: chqCirGr;
+    animation-delay: .2s;
+    animation-duration: .8s; }
+  .chq-cir:hover .chq-cir--bl {
+    animation: chqCirBl;
+    animation-delay: .3s;
+    animation-duration: .8s; }
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
 
 .chq-fdi {
   background-color: #fff;
@@ -161,6 +591,218 @@
   .chq-fdi--ft {
     border-top: 1px solid #eaeaea;
     padding: 15px; }
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+.chq-ffd {
+  display: block;
+  position: relative; }
+  .chq-ffd + .chq-ffd {
+    margin-top: 20px; }
+  .chq-ffd + .chq-btn[type='submit'] {
+    margin-top: 20px; }
+  .chq-ffd--lb {
+    color: #9c9fa7;
+    display: block;
+    margin-bottom: 5px; }
+  .chq-ffd--rq {
+    color: #c14c4c;
+    font-size: .8em;
+    margin: 0; }
+  .chq-ffd input {
+    border: 0;
+    border-bottom: 2px solid #eaeaea;
+    border-radius: 0;
+    box-shadow: none;
+    color: #5c5f67;
+    display: block;
+    font-size: 1em;
+    font-weight: 200;
+    height: 42px;
+    margin-bottom: 5px;
+    outline: none;
+    padding: 6px 12px 6px 0;
+    transition: border-bottom .3s;
+    width: 100%; }
+    .chq-ffd input:focus {
+      border-bottom: 2px solid #79b17d; }
+  .chq-ffd--ad {
+    color: #888;
+    font-size: 1.2em;
+    font-weight: 200;
+    left: 5px;
+    padding: 6px 0;
+    position: absolute; }
+    .chq-ffd--ad + input {
+      padding-left: 24px; }
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
 
 .chq-ham {
   background: none;
@@ -204,6 +846,91 @@
     top: 39px;
     transform: rotate(-45deg); }
 
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
 .chq-inf {
   background-color: #d7e5f1;
   color: #5c5f67;
@@ -211,6 +938,91 @@
   padding: 15px; }
   .chq-inf p {
     margin: 0; }
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
 
 .chq-nav {
   background-color: #2c3e4f;
@@ -225,6 +1037,91 @@
   .chq-nav-hd {
     box-shadow: none;
     top: -55px; }
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
 
 .chq-pag {
   margin: 20px 0;
@@ -266,6 +1163,317 @@
     padding: 6px;
     vertical-align: text-bottom; }
 
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+.chq-pan {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  margin-bottom: 20px; }
+  .chq-pan h2 {
+    font-size: 1.2em;
+    font-weight: 200;
+    margin: 0; }
+  .chq-pan hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 12px 0; }
+  .chq-pan--hd {
+    padding: 15px 15px 0; }
+  .chq-pan--bd {
+    padding: 0 15px 15px; }
+  .chq-pan--ft {
+    background-color: #f7f7f7;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: 1px solid #eaeaea;
+    padding: 10px 15px; }
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+.chq-spn {
+  position: relative; }
+  .chq-spn div {
+    animation: chqSpin 2s linear infinite;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-top-color: #8cb4d6;
+    height: 60px;
+    margin: 0 auto;
+    position: relative;
+    width: 60px; }
+    .chq-spn div::before, .chq-spn div::after {
+      border: 3px solid transparent;
+      border-radius: 50%;
+      content: '';
+      position: absolute; }
+    .chq-spn div::before {
+      animation: chqSpin 3s linear infinite;
+      border-top-color: #79b17d;
+      bottom: 1px;
+      left: 1px;
+      right: 1px;
+      top: 1px; }
+    .chq-spn div::after {
+      animation: chqSpin 1.5s linear infinite;
+      border-top-color: #ffd24b;
+      bottom: 5px;
+      left: 5px;
+      right: 5px;
+      top: 5px; }
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
 .chq-snv {
   margin-bottom: 15px; }
   .chq-snv--it {
@@ -290,6 +1498,91 @@
       .chq-snv--it-active:hover {
         color: #79b17d; }
 
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
 .chq-scs {
   background-color: #dff0d8;
   border: 1px solid #d6e9c6;
@@ -298,6 +1591,91 @@
   padding: 15px; }
   .chq-scs p {
     margin: 0; }
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
 
 .chq-tag {
   background-color: #6a89af;
@@ -330,6 +1708,91 @@
     width: 100px; }
   .chq-tmb-sq {
     border-radius: 0; }
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none; }
+  50% {
+    transform: scale3d(1.1, 1.1, 1); } }
+
+@keyframes chqCmkFill {
+  100% {
+    box-shadow: inset 0 0 0 30px #79b17d; } }
+
+@keyframes chqSpin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0); }
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0); }
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0); }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0); } }
 
 .chq-wrn {
   background-color: #fcf8e3;

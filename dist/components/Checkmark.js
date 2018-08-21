@@ -59,7 +59,7 @@ var Checkmark = function (_Component) {
         "button",
         {
           type: "button",
-          className: (0, _classnames2.default)(className, "chq-cmk", {
+          className: (0, _classnames2.default)("chq-cmk", className, {
             "chq-cmk-ck": checked,
             "chq-cmk-cl": onClick
           }),

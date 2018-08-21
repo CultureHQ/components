@@ -19,7 +19,7 @@ var Info = function Info(_ref) {
       className = _ref.className;
   return _react2.default.createElement(
     "div",
-    { className: (0, _classnames2.default)(className, "chq-inf") },
+    { className: (0, _classnames2.default)("chq-inf", className) },
     _react2.default.createElement(
       "p",
       null,

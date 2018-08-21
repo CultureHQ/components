@@ -22,7 +22,7 @@ var Tag = function Tag(_ref) {
   return _react2.default.createElement(
     "div",
     {
-      className: (0, _classnames2.default)(className, "chq-tag", {
+      className: (0, _classnames2.default)("chq-tag", className, {
         "chq-tag-gy": color === "gray",
         "chq-tag-rd": color === "red"
       })

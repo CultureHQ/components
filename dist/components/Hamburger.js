@@ -22,7 +22,7 @@ var Hamburger = function Hamburger(_ref) {
     "button",
     {
       type: "button",
-      className: (0, _classnames2.default)(className, "chq-ham", { "chq-ham-op": open }),
+      className: (0, _classnames2.default)("chq-ham", className, { "chq-ham-op": open }),
       onClick: onToggle
     },
     _react2.default.createElement("span", null),

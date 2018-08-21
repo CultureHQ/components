@@ -23,12 +23,12 @@ var Checklist = function Checklist(_ref) {
       className = _ref.className;
   return _react2.default.createElement(
     "dl",
-    { className: (0, _classnames2.default)(className, "chq-chl") },
+    { className: (0, _classnames2.default)("chq-chl", className) },
     children
   );
 };
 
-Checklist.Item = function (_ref2) {
+var ChecklistItem = function ChecklistItem(_ref2) {
   var children = _ref2.children,
       checked = _ref2.checked;
   return _react2.default.createElement(
@@ -46,5 +46,9 @@ Checklist.Item = function (_ref2) {
     )
   );
 };
+
+Object.assign(Checklist, {
+  Item: ChecklistItem
+});
 
 exports.default = Checklist;

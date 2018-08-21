@@ -150,7 +150,7 @@ var Pagination = function Pagination(_ref5) {
 
   return _react2.default.createElement(
     "nav",
-    { className: (0, _classnames2.default)(className, "chq-pag") },
+    { className: (0, _classnames2.default)("chq-pag", className) },
     _react2.default.createElement(PrevPage, { currentPage: current, onClick: onClick }),
     current > 3 && _react2.default.createElement(Page, { page: 1, onClick: onClick }),
     current > 4 && (current === 5 ? _react2.default.createElement(Page, { page: 2, onClick: onClick }) : _react2.default.createElement(Spacer, null)),

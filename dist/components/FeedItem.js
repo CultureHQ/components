@@ -19,29 +19,34 @@ var FeedItem = function FeedItem(_ref) {
       className = _ref.className;
   return _react2.default.createElement(
     "div",
-    { className: (0, _classnames2.default)(className, "chq-fdi") },
+    { className: (0, _classnames2.default)("chq-fdi", className) },
     children
   );
 };
 
-FeedItem.Body = function (_ref2) {
+var FeedItemBody = function FeedItemBody(_ref2) {
   var children = _ref2.children,
       className = _ref2.className;
   return _react2.default.createElement(
     "div",
-    { className: (0, _classnames2.default)(className, "chq-fdi--bd") },
+    { className: (0, _classnames2.default)("chq-fdi--bd", className) },
     children
   );
 };
 
-FeedItem.Footer = function (_ref3) {
+var FeedItemFooter = function FeedItemFooter(_ref3) {
   var children = _ref3.children,
       className = _ref3.className;
   return _react2.default.createElement(
     "div",
-    { className: (0, _classnames2.default)(className, "chq-fdi--ft") },
+    { className: (0, _classnames2.default)("chq-fdi--ft", className) },
     children
   );
 };
+
+Object.assign(FeedItem, {
+  Body: FeedItemBody,
+  Footer: FeedItemFooter
+});
 
 exports.default = FeedItem;

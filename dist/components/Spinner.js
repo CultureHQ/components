@@ -14,18 +14,13 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Warning = function Warning(_ref) {
-  var children = _ref.children,
-      className = _ref.className;
+var Spinner = function Spinner(_ref) {
+  var className = _ref.className;
   return _react2.default.createElement(
     "div",
-    { className: (0, _classnames2.default)("chq-wrn", className) },
-    _react2.default.createElement(
-      "p",
-      null,
-      children
-    )
+    { className: (0, _classnames2.default)("chq-spn", className) },
+    _react2.default.createElement("div", null)
   );
 };
 
-exports.default = Warning;
+exports.default = Spinner;

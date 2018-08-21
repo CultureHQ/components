@@ -12,13 +12,13 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = require("classnames");
+var _FormFieldInput = require("./FormFieldInput");
 
-var _classnames2 = _interopRequireDefault(_classnames);
+var _FormFieldInput2 = _interopRequireDefault(_FormFieldInput);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -26,71 +26,69 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Nav = function (_Component) {
-  _inherits(Nav, _Component);
+var CentsField = function (_Component) {
+  _inherits(CentsField, _Component);
 
-  function Nav() {
+  function CentsField() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, Nav);
+    _classCallCheck(this, CentsField);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Nav.__proto__ || Object.getPrototypeOf(Nav)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      navDisplayed: true,
-      prevScroll: window.pageYOffset
-    }, _this.handleWindowScroll = function () {
-      var prevScroll = _this.state.prevScroll;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CentsField.__proto__ || Object.getPrototypeOf(CentsField)).call.apply(_ref, [this].concat(args))), _this), _this.state = { touched: false, value: null }, _this.handleChange = function (_ref2) {
+      var value = _ref2.target.value;
+      var _this$props = _this.props,
+          name = _this$props.name,
+          onValueChange = _this$props.onValueChange;
 
-      var nextScroll = window.pageYOffset;
+      var amount = value ? Math.round(value * 100) : null;
 
-      _this.setState({
-        navDisplayed: prevScroll === 0 || nextScroll <= 30 || prevScroll > nextScroll,
-        prevScroll: nextScroll
-      });
+      if (onValueChange) {
+        onValueChange(_defineProperty({}, name, amount));
+      }
+
+      _this.setState({ touched: true, value: amount });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(Nav, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      window.addEventListener("scroll", this.handleWindowScroll);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      window.removeEventListener("scroll", this.handleWindowScroll);
-    }
-  }, {
-    key: "getClassList",
-    value: function getClassList() {
-      var className = this.props.className;
-      var navDisplayed = this.state.navDisplayed;
+  _createClass(CentsField, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var touched = this.props.touched;
 
 
-      return (0, _classnames2.default)("chq-nav", { "chq-nav-hd": !navDisplayed }, className);
+      if (touched !== prevProps.touched) {
+        // eslint-disable-next-line react/no-did-update-set-state
+        this.setState({ touched: true });
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      var _props = this.props,
-          children = _props.children,
-          className = _props.className,
-          props = _objectWithoutProperties(_props, ["children", "className"]);
+      var required = this.props.required;
+      var _state = this.state,
+          touched = _state.touched,
+          value = _state.value;
 
-      return _react2.default.createElement(
-        "nav",
-        _extends({ className: this.getClassList() }, props),
-        children
-      );
+
+      return _react2.default.createElement(_FormFieldInput2.default, _extends({}, this.props, {
+        type: "number",
+        step: "0.01",
+        min: "0",
+        addon: "$",
+        onChange: this.handleChange,
+        value: Number.isFinite(value) ? value / 100 : "",
+        displayRequired: required && touched && !value
+      }));
     }
   }]);
 
-  return Nav;
+  return CentsField;
 }(_react.Component);
 
-exports.default = Nav;
+exports.default = CentsField;

@@ -23,7 +23,7 @@ var Thumbnail = function Thumbnail(_ref) {
       square = _ref$square === undefined ? false : _ref$square,
       title = _ref.title;
   return _react2.default.createElement("div", {
-    className: (0, _classnames2.default)(className, "chq-tmb", {
+    className: (0, _classnames2.default)("chq-tmb", className, {
       "chq-tmb-md": size === "medium",
       "chq-tmb-lg": size === "large",
       "chq-tmb-sq": square

@@ -24,7 +24,7 @@ var Badge = function Badge(_ref) {
     "button",
     {
       type: "button",
-      className: (0, _classnames2.default)(className, "chq-bdg", { "chq-bdg-pr": primary }),
+      className: (0, _classnames2.default)("chq-bdg", className, { "chq-bdg-pr": primary }),
       onClick: onClick
     },
     children

@@ -19,7 +19,7 @@ var Success = function Success(_ref) {
       className = _ref.className;
   return _react2.default.createElement(
     "div",
-    { className: (0, _classnames2.default)(className, "chq-scs") },
+    { className: (0, _classnames2.default)("chq-scs", className) },
     _react2.default.createElement(
       "p",
       null,

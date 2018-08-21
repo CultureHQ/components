@@ -47,9 +47,9 @@ var Button = function Button(_ref2) {
 
   return _react2.default.createElement(
     "button",
-    _extends({
-      type: type /* eslint react/button-has-type: "off" */
-      , className: (0, _classnames2.default)(className, "chq-btn", {
+    _extends({ // eslint-disable-line react/button-has-type
+      type: type,
+      className: (0, _classnames2.default)("chq-btn", className, {
         "chq-btn-iv": inverted,
         "chq-btn-pr": primary,
         "chq-btn-sm": small,
