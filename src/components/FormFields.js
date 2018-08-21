@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classnames from "classnames";
 
-class StringField extends Component {
+class FormField extends Component {
   state = { touched: false, value: null };
 
   getRequired = () => {
@@ -12,7 +12,7 @@ class StringField extends Component {
       return null;
     }
 
-    return <p className="chq-sfd--rq">Required</p>;
+    return <p className="chq-ffd--rq">Required</p>;
   };
 
   handleChange = ({ target: { value } }) => {
@@ -20,14 +20,20 @@ class StringField extends Component {
   };
 
   render() {
-    const { className, label, name } = this.props;
+    const {
+      className,
+      label,
+      name,
+      type
+    } = this.props;
+
     const { value } = this.state;
 
     return (
-      <label className={classnames("chq-sfd", className)} htmlFor={name}>
-        <span className="chq-sfd--lb">{label}</span>
+      <label className={classnames("chq-ffd", className)} htmlFor={name}>
+        <span className="chq-ffd--lb">{label}</span>
         <input
-          type="text"
+          type={type}
           id={name}
           name={name}
           onChange={this.handleChange}
@@ -39,4 +45,9 @@ class StringField extends Component {
   }
 }
 
-export default StringField;
+const buildFormField = type => props => <FormField {...props} type={type} />;
+
+export const EmailField = buildFormField("email");
+export const NumberField = buildFormField("number");
+export const StringField = buildFormField("text");
+export const PasswordField = buildFormField("password");

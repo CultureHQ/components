@@ -1,7 +1,11 @@
-@import '../../common';
+@import '../common';
 
-.chq-sfd {
-  margin-bottom: 20px;
+.chq-ffd {
+  display: block;
+
+  & + & {
+    margin-top: 20px;
+  }
 
   &--lb {
     color: $color-primary-light-font;

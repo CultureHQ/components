@@ -6,6 +6,12 @@ export { default as Checklist } from "./components/Checklist";
 export { default as Checkmark } from "./components/Checkmark";
 export { default as Circles } from "./components/Circles";
 export { default as FeedItem } from "./components/FeedItem";
+export {
+  EmailField,
+  NumberField,
+  PasswordField,
+  StringField
+} from "./components/FormFields";
 export { default as Hamburger } from "./components/Hamburger";
 export { default as Loader } from "./components/Loader";
 export { default as Icon } from "./components/Icon";
@@ -19,5 +25,3 @@ export { default as Success } from "./components/Success";
 export { default as Tag } from "./components/Tag";
 export { default as Thumbnail } from "./components/Thumbnail";
 export { default as Warning } from "./components/Warning";
-
-export { default as StringField } from "./components/form-components/StringField";

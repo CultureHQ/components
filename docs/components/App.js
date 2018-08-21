@@ -11,10 +11,13 @@ import {
   Button,
   Checklist,
   Circles,
+  EmailField,
   FeedItem,
   Info,
   Nav,
+  NumberField,
   Panel,
+  PasswordField,
   Spinner,
   StringField,
   Subnav,
@@ -130,7 +133,10 @@ const App = () => (
       <hr />
 
       <Heading>StringField</Heading>
-      <StringField label="Interest Name" name="name" required />
+      <EmailField label="Email" name="email" required />
+      <NumberField label="Number" name="number" required />
+      <PasswordField label="Password" name="password" required />
+      <StringField label="String" name="string" required />
     </div>
   </Fragment>
 );
