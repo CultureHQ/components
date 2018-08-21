@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { mount } from "enzyme";
 
-import Subnav from "../src/components/Subnav";
+import { Subnav } from "../src";
 
 class SubnavContainer extends Component {
   state = { activeIndex: 0 };

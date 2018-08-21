@@ -1,0 +1,37 @@
+@import '../common';
+
+.chq-pan {
+  background-color: $color-white;
+  border-radius: 5px;
+  box-shadow: .5px .5px 3px $color-box-shadow;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 1.2em;
+    font-weight: $font-weight-light;
+    margin: 0;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid $panel-hr-border;
+    margin: 12px 0;
+  }
+
+  &--hd {
+    padding: 15px 15px 0;
+  }
+
+  &--bd {
+    padding: 0 15px 15px;
+  }
+
+  &--ft {
+    background-color: $color-background;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: 1px solid $color-border;
+    padding: 10px 15px;
+  }
+}

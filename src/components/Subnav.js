@@ -42,16 +42,20 @@ class Subnav extends Component {
   }
 }
 
-Subnav.Item = ({
+const SubnavItem = ({
   children, className, active, onClick
 }) => {
   const classNames = classnames(
-    className,
     "chq-snv--it",
-    { "chq-snv--it-active": active }
+    { "chq-snv--it-active": active },
+    className
   );
 
   return <button type="button" className={classNames} onClick={onClick}>{children}</button>;
 };
+
+Object.assign(Subnav, {
+  Item: SubnavItem
+});
 
 export default Subnav;

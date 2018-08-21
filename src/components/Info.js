@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 
 const Info = ({ children, className }) => (
-  <div className={classnames(className, "chq-inf")}>
+  <div className={classnames("chq-inf", className)}>
     <p>{children}</p>
   </div>
 );

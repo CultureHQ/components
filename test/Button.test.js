@@ -1,8 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 
-import Button from "../src/components/Button";
-import Icon from "../src/components/Icon";
+import { Button, Icon } from "../src";
 
 test("renders without crashing", () => {
   const message = "This is a button.";

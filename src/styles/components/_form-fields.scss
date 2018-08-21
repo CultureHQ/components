@@ -1,0 +1,62 @@
+@import '../common';
+
+.chq-ffd {
+  display: block;
+  position: relative;
+
+  & + & {
+    margin-top: 20px;
+  }
+
+  & + .chq-btn {
+    &[type='submit'] {
+      margin-top: 20px;
+    }
+  }
+
+  &--lb {
+    color: $color-primary-light-font;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  &--rq {
+    color: $color-primary-red;
+    font-size: .8em;
+    margin: 0;
+  }
+
+  input {
+    border: 0;
+    border-bottom: 2px solid $color-border;
+    border-radius: 0;
+    box-shadow: none;
+    color: $color-primary-font;
+    display: block;
+    font-size: 1em;
+    font-weight: $font-weight-light;
+    height: 42px;
+    margin-bottom: 5px;
+    outline: none;
+    padding: 6px 12px 6px 0;
+    transition: border-bottom .3s;
+    width: 100%;
+
+    &:focus {
+      border-bottom: 2px solid $color-primary-green;
+    }
+  }
+
+  &--ad {
+    color: $color-secondary-font;
+    font-size: 1.2em;
+    font-weight: $font-weight-light;
+    left: 5px;
+    padding: 6px 0;
+    position: absolute;
+
+    & + input {
+      padding-left: 24px;
+    }
+  }
+}

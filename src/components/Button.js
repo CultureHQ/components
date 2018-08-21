@@ -20,10 +20,10 @@ const Button = ({
   loading,
   ...props
 }) => (
-  <button
-    type={type} /* eslint react/button-has-type: "off" */
+  <button // eslint-disable-line react/button-has-type
+    type={type}
     className={
-      classnames(className, "chq-btn", {
+      classnames("chq-btn", className, {
         "chq-btn-iv": inverted,
         "chq-btn-pr": primary,
         "chq-btn-sm": small,

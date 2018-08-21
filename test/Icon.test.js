@@ -1,7 +1,8 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 
-import Icon, { AsyncPath } from "../src/components/Icon";
+import { Icon } from "../src";
+import { AsyncPath } from "../src/components/Icon";
 import { close } from "../src/icons.json";
 
 test("renders without crashing", async () => {
@@ -31,7 +32,7 @@ test("updates the icon when the prop changes", async () => {
   expect(component.state().d).toEqual(close.join(" "));
 });
 
-test("does not attempt to set state once it been unmounted", async () => {
+test("does not attempt to set state once it been unmounted", () => {
   const component = shallow(<AsyncPath icon="checkmark" />);
 
   component.instance().loadIcon();

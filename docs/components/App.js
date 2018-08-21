@@ -1,17 +1,22 @@
 import React, { Fragment } from "react";
 
 import CheckmarkContainer from "./CheckmarkContainer";
+import FormContainer from "./FormContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
+import LoaderContainer from "./LoaderContainer";
 import PaginationContainer from "./PaginationContainer";
 
 import {
   Badge,
   Button,
   Checklist,
+  Circles,
   FeedItem,
   Info,
   Nav,
+  Panel,
+  Spinner,
   Subnav,
   Success,
   Tag,
@@ -55,11 +60,17 @@ const App = () => (
       <Heading>Checkmark</Heading>
       <CheckmarkContainer />
 
+      <Heading>Circles</Heading>
+      <Circles />
+
       <Heading>FeedItem</Heading>
       <FeedItem>
         <FeedItem.Body>This is a feed item.</FeedItem.Body>
         <FeedItem.Footer>This is the footer of the feed item.</FeedItem.Footer>
       </FeedItem>
+
+      <Heading>Form</Heading>
+      <FormContainer />
 
       <Heading>Hamburger</Heading>
       <HamburgerContainer />
@@ -70,12 +81,25 @@ const App = () => (
       <Heading>Info</Heading>
       <Info>This is an info.</Info>
 
+      <Heading>Loader</Heading>
+      <LoaderContainer />
+
       <Heading>Pagination</Heading>
       <PaginationContainer totalPages={1} />
       <PaginationContainer totalPages={2} />
       <PaginationContainer totalPages={4} />
       <PaginationContainer totalPages={8} />
       <PaginationContainer totalPages={16} />
+
+      <Heading>Panel</Heading>
+      <Panel>
+        <Panel.Heading>Heading</Panel.Heading>
+        <Panel.Body>Body</Panel.Body>
+        <Panel.Footer>Footer</Panel.Footer>
+      </Panel>
+
+      <Heading>Spinner</Heading>
+      <Spinner />
 
       <Heading>Subnav</Heading>
       <Subnav>

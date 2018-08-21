@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Info from "../src/components/Info";
+import { Info } from "../src";
 
 test("renders without crashing", () => {
   const message = "This is an info.";

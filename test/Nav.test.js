@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Nav from "../src/components/Nav";
+import { Nav } from "../src";
 
 test("renders without crashing", () => {
   const message = "This is a nav.";
@@ -18,6 +18,8 @@ test("passes on className", () => {
 });
 
 test("hides the nav when the page is scrolled down", () => {
+  window.pageYOffset = 25;
+
   const component = shallow(<Nav />);
   expect(component.hasClass("chq-nav-hd")).toBe(false);
 

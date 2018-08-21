@@ -41,39 +41,16 @@
 
   &-ck {
     svg {
-      animation: animCheckmarkFill .2s ease-in-out .2s forwards, animCheckmarkScale .15s ease-in-out .45s both;
+      animation: chqCmkFill .2s ease-in-out .2s forwards, chqCmkScale .15s ease-in-out .45s both;
       border: 0;
     }
 
     circle {
-      animation: animCheckmarkStroke .3s cubic-bezier(.65, 0, .45, 1) forwards;
+      animation: chqCmkStroke .3s cubic-bezier(.65, 0, .45, 1) forwards;
     }
 
     path {
-      animation: animCheckmarkStroke .15s cubic-bezier(.65, 0, .45, 1) .4s forwards;
+      animation: chqCmkStroke .15s cubic-bezier(.65, 0, .45, 1) .4s forwards;
     }
-  }
-}
-
-@keyframes animCheckmarkStroke {
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes animCheckmarkScale {
-  0%,
-  100% {
-    transform: none;
-  }
-
-  50% {
-    transform: scale3d(1.1, 1.1, 1);
-  }
-}
-
-@keyframes animCheckmarkFill {
-  100% {
-    box-shadow: inset 0 0 0 30px $color-primary-green;
   }
 }

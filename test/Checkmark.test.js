@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Checkmark from "../src/components/Checkmark";
+import { Checkmark } from "../src";
 
 test("renders without crashing", () => {
   const component = shallow(<Checkmark />);

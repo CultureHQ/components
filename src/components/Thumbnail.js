@@ -6,7 +6,7 @@ const Thumbnail = ({
 }) => (
   <div
     className={
-      classnames(className, "chq-tmb", {
+      classnames("chq-tmb", className, {
         "chq-tmb-md": size === "medium",
         "chq-tmb-lg": size === "large",
         "chq-tmb-sq": square

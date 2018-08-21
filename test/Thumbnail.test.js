@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Thumbnail from "../src/components/Thumbnail";
+import { Thumbnail } from "../src";
 
 test("renders without crashing", () => {
   const component = shallow(<Thumbnail image="https://robohash.org/1" />);

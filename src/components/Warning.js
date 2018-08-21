@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 
 const Warning = ({ children, className }) => (
-  <div className={classnames(className, "chq-wrn")}>
+  <div className={classnames("chq-wrn", className)}>
     <p>{children}</p>
   </div>
 );

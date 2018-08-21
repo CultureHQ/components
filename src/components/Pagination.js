@@ -72,7 +72,7 @@ const Pagination = ({
   );
 
   return (
-    <nav className={classnames(className, "chq-pag")}>
+    <nav className={classnames("chq-pag", className)}>
       <PrevPage currentPage={current} onClick={onClick} />
       {current > 3 && <Page page={1} onClick={onClick} />}
       {current > 4 && (

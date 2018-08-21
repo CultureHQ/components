@@ -20,9 +20,9 @@ class Nav extends Component {
     const { navDisplayed } = this.state;
 
     return classnames(
-      className,
       "chq-nav",
-      { "chq-nav-hd": !navDisplayed }
+      { "chq-nav-hd": !navDisplayed },
+      className
     );
   }
 
@@ -31,7 +31,7 @@ class Nav extends Component {
     const nextScroll = window.pageYOffset;
 
     this.setState({
-      navDisplayed: nextScroll <= 30 || prevScroll > nextScroll,
+      navDisplayed: prevScroll === 0 || nextScroll <= 30 || prevScroll > nextScroll,
       prevScroll: nextScroll
     });
   };
