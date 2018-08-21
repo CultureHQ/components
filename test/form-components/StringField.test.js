@@ -3,6 +3,10 @@ import { shallow } from "enzyme";
 
 import { StringField } from "../../src";
 
+const withFindRequired = component => Object.assign(component, {
+  findRequired: () => component.find(".chq-sfd--rq")
+});
+
 test("renders without crashing", () => {
   const component = shallow(<StringField label="Name" name="name" />);
 
@@ -28,11 +32,25 @@ test("tracks the input value in state", () => {
 });
 
 test("displays a label if the value is required and the input touched", () => {
-  const component = shallow(<StringField label="Name" name="name" required />);
-  expect(component.find(".chq-sfd--rq")).toHaveLength(0);
+  const component = withFindRequired(shallow(
+    <StringField label="Name" name="name" required />
+  ));
+  expect(component.findRequired()).toHaveLength(0);
 
   component.find("input").simulate("change", { target: { value: "" } });
   component.update();
 
-  expect(component.find(".chq-sfd--rq")).toHaveLength(1);
+  expect(component.findRequired()).toHaveLength(1);
+});
+
+test("does not display a required label without the required prop", () => {
+  const component = withFindRequired(shallow(
+    <StringField label="Name" name="name" />
+  ));
+  expect(component.findRequired()).toHaveLength(0);
+
+  component.find("input").simulate("change", { target: { value: "" } });
+  component.update();
+
+  expect(component.findRequired()).toHaveLength(0);
 });
