@@ -234,7 +234,6 @@ A password form field.
 A circular spinner using the CultureHQ colors.
 
 * `className?` - an extra class name
-* `placeholder?` - indicates that this spinner is a placeholder, and should take up more room
 
 ### StringField
 

@@ -5,11 +5,18 @@ import { Loader, Spinner } from "../src";
 
 const Loaded = () => <p>Content loaded!</p>;
 
-test("renders nothing if loading and not yet spinning", () => {
+test("passes on className", () => {
+  const component = mount(<Loader loading className="loader"><Loaded /></Loader>);
+
+  expect(component.find(".chq-ldr")).toHaveLength(1);
+  expect(component.find(".chq-ldr").hasClass("loader")).toBe(true);
+});
+
+test("renders a placeholder if loading and not yet spinning", () => {
   const component = mount(<Loader loading><Loaded /></Loader>);
 
-  expect(component.html()).toBe(null);
   expect(component.find(Loaded)).toHaveLength(0);
+  expect(component.hasClass("chq-ldr-sp")).toBe(false);
 });
 
 test("does not set a timeout if the loader is not loading", () => {
@@ -37,7 +44,7 @@ test("renders a spinner if loading takes too long", done => {
 
   setTimeout(() => {
     component.update();
-    expect(component.find(Spinner)).toHaveLength(1);
+    expect(component.find(".chq-ldr").hasClass("chq-ldr-sp")).toBe(true);
 
     done();
   }, 250);

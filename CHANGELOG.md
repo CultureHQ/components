@@ -7,7 +7,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The ability to set `initialValues` on a `Form` component.
-- The optional `placeholder` prop to the `Spinner` component so that it will take up more room if it represents components that are not yet loaded.
 
 ## [2.2.0] - 2018-08-21
 ### Added

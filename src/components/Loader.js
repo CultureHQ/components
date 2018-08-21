@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import classnames from "classnames";
 
 import Spinner from "./Spinner";
 
@@ -35,18 +36,18 @@ class Loader extends Component {
   };
 
   render() {
-    const { loading, children } = this.props;
+    const { children, className, loading } = this.props;
     const { spinning } = this.state;
 
     if (!loading) {
       return <Fragment>{children}</Fragment>;
     }
 
-    if (spinning) {
-      return <Spinner placeholder />;
-    }
-
-    return null;
+    return (
+      <div className={classnames("chq-ldr", className, { "chq-ldr-sp": spinning })}>
+        <Spinner />
+      </div>
+    );
   }
 }
 
