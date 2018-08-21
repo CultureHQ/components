@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import classnames from "classnames";
 
+import FormFieldInput from "./FormFieldInput";
+
 class FormField extends Component {
   state = { touched: false, value: null };
 
@@ -11,17 +13,6 @@ class FormField extends Component {
       this.setState({ touched: true });
     }
   }
-
-  getRequired = () => {
-    const { required } = this.props;
-    const { touched, value } = this.state;
-
-    if (!required || !touched || value) {
-      return null;
-    }
-
-    return <p className="chq-ffd--rq">Required</p>;
-  };
 
   handleChange = ({ target: { value } }) => {
     const { name, onValueChange } = this.props;
@@ -34,29 +25,16 @@ class FormField extends Component {
   };
 
   render() {
-    const {
-      className,
-      label,
-      name,
-      required,
-      type
-    } = this.props;
-
-    const { value } = this.state;
+    const { required } = this.props;
+    const { touched, value } = this.state;
 
     return (
-      <label className={classnames("chq-ffd", className)} htmlFor={name}>
-        <span className="chq-ffd--lb">{label}</span>
-        <input
-          type={type}
-          id={name}
-          name={name}
-          onChange={this.handleChange}
-          value={value || ""}
-          required={required}
-        />
-        {this.getRequired()}
-      </label>
+      <FormFieldInput
+        {...this.props}
+        onChange={this.handleChange}
+        value={value || ""}
+        displayRequired={required && touched && !value}
+      />
     );
   }
 }
