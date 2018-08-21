@@ -38,7 +38,7 @@ class Loader extends Component {
     }
 
     if (spinning) {
-      return <Spinner />;
+      return <Spinner placeholder />;
     }
 
     return null;

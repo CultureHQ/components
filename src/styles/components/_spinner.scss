@@ -3,6 +3,10 @@
 .chq-spn {
   position: relative;
 
+  &-ph {
+    padding: 70px;
+  }
+
   div {
     animation: chqSpin 2s linear infinite;
     border: 3px solid transparent;

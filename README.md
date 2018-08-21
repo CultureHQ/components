@@ -141,6 +141,7 @@ A generic form component.
 
 * `children` - the fields to display inside the form (expected to be one of the form fields in this component library)
 * `className?` - an extra class name
+* `initialValues` - the initial values of the form fields
 * `onSubmit` - a callback when the form has been submitted (expected to return a `Promise`)
 
 ### Hamburger
@@ -233,6 +234,7 @@ A password form field.
 A circular spinner using the CultureHQ colors.
 
 * `className?` - an extra class name
+* `placeholder?` - indicates that this spinner is a placeholder, and should take up more room
 
 ### StringField
 
