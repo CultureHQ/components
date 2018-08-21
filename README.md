@@ -18,7 +18,33 @@ export default App;
 
 To get the styles, be sure to also import `@culturehq/components/dist/main.css` into whatever stylesheet you're using.
 
-Below are listed each component with their various semantics.
+Below are listed each component with their various semantics:
+
+- [Badge](#badge)
+- [Button](#button)
+- [CentsField](#centsfield)
+- [Checklist](#checklist)
+- [Checkmark](#checkmark)
+- [Circles](#circles)
+- [EmailField](#emailfield)
+- [FeedItem](#feeditem)
+- [Form](#form)
+- [Hamburger](#hamburger)
+- [Icon](#icon)
+- [Info](#info)
+- [Loader](#loader)
+- [Nav](#nav)
+- [NumberField](#numberfield)
+- [Pagination](#pagination)
+- [Panel](#panel)
+- [PasswordField](#passwordfield)
+- [Spinner](#spinner)
+- [StringField](#stringfield)
+- [Subnav](#subnav)
+- [Success](#success)
+- [Tag](#tag)
+- [Thumbnail](#thumbnail)
+- [Warning](#warning)
 
 ### Badge
 
