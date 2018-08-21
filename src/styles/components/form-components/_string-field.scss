@@ -3,10 +3,16 @@
 .chq-sfd {
   margin-bottom: 20px;
 
-  span {
+  &--lb {
     color: $color-primary-light-font;
     display: block;
     margin-bottom: 5px;
+  }
+
+  &--rq {
+    color: $color-primary-red;
+    font-size: .8em;
+    margin: 0;
   }
 
   input {

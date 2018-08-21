@@ -130,7 +130,7 @@ const App = () => (
       <hr />
 
       <Heading>StringField</Heading>
-      <StringField label="Interest Name" name="name" />
+      <StringField label="Interest Name" name="name" required />
     </div>
   </Fragment>
 );

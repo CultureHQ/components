@@ -26,3 +26,13 @@ test("tracks the input value in state", () => {
 
   expect(component.state().value).toEqual("Kevin");
 });
+
+test("displays a label if the value is required and the input touched", () => {
+  const component = shallow(<StringField label="Name" name="name" required />);
+  expect(component.find(".chq-sfd--rq")).toHaveLength(0);
+
+  component.find("input").simulate("change", { target: { value: "" } });
+  component.update();
+
+  expect(component.find(".chq-sfd--rq")).toHaveLength(1);
+});
