@@ -1,7 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { Form, CentsField, EmailField, StringField } from "../src";
+import {
+  Form,
+  CentsField,
+  EmailField,
+  StringField
+} from "../src";
 
 test("passes on className", () => {
   const component = mount(<Form className="form" />);
