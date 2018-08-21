@@ -5,7 +5,9 @@
     visibility: hidden;
   }
 
-  &-sp .chq-spn {
-    visibility: visible;
+  &-sp {
+    .chq-spn {
+      visibility: visible;
+    }
   }
 }
