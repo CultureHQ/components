@@ -7,6 +7,12 @@
     margin-top: 20px;
   }
 
+  & + .chq-btn {
+    &[type='submit'] {
+      margin-top: 20px;
+    }
+  }
+
   &--lb {
     color: $color-primary-light-font;
     display: block;

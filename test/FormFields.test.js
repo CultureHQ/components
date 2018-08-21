@@ -54,4 +54,30 @@ const withFindRequired = component => Object.assign(component, {
 
     expect(component.findRequired()).toHaveLength(0);
   });
+
+  test("prefers parent touched value", () => {
+    const component = withFindRequired(mount(
+      <FormField label="Name" name="name" required />
+    ));
+
+    expect(component.findRequired()).toHaveLength(0);
+    component.setProps({ touched: true });
+    component.update();
+
+    expect(component.findRequired()).toHaveLength(1);
+  });
+
+  test("calls up to onValueChange if that callback is provided", () => {
+    let response = null;
+    const onValueChange = mutation => {
+      response = mutation;
+    };
+
+    const component = mount(
+      <FormField label="Name" name="name" onValueChange={onValueChange} />
+    );
+
+    component.find("input").simulate("change", { target: { value: "Kevin" } });
+    expect(response).toEqual({ name: "Kevin" });
+  });
 });

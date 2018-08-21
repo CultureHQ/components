@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 
 import CheckmarkContainer from "./CheckmarkContainer";
+import FormContainer from "./FormContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
 import LoaderContainer from "./LoaderContainer";
@@ -11,15 +12,11 @@ import {
   Button,
   Checklist,
   Circles,
-  EmailField,
   FeedItem,
   Info,
   Nav,
-  NumberField,
   Panel,
-  PasswordField,
   Spinner,
-  StringField,
   Subnav,
   Success,
   Tag,
@@ -71,6 +68,9 @@ const App = () => (
         <FeedItem.Body>This is a feed item.</FeedItem.Body>
         <FeedItem.Footer>This is the footer of the feed item.</FeedItem.Footer>
       </FeedItem>
+
+      <Heading>Form</Heading>
+      <FormContainer />
 
       <Heading>Hamburger</Heading>
       <HamburgerContainer />
@@ -129,14 +129,6 @@ const App = () => (
 
       <Heading>Warning</Heading>
       <Warning>This is a warning.</Warning>
-
-      <hr />
-
-      <Heading>StringField</Heading>
-      <EmailField label="Email" name="email" required />
-      <NumberField label="Number" name="number" required />
-      <PasswordField label="Password" name="password" required />
-      <StringField label="String" name="string" required />
     </div>
   </Fragment>
 );

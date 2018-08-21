@@ -6,6 +6,7 @@ export { default as Checklist } from "./components/Checklist";
 export { default as Checkmark } from "./components/Checkmark";
 export { default as Circles } from "./components/Circles";
 export { default as FeedItem } from "./components/FeedItem";
+export { default as Form } from "./components/Form";
 export {
   EmailField,
   NumberField,
