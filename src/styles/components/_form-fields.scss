@@ -2,6 +2,7 @@
 
 .chq-ffd {
   display: block;
+  position: relative;
 
   & + & {
     margin-top: 20px;
@@ -43,6 +44,19 @@
 
     &:focus {
       border-bottom: 2px solid $color-primary-green;
+    }
+  }
+
+  &--ad {
+    color: $color-secondary-font;
+    font-size: 1.2em;
+    font-weight: $font-weight-light;
+    left: 5px;
+    padding: 6px 0;
+    position: absolute;
+
+    & + input {
+      padding-left: 24px;
     }
   }
 }

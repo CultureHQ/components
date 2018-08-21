@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import FormFieldInput from "./FormFieldInput";
 
-class FormField extends Component {
+class CentsField extends Component {
   state = { touched: false, value: null };
 
   componentDidUpdate(prevProps) {
@@ -16,12 +16,13 @@ class FormField extends Component {
 
   handleChange = ({ target: { value } }) => {
     const { name, onValueChange } = this.props;
+    const amount = value ? Math.round(value * 100) : null;
 
     if (onValueChange) {
-      onValueChange({ [name]: value });
+      onValueChange({ [name]: amount });
     }
 
-    this.setState({ touched: true, value });
+    this.setState({ touched: true, value: amount });
   };
 
   render() {
@@ -31,17 +32,16 @@ class FormField extends Component {
     return (
       <FormFieldInput
         {...this.props}
+        type="number"
+        step="0.01"
+        min="0"
+        addon="$"
         onChange={this.handleChange}
-        value={value || ""}
+        value={Number.isFinite(value) ? value / 100 : ""}
         displayRequired={required && touched && !value}
       />
     );
   }
 }
 
-const buildFormField = type => props => <FormField {...props} type={type} />;
-
-export const EmailField = buildFormField("email");
-export const NumberField = buildFormField("number");
-export const StringField = buildFormField("text");
-export const PasswordField = buildFormField("password");
+export default CentsField;
