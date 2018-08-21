@@ -1,0 +1,32 @@
+@import '../../common';
+
+.chq-sfd {
+  margin-bottom: 20px;
+
+  span {
+    color: $color-primary-light-font;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input {
+    border: 0;
+    border-bottom: 2px solid $color-border;
+    border-radius: 0;
+    box-shadow: none;
+    color: $color-primary-font;
+    display: block;
+    font-size: 1em;
+    font-weight: $font-weight-light;
+    height: 42px;
+    margin-bottom: 5px;
+    outline: none;
+    padding: 6px 12px 6px 0;
+    transition: border-bottom .3s;
+    width: 100%;
+
+    &:focus {
+      border-bottom: 2px solid $color-primary-green;
+    }
+  }
+}

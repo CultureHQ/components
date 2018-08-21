@@ -19,3 +19,5 @@ export { default as Success } from "./components/Success";
 export { default as Tag } from "./components/Tag";
 export { default as Thumbnail } from "./components/Thumbnail";
 export { default as Warning } from "./components/Warning";
+
+export { default as StringField } from "./components/form-components/StringField";

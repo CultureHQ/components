@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `Spinner` component.
 - The `Loader` component.
 - The `Panel` component.
+- The `StringField` component.
 
 ### Changed
 - Renamed animations to be consistent with naming style throughout the rest of the component library e.g., `chqSpin`.

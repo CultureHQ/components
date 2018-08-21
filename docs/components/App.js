@@ -16,6 +16,7 @@ import {
   Nav,
   Panel,
   Spinner,
+  StringField,
   Subnav,
   Success,
   Tag,
@@ -125,6 +126,11 @@ const App = () => (
 
       <Heading>Warning</Heading>
       <Warning>This is a warning.</Warning>
+
+      <hr />
+
+      <Heading>StringField</Heading>
+      <StringField label="Interest Name" name="name" />
     </div>
   </Fragment>
 );
