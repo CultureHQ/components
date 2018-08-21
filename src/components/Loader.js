@@ -6,18 +6,23 @@ class Loader extends Component {
   state = { spinning: false };
 
   componentDidMount = () => {
+    const { loading } = this.props;
+
     this.componentIsMounted = true;
 
-    this.timeout = setTimeout(this.handleSpinnerTriggered, 250);
+    if (loading) {
+      this.timeout = setTimeout(this.handleSpinnerTriggered, 250);
+    }
   };
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     this.componentIsMounted = false;
 
     if (this.timeout) {
       clearTimeout(this.timeout);
+      this.timeout = null;
     }
-  }
+  };
 
   handleSpinnerTriggered = () => {
     const { loading } = this.props;
