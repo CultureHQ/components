@@ -2,17 +2,19 @@ import React, { Component } from "react";
 
 import classnames from "../classnames";
 
+import { SubmitButton } from "./Button";
 import CentsField from "./CentsField";
 import { EmailField, NumberField, PasswordField, StringField } from "./FormFields";
 
-const FIELDS = [CentsField, EmailField, NumberField, PasswordField, StringField];
-const isField = type => FIELDS.indexOf(type) > -1;
+const contains = haystack => needle => haystack.indexOf(needle) > -1;
+const isField = contains([CentsField, EmailField, NumberField, PasswordField, StringField]);
 
 class Form extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      submitting: false,
       touched: false,
       values: props.initialValues || {}
     };
@@ -29,27 +31,40 @@ class Form extends Component {
 
   getChildren = () => {
     const { children, initialValues } = this.props;
-    const { touched } = this.state;
+    const { submitting, touched } = this.state;
 
-    const mutations = {
-      onValueChange: this.handleValueChange,
-      initialValues,
-      touched
-    };
+    return React.Children.map(children, child => {
+      const { type, props } = child;
 
-    return React.Children.map(children, child => (
-      isField(child.type) ? React.cloneElement(child, mutations) : child
-    ));
+      if (isField(type)) {
+        return React.cloneElement(child, {
+          onValueChange: this.handleValueChange,
+          initialValues,
+          touched
+        });
+      }
+
+      if (type === SubmitButton) {
+        return React.cloneElement(child, {
+          disabled: props.disabled || submitting
+        });
+      }
+
+      return child;
+    });
   };
 
   handleValueChange = mutation => {
-    this.setState(({ values }) => ({ values: { ...values, ...mutation } }));
+    this.setState(({ values }) => ({
+      values: { ...values, ...mutation }
+    }));
   };
 
   handleSubmit = event => {
     const { onSubmit } = this.props;
     const { values } = this.state;
 
+    this.setState({ submitting: true });
     event.preventDefault();
 
     if (!this.getIsValidSubmission()) {
@@ -57,7 +72,8 @@ class Form extends Component {
       return;
     }
 
-    onSubmit(values);
+    const doneSubmitting = () => this.setState({ submitting: false });
+    onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
   };
 
   render() {

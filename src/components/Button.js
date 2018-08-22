@@ -38,4 +38,6 @@ const Button = ({
   </button>
 );
 
+export const SubmitButton = props => <Button {...props} type="submit" />;
+
 export default Button;
