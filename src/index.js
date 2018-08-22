@@ -1,7 +1,7 @@
 import "./styles/app.scss";
 
 export { default as Badge } from "./components/Badge";
-export { default as Button } from "./components/Button";
+export { default as Button, SubmitButton } from "./components/Button";
 export { default as Checklist } from "./components/Checklist";
 export { default as Checkmark } from "./components/Checkmark";
 export { default as Circles } from "./components/Circles";
