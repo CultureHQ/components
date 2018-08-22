@@ -2,14 +2,17 @@ import React, { Component } from "react";
 
 import classnames from "../classnames";
 
-import Button from "./Button";
+import CentsField from "./CentsField";
+import { EmailField, NumberField, PasswordField, StringField } from "./FormFields";
+
+const FIELDS = [CentsField, EmailField, NumberField, PasswordField, StringField];
+const isField = type => FIELDS.indexOf(type) > -1;
 
 class Form extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      submitting: false,
       touched: false,
       values: props.initialValues || {}
     };
@@ -19,8 +22,23 @@ class Form extends Component {
     const { children } = this.props;
     const { values } = this.state;
 
-    return children.every(({ props: { required, name } }) => (
-      !required || values[name]
+    return children.every(({ type, props: { required, name } }) => (
+      !isField(type) || !required || values[name]
+    ));
+  };
+
+  getChildren = () => {
+    const { children, initialValues } = this.props;
+    const { touched } = this.state;
+
+    const mutations = {
+      onValueChange: this.handleValueChange,
+      initialValues,
+      touched
+    };
+
+    return React.Children.map(children, child => (
+      isField(child.type) ? React.cloneElement(child, mutations) : child
     ));
   };
 
@@ -36,37 +54,18 @@ class Form extends Component {
 
     if (!this.getIsValidSubmission()) {
       this.setState({ touched: true });
-      return false;
+      return;
     }
 
-    this.setState({ submitting: true });
-    const doneSubmitting = () => this.setState({ submitting: false });
-
-    onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
-    return true;
+    onSubmit(values);
   };
 
   render() {
-    const { children, className, initialValues } = this.props;
-    const { submitting, touched } = this.state;
+    const { className } = this.props;
 
     return (
       <form className={classnames(className)} onSubmit={this.handleSubmit}>
-        {React.Children.map(children, child => (
-          React.cloneElement(child, {
-            onValueChange: this.handleValueChange,
-            initialValues,
-            touched
-          })
-        ))}
-        <Button
-          primary
-          type="submit"
-          disabled={submitting}
-          onClick={this.handleSubmit}
-        >
-          Submit
-        </Button>
+        {this.getChildren()}
       </form>
     );
   }

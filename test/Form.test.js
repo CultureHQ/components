@@ -29,7 +29,7 @@ test("gathers values as they change and submits them", () => {
   );
 
   component.find("#name").simulate("change", { target: { value: "Kevin" } });
-  component.find("button").simulate("click");
+  component.simulate("submit");
 
   expect(submitted).toEqual({ name: "Kevin", email: "kevin@culturehq.com" });
 });
@@ -48,9 +48,8 @@ test("disallows submission until all required values are present", () => {
     </Form>
   );
 
-  component.find("button").simulate("click");
+  component.simulate("submit").simulate("click");
 
-  expect(submitted).toBe(null);
   expect(component.state().touched).toBe(true);
 });
 
