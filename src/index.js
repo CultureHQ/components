@@ -22,9 +22,4 @@ export { default as Warning } from "./components/Warning";
 
 export { default as CentsField } from "./components/CentsField";
 export { default as Form } from "./components/Form";
-export {
-  EmailField,
-  NumberField,
-  PasswordField,
-  StringField
-} from "./components/FormFields";
+export { EmailField, NumberField, PasswordField, StringField } from "./components/FormFields";

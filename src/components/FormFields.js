@@ -44,8 +44,13 @@ class FormField extends Component {
   handleChange = ({ target: { value } }) => {
     const { name, onChange, onFormChange } = this.props;
 
-    onChange && onChange(value);
-    onFormChange && onFormChange(name, value);
+    if (onChange) {
+      onChange(value);
+    }
+
+    if (onFormChange) {
+      onFormChange(name, value);
+    }
   };
 
   handleFocus = () => {
@@ -54,6 +59,7 @@ class FormField extends Component {
 
   deriveError = () => {
     const { name, onError, required, validator, value } = this.props;
+
     let error = null;
 
     if (required && !value) {

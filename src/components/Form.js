@@ -46,11 +46,15 @@ class Form extends Component {
   };
 
   handleError = (name, error) => {
-    this.setState(({ errors }) => ({ errors: { ...errors, [name]: error } }));
+    this.setState(({ errors }) => ({
+      errors: { ...errors, [name]: error }
+    }));
   };
 
   handleFormChange = (name, value) => {
-    this.setState(({ values }) => ({ values: { ...values, [name]: value } }));
+    this.setState(({ values }) => ({
+      values: { ...values, [name]: value }
+    }));
   };
 
   handleSubmit = event => {

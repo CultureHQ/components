@@ -7,8 +7,13 @@ class CentsField extends Component {
     const { name, onChange, onFormChange } = this.props;
     const amount = value ? Math.round(value * 100) : null;
 
-    onChange && onChange(amount);
-    onFormChange && onFormChange(name, amount);
+    if (onChange) {
+      onChange(amount);
+    }
+
+    if (onFormChange) {
+      onFormChange(name, amount);
+    }
   };
 
   render() {

@@ -8,10 +8,6 @@ import {
   StringField
 } from "../src";
 
-const withFindRequired = component => Object.assign(component, {
-  findRequired: () => component.find(".chq-ffd--rq")
-});
-
 [EmailField, NumberField, PasswordField, StringField].forEach(FormField => {
   test("passes on className", () => {
     const component = mount(
