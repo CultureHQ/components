@@ -1,51 +1,23 @@
 import React, { Component } from "react";
 
-import FormFieldInput from "./FormFieldInput";
+import { NumberField } from "./FormFields";
 
 class CentsField extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      touched: false,
-      value: (props.initialValues || {})[props.name] || null
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    const { touched } = this.props;
-
-    if (touched !== prevProps.touched) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ touched: true });
-    }
-  }
-
-  handleChange = ({ target: { value } }) => {
-    const { name, onValueChange } = this.props;
+  handleChange = value => {
+    const { onChange } = this.props;
     const amount = value ? Math.round(value * 100) : null;
 
-    if (onValueChange) {
-      onValueChange({ [name]: amount });
-    }
-
-    this.setState({ touched: true, value: amount });
+    onChange(amount);
   };
 
   render() {
-    const { required } = this.props;
-    const { touched, value } = this.state;
+    const { onChange, value, ...props } = this.props;
 
     return (
-      <FormFieldInput
-        {...this.props}
-        type="number"
-        step="0.01"
-        min="0"
-        addon="$"
-        onChange={this.handleChange}
+      <NumberField
+        {...props}
         value={Number.isFinite(value) ? value / 100 : ""}
-        displayRequired={required && touched && !value}
+        onChange={this.handleChange}
       />
     );
   }

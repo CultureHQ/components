@@ -3,7 +3,8 @@ import React from "react";
 import classnames from "../classnames";
 
 const FormFieldInput = ({
-  className, name, label, type, onChange, value, required, displayRequired, addon
+  className, name, label, type, value, required, error, addon,
+  onBlur, onChange, onFocus
 }) => (
   <label className={classnames("chq-ffd", className)} htmlFor={name}>
     <span className="chq-ffd--lb">{label}</span>
@@ -12,11 +13,13 @@ const FormFieldInput = ({
       type={type}
       id={name}
       name={name}
-      onChange={onChange}
       value={value || ""}
       required={required}
+      onBlur={onBlur}
+      onChange={onChange}
+      onFocus={onFocus}
     />
-    {displayRequired && <p className="chq-ffd--rq">Required</p>}
+    {error && <p className="chq-ffd--rq">{error}</p>}
   </label>
 );
 

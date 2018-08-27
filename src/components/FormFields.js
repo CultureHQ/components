@@ -3,44 +3,42 @@ import React, { Component } from "react";
 import FormFieldInput from "./FormFieldInput";
 
 class FormField extends Component {
-  constructor(props) {
-    super(props);
+  state = { error: null };
 
-    this.state = {
-      touched: false,
-      value: (props.initialValues || {})[props.name] || null
-    };
-  }
+  handleBlur = ({ target: { value } }) => {
+    const { required, validator, value } = this.props;
 
-  componentDidUpdate(prevProps) {
-    const { touched } = this.props;
-
-    if (touched !== prevProps.touched) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ touched: true });
+    if (required && !value) {
+      this.setState({ error: "Required" });
     }
-  }
+
+    if (validator) {
+      this.setState({ error: validator(value) });
+    }
+  };
 
   handleChange = ({ target: { value } }) => {
-    const { name, onValueChange } = this.props;
+    const { onChange } = this.props;
 
-    if (onValueChange) {
-      onValueChange({ [name]: value });
-    }
+    onChange(value);
+  };
 
-    this.setState({ touched: true, value });
+  handleFocus = () => {
+    this.setState({ error: null });
   };
 
   render() {
-    const { required } = this.props;
-    const { touched, value } = this.state;
+    const { onChange, value, ...props } = this.props;
+    const { error } = this.state;
 
     return (
       <FormFieldInput
-        {...this.props}
+        {...props}
+        onBlur={this.handleBlur}
         onChange={this.handleChange}
+        onFocus={this.handleFocus}
         value={value || ""}
-        displayRequired={required && touched && !value}
+        error={error}
       />
     );
   }

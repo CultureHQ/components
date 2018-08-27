@@ -15,7 +15,7 @@ class Form extends Component {
 
     this.state = {
       submitting: false,
-      touched: false,
+      submitted: false,
       values: props.initialValues || {}
     };
   }
@@ -31,16 +31,16 @@ class Form extends Component {
 
   getChildren = () => {
     const { children, initialValues } = this.props;
-    const { submitting, touched } = this.state;
+    const { submitting, submitted } = this.state;
 
     return React.Children.map(children, child => {
       const { type, props } = child;
 
       if (isField(type)) {
         return React.cloneElement(child, {
-          onValueChange: this.handleValueChange,
+          onChange: getOnChange(child),
           initialValues,
-          touched
+          submitted
         });
       }
 
@@ -54,7 +54,16 @@ class Form extends Component {
     });
   };
 
-  handleValueChange = mutation => {
+  getOnChange = child => {
+    const onChange = value => this.handleChange({ [child.props.name]: value });
+
+    if (child.props.onChange) {
+      return value => { child.props.onChange(value); onChange(value); }
+    }
+    return onChange;
+  };
+
+  handleChange = mutation => {
     this.setState(({ values }) => ({
       values: { ...values, ...mutation }
     }));
@@ -68,7 +77,7 @@ class Form extends Component {
     event.preventDefault();
 
     if (!this.getIsValidSubmission()) {
-      this.setState({ touched: true });
+      this.setState({ submitted: true });
       return;
     }
 
