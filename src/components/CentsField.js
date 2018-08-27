@@ -4,14 +4,15 @@ import { NumberField } from "./FormFields";
 
 class CentsField extends Component {
   handleChange = value => {
-    const { onChange } = this.props;
+    const { name, onChange, onFormChange } = this.props;
     const amount = value ? Math.round(value * 100) : null;
 
-    onChange(amount);
+    onChange && onChange(amount);
+    onFormChange && onFormChange(name, amount);
   };
 
   render() {
-    const { onChange, value, ...props } = this.props;
+    const { onChange, onFormChange, value, ...props } = this.props;
 
     return (
       <NumberField

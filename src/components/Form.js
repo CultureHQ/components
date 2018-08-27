@@ -15,32 +15,23 @@ class Form extends Component {
 
     this.state = {
       submitting: false,
-      submitted: false,
-      values: props.initialValues || {}
+      values: props.initialValues || {},
+      errors: {}
     };
   }
 
-  getIsValidSubmission = () => {
-    const { children } = this.props;
-    const { values } = this.state;
-
-    return children.every(({ type, props: { required, name } }) => (
-      !isField(type) || !required || values[name]
-    ));
-  };
-
   getChildren = () => {
-    const { children, initialValues } = this.props;
-    const { submitting, submitted } = this.state;
+    const { children } = this.props;
+    const { submitting, values } = this.state;
 
     return React.Children.map(children, child => {
       const { type, props } = child;
 
       if (isField(type)) {
         return React.cloneElement(child, {
-          onChange: getOnChange(child),
-          initialValues,
-          submitted
+          onError: this.handleError,
+          onFormChange: this.handleFormChange,
+          value: values[props.name]
         });
       }
 
@@ -54,35 +45,25 @@ class Form extends Component {
     });
   };
 
-  getOnChange = child => {
-    const onChange = value => this.handleChange({ [child.props.name]: value });
-
-    if (child.props.onChange) {
-      return value => { child.props.onChange(value); onChange(value); }
-    }
-    return onChange;
+  handleError = (name, error) => {
+    this.setState(({ errors }) => ({ errors: { ...errors, [name]: error } }));
   };
 
-  handleChange = mutation => {
-    this.setState(({ values }) => ({
-      values: { ...values, ...mutation }
-    }));
+  handleFormChange = (name, value) => {
+    this.setState(({ values }) => ({ values: { ...values, [name]: value } }));
   };
 
   handleSubmit = event => {
     const { onSubmit } = this.props;
-    const { values } = this.state;
+    const { errors, values } = this.state;
 
     this.setState({ submitting: true });
     event.preventDefault();
 
-    if (!this.getIsValidSubmission()) {
-      this.setState({ submitted: true });
-      return;
+    if (Object.keys(errors).every(name => !errors[name])) {
+      const doneSubmitting = () => this.setState({ submitting: false });
+      onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
     }
-
-    const doneSubmitting = () => this.setState({ submitting: false });
-    onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
   };
 
   render() {

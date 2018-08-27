@@ -22,62 +22,32 @@ const withFindRequired = component => Object.assign(component, {
     expect(component.find("label").hasClass("form-field")).toBe(true);
   });
 
-  test("tracks the input value in state", () => {
-    const component = mount(<FormField label="Name" name="name" />);
-
-    component.find("input").simulate("change", { target: { value: "Kevin" } });
-    component.update();
-
-    expect(component.find("input").props().value).toEqual("Kevin");
-  });
-
-  test("displays a label if the value is required and the input touched", () => {
-    const component = withFindRequired(mount(
-      <FormField label="Name" name="name" required />
-    ));
-    expect(component.findRequired()).toHaveLength(0);
-
-    component.find("input").simulate("change", { target: { value: "" } });
-    component.update();
-
-    expect(component.findRequired()).toHaveLength(1);
-  });
-
-  test("does not display a required label without the required prop", () => {
-    const component = withFindRequired(mount(
-      <FormField label="Name" name="name" />
-    ));
-    expect(component.findRequired()).toHaveLength(0);
-
-    component.find("input").simulate("change", { target: { value: "" } });
-    component.update();
-
-    expect(component.findRequired()).toHaveLength(0);
-  });
-
-  test("prefers parent touched value", () => {
-    const component = withFindRequired(mount(
-      <FormField label="Name" name="name" required />
-    ));
-
-    expect(component.findRequired()).toHaveLength(0);
-    component.setProps({ touched: true });
-    component.update();
-
-    expect(component.findRequired()).toHaveLength(1);
-  });
-
-  test("calls up to onValueChange if that callback is provided", () => {
-    let response = null;
-    const onValueChange = mutation => {
-      response = mutation;
+  test("calls up to callbacks if they are provided", () => {
+    const response = {
+      changeValue: null,
+      formChangeName: null,
+      formChangeValue: null
     };
 
     const component = mount(
-      <FormField label="Name" name="name" onValueChange={onValueChange} />
+      <FormField
+        label="Name"
+        name="name"
+        onChange={changeValue => {
+          Object.assign(response, { changeValue });
+        }}
+        onFormChange={(formChangeName, formChangeValue) => {
+          Object.assign(response, { formChangeName, formChangeValue });
+        }}
+      />
     );
 
     component.find("input").simulate("change", { target: { value: "Kevin" } });
-    expect(response).toEqual({ name: "Kevin" });
+
+    expect(response).toEqual({
+      changeValue: "Kevin",
+      formChangeName: "name",
+      formChangeValue: "Kevin"
+    });
   });
 });

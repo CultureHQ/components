@@ -34,25 +34,6 @@ test("gathers values as they change and submits them", () => {
   expect(submitted).toEqual({ name: "Kevin", email: "kevin@culturehq.com" });
 });
 
-test("disallows submission until all required values are present", () => {
-  let submitted = null;
-  const onSubmit = values => {
-    submitted = values;
-    return Promise.resolve();
-  };
-
-  const component = mount(
-    <Form onSubmit={onSubmit} initialValues={{ name: "Kevin" }}>
-      <StringField label="Name" name="name" />
-      <EmailField label="Email" name="email" required />
-    </Form>
-  );
-
-  component.simulate("submit").simulate("click");
-
-  expect(component.state().touched).toBe(true);
-});
-
 test("passes down initialValues", () => {
   const component = mount(
     <Form initialValues={{ cents: 523, name: "Kevin" }}>
