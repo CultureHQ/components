@@ -3,14 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-var _react = require("react");
+var _react = _interopRequireDefault(require("react"));
 
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = require("classnames");
-
-var _classnames2 = _interopRequireDefault(_classnames);
+var _classnames = _interopRequireDefault(require("classnames"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24,33 +21,24 @@ var FormFieldInput = function FormFieldInput(_ref) {
       required = _ref.required,
       displayRequired = _ref.displayRequired,
       addon = _ref.addon;
-  return _react2.default.createElement(
-    "label",
-    { className: (0, _classnames2.default)("chq-ffd", className), htmlFor: name },
-    _react2.default.createElement(
-      "span",
-      { className: "chq-ffd--lb" },
-      label
-    ),
-    addon && _react2.default.createElement(
-      "span",
-      { className: "chq-ffd--ad" },
-      addon
-    ),
-    _react2.default.createElement("input", {
-      type: type,
-      id: name,
-      name: name,
-      onChange: onChange,
-      value: value || "",
-      required: required
-    }),
-    displayRequired && _react2.default.createElement(
-      "p",
-      { className: "chq-ffd--rq" },
-      "Required"
-    )
-  );
+  return _react.default.createElement("label", {
+    className: (0, _classnames.default)("chq-ffd", className),
+    htmlFor: name
+  }, _react.default.createElement("span", {
+    className: "chq-ffd--lb"
+  }, label), addon && _react.default.createElement("span", {
+    className: "chq-ffd--ad"
+  }, addon), _react.default.createElement("input", {
+    type: type,
+    id: name,
+    name: name,
+    onChange: onChange,
+    value: value || "",
+    required: required
+  }), displayRequired && _react.default.createElement("p", {
+    className: "chq-ffd--rq"
+  }, "Required"));
 };
 
-exports.default = FormFieldInput;
+var _default = FormFieldInput;
+exports.default = _default;
