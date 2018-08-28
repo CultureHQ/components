@@ -59,3 +59,8 @@ test("handles cases where the value is empty", () => {
 
   expect(response).toBe(null);
 });
+
+test("functions without an onChange", () => {
+  const component = mount(<CentsField name="cents" />);
+  component.find("input").simulate("change", { target: { value: "" } });
+});
