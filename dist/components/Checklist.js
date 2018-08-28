@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _classnames = _interopRequireDefault(require("classnames"));
+var _classnames = _interopRequireDefault(require("../classnames"));
 
 var _Checkmark = _interopRequireDefault(require("./Checkmark"));
 

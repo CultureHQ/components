@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _classnames = _interopRequireDefault(require("classnames"));
+var _classnames = _interopRequireDefault(require("../classnames"));
 
 var _Spinner = _interopRequireDefault(require("./Spinner"));
 
@@ -25,13 +25,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var Loader =
 /*#__PURE__*/
@@ -41,7 +43,7 @@ function (_Component) {
   function Loader() {
     var _getPrototypeOf2;
 
-    var _temp, _this;
+    var _this;
 
     _classCallCheck(this, Loader);
 
@@ -49,23 +51,31 @@ function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Loader)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Loader)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       spinning: false
-    }, _this.componentDidMount = function () {
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidMount", function () {
       var loading = _this.props.loading;
       _this.componentIsMounted = true;
 
       if (loading) {
         _this.timeout = setTimeout(_this.handleSpinnerTriggered, 250);
       }
-    }, _this.componentWillUnmount = function () {
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentWillUnmount", function () {
       _this.componentIsMounted = false;
 
       if (_this.timeout) {
         clearTimeout(_this.timeout);
         _this.timeout = null;
       }
-    }, _this.handleSpinnerTriggered = function () {
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSpinnerTriggered", function () {
       var loading = _this.props.loading;
 
       if (_this.componentIsMounted && loading) {
@@ -75,7 +85,9 @@ function (_Component) {
       }
 
       _this.timeout = null;
-    }, _temp));
+    });
+
+    return _this;
   }
 
   _createClass(Loader, [{
