@@ -35,7 +35,7 @@ var classnames = function classnames() {
       }));
     }
 
-    return options;
+    return classes;
   }, []).join(" ");
 };
 

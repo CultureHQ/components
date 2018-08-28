@@ -713,11 +713,10 @@
     color: #888;
     font-size: 1.2em;
     font-weight: 200;
-    left: 5px;
     padding: 6px 0;
     position: absolute; }
     .chq-ffd--ad + input {
-      padding-left: 24px; }
+      padding-left: 19px; }
 
 @keyframes chqCmkStroke {
   100% {

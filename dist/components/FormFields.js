@@ -7,7 +7,7 @@ exports.StringField = exports.PasswordField = exports.NumberField = exports.Emai
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _FormFieldInput = _interopRequireDefault(require("./FormFieldInput"));
+var _classnames = _interopRequireDefault(require("../classnames"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16,6 +16,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -40,60 +44,129 @@ var FormField =
 function (_Component) {
   _inherits(FormField, _Component);
 
-  function FormField(props) {
+  function FormField() {
+    var _getPrototypeOf2;
+
     var _this;
 
     _classCallCheck(this, FormField);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(FormField).call(this, props));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(FormField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      error: null,
+      focused: false
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleBlur", function () {
+      _this.setState({
+        focused: false
+      });
+    });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (_ref) {
       var value = _ref.target.value;
       var _this$props = _this.props,
           name = _this$props.name,
-          onValueChange = _this$props.onValueChange;
+          onChange = _this$props.onChange,
+          onFormChange = _this$props.onFormChange;
 
-      if (onValueChange) {
-        onValueChange(_defineProperty({}, name, value));
+      if (onChange) {
+        onChange(value);
       }
 
+      if (onFormChange) {
+        onFormChange(name, value);
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleFocus", function () {
       _this.setState({
-        touched: true,
-        value: value
+        focused: true
       });
     });
 
-    _this.state = {
-      touched: false,
-      value: (props.initialValues || {})[props.name] || null
-    };
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "deriveError", function () {
+      var _this$props2 = _this.props,
+          name = _this$props2.name,
+          onError = _this$props2.onError,
+          required = _this$props2.required,
+          validator = _this$props2.validator,
+          value = _this$props2.value;
+      var error = null;
+
+      if (required && !value) {
+        error = "Required";
+      } else if (validator) {
+        error = validator(value);
+      }
+
+      _this.setState({
+        error: error
+      });
+
+      if (onError) {
+        onError(name, error);
+      }
+    });
+
     return _this;
   }
 
   _createClass(FormField, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.deriveError();
+    }
+  }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      var touched = this.props.touched;
+      var value = this.props.value;
 
-      if (touched !== prevProps.touched) {
-        // eslint-disable-next-line react/no-did-update-set-state
-        this.setState({
-          touched: true
-        });
+      if (value !== prevProps.value) {
+        this.deriveError();
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var required = this.props.required;
+      var _this$props3 = this.props,
+          addon = _this$props3.addon,
+          children = _this$props3.children,
+          className = _this$props3.className,
+          onError = _this$props3.onError,
+          onChange = _this$props3.onChange,
+          onFormChange = _this$props3.onFormChange,
+          name = _this$props3.name,
+          submitted = _this$props3.submitted,
+          validator = _this$props3.validator,
+          value = _this$props3.value,
+          props = _objectWithoutProperties(_this$props3, ["addon", "children", "className", "onError", "onChange", "onFormChange", "name", "submitted", "validator", "value"]);
+
       var _this$state = this.state,
-          touched = _this$state.touched,
-          value = _this$state.value;
-      return _react.default.createElement(_FormFieldInput.default, _extends({}, this.props, {
-        onChange: this.handleChange,
+          error = _this$state.error,
+          focused = _this$state.focused;
+      return _react.default.createElement("label", {
+        className: (0, _classnames.default)("chq-ffd", className),
+        htmlFor: name
+      }, _react.default.createElement("span", {
+        className: "chq-ffd--lb"
+      }, children), addon && _react.default.createElement("span", {
+        className: "chq-ffd--ad"
+      }, addon), _react.default.createElement("input", _extends({}, props, {
+        id: name,
+        name: name,
         value: value || "",
-        displayRequired: required && touched && !value
-      }));
+        onBlur: this.handleBlur,
+        onChange: this.handleChange,
+        onFocus: this.handleFocus
+      })), (submitted || !focused) && error && _react.default.createElement("p", {
+        className: "chq-ffd--rq"
+      }, error));
     }
   }]);
 

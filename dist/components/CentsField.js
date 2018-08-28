@@ -7,15 +7,17 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _FormFieldInput = _interopRequireDefault(require("./FormFieldInput"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _FormFields = require("./FormFields");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -40,65 +42,64 @@ var CentsField =
 function (_Component) {
   _inherits(CentsField, _Component);
 
-  function CentsField(props) {
+  function CentsField() {
+    var _getPrototypeOf2;
+
     var _this;
 
     _classCallCheck(this, CentsField);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(CentsField).call(this, props));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (_ref) {
-      var value = _ref.target.value;
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CentsField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (value) {
       var _this$props = _this.props,
           name = _this$props.name,
-          onValueChange = _this$props.onValueChange;
+          onChange = _this$props.onChange,
+          onFormChange = _this$props.onFormChange;
       var amount = value ? Math.round(value * 100) : null;
 
-      if (onValueChange) {
-        onValueChange(_defineProperty({}, name, amount));
+      if (onChange) {
+        onChange(amount);
       }
 
-      _this.setState({
-        touched: true,
-        value: amount
-      });
+      if (onFormChange) {
+        onFormChange(name, amount);
+      }
     });
 
-    _this.state = {
-      touched: false,
-      value: (props.initialValues || {})[props.name] || null
-    };
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleValidate", function (value) {
+      if (value && parseFloat(value, 10) <= 0) {
+        return "Value must be greater than $0.00";
+      }
+
+      return null;
+    });
+
     return _this;
   }
 
   _createClass(CentsField, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var touched = this.props.touched;
-
-      if (touched !== prevProps.touched) {
-        // eslint-disable-next-line react/no-did-update-set-state
-        this.setState({
-          touched: true
-        });
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
-      var required = this.props.required;
-      var _this$state = this.state,
-          touched = _this$state.touched,
-          value = _this$state.value;
-      return _react.default.createElement(_FormFieldInput.default, _extends({}, this.props, {
-        type: "number",
-        step: "0.01",
+      var _this$props2 = this.props,
+          children = _this$props2.children,
+          onChange = _this$props2.onChange,
+          onFormChange = _this$props2.onFormChange,
+          value = _this$props2.value,
+          props = _objectWithoutProperties(_this$props2, ["children", "onChange", "onFormChange", "value"]);
+
+      return _react.default.createElement(_FormFields.NumberField, _extends({}, props, {
+        step: ".01",
         min: "0",
         addon: "$",
-        onChange: this.handleChange,
         value: Number.isFinite(value) ? value / 100 : "",
-        displayRequired: required && touched && !value
-      }));
+        validator: this.handleValidate,
+        onChange: this.handleChange
+      }), children);
     }
   }]);
 

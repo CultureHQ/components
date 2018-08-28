@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.0.0] - 2018-08-28
 ### Added
 - The `SubmitButton` component, used within `Form` components.
 - The ability to set a `validator` prop on form fields that should either return an error message string or `null`.

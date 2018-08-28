@@ -9,7 +9,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("../classnames"));
 
-var _Button = _interopRequireDefault(require("./Button"));
+var _SubmitButton = _interopRequireDefault(require("./SubmitButton"));
+
+var _CentsField = _interopRequireDefault(require("./CentsField"));
+
+var _FormFields = require("./FormFields");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37,69 +41,106 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var contains = function contains(haystack) {
+  return function (needle) {
+    return haystack.indexOf(needle) > -1;
+  };
+};
+
+var isField = contains([_CentsField.default, _FormFields.EmailField, _FormFields.NumberField, _FormFields.PasswordField, _FormFields.StringField]);
+
 var Form =
 /*#__PURE__*/
 function (_Component) {
   _inherits(Form, _Component);
 
-  function Form(props) {
+  function Form(_props) {
     var _this;
 
     _classCallCheck(this, Form);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Form).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Form).call(this, _props));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getIsValidSubmission", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getChildren", function () {
       var children = _this.props.children;
-      var values = _this.state.values;
-      return children.every(function (_ref) {
-        var _ref$props = _ref.props,
-            required = _ref$props.required,
-            name = _ref$props.name;
-        return !required || values[name];
+      var _this$state = _this.state,
+          submitted = _this$state.submitted,
+          submitting = _this$state.submitting,
+          values = _this$state.values;
+      return _react.default.Children.map(children, function (child) {
+        var type = child.type,
+            props = child.props;
+
+        if (isField(type)) {
+          return _react.default.cloneElement(child, {
+            onError: _this.handleError,
+            onFormChange: _this.handleFormChange,
+            submitted: submitted,
+            value: values[props.name]
+          });
+        }
+
+        if (type === _SubmitButton.default) {
+          return _react.default.cloneElement(child, {
+            submitting: submitting
+          });
+        }
+
+        return child;
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleValueChange", function (mutation) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleError", function (name, error) {
+      _this.setState(function (_ref) {
+        var errors = _ref.errors;
+        return {
+          errors: _objectSpread({}, errors, _defineProperty({}, name, error))
+        };
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleFormChange", function (name, value) {
       _this.setState(function (_ref2) {
         var values = _ref2.values;
         return {
-          values: _objectSpread({}, values, mutation)
+          values: _objectSpread({}, values, _defineProperty({}, name, value))
         };
       });
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSubmit", function (event) {
       var onSubmit = _this.props.onSubmit;
-      var values = _this.state.values;
+      var _this$state2 = _this.state,
+          errors = _this$state2.errors,
+          values = _this$state2.values;
       event.preventDefault();
 
-      if (!_this.getIsValidSubmission()) {
+      if (Object.keys(errors).every(function (name) {
+        return !errors[name];
+      })) {
         _this.setState({
-          touched: true
+          submitting: true
         });
 
-        return false;
+        var doneSubmitting = function doneSubmitting() {
+          return _this.setState({
+            submitting: false
+          });
+        };
+
+        onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
       }
 
       _this.setState({
-        submitting: true
+        submitted: true
       });
-
-      var doneSubmitting = function doneSubmitting() {
-        return _this.setState({
-          submitting: false
-        });
-      };
-
-      onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
-      return true;
     });
 
     _this.state = {
+      submitted: false,
       submitting: false,
-      touched: false,
-      values: props.initialValues || {}
+      values: _props.initialValues || {},
+      errors: {}
     };
     return _this;
   }
@@ -107,30 +148,11 @@ function (_Component) {
   _createClass(Form, [{
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      var _this$props = this.props,
-          children = _this$props.children,
-          className = _this$props.className,
-          initialValues = _this$props.initialValues;
-      var _this$state = this.state,
-          submitting = _this$state.submitting,
-          touched = _this$state.touched;
+      var className = this.props.className;
       return _react.default.createElement("form", {
         className: (0, _classnames.default)(className),
         onSubmit: this.handleSubmit
-      }, _react.default.Children.map(children, function (child) {
-        return _react.default.cloneElement(child, {
-          onValueChange: _this2.handleValueChange,
-          initialValues: initialValues,
-          touched: touched
-        });
-      }), _react.default.createElement(_Button.default, {
-        primary: true,
-        type: "submit",
-        disabled: submitting,
-        onClick: this.handleSubmit
-      }, "Submit"));
+      }, this.getChildren());
     }
   }]);
 
