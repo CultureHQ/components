@@ -81,8 +81,10 @@ A number form field that tracks in cents and displays in dollar amounts.
 
 * `className?` - an extra class name
 * `label` - the label to display for the field
+* `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
+* `value` - the value of the input field
 
 ### Checklist
 
@@ -116,8 +118,11 @@ A string form field that accepts an email.
 
 * `className?` - an extra class name
 * `label` - the label to display for the field
+* `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
+* `validator?` - an optional function that should either return an error message string or `null`
+* `value` - the value of the input field
 
 ### FeedItem
 
@@ -187,8 +192,11 @@ A number form field.
 
 * `className?` - an extra class name
 * `label` - the label to display for the field
+* `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
+* `validator?` - an optional function that should either return an error message string or `null`
+* `value` - the value of the input field
 
 ### Pagination
 
@@ -227,8 +235,11 @@ A password form field.
 
 * `className?` - an extra class name
 * `label` - the label to display for the field
+* `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
+* `validator?` - an optional function that should either return an error message string or `null`
+* `value` - the value of the input field
 
 ### Spinner
 
@@ -242,8 +253,11 @@ A string form field.
 
 * `className?` - an extra class name
 * `label` - the label to display for the field
+* `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
+* `validator?` - an optional function that should either return an error message string or `null`
+* `value` - the value of the input field
 
 ### SubmitButton
 
