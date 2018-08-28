@@ -1,5 +1,6 @@
 import React from "react";
-import classnames from "classnames";
+
+import classnames from "../classnames";
 
 const Circles = ({ className }) => (
   <svg className={classnames("chq-cir", className)} viewBox="0 0 300 300">

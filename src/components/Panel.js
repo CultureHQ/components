@@ -1,5 +1,6 @@
 import React from "react";
-import classnames from "classnames";
+
+import classnames from "../classnames";
 
 const Panel = ({ className, children }) => (
   <div className={classnames("chq-pan", className)}>{children}</div>

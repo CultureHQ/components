@@ -31,9 +31,6 @@
     "react": "^16",
     "react-dom": "^16"
   },
-  "dependencies": {
-    "classnames": "^2.2.6"
-  },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
