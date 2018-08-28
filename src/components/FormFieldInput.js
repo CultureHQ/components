@@ -1,5 +1,6 @@
 import React from "react";
-import classnames from "classnames";
+
+import classnames from "../classnames";
 
 const FormFieldInput = ({
   className, name, label, type, onChange, value, required, displayRequired, addon

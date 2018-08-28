@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import classnames from "classnames";
+
+import classnames from "../classnames";
 
 const Spacer = () => <span className="chq-pag--sp">...</span>;
 

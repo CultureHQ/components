@@ -1,5 +1,6 @@
 import React from "react";
-import classnames from "classnames";
+
+import classnames from "../classnames";
 
 const Warning = ({ children, className }) => (
   <div className={classnames("chq-wrn", className)}>

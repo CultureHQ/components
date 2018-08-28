@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import classnames from "classnames";
+
+import classnames from "../classnames";
 
 class Subnav extends Component {
   constructor(props) {
@@ -42,9 +43,7 @@ class Subnav extends Component {
   }
 }
 
-const SubnavItem = ({
-  children, className, active, onClick
-}) => {
+const SubnavItem = ({ children, className, active, onClick }) => {
   const classNames = classnames(
     "chq-snv--it",
     { "chq-snv--it-active": active },

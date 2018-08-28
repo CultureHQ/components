@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
-import classnames from "classnames";
+
+import classnames from "../classnames";
 
 import Spinner from "./Spinner";
 
