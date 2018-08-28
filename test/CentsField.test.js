@@ -47,3 +47,15 @@ test("validates that the value cannot be <= 0", () => {
 
   expect(response).not.toBe(null);
 });
+
+test("handles cases where the value is empty", () => {
+  let response = null;
+  const onChange = value => {
+    response = value;
+  };
+
+  const component = mount(<CentsField name="cents" />);
+  component.find("input").simulate("change", { target: { value: "" } });
+
+  expect(response).toBe(null);
+});
