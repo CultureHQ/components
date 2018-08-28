@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import classnames from "../classnames";
 
-import { SubmitButton } from "./Button";
+import SubmitButton from "./SubmitButton";
 import CentsField from "./CentsField";
 import { EmailField, NumberField, PasswordField, StringField } from "./FormFields";
 
@@ -14,6 +14,7 @@ class Form extends Component {
     super(props);
 
     this.state = {
+      submitted: false,
       submitting: false,
       values: props.initialValues || {},
       errors: {}
@@ -22,7 +23,7 @@ class Form extends Component {
 
   getChildren = () => {
     const { children } = this.props;
-    const { submitting, values } = this.state;
+    const { submitted, submitting, values } = this.state;
 
     return React.Children.map(children, child => {
       const { type, props } = child;
@@ -31,14 +32,13 @@ class Form extends Component {
         return React.cloneElement(child, {
           onError: this.handleError,
           onFormChange: this.handleFormChange,
+          submitted,
           value: values[props.name]
         });
       }
 
       if (type === SubmitButton) {
-        return React.cloneElement(child, {
-          disabled: props.disabled || submitting
-        });
+        return React.cloneElement(child, { submitting });
       }
 
       return child;
@@ -61,13 +61,16 @@ class Form extends Component {
     const { onSubmit } = this.props;
     const { errors, values } = this.state;
 
-    this.setState({ submitting: true });
     event.preventDefault();
 
     if (Object.keys(errors).every(name => !errors[name])) {
+      this.setState({ submitting: true });
+
       const doneSubmitting = () => this.setState({ submitting: false });
       onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
     }
+
+    this.setState({ submitted: true });
   };
 
   render() {

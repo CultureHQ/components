@@ -6,7 +6,8 @@ import {
   Form,
   NumberField,
   PasswordField,
-  StringField
+  StringField,
+  SubmitButton
 } from "../../src";
 
 const onSubmit = values => {
@@ -24,11 +25,12 @@ const initialValues = {
 
 const FormContainer = () => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
-    <CentsField label="Cents" name="cents" required />
-    <EmailField label="Email" name="email" required />
-    <NumberField label="Number" name="number" required />
-    <PasswordField label="Password" name="password" required />
-    <StringField label="String" name="string" required />
+    <CentsField name="cents" required>Cents</CentsField>
+    <EmailField name="email" required>Email</EmailField>
+    <NumberField name="number" required>Number</NumberField>
+    <PasswordField name="password" required>Password</PasswordField>
+    <StringField name="string" required>String</StringField>
+    <SubmitButton primary />
   </Form>
 );
 

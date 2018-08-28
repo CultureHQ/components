@@ -44,6 +44,7 @@ Below are listed each component with their various semantics:
 - [PasswordField](#passwordfield)
 - [Spinner](#spinner)
 - [StringField](#stringfield)
+- [SubmitButton](#submitbutton)
 - [Subnav](#subnav)
 - [Success](#success)
 - [Tag](#tag)
@@ -243,6 +244,13 @@ A string form field.
 * `label` - the label to display for the field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
+
+### SubmitButton
+
+A button used to submit a form. Accepts all of the same props as a regular `Button` component, with the addition of:
+
+* `children?` - a function that accepts a single argument (`submitting`) that should return valid React children depending on that boolean argument
+* `submitting` - a boolean value representing whether or not the form is currently submitting
 
 ### Subnav
 

@@ -16,15 +16,27 @@ class CentsField extends Component {
     }
   };
 
+  handleValidate = value => {
+    if (value && parseFloat(value, 10) <= 0) {
+      return "Value must be greater than $0.00";
+    }
+  };
+
   render() {
-    const { onChange, onFormChange, value, ...props } = this.props;
+    const { children, onChange, onFormChange, value, ...props } = this.props;
 
     return (
       <NumberField
         {...props}
+        step=".01"
+        min="0"
+        addon="$"
         value={Number.isFinite(value) ? value / 100 : ""}
+        validator={this.handleValidate}
         onChange={this.handleChange}
-      />
+      >
+        {children}
+      </NumberField>
     );
   }
 }

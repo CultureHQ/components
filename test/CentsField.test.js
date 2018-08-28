@@ -12,7 +12,6 @@ test("calls up to callbacks if they are provided", () => {
 
   const component = mount(
     <CentsField
-      label="Cents"
       name="cents"
       onChange={changeValue => {
         Object.assign(response, { changeValue });
@@ -33,7 +32,18 @@ test("calls up to callbacks if they are provided", () => {
 });
 
 test("displays the value using cents", () => {
-  const component = mount(<CentsField label="Cents" name="cents" value={123} />);
+  const component = mount(<CentsField name="cents" value={123} />);
 
   expect(component.find("input").props().value).toEqual(1.23);
+});
+
+test("validates that the value cannot be <= 0", () => {
+  let response = null;
+  const onError = error => {
+    response = error;
+  };
+
+  const component = mount(<CentsField name="cents" value={-5} onError={onError} />);
+
+  expect(response).not.toBe(null);
 });

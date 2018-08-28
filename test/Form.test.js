@@ -5,7 +5,8 @@ import {
   Form,
   CentsField,
   EmailField,
-  StringField
+  StringField,
+  SubmitButton
 } from "../src";
 
 test("passes on className", () => {
@@ -25,6 +26,8 @@ test("gathers values as they change and submits them", () => {
     <Form onSubmit={onSubmit} initialValues={{ email: "kevin@culturehq.com" }}>
       <StringField label="Name" name="name" />
       <EmailField label="Email" name="email" />
+      <p>This is a great form!</p>
+      <SubmitButton />
     </Form>
   );
 

@@ -10,9 +10,7 @@ import {
 
 [EmailField, NumberField, PasswordField, StringField].forEach(FormField => {
   test("passes on className", () => {
-    const component = mount(
-      <FormField label="Name" name="name" className="form-field" />
-    );
+    const component = mount(<FormField name="name" className="form-field" />);
 
     expect(component.find("label").hasClass("chq-ffd")).toBe(true);
     expect(component.find("label").hasClass("form-field")).toBe(true);
@@ -27,7 +25,6 @@ import {
 
     const component = mount(
       <FormField
-        label="Name"
         name="name"
         onChange={changeValue => {
           Object.assign(response, { changeValue });

@@ -12,6 +12,12 @@ test("ignores falsy values", () => {
   expect(className).toEqual("foo bar");
 });
 
+test("ignores numbers", () => {
+  const className = classnames(1);
+
+  expect(className).toEqual("");
+});
+
 test("treats objects as predicates", () => {
   const className = classnames({
     foo: true,

@@ -1,26 +1,6 @@
 import React, { Component } from "react";
-import classnames from "classnames";
 
-const FormFieldInput = ({
-  className, name, label, type, value, required, addon, focused, error,
-  onBlur, onChange, onFocus
-}) => (
-  <label className={classnames("chq-ffd", className)} htmlFor={name}>
-    <span className="chq-ffd--lb">{label}</span>
-    {addon && <span className="chq-ffd--ad">{addon}</span>}
-    <input
-      type={type}
-      id={name}
-      name={name}
-      value={value || ""}
-      required={required}
-      onBlur={onBlur}
-      onChange={onChange}
-      onFocus={onFocus}
-    />
-    {!focused && error && <p className="chq-ffd--rq">{error}</p>}
-  </label>
-);
+import classnames from "../classnames";
 
 class FormField extends Component {
   state = { error: null, focused: false };
@@ -68,29 +48,36 @@ class FormField extends Component {
       error = validator(value);
     }
 
-    if (error) {
-      this.setState({ error });
+    this.setState({ error });
 
-      if (onError) {
-        onError(name, error);
-      }
+    if (onError) {
+      onError(name, error);
     }
   };
 
   render() {
-    const { onChange, value, ...props } = this.props;
+    const {
+      addon, children, className, onError, onChange, onFormChange, name,
+      submitted, validator, value, ...props
+    } = this.props;
+
     const { error, focused } = this.state;
 
     return (
-      <FormFieldInput
-        {...props}
-        onBlur={this.handleBlur}
-        onChange={this.handleChange}
-        onFocus={this.handleFocus}
-        value={value || ""}
-        error={error}
-        focused={focused}
-      />
+      <label className={classnames("chq-ffd", className)} htmlFor={name}>
+        <span className="chq-ffd--lb">{children}</span>
+        {addon && <span className="chq-ffd--ad">{addon}</span>}
+        <input
+          {...props}
+          id={name}
+          name={name}
+          value={value || ""}
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+        />
+        {(submitted || !focused) && error && <p className="chq-ffd--rq">{error}</p>}
+      </label>
     );
   }
 }
