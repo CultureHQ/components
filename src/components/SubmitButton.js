@@ -2,7 +2,7 @@ import React from "react";
 
 import Button from "./Button";
 
-const defaultButtonText = submitting => submitting ? "Submitting..." : "Submit";
+const defaultButtonText = submitting => (submitting ? "Submitting..." : "Submit");
 
 const SubmitButton = ({ children = defaultButtonText, disabled, submitting, ...props }) => (
   <Button {...props} disabled={disabled || submitting} type="submit">

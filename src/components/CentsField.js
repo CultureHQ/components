@@ -20,6 +20,7 @@ class CentsField extends Component {
     if (value && parseFloat(value, 10) <= 0) {
       return "Value must be greater than $0.00";
     }
+    return null;
   };
 
   render() {
@@ -42,4 +43,3 @@ class CentsField extends Component {
 }
 
 export default CentsField;
- 

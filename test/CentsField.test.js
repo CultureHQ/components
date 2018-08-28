@@ -43,7 +43,7 @@ test("validates that the value cannot be <= 0", () => {
     response = error;
   };
 
-  const component = mount(<CentsField name="cents" value={-5} onError={onError} />);
+  mount(<CentsField name="cents" value={-5} onError={onError} />);
 
   expect(response).not.toBe(null);
 });
@@ -54,7 +54,7 @@ test("handles cases where the value is empty", () => {
     response = value;
   };
 
-  const component = mount(<CentsField name="cents" />);
+  const component = mount(<CentsField name="cents" onChange={onChange} />);
   component.find("input").simulate("change", { target: { value: "" } });
 
   expect(response).toBe(null);

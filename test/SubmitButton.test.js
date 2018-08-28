@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import { SubmitButton } from "../src";
 
 test("renders without crashing", () => {
-  const message = submitting => submitting ? "Loading..." : "Load";
+  const message = submitting => (submitting ? "Loading..." : "Load");
   const component = mount(<SubmitButton>{message}</SubmitButton>);
 
   expect(component.text()).toEqual("Load");

@@ -56,7 +56,7 @@ test("disallows submitting if validation fails", () => {
     return Promise.resolve();
   };
 
-  const validator = value => value === "Pass" ? null : "Fail";
+  const validator = value => (value === "Pass" ? null : "Fail");
 
   const component = mount(
     <Form onSubmit={onSubmit}>
