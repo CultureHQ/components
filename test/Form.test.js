@@ -5,7 +5,8 @@ import {
   Form,
   CentsField,
   EmailField,
-  StringField
+  StringField,
+  SubmitButton
 } from "../src";
 
 test("passes on className", () => {
@@ -23,45 +24,50 @@ test("gathers values as they change and submits them", () => {
 
   const component = mount(
     <Form onSubmit={onSubmit} initialValues={{ email: "kevin@culturehq.com" }}>
-      <StringField label="Name" name="name" />
-      <EmailField label="Email" name="email" />
+      <StringField name="name">Name</StringField>
+      <EmailField name="email">Email</EmailField>
+      <p>This is a great form!</p>
+      <SubmitButton />
     </Form>
   );
 
   component.find("#name").simulate("change", { target: { value: "Kevin" } });
-  component.find("button").simulate("click");
+  component.simulate("submit");
 
   expect(submitted).toEqual({ name: "Kevin", email: "kevin@culturehq.com" });
 });
 
-test("disallows submission until all required values are present", () => {
+test("passes down initialValues", () => {
+  const component = mount(
+    <Form initialValues={{ cents: 523, name: "Kevin" }}>
+      <CentsField name="cents">Cents</CentsField>
+      <StringField name="name">Name</StringField>
+    </Form>
+  );
+
+  expect(component.find("#cents").props().value).toEqual(5.23);
+  expect(component.find("#name").props().value).toEqual("Kevin");
+});
+
+test("disallows submitting if validation fails", () => {
   let submitted = null;
   const onSubmit = values => {
     submitted = values;
     return Promise.resolve();
   };
 
+  const validator = value => (value === "Pass" ? null : "Fail");
+
   const component = mount(
-    <Form onSubmit={onSubmit} initialValues={{ name: "Kevin" }}>
-      <StringField label="Name" name="name" />
-      <EmailField label="Email" name="email" required />
+    <Form onSubmit={onSubmit}>
+      <StringField name="value" validator={validator}>Value</StringField>
     </Form>
   );
 
-  component.find("button").simulate("click");
-
+  component.simulate("submit");
   expect(submitted).toBe(null);
-  expect(component.state().touched).toBe(true);
-});
 
-test("passes down initialValues", () => {
-  const component = mount(
-    <Form initialValues={{ cents: 523, name: "Kevin" }}>
-      <CentsField label="Cents" name="cents" />
-      <StringField label="Name" name="name" />
-    </Form>
-  );
-
-  expect(component.find("#cents").props().value).toEqual(5.23);
-  expect(component.find("#name").props().value).toEqual("Kevin");
+  component.find("#value").simulate("change", { target: { value: "Pass" } });
+  component.simulate("submit");
+  expect(submitted).toEqual({ value: "Pass" });
 });

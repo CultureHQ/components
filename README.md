@@ -44,6 +44,7 @@ Below are listed each component with their various semantics:
 - [PasswordField](#passwordfield)
 - [Spinner](#spinner)
 - [StringField](#stringfield)
+- [SubmitButton](#submitbutton)
 - [Subnav](#subnav)
 - [Success](#success)
 - [Tag](#tag)
@@ -80,8 +81,10 @@ A number form field that tracks in cents and displays in dollar amounts.
 
 * `className?` - an extra class name
 * `label` - the label to display for the field
+* `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
+* `value` - the value of the input field
 
 ### Checklist
 
@@ -115,8 +118,11 @@ A string form field that accepts an email.
 
 * `className?` - an extra class name
 * `label` - the label to display for the field
+* `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
+* `validator?` - an optional function that should either return an error message string or `null`
+* `value` - the value of the input field
 
 ### FeedItem
 
@@ -186,8 +192,11 @@ A number form field.
 
 * `className?` - an extra class name
 * `label` - the label to display for the field
+* `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
+* `validator?` - an optional function that should either return an error message string or `null`
+* `value` - the value of the input field
 
 ### Pagination
 
@@ -226,8 +235,11 @@ A password form field.
 
 * `className?` - an extra class name
 * `label` - the label to display for the field
+* `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
+* `validator?` - an optional function that should either return an error message string or `null`
+* `value` - the value of the input field
 
 ### Spinner
 
@@ -241,8 +253,18 @@ A string form field.
 
 * `className?` - an extra class name
 * `label` - the label to display for the field
+* `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
+* `validator?` - an optional function that should either return an error message string or `null`
+* `value` - the value of the input field
+
+### SubmitButton
+
+A button used to submit a form. Accepts all of the same props as a regular `Button` component, with the addition of:
+
+* `children?` - a function that accepts a single argument (`submitting`) that should return valid React children depending on that boolean argument
+* `submitting` - a boolean value representing whether or not the form is currently submitting
 
 ### Subnav
 

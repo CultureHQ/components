@@ -1,47 +1,83 @@
 import React, { Component } from "react";
 
-import FormFieldInput from "./FormFieldInput";
+import classnames from "../classnames";
 
 class FormField extends Component {
-  constructor(props) {
-    super(props);
+  state = { error: null, focused: false };
 
-    this.state = {
-      touched: false,
-      value: (props.initialValues || {})[props.name] || null
-    };
+  componentDidMount() {
+    this.deriveError();
   }
 
   componentDidUpdate(prevProps) {
-    const { touched } = this.props;
+    const { value } = this.props;
 
-    if (touched !== prevProps.touched) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ touched: true });
+    if (value !== prevProps.value) {
+      this.deriveError();
     }
   }
 
-  handleChange = ({ target: { value } }) => {
-    const { name, onValueChange } = this.props;
+  handleBlur = () => {
+    this.setState({ focused: false });
+  };
 
-    if (onValueChange) {
-      onValueChange({ [name]: value });
+  handleChange = ({ target: { value } }) => {
+    const { name, onChange, onFormChange } = this.props;
+
+    if (onChange) {
+      onChange(value);
     }
 
-    this.setState({ touched: true, value });
+    if (onFormChange) {
+      onFormChange(name, value);
+    }
+  };
+
+  handleFocus = () => {
+    this.setState({ focused: true });
+  };
+
+  deriveError = () => {
+    const { name, onError, required, validator, value } = this.props;
+
+    let error = null;
+
+    if (required && !value) {
+      error = "Required";
+    } else if (validator) {
+      error = validator(value);
+    }
+
+    this.setState({ error });
+
+    if (onError) {
+      onError(name, error);
+    }
   };
 
   render() {
-    const { required } = this.props;
-    const { touched, value } = this.state;
+    const {
+      addon, children, className, onError, onChange, onFormChange, name,
+      submitted, validator, value, ...props
+    } = this.props;
+
+    const { error, focused } = this.state;
 
     return (
-      <FormFieldInput
-        {...this.props}
-        onChange={this.handleChange}
-        value={value || ""}
-        displayRequired={required && touched && !value}
-      />
+      <label className={classnames("chq-ffd", className)} htmlFor={name}>
+        <span className="chq-ffd--lb">{children}</span>
+        {addon && <span className="chq-ffd--ad">{addon}</span>}
+        <input
+          {...props}
+          id={name}
+          name={name}
+          value={value || ""}
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+        />
+        {(submitted || !focused) && error && <p className="chq-ffd--rq">{error}</p>}
+      </label>
     );
   }
 }

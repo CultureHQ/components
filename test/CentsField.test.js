@@ -3,53 +3,64 @@ import { mount } from "enzyme";
 
 import { CentsField } from "../src";
 
-const withFindRequired = component => Object.assign(component, {
-  findRequired: () => component.find(".chq-ffd--rq")
-});
+test("calls up to callbacks if they are provided", () => {
+  const response = {
+    changeValue: null,
+    formChangeName: null,
+    formChangeValue: null
+  };
 
-test("tracks the input value in state", () => {
-  const component = mount(<CentsField label="Cents" name="cents" />);
+  const component = mount(
+    <CentsField
+      name="cents"
+      onChange={changeValue => {
+        Object.assign(response, { changeValue });
+      }}
+      onFormChange={(formChangeName, formChangeValue) => {
+        Object.assign(response, { formChangeName, formChangeValue });
+      }}
+    />
+  );
 
   component.find("input").simulate("change", { target: { value: 1.23 } });
-  component.update();
+
+  expect(response).toEqual({
+    changeValue: 123,
+    formChangeName: "cents",
+    formChangeValue: 123
+  });
+});
+
+test("displays the value using cents", () => {
+  const component = mount(<CentsField name="cents" value={123} />);
 
   expect(component.find("input").props().value).toEqual(1.23);
 });
 
-test("displays a label if the value is required and the input touched", () => {
-  const component = withFindRequired(mount(
-    <CentsField label="Cents" name="cents" required />
-  ));
-  expect(component.findRequired()).toHaveLength(0);
-
-  component.find("input").simulate("change", { target: { value: "" } });
-  component.update();
-
-  expect(component.findRequired()).toHaveLength(1);
-});
-
-test("prefers parent touched value", () => {
-  const component = withFindRequired(mount(
-    <CentsField label="Cents" name="cents" required />
-  ));
-
-  expect(component.findRequired()).toHaveLength(0);
-  component.setProps({ touched: true });
-  component.update();
-
-  expect(component.findRequired()).toHaveLength(1);
-});
-
-test("calls up to onValueChange if that callback is provided", () => {
+test("validates that the value cannot be <= 0", () => {
   let response = null;
-  const onValueChange = mutation => {
-    response = mutation;
+  const onError = error => {
+    response = error;
   };
 
-  const component = mount(
-    <CentsField label="Cents" name="cents" onValueChange={onValueChange} />
-  );
+  mount(<CentsField name="cents" value={-5} onError={onError} />);
 
-  component.find("input").simulate("change", { target: { value: 1.23 } });
-  expect(response).toEqual({ cents: 123 });
+  expect(response).not.toBe(null);
+});
+
+test("handles cases where the value is empty", () => {
+  let response = null;
+  const onChange = value => {
+    response = value;
+  };
+
+  const component = mount(<CentsField name="cents" onChange={onChange} />);
+  component.find("input").simulate("change", { target: { value: "" } });
+
+  expect(response).toBe(null);
+});
+
+test("functions without an onChange", () => {
+  const component = mount(<CentsField name="cents" />);
+  component.find("input").simulate("change", { target: { value: "" } });
 });

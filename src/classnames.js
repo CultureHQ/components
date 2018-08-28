@@ -11,7 +11,7 @@ const classnames = (...options) => options.reduce((classes, option) => {
     return classes.concat(Object.keys(option).filter(key => option[key]));
   }
 
-  return options;
+  return classes;
 }, []).join(" ");
 
 export default classnames;
