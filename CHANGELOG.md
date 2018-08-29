@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.0.2] - 2018-08-29
+### Changed
+- Enforce a normal font weight over the entire label within forms.
+
 ## [3.0.1] - 2018-08-29
 ### Changed
 - Enforce a normal font weight for labels within forms.
