@@ -113,6 +113,11 @@ function (_Component) {
       var _this$state2 = _this.state,
           errors = _this$state2.errors,
           values = _this$state2.values;
+
+      _this.setState({
+        submitted: true
+      });
+
       event.preventDefault();
 
       if (Object.keys(errors).every(function (name) {
@@ -130,10 +135,6 @@ function (_Component) {
 
         onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
       }
-
-      _this.setState({
-        submitted: true
-      });
     });
 
     _this.state = {

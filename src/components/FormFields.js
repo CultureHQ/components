@@ -3,7 +3,11 @@ import React, { Component } from "react";
 import classnames from "../classnames";
 
 class FormField extends Component {
-  state = { error: null, focused: false };
+  state = {
+    error: null,
+    focused: false,
+    touched: false
+  };
 
   componentDidMount() {
     this.deriveError();
@@ -18,7 +22,7 @@ class FormField extends Component {
   }
 
   handleBlur = () => {
-    this.setState({ focused: false });
+    this.setState({ focused: false, touched: true });
   };
 
   handleChange = ({ target: { value } }) => {
@@ -58,10 +62,12 @@ class FormField extends Component {
   render() {
     const {
       addon, children, className, onError, onChange, onFormChange, name,
-      submitted, validator, value, ...props
+      required, submitted, validator, value, ...props
     } = this.props;
 
-    const { error, focused } = this.state;
+    const { error, focused, touched } = this.state;
+
+    const displayError = submitted || (touched && !focused);
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -76,7 +82,7 @@ class FormField extends Component {
           onChange={this.handleChange}
           onFocus={this.handleFocus}
         />
-        {(submitted || !focused) && error && <p className="chq-ffd--rq">{error}</p>}
+        {error && displayError && <p className="chq-ffd--rq">{error}</p>}
       </label>
     );
   }

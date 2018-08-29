@@ -15,16 +15,8 @@ const onSubmit = values => {
   return new Promise(resolve => setTimeout(() => resolve(), 1000));
 };
 
-const initialValues = {
-  cents: 523,
-  email: "kevin@culturehq.com",
-  number: 42,
-  password: "password",
-  string: "@culturehq/components"
-};
-
 const FormContainer = () => (
-  <Form onSubmit={onSubmit} initialValues={initialValues}>
+  <Form onSubmit={onSubmit}>
     <CentsField name="cents" required>Cents</CentsField>
     <EmailField name="email" required>Email</EmailField>
     <NumberField name="number" required>Number</NumberField>

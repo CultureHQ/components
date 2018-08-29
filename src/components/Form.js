@@ -61,6 +61,7 @@ class Form extends Component {
     const { onSubmit } = this.props;
     const { errors, values } = this.state;
 
+    this.setState({ submitted: true });
     event.preventDefault();
 
     if (Object.keys(errors).every(name => !errors[name])) {
@@ -69,8 +70,6 @@ class Form extends Component {
       const doneSubmitting = () => this.setState({ submitting: false });
       onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
     }
-
-    this.setState({ submitted: true });
   };
 
   render() {

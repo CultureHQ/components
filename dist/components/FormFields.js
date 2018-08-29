@@ -59,12 +59,14 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       error: null,
-      focused: false
+      focused: false,
+      touched: false
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleBlur", function () {
       _this.setState({
-        focused: false
+        focused: false,
+        touched: true
       });
     });
 
@@ -142,14 +144,17 @@ function (_Component) {
           onChange = _this$props3.onChange,
           onFormChange = _this$props3.onFormChange,
           name = _this$props3.name,
+          required = _this$props3.required,
           submitted = _this$props3.submitted,
           validator = _this$props3.validator,
           value = _this$props3.value,
-          props = _objectWithoutProperties(_this$props3, ["addon", "children", "className", "onError", "onChange", "onFormChange", "name", "submitted", "validator", "value"]);
+          props = _objectWithoutProperties(_this$props3, ["addon", "children", "className", "onError", "onChange", "onFormChange", "name", "required", "submitted", "validator", "value"]);
 
       var _this$state = this.state,
           error = _this$state.error,
-          focused = _this$state.focused;
+          focused = _this$state.focused,
+          touched = _this$state.touched;
+      var displayError = submitted || touched && !focused;
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name
@@ -164,7 +169,7 @@ function (_Component) {
         onBlur: this.handleBlur,
         onChange: this.handleChange,
         onFocus: this.handleFocus
-      })), (submitted || !focused) && error && _react.default.createElement("p", {
+      })), error && displayError && _react.default.createElement("p", {
         className: "chq-ffd--rq"
       }, error));
     }

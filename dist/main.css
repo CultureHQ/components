@@ -687,6 +687,7 @@
   .chq-ffd--lb {
     color: #9c9fa7;
     display: block;
+    font-weight: normal;
     margin-bottom: 5px; }
   .chq-ffd--rq {
     color: #c14c4c;

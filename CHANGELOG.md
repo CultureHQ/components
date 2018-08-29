@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.0.1] - 2018-08-29
+### Changed
+- Enforce a normal font weight for labels within forms.
+- Remove the `required` attribute from form fields since we're handling it ourselves.
+
 ## [3.0.0] - 2018-08-28
 ### Added
 - The `SubmitButton` component, used within `Form` components.
