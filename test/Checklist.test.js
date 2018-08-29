@@ -6,7 +6,7 @@ import { Checklist } from "../src";
 test("renders without crashing", () => {
   const component = shallow(<Checklist />);
 
-  expect(component.type()).toEqual("dl");
+  expect(component.type()).toEqual("div");
 });
 
 test("passes on className", () => {
@@ -20,5 +20,5 @@ test("renders an item without crashing", () => {
   const component = mount(<Checklist.Item checked>{message}</Checklist.Item>);
 
   expect(component.find("button").hasClass("chq-cmk-ck")).toBe(true);
-  expect(component.find("dd").text()).toContain(message);
+  expect(component.find("button").text()).toContain(message);
 });

@@ -25,6 +25,7 @@ To get the styles, be sure to also import `@culturehq/components/dist/main.css` 
 Below are listed each component with their various semantics:
 
 - [Badge](#badge)
+- [BooleanField](#booleanfield)
 - [Button](#button)
 - [CentsField](#centsfield)
 - [Checklist](#checklist)
@@ -60,6 +61,16 @@ A component for displaying associated metadata.
 * `onClick?` - a click handler
 * `primary? = false` - indicates a primary badge
 
+### BooleanField
+
+A form field that represents a boolean value.
+
+* `children` - the label to display for the field
+* `className?` - an extra class name
+* `onChange` - a function that accepts one argument that represents the new value of the field
+* `name` - the name of the field
+* `value` - the value of the field
+
 ### Button
 
 A generic button component.
@@ -79,8 +90,8 @@ A generic button component.
 
 A number form field that tracks in cents and displays in dollar amounts.
 
+* `children` - the label to display for the field
 * `className?` - an extra class name
-* `label` - the label to display for the field
 * `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
@@ -103,6 +114,7 @@ A list of items and their associated status.
 A boolean value represented by a circle with an optional check.
 
 * `checked?` - boolean value of whether or not this item is complete
+* `children?` - an optional label for the circle
 * `className?` - an extra class name
 * `onClick?` - a click handler (allows this to be a controller component)
 
@@ -116,8 +128,8 @@ The CultureHQ circles.
 
 A string form field that accepts an email.
 
+* `children` - the label to display for the field
 * `className?` - an extra class name
-* `label` - the label to display for the field
 * `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
@@ -145,7 +157,7 @@ A contained item in a feed.
 
 A generic form component.
 
-* `children` - the fields to display inside the form (expected to be one of the form fields in this component library)
+* `children` - the fields to display inside the form
 * `className?` - an extra class name
 * `initialValues` - the initial values of the form fields
 * `onSubmit` - a callback when the form has been submitted (expected to return a `Promise`)
@@ -190,8 +202,8 @@ A top-level nav that displays at the top of the page. It hides when you scroll d
 
 A number form field.
 
+* `children` - the label to display for the field
 * `className?` - an extra class name
-* `label` - the label to display for the field
 * `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
@@ -233,8 +245,8 @@ Boxed information to be displayed. Always has a header and sometimes has a foote
 
 A password form field.
 
+* `children` - the label to display for the field
 * `className?` - an extra class name
-* `label` - the label to display for the field
 * `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission
@@ -251,8 +263,8 @@ A circular spinner using the CultureHQ colors.
 
 A string form field.
 
+* `children` - the label to display for the field
 * `className?` - an extra class name
-* `label` - the label to display for the field
 * `onChange` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required?` - indicates this field is required for submission

@@ -1,24 +1,17 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import classnames from "../classnames";
 
 import Checkmark from "./Checkmark";
 
 const Checklist = ({ children, className }) => (
-  <dl className={classnames("chq-chl", className)}>
+  <div className={classnames("chq-chl", className)}>
     {children}
-  </dl>
-);
-
-const ChecklistItem = ({ children, checked }) => (
-  <Fragment>
-    <dt><Checkmark checked={checked} /></dt>
-    <dd>{children}</dd>
-  </Fragment>
+  </div>
 );
 
 Object.assign(Checklist, {
-  Item: ChecklistItem
+  Item: Checkmark
 });
 
 export default Checklist;

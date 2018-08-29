@@ -3,6 +3,7 @@ import { mount } from "enzyme";
 
 import {
   Form,
+  BooleanField,
   CentsField,
   EmailField,
   StringField,
@@ -24,6 +25,7 @@ test("gathers values as they change and submits them", () => {
 
   const component = mount(
     <Form onSubmit={onSubmit} initialValues={{ email: "kevin@culturehq.com" }}>
+      <BooleanField name="boolean">Boolean</BooleanField>
       <StringField name="name">Name</StringField>
       <EmailField name="email">Email</EmailField>
       <p>This is a great form!</p>
@@ -34,7 +36,11 @@ test("gathers values as they change and submits them", () => {
   component.find("#name").simulate("change", { target: { value: "Kevin" } });
   component.simulate("submit");
 
-  expect(submitted).toEqual({ name: "Kevin", email: "kevin@culturehq.com" });
+  expect(submitted).toEqual({
+    boolean: false,
+    name: "Kevin",
+    email: "kevin@culturehq.com"
+  });
 });
 
 test("passes down initialValues", () => {

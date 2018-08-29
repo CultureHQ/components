@@ -1,6 +1,7 @@
 import "./styles/app.scss";
 
 export { default as Badge } from "./components/Badge";
+export { default as BooleanField } from "./components/BooleanField";
 export { default as Button } from "./components/Button";
 export { default as Checklist } from "./components/Checklist";
 export { default as Checkmark } from "./components/Checkmark";

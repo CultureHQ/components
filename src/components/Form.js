@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import classnames from "../classnames";
 
 import SubmitButton from "./SubmitButton";
+import BooleanField from "./BooleanField";
 import CentsField from "./CentsField";
 import { EmailField, NumberField, PasswordField, StringField } from "./FormFields";
 
@@ -33,6 +34,13 @@ class Form extends Component {
           onError: this.handleError,
           onFormChange: this.handleFormChange,
           submitted,
+          value: values[props.name]
+        });
+      }
+
+      if (type === BooleanField) {
+        return React.cloneElement(child, {
+          onFormChange: this.handleFormChange,
           value: values[props.name]
         });
       }
