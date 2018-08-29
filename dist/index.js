@@ -9,6 +9,12 @@ Object.defineProperty(exports, "Badge", {
     return _Badge.default;
   }
 });
+Object.defineProperty(exports, "BooleanField", {
+  enumerable: true,
+  get: function get() {
+    return _BooleanField.default;
+  }
+});
 Object.defineProperty(exports, "Button", {
   enumerable: true,
   get: function get() {
@@ -163,6 +169,8 @@ Object.defineProperty(exports, "SubmitButton", {
 require("./main.css");
 
 var _Badge = _interopRequireDefault(require("./components/Badge"));
+
+var _BooleanField = _interopRequireDefault(require("./components/BooleanField"));
 
 var _Button = _interopRequireDefault(require("./components/Button"));
 

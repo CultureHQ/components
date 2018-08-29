@@ -253,13 +253,9 @@
   .chq-btn-ld svg {
     animation: chqSpin 1s linear infinite; }
 
-.chq-chl {
-  position: relative; }
-  .chq-chl dt {
-    left: 0;
-    position: absolute; }
-  .chq-chl dd {
-    margin: 0 0 1em 30px; }
+.chq-chl .chq-cmk {
+  display: block;
+  margin-bottom: 1rem; }
 
 @keyframes chqCmkStroke {
   100% {
@@ -349,6 +345,7 @@
 .chq-cmk {
   background: none;
   border: 0;
+  color: inherit;
   font-size: 1em;
   outline: none;
   padding: 0; }
@@ -358,6 +355,7 @@
     box-shadow: inset 0 0 0 #79b17d;
     display: inline-block;
     height: 1.2em;
+    margin-right: .2em;
     stroke: #fff;
     stroke-miterlimit: 10;
     stroke-width: 2;
@@ -685,6 +683,8 @@
     margin-top: 20px; }
   .chq-ffd + .chq-btn[type='submit'] {
     margin-top: 20px; }
+  .chq-ffd .chq-cmk {
+    color: #9c9fa7; }
   .chq-ffd--lb {
     color: #9c9fa7;
     display: block;

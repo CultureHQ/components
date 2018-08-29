@@ -7,6 +7,8 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _Checkmark = _interopRequireDefault(require("./Checkmark"));
+
 var _classnames = _interopRequireDefault(require("../classnames"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -33,65 +35,69 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var Checkmark =
+var BooleanField =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Checkmark, _Component);
+  _inherits(BooleanField, _Component);
 
-  function Checkmark() {
+  function BooleanField() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, Checkmark);
+    _classCallCheck(this, BooleanField);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Checkmark)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(BooleanField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (checked) {
       var _this$props = _this.props,
-          checked = _this$props.checked,
-          onClick = _this$props.onClick;
-      onClick(!checked);
+          name = _this$props.name,
+          onChange = _this$props.onChange,
+          onFormChange = _this$props.onFormChange;
+
+      if (onChange) {
+        onChange(checked);
+      }
+
+      if (onFormChange) {
+        onFormChange(name, checked);
+      }
     });
 
     return _this;
   }
 
-  _createClass(Checkmark, [{
+  _createClass(BooleanField, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var value = this.props.value;
+
+      if (value === undefined || value === null) {
+        this.handleClick(false);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
           children = _this$props2.children,
           className = _this$props2.className,
-          checked = _this$props2.checked,
-          onClick = _this$props2.onClick;
-      return _react.default.createElement("button", {
-        type: "button",
-        className: (0, _classnames.default)("chq-cmk", className, {
-          "chq-cmk-ck": checked,
-          "chq-cmk-cl": onClick
-        }),
-        onClick: onClick ? this.handleClick : null
-      }, _react.default.createElement("svg", {
-        viewBox: "0 0 52 52"
-      }, _react.default.createElement("circle", {
-        cx: "26",
-        cy: "26",
-        r: "25",
-        fill: "none"
-      }), _react.default.createElement("path", {
-        fill: "none",
-        d: "M14.1 27.2l7.1 7.2 16.7-16.8"
-      })), children && _react.default.createElement(_react.Fragment, null, " ", children));
+          value = _this$props2.value;
+      return _react.default.createElement("div", {
+        className: (0, _classnames.default)("chq-ffd", className)
+      }, _react.default.createElement(_Checkmark.default, {
+        checked: value,
+        onClick: this.handleClick
+      }, children));
     }
   }]);
 
-  return Checkmark;
+  return BooleanField;
 }(_react.Component);
 
-var _default = Checkmark;
+var _default = BooleanField;
 exports.default = _default;

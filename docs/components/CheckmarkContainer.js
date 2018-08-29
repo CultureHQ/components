@@ -12,7 +12,11 @@ class CheckmarkContainer extends Component {
   render() {
     const { checked } = this.state;
 
-    return <Checkmark checked={checked} onClick={this.handleClick} />;
+    return (
+      <Checkmark checked={checked} onClick={this.handleClick}>
+        This is a checkmark
+      </Checkmark>
+    );
   }
 }
 

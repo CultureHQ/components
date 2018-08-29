@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/components",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "CultureHQ's component library",
   "main": "dist/index.js",
   "scripts": {
@@ -65,7 +65,7 @@
     "style-loader": "^0.23.0",
     "webpack": "^4.17.0",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.6"
+    "webpack-dev-server": "^3.1.7"
   },
   "jest": {
     "moduleNameMapper": {

@@ -11,6 +11,8 @@ var _classnames = _interopRequireDefault(require("../classnames"));
 
 var _SubmitButton = _interopRequireDefault(require("./SubmitButton"));
 
+var _BooleanField = _interopRequireDefault(require("./BooleanField"));
+
 var _CentsField = _interopRequireDefault(require("./CentsField"));
 
 var _FormFields = require("./FormFields");
@@ -76,6 +78,13 @@ function (_Component) {
             onError: _this.handleError,
             onFormChange: _this.handleFormChange,
             submitted: submitted,
+            value: values[props.name]
+          });
+        }
+
+        if (type === _BooleanField.default) {
+          return _react.default.cloneElement(child, {
+            onFormChange: _this.handleFormChange,
             value: values[props.name]
           });
         }
