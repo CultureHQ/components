@@ -10,9 +10,13 @@ class FormField extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { value } = this.props;
+    const updateRequired = ["required", "validator", "value"].some(propName => {
+      const { [propName]: propValue } = this.props;
 
-    if (value !== prevProps.value) {
+      return propValue !== prevProps[propName];
+    });
+
+    if (updateRequired) {
       this.deriveError();
     }
   }
