@@ -22,6 +22,7 @@ const Button = ({
   ...props
 }) => (
   <button // eslint-disable-line react/button-has-type
+    {...props}
     type={type}
     className={
       classnames("chq-btn", className, {
@@ -31,7 +32,6 @@ const Button = ({
         "chq-btn-ld": loading
       })
     }
-    {...props}
   >
     {(loading || icon) && <ButtonIcon icon={icon} loading={loading} />}
     {children}

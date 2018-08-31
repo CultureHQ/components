@@ -7,6 +7,7 @@ const Hamburger = ({ className, open, onToggle }) => (
     type="button"
     className={classnames("chq-ham", className, { "chq-ham-op": open })}
     onClick={onToggle}
+    aria-label="Menu Toggle"
   >
     <span />
     <span />
