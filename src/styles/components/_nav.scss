@@ -10,6 +10,7 @@
   top: 0;
   transition: top .35s;
   width: 100%;
+  z-index: 1;
 
   &-hd {
     box-shadow: none;
