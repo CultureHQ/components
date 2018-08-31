@@ -3,11 +3,7 @@ import React, { Component } from "react";
 import classnames from "../classnames";
 
 class FormField extends Component {
-  state = {
-    error: null,
-    focused: false,
-    touched: false
-  };
+  state = { error: null, touched: false };
 
   componentDidMount() {
     this.deriveError();
@@ -22,7 +18,7 @@ class FormField extends Component {
   }
 
   handleBlur = () => {
-    this.setState({ focused: false, touched: true });
+    this.setState({ touched: true });
   };
 
   handleChange = ({ target: { value } }) => {
@@ -35,10 +31,6 @@ class FormField extends Component {
     if (onFormChange) {
       onFormChange(name, value);
     }
-  };
-
-  handleFocus = () => {
-    this.setState({ focused: true });
   };
 
   deriveError = () => {
@@ -65,9 +57,7 @@ class FormField extends Component {
       required, submitted, validator, value, ...props
     } = this.props;
 
-    const { error, focused, touched } = this.state;
-
-    const displayError = submitted || (touched && !focused);
+    const { error, touched } = this.state;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -80,9 +70,8 @@ class FormField extends Component {
           value={value || ""}
           onBlur={this.handleBlur}
           onChange={this.handleChange}
-          onFocus={this.handleFocus}
         />
-        {error && displayError && <p className="chq-ffd--rq">{error}</p>}
+        {error && (submitted || touched) && <p className="chq-ffd--rq">{error}</p>}
       </label>
     );
   }

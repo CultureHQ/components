@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Changed
 - Increased the `z-index` in the `Nav` component to have it hide the content below it.
 - Improve a11y by adding an `aria-label` to the `Hamburger` button.
+- Don't bother hiding error when form fields are focused, as it causes too much blinking and confusion.
 
 ## [3.1.0] - 2018-08-29
 ### Added

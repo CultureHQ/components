@@ -40,12 +40,18 @@ test.each(CASES)("calls up to callbacks if they are provided", FormField => {
   });
 });
 
-test.each(CASES)("tracks focus in component state", FormField => {
+test.each(CASES)("tracks touch status in component state", FormField => {
   const component = mount(<FormField name="name" required />);
+  expect(component.text()).toEqual("");
 
   component.find("input").simulate("blur");
   expect(component.text()).toEqual("Required");
+});
 
-  component.find("input").simulate("focus");
+test.each(CASES)("displays errors if submitted", FormField => {
+  const component = mount(<FormField name="name" required />);
   expect(component.text()).toEqual("");
+
+  component.setProps({ submitted: true });
+  expect(component.text()).toEqual("Required");
 });
