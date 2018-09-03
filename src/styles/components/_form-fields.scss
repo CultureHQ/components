@@ -31,6 +31,11 @@
     margin: 0;
   }
 
+  &--fi {
+    display: block;
+    position: relative;
+  }
+
   input {
     border: 0;
     border-bottom: 2px solid $color-border;
@@ -49,6 +54,20 @@
 
     &:focus {
       border-bottom: 2px solid $color-primary-green;
+    }
+
+    &[type='file'] {
+      opacity: 0;
+
+      & + input {
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+      }
+
+      &:focus + input {
+        border-bottom: 2px solid $color-primary-green;
+      }
     }
   }
 

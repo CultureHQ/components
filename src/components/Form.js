@@ -5,10 +5,18 @@ import classnames from "../classnames";
 import SubmitButton from "./SubmitButton";
 import BooleanField from "./BooleanField";
 import CentsField from "./CentsField";
-import { EmailField, NumberField, PasswordField, StringField } from "./FormFields";
+import { EmailField, FileField, NumberField, PasswordField, StringField } from "./FormFields";
 
 const contains = haystack => needle => haystack.indexOf(needle) > -1;
-const isField = contains([CentsField, EmailField, NumberField, PasswordField, StringField]);
+
+const isField = contains([
+  CentsField,
+  EmailField,
+  FileField,
+  NumberField,
+  PasswordField,
+  StringField
+]);
 
 class Form extends Component {
   constructor(props) {

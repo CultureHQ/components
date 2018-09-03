@@ -8,7 +8,8 @@ import {
   PasswordField,
   StringField,
   SubmitButton,
-  BooleanField
+  BooleanField,
+  FileField
 } from "../../src";
 
 const onSubmit = values => {
@@ -24,6 +25,8 @@ const FormContainer = () => (
     <PasswordField name="password" required>Password</PasswordField>
     <StringField name="string" required>String</StringField>
     <BooleanField name="boolean">Boolean</BooleanField>
+    <FileField name="file" required>File</FileField>
+    <FileField name="files" multiple required>Files</FileField>
     <SubmitButton primary />
   </Form>
 );
