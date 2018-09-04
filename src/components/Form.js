@@ -5,7 +5,8 @@ import classnames from "../classnames";
 import SubmitButton from "./SubmitButton";
 import BooleanField from "./BooleanField";
 import CentsField from "./CentsField";
-import { EmailField, FileField, NumberField, PasswordField, StringField } from "./FormFields";
+import FileField from "./FileField";
+import { EmailField, NumberField, PasswordField, StringField } from "./FormFields";
 
 const contains = haystack => needle => haystack.indexOf(needle) > -1;
 

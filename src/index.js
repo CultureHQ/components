@@ -22,12 +22,7 @@ export { default as Thumbnail } from "./components/Thumbnail";
 export { default as Warning } from "./components/Warning";
 
 export { default as CentsField } from "./components/CentsField";
+export { default as FileField } from "./components/FileField";
 export { default as Form } from "./components/Form";
-export {
-  EmailField,
-  FileField,
-  NumberField,
-  PasswordField,
-  StringField
-} from "./components/FormFields";
+export { EmailField, NumberField, PasswordField, StringField } from "./components/FormFields";
 export { default as SubmitButton } from "./components/SubmitButton";
