@@ -15,6 +15,8 @@ var _BooleanField = _interopRequireDefault(require("./BooleanField"));
 
 var _CentsField = _interopRequireDefault(require("./CentsField"));
 
+var _FileField = _interopRequireDefault(require("./FileField"));
+
 var _FormFields = require("./FormFields");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -49,7 +51,7 @@ var contains = function contains(haystack) {
   };
 };
 
-var isField = contains([_CentsField.default, _FormFields.EmailField, _FormFields.NumberField, _FormFields.PasswordField, _FormFields.StringField]);
+var isField = contains([_CentsField.default, _FormFields.EmailField, _FileField.default, _FormFields.NumberField, _FormFields.PasswordField, _FormFields.StringField]);
 
 var Form =
 /*#__PURE__*/

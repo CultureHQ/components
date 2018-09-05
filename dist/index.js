@@ -9,12 +9,6 @@ Object.defineProperty(exports, "Badge", {
     return _Badge.default;
   }
 });
-Object.defineProperty(exports, "BooleanField", {
-  enumerable: true,
-  get: function get() {
-    return _BooleanField.default;
-  }
-});
 Object.defineProperty(exports, "Button", {
   enumerable: true,
   get: function get() {
@@ -123,10 +117,22 @@ Object.defineProperty(exports, "Warning", {
     return _Warning.default;
   }
 });
+Object.defineProperty(exports, "BooleanField", {
+  enumerable: true,
+  get: function get() {
+    return _BooleanField.default;
+  }
+});
 Object.defineProperty(exports, "CentsField", {
   enumerable: true,
   get: function get() {
     return _CentsField.default;
+  }
+});
+Object.defineProperty(exports, "FileField", {
+  enumerable: true,
+  get: function get() {
+    return _FileField.default;
   }
 });
 Object.defineProperty(exports, "Form", {
@@ -170,8 +176,6 @@ require("./main.css");
 
 var _Badge = _interopRequireDefault(require("./components/Badge"));
 
-var _BooleanField = _interopRequireDefault(require("./components/BooleanField"));
-
 var _Button = _interopRequireDefault(require("./components/Button"));
 
 var _Checklist = _interopRequireDefault(require("./components/Checklist"));
@@ -208,7 +212,11 @@ var _Thumbnail = _interopRequireDefault(require("./components/Thumbnail"));
 
 var _Warning = _interopRequireDefault(require("./components/Warning"));
 
+var _BooleanField = _interopRequireDefault(require("./components/BooleanField"));
+
 var _CentsField = _interopRequireDefault(require("./components/CentsField"));
+
+var _FileField = _interopRequireDefault(require("./components/FileField"));
 
 var _Form = _interopRequireDefault(require("./components/Form"));
 

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.StringField = exports.PasswordField = exports.NumberField = exports.EmailField = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -41,109 +41,124 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var buildFormField = function buildFormField(type) {
-  var FormField =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(FormField, _Component);
+var FileField =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(FileField, _Component);
 
-    function FormField() {
-      var _getPrototypeOf2;
+  function FileField() {
+    var _getPrototypeOf2;
 
-      var _this;
+    var _this;
 
-      _classCallCheck(this, FormField);
+    _classCallCheck(this, FileField);
 
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(FormField)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-      _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-        touched: false
-      });
-
-      _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleBlur", function () {
-        _this.setState({
-          touched: true
-        });
-      });
-
-      _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (_ref) {
-        var value = _ref.target.value;
-        var _this$props = _this.props,
-            name = _this$props.name,
-            onChange = _this$props.onChange,
-            onFormChange = _this$props.onFormChange;
-
-        if (onChange) {
-          onChange(value);
-        }
-
-        if (onFormChange) {
-          onFormChange(name, value);
-        }
-      });
-
-      return _this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
 
-    _createClass(FormField, [{
-      key: "render",
-      value: function render() {
-        var _this$props2 = this.props,
-            name = _this$props2.name,
-            value = _this$props2.value;
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(FileField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-        var _this$props3 = this.props,
-            addon = _this$props3.addon,
-            children = _this$props3.children,
-            className = _this$props3.className,
-            onError = _this$props3.onError,
-            onFormChange = _this$props3.onFormChange,
-            required = _this$props3.required,
-            submitted = _this$props3.submitted,
-            validator = _this$props3.validator,
-            props = _objectWithoutProperties(_this$props3, ["addon", "children", "className", "onError", "onFormChange", "required", "submitted", "validator"]);
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      touched: false
+    });
 
-        var touched = this.state.touched;
-        return _react.default.createElement("label", {
-          className: (0, _classnames.default)("chq-ffd", className),
-          htmlFor: name
-        }, _react.default.createElement("span", {
-          className: "chq-ffd--lb"
-        }, children), _react.default.createElement(_react.Fragment, null, addon && _react.default.createElement("span", {
-          className: "chq-ffd--ad"
-        }, addon), _react.default.createElement("input", _extends({}, props, {
-          type: type,
-          id: name,
-          value: value || "",
-          onBlur: this.handleBlur,
-          onChange: this.handleChange
-        }))), _react.default.createElement(_FormError.default, {
-          name: name,
-          onError: onError,
-          required: required,
-          submitted: submitted,
-          touched: touched,
-          validator: validator,
-          value: value
-        }));
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (_ref) {
+      var files = _ref.target.files;
+
+      _this.setState({
+        touched: true
+      });
+
+      var _this$props = _this.props,
+          multiple = _this$props.multiple,
+          name = _this$props.name,
+          onChange = _this$props.onChange,
+          onFormChange = _this$props.onFormChange;
+      var value = null;
+
+      if (files.length > 0) {
+        value = multiple ? files : files[0];
       }
-    }]);
 
-    return FormField;
-  }(_react.Component);
+      if (onChange) {
+        onChange(value);
+      }
 
-  return FormField;
-};
+      if (onFormChange) {
+        onFormChange(name, value);
+      }
+    });
 
-var EmailField = buildFormField("email");
-exports.EmailField = EmailField;
-var NumberField = buildFormField("number");
-exports.NumberField = NumberField;
-var PasswordField = buildFormField("password");
-exports.PasswordField = PasswordField;
-var StringField = buildFormField("text");
-exports.StringField = StringField;
+    return _this;
+  }
+
+  _createClass(FileField, [{
+    key: "getFileDisplay",
+    value: function getFileDisplay() {
+      var _this$props2 = this.props,
+          multiple = _this$props2.multiple,
+          value = _this$props2.value;
+
+      if (!value) {
+        return "";
+      }
+
+      if (multiple) {
+        return Array.from(value).map(function (_ref2) {
+          var name = _ref2.name;
+          return name;
+        }).join(", ");
+      }
+
+      return value.name;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var name = this.props.name;
+
+      var _this$props3 = this.props,
+          children = _this$props3.children,
+          className = _this$props3.className,
+          onError = _this$props3.onError,
+          onFormChange = _this$props3.onFormChange,
+          required = _this$props3.required,
+          submitted = _this$props3.submitted,
+          validator = _this$props3.validator,
+          value = _this$props3.value,
+          props = _objectWithoutProperties(_this$props3, ["children", "className", "onError", "onFormChange", "required", "submitted", "validator", "value"]);
+
+      var touched = this.state.touched;
+      return _react.default.createElement("label", {
+        className: (0, _classnames.default)("chq-ffd", className),
+        htmlFor: name
+      }, _react.default.createElement("span", {
+        className: "chq-ffd--lb"
+      }, children), _react.default.createElement("span", {
+        className: "chq-ffd--fi"
+      }, _react.default.createElement("input", _extends({}, props, {
+        type: "file",
+        id: name,
+        onChange: this.handleChange
+      })), _react.default.createElement("input", {
+        type: "text",
+        readOnly: true,
+        value: this.getFileDisplay()
+      })), _react.default.createElement(_FormError.default, {
+        name: name,
+        onError: onError,
+        required: required,
+        submitted: submitted,
+        touched: touched,
+        validator: validator,
+        value: value
+      }));
+    }
+  }]);
+
+  return FileField;
+}(_react.Component);
+
+var _default = FileField;
+exports.default = _default;

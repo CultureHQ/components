@@ -41,8 +41,7 @@ var Button = function Button(_ref2) {
       loading = _ref2.loading,
       props = _objectWithoutProperties(_ref2, ["children", "className", "type", "icon", "inverted", "primary", "small", "loading"]);
 
-  return _react.default.createElement("button", _extends({
-    // eslint-disable-line react/button-has-type
+  return _react.default.createElement("button", _extends({}, props, {
     type: type,
     className: (0, _classnames.default)("chq-btn", className, {
       "chq-btn-iv": inverted,
@@ -50,7 +49,7 @@ var Button = function Button(_ref2) {
       "chq-btn-sm": small,
       "chq-btn-ld": loading
     })
-  }, props), (loading || icon) && _react.default.createElement(ButtonIcon, {
+  }), (loading || icon) && _react.default.createElement(ButtonIcon, {
     icon: icon,
     loading: loading
   }), children);

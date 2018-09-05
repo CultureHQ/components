@@ -20,7 +20,8 @@ var Hamburger = function Hamburger(_ref) {
     className: (0, _classnames.default)("chq-ham", className, {
       "chq-ham-op": open
     }),
-    onClick: onToggle
+    onClick: onToggle,
+    "aria-label": "Menu Toggle"
   }, _react.default.createElement("span", null), _react.default.createElement("span", null), _react.default.createElement("span", null));
 };
 

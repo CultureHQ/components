@@ -693,6 +693,9 @@
     color: #c14c4c;
     font-size: .8em;
     margin: 0; }
+  .chq-ffd--fi {
+    display: block;
+    position: relative; }
   .chq-ffd input {
     border: 0;
     border-bottom: 2px solid #eaeaea;
@@ -710,6 +713,14 @@
     width: 100%; }
     .chq-ffd input:focus {
       border-bottom: 2px solid #79b17d; }
+    .chq-ffd input[type='file'] {
+      opacity: 0; }
+      .chq-ffd input[type='file'] + input {
+        pointer-events: none;
+        position: absolute;
+        top: 0; }
+      .chq-ffd input[type='file']:focus + input {
+        border-bottom: 2px solid #79b17d; }
   .chq-ffd--ad {
     color: #888;
     font-size: 1.2em;
@@ -1040,7 +1051,8 @@
   position: fixed;
   top: 0;
   transition: top .35s;
-  width: 100%; }
+  width: 100%;
+  z-index: 1; }
   .chq-nav-hd {
     box-shadow: none;
     top: -55px; }
