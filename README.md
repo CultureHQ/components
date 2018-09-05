@@ -33,6 +33,7 @@ Below are listed each component with their various semantics:
 - [Circles](#circles)
 - [EmailField](#emailfield)
 - [FeedItem](#feeditem)
+- [FileField](#filefield)
 - [Form](#form)
 - [Hamburger](#hamburger)
 - [Icon](#icon)
@@ -152,6 +153,17 @@ A contained item in a feed.
 
 * `children` - displayed inside the footer
 * `className?` - an extra class name
+
+### FileField
+
+* `children` - the label to display for the field
+* `className?` - an extra class name
+* `onChange` - a function that accepts one argument that represents the new value of the file field
+* `multiple?` - whether or not this field accepts multiple files
+* `name` - the name of the field
+* `required?` - indicates this field is required for submission
+* `validator?` - an optional function that should either return an error message string or `null`
+* `value` - the value of the input field
 
 ### Form
 
