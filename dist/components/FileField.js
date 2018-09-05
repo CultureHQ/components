@@ -116,18 +116,20 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var name = this.props.name;
-
       var _this$props3 = this.props,
-          children = _this$props3.children,
-          className = _this$props3.className,
-          onError = _this$props3.onError,
-          onFormChange = _this$props3.onFormChange,
-          required = _this$props3.required,
-          submitted = _this$props3.submitted,
-          validator = _this$props3.validator,
-          value = _this$props3.value,
-          props = _objectWithoutProperties(_this$props3, ["children", "className", "onError", "onFormChange", "required", "submitted", "validator", "value"]);
+          multiple = _this$props3.multiple,
+          name = _this$props3.name;
+
+      var _this$props4 = this.props,
+          children = _this$props4.children,
+          className = _this$props4.className,
+          onError = _this$props4.onError,
+          onFormChange = _this$props4.onFormChange,
+          required = _this$props4.required,
+          submitted = _this$props4.submitted,
+          validator = _this$props4.validator,
+          value = _this$props4.value,
+          props = _objectWithoutProperties(_this$props4, ["children", "className", "onError", "onFormChange", "required", "submitted", "validator", "value"]);
 
       var touched = this.state.touched;
       return _react.default.createElement("label", {
@@ -135,17 +137,19 @@ function (_Component) {
         htmlFor: name
       }, _react.default.createElement("span", {
         className: "chq-ffd--lb"
-      }, children), _react.default.createElement("span", {
+      }, children), _react.default.createElement("div", {
         className: "chq-ffd--fi"
       }, _react.default.createElement("input", _extends({}, props, {
         type: "file",
         id: name,
         onChange: this.handleChange
-      })), _react.default.createElement("input", {
-        type: "text",
-        readOnly: true,
-        value: this.getFileDisplay()
-      })), _react.default.createElement(_FormError.default, {
+      })), _react.default.createElement("div", {
+        className: "chq-ffd--di"
+      }, _react.default.createElement("div", {
+        className: "chq-ffd--ch"
+      }, "Choose file", multiple && "s", "..."), _react.default.createElement("div", {
+        className: "chq-ffd--fd"
+      }, this.getFileDisplay()))), _react.default.createElement(_FormError.default, {
         name: name,
         onError: onError,
         required: required,

@@ -40,7 +40,7 @@ class FileField extends Component {
   };
 
   render() {
-    const { name } = this.props;
+    const { multiple, name } = this.props;
     const {
       children, className, onError, onFormChange, required, submitted,
       validator, value, ...props
@@ -51,10 +51,13 @@ class FileField extends Component {
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
-        <span className="chq-ffd--fi">
+        <div className="chq-ffd--fi">
           <input {...props} type="file" id={name} onChange={this.handleChange} />
-          <input type="text" readOnly value={this.getFileDisplay()} />
-        </span>
+          <div className="chq-ffd--di">
+            <div className="chq-ffd--ch">Choose file{multiple && "s"}...</div>
+            <div className="chq-ffd--fd">{this.getFileDisplay()}</div>
+          </div>
+        </div>
         <FormError
           name={name}
           onError={onError}

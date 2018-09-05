@@ -24,7 +24,7 @@ const mountWithUtils = component => {
     selectFiles: files => (
       mounted.find("input[type='file']").simulate("change", { target: { files } })
     ),
-    getFileSummary: () => mounted.find("input[type='text']").props().value
+    getFileSummary: () => mounted.find(".chq-ffd--fd").text()
   });
 };
 
@@ -68,12 +68,12 @@ test("calls up to callbacks if they are provided", () => {
 
 test("tracks touch status in component state", () => {
   const component = mount(<FileField name="name" required />);
-  expect(component.text()).toEqual("");
+  expect(component.text()).not.toContain("Required");
 
   component.find("input[type='file']").simulate("change", {
     target: { files: [{ foo: "bar" }] }
   });
-  expect(component.text()).toEqual("Required");
+  expect(component.text()).toContain("Required");
 });
 
 test("works with multiple files", () => {

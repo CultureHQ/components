@@ -1,0 +1,47 @@
+@import '../common';
+
+.chq-ffd {
+  &--fi {
+    display: block;
+    position: relative;
+  }
+
+  &--di {
+    background-color: $color-white;
+    border: 2px solid $color-border;
+    color: $color-primary-font;
+    display: flex;
+    font-weight: $font-weight-light;
+    height: 42px;
+    margin-bottom: 5px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transition: border-color .3s;
+    width: 100%;
+  }
+
+  &--ch {
+    background-color: $color-border;
+    border-right: 2px solid $color-border;
+    flex-basis: 150px;
+    font-size: .9em;
+    margin-right: 10px;
+    padding: 10px 12px 6px;
+  }
+
+  &--fd {
+    padding: 8px 12px 6px 0;
+  }
+}
+
+.chq-ffd--fi {
+  input {
+    cursor: pointer;
+    opacity: 0;
+
+    &:focus + .chq-ffd--di {
+      border-bottom-color: $color-primary-green;
+    }
+  }
+}
