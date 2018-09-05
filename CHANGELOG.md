@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `FileField` component.
+- The `Panel.LoaderBody` subcomponent, for when the body is still being loaded.
 
 ### Changed
 - Increased the `z-index` in the `Nav` component to have it hide the content below it.

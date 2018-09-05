@@ -235,7 +235,7 @@ Displays pagination information with buttons for looking through different pages
 
 Boxed information to be displayed. Always has a header and sometimes has a footer.
 
-* `children` - the components to be displayed inside the panel, expected to be instances of `Panel.Heading`, `Panel.Body`, or `Panel.Footer`
+* `children` - the components to be displayed inside the panel, expected to be instances of `Panel.Heading`, `Panel.Body`, `Panel.LoaderBody`, or `Panel.Footer`
 * `className?` - an extra class name
 
 `Panel.Heading` subcomponent:
@@ -247,6 +247,12 @@ Boxed information to be displayed. Always has a header and sometimes has a foote
 
 * `children` - the content of the body
 * `className?` - an extra class name
+
+`Panel.LoaderBody` subcomponent:
+
+* `children` - the content of the body
+* `className?` - an extra class name
+* `loading?` - whether or not the content is still loading
 
 `Panel.Footer` subcomponent:
 
