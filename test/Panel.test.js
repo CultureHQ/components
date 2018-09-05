@@ -36,9 +36,24 @@ test("PanelBody passes on className", () => {
   expect(component.hasClass("panel-body")).toBe(true);
 });
 
+test("PanelLoaderBody passes on className", () => {
+  const component = mount(<Panel.LoaderBody className="panel-loader-body" />);
+
+  expect(component.find(".chq-pan--bd")).toHaveLength(1);
+  expect(component.hasClass("panel-loader-body")).toBe(true);
+});
+
 test("PanelFooter passes on className", () => {
   const component = shallow(<Panel.Footer className="panel-footer" />);
 
   expect(component.hasClass("chq-pan--ft")).toBe(true);
   expect(component.hasClass("panel-footer")).toBe(true);
+});
+
+test("PanelLoaderBody handles loading", () => {
+  const component = mount(<Panel.LoaderBody loading>Loaded</Panel.LoaderBody>);
+  expect(component.text()).toEqual("");
+
+  component.setProps({ loading: false });
+  expect(component.text()).toEqual("Loaded");
 });

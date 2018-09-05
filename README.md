@@ -33,6 +33,7 @@ Below are listed each component with their various semantics:
 - [Circles](#circles)
 - [EmailField](#emailfield)
 - [FeedItem](#feeditem)
+- [FileField](#filefield)
 - [Form](#form)
 - [Hamburger](#hamburger)
 - [Icon](#icon)
@@ -153,6 +154,17 @@ A contained item in a feed.
 * `children` - displayed inside the footer
 * `className?` - an extra class name
 
+### FileField
+
+* `children` - the label to display for the field
+* `className?` - an extra class name
+* `onChange` - a function that accepts one argument that represents the new value of the file field
+* `multiple?` - whether or not this field accepts multiple files
+* `name` - the name of the field
+* `required?` - indicates this field is required for submission
+* `validator?` - an optional function that should either return an error message string or `null`
+* `value` - the value of the input field
+
 ### Form
 
 A generic form component.
@@ -223,7 +235,7 @@ Displays pagination information with buttons for looking through different pages
 
 Boxed information to be displayed. Always has a header and sometimes has a footer.
 
-* `children` - the components to be displayed inside the panel, expected to be instances of `Panel.Heading`, `Panel.Body`, or `Panel.Footer`
+* `children` - the components to be displayed inside the panel, expected to be instances of `Panel.Heading`, `Panel.Body`, `Panel.LoaderBody`, or `Panel.Footer`
 * `className?` - an extra class name
 
 `Panel.Heading` subcomponent:
@@ -235,6 +247,12 @@ Boxed information to be displayed. Always has a header and sometimes has a foote
 
 * `children` - the content of the body
 * `className?` - an extra class name
+
+`Panel.LoaderBody` subcomponent:
+
+* `children` - the content of the body
+* `className?` - an extra class name
+* `loading?` - whether or not the content is still loading
 
 `Panel.Footer` subcomponent:
 
