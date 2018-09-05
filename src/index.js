@@ -1,7 +1,6 @@
 import "./styles/app.scss";
 
 export { default as Badge } from "./components/Badge";
-export { default as BooleanField } from "./components/BooleanField";
 export { default as Button } from "./components/Button";
 export { default as Checklist } from "./components/Checklist";
 export { default as Checkmark } from "./components/Checkmark";
@@ -21,6 +20,7 @@ export { default as Tag } from "./components/Tag";
 export { default as Thumbnail } from "./components/Thumbnail";
 export { default as Warning } from "./components/Warning";
 
+export { default as BooleanField } from "./components/BooleanField";
 export { default as CentsField } from "./components/CentsField";
 export { default as FileField } from "./components/FileField";
 export { default as Form } from "./components/Form";
