@@ -11,6 +11,7 @@ import {
   Badge,
   Button,
   Checklist,
+  Cheer,
   Circles,
   FeedItem,
   Info,
@@ -59,6 +60,12 @@ const App = () => (
 
       <Heading>Checkmark</Heading>
       <CheckmarkContainer />
+
+      <Heading>Cheer</Heading>
+      <Cheer color="darkblue" pop />
+      <Cheer color="lightblue" />
+      <Cheer color="yellow" />
+      <Cheer color="green" />
 
       <Heading>Circles</Heading>
       <Circles />

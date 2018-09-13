@@ -4,6 +4,7 @@ export { default as Badge } from "./components/Badge";
 export { default as Button } from "./components/Button";
 export { default as Checklist } from "./components/Checklist";
 export { default as Checkmark } from "./components/Checkmark";
+export { default as Cheer } from "./components/Cheer";
 export { default as Circles } from "./components/Circles";
 export { default as FeedItem } from "./components/FeedItem";
 export { default as Hamburger } from "./components/Hamburger";
