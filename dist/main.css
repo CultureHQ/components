@@ -1398,10 +1398,12 @@
       border-top-right-radius: 5px;
       color: #fff; }
       .chq-pan--hd-pr h2 {
-        font-size: 1em; }
+        font-size: 1em;
+        font-weight: 400; }
       .chq-pan--hd-pr hr {
         border: 0; }
   .chq-pan--bd {
+    font-weight: 200;
     padding: 0 15px 15px; }
   .chq-pan--ft {
     background-color: #f7f7f7;
