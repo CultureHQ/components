@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.3.0] - 2018-09-13
+### Added
+- The optional `primary` boolean prop to the `Panel.Heading` component, in order to delineate panels that should be highlighted.
+
 ## [3.2.1] - 2018-09-05
 ### Changed
 - Slightly change the UI of the `FileField` component by adding a `Choose file(s)...` prompt.

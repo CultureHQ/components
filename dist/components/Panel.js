@@ -23,9 +23,12 @@ var Panel = function Panel(_ref) {
 
 var PanelHeading = function PanelHeading(_ref2) {
   var className = _ref2.className,
-      children = _ref2.children;
+      children = _ref2.children,
+      primary = _ref2.primary;
   return _react.default.createElement("div", {
-    className: (0, _classnames.default)("chq-pan--hd", className)
+    className: (0, _classnames.default)("chq-pan--hd", className, {
+      "chq-pan--hd-pr": primary
+    })
   }, _react.default.createElement("h2", null, children), _react.default.createElement("hr", null));
 };
 

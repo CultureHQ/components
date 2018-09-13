@@ -98,6 +98,11 @@ const App = () => (
         <Panel.Footer>Footer</Panel.Footer>
       </Panel>
 
+      <Panel>
+        <Panel.Heading primary>Primary Heading</Panel.Heading>
+        <Panel.Body>Body</Panel.Body>
+      </Panel>
+
       <Heading>Spinner</Heading>
       <Spinner />
 

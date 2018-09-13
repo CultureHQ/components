@@ -1392,6 +1392,15 @@
     margin: 12px 0; }
   .chq-pan--hd {
     padding: 15px 15px 0; }
+    .chq-pan--hd-pr {
+      background-color: #8cb4d6;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      color: #fff; }
+      .chq-pan--hd-pr h2 {
+        font-size: 1em; }
+      .chq-pan--hd-pr hr {
+        border: 0; }
   .chq-pan--bd {
     padding: 0 15px 15px; }
   .chq-pan--ft {

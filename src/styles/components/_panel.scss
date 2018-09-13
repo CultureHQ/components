@@ -21,6 +21,21 @@
 
   &--hd {
     padding: 15px 15px 0;
+
+    &-pr {
+      background-color: $color-primary-blue;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      color: $color-white;
+
+      h2 {
+        font-size: 1em;
+      }
+
+      hr {
+        border: 0;
+      }
+    }
   }
 
   &--bd {

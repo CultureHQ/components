@@ -242,6 +242,7 @@ Boxed information to be displayed. Always has a header and sometimes has a foote
 
 * `children` - the content of the heading
 * `className?` - an extra class name
+* `primary?` - whether or not this should be displayed as a primary heading (with a primary background color)
 
 `Panel.Body` subcomponent:
 
