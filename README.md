@@ -30,6 +30,7 @@ Below are listed each component with their various semantics:
 - [CentsField](#centsfield)
 - [Checklist](#checklist)
 - [Checkmark](#checkmark)
+- [Cheer](#cheer)
 - [Circles](#circles)
 - [EmailField](#emailfield)
 - [FeedItem](#feeditem)
@@ -118,6 +119,14 @@ A boolean value represented by a circle with an optional check.
 * `children?` - an optional label for the circle
 * `className?` - an extra class name
 * `onClick?` - a click handler (allows this to be a controller component)
+
+### Cheer
+
+An SVG of a person cheering.
+
+* `className?` - an extra class name
+* `color?` - sets the fill of the SVG, can be one of `darkblue` (default), `lightblue`, `yellow`, or `green`
+* `pop?` - whether or not this `Cheer` should pop in
 
 ### Circles
 
