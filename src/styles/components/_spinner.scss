@@ -1,42 +1,17 @@
 @import '../common';
 
 .chq-spn {
-  position: relative;
+  height: 60px;
+  margin: 0 auto;
+  width: 60px;
 
-  div {
-    animation: chqSpin 2s linear infinite;
-    border: 3px solid transparent;
-    border-radius: 50%;
-    border-top-color: $color-primary-blue;
+  .chq-cir {
+    animation: chqChunkRotate 4s linear infinite;
     height: 60px;
-    margin: 0 auto;
-    position: relative;
     width: 60px;
+  }
 
-    &::before,
-    &::after {
-      border: 3px solid transparent;
-      border-radius: 50%;
-      content: '';
-      position: absolute;
-    }
-
-    &::before {
-      animation: chqSpin 3s linear infinite;
-      border-top-color: $color-primary-green;
-      bottom: 1px;
-      left: 1px;
-      right: 1px;
-      top: 1px;
-    }
-
-    &::after {
-      animation: chqSpin 1.5s linear infinite;
-      border-top-color: $color-primary-yellow;
-      bottom: 5px;
-      left: 5px;
-      right: 5px;
-      top: 5px;
-    }
+  .chq-cir--sm {
+    display: none;
   }
 }

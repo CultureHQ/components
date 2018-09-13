@@ -8,7 +8,7 @@ const Panel = ({ className, children }) => (
 );
 
 const PanelHeading = ({ className, children, primary }) => (
-  <div className={classnames("chq-pan--hd", className, { "chq-pan--hd-pr": primary } )}>
+  <div className={classnames("chq-pan--hd", className, { "chq-pan--hd-pr": primary })}>
     <h2>{children}</h2>
     <hr />
   </div>

@@ -6,9 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
-## [3.3.1] - 2018-09-13
+## [3.4.0] - 2018-09-13
 ### Changed
 - Made consistent the font weights of the panel headings and the panel bodies as they currently are on the product (normal weight on primary headings and light weight on bodies).
+- The display of the `Spinner` component now looks consistent with the `Circles` component.
 
 ## [3.3.0] - 2018-09-13
 ### Added

@@ -1,12 +1,11 @@
 import React from "react";
 
 import classnames from "../classnames";
+import Circles from "./Circles";
 
-const Spinner = ({ className, placeholder }) => (
-  <div
-    className={classnames("chq-spn", className, { "chq-spn-ph": placeholder })}
-  >
-    <div />
+const Spinner = ({ className }) => (
+  <div className={classnames("chq-spn", className)}>
+    <Circles />
   </div>
 );
 

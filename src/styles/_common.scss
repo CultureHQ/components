@@ -33,6 +33,27 @@ $warning-background: #fcf8e3;
 $warning-border: #faebcc;
 $warning-font: #8a6d3b;
 
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  13%,
+  33% {
+    transform: rotate(240deg);
+  }
+
+  47%,
+  67% {
+    transform: rotate(480deg);
+  }
+
+  81%,
+  100% {
+    transform: rotate(720deg);
+  }
+}
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0;

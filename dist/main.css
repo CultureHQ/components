@@ -1,3 +1,16 @@
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }
@@ -97,6 +110,19 @@
   .chq-bdg-pr {
     border: 1px solid #8cb4d6;
     color: #8cb4d6; }
+
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
 
 @keyframes chqCmkStroke {
   100% {
@@ -257,6 +283,19 @@
   display: block;
   margin-bottom: 1rem; }
 
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }
@@ -382,6 +421,19 @@
   .chq-cmk-ck path {
     animation: chqCmkStroke 0.15s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards; }
 
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }
@@ -493,6 +545,19 @@
     animation-delay: .3s;
     animation-duration: .8s; }
 
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }
@@ -589,6 +654,19 @@
   .chq-fdi--ft {
     border-top: 1px solid #eaeaea;
     padding: 15px; }
+
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
 
 @keyframes chqCmkStroke {
   100% {
@@ -719,6 +797,19 @@
     .chq-ffd--ad + input {
       padding-left: 19px; }
 
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }
@@ -838,6 +929,19 @@
   opacity: 0; }
   .chq-ffd--fi input:focus + .chq-ffd--di {
     border-bottom-color: #79b17d; }
+
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
 
 @keyframes chqCmkStroke {
   100% {
@@ -966,6 +1070,19 @@
     top: 39px;
     transform: rotate(-45deg); }
 
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }
@@ -1066,6 +1183,19 @@
   .chq-ldr-sp .chq-spn {
     visibility: visible; }
 
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }
@@ -1165,6 +1295,19 @@
   .chq-nav-hd {
     box-shadow: none;
     top: -55px; }
+
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
 
 @keyframes chqCmkStroke {
   100% {
@@ -1291,6 +1434,19 @@
     padding: 6px;
     vertical-align: text-bottom; }
 
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }
@@ -1412,6 +1568,19 @@
     border-top: 1px solid #eaeaea;
     padding: 10px 15px; }
 
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }
@@ -1498,35 +1667,28 @@
     transform: scale(1) translate3d(0, 0, 0); } }
 
 .chq-spn {
-  position: relative; }
-  .chq-spn div {
-    animation: chqSpin 2s linear infinite;
-    border: 3px solid transparent;
-    border-radius: 50%;
-    border-top-color: #8cb4d6;
+  height: 60px;
+  margin: 0 auto;
+  width: 60px; }
+  .chq-spn .chq-cir {
+    animation: chqChunkRotate 4s linear infinite;
     height: 60px;
-    margin: 0 auto;
-    position: relative;
     width: 60px; }
-    .chq-spn div::before, .chq-spn div::after {
-      border: 3px solid transparent;
-      border-radius: 50%;
-      content: '';
-      position: absolute; }
-    .chq-spn div::before {
-      animation: chqSpin 3s linear infinite;
-      border-top-color: #79b17d;
-      bottom: 1px;
-      left: 1px;
-      right: 1px;
-      top: 1px; }
-    .chq-spn div::after {
-      animation: chqSpin 1.5s linear infinite;
-      border-top-color: #ffd24b;
-      bottom: 5px;
-      left: 5px;
-      right: 5px;
-      top: 5px; }
+  .chq-spn .chq-cir--sm {
+    display: none; }
+
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
 
 @keyframes chqCmkStroke {
   100% {
@@ -1637,6 +1799,19 @@
       .chq-snv--it-active:hover {
         color: #79b17d; }
 
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
+
 @keyframes chqCmkStroke {
   100% {
     stroke-dashoffset: 0; } }
@@ -1730,6 +1905,19 @@
   padding: 15px; }
   .chq-scs p {
     margin: 0; }
+
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
 
 @keyframes chqCmkStroke {
   100% {
@@ -1847,6 +2035,19 @@
     width: 100px; }
   .chq-tmb-sq {
     border-radius: 0; }
+
+@keyframes chqChunkRotate {
+  0% {
+    transform: rotate(0deg); }
+  13%,
+  33% {
+    transform: rotate(240deg); }
+  47%,
+  67% {
+    transform: rotate(480deg); }
+  81%,
+  100% {
+    transform: rotate(720deg); } }
 
 @keyframes chqCmkStroke {
   100% {
