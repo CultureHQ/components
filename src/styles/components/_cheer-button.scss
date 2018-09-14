@@ -8,9 +8,11 @@
   cursor: pointer;
   display: inline-block;
   font-size: .9em;
+  margin-right: 10px;
   outline: none;
   padding: 12px 15px;
   transition: background-color .3s;
+  vertical-align: bottom;
 
   svg {
     fill: #c9c9c9;

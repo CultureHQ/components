@@ -3,7 +3,11 @@ import React, { Component } from "react";
 import { CheerButton } from "../../src";
 
 class CheerButtonContainer extends Component {
-  state = { cheered: false };
+  constructor(props) {
+    super(props);
+
+    this.state = { cheered: props.cheered || false };
+  }
 
   handleCheerToggle = cheered => {
     this.setState({ cheered });

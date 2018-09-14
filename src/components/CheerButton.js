@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import classnames from "../classnames";
 import Button from "./Button";
 import Cheer from "./Cheer";
 
 class CheerButton extends Component {
-  state = { toggling: false };
+  state = { toggling: false, touched: false };
 
   handleClick = () => {
-    this.setState({ toggling: true });
+    this.setState({ toggling: true, touched: true });
 
     const { cheered, onCheerToggle } = this.props;
 
@@ -19,17 +19,20 @@ class CheerButton extends Component {
 
   render() {
     const { cheered, className, onCheerToggle } = this.props;
-    const { toggling } = this.state;
+    const { toggling, touched } = this.state;
 
     return (
-      <button
-        type="button"
-        className={classnames("chq-cbn", className, { "chq-cbn-ch": cheered })}
-        disabled={toggling}
-        onClick={this.handleClick}
-      >
-        <Cheer /> Cheer!
-      </button>
+      <Fragment>
+        <button
+          type="button"
+          className={classnames("chq-cbn", className, { "chq-cbn-ch": cheered })}
+          disabled={toggling}
+          onClick={this.handleClick}
+        >
+          <Cheer /> Cheer!
+        </button>
+        {cheered && <Cheer pop={touched} />}
+      </Fragment>
     );
   }
 }

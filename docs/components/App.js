@@ -141,7 +141,10 @@ const App = () => (
       <p>An SVG of a person cheering.</p>
       <PropList>
         <ClassNameProp />
-        <Prop name={"color? = \"darkblue\""}>sets the fill of the SVG, can be one of "darkblue", "lightblue", "yellow", or "green"</Prop>
+        <Prop name={"color? = \"darkblue\""}>
+          sets the fill of the SVG, can be one of <code>"darkblue"</code>,
+          <code>"lightblue"</code>, <code>"yellow"</code>, or <code>"green"</code>
+        </Prop>
         <Prop name="pop? = false">whether or not this <code>Cheer</code> should pop in</Prop>
       </PropList>
 
@@ -158,7 +161,8 @@ const App = () => (
         <Prop name="onCheerToggle">a callback function that accepts a boolean <code>cheered</code> state and returns a <code>Promise</code></Prop>
       </PropList>
 
-      <CheerButtonContainer />
+      <CheerButtonContainer />{" "}
+      <CheerButtonContainer cheered />
 
       <Heading>Circles</Heading>
       <p>The CultureHQ circles. (Try hovering.)</p>
