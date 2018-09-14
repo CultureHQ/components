@@ -63,6 +63,6 @@ class Tooltip extends Component {
       </span>
     );
   }
-};
+}
 
 export default Tooltip;

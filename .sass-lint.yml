@@ -1,2 +1,3 @@
 files:
   include: "src/styles/**/*.scss"
+  ignore: "src/styles/components/_cheer.scss"

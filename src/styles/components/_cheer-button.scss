@@ -2,7 +2,7 @@
 
 .chq-cbn {
   background-color: $color-white;
-  border: #eaeaea solid 1px;
+  border: $color-border solid 1px;
   border-radius: 5px;
   color: inherit;
   cursor: pointer;
@@ -15,7 +15,7 @@
   vertical-align: bottom;
 
   svg {
-    fill: #c9c9c9;
+    fill: $cheer-inactive;
     height: 17px;
     transition: fill .3s;
     vertical-align: bottom;
@@ -29,7 +29,7 @@
   }
 
   &:hover {
-    background-color: #f7f7f7;
+    background-color: $color-background;
 
     svg {
       fill: $color-link-blue;

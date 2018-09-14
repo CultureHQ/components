@@ -17,7 +17,7 @@ class CheerButton extends Component {
   };
 
   render() {
-    const { cheered, className, name, onCheerToggle } = this.props;
+    const { cheered, className, name } = this.props;
     const { toggling, touched } = this.state;
 
     return (

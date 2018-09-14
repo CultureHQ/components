@@ -147,8 +147,8 @@ const App = () => (
       <PropList>
         <ClassNameProp />
         <Prop name={"color? = \"darkblue\""}>
-          sets the fill of the SVG, can be one of <code>"darkblue"</code>,
-          <code>"lightblue"</code>, <code>"yellow"</code>, or <code>"green"</code>
+          sets the fill of the SVG, can be one of <code>darkblue</code>,{" "}
+          <code>lightblue</code>, <code>yellow</code>, or <code>green</code>
         </Prop>
         <Prop name="name?">an optional name that will appear in a tooltip</Prop>
         <Prop name="pop? = false">whether or not this <code>Cheer</code> should pop in</Prop>
@@ -165,7 +165,10 @@ const App = () => (
         <Prop name="cheered">the state of whether or not this entity has been cheered</Prop>
         <ClassNameProp />
         <Prop name="name?">an optional name that will appear in a tooltip</Prop>
-        <Prop name="onCheerToggle">a callback function that accepts a boolean <code>cheered</code> state and returns a <code>Promise</code></Prop>
+        <Prop name="onCheerToggle">
+          a callback function that accepts a boolean <code>cheered</code>{" "}
+          state and returns a <code>Promise</code>
+        </Prop>
       </PropList>
 
       <CheerButtonContainer />{" "}
@@ -175,10 +178,15 @@ const App = () => (
       <p>A list of cheers on an entity.</p>
       <PropList>
         <Prop name="cheered">the state of whether or not this entity has been cheered</Prop>
-        <Prop name="cheers">an array of objects that look like <code>{ name }</code> that represent other users having cheered the same entity</Prop>
-        <ClassNameProp />
+        <Prop name="cheers">
+          an array of objects that look like <code>{"{ name }"}</code> that{" "}
+          represent other users having cheered the same entity
+        </Prop>
         <Prop name="name?">an optional name that will appear in a tooltip</Prop>
-        <Prop name="onCheerToggle">a callback function that accepts a boolean <code>cheered</code> state and returns a <code>Promise</code></Prop>
+        <Prop name="onCheerToggle">
+          a callback function that accepts a boolean <code>cheered</code>{" "}
+          state and returns a <code>Promise</code>
+        </Prop>
       </PropList>
 
       <CheerListContainer
@@ -295,7 +303,10 @@ const App = () => (
       <Info>This is an info.</Info>
 
       <Heading>Loader</Heading>
-      <p>A component that waits for something to be loaded, and displays a spinner if it takes too long to load.</p>
+      <p>
+        A component that waits for something to be loaded, and displays a{" "}
+        spinner if it takes too long to load.
+      </p>
       <PropList>
         <Prop name="children">the components to display once <code>loading</code> is false</Prop>
         <Prop name="loading">whether or not <code>loading</code> is taking place</Prop>
@@ -304,7 +315,10 @@ const App = () => (
       <LoaderContainer />
 
       <Heading>Nav</Heading>
-      <p>A top-level nav that displays at the top of the page. It hides when you scroll down and shows when you scroll up. (Displayed above.)</p>
+      <p>
+        A top-level nav that displays at the top of the page. It hides when{" "}
+        you scroll down and shows when you scroll up. (Displayed above.)
+      </p>
       <PropList>
         <Prop name="children">the components to display inside the nav</Prop>
         <ClassNameProp />
@@ -346,7 +360,8 @@ const App = () => (
       <PropList>
         <Prop name="children">
           the components to be displayed inside the panel, expected to be instances of{" "}
-          <code>Panel.Heading</code>, <code>Panel.Body</code>, <code>Panel.LoaderBody</code>, or <code>Panel.Footer</code>
+          <code>Panel.Heading</code>, <code>Panel.Body</code>,{" "}
+          <code>Panel.LoaderBody</code>, or <code>Panel.Footer</code>
         </Prop>
         <ClassNameProp />
       </PropList>
@@ -429,9 +444,15 @@ const App = () => (
       </Form>
 
       <Heading>SubmitButton</Heading>
-      <p>A button used to submit a form. Accepts all of the same props as a regular <code>Button</code> component, with the addition of:</p>
+      <p>
+        A button used to submit a form. Accepts all of the same props as a{" "}
+        regular <code>Button</code> component, with the addition of:
+      </p>
       <PropList>
-        <Prop name="children?">a function that accepts a single argument (<code>submitting</code>) that should return valid React children depending on that boolean argument</Prop>
+        <Prop name="children?">
+          a function that accepts a single argument (<code>submitting</code>){" "}
+          that should return valid React children depending on that boolean argument
+        </Prop>
         <Prop name="submitting">a boolean value representing whether or not the form is currently submitting</Prop>
       </PropList>
 
@@ -440,9 +461,15 @@ const App = () => (
       </Form>
 
       <Heading>Subnav</Heading>
-      <p>A navigation menu for within the application. Can function as either a controlled component or an uncontrolled component.</p>
+      <p>
+        A navigation menu for within the application. Can function as{" "}
+        either a controlled component or an uncontrolled component.
+      </p>
       <PropList>
-        <Prop name="activeIndex?">an integer that represents the index of the child that is currently active, passed if you want to use this component as a controlled component</Prop>
+        <Prop name="activeIndex?">
+          an integer that represents the index of the child that is currently{" "}
+          active, passed if you want to use this component as a controlled component
+        </Prop>
         <Prop name="children">a list of subnav items, usually <code>Subnav.Item</code> components</Prop>
         <ClassNameProp />
         <Prop name="onChange">a function that is called with the index of the new active item when the subnav changes</Prop>
@@ -474,7 +501,7 @@ const App = () => (
       <PropList>
         <Prop name="children">displayed inside the tag</Prop>
         <ClassNameProp />
-        <Prop name={"color? = \"blue\""}>can be one of <code>"blue"</code>, <code>"gray"</code>, or <code>"red"</code></Prop>
+        <Prop name={"color? = \"blue\""}>can be one of <code>blue</code>, <code>gray</code>, or <code>red</code></Prop>
       </PropList>
 
       <Tag>Blue</Tag>
@@ -486,7 +513,7 @@ const App = () => (
       <PropList>
         <ClassNameProp />
         <Prop name="image">the image to be displayed</Prop>
-        <Prop name={"size? = \"small\""}>can be <code>"small"</code>, <code>"medium"</code>, or <code>"large"</code></Prop>
+        <Prop name={"size? = \"small\""}>can be on of <code>small</code>, <code>medium</code>, or <code>large</code></Prop>
         <Prop name="square? = false">whether or not this image should be displayed as a square</Prop>
         <Prop name="title?">an optional title for the image</Prop>
       </PropList>
