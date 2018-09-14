@@ -1,0 +1,40 @@
+@import '../common';
+
+.chq-cbn {
+  background-color: $color-white;
+  border: #eaeaea solid 1px;
+  border-radius: 5px;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  font-size: .9em;
+  outline: none;
+  padding: 12px 15px;
+  transition: background-color .3s;
+
+  svg {
+    fill: #c9c9c9;
+    height: 17px;
+    transition: fill .3s;
+    vertical-align: bottom;
+    width: 12px;
+  }
+
+  &-ch {
+    svg {
+      fill: $color-link-blue;
+    }
+  }
+
+  &:hover {
+    background-color: #f7f7f7;
+
+    svg {
+      fill: $color-link-blue;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

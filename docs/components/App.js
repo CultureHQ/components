@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 
 import CheckmarkContainer from "./CheckmarkContainer";
+import CheerButtonContainer from "./CheerButtonContainer";
 import FormContainer from "./FormContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
@@ -66,6 +67,9 @@ const App = () => (
       <Cheer color="lightblue" />
       <Cheer color="yellow" />
       <Cheer color="green" />
+
+      <Heading>CheerButton</Heading>
+      <CheerButtonContainer />
 
       <Heading>Circles</Heading>
       <Circles />
