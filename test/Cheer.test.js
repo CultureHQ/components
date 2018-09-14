@@ -1,24 +1,30 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 
-import { Cheer } from "../src";
-
-test("renders without crashing", () => {
-  const component = shallow(<Cheer />);
-
-  expect(component.type()).toEqual("svg");
-});
+import { Cheer, Tooltip } from "../src";
 
 test("passes on className", () => {
-  const component = shallow(<Cheer className="cheer" />);
+  const component = mount(<Cheer className="cheer" />);
 
-  expect(component.hasClass("cheer")).toBe(true);
-  expect(component.hasClass("chq-chr")).toBe(true);
+  expect(component.find("svg").hasClass("cheer")).toBe(true);
+  expect(component.find("svg").hasClass("chq-chr")).toBe(true);
 });
 
 test("allows you to pass different colors", () => {
-  const component = shallow(<Cheer color="yellow" />);
+  const component = mount(<Cheer color="yellow" />);
 
-  expect(component.hasClass("chq-chr-yw")).toBe(true);
-  expect(component.hasClass("chq-chr")).toBe(true);
+  expect(component.find("svg").hasClass("chq-chr-yw")).toBe(true);
+  expect(component.find("svg").hasClass("chq-chr")).toBe(true);
+});
+
+test("renders a tooltip if you pass a name", () => {
+  const component = mount(<Cheer name="Harry" />);
+
+  expect(component.find(Tooltip)).toHaveLength(1);
+});
+
+test("adds the animation class if the pop prop is passed", () => {
+  const component = mount(<Cheer pop />);
+
+  expect(component.find("svg").hasClass("chq-chr-pp")).toBe(true);
 });
