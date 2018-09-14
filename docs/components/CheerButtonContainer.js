@@ -16,11 +16,13 @@ class CheerButtonContainer extends Component {
   };
 
   render() {
+    const { name } = this.props;
     const { cheered } = this.state;
 
     return (
       <CheerButton
         cheered={cheered}
+        name={name}
         onCheerToggle={this.handleCheerToggle}
       />
     );

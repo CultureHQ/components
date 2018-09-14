@@ -155,24 +155,26 @@ const App = () => (
           sets the fill of the SVG, can be one of <code>"darkblue"</code>,
           <code>"lightblue"</code>, <code>"yellow"</code>, or <code>"green"</code>
         </Prop>
+        <Prop name="name?">an optional name that will appear in a tooltip</Prop>
         <Prop name="pop? = false">whether or not this <code>Cheer</code> should pop in</Prop>
       </PropList>
 
       <Cheer color="darkblue" pop />
-      <Cheer color="lightblue" />
-      <Cheer color="yellow" />
-      <Cheer color="green" />
+      <Cheer name="Kevin" color="lightblue" />
+      <Cheer name="Brian" color="yellow" />
+      <Cheer name="Jimmy" color="green" />
 
       <Heading>CheerButton</Heading>
       <p>An SVG of a person cheering.</p>
       <PropList>
         <Prop name="cheered">the state of whether or not this entity has been cheered</Prop>
         <ClassNameProp />
+        <Prop name="name?">an optional name that will appear in a tooltip</Prop>
         <Prop name="onCheerToggle">a callback function that accepts a boolean <code>cheered</code> state and returns a <code>Promise</code></Prop>
       </PropList>
 
       <CheerButtonContainer />{" "}
-      <CheerButtonContainer cheered />
+      <CheerButtonContainer cheered name="Kevin" />
 
       <Heading>Circles</Heading>
       <p>The CultureHQ circles. (Try hovering.)</p>
@@ -485,7 +487,7 @@ const App = () => (
       ))}
 
       <Heading>Tooltip</Heading>
-      <p>A tip that pops over the content inside of it.</p>
+      <p>A tip that pops over the content inside of it. Aware of the left side of the page.</p>
       <PropList>
         <Prop name="children">The content that has a tip</Prop>
         <ClassNameProp />
@@ -493,19 +495,7 @@ const App = () => (
       </PropList>
 
       <Tooltip tip={TOOLTIP}>
-        <Cheer />
-      </Tooltip>
-
-      <Tooltip tip="Kevin">
-        <Cheer color="lightblue" />
-      </Tooltip>
-
-      <Tooltip tip="Brian">
-        <Cheer color="yellow" />
-      </Tooltip>
-
-      <Tooltip tip="Jimmy">
-        <Cheer color="green" />
+        <Button primary disabled>Some action</Button>
       </Tooltip>
 
       <Heading>Warning</Heading>

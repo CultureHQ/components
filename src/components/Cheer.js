@@ -1,6 +1,7 @@
 import React from "react";
 
 import classnames from "../classnames";
+import Tooltip from "./Tooltip";
 
 const COLORS = {
   darkblue: "db",
@@ -9,7 +10,7 @@ const COLORS = {
   green: "gr"
 };
 
-const Cheer = ({ className, color = "darkblue", pop }) => (
+const CheerSVG = ({ className, color = "darkblue", pop }) => (
   <svg
     className={classnames("chq-chr", className, `chq-chr-${COLORS[color]}`, { "chq-chr-pp": pop } )}
     viewBox="0 0 344 512"
@@ -26,5 +27,13 @@ const Cheer = ({ className, color = "darkblue", pop }) => (
     <circle className="chq-chr--fb chq-chr--fb-4" r="40" cy="-101" cx="170" />
   </svg>
 );
+
+const Cheer = ({ name, ...props }) => {
+  if (name) {
+    return <Tooltip tip={name}><CheerSVG {...props} /></Tooltip>;
+  }
+
+  return <CheerSVG {...props} />;
+};
 
 export default Cheer;

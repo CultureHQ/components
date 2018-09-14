@@ -18,7 +18,7 @@ class CheerButton extends Component {
   };
 
   render() {
-    const { cheered, className, onCheerToggle } = this.props;
+    const { cheered, className, name, onCheerToggle } = this.props;
     const { toggling, touched } = this.state;
 
     return (
@@ -31,7 +31,7 @@ class CheerButton extends Component {
         >
           <Cheer /> Cheer!
         </button>
-        {cheered && <Cheer pop={touched} />}
+        {cheered && <Cheer name={name} pop={touched} />}
       </Fragment>
     );
   }
