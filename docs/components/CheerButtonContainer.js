@@ -12,7 +12,7 @@ class CheerButtonContainer extends Component {
   handleCheerToggle = cheered => {
     this.setState({ cheered });
 
-    return new Promise(resolve => setTimeout(() => resolve(), 1000));
+    return new Promise(resolve => setTimeout(() => resolve(), 500));
   };
 
   render() {

@@ -8,6 +8,7 @@ export { default as Checklist } from "./components/Checklist";
 export { default as Checkmark } from "./components/Checkmark";
 export { default as Cheer } from "./components/Cheer";
 export { default as CheerButton } from "./components/CheerButton";
+export { default as CheerList } from "./components/CheerList";
 export { default as Circles } from "./components/Circles";
 export { EmailField, NumberField, PasswordField, StringField } from "./components/FormFields";
 export { default as FeedItem } from "./components/FeedItem";

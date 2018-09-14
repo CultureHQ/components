@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 
 import classnames from "../classnames";
-import Button from "./Button";
 import Cheer from "./Cheer";
 
 class CheerButton extends Component {

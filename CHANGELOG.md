@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `Cheer` component.
 - The `CheerButton` component.
 - The `Tooltip` component.
+- The `CheerList` component.
 
 ## [3.4.0] - 2018-09-13
 ### Changed

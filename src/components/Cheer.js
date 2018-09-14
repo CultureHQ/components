@@ -3,11 +3,11 @@ import React from "react";
 import classnames from "../classnames";
 import Tooltip from "./Tooltip";
 
-const COLORS = {
+export const COLORS = {
   darkblue: "db",
+  green: "gr",
   lightblue: "lb",
-  yellow: "yw",
-  green: "gr"
+  yellow: "yw"
 };
 
 const CheerSVG = ({ className, color = "darkblue", pop }) => (

@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 
 import CheckmarkContainer from "./CheckmarkContainer";
 import CheerButtonContainer from "./CheerButtonContainer";
+import CheerListContainer from "./CheerListContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
 import LoaderContainer from "./LoaderContainer";
@@ -29,19 +30,13 @@ const ClassNameProp = () => <Prop name="className?">an extra {"class"} name</Pro
 
 const Subcomponent = ({ children }) => <p><code>{children}</code> subcomponent</p>;
 
-const onSubmit = values => {
-  console.log(values); // eslint-disable-line no-console
-  return new Promise(resolve => setTimeout(() => resolve(), 1000));
-};
+const onSubmit = () => new Promise(resolve => setTimeout(resolve, 1000));
 
 const TOOLTIP = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus neque
-  leo, quis bibendum justo facilisis quis. Praesent justo ante, efficitur non
-  lacus sit amet, bibendum tempor mauris. Morbi et metus dignissim, lacinia diam
-  in, varius quam. Ut a orci luctus, aliquam dui vitae, condimentum augue.
-  Mauris luctus ultrices faucibus. Praesent neque leo, congue id ornare non,
-  imperdiet et tortor. Proin dictum tellus vitae felis porttitor, a vehicula
-  lorem consequat.
+  Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that
+  they were perfectly normal, thank you very much. They were the last people
+  you'd expect to be involved in anything strange or mysterious, because they
+  just didn't hold with such nonsense.
 `;
 
 const App = () => (
@@ -160,9 +155,9 @@ const App = () => (
       </PropList>
 
       <Cheer color="darkblue" pop />
-      <Cheer name="Kevin" color="lightblue" />
-      <Cheer name="Brian" color="yellow" />
-      <Cheer name="Jimmy" color="green" />
+      <Cheer name="Hermione" color="green" />
+      <Cheer name="Ron" color="lightblue" />
+      <Cheer name="Luna" color="yellow" />
 
       <Heading>CheerButton</Heading>
       <p>An SVG of a person cheering.</p>
@@ -174,7 +169,27 @@ const App = () => (
       </PropList>
 
       <CheerButtonContainer />{" "}
-      <CheerButtonContainer cheered name="Kevin" />
+      <CheerButtonContainer cheered name="Harry" />
+
+      <Heading>CheerList</Heading>
+      <p>A list of cheers on an entity.</p>
+      <PropList>
+        <Prop name="cheered">the state of whether or not this entity has been cheered</Prop>
+        <Prop name="cheers">an array of objects that look like <code>{ name }</code> that represent other users having cheered the same entity</Prop>
+        <ClassNameProp />
+        <Prop name="name?">an optional name that will appear in a tooltip</Prop>
+        <Prop name="onCheerToggle">a callback function that accepts a boolean <code>cheered</code> state and returns a <code>Promise</code></Prop>
+      </PropList>
+
+      <CheerListContainer
+        cheers={[
+          { name: "Hermione" },
+          { name: "Ron" },
+          { name: "Luna" },
+          { name: "Neville" }
+        ]}
+        name="Harry"
+      />
 
       <Heading>Circles</Heading>
       <p>The CultureHQ circles. (Try hovering.)</p>
