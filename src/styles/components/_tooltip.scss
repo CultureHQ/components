@@ -3,12 +3,6 @@
 .chq-ttp {
   position: relative;
 
-  &:hover {
-    .chq-ttp--bbl {
-      display: table;
-    }
-  }
-
   &--bbl {
     background: $color-black;
     border-radius: 5px;
@@ -34,5 +28,11 @@
     position: absolute;
     transform: rotate(-45deg);
     width: 12px;
+  }
+
+  &:hover {
+    .chq-ttp--bbl {
+      display: table;
+    }
   }
 }
