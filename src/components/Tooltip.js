@@ -1,19 +1,5 @@
 import React, { Component } from "react";
 
-const bubbleOffset = ({ tooltip, bubble }) => {
-  if ((bubble.offsetWidth / 2) > tooltip.offsetLeft) {
-    return `${(10 - tooltip.offsetLeft)}px`;
-  }
-  return `${-Math.abs((bubble.offsetWidth - tooltip.offsetWidth) / 2)}px`;
-};
-
-const triangleOffset = ({ tooltip, bubble, triangle }) => {
-  if ((bubble.offsetWidth / 2) > tooltip.offsetLeft) {
-    return `${tooltip.offsetLeft - 10 + ((tooltip.offsetWidth - triangle.offsetWidth) / 2)}px`;
-  }
-  return null;
-};
-
 class Tooltip extends Component {
   bubble = React.createRef();
 
@@ -22,24 +8,47 @@ class Tooltip extends Component {
   triangle = React.createRef();
 
   componentDidMount() {
-    const bubbleStyle = this.bubble.current.style;
-    const components = {
-      bubble: this.bubble.current,
-      tooltip: this.tooltip.current,
-      triangle: this.triangle.current
-    };
+    this.computeOffsets();
+
+    window.addEventListener("resize", this.recomputeOffsets);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.recomputeOffsets);
+  }
+
+  computeOffsets = () => {
+    const bubble = this.bubble.current;
+    const tooltip = this.tooltip.current;
+    const triangle = this.triangle.current;
 
     window.requestAnimationFrame(() => {
-      bubbleStyle.visibility = "hidden";
-      bubbleStyle.display = "table";
+      bubble.style.visibility = "hidden";
+      bubble.style.display = "table";
 
-      bubbleStyle.left = bubbleOffset(components);
-      this.triangle.current.style.left = triangleOffset(components);
+      let bubbleOffset = -Math.abs((bubble.offsetWidth - tooltip.offsetWidth) / 2);
 
-      bubbleStyle.display = null;
-      bubbleStyle.visibility = null;
+      if ((bubble.offsetWidth / 2) > tooltip.offsetLeft) {
+        bubbleOffset = 10 - tooltip.offsetLeft;
+
+        const triangleMiddle = (tooltip.offsetWidth - triangle.offsetWidth) / 2;
+        triangle.style.left = `${tooltip.offsetLeft - 10 + triangleMiddle}px`;
+      }
+
+      bubble.style.left = `${bubbleOffset}px`;
+
+      bubble.style.display = null;
+      bubble.style.visibility = null;
     });
-  }
+  };
+
+  recomputeOffsets = () => {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+
+    this.timeout = setTimeout(this.computeOffsets, 1000);
+  };
 
   render() {
     const { children, tip } = this.props;
