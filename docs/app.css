@@ -18,13 +18,18 @@ a:hover {
   text-decoration: underline;
 }
 
-pre {
-  font-size: 2em;
-}
-
 .container {
   margin: 70px auto;
   width: 66%;
+}
+
+pre {
+  font-size: 2em;
+  margin-bottom: 0;
+}
+
+.prop-list {
+  margin-bottom: 2em;
 }
 
 .icons svg {

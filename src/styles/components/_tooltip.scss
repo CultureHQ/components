@@ -1,0 +1,38 @@
+@import '../common';
+
+.chq-ttp {
+  position: relative;
+
+  &--bbl {
+    background: $color-black;
+    border-radius: 5px;
+    bottom: 250%;
+    box-sizing: border-box;
+    color: $color-white;
+    display: none;
+    font-size: .8em;
+    font-weight: 100;
+    left: -150px;
+    max-width: 300px;
+    opacity: .8;
+    padding: 5px 10px;
+    position: absolute;
+  }
+
+  &--tri {
+    background-color: $color-black;
+    bottom: -6px;
+    content: '';
+    height: 12px;
+    left: calc(50% - 6px);
+    position: absolute;
+    transform: rotate(-45deg);
+    width: 12px;
+  }
+
+  &:hover {
+    .chq-ttp--bbl {
+      display: table;
+    }
+  }
+}

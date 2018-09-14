@@ -1,0 +1,154 @@
+@import '../common';
+
+.chq-chr {
+  height: 30px;
+  overflow: visible;
+  width: 21px;
+
+  &-db {
+    fill: $color-link-blue;
+  }
+
+  &-lb {
+    fill: $color-primary-blue;
+  }
+
+  &-yw {
+    fill: $color-primary-yellow;
+  }
+
+  &-gr {
+    fill: $color-primary-green;
+  }
+
+  &--fb {
+    opacity: 0;
+
+    &-1,
+    &-7 {
+      fill: $color-link-blue;
+    }
+
+    &-2,
+    &-6 {
+      fill: $color-primary-green;
+    }
+
+    &-3,
+    &-5 {
+      fill: $color-primary-yellow;
+    }
+
+    &-4 {
+      fill: $color-primary-blue;
+    }
+  }
+
+  &-pp {
+    animation: chqChrPop .2s ease-in-out forwards;
+    opacity: 0;
+    transform: scale(.8);
+
+    .chq-chr--fb {
+      &-1 {
+        animation: chqChrOne .8s forwards;
+        animation-delay: .275s;
+      }
+
+      &-2 {
+        animation: chqChrTwo .8s forwards;
+        animation-delay: .275s;
+      }
+
+      &-3 {
+        animation: chqChrThree .8s forwards;
+        animation-delay: .275s;
+      }
+
+      &-4 {
+        animation: chqChrFour .8s forwards;
+        animation-delay: .275s;
+      }
+
+      &-5 {
+        animation: chqChrFive .8s forwards;
+        animation-delay: .275s;
+      }
+
+      &-6 {
+        animation: chqChrSix .8s forwards;
+        animation-delay: .275s;
+      }
+
+      &-7 {
+        animation: chqChrSeven .8s forwards;
+        animation-delay: .275s;
+      }
+    }
+  }
+}
+
+@keyframes chqChrPop {
+  0% {
+    opacity: 0;
+    transform: scale(.8);
+  }
+
+  1% {
+    opacity: .5;
+    transform: scale(.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@mixin fireball($x, $y) {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d($x, $y, 0) scale(.2);
+  }
+}
+
+@keyframes chqChrOne {
+  @include fireball(-22%, -22%);
+}
+
+@keyframes chqChrTwo {
+  @include fireball(-5%, -32%);
+}
+
+@keyframes chqChrThree {
+  @include fireball(15%, -38%);
+}
+
+@keyframes chqChrFour {
+  @include fireball(40%, -40%);
+}
+
+@keyframes chqChrFive {
+  @include fireball(65%, -38%);
+}
+
+@keyframes chqChrSix {
+  @include fireball(85%, -32%);
+}
+
+@keyframes chqChrSeven {
+  @include fireball(102%, -22%);
+}
