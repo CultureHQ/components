@@ -11,7 +11,7 @@ import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
   EmailField, FeedItem, FileField, Form, Info, Nav, NumberField, Panel,
   PasswordField, Spinner, StringField, SubmitButton, Subnav, Success, Tag,
-  Thumbnail, Warning
+  Thumbnail, Tooltip, Warning
 } from "../../src";
 
 const Heading = ({ children }) => (
@@ -33,6 +33,16 @@ const onSubmit = values => {
   console.log(values); // eslint-disable-line no-console
   return new Promise(resolve => setTimeout(() => resolve(), 1000));
 };
+
+const TOOLTIP = `
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus neque
+  leo, quis bibendum justo facilisis quis. Praesent justo ante, efficitur non
+  lacus sit amet, bibendum tempor mauris. Morbi et metus dignissim, lacinia diam
+  in, varius quam. Ut a orci luctus, aliquam dui vitae, condimentum augue.
+  Mauris luctus ultrices faucibus. Praesent neque leo, congue id ornare non,
+  imperdiet et tortor. Proin dictum tellus vitae felis porttitor, a vehicula
+  lorem consequat.
+`;
 
 const App = () => (
   <Fragment>
@@ -473,6 +483,30 @@ const App = () => (
           square={Math.floor(ident % 4) >= 2}
         />
       ))}
+
+      <Heading>Tooltip</Heading>
+      <p>A tip that pops over the content inside of it.</p>
+      <PropList>
+        <Prop name="children">The content that has a tip</Prop>
+        <ClassNameProp />
+        <Prop name="tip">The text to display inside the tip</Prop>
+      </PropList>
+
+      <Tooltip tip={TOOLTIP}>
+        <Cheer />
+      </Tooltip>
+
+      <Tooltip tip="Kevin">
+        <Cheer color="lightblue" />
+      </Tooltip>
+
+      <Tooltip tip="Brian">
+        <Cheer color="yellow" />
+      </Tooltip>
+
+      <Tooltip tip="Jimmy">
+        <Cheer color="green" />
+      </Tooltip>
 
       <Heading>Warning</Heading>
       <p>Displays a warning message.</p>
