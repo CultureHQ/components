@@ -2602,7 +2602,7 @@
     transform: scale(1) translate3d(0, 0, 0); } }
 
 .chq-ttp {
-  display: inline-block;
+  display: inline-table;
   position: relative; }
   .chq-ttp--bbl {
     background: #000;
