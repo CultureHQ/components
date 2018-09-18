@@ -6,7 +6,6 @@ import CheerListContainer from "./CheerListContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
 import LoaderContainer from "./LoaderContainer";
-import ModalContainer from "./ModalContainer";
 import PaginationContainer from "./PaginationContainer";
 
 import {
@@ -46,7 +45,7 @@ const App = () => (
         <Prop name="children">displayed inside the badge</Prop>
         <ClassNameProp />
         <Prop name="onClick?">a click handler</Prop>
-        <Prop name="primary? = false">indicates a primary badge</Prop>
+        <Prop name="primary = false">indicates a primary badge</Prop>
       </PropList>
 
       <Badge className="badge">Default</Badge>
@@ -78,7 +77,7 @@ const App = () => (
         <Prop name="onClick">the callback when the button is clicked</Prop>
         <Prop name="primary?">indicates a larger primary button</Prop>
         <Prop name="small?">indicates a small button</Prop>
-        <Prop name={"type? = \"button\""}>the type of the button component</Prop>
+        <Prop name={"type = \"button\""}>the type of the button component</Prop>
       </PropList>
 
       <Button>Default</Button>{" "}
@@ -142,13 +141,13 @@ const App = () => (
       <p>An SVG of a person cheering.</p>
       <PropList>
         <ClassNameProp />
-        <Prop name={"color? = \"darkblue\""}>
+        <Prop name={"color = \"darkblue\""}>
           sets the fill of the SVG, can be one of <code>darkblue</code>,{" "}
           <code>lightblue</code>, <code>yellow</code>, or <code>green</code>
         </Prop>
         <Prop name="name?">an optional name that will appear in a tooltip</Prop>
-        <Prop name="pop? = false">whether or not this <code>Cheer</code> should pop in</Prop>
-        <Prop name="small? = false">indicates a small <code>Cheer</code></Prop>
+        <Prop name="pop = false">whether or not this <code>Cheer</code> should pop in</Prop>
+        <Prop name="small = false">indicates a small <code>Cheer</code></Prop>
       </PropList>
 
       <Cheer color="darkblue" pop />
@@ -168,7 +167,7 @@ const App = () => (
           a callback function that accepts a boolean <code>cheered</code>{" "}
           state and returns a <code>Promise</code>
         </Prop>
-        <Prop name="small? = false">indicates a small button (text will be hidden)</Prop>
+        <Prop name="small = false">indicates a small button (text will be hidden)</Prop>
       </PropList>
 
       <CheerButtonContainer />{" "}
@@ -255,7 +254,7 @@ const App = () => (
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="onChange">a function that accepts one argument that represents the new value of the file field</Prop>
-        <Prop name="multiple? = false">whether or not this field accepts multiple files</Prop>
+        <Prop name="multiple = false">whether or not this field accepts multiple files</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
         <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
@@ -350,8 +349,15 @@ const App = () => (
         <ClassNameProp />
       </PropList>
 
-      <ModalContainer entrance="slideIn">slideIn modal</ModalContainer>{" "}
-      <ModalContainer entrance="zoomIn">zoomIn modal</ModalContainer>
+      <Modal entrance="slideIn" trigger={onClick => <Button onClick={onClick}>slideIn modal</Button>}>
+        <Modal.Heading>Chapter 1</Modal.Heading>
+        <Modal.Body>{TEXT}</Modal.Body>
+      </Modal>
+      {" "}
+      <Modal entrance="zoomIn" trigger={onClick => <Button onClick={onClick}>zoomIn modal</Button>}>
+        <Modal.Heading>Chapter 2</Modal.Heading>
+        <Modal.LoaderBody loading />
+      </Modal>
 
       <Heading>Nav</Heading>
       <p>
@@ -555,7 +561,7 @@ const App = () => (
       <PropList>
         <Prop name="children">displayed inside the tag</Prop>
         <ClassNameProp />
-        <Prop name={"color? = \"blue\""}>can be one of <code>blue</code>, <code>gray</code>, or <code>red</code></Prop>
+        <Prop name={"color = \"blue\""}>can be one of <code>blue</code>, <code>gray</code>, or <code>red</code></Prop>
       </PropList>
 
       <Tag>Blue</Tag>
@@ -567,8 +573,8 @@ const App = () => (
       <PropList>
         <ClassNameProp />
         <Prop name="image">the image to be displayed</Prop>
-        <Prop name={"size? = \"small\""}>can be on of <code>small</code>, <code>medium</code>, or <code>large</code></Prop>
-        <Prop name="square? = false">whether or not this image should be displayed as a square</Prop>
+        <Prop name={"size = \"small\""}>can be on of <code>small</code>, <code>medium</code>, or <code>large</code></Prop>
+        <Prop name="square = false">whether or not this image should be displayed as a square</Prop>
         <Prop name="title?">an optional title for the image</Prop>
       </PropList>
 

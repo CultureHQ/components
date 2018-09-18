@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 import { default as ReactModal } from "react-modal";
 
 import classnames from "../classnames";
@@ -19,17 +19,6 @@ const entrances = {
   zoomIn: "chq-mdl-zi"
 };
 
-const Modal = ({ children, className, entrance = "slideIn", onClose }) => (
-  <ReactModal
-    className={classnames("chq-mdl", className, entrances[entrance])}
-    onRequestClose={onClose}
-    isOpen
-    style={styles}
-  >
-    {children}
-  </ReactModal>
-);
-
 const ModalHeading = ({ children, className, onClose }) => (
   <Panel.Heading primary>
     {children}
@@ -38,6 +27,53 @@ const ModalHeading = ({ children, className, onClose }) => (
     </PlainButton>
   </Panel.Heading>
 );
+
+class Modal extends Component {
+  state = { open: false };
+
+  getChildren() {
+    const { children } = this.props;
+
+    return React.Children.map(children, child => {
+      const { type } = child;
+
+      if (child.type === ModalHeading) {
+        return React.cloneElement(child, { onClose: this.handleClose });
+      }
+
+      return child;
+    });
+  }
+
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    const { className, entrance = "slideIn", trigger } = this.props;
+    const { open } = this.state;
+
+    return (
+      <Fragment>
+        {trigger(this.handleOpen)}
+        {open && (
+          <ReactModal
+            className={classnames("chq-mdl", className, entrances[entrance])}
+            onRequestClose={this.handleClose}
+            isOpen
+            style={styles}
+          >
+            {this.getChildren()}
+          </ReactModal>
+        )}
+      </Fragment>
+    );
+  }
+}
 
 Object.assign(Modal, {
   setAppElement: ReactModal.setAppElement,
