@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.6.0] - 2018-09-18
+### Added
+- The `PlainButton` component.
+
 ## [3.5.0] - 2018-09-14
 ### Added
 - The `Cheer` component.

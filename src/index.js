@@ -21,6 +21,7 @@ export { default as Info } from "./components/Info";
 export { default as Nav } from "./components/Nav";
 export { default as Pagination } from "./components/Pagination";
 export { default as Panel } from "./components/Panel";
+export { default as PlainButton } from "./components/PlainButton";
 export { default as Spinner } from "./components/Spinner";
 export { default as SubmitButton } from "./components/SubmitButton";
 export { default as Subnav } from "./components/Subnav";

@@ -147,6 +147,12 @@ Object.defineProperty(exports, "Panel", {
     return _Panel.default;
   }
 });
+Object.defineProperty(exports, "PlainButton", {
+  enumerable: true,
+  get: function get() {
+    return _PlainButton.default;
+  }
+});
 Object.defineProperty(exports, "Spinner", {
   enumerable: true,
   get: function get() {
@@ -239,6 +245,8 @@ var _Nav = _interopRequireDefault(require("./components/Nav"));
 var _Pagination = _interopRequireDefault(require("./components/Pagination"));
 
 var _Panel = _interopRequireDefault(require("./components/Panel"));
+
+var _PlainButton = _interopRequireDefault(require("./components/PlainButton"));
 
 var _Spinner = _interopRequireDefault(require("./components/Spinner"));
 

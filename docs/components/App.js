@@ -11,8 +11,8 @@ import PaginationContainer from "./PaginationContainer";
 import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
   EmailField, FeedItem, FileField, Form, Info, Nav, NumberField, Panel,
-  PasswordField, Spinner, StringField, SubmitButton, Subnav, Success, Tag,
-  Thumbnail, Tooltip, Warning
+  PasswordField, PlainButton, Spinner, StringField, SubmitButton, Subnav,
+  Success, Tag, Thumbnail, Tooltip, Warning
 } from "../../src";
 
 const Heading = ({ children }) => (
@@ -38,6 +38,9 @@ const TOOLTIP = `
   you'd expect to be involved in anything strange or mysterious, because they
   just didn't hold with such nonsense.
 `;
+
+// eslint-disable-next-line no-alert
+const onClick = () => alert("Clicked!");
 
 const App = () => (
   <Fragment>
@@ -418,6 +421,21 @@ const App = () => (
       <Form>
         <PasswordField name="password" required>Password</PasswordField>
       </Form>
+
+      <Heading>PlainButton</Heading>
+      <p>
+        A <code>button</code> that has all of its styles reset. Useful for when
+        you want to maintain adherence to semantics and a11y but effectively
+        just want to capture an event interaction.
+      </p>
+      <PropList>
+        <Prop name="children">the contents of the button</Prop>
+        <ClassNameProp />
+      </PropList>
+
+      <PlainButton onClick={onClick}>
+        Click me
+      </PlainButton>
 
       <Heading>Spinner</Heading>
       <p>A circular spinner using the CultureHQ colors.</p>
