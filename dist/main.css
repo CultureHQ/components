@@ -566,6 +566,10 @@
     .chq-chr-pp .chq-chr--fb-7 {
       animation: chqChrSeven .8s forwards;
       animation-delay: .275s; }
+  .chq-chr-sm {
+    height: 20px;
+    margin-bottom: 2px;
+    width: 14px; }
 
 @keyframes chqChrPop {
   0% {
@@ -763,6 +767,9 @@
     width: 12px; }
   .chq-cbn-ch svg {
     fill: #6a89af; }
+  .chq-cbn-sm {
+    margin-right: 4px;
+    padding: 8px 6px; }
   .chq-cbn:hover {
     background-color: #f7f7f7; }
     .chq-cbn:hover svg {
@@ -2595,11 +2602,12 @@
     transform: scale(1) translate3d(0, 0, 0); } }
 
 .chq-ttp {
+  display: inline-block;
   position: relative; }
   .chq-ttp--bbl {
     background: #000;
     border-radius: 5px;
-    bottom: 250%;
+    bottom: calc(100% + 15px);
     box-sizing: border-box;
     color: #fff;
     display: none;

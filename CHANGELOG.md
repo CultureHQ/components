@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.7.0] - 2018-09-18
+### Added
+- The optional `small` prop to `CheerButton` and `Cheer` to allow for smaller cheers (used for comments).
+
 ## [3.6.1] - 2018-09-18
 ### Changed
 - Fixed up non-spec `border: none` to be `border: 0` for the `PlainButton` component.

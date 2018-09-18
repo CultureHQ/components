@@ -28,6 +28,11 @@
     }
   }
 
+  &-sm {
+    margin-right: 4px;
+    padding: 8px 6px;
+  }
+
   &:hover {
     background-color: $color-background;
 

@@ -10,9 +10,14 @@ export const COLORS = {
   yellow: "yw"
 };
 
-const CheerSVG = ({ className, color = "darkblue", pop }) => (
+const CheerSVG = ({ className, color = "darkblue", pop, small }) => (
   <svg
-    className={classnames("chq-chr", className, `chq-chr-${COLORS[color]}`, { "chq-chr-pp": pop })}
+    className={
+      classnames("chq-chr", className, `chq-chr-${COLORS[color]}`, {
+        "chq-chr-pp": pop,
+        "chq-chr-sm": small
+      })
+    }
     viewBox="0 0 344 512"
   >
     <path d="m331 25c-11-9-27-8-36 3l-88 104c-4 4-9 7-16 7l-40 0c-5 0-12-3-16-7l-88-104c-9-11-25-12-36-3-11 9-12 25-3 36l100 120 0 143 0 8 0 152c0 15 12 25 25 25 15 0 25-12 25-25l0-152 20 0 0 152c0 15 12 25 25 25 15 0 25-12 25-25l0-152 0-8 0-143 100-120c9-11 8-26 2-37z" />

@@ -29,10 +29,12 @@ var CheerSVG = function CheerSVG(_ref) {
   var className = _ref.className,
       _ref$color = _ref.color,
       color = _ref$color === void 0 ? "darkblue" : _ref$color,
-      pop = _ref.pop;
+      pop = _ref.pop,
+      small = _ref.small;
   return _react.default.createElement("svg", {
     className: (0, _classnames.default)("chq-chr", className, "chq-chr-".concat(COLORS[color]), {
-      "chq-chr-pp": pop
+      "chq-chr-pp": pop,
+      "chq-chr-sm": small
     }),
     viewBox: "0 0 344 512"
   }, _react.default.createElement("path", {

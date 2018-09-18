@@ -17,20 +17,26 @@ class CheerButton extends Component {
   };
 
   render() {
-    const { cheered, className, name } = this.props;
+    const { cheered, className, name, small } = this.props;
     const { toggling, touched } = this.state;
 
     return (
       <Fragment>
         <button
           type="button"
-          className={classnames("chq-cbn", className, { "chq-cbn-ch": cheered })}
+          className={
+            classnames("chq-cbn", className, {
+              "chq-cbn-ch": cheered,
+              "chq-cbn-sm": small
+            })
+          }
           disabled={toggling}
           onClick={this.handleClick}
         >
-          <Cheer /> Cheer!
+          <Cheer />
+          {!small && <Fragment>{" "}Cheer!</Fragment>}
         </button>
-        {cheered && <Cheer name={name} pop={touched} />}
+        {cheered && <Cheer name={name} small={small} pop={touched} />}
       </Fragment>
     );
   }

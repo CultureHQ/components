@@ -83,19 +83,22 @@ function (_Component) {
       var _this$props2 = this.props,
           cheered = _this$props2.cheered,
           className = _this$props2.className,
-          name = _this$props2.name;
+          name = _this$props2.name,
+          small = _this$props2.small;
       var _this$state = this.state,
           toggling = _this$state.toggling,
           touched = _this$state.touched;
       return _react.default.createElement(_react.Fragment, null, _react.default.createElement("button", {
         type: "button",
         className: (0, _classnames.default)("chq-cbn", className, {
-          "chq-cbn-ch": cheered
+          "chq-cbn-ch": cheered,
+          "chq-cbn-sm": small
         }),
         disabled: toggling,
         onClick: this.handleClick
-      }, _react.default.createElement(_Cheer.default, null), " Cheer!"), cheered && _react.default.createElement(_Cheer.default, {
+      }, _react.default.createElement(_Cheer.default, null), !small && _react.default.createElement(_react.Fragment, null, " ", "Cheer!")), cheered && _react.default.createElement(_Cheer.default, {
         name: name,
+        small: small,
         pop: touched
       }));
     }

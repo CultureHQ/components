@@ -155,12 +155,15 @@ const App = () => (
         </Prop>
         <Prop name="name?">an optional name that will appear in a tooltip</Prop>
         <Prop name="pop? = false">whether or not this <code>Cheer</code> should pop in</Prop>
+        <Prop name="small? = false">indicates a small <code>Cheer</code></Prop>
       </PropList>
 
       <Cheer color="darkblue" pop />
       <Cheer name="Hermione" color="green" />
       <Cheer name="Ron" color="lightblue" />
       <Cheer name="Luna" color="yellow" />
+      <Cheer small name="Dobby" color="darkblue" />
+      <Cheer small name="Winky" color="green" />
 
       <Heading>CheerButton</Heading>
       <p>An SVG of a person cheering.</p>
@@ -172,10 +175,13 @@ const App = () => (
           a callback function that accepts a boolean <code>cheered</code>{" "}
           state and returns a <code>Promise</code>
         </Prop>
+        <Prop name="small? = false">indicates a small button (text will be hidden)</Prop>
       </PropList>
 
       <CheerButtonContainer />{" "}
-      <CheerButtonContainer cheered name="Harry" />
+      <CheerButtonContainer cheered name="Harry" /><br />
+      <CheerButtonContainer small />{" "}
+      <CheerButtonContainer small cheered name="Ron" />
 
       <Heading>CheerList</Heading>
       <p>A list of cheers on an entity.</p>

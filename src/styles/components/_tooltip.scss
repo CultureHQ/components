@@ -1,12 +1,13 @@
 @import '../common';
 
 .chq-ttp {
+  display: inline-block;
   position: relative;
 
   &--bbl {
     background: $color-black;
     border-radius: 5px;
-    bottom: 250%;
+    bottom: calc(100% + 15px);
     box-sizing: border-box;
     color: $color-white;
     display: none;

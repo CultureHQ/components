@@ -16,11 +16,13 @@ class Container extends Component {
   };
 
   render() {
+    const { small } = this.props;
     const { cheered } = this.state;
 
     return (
       <CheerButton
         cheered={cheered}
+        small={small}
         onCheerToggle={this.handleCheerToggle}
       />
     );
@@ -61,4 +63,10 @@ test("does not pop in the Cheer if it was initially cheered", () => {
 
   expect(component.find(Cheer)).toHaveLength(2);
   expect(component.find(Cheer).last().find("svg").hasClass("chq-chr-pp")).toBe(false);
+});
+
+test("does not display text when small", () => {
+  const component = mount(<Container small />);
+
+  expect(component.text()).toEqual("");
 });
