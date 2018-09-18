@@ -2018,7 +2018,7 @@
 .chq-pbn {
   appearance: none;
   background: inherit;
-  border: none;
+  border: 0;
   color: #6a89af;
   cursor: pointer;
   display: inline;
