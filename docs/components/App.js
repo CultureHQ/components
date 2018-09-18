@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 
 import CheckmarkContainer from "./CheckmarkContainer";
 import CheerButtonContainer from "./CheerButtonContainer";
@@ -6,14 +6,19 @@ import CheerListContainer from "./CheerListContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
 import LoaderContainer from "./LoaderContainer";
+import ModalContainer from "./ModalContainer";
 import PaginationContainer from "./PaginationContainer";
 
 import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
-  EmailField, FeedItem, FileField, Form, Info, Nav, NumberField, Panel,
+  EmailField, FeedItem, FileField, Form, Info, Modal, Nav, NumberField, Panel,
   PasswordField, PlainButton, Spinner, StringField, SubmitButton, Subnav,
   Success, Tag, Thumbnail, Tooltip, Warning
 } from "../../src";
+
+import { TEXT, onClick, onSubmit } from "./utils";
+
+Modal.setAppElement("#main");
 
 const Heading = ({ children }) => (
   <Fragment>
@@ -30,18 +35,6 @@ const ClassNameProp = () => <Prop name="className?">an extra {"class"} name</Pro
 
 const Subcomponent = ({ children }) => <p><code>{children}</code> subcomponent</p>;
 
-const onSubmit = () => new Promise(resolve => setTimeout(resolve, 1000));
-
-const TOOLTIP = `
-  Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that
-  they were perfectly normal, thank you very much. They were the last people
-  you'd expect to be involved in anything strange or mysterious, because they
-  just didn't hold with such nonsense.
-`;
-
-// eslint-disable-next-line no-alert
-const onClick = () => alert("Clicked!");
-
 const App = () => (
   <Fragment>
     <Nav>{"<Nav>"}</Nav>
@@ -57,7 +50,7 @@ const App = () => (
       </PropList>
 
       <Badge className="badge">Default</Badge>
-      <Badge className="badge" primary>Primary</Badge>
+      <Badge className="badge" primary onClick={onClick}>Primary</Badge>
 
       <Heading>BooleanField</Heading>
       <p>A form field that represents a boolean value.</p>
@@ -323,6 +316,43 @@ const App = () => (
 
       <LoaderContainer />
 
+      <Heading>Modal</Heading>
+      <p>An accessible modal dialog wrapping <code>react-modal</code>.</p>
+      <PropList>
+        <Prop name="children">the contents of the modal</Prop>
+        <ClassNameProp />
+        <Prop name={"entrance = \"slideIn\""}>the animation to use to display the modal, can be <code>slideIn</code> or <code>zoomIn</code></Prop>
+        <Prop name="onClose">a callback when the modal is closed</Prop>
+      </PropList>
+
+      <Subcomponent>Modal.Heading</Subcomponent>
+      <PropList>
+        <Prop name="children">the content of the heading</Prop>
+        <ClassNameProp />
+      </PropList>
+
+      <Subcomponent>Modal.Body</Subcomponent>
+      <PropList>
+        <Prop name="children">the content of the body</Prop>
+        <ClassNameProp />
+      </PropList>
+
+      <Subcomponent>Modal.LoaderBody</Subcomponent>
+      <PropList>
+        <Prop name="children">the content of the body</Prop>
+        <ClassNameProp />
+        <Prop name="loading?">whether or not the content is still loading</Prop>
+      </PropList>
+
+      <Subcomponent>Modal.Footer</Subcomponent>
+      <PropList>
+        <Prop name="children">the content of the footer</Prop>
+        <ClassNameProp />
+      </PropList>
+
+      <ModalContainer entrance="slideIn">slideIn modal</ModalContainer>{" "}
+      <ModalContainer entrance="zoomIn">zoomIn modal</ModalContainer>
+
       <Heading>Nav</Heading>
       <p>
         A top-level nav that displays at the top of the page. It hides when{" "}
@@ -560,7 +590,7 @@ const App = () => (
         <Prop name="tip">The text to display inside the tip</Prop>
       </PropList>
 
-      <Tooltip tip={TOOLTIP}>
+      <Tooltip tip={TEXT}>
         <Button primary disabled>Some action</Button>
       </Tooltip>
 

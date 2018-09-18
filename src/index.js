@@ -16,6 +16,7 @@ export { default as FileField } from "./components/FileField";
 export { default as Form } from "./components/Form";
 export { default as Hamburger } from "./components/Hamburger";
 export { default as Loader } from "./components/Loader";
+export { default as Modal } from "./components/Modal";
 export { default as Icon } from "./components/Icon";
 export { default as Info } from "./components/Info";
 export { default as Nav } from "./components/Nav";

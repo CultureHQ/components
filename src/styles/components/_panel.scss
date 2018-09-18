@@ -7,20 +7,20 @@
   box-sizing: border-box;
   margin-bottom: 20px;
 
-  h2 {
-    font-size: 1.2em;
-    font-weight: $font-weight-light;
-    margin: 0;
-  }
-
-  hr {
-    border: 0;
-    border-top: 1px solid $panel-hr-border;
-    margin: 12px 0;
-  }
-
   &--hd {
     padding: 15px 15px 0;
+
+    h2 {
+      font-size: 1.2em;
+      font-weight: $font-weight-light;
+      margin: 0;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid $panel-hr-border;
+      margin: 12px 0;
+    }
 
     &-pr {
       background-color: $color-primary-blue;

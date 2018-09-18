@@ -29,7 +29,8 @@
   "homepage": "https://github.com/CultureHQ/components#readme",
   "peerDependencies": {
     "react": "^16",
-    "react-dom": "^16"
+    "react-dom": "^16",
+    "react-modal": "^3"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -59,6 +60,7 @@
     "prettier": "^1.14.2",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
+    "react-modal": "^3.5.1",
     "sass-lint": "^1.12.1",
     "sass-loader": "^7.1.0",
     "source-map-explorer": "^1.6.0",
