@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { default as ReactModal } from "react-modal";
+import ReactModal from "react-modal";
 
 import classnames from "../classnames";
 
@@ -20,7 +20,7 @@ const entrances = {
 };
 
 const ModalHeading = ({ children, className, onClose }) => (
-  <Panel.Heading primary>
+  <Panel.Heading primary className={className}>
     {children}
     <PlainButton className="chq-mdl--cl" onClick={onClose}>
       <Icon icon="ios-close-empty" />
@@ -35,12 +35,9 @@ class Modal extends Component {
     const { children } = this.props;
 
     return React.Children.map(children, child => {
-      const { type } = child;
-
       if (child.type === ModalHeading) {
         return React.cloneElement(child, { onClose: this.handleClose });
       }
-
       return child;
     });
   }

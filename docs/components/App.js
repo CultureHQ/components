@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 
 import CheckmarkContainer from "./CheckmarkContainer";
 import CheerButtonContainer from "./CheerButtonContainer";
@@ -349,12 +349,12 @@ const App = () => (
         <ClassNameProp />
       </PropList>
 
-      <Modal entrance="slideIn" trigger={onClick => <Button onClick={onClick}>slideIn modal</Button>}>
+      <Modal entrance="slideIn" trigger={onTrigger => <Button onClick={onTrigger}>slideIn modal</Button>}>
         <Modal.Heading>Chapter 1</Modal.Heading>
         <Modal.Body>{TEXT}</Modal.Body>
       </Modal>
       {" "}
-      <Modal entrance="zoomIn" trigger={onClick => <Button onClick={onClick}>zoomIn modal</Button>}>
+      <Modal entrance="zoomIn" trigger={onTrigger => <Button onClick={onTrigger}>zoomIn modal</Button>}>
         <Modal.Heading>Chapter 2</Modal.Heading>
         <Modal.LoaderBody loading />
       </Modal>

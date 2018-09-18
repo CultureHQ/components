@@ -2,7 +2,7 @@
 
 .chq-mdl {
   background-color: $color-white;
-  box-shadow: 0 5px 15px rgba($color-black, .5);
+  box-shadow: 0 5px 15px $color-modal-shadow;
   margin: 5% auto;
   opacity: 0;
   outline: 0;
@@ -44,8 +44,8 @@
   }
 
   100% {
-    opacity: 1;
     margin-top: 5%;
+    opacity: 1;
   }
 }
 
