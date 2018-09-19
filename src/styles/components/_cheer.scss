@@ -87,10 +87,18 @@
     }
   }
 
+  & + .chq-ttp--bbl { /* This feels weird and wrong. */
+    bottom: 250%;
+  }
+
   &-sm {
     height: 20px;
     margin-bottom: 2px;
     width: 14px;
+
+    & + .chq-ttp--bbl { /* This feels weird and wrong. */
+      bottom: 225%;
+    }
   }
 }
 
