@@ -6,6 +6,9 @@ export const TEXT = `
 `;
 
 // eslint-disable-next-line no-alert
+export const onAccept = () => alert("Accepted!");
+
+// eslint-disable-next-line no-alert
 export const onClick = () => alert("Clicked!");
 
 export const onSubmit = () => new Promise(resolve => setTimeout(resolve, 1000));

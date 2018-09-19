@@ -10,12 +10,13 @@ import PaginationContainer from "./PaginationContainer";
 
 import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
-  EmailField, FeedItem, FileField, Form, Info, Modal, Nav, NumberField, Panel,
-  PasswordField, PlainButton, Spinner, StringField, SubmitButton, Subnav,
-  Success, Tag, Thumbnail, Tooltip, Warning
+  Confirm, EmailField, FeedItem, FileField, Form, Info, Modal, ModalDialog, Nav,
+  NumberField, Panel, PasswordField, PlainButton, Spinner, StringField,
+  SubmitButton, Subnav, Success, Tag, Thumbnail, Tooltip, TriggeredModal,
+  Warning
 } from "../../src";
 
-import { TEXT, onClick, onSubmit } from "./utils";
+import { TEXT, onAccept, onClick, onSubmit } from "./utils";
 
 Modal.setAppElement("#main");
 
@@ -70,13 +71,14 @@ const App = () => (
       <PropList>
         <Prop name="children">displayed inside the button</Prop>
         <ClassNameProp />
-        <Prop name="disabled?">disallows clicking on the button</Prop>
+        <Prop name="danger = false">indicates a permanent action</Prop>
+        <Prop name="disabled = false">disallows clicking on the button</Prop>
         <Prop name="icon?">an icon to display inside the button</Prop>
-        <Prop name="inverted?">indicates the inverted theme</Prop>
-        <Prop name="loading?">displays a spinner inside the button</Prop>
+        <Prop name="inverted = false">indicates the inverted theme</Prop>
+        <Prop name="loading = false">displays a spinner inside the button</Prop>
         <Prop name="onClick">the callback when the button is clicked</Prop>
-        <Prop name="primary?">indicates a larger primary button</Prop>
-        <Prop name="small?">indicates a small button</Prop>
+        <Prop name="primary = false">indicates a larger primary button</Prop>
+        <Prop name="small = false">indicates a small button</Prop>
         <Prop name={"type = \"button\""}>the type of the button component</Prop>
       </PropList>
 
@@ -84,6 +86,7 @@ const App = () => (
       <Button icon="clipboard">Icon</Button>{" "}
       <Button loading>Loading</Button>{" "}
       <Button disabled>Disabled</Button>{" "}
+      <Button danger>Danger</Button>{" "}
 
       <Button primary>Primary</Button>{" "}
       <Button icon="clipboard" primary>Primary Icon</Button>{" "}
@@ -208,6 +211,28 @@ const App = () => (
 
       <Circles />
 
+      <Heading>Confirm</Heading>
+      <p>A confirmation dialog. It has the same props as the <code>Modal</code>{" "} component below, in addition to:</p>
+      <PropList>
+        <Prop name="onAccept">a callback when the action has been accepted</Prop>
+        <Prop name="danger = false">indicates that the accept action is permanent</Prop>
+      </PropList>
+
+      <Confirm
+        onAccept={onAccept}
+        trigger={onTrigger => <Button onClick={onTrigger}>Create</Button>}
+      >
+        Are you sure you&#39;d like to create this resource?
+      </Confirm>
+      {" "}
+      <Confirm
+        onAccept={onAccept}
+        danger
+        trigger={onTrigger => <Button danger onClick={onTrigger}>Danger</Button>}
+      >
+        Are you sure you&#39;d like to delete this resource?
+      </Confirm>
+
       <Heading>EmailField</Heading>
       <p>A string form field that accepts an email.</p>
       <PropList>
@@ -317,60 +342,60 @@ const App = () => (
 
       <Heading>Modal</Heading>
       <p>
-        An accessible modal dialog wrapping <code>react-modal</code>. Note{" "}
-        that if this component is going to be used, you need to call{" "}
-        <code>Modal.setAppElement(&quot;selector&quot;)</code> where{" "}
-        <code>selector</code> is a valid HTML element selector representing{" "}
-        the root of the React tree.
+        A wrapper around <code>ModalDialog</code> that maintains the state of{" "}
+        whether or not the dialog is currently open. It provides a <code>trigger</code>{" "}
+        render function that allows the consumer to define how it gets triggered.
+      </p>
+      <p>
+        This component has the same subcomponents as the <code>Panel</code>{" "}
+        component, just namespaced under the <code>Modal</code> component,{" "}
+        e.g., <code>Modal.Heading</code>. It has the same props as the{" "}
+        <code>ModalDialog</code> component below, in addition to:
       </p>
       <PropList>
-        <Prop name="children">the contents of the modal</Prop>
-        <ClassNameProp />
-        <Prop name={"entrance = \"slideIn\""}>the animation to use to display the modal, can be <code>slideIn</code> or <code>zoomIn</code></Prop>
-        <Prop name="onClose">a callback when the modal is closed</Prop>
-        <Prop name="startOpen = false">
-          indicates that the modal should be open as soon as it is rendered
-        </Prop>
         <Prop name="trigger">
           a function that accepts as one argument an <code>onTrigger</code>{" "}
           function and returns a valid React component
         </Prop>
       </PropList>
 
-      <Subcomponent>Modal.Heading</Subcomponent>
-      <PropList>
-        <Prop name="children">the content of the heading</Prop>
-        <ClassNameProp />
-      </PropList>
-
-      <Subcomponent>Modal.Body</Subcomponent>
-      <PropList>
-        <Prop name="children">the content of the body</Prop>
-        <ClassNameProp />
-      </PropList>
-
-      <Subcomponent>Modal.LoaderBody</Subcomponent>
-      <PropList>
-        <Prop name="children">the content of the body</Prop>
-        <ClassNameProp />
-        <Prop name="loading?">whether or not the content is still loading</Prop>
-      </PropList>
-
-      <Subcomponent>Modal.Footer</Subcomponent>
-      <PropList>
-        <Prop name="children">the content of the footer</Prop>
-        <ClassNameProp />
-      </PropList>
-
-      <Modal entrance="slideIn" trigger={onTrigger => <Button onClick={onTrigger}>slideIn modal</Button>}>
+      <Modal
+        entrance="slideIn"
+        trigger={onTrigger => <Button onClick={onTrigger}>slideIn modal</Button>}
+      >
         <Modal.Heading>Chapter 1</Modal.Heading>
         <Modal.Body>{TEXT}</Modal.Body>
       </Modal>
       {" "}
-      <Modal entrance="zoomIn" trigger={onTrigger => <Button onClick={onTrigger}>zoomIn modal</Button>}>
+      <Modal
+        entrance="zoomIn"
+        trigger={onTrigger => <Button onClick={onTrigger}>zoomIn modal</Button>}
+      >
         <Modal.Heading>Chapter 2</Modal.Heading>
         <Modal.LoaderBody loading />
       </Modal>
+
+      <Heading>ModalDialog</Heading>
+      <p>
+        An accessible modal dialog wrapping <code>react-modal</code>. Note{" "}
+        that if this component is going to be used, you need to call{" "}
+        <code>ModalDialog.setAppElement(&quot;selector&quot;)</code> where{" "}
+        <code>selector</code> is a valid HTML element selector representing{" "}
+        the root of the React tree.
+      </p>
+      <p>
+        This component has the same subcomponents as the <code>Panel</code>{" "}
+        component, just namespaced under the <code>ModalDialog</code> component,{" "}
+        e.g., <code>ModalDialog.Heading</code>.
+      </p>
+      <PropList>
+        <Prop name="children">the contents of the modal dialog</Prop>
+        <ClassNameProp />
+        <Prop name={"entrance = \"slideIn\""}>
+          the entrance animation for the dialog, must be one of <code>slideIn</code> or <code>zoomIn</code>
+        </Prop>
+        <Prop name="onClose">a callback function when the dialog is closed</Prop>
+      </PropList>
 
       <Heading>Nav</Heading>
       <p>
