@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.9.1] - 2018-09-19
+### Changed
+- Catch import errors from `Icon`.
+
 ## [3.9.0] - 2018-09-19
 ### Added
 - The `ConfirmDelete` component for setting some simple defaults for a `Confirm` that represents a delete action.

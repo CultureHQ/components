@@ -90,6 +90,9 @@ function (_Component) {
             d: paths[icon].join(" ")
           });
         }
+      }).catch(function () {// this catch is largely here because in the case that you're not in an
+        // environment that supports dynamic import (like jest when you're not
+        // compiling vendored code) it will spam the console otherwise
       });
     }
   }, {
