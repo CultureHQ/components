@@ -29,7 +29,11 @@ const ModalHeading = ({ children, className, onClose }) => (
 );
 
 class Modal extends Component {
-  state = { open: false };
+  constructor(props) {
+    super(props);
+
+    this.state = { open: props.startOpen || false };
+  }
 
   getChildren() {
     const { children } = this.props;

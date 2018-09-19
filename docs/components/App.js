@@ -316,12 +316,25 @@ const App = () => (
       <LoaderContainer />
 
       <Heading>Modal</Heading>
-      <p>An accessible modal dialog wrapping <code>react-modal</code>.</p>
+      <p>
+        An accessible modal dialog wrapping <code>react-modal</code>. Note{" "}
+        that if this component is going to be used, you need to call{" "}
+        <code>Modal.setAppElement(&quot;selector&quot;)</code> where{" "}
+        <code>selector</code> is a valid HTML element selector representing{" "}
+        the root of the React tree.
+      </p>
       <PropList>
         <Prop name="children">the contents of the modal</Prop>
         <ClassNameProp />
         <Prop name={"entrance = \"slideIn\""}>the animation to use to display the modal, can be <code>slideIn</code> or <code>zoomIn</code></Prop>
         <Prop name="onClose">a callback when the modal is closed</Prop>
+        <Prop name="startOpen = false">
+          indicates that the modal should be open as soon as it is rendered
+        </Prop>
+        <Prop name="trigger">
+          a function that accepts as one argument an <code>onTrigger</code>{" "}
+          function and returns a valid React component
+        </Prop>
       </PropList>
 
       <Subcomponent>Modal.Heading</Subcomponent>
