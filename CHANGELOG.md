@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- The `Modal` component (and a peer dependency on `react-modal` as a result).
+
+### Changed
+- Fixed up the tooltips display on top of cheers.
 
 ## [3.7.1] - 2018-09-18
 ### Changed
