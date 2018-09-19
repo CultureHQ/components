@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React from "react";
 import ReactModal from "react-modal";
 
 import classnames from "../classnames";

@@ -10,10 +10,9 @@ import PaginationContainer from "./PaginationContainer";
 
 import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
-  Confirm, EmailField, FeedItem, FileField, Form, Info, Modal, ModalDialog, Nav,
-  NumberField, Panel, PasswordField, PlainButton, Spinner, StringField,
-  SubmitButton, Subnav, Success, Tag, Thumbnail, Tooltip, TriggeredModal,
-  Warning
+  Confirm, EmailField, FeedItem, FileField, Form, Info, Modal, Nav, NumberField,
+  Panel, PasswordField, PlainButton, Spinner, StringField, SubmitButton, Subnav,
+  Success, Tag, Thumbnail, Tooltip, Warning
 } from "../../src";
 
 import { TEXT, onAccept, onClick, onSubmit } from "./utils";
@@ -395,7 +394,8 @@ const App = () => (
         <Prop name="children">the contents of the modal dialog</Prop>
         <ClassNameProp />
         <Prop name={"entrance = \"slideIn\""}>
-          the entrance animation for the dialog, must be one of <code>slideIn</code> or <code>zoomIn</code>
+          the entrance animation for the dialog, must be one of{" "}
+          <code>slideIn</code> or <code>zoomIn</code>
         </Prop>
         <Prop name="onClose">a callback function when the dialog is closed</Prop>
       </PropList>
