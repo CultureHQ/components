@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class AsyncPath extends Component {
+class Icon extends Component {
   state = { d: null };
 
   componentDidMount() {
@@ -31,16 +31,15 @@ class AsyncPath extends Component {
   }
 
   render() {
+    const { className } = this.props;
     const { d } = this.state;
-    return d ? <path d={d} /> : null;
+
+    return (
+      <svg width="22px" height="22px" viewBox="0 0 1024 1024" className={className}>
+        {d && <path d={d} />}
+      </svg>
+    );
   }
 }
 
-const Icon = ({ icon, className }) => (
-  <svg width="22px" height="22px" viewBox="0 0 1024 1024" className={className}>
-    <AsyncPath icon={icon} />
-  </svg>
-);
-
-export { AsyncPath };
 export default Icon;
