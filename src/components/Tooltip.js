@@ -21,6 +21,12 @@ class Tooltip extends Component {
     const tooltip = this.tooltip.current;
     const triangle = this.triangle.current;
 
+    // In the case that this component is not mounted, it can get into a state
+    // where the refs are invalid.
+    if (!bubble || !tooltip || !triangle) {
+      return;
+    }
+
     bubble.style.visibility = "hidden";
     bubble.style.display = "table";
 
