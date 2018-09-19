@@ -3,8 +3,6 @@ import { mount } from "enzyme";
 
 import { Button, Modal, PlainButton } from "../src";
 
-Modal.setAppElement(document.body);
-
 test("opens a modal when the onTrigger function is called", () => {
   const message = "This is the body of the modal";
 
