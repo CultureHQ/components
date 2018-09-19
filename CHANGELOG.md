@@ -6,7 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 ### Added
-- The `Modal` component (and a peer dependency on `react-modal` as a result).
+- The `ModalDialog` component (and a peer dependency on `react-modal` as a result).
+- The `Modal` component for wrapping a `ModalDialog` with open/closed state.
+- The `Confirm` component for confirming a user action with a dialog.
+- The optional `danger` prop on buttons to indicate a dangerous action.
 
 ### Changed
 - Fixed up the tooltips display on top of cheers.

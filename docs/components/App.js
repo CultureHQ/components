@@ -214,11 +214,13 @@ const App = () => (
       <Heading>Confirm</Heading>
       <p>A confirmation dialog. It has the same props as the <code>Modal</code>{" "} component below, in addition to:</p>
       <PropList>
-        <Prop name="onAccept">a callback when the action has been accepted</Prop>
+        <Prop name={"accept = \"Yes\""}>the text used for the accept button</Prop>
         <Prop name="danger = false">indicates that the accept action is permanent</Prop>
+        <Prop name="onAccept">a callback when the action has been accepted</Prop>
       </PropList>
 
       <Confirm
+        accept="Yes, create it!"
         onAccept={onAccept}
         trigger={onTrigger => <Button onClick={onTrigger}>Create</Button>}
       >
@@ -226,6 +228,7 @@ const App = () => (
       </Confirm>
       {" "}
       <Confirm
+        accept="Yes, I'm sure. Delete it."
         onAccept={onAccept}
         danger
         trigger={onTrigger => <Button danger onClick={onTrigger}>Danger</Button>}

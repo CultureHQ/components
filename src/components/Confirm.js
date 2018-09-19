@@ -27,7 +27,7 @@ class Confirm extends Component {
   };
 
   render() {
-    const { children, className, danger, entrance, trigger } = this.props;
+    const { accept = "Yes", children, className, danger, entrance, trigger } = this.props;
     const { open } = this.state;
 
     const classList = classnames("chq-cnf", className);
@@ -43,7 +43,7 @@ class Confirm extends Component {
                 <Button inverted onClick={this.handleClose}>Cancel</Button>
               </div>
               <div>
-                <Button primary danger={danger} onClick={this.handleAccept}>Yes</Button>
+                <Button primary danger={danger} onClick={this.handleAccept}>{accept}</Button>
               </div>
             </ModalDialog.Footer>
           </ModalDialog>
