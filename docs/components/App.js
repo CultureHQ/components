@@ -355,6 +355,7 @@ const App = () => (
         <code>ModalDialog</code> component below, in addition to:
       </p>
       <PropList>
+        <Prop name="startOpen = false">indicates that the dialog should be open when rendered</Prop>
         <Prop name="trigger">
           a function that accepts as one argument an <code>onTrigger</code>{" "}
           function and returns a valid React component
