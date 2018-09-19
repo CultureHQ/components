@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.AsyncPath = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -29,23 +29,23 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var AsyncPath =
+var Icon =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(AsyncPath, _Component);
+  _inherits(Icon, _Component);
 
-  function AsyncPath() {
+  function Icon() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, AsyncPath);
+    _classCallCheck(this, Icon);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AsyncPath)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Icon)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       d: null
@@ -54,7 +54,7 @@ function (_Component) {
     return _this;
   }
 
-  _createClass(AsyncPath, [{
+  _createClass(Icon, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.componentIsMounted = true;
@@ -95,30 +95,21 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var className = this.props.className;
       var d = this.state.d;
-      return d ? _react.default.createElement("path", {
+      return _react.default.createElement("svg", {
+        width: "22px",
+        height: "22px",
+        viewBox: "0 0 1024 1024",
+        className: className
+      }, d && _react.default.createElement("path", {
         d: d
-      }) : null;
+      }));
     }
   }]);
 
-  return AsyncPath;
+  return Icon;
 }(_react.Component);
-
-exports.AsyncPath = AsyncPath;
-
-var Icon = function Icon(_ref2) {
-  var icon = _ref2.icon,
-      className = _ref2.className;
-  return _react.default.createElement("svg", {
-    width: "22px",
-    height: "22px",
-    viewBox: "0 0 1024 1024",
-    className: className
-  }, _react.default.createElement(AsyncPath, {
-    icon: icon
-  }));
-};
 
 var _default = Icon;
 exports.default = _default;

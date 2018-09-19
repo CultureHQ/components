@@ -7,6 +7,10 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _ModalDialog = _interopRequireDefault(require("./ModalDialog"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -29,102 +33,77 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var Tooltip =
+var Modal =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Tooltip, _Component);
+  _inherits(Modal, _Component);
 
-  function Tooltip() {
-    var _getPrototypeOf2;
-
+  function Modal(props) {
     var _this;
 
-    _classCallCheck(this, Tooltip);
+    _classCallCheck(this, Modal);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Modal).call(this, props));
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Tooltip)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "bubble", _react.default.createRef());
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "tooltip", _react.default.createRef());
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "triangle", _react.default.createRef());
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "computeOffsets", function () {
-      var bubble = _this.bubble.current;
-      var tooltip = _this.tooltip.current;
-      var triangle = _this.triangle.current; // In the case that this component is not mounted, it can get into a state
-      // where the refs are invalid.
-
-      if (!bubble || !tooltip || !triangle) {
-        return;
-      }
-
-      bubble.style.visibility = "hidden";
-      bubble.style.display = "table";
-      var bubbleOffset = -Math.abs((bubble.offsetWidth - tooltip.offsetWidth) / 2);
-
-      if (bubble.offsetWidth / 2 > tooltip.offsetLeft) {
-        bubbleOffset = 10 - tooltip.offsetLeft;
-        var triangleMiddle = (tooltip.offsetWidth - triangle.offsetWidth) / 2;
-        triangle.style.left = "".concat(tooltip.offsetLeft - 10 + triangleMiddle, "px");
-      }
-
-      bubble.style.left = "".concat(bubbleOffset, "px");
-      bubble.style.display = null;
-      bubble.style.visibility = null;
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleOpen", function () {
+      _this.setState({
+        open: true
+      });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "recomputeOffsets", function () {
-      if (_this.timeout) {
-        clearTimeout(_this.timeout);
-      }
-
-      _this.timeout = setTimeout(_this.requestComputeOffsets, 1000);
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClose", function () {
+      _this.setState({
+        open: false
+      });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "requestComputeOffsets", function () {
-      window.requestAnimationFrame(_this.computeOffsets);
-    });
-
+    _this.state = {
+      open: props.startOpen || false
+    };
     return _this;
   }
 
-  _createClass(Tooltip, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.requestComputeOffsets();
-      window.addEventListener("resize", this.recomputeOffsets);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      window.removeEventListener("resize", this.recomputeOffsets);
+  _createClass(Modal, [{
+    key: "getChildren",
+    value: function getChildren() {
+      var _this2 = this;
+
+      var children = this.props.children;
+      return _react.default.Children.map(children, function (child) {
+        if (child.type === Modal.Heading) {
+          return _react.default.cloneElement(child, {
+            onClose: _this2.handleClose
+          });
+        }
+
+        return child;
+      });
     }
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          children = _this$props.children,
-          tip = _this$props.tip;
-      return _react.default.createElement("span", {
-        className: "chq-ttp",
-        ref: this.tooltip
-      }, children, _react.default.createElement("span", {
-        className: "chq-ttp--bbl",
-        ref: this.bubble
-      }, tip, _react.default.createElement("span", {
-        className: "chq-ttp--tri",
-        ref: this.triangle
-      })));
+          className = _this$props.className,
+          entrance = _this$props.entrance,
+          trigger = _this$props.trigger;
+      var open = this.state.open;
+      return _react.default.createElement(_react.Fragment, null, trigger(this.handleOpen), open && _react.default.createElement(_ModalDialog.default, {
+        className: className,
+        entrance: entrance,
+        onClose: this.handleClose
+      }, this.getChildren()));
     }
   }]);
 
-  return Tooltip;
+  return Modal;
 }(_react.Component);
 
-var _default = Tooltip;
+Object.assign(Modal, {
+  setAppElement: _ModalDialog.default.setAppElement,
+  Heading: _ModalDialog.default.Heading,
+  Body: _ModalDialog.default.Body,
+  LoaderBody: _ModalDialog.default.LoaderBody,
+  Footer: _ModalDialog.default.Footer
+});
+var _default = Modal;
 exports.default = _default;

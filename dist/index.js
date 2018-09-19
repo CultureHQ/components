@@ -63,6 +63,12 @@ Object.defineProperty(exports, "Circles", {
     return _Circles.default;
   }
 });
+Object.defineProperty(exports, "Confirm", {
+  enumerable: true,
+  get: function get() {
+    return _Confirm.default;
+  }
+});
 Object.defineProperty(exports, "EmailField", {
   enumerable: true,
   get: function get() {
@@ -115,6 +121,18 @@ Object.defineProperty(exports, "Loader", {
   enumerable: true,
   get: function get() {
     return _Loader.default;
+  }
+});
+Object.defineProperty(exports, "Modal", {
+  enumerable: true,
+  get: function get() {
+    return _Modal.default;
+  }
+});
+Object.defineProperty(exports, "ModalDialog", {
+  enumerable: true,
+  get: function get() {
+    return _ModalDialog.default;
   }
 });
 Object.defineProperty(exports, "Icon", {
@@ -224,6 +242,8 @@ var _CheerList = _interopRequireDefault(require("./components/CheerList"));
 
 var _Circles = _interopRequireDefault(require("./components/Circles"));
 
+var _Confirm = _interopRequireDefault(require("./components/Confirm"));
+
 var _FormFields = require("./components/FormFields");
 
 var _FeedItem = _interopRequireDefault(require("./components/FeedItem"));
@@ -235,6 +255,10 @@ var _Form = _interopRequireDefault(require("./components/Form"));
 var _Hamburger = _interopRequireDefault(require("./components/Hamburger"));
 
 var _Loader = _interopRequireDefault(require("./components/Loader"));
+
+var _Modal = _interopRequireDefault(require("./components/Modal"));
+
+var _ModalDialog = _interopRequireDefault(require("./components/ModalDialog"));
 
 var _Icon = _interopRequireDefault(require("./components/Icon"));
 

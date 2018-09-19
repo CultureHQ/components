@@ -39,7 +39,8 @@ var Button = function Button(_ref2) {
       primary = _ref2.primary,
       small = _ref2.small,
       loading = _ref2.loading,
-      props = _objectWithoutProperties(_ref2, ["children", "className", "type", "icon", "inverted", "primary", "small", "loading"]);
+      danger = _ref2.danger,
+      props = _objectWithoutProperties(_ref2, ["children", "className", "type", "icon", "inverted", "primary", "small", "loading", "danger"]);
 
   return _react.default.createElement("button", _extends({}, props, {
     type: type,
@@ -47,7 +48,8 @@ var Button = function Button(_ref2) {
       "chq-btn-iv": inverted,
       "chq-btn-pr": primary,
       "chq-btn-sm": small,
-      "chq-btn-ld": loading
+      "chq-btn-ld": loading,
+      "chq-btn-dg": danger
     })
   }), (loading || icon) && _react.default.createElement(ButtonIcon, {
     icon: icon,
