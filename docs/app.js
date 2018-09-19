@@ -1,6 +1,20 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-import App from "./components/App";
+class AsyncApp extends Component {
+  state = { App: null };
 
-ReactDOM.render(<App />, document.getElementById("main"));
+  componentDidMount() {
+    import(/* webpackChunkName: "app" */ "./components/App").then(module => {
+      this.setState({ App: module.default });
+    });
+  }
+
+  render() {
+    const { App } = this.state;
+
+    return App ? <App /> : null;
+  }
+}
+
+ReactDOM.render(<AsyncApp />, document.getElementById("main"));

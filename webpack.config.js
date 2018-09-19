@@ -22,6 +22,5 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname, "docs")
-  },
-  devtool: "source-map"
+  }
 };

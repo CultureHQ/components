@@ -4,7 +4,6 @@
   "description": "CultureHQ's component library",
   "main": "dist/index.js",
   "scripts": {
-    "analyze": "source-map-explorer docs/index.js*",
     "build": "yarn build:css && yarn build:js && yarn build:docs",
     "build:js": "babel src --out-dir ./dist && sed -i '' -e \"s/styles\\/app.scss/main.css/\" dist/index.js && cp src/icons.json dist/icons.json",
     "build:css": "node-sass src/styles/app.scss > dist/main.css",
@@ -63,7 +62,6 @@
     "react-modal": "^3.5.1",
     "sass-lint": "^1.12.1",
     "sass-loader": "^7.1.0",
-    "source-map-explorer": "^1.6.0",
     "style-loader": "^0.23.0",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.0",
