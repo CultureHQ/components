@@ -115,4 +115,16 @@
       animation: chqSpin 1s linear infinite;
     }
   }
+
+  &-dg {
+    background-color: $color-primary-red;
+    border-color: $color-primary-red;
+    color: $color-white;
+
+    &:hover,
+    &:focus {
+      background-color: $color-primary-red;
+      border-color: $color-primary-red;
+    }
+  }
 }

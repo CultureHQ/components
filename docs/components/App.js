@@ -10,10 +10,14 @@ import PaginationContainer from "./PaginationContainer";
 
 import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
-  EmailField, FeedItem, FileField, Form, Info, Nav, NumberField, Panel,
-  PasswordField, PlainButton, Spinner, StringField, SubmitButton, Subnav,
+  Confirm, EmailField, FeedItem, FileField, Form, Info, Modal, Nav, NumberField,
+  Panel, PasswordField, PlainButton, Spinner, StringField, SubmitButton, Subnav,
   Success, Tag, Thumbnail, Tooltip, Warning
 } from "../../src";
+
+import { TEXT, onAccept, onClick, onSubmit } from "./utils";
+
+Modal.setAppElement("#main");
 
 const Heading = ({ children }) => (
   <Fragment>
@@ -30,18 +34,6 @@ const ClassNameProp = () => <Prop name="className?">an extra {"class"} name</Pro
 
 const Subcomponent = ({ children }) => <p><code>{children}</code> subcomponent</p>;
 
-const onSubmit = () => new Promise(resolve => setTimeout(resolve, 1000));
-
-const TOOLTIP = `
-  Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that
-  they were perfectly normal, thank you very much. They were the last people
-  you'd expect to be involved in anything strange or mysterious, because they
-  just didn't hold with such nonsense.
-`;
-
-// eslint-disable-next-line no-alert
-const onClick = () => alert("Clicked!");
-
 const App = () => (
   <Fragment>
     <Nav>{"<Nav>"}</Nav>
@@ -53,11 +45,11 @@ const App = () => (
         <Prop name="children">displayed inside the badge</Prop>
         <ClassNameProp />
         <Prop name="onClick?">a click handler</Prop>
-        <Prop name="primary? = false">indicates a primary badge</Prop>
+        <Prop name="primary = false">indicates a primary badge</Prop>
       </PropList>
 
       <Badge className="badge">Default</Badge>
-      <Badge className="badge" primary>Primary</Badge>
+      <Badge className="badge" primary onClick={onClick}>Primary</Badge>
 
       <Heading>BooleanField</Heading>
       <p>A form field that represents a boolean value.</p>
@@ -78,20 +70,22 @@ const App = () => (
       <PropList>
         <Prop name="children">displayed inside the button</Prop>
         <ClassNameProp />
-        <Prop name="disabled?">disallows clicking on the button</Prop>
+        <Prop name="danger = false">indicates a permanent action</Prop>
+        <Prop name="disabled = false">disallows clicking on the button</Prop>
         <Prop name="icon?">an icon to display inside the button</Prop>
-        <Prop name="inverted?">indicates the inverted theme</Prop>
-        <Prop name="loading?">displays a spinner inside the button</Prop>
+        <Prop name="inverted = false">indicates the inverted theme</Prop>
+        <Prop name="loading = false">displays a spinner inside the button</Prop>
         <Prop name="onClick">the callback when the button is clicked</Prop>
-        <Prop name="primary?">indicates a larger primary button</Prop>
-        <Prop name="small?">indicates a small button</Prop>
-        <Prop name={"type? = \"button\""}>the type of the button component</Prop>
+        <Prop name="primary = false">indicates a larger primary button</Prop>
+        <Prop name="small = false">indicates a small button</Prop>
+        <Prop name={"type = \"button\""}>the type of the button component</Prop>
       </PropList>
 
       <Button>Default</Button>{" "}
       <Button icon="clipboard">Icon</Button>{" "}
       <Button loading>Loading</Button>{" "}
       <Button disabled>Disabled</Button>{" "}
+      <Button danger>Danger</Button>{" "}
 
       <Button primary>Primary</Button>{" "}
       <Button icon="clipboard" primary>Primary Icon</Button>{" "}
@@ -149,13 +143,13 @@ const App = () => (
       <p>An SVG of a person cheering.</p>
       <PropList>
         <ClassNameProp />
-        <Prop name={"color? = \"darkblue\""}>
+        <Prop name={"color = \"darkblue\""}>
           sets the fill of the SVG, can be one of <code>darkblue</code>,{" "}
           <code>lightblue</code>, <code>yellow</code>, or <code>green</code>
         </Prop>
         <Prop name="name?">an optional name that will appear in a tooltip</Prop>
-        <Prop name="pop? = false">whether or not this <code>Cheer</code> should pop in</Prop>
-        <Prop name="small? = false">indicates a small <code>Cheer</code></Prop>
+        <Prop name="pop = false">whether or not this <code>Cheer</code> should pop in</Prop>
+        <Prop name="small = false">indicates a small <code>Cheer</code></Prop>
       </PropList>
 
       <Cheer color="darkblue" pop />
@@ -175,7 +169,7 @@ const App = () => (
           a callback function that accepts a boolean <code>cheered</code>{" "}
           state and returns a <code>Promise</code>
         </Prop>
-        <Prop name="small? = false">indicates a small button (text will be hidden)</Prop>
+        <Prop name="small = false">indicates a small button (text will be hidden)</Prop>
       </PropList>
 
       <CheerButtonContainer />{" "}
@@ -215,6 +209,31 @@ const App = () => (
       </PropList>
 
       <Circles />
+
+      <Heading>Confirm</Heading>
+      <p>A confirmation dialog. It has the same props as the <code>Modal</code>{" "} component below, in addition to:</p>
+      <PropList>
+        <Prop name={"accept = \"Yes\""}>the text used for the accept button</Prop>
+        <Prop name="danger = false">indicates that the accept action is permanent</Prop>
+        <Prop name="onAccept">a callback when the action has been accepted</Prop>
+      </PropList>
+
+      <Confirm
+        accept="Yes, create it!"
+        onAccept={onAccept}
+        trigger={onTrigger => <Button onClick={onTrigger}>Create</Button>}
+      >
+        Are you sure you&#39;d like to create this resource?
+      </Confirm>
+      {" "}
+      <Confirm
+        accept="Yes, I'm sure. Delete it."
+        onAccept={onAccept}
+        danger
+        trigger={onTrigger => <Button danger onClick={onTrigger}>Danger</Button>}
+      >
+        Are you sure you&#39;d like to delete this resource?
+      </Confirm>
 
       <Heading>EmailField</Heading>
       <p>A string form field that accepts an email.</p>
@@ -262,7 +281,7 @@ const App = () => (
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="onChange">a function that accepts one argument that represents the new value of the file field</Prop>
-        <Prop name="multiple? = false">whether or not this field accepts multiple files</Prop>
+        <Prop name="multiple = false">whether or not this field accepts multiple files</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
         <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
@@ -322,6 +341,65 @@ const App = () => (
       </PropList>
 
       <LoaderContainer />
+
+      <Heading>Modal</Heading>
+      <p>
+        A wrapper around <code>ModalDialog</code> that maintains the state of{" "}
+        whether or not the dialog is currently open. It provides a <code>trigger</code>{" "}
+        render function that allows the consumer to define how it gets triggered.
+      </p>
+      <p>
+        This component has the same subcomponents as the <code>Panel</code>{" "}
+        component, just namespaced under the <code>Modal</code> component,{" "}
+        e.g., <code>Modal.Heading</code>. It has the same props as the{" "}
+        <code>ModalDialog</code> component below, in addition to:
+      </p>
+      <PropList>
+        <Prop name="startOpen = false">indicates that the dialog should be open when rendered</Prop>
+        <Prop name="trigger">
+          a function that accepts as one argument an <code>onTrigger</code>{" "}
+          function and returns a valid React component
+        </Prop>
+      </PropList>
+
+      <Modal
+        entrance="slideIn"
+        trigger={onTrigger => <Button onClick={onTrigger}>slideIn modal</Button>}
+      >
+        <Modal.Heading>Chapter 1</Modal.Heading>
+        <Modal.Body>{TEXT}</Modal.Body>
+      </Modal>
+      {" "}
+      <Modal
+        entrance="zoomIn"
+        trigger={onTrigger => <Button onClick={onTrigger}>zoomIn modal</Button>}
+      >
+        <Modal.Heading>Chapter 2</Modal.Heading>
+        <Modal.LoaderBody loading />
+      </Modal>
+
+      <Heading>ModalDialog</Heading>
+      <p>
+        An accessible modal dialog wrapping <code>react-modal</code>. Note{" "}
+        that if this component is going to be used, you need to call{" "}
+        <code>ModalDialog.setAppElement(&quot;selector&quot;)</code> where{" "}
+        <code>selector</code> is a valid HTML element selector representing{" "}
+        the root of the React tree.
+      </p>
+      <p>
+        This component has the same subcomponents as the <code>Panel</code>{" "}
+        component, just namespaced under the <code>ModalDialog</code> component,{" "}
+        e.g., <code>ModalDialog.Heading</code>.
+      </p>
+      <PropList>
+        <Prop name="children">the contents of the modal dialog</Prop>
+        <ClassNameProp />
+        <Prop name={"entrance = \"slideIn\""}>
+          the entrance animation for the dialog, must be one of{" "}
+          <code>slideIn</code> or <code>zoomIn</code>
+        </Prop>
+        <Prop name="onClose">a callback function when the dialog is closed</Prop>
+      </PropList>
 
       <Heading>Nav</Heading>
       <p>
@@ -525,7 +603,7 @@ const App = () => (
       <PropList>
         <Prop name="children">displayed inside the tag</Prop>
         <ClassNameProp />
-        <Prop name={"color? = \"blue\""}>can be one of <code>blue</code>, <code>gray</code>, or <code>red</code></Prop>
+        <Prop name={"color = \"blue\""}>can be one of <code>blue</code>, <code>gray</code>, or <code>red</code></Prop>
       </PropList>
 
       <Tag>Blue</Tag>
@@ -537,8 +615,8 @@ const App = () => (
       <PropList>
         <ClassNameProp />
         <Prop name="image">the image to be displayed</Prop>
-        <Prop name={"size? = \"small\""}>can be on of <code>small</code>, <code>medium</code>, or <code>large</code></Prop>
-        <Prop name="square? = false">whether or not this image should be displayed as a square</Prop>
+        <Prop name={"size = \"small\""}>can be on of <code>small</code>, <code>medium</code>, or <code>large</code></Prop>
+        <Prop name="square = false">whether or not this image should be displayed as a square</Prop>
         <Prop name="title?">an optional title for the image</Prop>
       </PropList>
 
@@ -560,7 +638,7 @@ const App = () => (
         <Prop name="tip">The text to display inside the tip</Prop>
       </PropList>
 
-      <Tooltip tip={TOOLTIP}>
+      <Tooltip tip={TEXT}>
         <Button primary disabled>Some action</Button>
       </Tooltip>
 

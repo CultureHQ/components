@@ -1,0 +1,12 @@
+import React from "react";
+import { mount } from "enzyme";
+import ReactModal from "react-modal";
+
+import { ModalDialog } from "../src";
+
+test("passes on class name", () => {
+  const component = mount(<ModalDialog className="modal-dialog" />);
+
+  expect(component.find(ReactModal).hasClass("modal-dialog")).toBe(true);
+  expect(component.find(ReactModal).hasClass("chq-mdl")).toBe(true);
+});

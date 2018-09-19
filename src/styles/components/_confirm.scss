@@ -1,0 +1,19 @@
+.chq-cnf {
+  text-align: center;
+
+  .chq-pan--bd {
+    padding: 30px;
+  }
+
+  .chq-pan--ft {
+    display: flex;
+
+    & > div {
+      flex-basis: 50%;
+    }
+
+    .chq-btn-iv {
+      margin-top: 3px;
+    }
+  }
+}

@@ -19,6 +19,7 @@ const Button = ({
   primary,
   small,
   loading,
+  danger,
   ...props
 }) => (
   <button // eslint-disable-line react/button-has-type
@@ -29,7 +30,8 @@ const Button = ({
         "chq-btn-iv": inverted,
         "chq-btn-pr": primary,
         "chq-btn-sm": small,
-        "chq-btn-ld": loading
+        "chq-btn-ld": loading,
+        "chq-btn-dg": danger
       })
     }
   >

@@ -1,0 +1,66 @@
+@import '../common';
+
+.chq-mdl {
+  background-color: $color-white;
+  box-shadow: 0 5px 15px $color-modal-shadow;
+  margin: 5% auto;
+  opacity: 0;
+  outline: 0;
+  width: 600px;
+
+  &-si {
+    animation: chqMdlSlideIn 500ms ease-out forwards;
+  }
+
+  &-zi {
+    animation: chqMdlZoomIn 300ms ease-out forwards;
+  }
+
+  .chq-pan--hd {
+    border-radius: 0;
+    text-align: center;
+
+    .chq-mdl--cl {
+      float: right;
+      margin-top: -7px;
+      opacity: .2;
+
+      svg {
+        height: 34px;
+        width: 34px;
+      }
+    }
+  }
+}
+
+@keyframes chqMdlSlideIn {
+  0% {
+    margin-top: -10%;
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    margin-top: 5%;
+    opacity: 1;
+  }
+}
+
+@keyframes chqMdlZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(.5, .5, .5);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}

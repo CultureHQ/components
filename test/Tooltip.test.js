@@ -30,3 +30,10 @@ test("ensures the bubble is not too far to the left", () => {
 
   expect(style.left).toEqual("10px");
 });
+
+test("does not break when one of the refs is null", () => {
+  const component = mount(<Tooltip tip="Tip">Inner content</Tooltip>);
+  component.instance().bubble.current = null;
+
+  expect(() => component.instance().computeOffsets()).not.toThrow();
+});
