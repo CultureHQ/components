@@ -2067,7 +2067,7 @@
     .chq-pan--hd hr {
       border: 0;
       border-top: 1px solid #eee;
-      margin-top: 12px; }
+      margin: 12px 0 0; }
     .chq-pan--hd-pr {
       background-color: #8cb4d6;
       border-top-left-radius: 5px;
