@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.9.0] - 2018-09-19
+### Added
+- The `ConfirmDelete` component for setting some simple defaults for a `Confirm` that represents a delete action.
+
 ## [3.8.1] - 2018-09-19
 ### Changed
 - Force remove the bottom padding of `hr` tags in modal headers.

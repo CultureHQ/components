@@ -53,4 +53,8 @@ class Confirm extends Component {
   }
 }
 
+export const ConfirmDelete = props => (
+  <Confirm accept="Delete" danger {...props} />
+);
+
 export default Confirm;

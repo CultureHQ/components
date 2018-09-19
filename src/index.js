@@ -10,7 +10,7 @@ export { default as Cheer } from "./components/Cheer";
 export { default as CheerButton } from "./components/CheerButton";
 export { default as CheerList } from "./components/CheerList";
 export { default as Circles } from "./components/Circles";
-export { default as Confirm } from "./components/Confirm";
+export { default as Confirm, ConfirmDelete } from "./components/Confirm";
 export { EmailField, NumberField, PasswordField, StringField } from "./components/FormFields";
 export { default as FeedItem } from "./components/FeedItem";
 export { default as FileField } from "./components/FileField";

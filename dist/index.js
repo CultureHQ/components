@@ -69,6 +69,12 @@ Object.defineProperty(exports, "Confirm", {
     return _Confirm.default;
   }
 });
+Object.defineProperty(exports, "ConfirmDelete", {
+  enumerable: true,
+  get: function get() {
+    return _Confirm.ConfirmDelete;
+  }
+});
 Object.defineProperty(exports, "EmailField", {
   enumerable: true,
   get: function get() {
@@ -242,7 +248,7 @@ var _CheerList = _interopRequireDefault(require("./components/CheerList"));
 
 var _Circles = _interopRequireDefault(require("./components/Circles"));
 
-var _Confirm = _interopRequireDefault(require("./components/Confirm"));
+var _Confirm = _interopRequireWildcard(require("./components/Confirm"));
 
 var _FormFields = require("./components/FormFields");
 
@@ -287,5 +293,7 @@ var _Thumbnail = _interopRequireDefault(require("./components/Thumbnail"));
 var _Tooltip = _interopRequireDefault(require("./components/Tooltip"));
 
 var _Warning = _interopRequireDefault(require("./components/Warning"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

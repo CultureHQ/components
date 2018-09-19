@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { Button, Confirm, ModalDialog } from "../src";
+import { Button, Confirm, ConfirmDelete, ModalDialog } from "../src";
 
 test("opens a modal when the onTrigger function is called", () => {
   const message = "This is the body of the confirmation";
@@ -20,11 +20,7 @@ test("opens a modal when the onTrigger function is called", () => {
 });
 
 test("closes the modal the cancel button is clicked", () => {
-  const component = mount(
-    <Confirm startOpen trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}>
-      Are you sure?
-    </Confirm>
-  );
+  const component = mount(<Confirm startOpen trigger={() => {}}>Are you sure?</Confirm>);
 
   component.find(".chq-btn-iv").simulate("click");
   expect(component.find(".chq-pan--bd")).toHaveLength(0);
@@ -36,10 +32,8 @@ test("calls the onAccept callback and closes when the confirmation is accepted",
     accepted = true;
   };
 
-  const trigger = onTrigger => <Button onClick={onTrigger}>Open</Button>;
-
   const component = mount(
-    <Confirm danger onAccept={onAccept} startOpen trigger={trigger}>
+    <Confirm danger onAccept={onAccept} startOpen trigger={() => {}}>
       Are you sure?
     </Confirm>
   );
@@ -47,4 +41,10 @@ test("calls the onAccept callback and closes when the confirmation is accepted",
   component.find(".chq-btn-dg").simulate("click");
   expect(component.find(".chq-pan--bd")).toHaveLength(0);
   expect(accepted).toBe(true);
+});
+
+test("ConfirmDelete sets default values", () => {
+  const component = mount(<ConfirmDelete startOpen trigger={() => {}} />);
+
+  expect(component.find(".chq-btn-dg").text()).toEqual("Delete");
 });

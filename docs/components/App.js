@@ -10,9 +10,9 @@ import PaginationContainer from "./PaginationContainer";
 
 import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
-  Confirm, EmailField, FeedItem, FileField, Form, Info, Modal, Nav, NumberField,
-  Panel, PasswordField, PlainButton, Spinner, StringField, SubmitButton, Subnav,
-  Success, Tag, Thumbnail, Tooltip, Warning
+  Confirm, ConfirmDelete, EmailField, FeedItem, FileField, Form, Info, Modal,
+  Nav, NumberField, Panel, PasswordField, PlainButton, Spinner, StringField,
+  SubmitButton, Subnav, Success, Tag, Thumbnail, Tooltip, Warning
 } from "../../src";
 
 import { TEXT, onAccept, onClick, onSubmit } from "./utils";
@@ -225,15 +225,20 @@ const App = () => (
       >
         Are you sure you&#39;d like to create this resource?
       </Confirm>
-      {" "}
-      <Confirm
-        accept="Yes, I'm sure. Delete it."
+
+      <Heading>ConfirmDelete</Heading>
+      <p>
+        A variation of a <code>Confirm</code> that is marked as dangerous{" "}
+        with a <code>Delete</code> button by default. Accepts all of the same{" "}
+        props as <code>Confirm</code>.
+      </p>
+
+      <ConfirmDelete
         onAccept={onAccept}
-        danger
         trigger={onTrigger => <Button danger onClick={onTrigger}>Danger</Button>}
       >
         Are you sure you&#39;d like to delete this resource?
-      </Confirm>
+      </ConfirmDelete>
 
       <Heading>EmailField</Heading>
       <p>A string form field that accepts an email.</p>
