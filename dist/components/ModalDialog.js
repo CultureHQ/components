@@ -42,11 +42,13 @@ var ModalDialogHeading = function ModalDialogHeading(_ref) {
 var ModalDialog = function ModalDialog(_ref2) {
   var children = _ref2.children,
       className = _ref2.className,
+      contentRef = _ref2.contentRef,
       _ref2$entrance = _ref2.entrance,
       entrance = _ref2$entrance === void 0 ? "slideIn" : _ref2$entrance,
       onClose = _ref2.onClose;
   return _react.default.createElement(_reactModal.default, {
     className: (0, _classnames.default)("chq-mdl", className, entrances[entrance]),
+    contentRef: contentRef,
     onRequestClose: onClose,
     isOpen: true,
     style: {

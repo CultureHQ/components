@@ -21,9 +21,10 @@ const ModalDialogHeading = ({ children, className, onClose }) => (
   </Panel.Heading>
 );
 
-const ModalDialog = ({ children, className, entrance = "slideIn", onClose }) => (
+const ModalDialog = ({ children, className, contentRef, entrance = "slideIn", onClose }) => (
   <ReactModal
     className={classnames("chq-mdl", className, entrances[entrance])}
+    contentRef={contentRef}
     onRequestClose={onClose}
     isOpen
     style={{
