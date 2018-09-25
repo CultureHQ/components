@@ -59,13 +59,13 @@
     "prettier": "^1.14.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-modal": "^3.5.1",
+    "react-modal": "^3.6.1",
     "sass-lint": "^1.12.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
-    "webpack": "^4.19.1",
+    "webpack": "^4.20.1",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.8"
+    "webpack-dev-server": "^3.1.9"
   },
   "jest": {
     "moduleNameMapper": {
