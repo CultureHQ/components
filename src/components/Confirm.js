@@ -12,6 +12,12 @@ class Confirm extends Component {
   }
 
   handleOpen = () => {
+    const { onOpen } = this.props;
+
+    if (onOpen) {
+      onOpen();
+    }
+
     this.setState({ open: true });
   };
 
@@ -27,7 +33,7 @@ class Confirm extends Component {
   };
 
   render() {
-    const { accept = "Yes", children, className, danger, entrance, trigger } = this.props;
+    const { accept = "Yes", children, className, contentRef, danger, entrance, trigger } = this.props;
     const { open } = this.state;
 
     const classList = classnames("chq-cnf", className);
@@ -36,7 +42,12 @@ class Confirm extends Component {
       <Fragment>
         {trigger(this.handleOpen)}
         {open && (
-          <ModalDialog className={classList} entrance={entrance} onClose={this.handleClose}>
+          <ModalDialog
+            className={classList}
+            contentRef={contentRef}
+            entrance={entrance}
+            onClose={this.handleClose}
+          >
             <ModalDialog.Body>{children}</ModalDialog.Body>
             <ModalDialog.Footer>
               <div>

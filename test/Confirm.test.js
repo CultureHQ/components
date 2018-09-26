@@ -19,6 +19,22 @@ test("opens a modal when the onTrigger function is called", () => {
   expect(component.find(ModalDialog.Body).text()).toContain(message);
 });
 
+test("calls the onOpen callback if it is provided", () => {
+  let opened = false;
+
+  const component = mount(
+    <Confirm
+      trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
+      onOpen={() => { opened = true; }}
+    />
+  );
+
+  expect(opened).toBe(false);
+
+  component.find(Button).simulate("click");
+  expect(opened).toBe(true);
+});
+
 test("closes the modal the cancel button is clicked", () => {
   const component = mount(<Confirm startOpen trigger={() => {}}>Are you sure?</Confirm>);
 
@@ -47,4 +63,14 @@ test("ConfirmDelete sets default values", () => {
   const component = mount(<ConfirmDelete startOpen trigger={() => {}} />);
 
   expect(component.find(".chq-btn-dg").text()).toEqual("Delete");
+});
+
+test("passes on contentRef", () => {
+  const contentRef = element => {
+    contentRef.current = element;
+  };
+
+  mount(<Confirm startOpen contentRef={contentRef} trigger={() => {}} />);
+
+  expect(contentRef.current).not.toBe(undefined);
 });

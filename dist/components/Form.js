@@ -120,31 +120,16 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSubmit", function (event) {
-      var onSubmit = _this.props.onSubmit;
-      var _this$state2 = _this.state,
-          errors = _this$state2.errors,
-          values = _this$state2.values;
-
-      _this.setState({
-        submitted: true
-      });
-
       event.preventDefault();
 
-      if (Object.keys(errors).every(function (name) {
-        return !errors[name];
-      })) {
+      _this.submit();
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDoneSubmitting", function () {
+      if (_this.componentIsMounted) {
         _this.setState({
-          submitting: true
+          submitting: false
         });
-
-        var doneSubmitting = function doneSubmitting() {
-          return _this.setState({
-            submitting: false
-          });
-        };
-
-        onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
       }
     });
 
@@ -158,6 +143,40 @@ function (_Component) {
   }
 
   _createClass(Form, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.componentIsMounted = true;
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.componentIsMounted = false;
+    }
+  }, {
+    key: "submit",
+    value: function submit() {
+      var onSubmit = this.props.onSubmit;
+      var _this$state2 = this.state,
+          errors = _this$state2.errors,
+          values = _this$state2.values;
+      this.setState({
+        submitted: true
+      });
+
+      if (Object.keys(errors).every(function (name) {
+        return !errors[name];
+      })) {
+        this.setState({
+          submitting: true
+        });
+        var submitted = onSubmit(values);
+
+        if (submitted && submitted.then) {
+          submitted.then(this.handleDoneSubmitting).catch(this.handleDoneSubmitting);
+        }
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var className = this.props.className;

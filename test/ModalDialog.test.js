@@ -10,3 +10,13 @@ test("passes on class name", () => {
   expect(component.find(ReactModal).hasClass("modal-dialog")).toBe(true);
   expect(component.find(ReactModal).hasClass("chq-mdl")).toBe(true);
 });
+
+test("passes on contentRef", () => {
+  const contentRef = element => {
+    contentRef.current = element;
+  };
+
+  mount(<ModalDialog contentRef={contentRef} />);
+
+  expect(contentRef.current).not.toBe(undefined);
+});

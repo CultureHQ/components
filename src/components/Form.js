@@ -31,6 +31,14 @@ class Form extends Component {
     };
   }
 
+  componentDidMount() {
+    this.componentIsMounted = true;
+  }
+
+  componentWillUnmount() {
+    this.componentIsMounted = false;
+  }
+
   getChildren = () => {
     const { children } = this.props;
     const { submitted, submitting, values } = this.state;
@@ -75,19 +83,31 @@ class Form extends Component {
   };
 
   handleSubmit = event => {
+    event.preventDefault();
+    this.submit();
+  };
+
+  handleDoneSubmitting = () => {
+    if (this.componentIsMounted) {
+      this.setState({ submitting: false });
+    }
+  };
+
+  submit() {
     const { onSubmit } = this.props;
     const { errors, values } = this.state;
 
     this.setState({ submitted: true });
-    event.preventDefault();
 
     if (Object.keys(errors).every(name => !errors[name])) {
       this.setState({ submitting: true });
 
-      const doneSubmitting = () => this.setState({ submitting: false });
-      onSubmit(values).then(doneSubmitting).catch(doneSubmitting);
+      const submitted = onSubmit(values);
+      if (submitted && submitted.then) {
+        submitted.then(this.handleDoneSubmitting).catch(this.handleDoneSubmitting);
+      }
     }
-  };
+  }
 
   render() {
     const { className } = this.props;

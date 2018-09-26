@@ -52,6 +52,12 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Confirm).call(this, props));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleOpen", function () {
+      var onOpen = _this.props.onOpen;
+
+      if (onOpen) {
+        onOpen();
+      }
+
       _this.setState({
         open: true
       });
@@ -87,6 +93,7 @@ function (_Component) {
           accept = _this$props$accept === void 0 ? "Yes" : _this$props$accept,
           children = _this$props.children,
           className = _this$props.className,
+          contentRef = _this$props.contentRef,
           danger = _this$props.danger,
           entrance = _this$props.entrance,
           trigger = _this$props.trigger;
@@ -94,6 +101,7 @@ function (_Component) {
       var classList = (0, _classnames.default)("chq-cnf", className);
       return _react.default.createElement(_react.Fragment, null, trigger(this.handleOpen), open && _react.default.createElement(_ModalDialog.default, {
         className: classList,
+        contentRef: contentRef,
         entrance: entrance,
         onClose: this.handleClose
       }, _react.default.createElement(_ModalDialog.default.Body, null, children), _react.default.createElement(_ModalDialog.default.Footer, null, _react.default.createElement("div", null, _react.default.createElement(_Button.default, {

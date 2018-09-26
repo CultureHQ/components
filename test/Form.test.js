@@ -10,21 +10,12 @@ import {
   SubmitButton
 } from "../src";
 
-test("passes on className", () => {
-  const component = mount(<Form className="form" />);
-
-  expect(component.hasClass("form")).toBe(true);
-});
-
-test("gathers values as they change and submits them", () => {
-  let submitted = null;
-  const onSubmit = values => {
-    submitted = values;
-    return Promise.resolve();
-  };
-
+const mountFullForm = () => {
   const component = mount(
-    <Form onSubmit={onSubmit} initialValues={{ email: "kevin@culturehq.com" }}>
+    <Form
+      onSubmit={submitted => { component.submitted = submitted; }}
+      initialValues={{ email: "kevin@culturehq.com" }}
+    >
       <BooleanField name="boolean">Boolean</BooleanField>
       <StringField name="name">Name</StringField>
       <EmailField name="email">Email</EmailField>
@@ -34,13 +25,51 @@ test("gathers values as they change and submits them", () => {
   );
 
   component.find("#name").simulate("change", { target: { value: "Kevin" } });
+
+  return component;
+};
+
+test("passes on className", () => {
+  const component = mount(<Form className="form" />);
+
+  expect(component.hasClass("form")).toBe(true);
+});
+
+test("gathers values as they change and submits them", () => {
+  const component = mountFullForm();
   component.simulate("submit");
 
-  expect(submitted).toEqual({
+  expect(component.submitted).toEqual({
     boolean: false,
     name: "Kevin",
     email: "kevin@culturehq.com"
   });
+
+  component.unmount();
+});
+
+test("allows calling submit manually", () => {
+  const component = mountFullForm();
+  component.instance().submit();
+
+  expect(component.submitted.name).toEqual("Kevin");
+});
+
+test("does not attempt to setState once the component is unmounted", () => {
+  const component = mount(
+    <Form
+      onSubmit={() => (
+        new Promise(resolve => {
+          component.unmount();
+          resolve();
+        })
+      )}
+    >
+      <BooleanField name="boolean">Boolean</BooleanField>
+    </Form>
+  );
+
+  component.instance().submit();
 });
 
 test("passes down initialValues", () => {
