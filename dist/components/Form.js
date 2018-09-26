@@ -125,6 +125,14 @@ function (_Component) {
       _this.submit();
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDoneSubmitting", function () {
+      if (_this.componentIsMounted) {
+        _this.setState({
+          submitting: false
+        });
+      }
+    });
+
     _this.state = {
       submitted: false,
       submitting: false,
@@ -143,15 +151,6 @@ function (_Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.componentIsMounted = false;
-    }
-  }, {
-    key: "handleDoneSubmitting",
-    value: function handleDoneSubmitting() {
-      if (this.componentIsMounted) {
-        this.setState({
-          submitting: false
-        });
-      }
     }
   }, {
     key: "submit",
