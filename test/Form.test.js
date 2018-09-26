@@ -58,7 +58,7 @@ test("allows calling submit manually", () => {
 test("does not attempt to setState once the component is unmounted", () => {
   const component = mount(
     <Form
-      onSubmit={submitted => (
+      onSubmit={() => (
         new Promise(resolve => {
           component.unmount();
           resolve();
