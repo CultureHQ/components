@@ -87,7 +87,7 @@ class Form extends Component {
     this.submit();
   };
 
-  handleDoneSubmitting() {
+  handleDoneSubmitting = () => {
     if (this.componentIsMounted) {
       this.setState({ submitting: false });
     }

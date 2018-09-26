@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.10.0] - 2018-09-26
+### Added
+- The `contentRef` prop on `ModalDialog` to pass on to `react-modal`.
+- The `contentRef` prop on `Confirm` modals to pass on to the nested `ModalDialog`.
+- The `onOpen` callback for `Confirm` modals.
+- The `submit()` member function on `Form` components.
+
+### Changed
+- The `onSubmit` of a `Form` component no longer needs to return a `Promise`.
+
 ## [3.9.1] - 2018-09-19
 ### Changed
 - Catch import errors from `Icon`.

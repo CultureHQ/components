@@ -42,7 +42,12 @@ class Confirm extends Component {
       <Fragment>
         {trigger(this.handleOpen)}
         {open && (
-          <ModalDialog className={classList} contentRef={contentRef} entrance={entrance} onClose={this.handleClose}>
+          <ModalDialog
+            className={classList}
+            contentRef={contentRef}
+            entrance={entrance}
+            onClose={this.handleClose}
+          >
             <ModalDialog.Body>{children}</ModalDialog.Body>
             <ModalDialog.Footer>
               <div>
