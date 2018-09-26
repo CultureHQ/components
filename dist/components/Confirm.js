@@ -52,6 +52,12 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Confirm).call(this, props));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleOpen", function () {
+      var onOpen = _this.props.onOpen;
+
+      if (onOpen) {
+        onOpen();
+      }
+
       _this.setState({
         open: true
       });

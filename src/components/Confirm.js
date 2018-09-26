@@ -12,6 +12,12 @@ class Confirm extends Component {
   }
 
   handleOpen = () => {
+    const { onOpen } = this.props;
+
+    if (onOpen) {
+      onOpen();
+    }
+
     this.setState({ open: true });
   };
 
