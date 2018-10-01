@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.11.0] - 2018-10-01
+### Added
+- The `ol` and `ul` icons.
+
 ## [3.10.0] - 2018-09-26
 ### Added
 - The `contentRef` prop on `ModalDialog` to pass on to `react-modal`.
