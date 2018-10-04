@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.11.2] - 2018-10-04
+### Changed
+- Set the cursor to pointer on the file upload button.
+
 ## [3.11.1] - 2018-10-04
 ### Changed
 - Removed the duplicated style declarations.

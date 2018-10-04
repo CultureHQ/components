@@ -491,10 +491,6 @@
     .chq-ffd--ad + input {
       padding-left: 19px; }
 
-.chq-ffd--fi {
-  display: block;
-  position: relative; }
-
 .chq-ffd--di {
   background-color: #fff;
   border: 2px solid #eaeaea;
@@ -520,11 +516,16 @@
 .chq-ffd--fd {
   padding: 8px 12px 6px 0; }
 
-.chq-ffd--fi input {
-  cursor: pointer;
-  opacity: 0; }
-  .chq-ffd--fi input:focus + .chq-ffd--di {
-    border-bottom-color: #79b17d; }
+.chq-ffd--fi {
+  display: block;
+  position: relative; }
+  .chq-ffd--fi input {
+    cursor: pointer;
+    opacity: 1; }
+    .chq-ffd--fi input:focus + .chq-ffd--di {
+      border-bottom-color: #79b17d; }
+    .chq-ffd--fi input::-webkit-file-upload-button {
+      cursor: pointer; }
 
 .chq-ham {
   background: none;

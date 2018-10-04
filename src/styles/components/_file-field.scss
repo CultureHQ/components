@@ -1,9 +1,4 @@
 .chq-ffd {
-  &--fi {
-    display: block;
-    position: relative;
-  }
-
   &--di {
     background-color: $color-white;
     border: 2px solid $color-border;
@@ -34,12 +29,21 @@
 }
 
 .chq-ffd--fi {
+  display: block;
+  position: relative;
+
   input {
     cursor: pointer;
-    opacity: 0;
+    opacity: 1;
 
     &:focus + .chq-ffd--di {
       border-bottom-color: $color-primary-green;
+    }
+
+    // Sets the cursor to pointer on the actual file input button (which is
+    // actually governing the cursor type even with the div on top of it)
+    &::-webkit-file-upload-button { // sass-lint:disable-line no-vendor-prefixes
+      cursor: pointer;
     }
   }
 }
