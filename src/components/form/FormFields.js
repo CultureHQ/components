@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-import classnames from "../classnames";
+import classnames from "../../classnames";
 import FormError from "./FormError";
 
 const buildFormField = type => {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { mount } from "enzyme";
 
-import FileField from "../src/components/FileField";
+import { FileField } from "../src";
 
 class FileFieldContainer extends Component {
   state = { value: null };

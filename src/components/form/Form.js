@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import classnames from "../classnames";
+import classnames from "../../classnames";
 
 import SubmitButton from "./SubmitButton";
 import BooleanField from "./BooleanField";

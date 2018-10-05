@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import Checkmark from "./Checkmark";
-import classnames from "../classnames";
+import Checkmark from "../Checkmark";
+import classnames from "../../classnames";
 
 class BooleanField extends Component {
   componentDidMount() {
