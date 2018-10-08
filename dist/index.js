@@ -9,22 +9,10 @@ Object.defineProperty(exports, "Badge", {
     return _Badge.default;
   }
 });
-Object.defineProperty(exports, "BooleanField", {
-  enumerable: true,
-  get: function get() {
-    return _BooleanField.default;
-  }
-});
 Object.defineProperty(exports, "Button", {
   enumerable: true,
   get: function get() {
     return _Button.default;
-  }
-});
-Object.defineProperty(exports, "CentsField", {
-  enumerable: true,
-  get: function get() {
-    return _CentsField.default;
   }
 });
 Object.defineProperty(exports, "Checklist", {
@@ -75,46 +63,10 @@ Object.defineProperty(exports, "ConfirmDelete", {
     return _Confirm.ConfirmDelete;
   }
 });
-Object.defineProperty(exports, "EmailField", {
-  enumerable: true,
-  get: function get() {
-    return _FormFields.EmailField;
-  }
-});
-Object.defineProperty(exports, "NumberField", {
-  enumerable: true,
-  get: function get() {
-    return _FormFields.NumberField;
-  }
-});
-Object.defineProperty(exports, "PasswordField", {
-  enumerable: true,
-  get: function get() {
-    return _FormFields.PasswordField;
-  }
-});
-Object.defineProperty(exports, "StringField", {
-  enumerable: true,
-  get: function get() {
-    return _FormFields.StringField;
-  }
-});
 Object.defineProperty(exports, "FeedItem", {
   enumerable: true,
   get: function get() {
     return _FeedItem.default;
-  }
-});
-Object.defineProperty(exports, "FileField", {
-  enumerable: true,
-  get: function get() {
-    return _FileField.default;
-  }
-});
-Object.defineProperty(exports, "Form", {
-  enumerable: true,
-  get: function get() {
-    return _Form.default;
   }
 });
 Object.defineProperty(exports, "Hamburger", {
@@ -183,12 +135,6 @@ Object.defineProperty(exports, "Spinner", {
     return _Spinner.default;
   }
 });
-Object.defineProperty(exports, "SubmitButton", {
-  enumerable: true,
-  get: function get() {
-    return _SubmitButton.default;
-  }
-});
 Object.defineProperty(exports, "Subnav", {
   enumerable: true,
   get: function get() {
@@ -225,16 +171,66 @@ Object.defineProperty(exports, "Warning", {
     return _Warning.default;
   }
 });
+Object.defineProperty(exports, "BooleanField", {
+  enumerable: true,
+  get: function get() {
+    return _BooleanField.default;
+  }
+});
+Object.defineProperty(exports, "CentsField", {
+  enumerable: true,
+  get: function get() {
+    return _CentsField.default;
+  }
+});
+Object.defineProperty(exports, "Form", {
+  enumerable: true,
+  get: function get() {
+    return _Form.default;
+  }
+});
+Object.defineProperty(exports, "EmailField", {
+  enumerable: true,
+  get: function get() {
+    return _FormFields.EmailField;
+  }
+});
+Object.defineProperty(exports, "NumberField", {
+  enumerable: true,
+  get: function get() {
+    return _FormFields.NumberField;
+  }
+});
+Object.defineProperty(exports, "PasswordField", {
+  enumerable: true,
+  get: function get() {
+    return _FormFields.PasswordField;
+  }
+});
+Object.defineProperty(exports, "StringField", {
+  enumerable: true,
+  get: function get() {
+    return _FormFields.StringField;
+  }
+});
+Object.defineProperty(exports, "FileField", {
+  enumerable: true,
+  get: function get() {
+    return _FileField.default;
+  }
+});
+Object.defineProperty(exports, "SubmitButton", {
+  enumerable: true,
+  get: function get() {
+    return _SubmitButton.default;
+  }
+});
 
 require("./main.css");
 
 var _Badge = _interopRequireDefault(require("./components/Badge"));
 
-var _BooleanField = _interopRequireDefault(require("./components/BooleanField"));
-
 var _Button = _interopRequireDefault(require("./components/Button"));
-
-var _CentsField = _interopRequireDefault(require("./components/CentsField"));
 
 var _Checklist = _interopRequireDefault(require("./components/Checklist"));
 
@@ -250,13 +246,7 @@ var _Circles = _interopRequireDefault(require("./components/Circles"));
 
 var _Confirm = _interopRequireWildcard(require("./components/Confirm"));
 
-var _FormFields = require("./components/FormFields");
-
 var _FeedItem = _interopRequireDefault(require("./components/FeedItem"));
-
-var _FileField = _interopRequireDefault(require("./components/FileField"));
-
-var _Form = _interopRequireDefault(require("./components/Form"));
 
 var _Hamburger = _interopRequireDefault(require("./components/Hamburger"));
 
@@ -280,8 +270,6 @@ var _PlainButton = _interopRequireDefault(require("./components/PlainButton"));
 
 var _Spinner = _interopRequireDefault(require("./components/Spinner"));
 
-var _SubmitButton = _interopRequireDefault(require("./components/SubmitButton"));
-
 var _Subnav = _interopRequireDefault(require("./components/Subnav"));
 
 var _Success = _interopRequireDefault(require("./components/Success"));
@@ -293,6 +281,18 @@ var _Thumbnail = _interopRequireDefault(require("./components/Thumbnail"));
 var _Tooltip = _interopRequireDefault(require("./components/Tooltip"));
 
 var _Warning = _interopRequireDefault(require("./components/Warning"));
+
+var _BooleanField = _interopRequireDefault(require("./components/form/BooleanField"));
+
+var _CentsField = _interopRequireDefault(require("./components/form/CentsField"));
+
+var _Form = _interopRequireDefault(require("./components/form/Form"));
+
+var _FormFields = require("./components/form/FormFields");
+
+var _FileField = _interopRequireDefault(require("./components/form/FileField"));
+
+var _SubmitButton = _interopRequireDefault(require("./components/form/SubmitButton"));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 

@@ -44,6 +44,10 @@ class Form extends Component {
     const { submitted, submitting, values } = this.state;
 
     return React.Children.map(children, child => {
+      if (!child) {
+        return child;
+      }
+
       const { type, props } = child;
 
       if (isField(type)) {
