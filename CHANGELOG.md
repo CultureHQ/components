@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.11.3] - 2018-10-07
+### Changed
+- Fix up form errors when components are not part of the form library.
+
 ## [3.11.2] - 2018-10-04
 ### Changed
 - Set the cursor to pointer on the file upload button.
