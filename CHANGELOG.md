@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Changed
 - Fixed the max-width on modal dialogs when on a small screen.
+- Fixed Safari bug where tooltip bubbles would stick around.
 
 ## [3.11.3] - 2018-10-07
 ### Changed
