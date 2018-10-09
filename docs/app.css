@@ -23,6 +23,12 @@ a:hover {
   width: 66%;
 }
 
+@media (max-width: 600px) {
+  .container {
+    width: 86.7%;
+  }
+}
+
 pre {
   font-size: 2em;
   margin-bottom: 0;
