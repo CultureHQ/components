@@ -588,6 +588,7 @@
   background-color: #fff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   margin: 5% auto;
+  max-width: 94vw;
   opacity: 0;
   outline: 0;
   width: 600px; }
@@ -822,11 +823,13 @@
     max-width: 300px;
     opacity: .8;
     padding: 5px 10px;
-    position: absolute; }
+    position: absolute;
+    z-index: 1; }
   .chq-ttp--tri {
     background-color: #000;
     bottom: -6px;
     content: '';
+    display: none;
     height: 12px;
     left: calc(50% - 6px);
     position: absolute;
@@ -834,6 +837,8 @@
     width: 12px; }
   .chq-ttp:hover .chq-ttp--bbl {
     display: table; }
+  .chq-ttp:hover .chq-ttp--tri {
+    display: inline; }
 
 .chq-wrn {
   background-color: #fcf8e3;
