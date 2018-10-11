@@ -20,6 +20,7 @@ const mountFullForm = () => {
       <StringField name="name">Name</StringField>
       <EmailField name="email">Email</EmailField>
       <p>This is a great form!</p>
+      {false && <p>This is not going to be displayed</p>}
       <SubmitButton />
     </Form>
   );
