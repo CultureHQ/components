@@ -8,7 +8,7 @@ import {
   EmailField,
   StringField,
   SubmitButton
-} from "../src";
+} from "../../src";
 
 const mountFullForm = () => {
   const component = mount(
