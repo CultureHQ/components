@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 
 import classnames from "../classnames";
 
@@ -41,7 +41,7 @@ class Loader extends Component {
     const { spinning } = this.state;
 
     if (!loading) {
-      return <Fragment>{children}</Fragment>;
+      return <>{children}</>;
     }
 
     return (

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import CheckmarkContainer from "./CheckmarkContainer";
 import CheerButtonContainer from "./CheerButtonContainer";
@@ -11,19 +11,20 @@ import PaginationContainer from "./PaginationContainer";
 import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
   Confirm, ConfirmDelete, EmailField, FeedItem, FileField, Form, Info, Modal,
-  Nav, NumberField, Panel, PasswordField, PlainButton, Spinner, StringField,
-  SubmitButton, Subnav, Success, Tag, Thumbnail, Tooltip, Warning
+  Nav, NumberField, Panel, PasswordField, PlainButton, SelectField, Spinner,
+  StringField, SubmitButton, Subnav, Success, Table, Tag, Thumbnail, Tooltip,
+  Warning
 } from "../../src";
 
-import { TEXT, onAccept, onClick, onSubmit } from "./utils";
+import { TEXT, OPTIONS, onAccept, onClick, onSubmit } from "./utils";
 
 Modal.setAppElement("#main");
 
 const Heading = ({ children }) => (
-  <Fragment>
+  <>
     <pre>{"<"}{children}{">"}</pre>
     <hr />
-  </Fragment>
+  </>
 );
 
 const PropList = ({ children }) => <ul className="prop-list">{children}</ul>;
@@ -35,7 +36,7 @@ const ClassNameProp = () => <Prop name="className?">an extra {"class"} name</Pro
 const Subcomponent = ({ children }) => <p><code>{children}</code> subcomponent</p>;
 
 const App = () => (
-  <Fragment>
+  <>
     <Nav>{"<Nav>"}</Nav>
 
     <div className="container">
@@ -107,9 +108,13 @@ const App = () => (
         <Prop name="value">the value of the input field</Prop>
       </PropList>
 
-      <Form>
-        <CentsField name="cents" required>Cents</CentsField>
-      </Form>
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <CentsField name="cents" required>Cents</CentsField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>Checklist</Heading>
       <p>A list of items and their associated status.</p>
@@ -252,9 +257,13 @@ const App = () => (
         <Prop name="value">the value of the input field</Prop>
       </PropList>
 
-      <Form>
-        <EmailField name="email" required>Email</EmailField>
-      </Form>
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <EmailField name="email" required>Email</EmailField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>FeedItem</Heading>
       <p>A contained item in a feed.</p>
@@ -428,9 +437,13 @@ const App = () => (
         <Prop name="value">the value of the input field</Prop>
       </PropList>
 
-      <Form>
-        <NumberField name="number" required>Number</NumberField>
-      </Form>
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <NumberField name="number" required>Number</NumberField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>Pagination</Heading>
       <p>Displays pagination information with buttons for looking through different pages.</p>
@@ -507,9 +520,13 @@ const App = () => (
         <Prop name="value">the value of the input field</Prop>
       </PropList>
 
-      <Form>
-        <PasswordField name="password" required>Password</PasswordField>
-      </Form>
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <PasswordField name="password" required>Password</PasswordField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>PlainButton</Heading>
       <p>
@@ -525,6 +542,26 @@ const App = () => (
       <PlainButton onClick={onClick}>
         Click me
       </PlainButton>
+
+      <Heading>SelectField</Heading>
+      <p>A select form field.</p>
+      <PropList>
+        <Prop name="children">the label to display for the field</Prop>
+        <ClassNameProp />
+        <Prop name="onChange">a function that accepts one argument that represents the new value of the input field</Prop>
+        <Prop name="name">the name of the field</Prop>
+        <Prop name="required?">indicates this field is required for submission</Prop>
+        <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
+        <Prop name="value">the value of the select field</Prop>
+      </PropList>
+
+      <Panel>
+        <Panel.Body>
+          <Form initialValues={{ select: "The Prisoner of Azkaban" }}>
+            <SelectField name="select" options={OPTIONS} required>Select</SelectField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>Spinner</Heading>
       <p>A circular spinner using the CultureHQ colors.</p>
@@ -546,9 +583,13 @@ const App = () => (
         <Prop name="value">the value of the input field</Prop>
       </PropList>
 
-      <Form>
-        <StringField name="string" required>String</StringField>
-      </Form>
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <StringField name="string" required>String</StringField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>SubmitButton</Heading>
       <p>
@@ -603,6 +644,64 @@ const App = () => (
 
       <Success>This is a success.</Success>
 
+      <Heading>Table</Heading>
+      <p>Displays a table.</p>
+      <PropList>
+        <Prop name="children">displays inside the table</Prop>
+        <ClassNameProp />
+      </PropList>
+
+      <Panel>
+        <Panel.Body>
+          <Table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Chapters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>The Sorcerer&#39;s Stone</td>
+                <td>17</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>The Chamber of Secrets</td>
+                <td>18</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>The Prisoner of Azkaban</td>
+                <td>22</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>The Goblet of Fire</td>
+                <td>37</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>The Order of the Phoenix</td>
+                <td>38</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>The Half-Blood Prince</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>The Deathly Hallows</td>
+                <td>37</td>
+              </tr>
+            </tbody>
+          </Table>
+        </Panel.Body>
+      </Panel>
+
       <Heading>Tag</Heading>
       <p>A component for displaying an associated status.</p>
       <PropList>
@@ -656,7 +755,7 @@ const App = () => (
 
       <Warning>This is a warning.</Warning>
     </div>
-  </Fragment>
+  </>
 );
 
 export default App;

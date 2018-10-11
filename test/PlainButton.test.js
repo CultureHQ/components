@@ -3,11 +3,12 @@ import { shallow } from "enzyme";
 
 import { PlainButton } from "../src";
 
-test("renders without crashing", () => {
+test("renders without crashing", async () => {
   const message = "This is a button.";
-  const component = shallow(<PlainButton>{message}</PlainButton>);
+  const component = <PlainButton>{message}</PlainButton>;
 
-  expect(component.html()).toContain(message);
+  expect(shallow(component).html()).toContain(message);
+  await expect(component).toHaveNoViolations();
 });
 
 test("passes on className", () => {

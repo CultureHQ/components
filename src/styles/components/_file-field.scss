@@ -26,24 +26,24 @@
   &--fd {
     padding: 8px 12px 6px 0;
   }
-}
 
-.chq-ffd--fi {
-  display: block;
-  position: relative;
+  &--fi {
+    display: block;
+    position: relative;
 
-  input {
-    cursor: pointer;
-    opacity: 1;
-
-    &:focus + .chq-ffd--di {
-      border-bottom-color: $color-primary-green;
-    }
-
-    // Sets the cursor to pointer on the actual file input button (which is
-    // actually governing the cursor type even with the div on top of it)
-    &::-webkit-file-upload-button { // sass-lint:disable-line no-vendor-prefixes
+    input {
       cursor: pointer;
+      opacity: 1;
+
+      &:focus + .chq-ffd--di {
+        border-bottom-color: $color-primary-green;
+      }
+
+      // Sets the cursor to pointer on the actual file input button (which is
+      // actually governing the cursor type even with the div on top of it)
+      &::-webkit-file-upload-button { // sass-lint:disable-line no-vendor-prefixes
+        cursor: pointer;
+      }
     }
   }
 }

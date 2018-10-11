@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { Button, Confirm, ConfirmDelete, ModalDialog } from "../src";
+import { Button, Confirm, ConfirmDelete, ModalDialog } from "../../src";
 
 test("opens a modal when the onTrigger function is called", () => {
   const message = "This is the body of the confirmation";

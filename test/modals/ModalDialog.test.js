@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import ReactModal from "react-modal";
 
-import { ModalDialog } from "../src";
+import { ModalDialog } from "../../src";
 
 test("passes on class name", () => {
   const component = mount(<ModalDialog className="modal-dialog" />);

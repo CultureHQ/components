@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 
 import { Button, Loader } from "../../src";
 
@@ -13,14 +13,14 @@ class LoaderContainer extends Component {
     const { loading } = this.state;
 
     return (
-      <Fragment>
+      <>
         <Button onClick={this.handleContentToggle}>
           {loading ? "Load" : "Unload"} content
         </Button>
         <Loader loading={loading}>
           <p>Content loaded!</p>
         </Loader>
-      </Fragment>
+      </>
     );
   }
 }

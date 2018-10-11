@@ -5,6 +5,10 @@ import { Loader, Spinner } from "../src";
 
 const Loaded = () => <p>Content loaded!</p>;
 
+test("has no violations", async () => {
+  await expect(<Loader loading />).toHaveNoViolations();
+});
+
 test("passes on className", () => {
   const component = mount(<Loader loading className="loader"><Loaded /></Loader>);
 

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
@@ -35,7 +35,7 @@ const buildFormField = type => {
       return (
         <label className={classnames("chq-ffd", className)} htmlFor={name}>
           <span className="chq-ffd--lb">{children}</span>
-          <Fragment>
+          <>
             {addon && <span className="chq-ffd--ad">{addon}</span>}
             <input
               {...props}
@@ -45,7 +45,7 @@ const buildFormField = type => {
               onBlur={this.handleBlur}
               onChange={this.handleChange}
             />
-          </Fragment>
+          </>
           <FormError
             name={name}
             onError={onError}

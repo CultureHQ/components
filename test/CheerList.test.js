@@ -24,6 +24,10 @@ class Container extends Component {
   }
 }
 
+test("has no violations", async () => {
+  await expect(<div><CheerList cheers={[]} /></div>).toHaveNoViolations();
+});
+
 test("renders the number of cheers provided", () => {
   const cheers = [
     { name: "Hermione" },

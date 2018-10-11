@@ -21,6 +21,10 @@ class HamburgerContainer extends Component {
   }
 }
 
+test("has no violations", async () => {
+  await expect(<Hamburger />).toHaveNoViolations();
+});
+
 test("renders without crashing", () => {
   const component = shallow(<Hamburger />);
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { Button, Modal, PlainButton } from "../src";
+import { Button, Modal, PlainButton } from "../../src";
 
 test("opens a modal when the onTrigger function is called", () => {
   const message = "This is the body of the modal";

@@ -33,9 +33,18 @@ $success-background: #dff0d8;
 $success-border: #d6e9c6;
 $success-font: #3c763d;
 
+$table-border: #ddd;
+$table-hover: #f5f5f5;
+
 $warning-background: #fcf8e3;
 $warning-border: #faebcc;
 $warning-font: #8a6d3b;
+
+@mixin appearance-none { // sass-lint:disable-block no-vendor-prefixes
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
 
 @keyframes chqChunkRotate {
   0% {

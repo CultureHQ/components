@@ -3,6 +3,12 @@ import { mount } from "enzyme";
 
 import { Tooltip } from "../src";
 
+test("has no violations", async () => {
+  const component = <Tooltip tip="Tip">Inner content</Tooltip>;
+
+  await expect(component).toHaveNoViolations();
+});
+
 test("resizes when the window resizes and dedups resize events", done => {
   const component = mount(<Tooltip tip="Tip">Inner content</Tooltip>);
 

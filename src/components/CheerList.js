@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import Cheer, { COLORS } from "./Cheer";
 import CheerButton from "./CheerButton";
@@ -6,7 +6,7 @@ import CheerButton from "./CheerButton";
 const colorKeys = Object.keys(COLORS);
 
 const CheerList = ({ cheered, cheers, name, onCheerToggle }) => (
-  <Fragment>
+  <>
     <CheerButton cheered={cheered} name={name} onCheerToggle={onCheerToggle} />
     {cheers.map(({ name: cheerName }, index) => (
       <Cheer
@@ -15,7 +15,7 @@ const CheerList = ({ cheered, cheers, name, onCheerToggle }) => (
         name={cheerName}
       />
     ))}
-  </Fragment>
+  </>
 );
 
 export default CheerList;

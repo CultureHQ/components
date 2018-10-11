@@ -3,8 +3,8 @@ import { mount, shallow } from "enzyme";
 
 import { Panel } from "../src";
 
-test("renders without crashing", () => {
-  const component = mount(
+test("renders without crashing", async () => {
+  const component = (
     <Panel>
       <Panel.Heading>Heading</Panel.Heading>
       <Panel.Body>Body</Panel.Body>
@@ -12,7 +12,8 @@ test("renders without crashing", () => {
     </Panel>
   );
 
-  expect(component.find("div")).toHaveLength(4);
+  expect(mount(component).find("div")).toHaveLength(4);
+  await expect(component).toHaveNoViolations();
 });
 
 test("Panel passes on className", () => {

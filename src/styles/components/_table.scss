@@ -1,0 +1,29 @@
+.chq-tbl {
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  max-width: 100%;
+  width: 100%;
+
+  tbody {
+    tr {
+      &:hover {
+        background-color: $table-hover;
+      }
+    }
+  }
+
+  th {
+    padding: 8px;
+    text-align: left;
+    vertical-align: bottom;
+  }
+
+  td {
+    border-top: 1px solid $table-border;
+    padding: 8px;
+    vertical-align: top;
+  }
+}

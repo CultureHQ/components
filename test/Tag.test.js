@@ -3,11 +3,12 @@ import { shallow } from "enzyme";
 
 import { Tag } from "../src";
 
-test("renders without crashing", () => {
+test("renders without crashing", async () => {
   const message = "Tag.";
-  const component = shallow(<Tag>{message}</Tag>);
+  const component = <Tag>{message}</Tag>;
 
-  expect(component.html()).toContain(message);
+  expect(shallow(component).html()).toContain(message);
+  await expect(component).toHaveNoViolations();
 });
 
 test("passes on className", () => {

@@ -3,6 +3,10 @@ import { shallow, mount } from "enzyme";
 
 import { Button, Icon } from "../src";
 
+test("has no violations", async () => {
+  await expect(<Button>This is a button.</Button>).toHaveNoViolations();
+});
+
 test("renders without crashing", () => {
   const message = "This is a button.";
   const component = shallow(<Button>{message}</Button>);

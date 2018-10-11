@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 
 import classnames from "../classnames";
 import Cheer from "./Cheer";
@@ -21,7 +21,7 @@ class CheerButton extends Component {
     const { toggling, touched } = this.state;
 
     return (
-      <Fragment>
+      <>
         <button
           type="button"
           className={
@@ -34,10 +34,10 @@ class CheerButton extends Component {
           onClick={this.handleClick}
         >
           <Cheer />
-          {!small && <Fragment>{" "}Cheer!</Fragment>}
+          {!small && <>{" "}Cheer!</>}
         </button>
         {cheered && <Cheer name={name} small={small} pop={touched} />}
-      </Fragment>
+      </>
     );
   }
 }

@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 
-import classnames from "../classnames";
-import Button from "./Button";
+import classnames from "../../classnames";
+import Button from "../Button";
 import ModalDialog from "./ModalDialog";
 
 class Confirm extends Component {
@@ -39,7 +39,7 @@ class Confirm extends Component {
     const classList = classnames("chq-cnf", className);
 
     return (
-      <Fragment>
+      <>
         {trigger(this.handleOpen)}
         {open && (
           <ModalDialog
@@ -59,7 +59,7 @@ class Confirm extends Component {
             </ModalDialog.Footer>
           </ModalDialog>
         )}
-      </Fragment>
+      </>
     );
   }
 }

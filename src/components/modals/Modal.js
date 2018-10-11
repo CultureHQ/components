@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 
 import ModalDialog from "./ModalDialog";
 
@@ -33,14 +33,14 @@ class Modal extends Component {
     const { open } = this.state;
 
     return (
-      <Fragment>
+      <>
         {trigger(this.handleOpen)}
         {open && (
           <ModalDialog className={className} entrance={entrance} onClose={this.handleClose}>
             {this.getChildren()}
           </ModalDialog>
         )}
-      </Fragment>
+      </>
     );
   }
 }

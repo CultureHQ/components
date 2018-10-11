@@ -3,6 +3,10 @@ import { shallow } from "enzyme";
 
 import { Nav } from "../src";
 
+test("has no violations", async () => {
+  await expect(<Nav>This is a nav.</Nav>).toHaveNoViolations();
+});
+
 test("renders without crashing", () => {
   const message = "This is a nav.";
   const component = shallow(<Nav>{message}</Nav>);

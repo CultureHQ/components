@@ -13,6 +13,12 @@ const mounted = (currentPage, totalPages, props = {}) => (
   ))
 );
 
+test("has no violations", async () => {
+  const component = <Pagination currentPage={1} totalPages={10} />;
+
+  await expect(component).toHaveNoViolations();
+});
+
 test("renders without crashing", () => {
   const component = mounted(1, 10);
 
