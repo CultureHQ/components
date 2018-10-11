@@ -107,9 +107,13 @@ const App = () => (
         <Prop name="value">the value of the input field</Prop>
       </PropList>
 
-      <Form>
-        <CentsField name="cents" required>Cents</CentsField>
-      </Form>
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <CentsField name="cents" required>Cents</CentsField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>Checklist</Heading>
       <p>A list of items and their associated status.</p>
@@ -252,9 +256,13 @@ const App = () => (
         <Prop name="value">the value of the input field</Prop>
       </PropList>
 
-      <Form>
-        <EmailField name="email" required>Email</EmailField>
-      </Form>
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <EmailField name="email" required>Email</EmailField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>FeedItem</Heading>
       <p>A contained item in a feed.</p>
@@ -428,9 +436,13 @@ const App = () => (
         <Prop name="value">the value of the input field</Prop>
       </PropList>
 
-      <Form>
-        <NumberField name="number" required>Number</NumberField>
-      </Form>
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <NumberField name="number" required>Number</NumberField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>Pagination</Heading>
       <p>Displays pagination information with buttons for looking through different pages.</p>
@@ -507,9 +519,13 @@ const App = () => (
         <Prop name="value">the value of the input field</Prop>
       </PropList>
 
-      <Form>
-        <PasswordField name="password" required>Password</PasswordField>
-      </Form>
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <PasswordField name="password" required>Password</PasswordField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>PlainButton</Heading>
       <p>
@@ -546,9 +562,13 @@ const App = () => (
         <Prop name="value">the value of the input field</Prop>
       </PropList>
 
-      <Form>
-        <StringField name="string" required>String</StringField>
-      </Form>
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <StringField name="string" required>String</StringField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>SubmitButton</Heading>
       <p>
