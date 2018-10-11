@@ -11,11 +11,12 @@ import PaginationContainer from "./PaginationContainer";
 import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
   Confirm, ConfirmDelete, EmailField, FeedItem, FileField, Form, Info, Modal,
-  Nav, NumberField, Panel, PasswordField, PlainButton, Spinner, StringField,
-  SubmitButton, Subnav, Success, Table, Tag, Thumbnail, Tooltip, Warning
+  Nav, NumberField, Panel, PasswordField, PlainButton, SelectField, Spinner,
+  StringField, SubmitButton, Subnav, Success, Table, Tag, Thumbnail, Tooltip,
+  Warning
 } from "../../src";
 
-import { TEXT, onAccept, onClick, onSubmit } from "./utils";
+import { TEXT, OPTIONS, onAccept, onClick, onSubmit } from "./utils";
 
 Modal.setAppElement("#main");
 
@@ -541,6 +542,26 @@ const App = () => (
       <PlainButton onClick={onClick}>
         Click me
       </PlainButton>
+
+      <Heading>SelectField</Heading>
+      <p>A select form field.</p>
+      <PropList>
+        <Prop name="children">the label to display for the field</Prop>
+        <ClassNameProp />
+        <Prop name="onChange">a function that accepts one argument that represents the new value of the input field</Prop>
+        <Prop name="name">the name of the field</Prop>
+        <Prop name="required?">indicates this field is required for submission</Prop>
+        <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
+        <Prop name="value">the value of the select field</Prop>
+      </PropList>
+
+      <Panel>
+        <Panel.Body>
+          <Form initialValues={{ select: "The Prisoner of Azkaban" }}>
+            <SelectField name="select" options={OPTIONS} required>Select</SelectField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>Spinner</Heading>
       <p>A circular spinner using the CultureHQ colors.</p>

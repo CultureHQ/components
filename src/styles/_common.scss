@@ -40,6 +40,12 @@ $warning-background: #fcf8e3;
 $warning-border: #faebcc;
 $warning-font: #8a6d3b;
 
+@mixin appearance-none { // sass-lint:disable-block no-vendor-prefixes
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 @keyframes chqChunkRotate {
   0% {
     transform: rotate(0deg);

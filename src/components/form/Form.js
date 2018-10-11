@@ -6,6 +6,7 @@ import SubmitButton from "./SubmitButton";
 import BooleanField from "./BooleanField";
 import CentsField from "./CentsField";
 import FileField from "./FileField";
+import SelectField from "./SelectField";
 import { EmailField, NumberField, PasswordField, StringField } from "./FormFields";
 
 const contains = haystack => needle => haystack.indexOf(needle) > -1;
@@ -16,6 +17,7 @@ const isField = contains([
   FileField,
   NumberField,
   PasswordField,
+  SelectField,
   StringField
 ]);
 

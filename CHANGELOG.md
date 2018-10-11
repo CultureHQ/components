@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `Table` component.
+- The `SelectField` component.
 
 ## [3.11.4] - 2018-10-09
 ### Changed

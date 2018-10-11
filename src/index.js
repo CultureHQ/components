@@ -34,4 +34,5 @@ export { default as CentsField } from "./components/form/CentsField";
 export { default as Form } from "./components/form/Form";
 export { EmailField, NumberField, PasswordField, StringField } from "./components/form/FormFields";
 export { default as FileField } from "./components/form/FileField";
+export { default as SelectField } from "./components/form/SelectField";
 export { default as SubmitButton } from "./components/form/SubmitButton";

@@ -1,5 +1,5 @@
 .chq-pbn {
-  appearance: none;
+  @include appearance-none;
   background: inherit;
   border: 0;
   color: $color-link-blue;
