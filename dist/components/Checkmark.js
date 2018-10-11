@@ -75,7 +75,8 @@ function (_Component) {
           "chq-cmk-ck": checked,
           "chq-cmk-cl": onClick
         }),
-        onClick: onClick ? this.handleClick : null
+        onClick: onClick ? this.handleClick : null,
+        "aria-label": children ? null : "Checkmark"
       }, _react.default.createElement("svg", {
         viewBox: "0 0 52 52"
       }, _react.default.createElement("circle", {
