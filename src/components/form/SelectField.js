@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import FormError from "./FormError";
 import classnames from "../../classnames";
 
 class SelectField extends Component {
@@ -19,7 +18,7 @@ class SelectField extends Component {
   render() {
     const {
       children, className, onChange, onFormChange, onError, name, options,
-      required, submitted, touched, validator, value, ...props
+      required, submitted, value, ...props
     } = this.props;
 
     return (
@@ -39,15 +38,6 @@ class SelectField extends Component {
           </select>
           <div className="chq-ffd--sl--ct" />
         </div>
-        <FormError
-          name={name}
-          onError={onError}
-          required={required}
-          submitted={submitted}
-          touched={touched}
-          validator={validator}
-          value={value}
-        />
       </div>
     );
   }
