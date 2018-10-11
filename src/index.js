@@ -23,6 +23,7 @@ export { default as PlainButton } from "./components/PlainButton";
 export { default as Spinner } from "./components/Spinner";
 export { default as Subnav } from "./components/Subnav";
 export { default as Success } from "./components/Success";
+export { default as Table } from "./components/Table";
 export { default as Tag } from "./components/Tag";
 export { default as Thumbnail } from "./components/Thumbnail";
 export { default as Tooltip } from "./components/Tooltip";

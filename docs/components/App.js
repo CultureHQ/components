@@ -12,7 +12,7 @@ import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
   Confirm, ConfirmDelete, EmailField, FeedItem, FileField, Form, Info, Modal,
   Nav, NumberField, Panel, PasswordField, PlainButton, Spinner, StringField,
-  SubmitButton, Subnav, Success, Tag, Thumbnail, Tooltip, Warning
+  SubmitButton, Subnav, Success, Table, Tag, Thumbnail, Tooltip, Warning
 } from "../../src";
 
 import { TEXT, onAccept, onClick, onSubmit } from "./utils";
@@ -602,6 +602,64 @@ const App = () => (
       </PropList>
 
       <Success>This is a success.</Success>
+
+      <Heading>Table</Heading>
+      <p>Displays a table.</p>
+      <PropList>
+        <Prop name="children">displays inside the table</Prop>
+        <ClassNameProp />
+      </PropList>
+
+      <Panel>
+        <Panel.Body>
+          <Table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Chapters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>The Sorcerer&#39;s Stone</td>
+                <td>17</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>The Chamber of Secrets</td>
+                <td>18</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>The Prisoner of Azkaban</td>
+                <td>22</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>The Goblet of Fire</td>
+                <td>37</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>The Order of the Phoenix</td>
+                <td>38</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>The Half-Blood Prince</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>The Deathly Hallows</td>
+                <td>37</td>
+              </tr>
+            </tbody>
+          </Table>
+        </Panel.Body>
+      </Panel>
 
       <Heading>Tag</Heading>
       <p>A component for displaying an associated status.</p>
