@@ -4,8 +4,12 @@ import { mount } from "enzyme";
 import { Icon } from "../src";
 import { close } from "../src/icons.json";
 
+test("has no violations", async () => {
+  await expect(<Icon icon="checkmark" />).toHaveNoViolations();
+});
+
 test("renders without crashing", async () => {
-  const component = mount(<Icon icon="checkmark" />);
+  const component = await mount(<Icon icon="checkmark" />);
   expect(component.find("path")).toHaveLength(0);
 
   await component.instance().componentDidMount();
@@ -15,14 +19,14 @@ test("renders without crashing", async () => {
   component.unmount();
 });
 
-test("passes on className", () => {
-  const component = mount(<Icon icon="checkmark" className="icon" />);
+test("passes on className", async () => {
+  const component = await mount(<Icon icon="checkmark" className="icon" />);
 
   expect(component.hasClass("icon")).toBe(true);
 });
 
 test("updates the icon when the prop changes", async () => {
-  const component = mount(<Icon icon="checkmark" />);
+  const component = await mount(<Icon icon="checkmark" />);
 
   component.setProps({ icon: "close" });
   await component.instance().loadIcon();
@@ -31,8 +35,8 @@ test("updates the icon when the prop changes", async () => {
   expect(component.state().d).toEqual(close.join(" "));
 });
 
-test("does not attempt to set state once it been unmounted", () => {
-  const component = mount(<Icon icon="checkmark" />);
+test("does not attempt to set state once it been unmounted", async () => {
+  const component = await mount(<Icon icon="checkmark" />);
 
   component.instance().loadIcon();
   component.unmount();

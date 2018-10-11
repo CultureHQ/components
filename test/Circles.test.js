@@ -3,6 +3,10 @@ import { shallow } from "enzyme";
 
 import { Circles } from "../src";
 
+test("has no violations", async () => {
+  await expect(<Circles />).toHaveNoViolations();
+});
+
 test("renders without crashing", () => {
   const component = shallow(<Circles />);
 

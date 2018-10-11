@@ -3,6 +3,17 @@ import { shallow } from "enzyme";
 
 import { FeedItem } from "../src";
 
+test("has no violations", async () => {
+  const component = (
+    <FeedItem>
+      <FeedItem.Body>This is a feed item body.</FeedItem.Body>
+      <FeedItem.Footer>This is a feed item footer.</FeedItem.Footer>
+    </FeedItem>
+  );
+
+  await expect(component).toHaveNoViolations();
+});
+
 test("renders without crashing", () => {
   const bodyMessage = "This is a feed item body.";
   const footerMessage = "This is a feed item footer.";

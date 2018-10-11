@@ -3,6 +3,10 @@ import { shallow } from "enzyme";
 
 import { Badge } from "../src";
 
+test("has no violations", async () => {
+  await expect(<Badge>This is a badge.</Badge>).toHaveNoViolations();
+});
+
 test("renders without crashing", () => {
   const message = "This is a badge.";
   const component = shallow(<Badge>{message}</Badge>);

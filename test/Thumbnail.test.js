@@ -3,10 +3,11 @@ import { shallow } from "enzyme";
 
 import { Thumbnail } from "../src";
 
-test("renders without crashing", () => {
-  const component = shallow(<Thumbnail image="https://robohash.org/1" />);
+test("renders without crashing", async () => {
+  const component = <Thumbnail image="https://robohash.org/1" />;
 
-  expect(component.html()).toContain("div");
+  expect(shallow(component).html()).toContain("div");
+  await expect(component).toHaveNoViolations();
 });
 
 test("passes on className", () => {

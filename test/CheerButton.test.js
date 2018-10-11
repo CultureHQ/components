@@ -29,6 +29,10 @@ class Container extends Component {
   }
 }
 
+test("has no violations", async () => {
+  await expect(<CheerButton cheered />).toHaveNoViolations();
+});
+
 test("renders a button and calls back", () => {
   let received = null;
   const onCheerToggle = state => {

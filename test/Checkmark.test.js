@@ -3,6 +3,10 @@ import { shallow } from "enzyme";
 
 import { Checkmark } from "../src";
 
+test("has no violations", async () => {
+  await expect(<Checkmark />).toHaveNoViolations();
+});
+
 test("renders without crashing", () => {
   const component = shallow(<Checkmark />);
 

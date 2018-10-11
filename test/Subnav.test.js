@@ -22,24 +22,27 @@ class SubnavContainer extends Component {
   }
 }
 
-test("renders without crashing", () => {
+test("renders without crashing", async () => {
   const clicks = [];
   const onChange = index => clicks.push(index);
 
-  const component = mount((
+  const component = (
     <Subnav onChange={onChange}>
       <Subnav.Item>One</Subnav.Item>
       <Subnav.Item>Two</Subnav.Item>
       <Subnav.Item>Three</Subnav.Item>
     </Subnav>
-  ));
+  );
 
+  const mounted = mount(component);
   const pattern = [2, 0, 1];
+
   pattern.forEach(index => {
-    component.find(Subnav.Item).at(index).simulate("click");
+    mounted.find(Subnav.Item).at(index).simulate("click");
   });
 
   expect(clicks).toEqual(pattern);
+  await expect(component).toHaveNoViolations();
 });
 
 test("additionally functions as a controlled component", () => {

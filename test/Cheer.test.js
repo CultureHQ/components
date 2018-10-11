@@ -3,6 +3,10 @@ import { mount } from "enzyme";
 
 import { Cheer, Tooltip } from "../src";
 
+test("has no violations", async () => {
+  await expect(<Cheer />).toHaveNoViolations();
+});
+
 test("passes on className", () => {
   const component = mount(<Cheer className="cheer" />);
 

@@ -3,6 +3,17 @@ import { shallow, mount } from "enzyme";
 
 import { Checklist } from "../src";
 
+test("has no violations", async () => {
+  const component = (
+    <Checklist>
+      <Checklist.Item>This is unchecked.</Checklist.Item>
+      <Checklist.Item checked>This is checked.</Checklist.Item>
+    </Checklist>
+  );
+
+  await expect(component).toHaveNoViolations();
+});
+
 test("renders without crashing", () => {
   const component = shallow(<Checklist />);
 

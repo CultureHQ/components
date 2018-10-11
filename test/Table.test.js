@@ -3,10 +3,11 @@ import { shallow } from "enzyme";
 
 import { Table } from "../src";
 
-test("renders without crashing", () => {
-  const component = shallow(<Table />);
+test("renders without crashing", async () => {
+  const component = <Table />;
 
-  expect(component.type()).toEqual("table");
+  expect(shallow(component).type()).toEqual("table");
+  await expect(component).toHaveNoViolations();
 });
 
 test("passes on className", () => {
