@@ -41,7 +41,7 @@
     font-weight: $font-weight-light;
     padding: 12px 15px 15px;
 
-    .chq-tbl {
+    * {
       &:last-child {
         margin-bottom: 0;
       }
