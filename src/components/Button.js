@@ -1,13 +1,14 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import classnames from "../classnames";
 
 import Icon from "./Icon";
 
 const ButtonIcon = ({ icon, loading }) => (
-  <Fragment>
-    <Icon icon={loading ? "load-c" : icon} />{" "}
-  </Fragment>
+  <>
+    <Icon icon={loading ? "load-c" : icon} />
+    {" "}
+  </>
 );
 
 const Button = ({

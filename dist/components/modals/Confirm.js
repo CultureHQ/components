@@ -3,17 +3,21 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = exports.ConfirmDelete = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _classnames = _interopRequireDefault(require("../classnames"));
+var _classnames = _interopRequireDefault(require("../../classnames"));
 
-var _Spinner = _interopRequireDefault(require("./Spinner"));
+var _Button = _interopRequireDefault(require("../Button"));
+
+var _ModalDialog = _interopRequireDefault(require("./ModalDialog"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -35,84 +39,92 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var Loader =
+var Confirm =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Loader, _Component);
+  _inherits(Confirm, _Component);
 
-  function Loader() {
-    var _getPrototypeOf2;
-
+  function Confirm(props) {
     var _this;
 
-    _classCallCheck(this, Loader);
+    _classCallCheck(this, Confirm);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Confirm).call(this, props));
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Loader)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleOpen", function () {
+      var onOpen = _this.props.onOpen;
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      spinning: false
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidMount", function () {
-      var loading = _this.props.loading;
-      _this.componentIsMounted = true;
-
-      if (loading) {
-        _this.timeout = setTimeout(_this.handleSpinnerTriggered, 250);
-      }
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentWillUnmount", function () {
-      _this.componentIsMounted = false;
-
-      if (_this.timeout) {
-        clearTimeout(_this.timeout);
-        _this.timeout = null;
-      }
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSpinnerTriggered", function () {
-      var loading = _this.props.loading;
-
-      if (_this.componentIsMounted && loading) {
-        _this.setState({
-          spinning: true
-        });
+      if (onOpen) {
+        onOpen();
       }
 
-      _this.timeout = null;
+      _this.setState({
+        open: true
+      });
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClose", function () {
+      _this.setState({
+        open: false
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleAccept", function () {
+      var onAccept = _this.props.onAccept;
+
+      _this.setState({
+        open: false
+      });
+
+      onAccept();
+    });
+
+    _this.state = {
+      open: props.startOpen || false
+    };
     return _this;
   }
 
-  _createClass(Loader, [{
+  _createClass(Confirm, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
+          _this$props$accept = _this$props.accept,
+          accept = _this$props$accept === void 0 ? "Yes" : _this$props$accept,
           children = _this$props.children,
           className = _this$props.className,
-          loading = _this$props.loading;
-      var spinning = this.state.spinning;
-
-      if (!loading) {
-        return _react.default.createElement(_react.default.Fragment, null, children);
-      }
-
-      return _react.default.createElement("div", {
-        className: (0, _classnames.default)("chq-ldr", className, {
-          "chq-ldr-sp": spinning
-        })
-      }, _react.default.createElement(_Spinner.default, null));
+          contentRef = _this$props.contentRef,
+          danger = _this$props.danger,
+          entrance = _this$props.entrance,
+          trigger = _this$props.trigger;
+      var open = this.state.open;
+      var classList = (0, _classnames.default)("chq-cnf", className);
+      return _react.default.createElement(_react.default.Fragment, null, trigger(this.handleOpen), open && _react.default.createElement(_ModalDialog.default, {
+        className: classList,
+        contentRef: contentRef,
+        entrance: entrance,
+        onClose: this.handleClose
+      }, _react.default.createElement(_ModalDialog.default.Body, null, children), _react.default.createElement(_ModalDialog.default.Footer, null, _react.default.createElement("div", null, _react.default.createElement(_Button.default, {
+        inverted: true,
+        onClick: this.handleClose
+      }, "Cancel")), _react.default.createElement("div", null, _react.default.createElement(_Button.default, {
+        primary: true,
+        danger: danger,
+        onClick: this.handleAccept
+      }, accept)))));
     }
   }]);
 
-  return Loader;
+  return Confirm;
 }(_react.Component);
 
-var _default = Loader;
+var ConfirmDelete = function ConfirmDelete(props) {
+  return _react.default.createElement(Confirm, _extends({
+    accept: "Delete",
+    danger: true
+  }, props));
+};
+
+exports.ConfirmDelete = ConfirmDelete;
+var _default = Confirm;
 exports.default = _default;

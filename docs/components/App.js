@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import CheckmarkContainer from "./CheckmarkContainer";
 import CheerButtonContainer from "./CheerButtonContainer";
@@ -21,10 +21,10 @@ import { TEXT, OPTIONS, onAccept, onClick, onSubmit } from "./utils";
 Modal.setAppElement("#main");
 
 const Heading = ({ children }) => (
-  <Fragment>
+  <>
     <pre>{"<"}{children}{">"}</pre>
     <hr />
-  </Fragment>
+  </>
 );
 
 const PropList = ({ children }) => <ul className="prop-list">{children}</ul>;
@@ -36,7 +36,7 @@ const ClassNameProp = () => <Prop name="className?">an extra {"class"} name</Pro
 const Subcomponent = ({ children }) => <p><code>{children}</code> subcomponent</p>;
 
 const App = () => (
-  <Fragment>
+  <>
     <Nav>{"<Nav>"}</Nav>
 
     <div className="container">
@@ -755,7 +755,7 @@ const App = () => (
 
       <Warning>This is a warning.</Warning>
     </div>
-  </Fragment>
+  </>
 );
 
 export default App;

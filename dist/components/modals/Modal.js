@@ -7,9 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _classnames = _interopRequireDefault(require("../classnames"));
-
-var _Spinner = _interopRequireDefault(require("./Spinner"));
+var _ModalDialog = _interopRequireDefault(require("./ModalDialog"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35,84 +33,77 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var Loader =
+var Modal =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Loader, _Component);
+  _inherits(Modal, _Component);
 
-  function Loader() {
-    var _getPrototypeOf2;
-
+  function Modal(props) {
     var _this;
 
-    _classCallCheck(this, Loader);
+    _classCallCheck(this, Modal);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Modal).call(this, props));
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Loader)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      spinning: false
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleOpen", function () {
+      _this.setState({
+        open: true
+      });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentDidMount", function () {
-      var loading = _this.props.loading;
-      _this.componentIsMounted = true;
-
-      if (loading) {
-        _this.timeout = setTimeout(_this.handleSpinnerTriggered, 250);
-      }
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClose", function () {
+      _this.setState({
+        open: false
+      });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "componentWillUnmount", function () {
-      _this.componentIsMounted = false;
-
-      if (_this.timeout) {
-        clearTimeout(_this.timeout);
-        _this.timeout = null;
-      }
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSpinnerTriggered", function () {
-      var loading = _this.props.loading;
-
-      if (_this.componentIsMounted && loading) {
-        _this.setState({
-          spinning: true
-        });
-      }
-
-      _this.timeout = null;
-    });
-
+    _this.state = {
+      open: props.startOpen || false
+    };
     return _this;
   }
 
-  _createClass(Loader, [{
+  _createClass(Modal, [{
+    key: "getChildren",
+    value: function getChildren() {
+      var _this2 = this;
+
+      var children = this.props.children;
+      return _react.default.Children.map(children, function (child) {
+        if (child.type === Modal.Heading) {
+          return _react.default.cloneElement(child, {
+            onClose: _this2.handleClose
+          });
+        }
+
+        return child;
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          children = _this$props.children,
           className = _this$props.className,
-          loading = _this$props.loading;
-      var spinning = this.state.spinning;
-
-      if (!loading) {
-        return _react.default.createElement(_react.default.Fragment, null, children);
-      }
-
-      return _react.default.createElement("div", {
-        className: (0, _classnames.default)("chq-ldr", className, {
-          "chq-ldr-sp": spinning
-        })
-      }, _react.default.createElement(_Spinner.default, null));
+          entrance = _this$props.entrance,
+          trigger = _this$props.trigger;
+      var open = this.state.open;
+      return _react.default.createElement(_react.default.Fragment, null, trigger(this.handleOpen), open && _react.default.createElement(_ModalDialog.default, {
+        className: className,
+        entrance: entrance,
+        onClose: this.handleClose
+      }, this.getChildren()));
     }
   }]);
 
-  return Loader;
+  return Modal;
 }(_react.Component);
 
-var _default = Loader;
+Object.assign(Modal, {
+  setAppElement: _ModalDialog.default.setAppElement,
+  Heading: _ModalDialog.default.Heading,
+  Body: _ModalDialog.default.Body,
+  LoaderBody: _ModalDialog.default.LoaderBody,
+  Footer: _ModalDialog.default.Footer
+});
+var _default = Modal;
 exports.default = _default;
