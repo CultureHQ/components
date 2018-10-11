@@ -15,14 +15,16 @@ class SelectField extends Component {
     }
   };
 
+  /* eslint-disable jsx-a11y/label-has-for */
+  // but why?, this looks like it should actually be working
   render() {
     const {
-      children, className, onChange, onFormChange, onError, name, options,
+      children, className, onChange, onFormChange, onError, name, options = [],
       required, submitted, value, ...props
     } = this.props;
 
     return (
-      <div className={classnames("chq-ffd", className)}>
+      <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
         <div className="chq-ffd--sl">
           <select
@@ -38,7 +40,7 @@ class SelectField extends Component {
           </select>
           <div className="chq-ffd--sl--ct" />
         </div>
-      </div>
+      </label>
     );
   }
 }
