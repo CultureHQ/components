@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 
-import classnames from "../classnames";
-import Button from "./Button";
+import classnames from "../../classnames";
+import Button from "../Button";
 import ModalDialog from "./ModalDialog";
 
 class Confirm extends Component {
