@@ -11,11 +11,11 @@ var _reactModal = _interopRequireDefault(require("react-modal"));
 
 var _classnames = _interopRequireDefault(require("../../classnames"));
 
+var _PlainButton = _interopRequireDefault(require("../buttons/PlainButton"));
+
 var _Icon = _interopRequireDefault(require("../Icon"));
 
 var _Panel = _interopRequireDefault(require("../Panel"));
-
-var _PlainButton = _interopRequireDefault(require("../PlainButton"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

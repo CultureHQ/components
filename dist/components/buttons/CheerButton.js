@@ -3,21 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.ConfirmDelete = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("../../classnames"));
 
-var _Button = _interopRequireDefault(require("../buttons/Button"));
-
-var _ModalDialog = _interopRequireDefault(require("./ModalDialog"));
+var _Cheer = _interopRequireDefault(require("../Cheer"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -39,92 +35,77 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var Confirm =
+var CheerButton =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Confirm, _Component);
+  _inherits(CheerButton, _Component);
 
-  function Confirm(props) {
+  function CheerButton() {
+    var _getPrototypeOf2;
+
     var _this;
 
-    _classCallCheck(this, Confirm);
+    _classCallCheck(this, CheerButton);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Confirm).call(this, props));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleOpen", function () {
-      var onOpen = _this.props.onOpen;
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CheerButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-      if (onOpen) {
-        onOpen();
-      }
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      toggling: false,
+      touched: false
+    });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function () {
       _this.setState({
-        open: true
+        toggling: true,
+        touched: true
+      });
+
+      var _this$props = _this.props,
+          cheered = _this$props.cheered,
+          onCheerToggle = _this$props.onCheerToggle;
+      onCheerToggle(!cheered).then(function () {
+        _this.setState({
+          toggling: false
+        });
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClose", function () {
-      _this.setState({
-        open: false
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleAccept", function () {
-      var onAccept = _this.props.onAccept;
-
-      _this.setState({
-        open: false
-      });
-
-      onAccept();
-    });
-
-    _this.state = {
-      open: props.startOpen || false
-    };
     return _this;
   }
 
-  _createClass(Confirm, [{
+  _createClass(CheerButton, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          _this$props$accept = _this$props.accept,
-          accept = _this$props$accept === void 0 ? "Yes" : _this$props$accept,
-          children = _this$props.children,
-          className = _this$props.className,
-          contentRef = _this$props.contentRef,
-          danger = _this$props.danger,
-          entrance = _this$props.entrance,
-          trigger = _this$props.trigger;
-      var open = this.state.open;
-      var classList = (0, _classnames.default)("chq-cnf", className);
-      return _react.default.createElement(_react.default.Fragment, null, trigger(this.handleOpen), open && _react.default.createElement(_ModalDialog.default, {
-        className: classList,
-        contentRef: contentRef,
-        entrance: entrance,
-        onClose: this.handleClose
-      }, _react.default.createElement(_ModalDialog.default.Body, null, children), _react.default.createElement(_ModalDialog.default.Footer, null, _react.default.createElement("div", null, _react.default.createElement(_Button.default, {
-        inverted: true,
-        onClick: this.handleClose
-      }, "Cancel")), _react.default.createElement("div", null, _react.default.createElement(_Button.default, {
-        primary: true,
-        danger: danger,
-        onClick: this.handleAccept
-      }, accept)))));
+      var _this$props2 = this.props,
+          cheered = _this$props2.cheered,
+          className = _this$props2.className,
+          name = _this$props2.name,
+          small = _this$props2.small;
+      var _this$state = this.state,
+          toggling = _this$state.toggling,
+          touched = _this$state.touched;
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("button", {
+        type: "button",
+        className: (0, _classnames.default)("chq-cbn", className, {
+          "chq-cbn-ch": cheered,
+          "chq-cbn-sm": small
+        }),
+        disabled: toggling,
+        onClick: this.handleClick
+      }, _react.default.createElement(_Cheer.default, null), !small && _react.default.createElement(_react.default.Fragment, null, " ", "Cheer!")), cheered && _react.default.createElement(_Cheer.default, {
+        name: name,
+        small: small,
+        pop: touched
+      }));
     }
   }]);
 
-  return Confirm;
+  return CheerButton;
 }(_react.Component);
 
-var ConfirmDelete = function ConfirmDelete(props) {
-  return _react.default.createElement(Confirm, _extends({
-    accept: "Delete",
-    danger: true
-  }, props));
-};
-
-exports.ConfirmDelete = ConfirmDelete;
-var _default = Confirm;
+var _default = CheerButton;
 exports.default = _default;

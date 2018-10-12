@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _Button = _interopRequireDefault(require("../buttons/Button"));
+var _classnames = _interopRequireDefault(require("../../classnames"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17,22 +17,16 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-var defaultButtonText = function defaultButtonText(submitting) {
-  return submitting ? "Submitting..." : "Submit";
+var Button = function Button(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      props = _objectWithoutProperties(_ref, ["children", "className"]);
+
+  return _react.default.createElement("button", _extends({}, props, {
+    type: "button",
+    className: (0, _classnames.default)("chq-pbn", className)
+  }), children);
 };
 
-var SubmitButton = function SubmitButton(_ref) {
-  var _ref$children = _ref.children,
-      children = _ref$children === void 0 ? defaultButtonText : _ref$children,
-      disabled = _ref.disabled,
-      submitting = _ref.submitting,
-      props = _objectWithoutProperties(_ref, ["children", "disabled", "submitting"]);
-
-  return _react.default.createElement(_Button.default, _extends({}, props, {
-    disabled: disabled || submitting,
-    type: "submit"
-  }), children(submitting));
-};
-
-var _default = SubmitButton;
+var _default = Button;
 exports.default = _default;

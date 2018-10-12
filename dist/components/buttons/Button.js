@@ -7,7 +7,9 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _Button = _interopRequireDefault(require("../buttons/Button"));
+var _classnames = _interopRequireDefault(require("../../classnames"));
+
+var _Icon = _interopRequireDefault(require("../Icon"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17,22 +19,41 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-var defaultButtonText = function defaultButtonText(submitting) {
-  return submitting ? "Submitting..." : "Submit";
+var ButtonIcon = function ButtonIcon(_ref) {
+  var icon = _ref.icon,
+      loading = _ref.loading;
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Icon.default, {
+    icon: loading ? "load-c" : icon
+  }), " ");
 };
 
-var SubmitButton = function SubmitButton(_ref) {
-  var _ref$children = _ref.children,
-      children = _ref$children === void 0 ? defaultButtonText : _ref$children,
-      disabled = _ref.disabled,
-      submitting = _ref.submitting,
-      props = _objectWithoutProperties(_ref, ["children", "disabled", "submitting"]);
+var Button = function Button(_ref2) {
+  var children = _ref2.children,
+      className = _ref2.className,
+      _ref2$type = _ref2.type,
+      type = _ref2$type === void 0 ? "button" : _ref2$type,
+      icon = _ref2.icon,
+      inverted = _ref2.inverted,
+      primary = _ref2.primary,
+      small = _ref2.small,
+      loading = _ref2.loading,
+      danger = _ref2.danger,
+      props = _objectWithoutProperties(_ref2, ["children", "className", "type", "icon", "inverted", "primary", "small", "loading", "danger"]);
 
-  return _react.default.createElement(_Button.default, _extends({}, props, {
-    disabled: disabled || submitting,
-    type: "submit"
-  }), children(submitting));
+  return _react.default.createElement("button", _extends({}, props, {
+    type: type,
+    className: (0, _classnames.default)("chq-btn", className, {
+      "chq-btn-iv": inverted,
+      "chq-btn-pr": primary,
+      "chq-btn-sm": small,
+      "chq-btn-ld": loading,
+      "chq-btn-dg": danger
+    })
+  }), (loading || icon) && _react.default.createElement(ButtonIcon, {
+    icon: icon,
+    loading: loading
+  }), children);
 };
 
-var _default = SubmitButton;
+var _default = Button;
 exports.default = _default;
