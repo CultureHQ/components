@@ -87,10 +87,7 @@ class ImageField extends Component {
           />
           {progress && (
             <div className="chq-ffd--im--prog">
-              <div
-                data-value={progress}
-                style={{ width: `${progress || 0}%` }}
-              />
+              <div data-value={progress} style={{ width: `${progress}%` }} />
             </div>
           )}
         </div>
