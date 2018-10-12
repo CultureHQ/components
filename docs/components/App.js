@@ -5,6 +5,7 @@ import CheerButtonContainer from "./CheerButtonContainer";
 import CheerListContainer from "./CheerListContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
+import ImageEditorContainer from "./ImageEditorContainer";
 import LoaderContainer from "./LoaderContainer";
 import PaginationContainer from "./PaginationContainer";
 
@@ -57,9 +58,9 @@ const App = () => (
       <PropList>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
-        <Prop name="onChange">a function that accepts one argument that represents the new value of the field</Prop>
+        <Prop name="onChange?">a function that accepts one argument that represents the new value of the field</Prop>
         <Prop name="name">the name of the field</Prop>
-        <Prop name="value">the value of the input field</Prop>
+        <Prop name="value?">the value of the input field</Prop>
       </PropList>
 
       <Form>
@@ -102,10 +103,10 @@ const App = () => (
       <PropList>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
-        <Prop name="onChange">a function that accepts one argument that represents the new value of the input field</Prop>
+        <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
-        <Prop name="value">the value of the input field</Prop>
+        <Prop name="value?">the value of the input field</Prop>
       </PropList>
 
       <Panel>
@@ -250,11 +251,11 @@ const App = () => (
       <PropList>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
-        <Prop name="onChange">a function that accepts one argument that represents the new value of the input field</Prop>
+        <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
         <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
-        <Prop name="value">the value of the input field</Prop>
+        <Prop name="value?">the value of the input field</Prop>
       </PropList>
 
       <Panel>
@@ -294,12 +295,12 @@ const App = () => (
       <PropList>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
-        <Prop name="onChange">a function that accepts one argument that represents the new value of the file field</Prop>
+        <Prop name="onChange?">a function that accepts one argument that represents the new value of the file field</Prop>
         <Prop name="multiple = false">whether or not this field accepts multiple files</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
         <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
-        <Prop name="value">the value of the file field</Prop>
+        <Prop name="value?">the value of the file field</Prop>
       </PropList>
 
       <Form>
@@ -335,9 +336,30 @@ const App = () => (
 
       <IconsContainer />
 
+      <Heading>ImageEditor</Heading>
+      <p>Edits an image.</p>
+      <PropList>
+        <Prop name="image">an image object</Prop>
+        <Prop name="onEdit">a callback for when the image has been saved</Prop>
+        <Prop name="onFailure">a callback for when the image fails to load</Prop>
+      </PropList>
+
+      <Panel>
+        <Panel.Body>
+          <ImageEditorContainer />
+        </Panel.Body>
+      </Panel>
+
       <Heading>ImageField</Heading>
       <p>An image form component.</p>
-      <PropList />
+      <PropList>
+        <Prop name="children">the label to display for the field</Prop>
+        <ClassNameProp />
+        <Prop name="onChange?">a function that accepts one argument that represents the new value of the file field</Prop>
+        <Prop name="progress?">a number out of 100 that represents the upload progress</Prop>
+        <Prop name="name">the name of the field</Prop>
+        <Prop name="value?">the value of the file field</Prop>
+      </PropList>
 
       <Panel>
         <Panel.Body>
@@ -442,11 +464,11 @@ const App = () => (
       <PropList>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
-        <Prop name="onChange">a function that accepts one argument that represents the new value of the input field</Prop>
+        <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
         <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
-        <Prop name="value">the value of the input field</Prop>
+        <Prop name="value?">the value of the input field</Prop>
       </PropList>
 
       <Panel>
@@ -525,11 +547,11 @@ const App = () => (
       <PropList>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
-        <Prop name="onChange">a function that accepts one argument that represents the new value of the input field</Prop>
+        <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
         <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
-        <Prop name="value">the value of the input field</Prop>
+        <Prop name="value?">the value of the input field</Prop>
       </PropList>
 
       <Panel>
@@ -560,11 +582,11 @@ const App = () => (
       <PropList>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
-        <Prop name="onChange">a function that accepts one argument that represents the new value of the input field</Prop>
+        <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
         <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
-        <Prop name="value">the value of the select field</Prop>
+        <Prop name="value?">the value of the select field</Prop>
       </PropList>
 
       <Panel>
@@ -588,11 +610,11 @@ const App = () => (
       <PropList>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
-        <Prop name="onChange">a function that accepts one argument that represents the new value of the input field</Prop>
+        <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
         <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
-        <Prop name="value">the value of the input field</Prop>
+        <Prop name="value?">the value of the input field</Prop>
       </PropList>
 
       <Panel>

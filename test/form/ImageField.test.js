@@ -4,6 +4,10 @@ import { mount } from "enzyme";
 import { ImageField } from "../../src";
 import image from "../mocks/image";
 
+test("has no violations", async () => {
+  await expect(<ImageField name="image" />).toHaveNoViolations();
+});
+
 test("calls up to callbacks if they are provided", () => {
   const response = {
     changeValue: null,
