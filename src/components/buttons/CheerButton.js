@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import classnames from "../classnames";
-import Cheer from "./Cheer";
+import classnames from "../../classnames";
+import Cheer from "../Cheer";
 
 class CheerButton extends Component {
   state = { toggling: false, touched: false };

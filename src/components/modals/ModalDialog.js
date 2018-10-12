@@ -3,9 +3,9 @@ import ReactModal from "react-modal";
 
 import classnames from "../../classnames";
 
+import PlainButton from "../buttons/PlainButton";
 import Icon from "../Icon";
 import Panel from "../Panel";
-import PlainButton from "../PlainButton";
 
 const entrances = {
   slideIn: "chq-mdl-si",

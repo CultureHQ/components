@@ -1,7 +1,7 @@
 import React from "react";
 
 import Cheer, { COLORS } from "./Cheer";
-import CheerButton from "./CheerButton";
+import CheerButton from "./buttons/CheerButton";
 
 const colorKeys = Object.keys(COLORS);
 

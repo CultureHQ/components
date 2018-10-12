@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import Button from "./Button";
+import Button from "./buttons/Button";
+import PlainButton from "./buttons/PlainButton";
 import Icon from "./Icon";
-import PlainButton from "./PlainButton";
 
 const cropperToImage = cropper => {
   const type = "image/jpeg";
