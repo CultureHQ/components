@@ -10,10 +10,10 @@ import PaginationContainer from "./PaginationContainer";
 
 import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
-  Confirm, ConfirmDelete, EmailField, FeedItem, FileField, Form, Info, Modal,
-  Nav, NumberField, Panel, PasswordField, PlainButton, SelectField, Spinner,
-  StringField, SubmitButton, Subnav, Success, Table, Tag, Thumbnail, Tooltip,
-  Warning
+  Confirm, ConfirmDelete, EmailField, FeedItem, FileField, Form, ImageField,
+  Info, Modal, Nav, NumberField, Panel, PasswordField, PlainButton, SelectField,
+  Spinner, StringField, SubmitButton, Subnav, Success, Table, Tag, Thumbnail,
+  Tooltip, Warning
 } from "../../src";
 
 import { TEXT, OPTIONS, onAccept, onClick, onSubmit } from "./utils";
@@ -334,6 +334,18 @@ const App = () => (
       </PropList>
 
       <IconsContainer />
+
+      <Heading>ImageField</Heading>
+      <p>An image form component.</p>
+      <PropList />
+
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <ImageField name="image">Image</ImageField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>Info</Heading>
       <p>Displays a informational message.</p>

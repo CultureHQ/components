@@ -1,0 +1,57 @@
+.chq-ffd--im {
+  border: $color-border solid 1px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  min-height: 200px;
+  position: relative;
+  text-align: center;
+
+  &--ph {
+    margin-top: 30px;
+
+    svg {
+      height: 80px;
+      width: 80px;
+    }
+
+    path {
+      fill: $color-border;
+    }
+  }
+
+  &--bt {
+    background-color: $image-upload;
+    border-radius: 4px;
+    color: $color-white;
+    display: inline-block;
+    margin: 30px auto;
+    padding: 8px 26px;
+    transition: background-color .3s;
+
+    svg {
+      vertical-align: bottom;
+    }
+
+    path {
+      fill: $color-white;
+    }
+  }
+
+  &:hover {
+    .chq-ffd--im--bt {
+      background-color: $image-upload-hover;
+    }
+  }
+
+  input {
+    &[type="file"] {
+      border: 0;
+      height: 0;
+      padding: 0;
+      visibility: hidden;
+      width: 0;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import SubmitButton from "./SubmitButton";
 import BooleanField from "./BooleanField";
 import CentsField from "./CentsField";
 import FileField from "./FileField";
+import ImageField from "./ImageField";
 import SelectField from "./SelectField";
 import { EmailField, NumberField, PasswordField, StringField } from "./FormFields";
 
@@ -15,6 +16,7 @@ const isField = contains([
   CentsField,
   EmailField,
   FileField,
+  ImageField,
   NumberField,
   PasswordField,
   SelectField,
