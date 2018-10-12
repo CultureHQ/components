@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `ImageField` component.
 - The `ImageEditor` component.
 
+### Changed
+- Made the `Table` component have a margin on top as well.
+
 ## [3.12.0] - 2018-10-11
 ### Added
 - The `Table` component.
