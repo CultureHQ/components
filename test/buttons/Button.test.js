@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 
-import { Button, Icon } from "../src";
+import { Button, Icon } from "../../src";
 
 test("has no violations", async () => {
   await expect(<Button>This is a button.</Button>).toHaveNoViolations();
