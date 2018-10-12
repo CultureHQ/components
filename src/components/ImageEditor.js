@@ -57,8 +57,10 @@ class ImageEditor extends Component {
     }
   }
 
-  handleKeyPressed = ({ key }) => {
-    if (key === "Enter") {
+  handleKeyPressed = event => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.stopPropagation();
       this.handleSave();
     }
   };

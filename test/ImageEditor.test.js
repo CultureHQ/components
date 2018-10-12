@@ -4,8 +4,8 @@ import { mount } from "enzyme";
 import { ImageEditor } from "../src";
 import image from "./mocks/image";
 
-const mountEditor = async () => {
-  const component = mount(<ImageEditor image={image} />);
+const mountEditor = async (onEdit = null) => {
+  const component = mount(<ImageEditor image={image} onEdit={onEdit} />);
 
   await component.instance().componentDidMount();
   component.instance().cropper.replace(image);
@@ -17,6 +17,14 @@ const mountEditor = async () => {
   component.clickControl = label => {
     const button = component.find("Button").findWhere(node => (
       node.type() === "button" && node.props()["aria-label"] === label
+    ));
+
+    button.simulate("click");
+  };
+
+  component.clickSave = () => {
+    const button = component.find("Button").findWhere(node => (
+      node.type() === "button" && node.text().trim() === "Save"
     ));
 
     button.simulate("click");
@@ -61,4 +69,65 @@ test("can click zoom out to modify image", async () => {
 
   component.clickControl("Zoom out");
   expect(component.instance().cropper.canvasData.top).toBeGreaterThan(top);
+});
+
+test("can click save to save", async () => {
+  let response = null;
+  const onEdit = edited => {
+    response = edited;
+  };
+
+  const component = await mountEditor(onEdit);
+
+  component.instance().cropper.getCroppedCanvas = () => ({
+    toDataURL() {
+      return image;
+    }
+  });
+
+  component.clickSave();
+
+  expect(response).not.toBe(null);
+});
+
+test("can hit enter to save", async () => {
+  let response = null;
+  const onEdit = edited => {
+    response = edited;
+  };
+
+  const component = await mountEditor(onEdit);
+
+  component.instance().cropper.getCroppedCanvas = () => ({
+    toDataURL() {
+      return image;
+    }
+  });
+
+  component.instance().handleKeyPressed({
+    key: "Enter",
+    preventDefault() {},
+    stopPropagation() {}
+  });
+
+  expect(response).not.toBe(null);
+});
+
+test("does not react to other keys", async () => {
+  let response = null;
+  const onEdit = edited => {
+    response = edited;
+  };
+
+  const component = await mountEditor(onEdit);
+  component.instance().handleKeyPressed({ key: "Shift" });
+
+  expect(response).toBe(null);
+});
+
+test("does not attempt to set state if already unmounted", async () => {
+  const component = await mountEditor();
+
+  component.instance().componentDidMount();
+  component.unmount();
 });
