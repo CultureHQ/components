@@ -19,7 +19,7 @@ class ImageField extends Component {
       image: value ? URL.createObjectURL(value) : null
     });
 
-    this.handleImageSelected(value);
+    this.handleImageSelected(value || null);
   };
 
   handleImageEdited = value => {

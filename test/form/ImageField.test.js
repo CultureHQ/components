@@ -90,7 +90,7 @@ test("handles deselecting files", () => {
   const component = mount(<ImageField name="image" onChange={onChange} />);
 
   component.find("input").simulate("change", { target: { files: [] } });
-  expect(component.state().image).toBe(null);
+  expect(response).toBe(null);
 });
 
 test("displays a progress bar if progress is reported", () => {
