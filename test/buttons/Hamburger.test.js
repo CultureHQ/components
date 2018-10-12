@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { shallow, mount } from "enzyme";
 
-import { Hamburger } from "../src";
+import { Hamburger } from "../../src";
 
 class HamburgerContainer extends Component {
   constructor(props) {

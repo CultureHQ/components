@@ -1,6 +1,6 @@
 import React from "react";
 
-import classnames from "../classnames";
+import classnames from "../../classnames";
 
 const Badge = ({ children, className, primary = false, onClick }) => (
   <button

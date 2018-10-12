@@ -8,9 +8,16 @@ configure({ adapter: new Adapter() });
 
 expect.extend({
   async toHaveNoViolations(jsx) {
-    const assessment = await axe(mount(jsx).html());
-    return toHaveNoViolations.toHaveNoViolations(assessment);
+    const component = mount(jsx);
+    const assessment = await axe(component.html());
+
+    const response = toHaveNoViolations.toHaveNoViolations(assessment);
+    component.unmount();
+
+    return response;
   }
 });
 
 ModalDialog.setAppElement(document.body);
+
+URL.createObjectURL = object => `blob:${object}`;

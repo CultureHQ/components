@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/CultureHQ/components#readme",
   "peerDependencies": {
+    "cropperjs": "^1",
     "react": "^16",
     "react-dom": "^16",
     "react-modal": "^3"
@@ -44,6 +45,7 @@
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-dynamic-import-node": "^2.2.0",
+    "cropperjs": "^1.4.1",
     "css-loader": "^1.0.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",

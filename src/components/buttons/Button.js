@@ -1,8 +1,8 @@
 import React from "react";
 
-import classnames from "../classnames";
+import classnames from "../../classnames";
 
-import Icon from "./Icon";
+import Icon from "../Icon";
 
 const ButtonIcon = ({ icon, loading }) => (
   <>

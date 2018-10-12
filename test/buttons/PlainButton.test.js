@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { PlainButton } from "../src";
+import { PlainButton } from "../../src";
 
 test("renders without crashing", async () => {
   const message = "This is a button.";

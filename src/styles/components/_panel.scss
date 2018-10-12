@@ -40,12 +40,6 @@
   &--bd {
     font-weight: $font-weight-light;
     padding: 12px 15px 15px;
-
-    * {
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
   }
 
   &--ft {

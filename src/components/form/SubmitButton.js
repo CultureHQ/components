@@ -1,6 +1,6 @@
 import React from "react";
 
-import Button from "../Button";
+import Button from "../buttons/Button";
 
 const defaultButtonText = submitting => (submitting ? "Submitting..." : "Submit");
 
