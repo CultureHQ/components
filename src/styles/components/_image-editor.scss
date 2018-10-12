@@ -1,0 +1,81 @@
+.chq-ied {
+  &--img {
+    width: 100%;
+
+    img {
+      max-height: 500px;
+      width: 100%;
+    }
+  }
+
+  .chq-pbn {
+    border-radius: 5px;
+    padding: 4px 10px;
+
+    path {
+      fill: $color-link-blue;
+    }
+
+    &:hover {
+      background-color: $color-border;
+    }
+  }
+
+  .chq-btn {
+    float: right;
+    vertical-align: top;
+
+    svg {
+      height: 1.3em;
+      vertical-align: bottom;
+      width: 1.3em;
+    }
+  }
+
+  &--ctrl {
+    margin-bottom: 10px;
+    padding: 10px 0;
+  }
+
+  .cropper-point {
+    $size: 14px;
+    $offset: -7px;
+    opacity: 1;
+
+    &.point-e,
+    &.point-s,
+    &.point-w,
+    &.point-n {
+      display: none;
+    }
+
+    &.point-ne,
+    &.point-nw,
+    &.point-sw,
+    &.point-se {
+      border-radius: 7px;
+      height: $size;
+      width: $size;
+    }
+
+    &.point-ne {
+      right: $offset;
+      top: $offset;
+    }
+
+    &.point-nw {
+      left: $offset;
+      top: $offset;
+    }
+
+    &.point-sw {
+      bottom: $offset;
+      left: $offset;
+    }
+
+    &.point-se {
+      bottom: $offset;
+      right: $offset;
+    }
+  }
+}

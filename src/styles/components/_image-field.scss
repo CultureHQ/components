@@ -1,9 +1,10 @@
 .chq-ffd--im {
-  border: $color-border solid 1px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  border: $color-border solid 1px;
   cursor: pointer;
+  margin-bottom: 5px;
   min-height: 200px;
   position: relative;
   text-align: center;
@@ -39,6 +40,25 @@
     }
   }
 
+  &--prog {
+    bottom: 0;
+    height: 5px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+
+    > div {
+      background-color: $color-primary-blue;
+      height: 100%;
+      transition: background-color .25s, width .25s;
+      width: 0%;
+
+      &[data-value='100'] {
+        background-color: $color-primary-green;
+      }
+    }
+  }
+
   &:hover {
     .chq-ffd--im--bt {
       background-color: $image-upload-hover;
@@ -46,7 +66,7 @@
   }
 
   input {
-    &[type="file"] {
+    &[type='file'] {
       border: 0;
       height: 0;
       padding: 0;

@@ -12,6 +12,7 @@ export { default as FeedItem } from "./components/FeedItem";
 export { default as Hamburger } from "./components/Hamburger";
 export { default as Loader } from "./components/Loader";
 export { default as Icon } from "./components/Icon";
+export { default as ImageEditor } from "./components/ImageEditor";
 export { default as Info } from "./components/Info";
 export { default as Nav } from "./components/Nav";
 export { default as Pagination } from "./components/Pagination";
