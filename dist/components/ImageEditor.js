@@ -83,15 +83,6 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "imageRef", _react.default.createRef());
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleKeyPressed", function (event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        event.stopPropagation();
-
-        _this.handleSave();
-      }
-    });
-
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleRotateLeft", function () {
       _this.cropper.rotate(-45);
     });
@@ -132,8 +123,7 @@ function (_Component) {
             dragMove: "move",
             autoCropArea: 1,
             responsive: true
-          });
-          document.addEventListener("keydown", _this2.handleKeyPressed);
+          }); // document.addEventListener("keydown", this.handleKeyPressed);
         }
       }).catch(function () {// this catch is largely here because in the case that you're not in an
         // environment that supports dynamic import (like jest when you're not
@@ -144,7 +134,6 @@ function (_Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.componentIsMounted = false;
-      document.removeEventListener("keydown", this.handleEnterPressed);
 
       if (this.cropper) {
         this.cropper.destroy();

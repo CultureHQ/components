@@ -8,6 +8,7 @@ import CentsField from "./CentsField";
 import FileField from "./FileField";
 import ImageField from "./ImageField";
 import SelectField from "./SelectField";
+import TextField from "./TextField";
 import { EmailField, NumberField, PasswordField, StringField } from "./FormFields";
 
 const contains = haystack => needle => haystack.indexOf(needle) > -1;
@@ -20,7 +21,8 @@ const isField = contains([
   NumberField,
   PasswordField,
   SelectField,
-  StringField
+  StringField,
+  TextField
 ]);
 
 class Form extends Component {

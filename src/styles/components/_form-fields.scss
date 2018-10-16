@@ -29,7 +29,8 @@
     margin: 0;
   }
 
-  input {
+  input,
+  textarea {
     border: 0;
     border-bottom: 2px solid $color-border;
     border-radius: 0;
@@ -48,6 +49,12 @@
     &:focus {
       border-bottom: 2px solid $color-primary-green;
     }
+  }
+
+  textarea {
+    height: auto;
+    min-height: 6em;
+    resize: vertical;
   }
 
   &--ad {

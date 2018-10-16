@@ -13,8 +13,8 @@ import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
   Confirm, ConfirmDelete, EmailField, FeedItem, FileField, Form, ImageField,
   Info, Modal, Nav, NumberField, Panel, PasswordField, PlainButton, SelectField,
-  Spinner, StringField, SubmitButton, Subnav, Success, Table, Tag, Thumbnail,
-  Tooltip, Warning
+  Spinner, StringField, SubmitButton, Subnav, Success, Table, Tag, TextField,
+  Thumbnail, Tooltip, Warning
 } from "../../src";
 
 import { TEXT, OPTIONS, onAccept, onClick, onSubmit } from "./utils";
@@ -747,6 +747,26 @@ const App = () => (
       <Tag>Blue</Tag>
       <Tag color="gray">Gray</Tag>
       <Tag color="red">Red</Tag>
+
+      <Heading>TextField</Heading>
+      <p>A text form field.</p>
+      <PropList>
+        <Prop name="children">the label to display for the field</Prop>
+        <ClassNameProp />
+        <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
+        <Prop name="name">the name of the field</Prop>
+        <Prop name="required?">indicates this field is required for submission</Prop>
+        <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
+        <Prop name="value?">the value of the input field</Prop>
+      </PropList>
+
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <TextField name="text" required>Text</TextField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>Thumbnail</Heading>
       <p>A small image that should be displayed inline.</p>

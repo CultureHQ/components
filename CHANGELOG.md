@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.14.0] - 2018-10-16
+### Added
+- The `TextField` component.
+
+### Removed
+- The ability to submit the image editor with the enter key. Mostly because it was super annoying.
+
 ## [3.13.0] - 2018-10-12
 ### Added
 - The `ImageField` component.

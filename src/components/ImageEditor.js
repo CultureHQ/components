@@ -38,7 +38,7 @@ class ImageEditor extends Component {
           responsive: true
         });
 
-        document.addEventListener("keydown", this.handleKeyPressed);
+        // document.addEventListener("keydown", this.handleKeyPressed);
       }
     }).catch(() => {
       // this catch is largely here because in the case that you're not in an
@@ -50,20 +50,10 @@ class ImageEditor extends Component {
   componentWillUnmount() {
     this.componentIsMounted = false;
 
-    document.removeEventListener("keydown", this.handleEnterPressed);
-
     if (this.cropper) {
       this.cropper.destroy();
     }
   }
-
-  handleKeyPressed = event => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      event.stopPropagation();
-      this.handleSave();
-    }
-  };
 
   handleRotateLeft = () => {
     this.cropper.rotate(-45);

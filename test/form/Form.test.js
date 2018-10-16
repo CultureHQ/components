@@ -7,6 +7,7 @@ import {
   CentsField,
   EmailField,
   StringField,
+  TextField,
   SubmitButton
 } from "../../src";
 
@@ -19,6 +20,7 @@ const mountFullForm = () => {
       <BooleanField name="boolean">Boolean</BooleanField>
       <StringField name="name">Name</StringField>
       <EmailField name="email">Email</EmailField>
+      <TextField name="text">Text</TextField>
       <p>This is a great form!</p>
       {false && <p>This is not going to be displayed</p>}
       <SubmitButton />
