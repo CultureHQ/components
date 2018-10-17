@@ -5,6 +5,12 @@ import Icon from "../Icon";
 import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
 
+const freeObjectURL = image => {
+  if (image) {
+    URL.revokeObjectURL(image);
+  }
+};
+
 class ImageField extends Component {
   state = {
     editorOpen: false,
@@ -12,41 +18,37 @@ class ImageField extends Component {
     image: null
   };
 
-  handleFileSelected = ({ target: { files: [value] } }) => {
-    this.setState({
-      editorOpen: !!value,
-      failed: false,
-      image: value ? URL.createObjectURL(value) : null
-    });
+  componentWillUnmount() {
+    const { image } = this.state;
+    freeObjectURL(image);
+  }
 
-    this.handleImageSelected(value || null);
+  handleFileSelected = ({ target: { files: [image] } }) => {
+    this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
   };
 
-  handleImageEdited = value => {
-    this.setState({
-      editorOpen: false,
-      failed: false,
-      image: URL.createObjectURL(value)
-    });
-
-    this.handleImageSelected(value);
+  handleImageEdited = image => {
+    this.handleImageSelected({ editorOpen: false, failed: false, image });
   };
 
   handleImageFailure = () => {
-    this.setState({ editorOpen: false, image: null });
-    this.handleImageSelected(null);
-    this.setState({ failed: true });
+    this.handleImageSelected({ editorOpen: false, failed: true, image: null });
   };
 
-  handleImageSelected = value => {
+  handleImageSelected = ({ editorOpen, failed, image }) => {
+    this.setState(state => {
+      freeObjectURL(state.image);
+      return { editorOpen, failed, image: image ? URL.createObjectURL(image) : null };
+    });
+
     const { name, onChange, onFormChange } = this.props;
 
     if (onChange) {
-      onChange(value);
+      onChange(image);
     }
 
     if (onFormChange) {
-      onFormChange(name, value);
+      onFormChange(name, image);
     }
   };
 
@@ -62,7 +64,8 @@ class ImageField extends Component {
 
     const { editorOpen, failed, image } = this.state;
 
-    const backgroundImage = image ? `url(${image})` : null;
+    const preview = image || value;
+    const backgroundImage = preview ? `url(${preview})` : null;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -98,7 +101,7 @@ class ImageField extends Component {
           <ModalDialog onClose={this.handleClose}>
             <ModalDialog.Body>
               <ImageEditor
-                image={image}
+                image={preview}
                 onEdit={this.handleImageEdited}
                 onFailure={this.handleImageFailure}
               />

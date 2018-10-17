@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.14.1] - 2018-10-17
+### Changed
+- Ensure `URL.revokeObjectURL` is called so we don't leak memory when allocating object URLs from within the `ImageField` component.
+- Allow an initial value to be passed to an image field.
+
 ## [3.14.0] - 2018-10-16
 ### Added
 - The `TextField` component.

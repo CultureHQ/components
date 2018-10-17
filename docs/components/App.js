@@ -363,7 +363,7 @@ const App = () => (
 
       <Panel>
         <Panel.Body>
-          <Form>
+          <Form initialValues={{ image: "culture.png" }}>
             <ImageField name="image">Image</ImageField>
           </Form>
         </Panel.Body>

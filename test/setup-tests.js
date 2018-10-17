@@ -21,3 +21,4 @@ expect.extend({
 ModalDialog.setAppElement(document.body);
 
 URL.createObjectURL = object => `blob:${object}`;
+URL.revokeObjectURL = () => {};

@@ -53,6 +53,12 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var freeObjectURL = function freeObjectURL(image) {
+  if (image) {
+    URL.revokeObjectURL(image);
+  }
+};
+
 var ImageField =
 /*#__PURE__*/
 function (_Component) {
@@ -79,52 +85,56 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleFileSelected", function (_ref) {
       var _ref$target$files = _slicedToArray(_ref.target.files, 1),
-          value = _ref$target$files[0];
+          image = _ref$target$files[0];
 
-      _this.setState({
-        editorOpen: !!value,
+      _this.handleImageSelected({
+        editorOpen: !!image,
         failed: false,
-        image: value ? URL.createObjectURL(value) : null
+        image: image || null
       });
-
-      _this.handleImageSelected(value || null);
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleImageEdited", function (value) {
-      _this.setState({
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleImageEdited", function (image) {
+      _this.handleImageSelected({
         editorOpen: false,
         failed: false,
-        image: URL.createObjectURL(value)
+        image: image
       });
-
-      _this.handleImageSelected(value);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleImageFailure", function () {
-      _this.setState({
+      _this.handleImageSelected({
         editorOpen: false,
+        failed: true,
         image: null
-      });
-
-      _this.handleImageSelected(null);
-
-      _this.setState({
-        failed: true
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleImageSelected", function (value) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleImageSelected", function (_ref2) {
+      var editorOpen = _ref2.editorOpen,
+          failed = _ref2.failed,
+          image = _ref2.image;
+
+      _this.setState(function (state) {
+        freeObjectURL(state.image);
+        return {
+          editorOpen: editorOpen,
+          failed: failed,
+          image: image ? URL.createObjectURL(image) : null
+        };
+      });
+
       var _this$props = _this.props,
           name = _this$props.name,
           onChange = _this$props.onChange,
           onFormChange = _this$props.onFormChange;
 
       if (onChange) {
-        onChange(value);
+        onChange(image);
       }
 
       if (onFormChange) {
-        onFormChange(name, value);
+        onFormChange(name, image);
       }
     });
 
@@ -138,6 +148,12 @@ function (_Component) {
   }
 
   _createClass(ImageField, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      var image = this.state.image;
+      freeObjectURL(image);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
@@ -156,7 +172,8 @@ function (_Component) {
           editorOpen = _this$state.editorOpen,
           failed = _this$state.failed,
           image = _this$state.image;
-      var backgroundImage = image ? "url(".concat(image, ")") : null;
+      var preview = image || value;
+      var backgroundImage = preview ? "url(".concat(preview, ")") : null;
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name
@@ -192,7 +209,7 @@ function (_Component) {
       }, "Not a valid image."), editorOpen && _react.default.createElement(_ModalDialog.default, {
         onClose: this.handleClose
       }, _react.default.createElement(_ModalDialog.default.Body, null, _react.default.createElement(_ImageEditor.default, {
-        image: image,
+        image: preview,
         onEdit: this.handleImageEdited,
         onFailure: this.handleImageFailure
       }))));
