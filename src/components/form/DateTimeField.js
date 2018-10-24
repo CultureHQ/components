@@ -21,6 +21,12 @@ const normalizeTime = value => {
 class DateTimeField extends Component {
   state = { open: false, touched: false };
 
+  getNormalValue = () => {
+    const { value } = this.props;
+
+    return value ? new Date(value) : null;
+  };
+
   handleOpen = () => {
     this.setState({ open: true });
   };
@@ -30,22 +36,18 @@ class DateTimeField extends Component {
   };
 
   handleDateChange = date => {
-    const { value } = this.props;
-
-    this.propagateChange(date, normalizeTime(value));
+    this.propagateChange(date, normalizeTime(this.getNormalValue()));
   };
 
   handleTimeChange = (hours, minutes) => {
-    const { value } = this.props;
-
-    this.propagateChange(value || new Date(), { hours, minutes });
+    this.propagateChange(this.getNormalValue() || new Date(), { hours, minutes });
     this.handleClose();
   };
 
   handleSelect = () => {
-    const { value } = this.props;
+    const normalValue = this.getNormalValue();
 
-    this.propagateChange(value || new Date(), normalizeTime(value));
+    this.propagateChange(normalValue || new Date(), normalizeTime(normalValue));
     this.handleClose();
   };
 
@@ -59,7 +61,7 @@ class DateTimeField extends Component {
       time.hours,
       time.minutes,
       0
-    );
+    ).toISOString();
 
     if (onChange) {
       onChange(value);
@@ -77,6 +79,8 @@ class DateTimeField extends Component {
 
     const { open, touched } = this.state;
 
+    const normalValue = this.getNormalValue();
+
     return (
       <>
         <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -86,13 +90,13 @@ class DateTimeField extends Component {
             className="chq-ffd--dt"
             onClick={this.handleOpen}
           >
-            <DateTimeFieldDisplay value={value} />
+            <DateTimeFieldDisplay value={normalValue} />
           </PlainButton>
           <input
             id={name}
             name={name}
             type="hidden"
-            value={value ? value.toISOString() : ""}
+            value={normalValue ? normalValue.toISOString() : ""}
           />
         </label>
         {open && (
@@ -105,8 +109,8 @@ class DateTimeField extends Component {
               {children}
             </ModalDialog.Heading>
             <ModalDialog.Body>
-              <Calendar value={value} onChange={this.handleDateChange} />
-              <TimeSelect value={value} onChange={this.handleTimeChange} />
+              <Calendar value={normalValue} onChange={this.handleDateChange} />
+              <TimeSelect value={normalValue} onChange={this.handleTimeChange} />
             </ModalDialog.Body>
             <ModalDialog.Footer>
               <Button primary onClick={this.handleSelect}>Select</Button>
