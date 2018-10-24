@@ -14,7 +14,7 @@
     "lint:css": "sass-lint -c .sass-lint.yml -v --max-warnings 0",
     "prettier": "prettier --write '**/*.js'",
     "start": "webpack-dev-server --mode development --hot",
-    "test": "jest"
+    "test": "TZ=UTC jest"
   },
   "repository": {
     "type": "git",
