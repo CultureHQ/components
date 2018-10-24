@@ -17,12 +17,14 @@
 
   .chq-pan--hd {
     border-radius: 0;
+    position: relative;
     text-align: center;
 
     .chq-mdl--cl {
-      float: right;
-      margin-top: -7px;
       opacity: .2;
+      position: absolute;
+      right: 8px;
+      top: 8px;
 
       svg {
         height: 34px;
