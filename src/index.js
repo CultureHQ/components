@@ -1,5 +1,6 @@
 import "./styles/app.scss";
 
+export { default as Calendar } from "./components/Calendar";
 export { default as Checklist } from "./components/Checklist";
 export { default as Checkmark } from "./components/Checkmark";
 export { default as Cheer } from "./components/Cheer";
