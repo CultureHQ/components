@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 import CheckmarkContainer from "./CheckmarkContainer";
 import CheerButtonContainer from "./CheerButtonContainer";
@@ -10,7 +10,7 @@ import LoaderContainer from "./LoaderContainer";
 import PaginationContainer from "./PaginationContainer";
 
 import {
-  Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles,
+  Badge, BooleanField, Button, Calendar, CentsField, Checklist, Cheer, Circles,
   Confirm, ConfirmDelete, EmailField, FeedItem, FileField, Form, ImageField,
   Info, Modal, Nav, NumberField, Panel, PasswordField, PlainButton, SelectField,
   Spinner, StringField, SubmitButton, Subnav, Success, Table, Tag, TextField,
@@ -20,6 +20,20 @@ import {
 import { TEXT, OPTIONS, onAccept, onClick, onSubmit } from "./utils";
 
 Modal.setAppElement("#main");
+
+class CalendarContainer extends Component {
+  state = { value: new Date() };
+
+  handleChange = value => {
+    this.setState({ value });
+  };
+
+  render() {
+    const { value } = this.state;
+
+    return <Calendar value={value} onChange={this.handleChange} />;
+  }
+}
 
 const Heading = ({ children }) => (
   <>
@@ -97,6 +111,16 @@ const App = () => (
 
       <Button inverted>Inverted</Button>{" "}
       <Button icon="clipboard" inverted>Inverted Icon</Button>
+
+      <Heading>Calendar</Heading>
+      <p>A calendar component.</p>
+      <PropList>
+        <ClassNameProp />
+        <Prop name="onChange">a function that accepts a new Date object representing the value of the selected day</Prop>
+        <Prop name="value">the currently selected day on the calendar</Prop>
+      </PropList>
+
+      <CalendarContainer />
 
       <Heading>CentsField</Heading>
       <p>A number form field that tracks in cents and displays in dollar amounts.</p>

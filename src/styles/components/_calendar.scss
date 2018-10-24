@@ -1,0 +1,51 @@
+.chq-cal {
+  background-color: $color-white;
+  border-radius: 5px;
+  border: $color-border solid 1px;
+  max-width: 400px;
+
+  &--months {
+    display: flex;
+    border-bottom: $color-border solid 1px;
+
+    strong {
+      flex-basis: 14.285%;
+      text-align: center;
+    }
+  }
+
+  &--days {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .chq-cal--day {
+    border-radius: 5px;
+    color: $color-primary-font;
+    cursor: pointer;
+    flex-basis: 14.285%;
+    font-size: .9em;
+    padding: 4px;
+
+    &:hover {
+      background-color: $color-border;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &-act {
+      background-color: $color-link-blue;
+      color: $color-white;
+
+      &:hover {
+        background-color: $color-link-blue;
+      }
+    }
+
+    &-out {
+      color: lighten($color-primary-light-font, 25%);
+    }
+  }
+}
