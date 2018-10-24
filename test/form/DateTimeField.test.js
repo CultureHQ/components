@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { mount } from "enzyme";
 
 import { DateTimeField, Form } from "../../src";
@@ -10,8 +10,9 @@ test("functions as expected", () => {
     return Promise.resolve();
   };
 
+  const initialValues = { datetime: new Date(2018, 0, 1, 0, 0, 0).toISOString() };
   const component = mount(
-    <Form onSubmit={onSubmit} initialValues={{ datetime: new Date(2018, 0, 1, 0, 0, 0).toISOString() }}>
+    <Form onSubmit={onSubmit} initialValues={initialValues}>
       <DateTimeField name="datetime" />
     </Form>
   );
