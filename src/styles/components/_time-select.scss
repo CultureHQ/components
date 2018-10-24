@@ -1,0 +1,29 @@
+.chq-tsl {
+  max-height: 235px;
+  overflow-y: auto;
+
+  .chq-tsl--op {
+    border-radius: 5px;
+    color: $color-primary-font;
+    display: block;
+    padding: 5px;
+    width: 100%;
+
+    &:hover {
+      background-color: $color-border;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &-act {
+      background-color: $color-link-blue;
+      color: $color-white;
+
+      &:hover {
+        background-color: $color-link-blue;
+      }
+    }
+  }
+}
