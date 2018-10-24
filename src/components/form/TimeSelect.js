@@ -19,7 +19,7 @@ for (let hours = 0; hours < 24; hours += 1) {
     const meridian = hours < 12 ? "AM" : "PM";
 
     TIME_SELECT_OPTIONS.push({
-      label: `${hours % 12 || 12}:${padLeft(minutes)} ${meridian}`,
+      label: `${padLeft(hours % 12 || 12)}:${padLeft(minutes)} ${meridian}`,
       value: `${hours}:${minutes}`
     });
   }

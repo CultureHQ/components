@@ -13,7 +13,7 @@ class Calendar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { visibleValue: getStartOfMonth(props.value) };
+    this.state = { visibleValue: getStartOfMonth(props.value || new Date()) };
   }
 
   componentDidUpdate(prevProps) {
@@ -77,7 +77,7 @@ class Calendar extends Component {
         </div>
         <div className="chq-cal--days">
           <CalendarDays
-            value={value}
+            value={value || new Date()}
             visibleValue={visibleValue}
             onChange={onChange}
           />
