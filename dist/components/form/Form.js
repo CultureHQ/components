@@ -15,6 +15,8 @@ var _BooleanField = _interopRequireDefault(require("./BooleanField"));
 
 var _CentsField = _interopRequireDefault(require("./CentsField"));
 
+var _DateTimeField = _interopRequireDefault(require("./DateTimeField"));
+
 var _FileField = _interopRequireDefault(require("./FileField"));
 
 var _ImageField = _interopRequireDefault(require("./ImageField"));
@@ -57,7 +59,7 @@ var contains = function contains(haystack) {
   };
 };
 
-var isField = contains([_CentsField.default, _FormFields.EmailField, _FileField.default, _ImageField.default, _FormFields.NumberField, _FormFields.PasswordField, _SelectField.default, _FormFields.StringField, _TextField.default]);
+var isField = contains([_CentsField.default, _FormFields.EmailField, _DateTimeField.default, _FileField.default, _ImageField.default, _FormFields.NumberField, _FormFields.PasswordField, _SelectField.default, _FormFields.StringField, _TextField.default]);
 
 var Form =
 /*#__PURE__*/

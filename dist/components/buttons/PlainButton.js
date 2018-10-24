@@ -17,16 +17,18 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-var Button = function Button(_ref) {
+var PlainButton = _react.default.forwardRef(function (_ref, ref) {
   var children = _ref.children,
       className = _ref.className,
       props = _objectWithoutProperties(_ref, ["children", "className"]);
 
   return _react.default.createElement("button", _extends({}, props, {
+    ref: ref,
     type: "button",
     className: (0, _classnames.default)("chq-pbn", className)
   }), children);
-};
+});
 
-var _default = Button;
+PlainButton.displayName = "PlainButton";
+var _default = PlainButton;
 exports.default = _default;
