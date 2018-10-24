@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
-import classnames from "../../classnames";
-import PlainButton from "../buttons/PlainButton";
+import TimeSelectOption from "./TimeSelectOption";
 
 const normalizeValue = value => {
   const hours = value ? value.getHours() : 12;
@@ -22,33 +21,6 @@ for (let hours = 0; hours < 24; hours += 1) {
       label: `${padLeft(hours % 12 || 12)}:${padLeft(minutes)} ${meridian}`,
       value: `${hours}:${minutes}`
     });
-  }
-}
-
-class TimeSelectOption extends Component {
-  handleClick = () => {
-    const { onClick, option } = this.props;
-    const [hours, minutes] = option.value.split(":");
-
-    onClick(hours, minutes);
-  };
-
-  render() {
-    const { option, value, activeOptionRef } = this.props;
-
-    const isActive = option.value === value;
-    const classList = classnames("chq-tsl--op", { "chq-tsl--op-act": isActive });
-
-    return (
-      <PlainButton
-        ref={isActive ? activeOptionRef : null}
-        className={classList}
-        value={option.value}
-        onClick={this.handleClick}
-      >
-        {option.label}
-      </PlainButton>
-    );
   }
 }
 

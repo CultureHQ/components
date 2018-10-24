@@ -1,5 +1,3 @@
-import React from "react";
-
 const padLeft = number => `0${number}`.slice(-2);
 
 const DateTimeFieldDisplay = ({ value }) => {

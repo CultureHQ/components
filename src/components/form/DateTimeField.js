@@ -51,7 +51,15 @@ class DateTimeField extends Component {
 
   propagateChange = (date, time) => {
     const { name, onChange, onFormChange } = this.props;
-    const value = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.hours, time.minutes, 0);
+
+    const value = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      time.hours,
+      time.minutes,
+      0
+    );
 
     if (onChange) {
       onChange(value);
@@ -63,7 +71,10 @@ class DateTimeField extends Component {
   };
 
   render() {
-    const { children, className, onChange, onFormChange, onError, name, required, submitted, value, validator } = this.props;
+    const {
+      children, className, onError, name, required, submitted, value, validator
+    } = this.props;
+
     const { open, touched } = this.state;
 
     return (
@@ -73,6 +84,7 @@ class DateTimeField extends Component {
           <PlainButton aria-label="Open dialog" className="chq-ffd--dt" onClick={this.handleOpen}>
             <DateTimeFieldDisplay value={value} />
           </PlainButton>
+          <input id={name} name={name} type="hidden" value={value ? value.toISOString() : ""} />
         </label>
         {open && (
           <ModalDialog className="chq-ffd--dt--md" entrance="zoomIn" onClose={this.handleClose}>
