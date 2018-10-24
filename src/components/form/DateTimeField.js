@@ -81,13 +81,26 @@ class DateTimeField extends Component {
       <>
         <label className={classnames("chq-ffd", className)} htmlFor={name}>
           <span className="chq-ffd--lb">{children}</span>
-          <PlainButton aria-label="Open dialog" className="chq-ffd--dt" onClick={this.handleOpen}>
+          <PlainButton
+            aria-label="Open dialog"
+            className="chq-ffd--dt"
+            onClick={this.handleOpen}
+          >
             <DateTimeFieldDisplay value={value} />
           </PlainButton>
-          <input id={name} name={name} type="hidden" value={value ? value.toISOString() : ""} />
+          <input
+            id={name}
+            name={name}
+            type="hidden"
+            value={value ? value.toISOString() : ""}
+          />
         </label>
         {open && (
-          <ModalDialog className="chq-ffd--dt--md" entrance="zoomIn" onClose={this.handleClose}>
+          <ModalDialog
+            className="chq-ffd--dt--md"
+            entrance="zoomIn"
+            onClose={this.handleClose}
+          >
             <ModalDialog.Heading onClose={this.handleClose}>
               {children}
             </ModalDialog.Heading>
