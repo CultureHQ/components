@@ -2,11 +2,69 @@
   background-color: $color-white;
   border-radius: 5px;
   border: $color-border solid 1px;
-  max-width: 400px;
+
+  &--head {
+    text-align: center;
+
+    &--ct {
+      border: 4px solid transparent;
+      height: 0;
+      left: calc(50% - 2px);
+      position: absolute;
+      top: calc(50% - 3px);
+      vertical-align: middle;
+      width: 0;
+    }
+
+    &--prev,
+    &--next {
+      border: 0;
+      border-radius: 5px;
+      content: " ";
+      cursor: pointer;
+      font-size: 1em;
+      padding: 8px;
+      position: relative;
+      width: 14.285%;
+
+      &:hover {
+        background-color: $color-border;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    &--prev {
+      float: left;
+
+      .chq-cal--head--ct {
+        border-left: 0;
+        border-right: 4px solid $color-primary-light-font;
+      }
+    }
+
+    &--next {
+      float: right;
+
+      .chq-cal--head--ct {
+        border-right: 0;
+        border-left: 4px solid $color-primary-light-font;
+      }
+    }
+
+    &--lbl {
+      flex-basis: 80%;
+      padding: 8px;
+    }
+  }
 
   &--months {
-    display: flex;
     border-bottom: $color-border solid 1px;
+    clear: both;
+    display: flex;
+    font-size: .9em;
 
     strong {
       flex-basis: 14.285%;
@@ -24,8 +82,8 @@
     color: $color-primary-font;
     cursor: pointer;
     flex-basis: 14.285%;
-    font-size: .9em;
-    padding: 4px;
+    font-size: .8em;
+    padding: 8px;
 
     &:hover {
       background-color: $color-border;
