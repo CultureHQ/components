@@ -278,6 +278,7 @@ const App = () => (
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
+        <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
         <Prop name="value?">the value of the input field</Prop>
       </PropList>
 
