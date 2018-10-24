@@ -8,6 +8,7 @@ import PlainButton from "../buttons/PlainButton";
 import ModalDialog from "../modals/ModalDialog";
 
 import DateTimeFieldDisplay from "./DateTimeFieldDisplay";
+import FormError from "./FormError";
 import TimeSelect from "./TimeSelect";
 
 const normalizeTime = value => {
@@ -18,14 +19,14 @@ const normalizeTime = value => {
 };
 
 class DateTimeField extends Component {
-  state = { open: false };
+  state = { open: false, touched: false };
 
   handleOpen = () => {
     this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false, touched: true });
   };
 
   handleDateChange = date => {
@@ -38,14 +39,14 @@ class DateTimeField extends Component {
     const { value } = this.props;
 
     this.propagateChange(value || new Date(), { hours, minutes });
-    this.setState({ open: false });
+    this.handleClose();
   };
 
   handleSelect = () => {
     const { value } = this.props;
 
     this.propagateChange(value || new Date(), normalizeTime(value));
-    this.setState({ open: false });
+    this.handleClose();
   };
 
   propagateChange = (date, time) => {
@@ -62,8 +63,8 @@ class DateTimeField extends Component {
   };
 
   render() {
-    const { children, className, onChange, onFormChange, onError, name, required, submitted, value } = this.props;
-    const { open } = this.state;
+    const { children, className, onChange, onFormChange, onError, name, required, submitted, value, validator } = this.props;
+    const { open, touched } = this.state;
 
     return (
       <>
@@ -87,6 +88,15 @@ class DateTimeField extends Component {
             </ModalDialog.Footer>
           </ModalDialog>
         )}
+        <FormError
+          name={name}
+          onError={onError}
+          required={required}
+          submitted={submitted}
+          touched={touched}
+          validator={validator}
+          value={value}
+        />
       </>
     );
   }
