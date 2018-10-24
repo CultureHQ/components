@@ -3,32 +3,18 @@ import React, { Component } from "react";
 import classnames from "../../classnames";
 
 import Calendar from "../Calendar";
-import ModalDialog from "../modals/ModalDialog";
+import Button from "../buttons/Button";
 import PlainButton from "../buttons/PlainButton";
+import ModalDialog from "../modals/ModalDialog";
+
+import DateTimeFieldDisplay from "./DateTimeFieldDisplay";
 import TimeSelect from "./TimeSelect";
 
-const padLeft = number => `0${number}`.slice(-2);
-
-const DateTimeFieldDisplay = ({ value }) => {
-  if (!value) {
-    return null;
+const normalizeTime = value => {
+  if (value) {
+    return { hours: value.getHours(), minutes: value.getMinutes() };
   }
-
-  const components = [
-    value.getFullYear(),
-    "-",
-    padLeft(value.getMonth() + 1),
-    "-",
-    padLeft(value.getDate()),
-    " ",
-    value.getHours() % 12 || 12,
-    ":",
-    padLeft(value.getMinutes()),
-    " ",
-    value.getHours() < 12 ? "AM" : "PM"
-  ];
-
-  return components.join("");
+  return { hours: 12, minutes: 0 };
 };
 
 class DateTimeField extends Component {
@@ -45,33 +31,26 @@ class DateTimeField extends Component {
   handleDateChange = date => {
     const { value } = this.props;
 
-    this.propagateChange(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate(),
-      value ? value.getHours() : 12,
-      value ? value.getMinutes() : 0
-    );
+    this.propagateChange(date, normalizeTime(value));
   };
 
   handleTimeChange = (hours, minutes) => {
     const { value } = this.props;
-    const valueNormal = value || new Date();
 
-    this.propagateChange(
-      valueNormal.getFullYear(),
-      valueNormal.getMonth(),
-      valueNormal.getDate(),
-      hours,
-      minutes
-    );
-
+    this.propagateChange(value || new Date(), { hours, minutes });
     this.setState({ open: false });
   };
 
-  propagateChange = (year, month, date, hours, minutes) => {
-    const value = new Date(year, month, date, hours, minutes, 0);
+  handleSelect = () => {
+    const { value } = this.props;
+
+    this.propagateChange(value || new Date(), normalizeTime(value));
+    this.setState({ open: false });
+  };
+
+  propagateChange = (date, time) => {
     const { name, onChange, onFormChange } = this.props;
+    const value = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.hours, time.minutes, 0);
 
     if (onChange) {
       onChange(value);
@@ -95,20 +74,17 @@ class DateTimeField extends Component {
           </PlainButton>
         </label>
         {open && (
-          <ModalDialog entrance="zoomIn" onClose={this.handleClose}>
+          <ModalDialog className="chq-ffd--dt--md" entrance="zoomIn" onClose={this.handleClose}>
             <ModalDialog.Heading onClose={this.handleClose}>
               {children}
             </ModalDialog.Heading>
             <ModalDialog.Body>
-              <Calendar
-                value={value || new Date()}
-                onChange={this.handleDateChange}
-              />
-              <TimeSelect
-                value={value}
-                onChange={this.handleTimeChange}
-              />
+              <Calendar value={value} onChange={this.handleDateChange} />
+              <TimeSelect value={value} onChange={this.handleTimeChange} />
             </ModalDialog.Body>
+            <ModalDialog.Footer>
+              <Button primary onClick={this.handleSelect}>Select</Button>
+            </ModalDialog.Footer>
           </ModalDialog>
         )}
       </>
