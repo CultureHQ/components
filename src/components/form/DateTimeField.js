@@ -3,8 +3,9 @@ import React, { Component } from "react";
 import classnames from "../../classnames";
 
 import Calendar from "../Calendar";
-import PlainButton from "../buttons/PlainButton";
 import ModalDialog from "../modals/ModalDialog";
+import PlainButton from "../buttons/PlainButton";
+import TimeSelect from "./TimeSelect";
 
 const padLeft = number => `0${number}`.slice(-2);
 
@@ -15,11 +16,19 @@ const DateTimeFieldDisplay = ({ value }) => {
 
   const components = [
     value.getFullYear(),
+    "-",
     padLeft(value.getMonth() + 1),
-    padLeft(value.getDate())
+    "-",
+    padLeft(value.getDate()),
+    " ",
+    value.getHours() % 12 || 12,
+    ":",
+    padLeft(value.getMinutes()),
+    " ",
+    value.getHours() < 12 ? "AM" : "PM"
   ];
 
-  return components.join("-");
+  return components.join("");
 };
 
 class DateTimeField extends Component {
@@ -33,7 +42,35 @@ class DateTimeField extends Component {
     this.setState({ open: false });
   };
 
-  handleChange = value => {
+  handleDateChange = date => {
+    const { value } = this.props;
+
+    this.propagateChange(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      value ? value.getHours() : 12,
+      value ? value.getMinutes() : 0
+    );
+  };
+
+  handleTimeChange = (hours, minutes) => {
+    const { value } = this.props;
+    const valueNormal = value || new Date();
+
+    this.propagateChange(
+      valueNormal.getFullYear(),
+      valueNormal.getMonth(),
+      valueNormal.getDate(),
+      hours,
+      minutes
+    );
+
+    this.setState({ open: false });
+  };
+
+  propagateChange = (year, month, date, hours, minutes) => {
+    const value = new Date(year, month, date, hours, minutes, 0);
     const { name, onChange, onFormChange } = this.props;
 
     if (onChange) {
@@ -43,8 +80,6 @@ class DateTimeField extends Component {
     if (onFormChange) {
       onFormChange(name, value);
     }
-
-    this.setState({ open: false });
   };
 
   render() {
@@ -61,10 +96,17 @@ class DateTimeField extends Component {
         </label>
         {open && (
           <ModalDialog entrance="zoomIn" onClose={this.handleClose}>
+            <ModalDialog.Heading onClose={this.handleClose}>
+              {children}
+            </ModalDialog.Heading>
             <ModalDialog.Body>
               <Calendar
                 value={value || new Date()}
-                onChange={this.handleChange}
+                onChange={this.handleDateChange}
+              />
+              <TimeSelect
+                value={value}
+                onChange={this.handleTimeChange}
               />
             </ModalDialog.Body>
           </ModalDialog>
