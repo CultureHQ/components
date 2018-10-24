@@ -11,10 +11,10 @@ import PaginationContainer from "./PaginationContainer";
 
 import {
   Badge, BooleanField, Button, Calendar, CentsField, Checklist, Cheer, Circles,
-  Confirm, ConfirmDelete, EmailField, FeedItem, FileField, Form, ImageField,
-  Info, Modal, Nav, NumberField, Panel, PasswordField, PlainButton, SelectField,
-  Spinner, StringField, SubmitButton, Subnav, Success, Table, Tag, TextField,
-  Thumbnail, Tooltip, Warning
+  Confirm, ConfirmDelete, DateTimeField, EmailField, FeedItem, FileField, Form,
+  ImageField, Info, Modal, Nav, NumberField, Panel, PasswordField, PlainButton,
+  SelectField, Spinner, StringField, SubmitButton, Subnav, Success, Table, Tag,
+  TextField, Thumbnail, Tooltip, Warning
 } from "../../src";
 
 import { TEXT, OPTIONS, onAccept, onClick, onSubmit } from "./utils";
@@ -269,6 +269,25 @@ const App = () => (
       >
         Are you sure you&#39;d like to delete this resource?
       </ConfirmDelete>
+
+      <Heading>DateTimeField</Heading>
+      <p>A form field for selecting a date and time.</p>
+      <PropList>
+        <Prop name="children">the label to display for the field</Prop>
+        <ClassNameProp />
+        <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
+        <Prop name="name">the name of the field</Prop>
+        <Prop name="required?">indicates this field is required for submission</Prop>
+        <Prop name="value?">the value of the input field</Prop>
+      </PropList>
+
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <DateTimeField name="datetime" required>Date/Time</DateTimeField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>EmailField</Heading>
       <p>A string form field that accepts an email.</p>
