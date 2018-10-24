@@ -34,15 +34,14 @@ class TimeSelectOption extends Component {
   };
 
   render() {
-    const { option, value } = this.props;
+    const { option, value, activeOptionRef } = this.props;
 
-    const classList = classnames("chq-tsl--op", {
-      "chq-tsl--op-act": option.value === value
-    });
+    const isActive = option.value === value;
+    const classList = classnames("chq-tsl--op", { "chq-tsl--op-act": isActive });
 
     return (
       <PlainButton
-        key={option.value}
+        ref={isActive ? activeOptionRef : null}
         className={classList}
         value={option.value}
         onClick={this.handleClick}
@@ -53,21 +52,36 @@ class TimeSelectOption extends Component {
   }
 }
 
-const TimeSelect = ({ value, onChange }) => {
-  const valueNormal = normalizeValue(value);
+class TimeSelect extends Component {
+  activeOptionRef = React.createRef();
 
-  return (
-    <div className="chq-tsl">
-      {TIME_SELECT_OPTIONS.map(option => (
-        <TimeSelectOption
-          key={option.value}
-          option={option}
-          value={valueNormal}
-          onClick={onChange}
-        />
-      ))}
-    </div>
-  );
-};
+  selectRef = React.createRef();
+
+  componentDidMount() {
+    const option = this.activeOptionRef.current;
+    const select = this.selectRef.current;
+
+    select.scrollTop = Math.max(0, option.offsetTop - select.offsetTop - 46);
+  }
+
+  render() {
+    const { value, onChange } = this.props;
+    const valueNormal = normalizeValue(value);
+
+    return (
+      <div className="chq-tsl" ref={this.selectRef}>
+        {TIME_SELECT_OPTIONS.map(option => (
+          <TimeSelectOption
+            key={option.value}
+            option={option}
+            value={valueNormal}
+            onClick={onChange}
+            activeOptionRef={this.activeOptionRef}
+          />
+        ))}
+      </div>
+    );
+  }
+}
 
 export default TimeSelect;
