@@ -1,7 +1,7 @@
 .chq-cal {
   background-color: $color-white;
-  border-radius: 5px;
   border: $color-border solid 1px;
+  border-radius: 5px;
 
   &--head {
     text-align: center;
@@ -20,7 +20,6 @@
     &--next {
       border: 0;
       border-radius: 5px;
-      content: " ";
       cursor: pointer;
       font-size: 1em;
       padding: 10px;
@@ -49,8 +48,8 @@
       float: right;
 
       .chq-cal--head--ct {
-        border-right: 0;
         border-left: 4px solid $color-primary-light-font;
+        border-right: 0;
       }
     }
 

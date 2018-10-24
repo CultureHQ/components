@@ -1,0 +1,17 @@
+.chq-ffd--dt--md {
+  .chq-pan--bd {
+    display: flex;
+
+    .chq-cal {
+      flex-basis: 66.6%;
+    }
+
+    .chq-tsl {
+      flex-basis: 33.3%;
+    }
+  }
+
+  .chq-pan--ft {
+    text-align: center;
+  }
+}
