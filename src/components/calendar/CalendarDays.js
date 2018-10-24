@@ -15,7 +15,6 @@ const CalendarDays = ({ value, visibleValue, onChange }) => {
 
   const firstDayOfWeek = new Date(visibleYear, visibleMonth, 1).getDay();
   const lastDayOfWeek = new Date(visibleYear, visibleMonth + 1, 0).getDay();
-  const currentDate = value.getDate();
 
   const days = [];
 

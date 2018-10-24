@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
-import classnames from "../classnames";
 import locales from "../locales";
-
 import CalendarDays from "./calendar/CalendarDays";
 
 const getStartOfMonth = date => new Date(date.getFullYear(), date.getMonth(), 1);
@@ -21,6 +19,7 @@ class Calendar extends Component {
     const { visibleValue } = this.state;
 
     if (prevProps.value !== value && hashMonth(value) !== hashMonth(visibleValue)) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ visibleValue: getStartOfMonth(value) });
     }
   }
