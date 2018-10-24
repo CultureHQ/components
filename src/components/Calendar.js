@@ -1,133 +1,86 @@
 import React, { Component } from "react";
 
 import classnames from "../classnames";
-import PlainButton from "./buttons/PlainButton";
+import locales from "../locales";
 
-const locales = {
-  en: {
-    DAY_ABBRS: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-    MONTH_NAMES: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ]
-  }
-};
+import CalendarDays from "./calendar/CalendarDays";
 
-class CalendarDay extends Component {
-  handleClick = () => {
-    const { onClick, label } = this.props;
+const getStartOfMonth = date => new Date(date.getFullYear(), date.getMonth(), 1);
 
-    onClick(label);
-  };
-
-  render() {
-    const { label, isActive, outside } = this.props;
-
-    const classList = classnames("chq-cal--day", {
-      "chq-cal--day-act": isActive,
-      "chq-cal--day-out": outside
-    });
-
-    return (
-      <PlainButton className={classList} onClick={this.handleClick}>
-        {label}
-      </PlainButton>
-    );
-  }
-}
+const hashMonth = date => `${date.getFullYear()}-${date.getMonth() + 1}`;
 
 class Calendar extends Component {
-  handlePastDayClick = label => {
-    const { onChange, value } = this.props;
+  constructor(props) {
+    super(props);
 
-    onChange(new Date(value.getFullYear(), value.getMonth() - 1, label));
-  };
-
-  handlePresentDayClick = label => {
-    const { onChange, value } = this.props;
-
-    onChange(new Date(value.getFullYear(), value.getMonth(), label));
-  };
-
-  handleFutureDayClick = label => {
-    const { onChange, value } = this.props;
-
-    onChange(new Date(value.getFullYear(), value.getMonth() + 1, label));
-  };
-
-  getDays() {
-    const { value } = this.props;
-
-    const daysInMonth = new Date(value.getFullYear(), value.getMonth() + 1, 0).getDate();
-    const daysInPrevMonth = new Date(value.getFullYear(), value.getMonth(), 0).getDate();
-
-    const firstDayOfWeek = new Date(value.getFullYear(), value.getMonth(), 1).getDay();
-    const lastDayOfWeek = new Date(value.getFullYear(), value.getMonth() + 1, 0).getDay();
-    const currentDate = value.getDate();
-
-    const days = [];
-
-    for (let idx = firstDayOfWeek - 1; idx >= 0; idx -= 1) {
-      days.push(
-        <CalendarDay
-          key={`prev-${daysInPrevMonth - idx}`}
-          label={daysInPrevMonth - idx}
-          onClick={this.handlePastDayClick}
-          outside
-        />
-      );
-    }
-
-    for (let idx = 1; idx <= daysInMonth; idx += 1) {
-      days.push(
-        <CalendarDay
-          key={idx}
-          label={idx}
-          onClick={this.handlePresentDayClick}
-          isActive={idx === currentDate}
-        />
-      );
-    }
-
-    for (let idx = lastDayOfWeek; idx < 6; idx += 1) {
-      days.push(
-        <CalendarDay
-          key={`next-${idx - lastDayOfWeek + 1}`}
-          label={idx - lastDayOfWeek + 1}
-          onClick={this.handleFutureDayClick}
-          outside
-        />
-      );
-    }
-
-    return days;
+    this.state = { visibleValue: getStartOfMonth(props.value) };
   }
 
-  render() {
+  componentDidUpdate(prevProps) {
     const { value } = this.props;
+    const { visibleValue } = this.state;
+
+    if (prevProps.value !== value && hashMonth(value) !== hashMonth(visibleValue)) {
+      this.setState({ visibleValue: getStartOfMonth(value) });
+    }
+  }
+
+  handlePrevMonthClick = () => {
+    this.setState(({ visibleValue }) => {
+      const nextVisibleValue = new Date(visibleValue);
+      nextVisibleValue.setMonth(nextVisibleValue.getMonth() - 1);
+
+      return { visibleValue: nextVisibleValue };
+    });
+  };
+
+  handleNextMonthClick = () => {
+    this.setState(({ visibleValue }) => {
+      const nextVisibleValue = new Date(visibleValue);
+      nextVisibleValue.setMonth(nextVisibleValue.getMonth() + 1);
+
+      return { visibleValue: nextVisibleValue };
+    });
+  };
+
+  render() {
+    const { onChange, value } = this.props;
+    const { visibleValue } = this.state;
 
     return (
       <div className="chq-cal">
         <div className="chq-cal--head">
-          {locales.en.MONTH_NAMES[value.getMonth()]} {value.getFullYear()}
+          <button
+            type="button"
+            className="chq-cal--head--prev"
+            onClick={this.handlePrevMonthClick}
+          >
+            <em className="chq-cal--head--ct" />&nbsp;
+          </button>
+          <button
+            type="button"
+            className="chq-cal--head--next"
+            onClick={this.handleNextMonthClick}
+          >
+            <em className="chq-cal--head--ct" />&nbsp;
+          </button>
+          <div className="chq-cal--head--lbl">
+            {locales.en.monthNames[visibleValue.getMonth()]}
+            {" "}
+            {visibleValue.getFullYear()}
+          </div>
         </div>
         <div className="chq-cal--months">
-          {locales.en.DAY_ABBRS.map(abbr => (
+          {locales.en.dayAbbrs.map(abbr => (
             <strong key={abbr}>{abbr}</strong>
           ))}
         </div>
         <div className="chq-cal--days">
-          {this.getDays()}
+          <CalendarDays
+            value={value}
+            visibleValue={visibleValue}
+            onChange={onChange}
+          />
         </div>
       </div>
     );
