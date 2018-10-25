@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.15.1] - 2018-10-25
+### Changed
+- Fixed the missing `locales.json` file.
+
 ## [3.15.0] - 2018-10-24
 ### Added
 - The `DateTimeField` component.

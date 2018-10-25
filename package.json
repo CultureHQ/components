@@ -1,11 +1,11 @@
 {
   "name": "@culturehq/components",
-  "version": "3.15.0",
+  "version": "3.15.1",
   "description": "CultureHQ's component library",
   "main": "dist/index.js",
   "scripts": {
     "build": "yarn build:css && yarn build:js && yarn build:docs",
-    "build:js": "babel src --out-dir ./dist && sed -i '' -e \"s/styles\\/app.scss/main.css/\" dist/index.js && cp src/icons.json dist/icons.json",
+    "build:js": "babel src --out-dir ./dist && sed -i '' -e \"s/styles\\/app.scss/main.css/\" dist/index.js && cp src/*.json dist",
     "build:css": "node-sass src/styles/app.scss > dist/main.css",
     "build:docs": "webpack --mode production",
     "clean": "git ls-files -o | grep -v node_modules | xargs rm",
