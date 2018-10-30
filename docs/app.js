@@ -1,20 +1,14 @@
-import React, { Component } from "react";
+import React, { StrictMode, Suspense, lazy } from "react";
 import ReactDOM from "react-dom";
 
-class AsyncApp extends Component {
-  state = { App: null };
+const App = lazy(() => import(/* webpackChunkName: "app" */ "./components/App"));
 
-  componentDidMount() {
-    import(/* webpackChunkName: "app" */ "./components/App").then(module => {
-      this.setState({ App: module.default });
-    });
-  }
-
-  render() {
-    const { App } = this.state;
-
-    return App ? <App /> : null;
-  }
-}
+const AsyncApp = () => (
+  <StrictMode>
+    <Suspense fallback={<div />}>
+      <App />
+    </Suspense>
+  </StrictMode>
+);
 
 ReactDOM.render(<AsyncApp />, document.getElementById("main"));
