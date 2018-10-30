@@ -18,6 +18,6 @@ const CheerListContainer = ({ cheers, name }) => {
       onCheerToggle={onCheerToggle}
     />
   );
-}
+};
 
 export default CheerListContainer;
