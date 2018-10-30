@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import CheckmarkContainer from "./CheckmarkContainer";
 import CheerButtonContainer from "./CheerButtonContainer";
 import CheerListContainer from "./CheerListContainer";
+import ClickCloseContainer from "./ClickCloseContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
 import ImageEditorContainer from "./ImageEditorContainer";
@@ -239,6 +240,17 @@ const App = () => (
       </PropList>
 
       <Circles />
+
+      <Heading>ClickClose</Heading>
+      <p>A component for closing something when a click event occurs outside the component.</p>
+      <PropList>
+        <Prop name="children">the inside of the listener</Prop>
+        <ClassNameProp />
+        <Prop name={"component = \"div\""}>the component used to wrap the children</Prop>
+        <Prop name="onClose">the callback for when the click event occurs</Prop>
+      </PropList>
+
+      <ClickCloseContainer />
 
       <Heading>Confirm</Heading>
       <p>A confirmation dialog. It has the same props as the <code>Modal</code>{" "} component below, in addition to:</p>

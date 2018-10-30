@@ -6,6 +6,7 @@ export { default as Checkmark } from "./components/Checkmark";
 export { default as Cheer } from "./components/Cheer";
 export { default as CheerList } from "./components/CheerList";
 export { default as Circles } from "./components/Circles";
+export { default as ClickClose } from "./components/ClickClose";
 export { default as FeedItem } from "./components/FeedItem";
 export { default as Loader } from "./components/Loader";
 export { default as Icon } from "./components/Icon";
