@@ -39,6 +39,12 @@ Object.defineProperty(exports, "Circles", {
     return _Circles.default;
   }
 });
+Object.defineProperty(exports, "ClickClose", {
+  enumerable: true,
+  get: function get() {
+    return _ClickClose.default;
+  }
+});
 Object.defineProperty(exports, "FeedItem", {
   enumerable: true,
   get: function get() {
@@ -281,6 +287,8 @@ var _Cheer = _interopRequireDefault(require("./components/Cheer"));
 var _CheerList = _interopRequireDefault(require("./components/CheerList"));
 
 var _Circles = _interopRequireDefault(require("./components/Circles"));
+
+var _ClickClose = _interopRequireDefault(require("./components/ClickClose"));
 
 var _FeedItem = _interopRequireDefault(require("./components/FeedItem"));
 
