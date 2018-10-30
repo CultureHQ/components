@@ -1,29 +1,23 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import { CheerList } from "../../src";
 
-class CheerListContainer extends Component {
-  state = { cheered: false };
+const CheerListContainer = ({ cheers, name }) => {
+  const [cheered, setCheered] = useState(false);
 
-  handleCheerToggle = cheered => {
-    this.setState({ cheered });
-
+  const onCheerToggle = value => {
+    setCheered(value);
     return new Promise(resolve => setTimeout(() => resolve(), 1000));
   };
 
-  render() {
-    const { cheers, name } = this.props;
-    const { cheered } = this.state;
-
-    return (
-      <CheerList
-        cheered={cheered}
-        cheers={cheers}
-        name={name}
-        onCheerToggle={this.handleCheerToggle}
-      />
-    );
-  }
+  return (
+    <CheerList
+      cheered={cheered}
+      cheers={cheers}
+      name={name}
+      onCheerToggle={onCheerToggle}
+    />
+  );
 }
 
 export default CheerListContainer;

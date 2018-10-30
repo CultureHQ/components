@@ -1,33 +1,23 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import { CheerButton } from "../../src";
 
-class CheerButtonContainer extends Component {
-  constructor(props) {
-    super(props);
+const CheerButtonContainer = ({ cheered: initialCheered, name, small }) => {
+  const [cheered, setCheered] = useState(initialCheered);
 
-    this.state = { cheered: props.cheered || false };
-  }
-
-  handleCheerToggle = cheered => {
-    this.setState({ cheered });
-
+  const onCheerToggle = value => {
+    setCheered(value);
     return new Promise(resolve => setTimeout(() => resolve(), 500));
   };
 
-  render() {
-    const { name, small } = this.props;
-    const { cheered } = this.state;
-
-    return (
-      <CheerButton
-        cheered={cheered}
-        name={name}
-        small={small}
-        onCheerToggle={this.handleCheerToggle}
-      />
-    );
-  }
+  return (
+    <CheerButton
+      cheered={cheered}
+      name={name}
+      small={small}
+      onCheerToggle={onCheerToggle}
+    />
+  );
 }
 
 export default CheerButtonContainer;
