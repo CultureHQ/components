@@ -1,23 +1,15 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import { Checkmark } from "../../src";
 
-class CheckmarkContainer extends Component {
-  state = { checked: false };
+const CheckmarkContainer = () => {
+  const [checked, setChecked] = useState(false);
 
-  handleClick = checked => {
-    this.setState({ checked });
-  };
-
-  render() {
-    const { checked } = this.state;
-
-    return (
-      <Checkmark checked={checked} onClick={this.handleClick}>
-        This is a checkmark
-      </Checkmark>
-    );
-  }
-}
+  return (
+    <Checkmark checked={checked} onClick={setChecked}>
+      This is a checkmark
+    </Checkmark>
+  );
+};
 
 export default CheckmarkContainer;

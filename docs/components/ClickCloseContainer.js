@@ -1,34 +1,21 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import { ClickClose, PlainButton } from "../../src";
 
-class ClickCloseContainer extends Component {
-  state = { open: false };
+const ClickCloseContainer = () => {
+  const [open, setOpen] = useState(false);
 
-  handleClose = () => {
-    const { open } = this.state;
+  const onClose = () => open && setOpen(false);
+  const onOpen = () => setOpen(true);
 
-    if (open) {
-      this.setState({ open: false });
-    }
-  };
-
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
-
-  render() {
-    const { open } = this.state;
-
-    return (
-      <ClickClose onClose={this.handleClose}>
-        <PlainButton onClick={this.handleOpen}>
-          Click me!
-        </PlainButton>
-        {open && <div>Open!</div>}
-      </ClickClose>
-    );
-  }
-}
+  return (
+    <ClickClose onClose={onClose}>
+      <PlainButton onClick={onOpen}>
+        Click me!
+      </PlainButton>
+      {open && <div>Open!</div>}
+    </ClickClose>
+  );
+};
 
 export default ClickCloseContainer;

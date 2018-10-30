@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import CalendarContainer from "./CalendarContainer";
 import CheckmarkContainer from "./CheckmarkContainer";
 import CheerButtonContainer from "./CheerButtonContainer";
 import CheerListContainer from "./CheerListContainer";
@@ -11,8 +12,8 @@ import LoaderContainer from "./LoaderContainer";
 import PaginationContainer from "./PaginationContainer";
 
 import {
-  Badge, BooleanField, Button, Calendar, CentsField, Checklist, Cheer, Circles,
-  Confirm, ConfirmDelete, DateTimeField, EmailField, FeedItem, FileField, Form,
+  Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles, Confirm,
+  ConfirmDelete, DateTimeField, EmailField, FeedItem, FileField, Form,
   ImageField, Info, Modal, Nav, NumberField, Panel, PasswordField, PlainButton,
   SelectField, Spinner, StringField, SubmitButton, Subnav, Success, Table, Tag,
   TextField, Thumbnail, Tooltip, Warning
@@ -21,20 +22,6 @@ import {
 import { TEXT, OPTIONS, onAccept, onClick, onSubmit } from "./utils";
 
 Modal.setAppElement("#main");
-
-class CalendarContainer extends Component {
-  state = { value: new Date() };
-
-  handleChange = value => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { value } = this.state;
-
-    return <Calendar value={value} onChange={this.handleChange} />;
-  }
-}
 
 const Heading = ({ children }) => (
   <>
