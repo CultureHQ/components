@@ -4,12 +4,7 @@ import classnames from "../../classnames";
 import Icon from "../Icon";
 import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
-
-const freeObjectURL = image => {
-  if (image) {
-    URL.revokeObjectURL(image);
-  }
-};
+import ImageFieldPreview from "./ImageFieldPreview";
 
 class ImageField extends Component {
   state = {
@@ -17,11 +12,6 @@ class ImageField extends Component {
     failed: false,
     image: null
   };
-
-  componentWillUnmount() {
-    const { image } = this.state;
-    freeObjectURL(image);
-  }
 
   handleFileSelected = ({ target: { files: [image] } }) => {
     this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
@@ -36,12 +26,9 @@ class ImageField extends Component {
   };
 
   handleImageSelected = ({ editorOpen, failed, image }) => {
-    this.setState(state => {
-      freeObjectURL(state.image);
-      return { editorOpen, failed, image: image ? URL.createObjectURL(image) : null };
-    });
-
     const { name, onChange, onFormChange } = this.props;
+
+    this.setState({ editorOpen, failed, image });
 
     if (onChange) {
       onChange(image);
@@ -63,14 +50,13 @@ class ImageField extends Component {
     } = this.props;
 
     const { editorOpen, failed, image } = this.state;
-
     const preview = image || value;
-    const backgroundImage = preview ? `url(${preview})` : null;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
-        <div className="chq-ffd--im" style={{ backgroundImage }}>
+        <div className="chq-ffd--im">
+          <ImageFieldPreview preview={preview} />
           {!value && (
             <div className="chq-ffd--im--ph">
               <Icon icon="images" />
