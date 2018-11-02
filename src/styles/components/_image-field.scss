@@ -1,13 +1,18 @@
 .chq-ffd--im {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   border: $color-border solid 1px;
   cursor: pointer;
   margin-bottom: 5px;
   min-height: 200px;
   position: relative;
   text-align: center;
+
+  &--pv {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
+    position: absolute;
+  }
 
   &--ph {
     margin-top: 30px;
@@ -29,6 +34,7 @@
     display: inline-block;
     margin: 30px auto;
     padding: 8px 26px;
+    position: relative;
     transition: background-color .3s;
 
     svg {
