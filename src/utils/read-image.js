@@ -1,6 +1,7 @@
 import getRotation from "./get-rotation";
 
-const ROTATIONS = [
+export const ROTATIONS = [
+  {},
   {},
   { transform: "rotateY(180deg)" },
   { transform: "rotate(180deg)" },
@@ -21,23 +22,22 @@ const getRotationStyles = (image, rotation, maxHeight) => {
   const halfWidth = (rotation >= 5 ? scaledHeight : scaledWidth) / 2;
 
   return {
-    ...ROTATIONS[rotation - 1],
+    ...ROTATIONS[rotation],
     left: `calc(50% - ${halfWidth}px)`,
     height: rotation >= 5 ? scaledHeight : maxHeight
   };
 };
 
+const getImagePromise = image => new Promise((resolve, reject) => {
+  image.onload = resolve;
+  image.onerror = reject;
+});
+
 const readImage = (preview, maxHeight) => {
   const image = new Image();
-  image.src = typeof preview === "string" ? preview : URL.createObjectURL(preview);
+  const promises = [getRotation(preview), getImagePromise(image)];
 
-  const promises = [
-    getRotation(preview),
-    new Promise((resolve, reject) => {
-      image.onload = resolve;
-      image.onerror = reject;
-    })
-  ];
+  image.src = typeof preview === "string" ? preview : URL.createObjectURL(preview);
 
   return Promise.all(promises).then(([rotation]) => ({
     src: image.src,
