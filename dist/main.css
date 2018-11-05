@@ -707,15 +707,18 @@
     right: -7px; }
 
 .chq-ffd--im {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   border: #eaeaea solid 1px;
   cursor: pointer;
   margin-bottom: 5px;
   min-height: 200px;
   position: relative;
   text-align: center; }
+  .chq-ffd--im--pv {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
+    position: absolute; }
   .chq-ffd--im--ph {
     margin-top: 30px; }
     .chq-ffd--im--ph svg {
@@ -730,6 +733,7 @@
     display: inline-block;
     margin: 30px auto;
     padding: 8px 26px;
+    position: relative;
     transition: background-color .3s; }
     .chq-ffd--im--bt svg {
       vertical-align: bottom; }
@@ -784,6 +788,8 @@
     animation: chqMdlSlideIn 500ms ease-out forwards; }
   .chq-mdl-zi {
     animation: chqMdlZoomIn 300ms ease-out forwards; }
+  .chq-mdl-wr {
+    width: 420px; }
   .chq-mdl .chq-pan--hd {
     border-radius: 0;
     position: relative;

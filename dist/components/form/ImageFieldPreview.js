@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _ModalDialog = _interopRequireDefault(require("./ModalDialog"));
+var _readImage = _interopRequireDefault(require("../../utils/read-image"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33,79 +33,106 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var Modal =
+var ImageFieldPreview =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Modal, _Component);
+  _inherits(ImageFieldPreview, _Component);
 
-  function Modal(props) {
+  function ImageFieldPreview() {
+    var _getPrototypeOf2;
+
     var _this;
 
-    _classCallCheck(this, Modal);
+    _classCallCheck(this, ImageFieldPreview);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Modal).call(this, props));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleOpen", function () {
-      _this.setState({
-        open: true
-      });
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ImageFieldPreview)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "imageRef", _react.default.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      src: null,
+      styles: {}
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClose", function () {
-      _this.setState({
-        open: false
-      });
-    });
-
-    _this.state = {
-      open: props.startOpen || false
-    };
     return _this;
   }
 
-  _createClass(Modal, [{
-    key: "getChildren",
-    value: function getChildren() {
+  _createClass(ImageFieldPreview, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.componentIsMounted = true;
+      this.enqueueLoad();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var preview = this.props.preview;
+      var src = this.state.src;
+
+      if (preview !== prevProps.preview) {
+        URL.revokeObjectURL(src);
+        this.enqueueLoad();
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      var src = this.state.src;
+      this.componentIsMounted = false;
+      URL.revokeObjectURL(src);
+    }
+  }, {
+    key: "enqueueLoad",
+    value: function enqueueLoad() {
       var _this2 = this;
 
-      var children = this.props.children;
-      return _react.default.Children.map(children, function (child) {
-        if (child.type === Modal.Heading) {
-          return _react.default.cloneElement(child, {
-            onClose: _this2.handleClose
+      var preview = this.props.preview;
+
+      if (!preview) {
+        return Promise.resolve();
+      }
+
+      var imageTag = this.imageRef.current;
+      var maxHeight = imageTag ? imageTag.parentNode.clientHeight : 198;
+      return (0, _readImage.default)(preview, maxHeight).then(function (_ref) {
+        var src = _ref.src,
+            styles = _ref.styles;
+
+        if (_this2.componentIsMounted) {
+          _this2.setState({
+            src: src,
+            styles: styles
           });
         }
-
-        return child;
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          className = _this$props.className,
-          entrance = _this$props.entrance,
-          trigger = _this$props.trigger,
-          width = _this$props.width;
-      var open = this.state.open;
-      return _react.default.createElement(_react.default.Fragment, null, trigger(this.handleOpen), open && _react.default.createElement(_ModalDialog.default, {
-        className: className,
-        entrance: entrance,
-        onClose: this.handleClose,
-        width: width
-      }, this.getChildren()));
+      var _this$state = this.state,
+          src = _this$state.src,
+          styles = _this$state.styles;
+
+      if (!src) {
+        return null;
+      }
+
+      return _react.default.createElement("img", {
+        ref: this.imageRef,
+        className: "chq-ffd--im--pv",
+        src: src,
+        alt: "Preview",
+        style: styles
+      });
     }
   }]);
 
-  return Modal;
+  return ImageFieldPreview;
 }(_react.Component);
 
-Object.assign(Modal, {
-  setAppElement: _ModalDialog.default.setAppElement,
-  Heading: _ModalDialog.default.Heading,
-  Body: _ModalDialog.default.Body,
-  LoaderBody: _ModalDialog.default.LoaderBody,
-  Footer: _ModalDialog.default.Footer
-});
-var _default = Modal;
+var _default = ImageFieldPreview;
 exports.default = _default;

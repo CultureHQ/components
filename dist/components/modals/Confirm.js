@@ -96,14 +96,16 @@ function (_Component) {
           contentRef = _this$props.contentRef,
           danger = _this$props.danger,
           entrance = _this$props.entrance,
-          trigger = _this$props.trigger;
+          trigger = _this$props.trigger,
+          width = _this$props.width;
       var open = this.state.open;
       var classList = (0, _classnames.default)("chq-cnf", className);
       return _react.default.createElement(_react.default.Fragment, null, trigger(this.handleOpen), open && _react.default.createElement(_ModalDialog.default, {
         className: classList,
         contentRef: contentRef,
         entrance: entrance,
-        onClose: this.handleClose
+        onClose: this.handleClose,
+        width: width
       }, _react.default.createElement(_ModalDialog.default.Body, null, children), _react.default.createElement(_ModalDialog.default.Footer, null, _react.default.createElement("div", null, _react.default.createElement(_Button.default, {
         inverted: true,
         onClick: this.handleClose

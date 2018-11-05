@@ -15,6 +15,8 @@ var _ModalDialog = _interopRequireDefault(require("../modals/ModalDialog"));
 
 var _ImageEditor = _interopRequireDefault(require("../ImageEditor"));
 
+var _ImageFieldPreview = _interopRequireDefault(require("./ImageFieldPreview"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -52,12 +54,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var freeObjectURL = function freeObjectURL(image) {
-  if (image) {
-    URL.revokeObjectURL(image);
-  }
-};
 
 var ImageField =
 /*#__PURE__*/
@@ -114,20 +110,16 @@ function (_Component) {
       var editorOpen = _ref2.editorOpen,
           failed = _ref2.failed,
           image = _ref2.image;
-
-      _this.setState(function (state) {
-        freeObjectURL(state.image);
-        return {
-          editorOpen: editorOpen,
-          failed: failed,
-          image: image ? URL.createObjectURL(image) : null
-        };
-      });
-
       var _this$props = _this.props,
           name = _this$props.name,
           onChange = _this$props.onChange,
           onFormChange = _this$props.onFormChange;
+
+      _this.setState({
+        editorOpen: editorOpen,
+        failed: failed,
+        image: image
+      });
 
       if (onChange) {
         onChange(image);
@@ -148,12 +140,6 @@ function (_Component) {
   }
 
   _createClass(ImageField, [{
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      var image = this.state.image;
-      freeObjectURL(image);
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
@@ -173,18 +159,16 @@ function (_Component) {
           failed = _this$state.failed,
           image = _this$state.image;
       var preview = image || value;
-      var backgroundImage = preview ? "url(".concat(preview, ")") : null;
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name
       }, _react.default.createElement("span", {
         className: "chq-ffd--lb"
       }, children), _react.default.createElement("div", {
-        className: "chq-ffd--im",
-        style: {
-          backgroundImage: backgroundImage
-        }
-      }, !value && _react.default.createElement("div", {
+        className: "chq-ffd--im"
+      }, _react.default.createElement(_ImageFieldPreview.default, {
+        preview: preview
+      }), !value && _react.default.createElement("div", {
         className: "chq-ffd--im--ph"
       }, _react.default.createElement(_Icon.default, {
         icon: "images"

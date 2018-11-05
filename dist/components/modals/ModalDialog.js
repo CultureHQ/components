@@ -23,6 +23,10 @@ var entrances = {
   slideIn: "chq-mdl-si",
   zoomIn: "chq-mdl-zi"
 };
+var widths = {
+  narrow: "chq-mdl-wr",
+  normal: "chq-mdl-wn"
+};
 
 var ModalDialogHeading = function ModalDialogHeading(_ref) {
   var children = _ref.children,
@@ -45,9 +49,11 @@ var ModalDialog = function ModalDialog(_ref2) {
       contentRef = _ref2.contentRef,
       _ref2$entrance = _ref2.entrance,
       entrance = _ref2$entrance === void 0 ? "slideIn" : _ref2$entrance,
-      onClose = _ref2.onClose;
+      onClose = _ref2.onClose,
+      _ref2$width = _ref2.width,
+      width = _ref2$width === void 0 ? "normal" : _ref2$width;
   return _react.default.createElement(_reactModal.default, {
-    className: (0, _classnames.default)("chq-mdl", className, entrances[entrance]),
+    className: (0, _classnames.default)("chq-mdl", className, entrances[entrance], widths[width]),
     contentRef: contentRef,
     onRequestClose: onClose,
     isOpen: true,
