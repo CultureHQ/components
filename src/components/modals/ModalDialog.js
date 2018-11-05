@@ -12,6 +12,11 @@ const entrances = {
   zoomIn: "chq-mdl-zi"
 };
 
+const widths = {
+  narrow: "chq-mdl-wr",
+  normal: "chq-mdl-wn"
+};
+
 const ModalDialogHeading = ({ children, className, onClose }) => (
   <Panel.Heading primary className={className}>
     {children}
@@ -21,9 +26,9 @@ const ModalDialogHeading = ({ children, className, onClose }) => (
   </Panel.Heading>
 );
 
-const ModalDialog = ({ children, className, contentRef, entrance = "slideIn", onClose }) => (
+const ModalDialog = ({ children, className, contentRef, entrance = "slideIn", onClose, width = "normal" }) => (
   <ReactModal
-    className={classnames("chq-mdl", className, entrances[entrance])}
+    className={classnames("chq-mdl", className, entrances[entrance], widths[width])}
     contentRef={contentRef}
     onRequestClose={onClose}
     isOpen

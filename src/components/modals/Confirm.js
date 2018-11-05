@@ -33,7 +33,7 @@ class Confirm extends Component {
   };
 
   render() {
-    const { accept = "Yes", children, className, contentRef, danger, entrance, trigger } = this.props;
+    const { accept = "Yes", children, className, contentRef, danger, entrance, trigger, width } = this.props;
     const { open } = this.state;
 
     const classList = classnames("chq-cnf", className);
@@ -47,6 +47,7 @@ class Confirm extends Component {
             contentRef={contentRef}
             entrance={entrance}
             onClose={this.handleClose}
+            width={width}
           >
             <ModalDialog.Body>{children}</ModalDialog.Body>
             <ModalDialog.Footer>
