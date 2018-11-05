@@ -39,7 +39,7 @@ class ImageFieldPreview extends Component {
     const imageTag = this.imageRef.current;
     const maxHeight = imageTag ? imageTag.parentNode.clientHeight : 198;
 
-    readImage(preview, maxHeight).then(({ src, styles }) => {
+    return readImage(preview, maxHeight).then(({ src, styles }) => {
       if (this.componentIsMounted) {
         this.setState({ src, styles });
       }
