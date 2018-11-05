@@ -33,3 +33,13 @@ fs.readdirSync(path.join(__dirname, "images")).forEach(filename => {
     expect(styles.transformOrigin).toEqual(transformOrigin);
   });
 });
+
+test("rotation for a .png", async () => {
+  const file = fs.readFileSync(path.join(__dirname, "..", "..", "docs", "culture.png"));
+
+  const promise = readImage(new Blob([file]), 200);
+  imageOnload();
+
+  const { src, styles } = await promise;
+  expect(styles.transform).toBe(undefined);
+});
