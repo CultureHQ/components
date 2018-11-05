@@ -29,14 +29,19 @@ class Modal extends Component {
   };
 
   render() {
-    const { className, entrance, trigger } = this.props;
+    const { className, entrance, trigger, width } = this.props;
     const { open } = this.state;
 
     return (
       <>
         {trigger(this.handleOpen)}
         {open && (
-          <ModalDialog className={className} entrance={entrance} onClose={this.handleClose}>
+          <ModalDialog
+            className={className}
+            entrance={entrance}
+            onClose={this.handleClose}
+            width={width}
+          >
             {this.getChildren()}
           </ModalDialog>
         )}

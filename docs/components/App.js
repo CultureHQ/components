@@ -468,6 +468,14 @@ const App = () => (
         <Modal.Heading>Chapter 2</Modal.Heading>
         <Modal.LoaderBody loading />
       </Modal>
+      {" "}
+      <Modal
+        trigger={onTrigger => <Button onClick={onTrigger}>narrow modal</Button>}
+        width="narrow"
+      >
+        <Modal.Heading>Chapter 3</Modal.Heading>
+        <Modal.LoaderBody loading />
+      </Modal>
 
       <Heading>ModalDialog</Heading>
       <p>
@@ -490,6 +498,7 @@ const App = () => (
           <code>slideIn</code> or <code>zoomIn</code>
         </Prop>
         <Prop name="onClose">a callback function when the dialog is closed</Prop>
+        <Prop name="width">the width of the modal window, either <code>narrow</code> or <code>normal</code></Prop>
       </PropList>
 
       <Heading>Nav</Heading>
