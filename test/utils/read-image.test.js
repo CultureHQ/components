@@ -7,12 +7,12 @@ let imageOnload = null;
 
 beforeAll(() => {
   Object.defineProperty(Image.prototype, "onload", {
-    get: function () {
-      return this._onload;
+    get() {
+      return this.onloadCallback;
     },
-    set: function (callback) {
+    set(callback) {
       imageOnload = callback;
-      this._onload = callback;
+      this.onloadCallback = callback;
     },
   });
 });
@@ -26,7 +26,7 @@ fs.readdirSync(path.join(__dirname, "images")).forEach(filename => {
     const promise = readImage(new Blob([file]), 200);
     imageOnload();
 
-    const { src, styles } = await promise;
+    const { styles } = await promise;
     const { transform, transformOrigin } = ROTATIONS[parseInt(name, 10)];
 
     expect(styles.transform).toEqual(transform);
@@ -40,6 +40,6 @@ test("rotation for a .png", async () => {
   const promise = readImage(new Blob([file]), 200);
   imageOnload();
 
-  const { src, styles } = await promise;
+  const { styles } = await promise;
   expect(styles.transform).toBe(undefined);
 });

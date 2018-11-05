@@ -33,7 +33,7 @@ class ImageFieldPreview extends Component {
     const { preview } = this.props;
 
     if (!preview) {
-      return;
+      return Promise.resolve();
     }
 
     const imageTag = this.imageRef.current;

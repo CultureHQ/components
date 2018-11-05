@@ -28,10 +28,9 @@ const getRotationStyles = (image, rotation, maxHeight) => {
   };
 };
 
-const getImagePromise = image => new Promise((resolve, reject) => {
-  image.onload = resolve;
-  image.onerror = reject;
-});
+const getImagePromise = image => new Promise((onload, onerror) => (
+  Object.assign(image, { onload, onerror })
+));
 
 const readImage = (preview, maxHeight) => {
   const image = new Image();
