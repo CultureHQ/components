@@ -14,9 +14,9 @@ import PaginationContainer from "./PaginationContainer";
 import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles, Confirm,
   ConfirmDelete, DateTimeField, EmailField, FeedItem, FileField, Form,
-  ImageField, Info, Modal, Nav, NumberField, Panel, PasswordField, PlainButton,
-  SelectField, Spinner, StringField, SubmitButton, Subnav, Success, Table, Tag,
-  TextField, Thumbnail, Tooltip, Warning
+  ImageField, ImagePreview, Info, Modal, Nav, NumberField, Panel, PasswordField,
+  PlainButton, SelectField, Spinner, StringField, SubmitButton, Subnav, Success,
+  Table, Tag, TextField, Thumbnail, Tooltip, Warning
 } from "../../src";
 
 import { TEXT, OPTIONS, onAccept, onClick, onSubmit } from "./utils";
@@ -398,9 +398,9 @@ const App = () => (
       <PropList>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
+        <Prop name="name">the name of the field</Prop>
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the file field</Prop>
         <Prop name="progress?">a number out of 100 that represents the upload progress</Prop>
-        <Prop name="name">the name of the field</Prop>
         <Prop name="value?">the value of the file field</Prop>
       </PropList>
 
@@ -409,6 +409,19 @@ const App = () => (
           <Form initialValues={{ image: "culture.png" }}>
             <ImageField name="image">Image</ImageField>
           </Form>
+        </Panel.Body>
+      </Panel>
+
+      <Heading>ImagePreview</Heading>
+      <p>A preview of an image file. Used to preview files before they are uploaded.</p>
+      <PropList>
+        <Prop name="image">the file object used to contain the image</Prop>
+        <Prop name="preview">a URL representing the file (usually obtained through <code>URL.createObjectURL</code>)</Prop>
+      </PropList>
+
+      <Panel>
+        <Panel.Body className="min-height">
+          <ImagePreview preview="culture.png" />
         </Panel.Body>
       </Panel>
 
