@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [3.17.1] - 2018-11-06
+### Changed
+- No longer auto rotating image previews in mobile Safari because it reads EXIF data automatically.
+
 ## [3.17.0] - 2018-11-06
 ### Added
 - Expose the `ImagePreview` component.

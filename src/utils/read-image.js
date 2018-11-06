@@ -39,13 +39,25 @@ const getRotatedDimensions = (image, maxWidth, maxHeight) => {
   return { left: `calc(50% - ${height / 2}px)`, height, width };
 };
 
+const isMobileSafari = userAgent => (
+  /iP(ad|od|hone)/i.test(userAgent)
+  && /WebKit/i.test(userAgent)
+  && !(/(CriOS|FxiOS|OPiOS|mercury)/i.test(userAgent))
+);
+
+// In mobile safari EXIF data is read and images are automatically rotated, so
+// we should bail out and not attempt to read the EXIF data ourselves.
+const getNormalRotation = image => (
+  isMobileSafari(navigator.userAgent) ? Promise.resolve(1) : getRotation(image)
+);
+
 const getImagePromise = image => new Promise((onload, onerror) => (
   Object.assign(image, { onload, onerror })
 ));
 
 const readImage = (image, preview, maxWidth, maxHeight) => {
   const imageObj = new Image();
-  const promises = [getRotation(image), getImagePromise(imageObj)];
+  const promises = [getNormalRotation(image), getImagePromise(imageObj)];
 
   imageObj.src = preview;
 

@@ -74,6 +74,16 @@ var getRotatedDimensions = function getRotatedDimensions(image, maxWidth, maxHei
   };
 };
 
+var isMobileSafari = function isMobileSafari(userAgent) {
+  return /iP(ad|od|hone)/i.test(userAgent) && /WebKit/i.test(userAgent) && !/(CriOS|FxiOS|OPiOS|mercury)/i.test(userAgent);
+}; // In mobile safari EXIF data is read and images are automatically rotated, so
+// we should bail out and not attempt to read the EXIF data ourselves.
+
+
+var getNormalRotation = function getNormalRotation(image) {
+  return isMobileSafari(navigator.userAgent) ? Promise.resolve(1) : (0, _getRotation.default)(image);
+};
+
 var getImagePromise = function getImagePromise(image) {
   return new Promise(function (onload, onerror) {
     return Object.assign(image, {
@@ -85,7 +95,7 @@ var getImagePromise = function getImagePromise(image) {
 
 var readImage = function readImage(image, preview, maxWidth, maxHeight) {
   var imageObj = new Image();
-  var promises = [(0, _getRotation.default)(image), getImagePromise(imageObj)];
+  var promises = [getNormalRotation(image), getImagePromise(imageObj)];
   imageObj.src = preview;
   return Promise.all(promises).then(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 1),
