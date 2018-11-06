@@ -76,7 +76,8 @@ function (_Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       editorOpen: false,
       failed: false,
-      image: null
+      image: null,
+      preview: null
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleFileSelected", function (_ref) {
@@ -115,10 +116,14 @@ function (_Component) {
           onChange = _this$props.onChange,
           onFormChange = _this$props.onFormChange;
 
-      _this.setState({
-        editorOpen: editorOpen,
-        failed: failed,
-        image: image
+      _this.setState(function (state) {
+        URL.revokeObjectURL(state.preview);
+        return {
+          editorOpen: editorOpen,
+          failed: failed,
+          image: image,
+          preview: URL.createObjectURL(image)
+        };
       });
 
       if (onChange) {
@@ -157,8 +162,8 @@ function (_Component) {
       var _this$state = this.state,
           editorOpen = _this$state.editorOpen,
           failed = _this$state.failed,
-          image = _this$state.image;
-      var preview = image || value;
+          image = _this$state.image,
+          preview = _this$state.preview;
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name
@@ -167,7 +172,8 @@ function (_Component) {
       }, children), _react.default.createElement("div", {
         className: "chq-ffd--im"
       }, _react.default.createElement(_ImageFieldPreview.default, {
-        preview: preview
+        image: image,
+        preview: preview || value
       }), !value && _react.default.createElement("div", {
         className: "chq-ffd--im--ph"
       }, _react.default.createElement(_Icon.default, {

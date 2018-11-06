@@ -123,7 +123,7 @@ function (_Component) {
             dragMove: "move",
             autoCropArea: 1,
             responsive: true
-          }); // document.addEventListener("keydown", this.handleKeyPressed);
+          });
         }
       }).catch(function () {// this catch is largely here because in the case that you're not in an
         // environment that supports dynamic import (like jest when you're not

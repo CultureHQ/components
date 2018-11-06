@@ -61,17 +61,17 @@ var getImagePromise = function getImagePromise(image) {
   });
 };
 
-var readImage = function readImage(preview, maxHeight) {
-  var image = new Image();
-  var promises = [(0, _getRotation.default)(preview), getImagePromise(image)];
-  image.src = typeof preview === "string" ? preview : URL.createObjectURL(preview);
+var readImage = function readImage(image, preview, maxHeight) {
+  var imageObj = new Image();
+  var promises = [(0, _getRotation.default)(image), getImagePromise(imageObj)];
+  imageObj.src = preview;
   return Promise.all(promises).then(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 1),
         rotation = _ref2[0];
 
     return {
-      src: image.src,
-      styles: getRotationStyles(image, rotation, maxHeight)
+      src: imageObj.src,
+      styles: getRotationStyles(imageObj, rotation, maxHeight)
     };
   });
 };

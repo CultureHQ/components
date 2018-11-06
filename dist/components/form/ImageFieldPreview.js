@@ -35,8 +35,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var ImageFieldPreview =
 /*#__PURE__*/
-function (_Component) {
-  _inherits(ImageFieldPreview, _Component);
+function (_PureComponent) {
+  _inherits(ImageFieldPreview, _PureComponent);
 
   function ImageFieldPreview() {
     var _getPrototypeOf2;
@@ -51,7 +51,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ImageFieldPreview)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "imageRef", _react.default.createRef());
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "containerRef", _react.default.createRef());
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       src: null,
@@ -65,40 +65,36 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.componentIsMounted = true;
-      this.enqueueLoad();
+      var preview = this.props.preview;
+
+      if (preview) {
+        this.enqueueLoad();
+      }
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       var preview = this.props.preview;
-      var src = this.state.src;
 
-      if (preview !== prevProps.preview) {
-        URL.revokeObjectURL(src);
+      if (preview && preview !== prevProps.preview) {
         this.enqueueLoad();
       }
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      var src = this.state.src;
       this.componentIsMounted = false;
-      URL.revokeObjectURL(src);
     }
   }, {
     key: "enqueueLoad",
     value: function enqueueLoad() {
       var _this2 = this;
 
-      var preview = this.props.preview;
-
-      if (!preview) {
-        return Promise.resolve();
-      }
-
-      var imageTag = this.imageRef.current;
-      var maxHeight = imageTag ? imageTag.parentNode.clientHeight : 198;
-      return (0, _readImage.default)(preview, maxHeight).then(function (_ref) {
+      var _this$props = this.props,
+          image = _this$props.image,
+          preview = _this$props.preview;
+      var maxHeight = this.containerRef.current.parentNode.clientHeight;
+      return (0, _readImage.default)(image, preview, maxHeight).then(function (_ref) {
         var src = _ref.src,
             styles = _ref.styles;
 
@@ -116,23 +112,19 @@ function (_Component) {
       var _this$state = this.state,
           src = _this$state.src,
           styles = _this$state.styles;
-
-      if (!src) {
-        return null;
-      }
-
-      return _react.default.createElement("img", {
-        ref: this.imageRef,
+      return _react.default.createElement("span", {
+        ref: this.containerRef
+      }, src && _react.default.createElement("img", {
         className: "chq-ffd--im--pv",
         src: src,
         alt: "Preview",
         style: styles
-      });
+      }));
     }
   }]);
 
   return ImageFieldPreview;
-}(_react.Component);
+}(_react.PureComponent);
 
 var _default = ImageFieldPreview;
 exports.default = _default;

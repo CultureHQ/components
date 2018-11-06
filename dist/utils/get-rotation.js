@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var getRotation = function getRotation(file) {
   return new Promise(function (resolve, reject) {
-    if (!file || typeof file === "string") {
+    if (!(file instanceof File)) {
       resolve(1);
       return;
     }
