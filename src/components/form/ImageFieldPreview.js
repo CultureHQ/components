@@ -17,20 +17,16 @@ class ImageFieldPreview extends Component {
     const { src } = this.state;
 
     if (preview !== prevProps.preview) {
-      URL.revokeObjectURL(src);
       this.enqueueLoad();
     }
   }
 
   componentWillUnmount() {
-    const { src } = this.state;
-
     this.componentIsMounted = false;
-    URL.revokeObjectURL(src);
   }
 
   enqueueLoad() {
-    const { preview } = this.props;
+    const { image, preview } = this.props;
 
     if (!preview) {
       return Promise.resolve();
@@ -39,7 +35,7 @@ class ImageFieldPreview extends Component {
     const imageTag = this.imageRef.current;
     const maxHeight = imageTag ? imageTag.parentNode.clientHeight : 198;
 
-    return readImage(preview, maxHeight).then(({ src, styles }) => {
+    return readImage(image, preview, maxHeight).then(({ src, styles }) => {
       if (this.componentIsMounted) {
         this.setState({ src, styles });
       }

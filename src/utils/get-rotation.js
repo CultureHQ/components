@@ -1,5 +1,5 @@
 const getRotation = file => new Promise((resolve, reject) => {
-  if (!file || typeof file === "string") {
+  if (!(file instanceof File)) {
     resolve(1);
     return;
   }

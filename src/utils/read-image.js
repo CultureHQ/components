@@ -32,15 +32,15 @@ const getImagePromise = image => new Promise((onload, onerror) => (
   Object.assign(image, { onload, onerror })
 ));
 
-const readImage = (preview, maxHeight) => {
-  const image = new Image();
-  const promises = [getRotation(preview), getImagePromise(image)];
+const readImage = (image, preview, maxHeight) => {
+  const imageObj = new Image();
+  const promises = [getRotation(image), getImagePromise(imageObj)];
 
-  image.src = typeof preview === "string" ? preview : URL.createObjectURL(preview);
+  imageObj.src = preview;
 
   return Promise.all(promises).then(([rotation]) => ({
-    src: image.src,
-    styles: getRotationStyles(image, rotation, maxHeight)
+    src: imageObj.src,
+    styles: getRotationStyles(imageObj, rotation, maxHeight)
   }));
 };
 

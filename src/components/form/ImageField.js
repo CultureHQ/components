@@ -10,7 +10,8 @@ class ImageField extends Component {
   state = {
     editorOpen: false,
     failed: false,
-    image: null
+    image: null,
+    preview: null
   };
 
   handleFileSelected = ({ target: { files: [image] } }) => {
@@ -28,7 +29,10 @@ class ImageField extends Component {
   handleImageSelected = ({ editorOpen, failed, image }) => {
     const { name, onChange, onFormChange } = this.props;
 
-    this.setState({ editorOpen, failed, image });
+    this.setState(state => {
+      URL.revokeObjectURL(state.preview);
+      return { editorOpen, failed, image, preview: URL.createObjectURL(image) };
+    });
 
     if (onChange) {
       onChange(image);
@@ -49,14 +53,13 @@ class ImageField extends Component {
       submitted, value, ...props
     } = this.props;
 
-    const { editorOpen, failed, image } = this.state;
-    const preview = image || value;
+    const { editorOpen, failed, image, preview } = this.state;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
         <div className="chq-ffd--im">
-          <ImageFieldPreview preview={preview} />
+          <ImageFieldPreview image={image} preview={preview || value} />
           {!value && (
             <div className="chq-ffd--im--ph">
               <Icon icon="images" />
