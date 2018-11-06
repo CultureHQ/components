@@ -20,7 +20,7 @@ const getNonRotatedDimensions = (image, maxWidth, maxHeight) => {
   let width = image.width * (height / image.height);
 
   if (width > maxWidth) {
-    height = height * (maxWidth / width);
+    height *= (maxWidth / width);
     width = maxWidth;
   }
 
@@ -32,7 +32,7 @@ const getRotatedDimensions = (image, maxWidth, maxHeight) => {
   let width = image.width * (height / image.height);
 
   if (height > maxWidth) {
-    width = width * (maxWidth / height);
+    width *= (maxWidth / height);
     height = maxWidth;
   }
 
