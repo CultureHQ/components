@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import ImageFieldPreview from "../../src/components/form/ImageFieldPreview";
+import { ImagePreview } from "../../src";
 import * as readImage from "../../src/utils/read-image";
 
 test("reads image and loads it", async () => {
@@ -10,7 +10,7 @@ test("reads image and loads it", async () => {
     styles: { height: "200px" }
   }));
 
-  const component = mount(<ImageFieldPreview preview="culture.png" />);
+  const component = mount(<ImagePreview preview="culture.png" />);
   expect(component.find("img")).toHaveLength(0);
 
   await component.instance().enqueueLoad();
@@ -25,7 +25,7 @@ test("does not attempt to set state when unmounted while waiting", async () => {
     setTimeout(() => resolve({ src: "culturehq.png", styles: { height: "200px" } }), 200)
   )));
 
-  const component = mount(<ImageFieldPreview preview="culture.png" />);
+  const component = mount(<ImagePreview preview="culture.png" />);
   expect(component.find("img")).toHaveLength(0);
 
   const promise = component.instance().enqueueLoad();
@@ -34,10 +34,10 @@ test("does not attempt to set state when unmounted while waiting", async () => {
 });
 
 test("references parent height if already loaded", () => {
-  const component = mount(<div><ImageFieldPreview preview="culturehq.png" /></div>);
+  const component = mount(<div><ImagePreview preview="culturehq.png" /></div>);
 
-  component.find("ImageFieldPreview").instance().setState({ src: "culturehq.png" });
+  component.find(ImagePreview).instance().setState({ src: "culturehq.png" });
   component.update();
 
-  component.find("ImageFieldPreview").instance().enqueueLoad();
+  component.find(ImagePreview).instance().enqueueLoad();
 });

@@ -1,8 +1,8 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 
-import readImage from "../../utils/read-image";
+import readImage from "../utils/read-image";
 
-class ImageFieldPreview extends PureComponent {
+class ImagePreview extends Component {
   containerRef = React.createRef();
 
   state = { src: null, styles: {} };
@@ -45,10 +45,10 @@ class ImageFieldPreview extends PureComponent {
 
     return (
       <span ref={this.containerRef}>
-        {src && <img className="chq-ffd--im--pv" src={src} alt="Preview" style={styles} />}
+        {src && <img className="chq-ipv" src={src} alt="Preview" style={styles} />}
       </span>
     );
   }
 }
 
-export default ImageFieldPreview;
+export default ImagePreview;

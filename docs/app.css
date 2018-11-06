@@ -71,3 +71,7 @@ pre {
 .chq-tmb + .chq-tmb {
   margin-left: 10px;
 }
+
+.min-height {
+  min-height: 200px;
+}

@@ -4,7 +4,7 @@ import classnames from "../../classnames";
 import Icon from "../Icon";
 import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
-import ImageFieldPreview from "./ImageFieldPreview";
+import ImagePreview from "../ImagePreview";
 
 class ImageField extends Component {
   state = {
@@ -59,7 +59,7 @@ class ImageField extends Component {
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
         <div className="chq-ffd--im">
-          <ImageFieldPreview image={image} preview={preview || value} />
+          <ImagePreview image={image} preview={preview || value} />
           {!value && (
             <div className="chq-ffd--im--ph">
               <Icon icon="images" />
