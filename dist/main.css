@@ -713,11 +713,7 @@
   min-height: 200px;
   position: relative;
   text-align: center; }
-  .chq-ffd--im--pv {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 100%;
+  .chq-ffd--im .chq-ipv {
     position: absolute; }
   .chq-ffd--im--ph {
     margin-top: 30px; }
@@ -760,6 +756,12 @@
     padding: 0;
     visibility: hidden;
     width: 0; }
+
+.chq-ipv {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%; }
 
 .chq-inf {
   background-color: #d7e5f1;
@@ -906,7 +908,7 @@
         border: 0; }
   .chq-pan--bd {
     font-weight: 200;
-    padding: 12px 15px 15px; }
+    padding: 15px; }
   .chq-pan--ft {
     background-color: #f7f7f7;
     border-bottom-left-radius: 5px;

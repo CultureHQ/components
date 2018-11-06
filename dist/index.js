@@ -69,6 +69,12 @@ Object.defineProperty(exports, "ImageEditor", {
     return _ImageEditor.default;
   }
 });
+Object.defineProperty(exports, "ImagePreview", {
+  enumerable: true,
+  get: function get() {
+    return _ImagePreview.default;
+  }
+});
 Object.defineProperty(exports, "Info", {
   enumerable: true,
   get: function get() {
@@ -297,6 +303,8 @@ var _Loader = _interopRequireDefault(require("./components/Loader"));
 var _Icon = _interopRequireDefault(require("./components/Icon"));
 
 var _ImageEditor = _interopRequireDefault(require("./components/ImageEditor"));
+
+var _ImagePreview = _interopRequireDefault(require("./components/ImagePreview"));
 
 var _Info = _interopRequireDefault(require("./components/Info"));
 

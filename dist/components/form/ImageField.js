@@ -15,7 +15,7 @@ var _ModalDialog = _interopRequireDefault(require("../modals/ModalDialog"));
 
 var _ImageEditor = _interopRequireDefault(require("../ImageEditor"));
 
-var _ImageFieldPreview = _interopRequireDefault(require("./ImageFieldPreview"));
+var _ImagePreview = _interopRequireDefault(require("../ImagePreview"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -122,7 +122,7 @@ function (_Component) {
           editorOpen: editorOpen,
           failed: failed,
           image: image,
-          preview: URL.createObjectURL(image)
+          preview: image && URL.createObjectURL(image)
         };
       });
 
@@ -171,7 +171,7 @@ function (_Component) {
         className: "chq-ffd--lb"
       }, children), _react.default.createElement("div", {
         className: "chq-ffd--im"
-      }, _react.default.createElement(_ImageFieldPreview.default, {
+      }, _react.default.createElement(_ImagePreview.default, {
         image: image,
         preview: preview || value
       }), !value && _react.default.createElement("div", {
