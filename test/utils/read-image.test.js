@@ -21,9 +21,13 @@ fs.readdirSync(path.join(__dirname, "images")).forEach(filename => {
   const [name] = filename.split(".");
 
   test(`rotation ${name}`, async () => {
-    const file = fs.readFileSync(path.join(__dirname, "images", filename));
+    const filepath = path.join(__dirname, "images", filename);
+    const buffer = fs.readFileSync(filepath);
 
-    const promise = readImage(new Blob([file]), 200);
+    const file = new File([buffer], filename);
+    const blob = new Blob([buffer]);
+
+    const promise = readImage(file, blob, 200);
     imageOnload();
 
     const { styles } = await promise;
@@ -35,9 +39,13 @@ fs.readdirSync(path.join(__dirname, "images")).forEach(filename => {
 });
 
 test("rotation for a .png", async () => {
-  const file = fs.readFileSync(path.join(__dirname, "..", "..", "docs", "culture.png"));
+  const filepath = path.join(__dirname, "..", "..", "docs", "culture.png");
+  const buffer = fs.readFileSync(filepath);
 
-  const promise = readImage(new Blob([file]), 200);
+  const file = new File([buffer], "culturehq.png");
+  const blob = new Blob([buffer]);
+
+  const promise = readImage(file, blob, 200);
   imageOnload();
 
   const { styles } = await promise;
