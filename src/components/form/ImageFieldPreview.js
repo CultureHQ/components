@@ -31,9 +31,9 @@ class ImageFieldPreview extends PureComponent {
 
   enqueueLoad() {
     const { image, preview } = this.props;
-    const maxHeight = this.containerRef.current.parentNode.clientHeight;
+    const { clientWidth, clientHeight } = this.containerRef.current.parentNode;
 
-    return readImage(image, preview, maxHeight).then(({ src, styles }) => {
+    return readImage(image, preview, clientWidth, clientHeight).then(({ src, styles }) => {
       if (this.componentIsMounted) {
         this.setState({ src, styles });
       }

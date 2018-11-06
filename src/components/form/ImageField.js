@@ -31,7 +31,7 @@ class ImageField extends Component {
 
     this.setState(state => {
       URL.revokeObjectURL(state.preview);
-      return { editorOpen, failed, image, preview: URL.createObjectURL(image) };
+      return { editorOpen, failed, image, preview: image && URL.createObjectURL(image) };
     });
 
     if (onChange) {
