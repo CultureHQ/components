@@ -18,9 +18,11 @@
       }
     }
 
-    @media (max-width: 600px) { 
-      &:not(:first-child):not(:last-child) {
-        display: none;
+    @media (max-width: 600px) {
+      &:not(:first-child) {
+        &:not(:last-child) {
+          display: none;
+        }
       }
     }
   }
