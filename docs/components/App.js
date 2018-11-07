@@ -14,9 +14,10 @@ import PaginationContainer from "./PaginationContainer";
 import {
   Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles, Confirm,
   ConfirmDelete, DateTimeField, EmailField, FeedItem, FileField, Form,
-  ImageField, ImagePreview, Info, Modal, Nav, NumberField, Panel, PasswordField,
-  PlainButton, SelectField, Spinner, StringField, SubmitButton, Subnav, Success,
-  Table, Tag, TextField, Thumbnail, Tooltip, Warning
+  ImageField, ImagePreview, Info, Modal, MultiImageField, Nav, NumberField,
+  Panel, PasswordField, PlainButton, SelectField, Spinner, StringField,
+  SubmitButton, Subnav, Success, Table, Tag, TextField, Thumbnail, Tooltip,
+  Warning
 } from "../../src";
 
 import { TEXT, OPTIONS, onAccept, onClick, onSubmit } from "./utils";
@@ -513,6 +514,24 @@ const App = () => (
         <Prop name="onClose">a callback function when the dialog is closed</Prop>
         <Prop name="width">the width of the modal window, either <code>narrow</code> or <code>normal</code></Prop>
       </PropList>
+
+      <Heading>MultiImageField</Heading>
+      <p>An image field component for selecting multiple images.</p>
+      <PropList>
+        <Prop name="children">the label to display for the field</Prop>
+        <ClassNameProp />
+        <Prop name="name">the name of the field</Prop>
+        <Prop name="onChange?">a function that accepts an argument that represents the array of files</Prop>
+        <Prop name="value?">the value of the file field</Prop>
+      </PropList>
+
+      <Panel>
+        <Panel.Body>
+          <Form>
+            <MultiImageField name="images">Images</MultiImageField>
+          </Form>
+        </Panel.Body>
+      </Panel>
 
       <Heading>Nav</Heading>
       <p>
