@@ -68,11 +68,11 @@ test("responds to edit callback", () => {
   const component = mount(<MultiImageField name="images" onChange={onChange} />);
   component.setState({
     currentTransport: new Transport(image),
-    transports: [new Transport(image)]
+    transports: [new Transport(image), new Transport({ name: "foobar" })]
   });
 
   component.instance().handleImageEdited(image);
-  expect(response).toEqual([image]);
+  expect(response).toEqual([image, { name: "foobar" }]);
 
   component.unmount();
 });
@@ -122,4 +122,12 @@ test("handles closing the modal", () => {
   component.instance().handleClose();
 
   expect(component.state().editorOpen).toBe(false);
+});
+
+test("handles clicking the file field", () => {
+  const component = mount(<MultiImageField name="images" />);
+
+  component.instance().handleClick();
+
+  expect(component.find("input").instance().value).toBe("");
 });
