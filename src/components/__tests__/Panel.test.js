@@ -1,7 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 
-import { Panel } from "../src";
+import Panel from "../Panel";
 
 test("renders without crashing", async () => {
   const component = (

@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { Checkmark } from "../src";
+import Checkmark from "../Checkmark";
 
 test("has no violations", async () => {
   await expect(<Checkmark />).toHaveNoViolations();

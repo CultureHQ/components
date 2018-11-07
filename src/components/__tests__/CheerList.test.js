@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { mount } from "enzyme";
 
-import { Cheer, CheerList } from "../src";
+import Cheer from "../Cheer";
+import CheerList from "../CheerList";
 
 class Container extends Component {
   state = { cheered: false };

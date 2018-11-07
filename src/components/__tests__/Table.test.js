@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { Table } from "../src";
+import Table from "../Table";
 
 test("renders without crashing", async () => {
   const component = <Table />;

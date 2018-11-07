@@ -1,8 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { Icon } from "../src";
-import { close } from "../src/icons.json";
+import Icon from "../Icon";
+import { close } from "../../icons.json";
 
 test("has no violations", async () => {
   await expect(<Icon icon="checkmark" />).toHaveNoViolations();

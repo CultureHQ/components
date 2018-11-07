@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { Tooltip } from "../src";
+import Tooltip from "../Tooltip";
 
 test("has no violations", async () => {
   const component = <Tooltip tip="Tip">Inner content</Tooltip>;

@@ -1,7 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { Loader, Spinner } from "../src";
+import Loader from "../Loader";
+import Spinner from "../Spinner";
 
 const Loaded = () => <p>Content loaded!</p>;
 

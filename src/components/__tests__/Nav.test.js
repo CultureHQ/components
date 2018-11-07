@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { Nav } from "../src";
+import Nav from "../Nav";
 
 test("has no violations", async () => {
   await expect(<Nav>This is a nav.</Nav>).toHaveNoViolations();
