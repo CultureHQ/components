@@ -46,6 +46,19 @@ test("does not call callbacks when they are not provided", () => {
   component.unmount();
 });
 
+test("responds to the open edit callback", () => {
+  const component = mount(<MultiImageField name="images" />);
+  component.setState({
+    currentTransport: new Transport(image),
+    transports: [new Transport(image)]
+  });
+
+  const findEdit = node => node.text() && node.text().trim() === "Edit";
+  component.find("button").findWhere(findEdit).simulate("click");
+
+  expect(component.find("ModalDialog")).toHaveLength(1);
+});
+
 test("responds to edit callback", () => {
   let response = null;
   const onChange = value => {
