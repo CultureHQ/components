@@ -15,7 +15,7 @@ const mountEditor = async (onEdit = null) => {
   component.instance().cropper.image.onload();
 
   component.clickControl = label => {
-    const button = component.find("PlainButton").findWhere(node => (
+    const button = component.find("ActionButton").findWhere(node => (
       node.type() === "button" && node.props()["aria-label"] === label
     ));
 

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import readImage, { ROTATIONS } from "../../src/utils/read-image";
+import readImage, { ROTATIONS } from "../read-image";
 
 let imageOnload = null;
 
@@ -39,7 +39,7 @@ fs.readdirSync(path.join(__dirname, "images")).forEach(filename => {
 });
 
 test("rotation for a .png", async () => {
-  const filepath = path.join(__dirname, "..", "..", "docs", "culture.png");
+  const filepath = path.join(__dirname, "..", "..", "..", "docs", "culture.png");
   const buffer = fs.readFileSync(filepath);
 
   const file = new File([buffer], "culturehq.png");
