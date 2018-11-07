@@ -12,12 +12,12 @@ import LoaderContainer from "./LoaderContainer";
 import PaginationContainer from "./PaginationContainer";
 
 import {
-  Badge, BooleanField, Button, CentsField, Checklist, Cheer, Circles, Confirm,
-  ConfirmDelete, DateTimeField, EmailField, FeedItem, FileField, Form,
-  ImageField, ImagePreview, Info, Modal, MultiImageField, Nav, NumberField,
-  Panel, PasswordField, PlainButton, SelectField, Spinner, StringField,
-  SubmitButton, Subnav, Success, Table, Tag, TextField, Thumbnail, Tooltip,
-  Warning
+  ActionButton, Badge, BooleanField, Button, CentsField, Checklist, Cheer,
+  Circles, Confirm, ConfirmDelete, DateTimeField, EmailField, FeedItem,
+  FileField, Form, ImageField, ImagePreview, Info, Modal, MultiImageField,
+  Nav, NumberField, Panel, PasswordField, PlainButton, SelectField, Spinner,
+  StringField, SubmitButton, Subnav, Success, Table, Tag, TextField, Thumbnail,
+  Tooltip, Warning
 } from "../../src";
 
 import { TEXT, OPTIONS, onAccept, onClick, onSubmit } from "./utils";
@@ -44,6 +44,18 @@ const App = () => (
     <Nav>{"<Nav>"}</Nav>
 
     <div className="container">
+      <Heading>ActionButton</Heading>
+      <p>A button that represents the user taking an action.</p>
+      <PropList>
+        <Prop name="children">displays inside the button</Prop>
+        <ClassNameProp />
+        <Prop name="icon?">an icon to display inside the button</Prop>
+        <Prop name="onClick?">a click handler</Prop>
+      </PropList>
+
+      <ActionButton onClick={onClick}>Default</ActionButton>{" "}
+      <ActionButton icon="clipboard" onClick={onClick}>Icon</ActionButton>
+
       <Heading>Badge</Heading>
       <p>A component for displaying associated metadata.</p>
       <PropList>
