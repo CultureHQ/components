@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { Info } from "../src";
+import Info from "../Info";
 
 test("has no violations", async () => {
   await expect(<Info>This is an info.</Info>).toHaveNoViolations();

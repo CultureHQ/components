@@ -1,7 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { Cheer, Tooltip } from "../src";
+import Cheer from "../Cheer";
+import Tooltip from "../Tooltip";
 
 test("has no violations", async () => {
   await expect(<Cheer />).toHaveNoViolations();

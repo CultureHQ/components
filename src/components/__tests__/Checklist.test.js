@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 
-import { Checklist } from "../src";
+import Checklist from "../Checklist";
 
 test("has no violations", async () => {
   const component = (

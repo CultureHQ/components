@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { Circles } from "../src";
+import Circles from "../Circles";
 
 test("has no violations", async () => {
   await expect(<Circles />).toHaveNoViolations();

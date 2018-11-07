@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { Pagination } from "../src";
+import Pagination from "../Pagination";
 
 const mounted = (currentPage, totalPages, props = {}) => (
   mount((

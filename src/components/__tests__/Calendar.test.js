@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { Calendar } from "../src";
+import Calendar from "../Calendar";
 
 test("functions properly when no value is passed in", () => {
   const component = mount(<Calendar />);

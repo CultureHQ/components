@@ -1,18 +1,18 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { Tag } from "../src";
+import Success from "../Success";
 
 test("renders without crashing", async () => {
-  const message = "Tag.";
-  const component = <Tag>{message}</Tag>;
+  const message = "This is a success.";
+  const component = <Success>{message}</Success>;
 
   expect(shallow(component).html()).toContain(message);
   await expect(component).toHaveNoViolations();
 });
 
 test("passes on className", () => {
-  const component = shallow(<Tag className="tag" />);
+  const component = shallow(<Success className="success" />);
 
-  expect(component.hasClass("tag")).toBe(true);
+  expect(component.hasClass("success")).toBe(true);
 });

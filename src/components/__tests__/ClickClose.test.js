@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { ClickClose } from "../src";
+import ClickClose from "../ClickClose";
 
 test("has no violations", async () => {
   await expect(<ClickClose>Test</ClickClose>).toHaveNoViolations();

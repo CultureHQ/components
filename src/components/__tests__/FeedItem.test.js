@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { FeedItem } from "../src";
+import FeedItem from "../FeedItem";
 
 test("has no violations", async () => {
   const component = (
