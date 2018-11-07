@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { TextField } from "../../src";
+import TextField from "../TextField";
 
 test("passes on className", () => {
   const component = mount(<TextField name="text" className="text-field" />);

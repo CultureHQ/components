@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { SubmitButton } from "../../src";
+import SubmitButton from "../SubmitButton";
 
 test("renders without crashing", () => {
   const message = submitting => (submitting ? "Loading..." : "Load");

@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import * as FormFields from "../../src/components/form/FormFields";
+import * as FormFields from "../FormFields";
 
 const CASES = Object.keys(FormFields).map(fieldName => [FormFields[fieldName]]);
 

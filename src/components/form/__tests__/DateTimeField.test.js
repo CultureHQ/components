@@ -1,7 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { DateTimeField, Form } from "../../src";
+import DateTimeField from "../DateTimeField";
+import Form from "../Form";
 
 test("functions as expected", () => {
   let received = null;
