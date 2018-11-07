@@ -71,6 +71,7 @@ class ImageField extends Component {
             Upload an image
           </div>
           <input
+            accept="image/*"
             {...props}
             type="file"
             id={name}

@@ -8,6 +8,7 @@ import CentsField from "./CentsField";
 import DateTimeField from "./DateTimeField";
 import FileField from "./FileField";
 import ImageField from "./ImageField";
+import MultiImageField from "./MultiImageField";
 import SelectField from "./SelectField";
 import TextField from "./TextField";
 import { EmailField, NumberField, PasswordField, StringField } from "./FormFields";
@@ -20,6 +21,7 @@ const isField = contains([
   DateTimeField,
   FileField,
   ImageField,
+  MultiImageField,
   NumberField,
   PasswordField,
   SelectField,
