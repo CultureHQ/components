@@ -73,7 +73,7 @@
     "moduleNameMapper": {
       "\\.scss$": "identity-obj-proxy"
     },
-    "setupTestFrameworkScriptFile": "./test/setup-tests.js",
+    "setupTestFrameworkScriptFile": "./setup-tests.js",
     "testURL": "http://localhost"
   }
 }

@@ -2,7 +2,7 @@ import { configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { axe, toHaveNoViolations } from "jest-axe";
 
-import { ModalDialog } from "../src";
+import { ModalDialog } from "./src";
 
 configure({ adapter: new Adapter() });
 
