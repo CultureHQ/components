@@ -1,0 +1,27 @@
+.chq-abn {
+  @include appearance-none;
+  background: inherit;
+  border: 0;
+  border-radius: 5px;
+  color: $color-link-blue;
+  cursor: pointer;
+  display: inline;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 4px 10px;
+
+  svg {
+    height: 18px;
+    margin: 0 0 -3px -3px;
+  }
+
+  path {
+    fill: $color-link-blue;
+  }
+
+  &:hover {
+    background-color: $color-border;
+  }
+}

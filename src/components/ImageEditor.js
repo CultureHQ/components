@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
+import ActionButton from "./buttons/ActionButton";
 import Button from "./buttons/Button";
-import PlainButton from "./buttons/PlainButton";
 import Icon from "./Icon";
 
 const cropperToImage = cropper => {
@@ -81,18 +81,26 @@ class ImageEditor extends Component {
     return (
       <div className="chq-ied">
         <div className="chq-ied--ctrl">
-          <PlainButton aria-label="Rotate left" onClick={this.handleRotateLeft}>
-            <Icon icon="arrow-return-left" />
-          </PlainButton>
-          <PlainButton aria-label="Rotate right" onClick={this.handleRotateRight}>
-            <Icon icon="arrow-return-right" />
-          </PlainButton>
-          <PlainButton aria-label="Zoom in" onClick={this.handleZoomIn}>
-            <Icon icon="ios-plus-outline" />
-          </PlainButton>
-          <PlainButton aria-label="Zoom out" onClick={this.handleZoomOut}>
-            <Icon icon="ios-minus-outline" />
-          </PlainButton>
+          <ActionButton
+            aria-label="Rotate left"
+            icon="arrow-return-left"
+            onClick={this.handleRotateLeft}
+          />
+          <ActionButton
+            aria-label="Rotate right"
+            icon="arrow-return-right"
+            onClick={this.handleRotateRight}
+          />
+          <ActionButton
+            aria-label="Zoom in"
+            icon="ios-plus-outline"
+            onClick={this.handleZoomIn}
+          />
+          <ActionButton
+            aria-label="Zoom out"
+            icon="ios-minus-outline"
+            onClick={this.handleZoomOut}
+          />
           <Button primary onClick={this.handleSave}>
             <Icon icon="ios-camera-outline" /> Save
           </Button>

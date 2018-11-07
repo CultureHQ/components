@@ -10,16 +10,10 @@
     }
   }
 
-  .chq-pbn {
-    border-radius: 5px;
-    padding: 4px 10px;
-
-    path {
-      fill: $color-link-blue;
-    }
-
-    &:hover {
-      background-color: $color-border;
+  .chq-abn {
+    svg {
+      height: 1.4em;
+      width: 1.4em;
     }
   }
 

@@ -25,6 +25,7 @@ export { default as Thumbnail } from "./components/Thumbnail";
 export { default as Tooltip } from "./components/Tooltip";
 export { default as Warning } from "./components/Warning";
 
+export { default as ActionButton } from "./components/buttons/ActionButton";
 export { default as Badge } from "./components/buttons/Badge";
 export { default as Button } from "./components/buttons/Button";
 export { default as CheerButton } from "./components/buttons/CheerButton";
