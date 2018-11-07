@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { mount } from "enzyme";
 
-import { Cheer, CheerButton } from "../../src";
+import Cheer from "../../Cheer";
+import CheerButton from "../CheerButton";
 
 class Container extends Component {
   constructor(props) {
