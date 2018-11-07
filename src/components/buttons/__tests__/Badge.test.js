@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { Badge } from "../../src";
+import Badge from "../Badge";
 
 test("has no violations", async () => {
   await expect(<Badge>This is a badge.</Badge>).toHaveNoViolations();
