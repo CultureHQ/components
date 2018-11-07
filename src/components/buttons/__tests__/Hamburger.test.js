@@ -1,25 +1,14 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { shallow, mount } from "enzyme";
 
 import Hamburger from "../Hamburger";
 
-class HamburgerContainer extends Component {
-  constructor(props) {
-    super(props);
+const HamburgerContainer = ({ open: initialOpen }) => {
+  const [open, setOpen] = useState(initialOpen);
+  const onToggle = () => setOpen(prevOpen => !prevOpen);
 
-    this.state = { open: props.open };
-  }
-
-  handleToggle = () => {
-    this.setState(({ open }) => ({ open: !open }));
-  };
-
-  render() {
-    const { open } = this.state;
-
-    return <Hamburger open={open} onToggle={this.handleToggle} />;
-  }
-}
+  return <Hamburger open={open} onToggle={onToggle} />;
+};
 
 test("has no violations", async () => {
   await expect(<Hamburger />).toHaveNoViolations();
@@ -44,6 +33,5 @@ test("functions as a controlled component", () => {
   component.find(Hamburger).simulate("click");
   component.update();
 
-  expect(component.state().open).toBe(true);
   expect(component.find(Hamburger).props().open).toBe(true);
 });

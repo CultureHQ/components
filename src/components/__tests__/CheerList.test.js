@@ -1,29 +1,19 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { mount } from "enzyme";
 
 import Cheer from "../Cheer";
 import CheerList from "../CheerList";
 
-class Container extends Component {
-  state = { cheered: false };
+const Container = props => {
+  const [cheered, setCheered] = useState(false);
 
-  handleCheerToggle = cheered => {
-    this.setState({ cheered });
+  const onCheerToggle = nextCheered => {
+    setCheered(nextCheered);
     return Promise.resolve();
   };
 
-  render() {
-    const { cheered } = this.state;
-
-    return (
-      <CheerList
-        cheered={cheered}
-        onCheerToggle={this.handleCheerToggle}
-        {...this.props}
-      />
-    );
-  }
-}
+  return <CheerList cheered={cheered} onCheerToggle={onCheerToggle} {...props} />;
+};
 
 test("has no violations", async () => {
   await expect(<div><CheerList cheers={[]} /></div>).toHaveNoViolations();

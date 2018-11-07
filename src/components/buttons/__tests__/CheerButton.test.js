@@ -1,34 +1,19 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { mount } from "enzyme";
 
 import Cheer from "../../Cheer";
 import CheerButton from "../CheerButton";
 
-class Container extends Component {
-  constructor(props) {
-    super(props);
+const Container = ({ cheered: initialCheered, small }) => {
+  const [cheered, setCheered] = useState(initialCheered || false);
 
-    this.state = { cheered: props.cheered || false };
-  }
-
-  handleCheerToggle = cheered => {
-    this.setState({ cheered });
+  const onCheerToggle = nextCheered => {
+    setCheered(nextCheered);
     return Promise.resolve();
   };
 
-  render() {
-    const { small } = this.props;
-    const { cheered } = this.state;
-
-    return (
-      <CheerButton
-        cheered={cheered}
-        small={small}
-        onCheerToggle={this.handleCheerToggle}
-      />
-    );
-  }
-}
+  return <CheerButton cheered={cheered} small={small} onCheerToggle={onCheerToggle} />;
+};
 
 test("has no violations", async () => {
   await expect(<CheerButton cheered />).toHaveNoViolations();
