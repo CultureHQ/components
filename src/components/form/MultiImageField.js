@@ -122,7 +122,7 @@ class MultiImageField extends Component {
       editorOpen: false,
       currentTransport: null,
       transports: transports.filter(transport => transport.key !== currentTransport.key)
-    }))
+    }));
   };
 
   handleClose = () => {
