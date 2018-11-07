@@ -1,49 +1,15 @@
 import React, { Component } from "react";
 
 import classnames from "../../classnames";
+
 import Icon from "../Icon";
-import Button from "../buttons/Button";
-import Table from "../Table";
-import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
 import ImagePreview from "../ImagePreview";
+import Table from "../Table";
+import ActionButton from "../buttons/ActionButton";
+import ModalDialog from "../modals/ModalDialog";
 
-const Preview = ({ transport, onEdit, onRemove }) => (
-  <tr>
-    <td>
-      <ImagePreview image={transport.file} preview={transport.preview} />
-    </td>
-    <td>
-      {transport.name}
-    </td>
-    <td>
-      {transport.size}
-    </td>
-    <td>
-      <Button small inverted icon="edit" onClick={() => onEdit(transport.key)}>
-        Edit
-      </Button>
-      {" "}
-      <Button small inverted icon="trash-a" onClick={() => onRemove(transport.key)}>
-        Remove
-      </Button>
-    </td>
-  </tr>
-);
-
-const getHumanSize = size => {
-  const units = ["bytes", "KB", "MB", "GB"];
-  let curSize = size;
-
-  for (let idx = 0; idx < units.length; idx += 1) {
-    if (curSize < 1024) {
-      return `${Math.round(curSize * 100) / 100} ${units[idx]}`;
-    }
-    curSize /= 1024;
-  }
-
-  return `${size} bytes`;
-};
+import getHumanSize from "../../utils/get-human-size";
 
 const hashTransports = transports => transports.map(({ key }) => key).join(",");
 
@@ -65,6 +31,31 @@ class Transport {
     return transport;
   }
 }
+
+const Preview = ({ transport, onEdit, onRemove }) => (
+  <tr>
+    <td>
+      <ImagePreview image={transport.file} preview={transport.preview} />
+    </td>
+    <td>
+      {transport.name}
+    </td>
+    <td>
+      {transport.size}
+    </td>
+    <td>
+      <div>
+        <ActionButton icon="edit" onClick={() => onEdit(transport.key)}>
+          Edit
+        </ActionButton>
+        {" "}
+        <ActionButton icon="trash-a" onClick={() => onRemove(transport.key)}>
+          Remove
+        </ActionButton>
+      </div>
+    </td>
+  </tr>
+);
 
 class MultiImageField extends Component {
   inputRef = React.createRef();
@@ -177,7 +168,7 @@ class MultiImageField extends Component {
           </div>
         </label>
         {transports.length > 0 && (
-          <Table>
+          <Table className="chq-mif">
             <tbody>
               {transports.map(transport => (
                 <Preview
