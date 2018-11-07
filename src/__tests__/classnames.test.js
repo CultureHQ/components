@@ -1,4 +1,4 @@
-import classnames from "../src/classnames";
+import classnames from "../classnames";
 
 test("functions with plain strings", () => {
   const className = classnames("foo", "bar");
