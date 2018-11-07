@@ -1,21 +1,13 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { mount } from "enzyme";
 
 import FileField from "../FileField";
 
-class FileFieldContainer extends Component {
-  state = { value: null };
+const FileFieldContainer = props => {
+  const [value, setValue] = useState(null);
 
-  handleChange = value => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { value } = this.state;
-
-    return <FileField {...this.props} value={value} onChange={this.handleChange} />;
-  }
-}
+  return <FileField {...props} value={value} onChange={setValue} />;
+};
 
 const mountWithUtils = component => {
   const mounted = mount(component);

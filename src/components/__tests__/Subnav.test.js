@@ -1,26 +1,17 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { mount } from "enzyme";
 
 import Subnav from "../Subnav";
 
-class SubnavContainer extends Component {
-  state = { activeIndex: 0 };
+const SubnavContainer = ({ children }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  handleChange = activeIndex => {
-    this.setState({ activeIndex });
-  };
-
-  render() {
-    const { children } = this.props;
-    const { activeIndex } = this.state;
-
-    return (
-      <Subnav activeIndex={activeIndex} onChange={this.handleChange}>
-        {children}
-      </Subnav>
-    );
-  }
-}
+  return (
+    <Subnav activeIndex={activeIndex} onChange={setActiveIndex}>
+      {children}
+    </Subnav>
+  );
+};
 
 test("renders without crashing", async () => {
   const clicks = [];
