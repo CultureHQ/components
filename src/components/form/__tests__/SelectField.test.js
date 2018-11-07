@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { SelectField } from "../../src";
+import SelectField from "../SelectField";
 
 const OPTIONS = [
   { label: "Harry", value: "Harry" },

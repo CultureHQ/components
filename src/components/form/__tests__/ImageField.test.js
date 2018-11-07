@@ -1,8 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { ImageField } from "../../src";
-import image from "../mocks/image";
+import ImageField from "../ImageField";
+import image from "../../__tests__/__mocks__/image";
 
 test("has no violations", async () => {
   await expect(<ImageField name="image" />).toHaveNoViolations();

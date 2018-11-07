@@ -1,8 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { ImagePreview } from "../../src";
-import * as readImage from "../../src/utils/read-image";
+import ImagePreview from "../ImagePreview";
+import * as readImage from "../../utils/read-image";
 
 test("reads image and loads it", async () => {
   readImage.default = jest.fn(() => Promise.resolve({

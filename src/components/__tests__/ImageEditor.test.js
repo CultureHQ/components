@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 
 import ImageEditor from "../ImageEditor";
-import image from "./mocks/image";
+import image from "./__mocks__/image";
 
 const mountEditor = async (onEdit = null) => {
   const component = mount(<ImageEditor image={image} onEdit={onEdit} />);

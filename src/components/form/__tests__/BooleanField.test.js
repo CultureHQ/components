@@ -1,7 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import { BooleanField, Checkmark } from "../../src";
+import BooleanField from "../BooleanField";
+import Checkmark from "../../Checkmark";
 
 test("calls up to callbacks if they are provided", () => {
   const response = {

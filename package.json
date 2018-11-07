@@ -74,6 +74,7 @@
       "\\.scss$": "identity-obj-proxy"
     },
     "setupTestFrameworkScriptFile": "./setup-tests.js",
+    "testRegex": ".test.js",
     "testURL": "http://localhost"
   }
 }

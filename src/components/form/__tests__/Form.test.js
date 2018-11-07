@@ -1,15 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import {
-  Form,
-  BooleanField,
-  CentsField,
-  EmailField,
-  StringField,
-  TextField,
-  SubmitButton
-} from "../../src";
+import Form from "../Form";
+import BooleanField from "../BooleanField";
+import CentsField from "../CentsField";
+import { EmailField, StringField } from "../FormFields";
+import TextField from "../TextField";
+import SubmitButton from "../SubmitButton";
 
 const mountFullForm = () => {
   const component = mount(
