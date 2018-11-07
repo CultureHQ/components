@@ -95,6 +95,26 @@ test("responds to failure callback", () => {
   component.unmount();
 });
 
+test("responds to the remove callback", () => {
+  let response = null;
+  const onChange = value => {
+    response = value;
+  };
+
+  const component = mount(<MultiImageField name="images" onChange={onChange} />);
+  component.setState({
+    currentTransport: new Transport(image),
+    transports: [new Transport(image)]
+  });
+
+  const findEdit = node => node.text() && node.text().trim() === "Remove";
+  component.find("button").findWhere(findEdit).simulate("click");
+
+  expect(response).toEqual([]);
+
+  component.unmount();
+});
+
 test("handles closing the modal", () => {
   const component = mount(<MultiImageField name="images" />);
 
