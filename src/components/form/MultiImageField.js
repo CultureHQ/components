@@ -13,7 +13,7 @@ import getHumanSize from "../../utils/get-human-size";
 
 const hashTransports = transports => transports.map(({ key }) => key).join(",");
 
-class Transport {
+export class Transport {
   constructor(file) {
     this.file = file;
     this.name = file.name;
