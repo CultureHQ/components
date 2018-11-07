@@ -182,7 +182,9 @@ function (_Component) {
         className: "chq-ffd--im--bt"
       }, _react.default.createElement(_Icon.default, {
         icon: "ios-cloud-upload-outline"
-      }), " ", "Upload an image"), _react.default.createElement("input", _extends({}, props, {
+      }), " ", "Upload an image"), _react.default.createElement("input", _extends({
+        accept: "image/*"
+      }, props, {
         type: "file",
         id: name,
         name: name,

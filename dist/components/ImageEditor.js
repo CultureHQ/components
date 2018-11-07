@@ -7,9 +7,9 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Button = _interopRequireDefault(require("./buttons/Button"));
+var _ActionButton = _interopRequireDefault(require("./buttons/ActionButton"));
 
-var _PlainButton = _interopRequireDefault(require("./buttons/PlainButton"));
+var _Button = _interopRequireDefault(require("./buttons/Button"));
 
 var _Icon = _interopRequireDefault(require("./Icon"));
 
@@ -149,27 +149,23 @@ function (_Component) {
         className: "chq-ied"
       }, _react.default.createElement("div", {
         className: "chq-ied--ctrl"
-      }, _react.default.createElement(_PlainButton.default, {
+      }, _react.default.createElement(_ActionButton.default, {
         "aria-label": "Rotate left",
+        icon: "arrow-return-left",
         onClick: this.handleRotateLeft
-      }, _react.default.createElement(_Icon.default, {
-        icon: "arrow-return-left"
-      })), _react.default.createElement(_PlainButton.default, {
+      }), _react.default.createElement(_ActionButton.default, {
         "aria-label": "Rotate right",
+        icon: "arrow-return-right",
         onClick: this.handleRotateRight
-      }, _react.default.createElement(_Icon.default, {
-        icon: "arrow-return-right"
-      })), _react.default.createElement(_PlainButton.default, {
+      }), _react.default.createElement(_ActionButton.default, {
         "aria-label": "Zoom in",
+        icon: "ios-plus-outline",
         onClick: this.handleZoomIn
-      }, _react.default.createElement(_Icon.default, {
-        icon: "ios-plus-outline"
-      })), _react.default.createElement(_PlainButton.default, {
+      }), _react.default.createElement(_ActionButton.default, {
         "aria-label": "Zoom out",
+        icon: "ios-minus-outline",
         onClick: this.handleZoomOut
-      }, _react.default.createElement(_Icon.default, {
-        icon: "ios-minus-outline"
-      })), _react.default.createElement(_Button.default, {
+      }), _react.default.createElement(_Button.default, {
         primary: true,
         onClick: this.handleSave
       }, _react.default.createElement(_Icon.default, {
