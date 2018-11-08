@@ -1,5 +1,3 @@
-import "./styles/app.scss";
-
 export { default as classnames } from "./classnames";
 
 export { default as Calendar } from "./components/Calendar";

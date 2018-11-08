@@ -298,8 +298,6 @@ Object.defineProperty(exports, "TextField", {
   }
 });
 
-require("./main.css");
-
 var _classnames = _interopRequireDefault(require("./classnames"));
 
 var _Calendar = _interopRequireDefault(require("./components/Calendar"));

@@ -1,4 +1,5 @@
 import React from "react";
+import "../../src/styles/app.scss";
 
 import CalendarContainer from "./CalendarContainer";
 import CheckmarkContainer from "./CheckmarkContainer";
