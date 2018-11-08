@@ -57,6 +57,8 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(SelectField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "selectRef", _react.default.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (_ref) {
       var value = _ref.target.value;
       var _this$props = _this.props,
@@ -77,12 +79,22 @@ function (_Component) {
   }
 
   _createClass(SelectField, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var autoFocus = this.props.autoFocus;
+
+      if (autoFocus) {
+        this.selectRef.current.focus();
+      }
+    }
+  }, {
     key: "render",
 
     /* eslint-disable jsx-a11y/label-has-for */
     // but why?, this looks like it should actually be working
     value: function render() {
       var _this$props2 = this.props,
+          autoFocus = _this$props2.autoFocus,
           children = _this$props2.children,
           className = _this$props2.className,
           onChange = _this$props2.onChange,
@@ -94,7 +106,7 @@ function (_Component) {
           required = _this$props2.required,
           submitted = _this$props2.submitted,
           value = _this$props2.value,
-          props = _objectWithoutProperties(_this$props2, ["children", "className", "onChange", "onFormChange", "onError", "name", "options", "required", "submitted", "value"]);
+          props = _objectWithoutProperties(_this$props2, ["autoFocus", "children", "className", "onChange", "onFormChange", "onError", "name", "options", "required", "submitted", "value"]);
 
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
@@ -103,7 +115,9 @@ function (_Component) {
         className: "chq-ffd--lb"
       }, children), _react.default.createElement("div", {
         className: "chq-ffd--sl"
-      }, _react.default.createElement("select", _extends({}, props, {
+      }, _react.default.createElement("select", _extends({
+        ref: this.selectRef
+      }, props, {
         id: name,
         name: name,
         onChange: this.handleChange,

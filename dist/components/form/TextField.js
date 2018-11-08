@@ -59,6 +59,8 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(TextField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "textAreaRef", _react.default.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       touched: false
     });
@@ -89,6 +91,15 @@ function (_Component) {
   }
 
   _createClass(TextField, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var autoFocus = this.props.autoFocus;
+
+      if (autoFocus) {
+        this.textAreaRef.current.focus();
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
@@ -111,7 +122,9 @@ function (_Component) {
         htmlFor: name
       }, _react.default.createElement("span", {
         className: "chq-ffd--lb"
-      }, children), _react.default.createElement("textarea", _extends({}, props, {
+      }, children), _react.default.createElement("textarea", _extends({
+        ref: this.textAreaRef
+      }, props, {
         id: name,
         value: value || "",
         onBlur: this.handleBlur,

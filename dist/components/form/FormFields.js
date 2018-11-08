@@ -60,6 +60,8 @@ var buildFormField = function buildFormField(type) {
 
       _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(FormField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+      _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "inputRef", _react.default.createRef());
+
       _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
         touched: false
       });
@@ -90,6 +92,15 @@ var buildFormField = function buildFormField(type) {
     }
 
     _createClass(FormField, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        var autoFocus = this.props.autoFocus;
+
+        if (autoFocus) {
+          this.inputRef.current.focus();
+        }
+      }
+    }, {
       key: "render",
       value: function render() {
         var _this$props2 = this.props,
@@ -98,6 +109,7 @@ var buildFormField = function buildFormField(type) {
 
         var _this$props3 = this.props,
             addon = _this$props3.addon,
+            autoFocus = _this$props3.autoFocus,
             children = _this$props3.children,
             className = _this$props3.className,
             onError = _this$props3.onError,
@@ -105,7 +117,7 @@ var buildFormField = function buildFormField(type) {
             required = _this$props3.required,
             submitted = _this$props3.submitted,
             validator = _this$props3.validator,
-            props = _objectWithoutProperties(_this$props3, ["addon", "children", "className", "onError", "onFormChange", "required", "submitted", "validator"]);
+            props = _objectWithoutProperties(_this$props3, ["addon", "autoFocus", "children", "className", "onError", "onFormChange", "required", "submitted", "validator"]);
 
         var touched = this.state.touched;
         return _react.default.createElement("label", {
@@ -115,7 +127,9 @@ var buildFormField = function buildFormField(type) {
           className: "chq-ffd--lb"
         }, children), _react.default.createElement(_react.default.Fragment, null, addon && _react.default.createElement("span", {
           className: "chq-ffd--ad"
-        }, addon), _react.default.createElement("input", _extends({}, props, {
+        }, addon), _react.default.createElement("input", _extends({
+          ref: this.inputRef
+        }, props, {
           type: type,
           id: name,
           value: value || "",
