@@ -126,6 +126,7 @@ const App = () => (
       <Heading>CentsField</Heading>
       <p>A number form field that tracks in cents and displays in dollar amounts.</p>
       <PropList>
+        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
@@ -305,6 +306,7 @@ const App = () => (
       <Heading>EmailField</Heading>
       <p>A string form field that accepts an email.</p>
       <PropList>
+        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
@@ -558,6 +560,7 @@ const App = () => (
       <Heading>NumberField</Heading>
       <p>A number form field.</p>
       <PropList>
+        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
@@ -641,6 +644,7 @@ const App = () => (
       <Heading>PasswordField</Heading>
       <p>A password form field.</p>
       <PropList>
+        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
@@ -676,6 +680,7 @@ const App = () => (
       <Heading>SelectField</Heading>
       <p>A select form field.</p>
       <PropList>
+        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
@@ -704,6 +709,7 @@ const App = () => (
       <Heading>StringField</Heading>
       <p>A string form field.</p>
       <PropList>
+        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
@@ -847,6 +853,7 @@ const App = () => (
       <Heading>TextField</Heading>
       <p>A text form field.</p>
       <PropList>
+        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>

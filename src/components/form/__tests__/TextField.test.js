@@ -3,6 +3,10 @@ import { mount } from "enzyme";
 
 import TextField from "../TextField";
 
+test("has no violations", async () => {
+  await expect(<TextField name="text">Text</TextField>).toHaveNoViolations();
+});
+
 test("passes on className", () => {
   const component = mount(<TextField name="text" className="text-field" />);
 
@@ -53,4 +57,10 @@ test("displays errors if submitted", () => {
 
   component.setProps({ submitted: true });
   expect(component.text()).toEqual("Required");
+});
+
+test("requests focus when autoFocus is given", () => {
+  const component = mount(<TextField name="text" autoFocus />);
+
+  expect(component.find("textarea").props().id).toEqual(document.activeElement.id);
 });

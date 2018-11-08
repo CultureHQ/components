@@ -5,7 +5,17 @@ import FormError from "./FormError";
 
 const buildFormField = type => {
   class FormField extends Component {
+    inputRef = React.createRef();
+
     state = { touched: false };
+
+    componentDidMount() {
+      const { autoFocus } = this.props;
+
+      if (autoFocus) {
+        this.inputRef.current.focus();
+      }
+    }
 
     handleBlur = () => {
       this.setState({ touched: true });
@@ -26,8 +36,8 @@ const buildFormField = type => {
     render() {
       const { name, value } = this.props;
       const {
-        addon, children, className, onError, onFormChange, required, submitted,
-        validator, ...props
+        addon, autoFocus, children, className, onError, onFormChange, required,
+        submitted, validator, ...props
       } = this.props;
 
       const { touched } = this.state;
@@ -38,6 +48,7 @@ const buildFormField = type => {
           <>
             {addon && <span className="chq-ffd--ad">{addon}</span>}
             <input
+              ref={this.inputRef}
               {...props}
               type={type}
               id={name}

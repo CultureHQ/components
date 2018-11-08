@@ -4,7 +4,17 @@ import classnames from "../../classnames";
 import FormError from "./FormError";
 
 class TextField extends Component {
+  textAreaRef = React.createRef();
+
   state = { touched: false };
+
+  componentDidMount() {
+    const { autoFocus } = this.props;
+
+    if (autoFocus) {
+      this.textAreaRef.current.focus();
+    }
+  }
 
   handleBlur = () => {
     this.setState({ touched: true });
@@ -35,6 +45,7 @@ class TextField extends Component {
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
         <textarea
+          ref={this.textAreaRef}
           {...props}
           id={name}
           value={value || ""}
