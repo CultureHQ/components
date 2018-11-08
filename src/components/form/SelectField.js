@@ -3,6 +3,16 @@ import React, { Component } from "react";
 import classnames from "../../classnames";
 
 class SelectField extends Component {
+  selectRef = React.createRef();
+
+  componentDidMount() {
+    const { autoFocus } = this.props;
+
+    if (autoFocus) {
+      this.selectRef.current.focus();
+    }
+  }
+
   handleChange = ({ target: { value } }) => {
     const { name, onChange, onFormChange } = this.props;
 
@@ -19,8 +29,8 @@ class SelectField extends Component {
   // but why?, this looks like it should actually be working
   render() {
     const {
-      children, className, onChange, onFormChange, onError, name, options = [],
-      required, submitted, value, ...props
+      autoFocus, children, className, onChange, onFormChange, onError, name,
+      options = [], required, submitted, value, ...props
     } = this.props;
 
     return (
@@ -28,6 +38,7 @@ class SelectField extends Component {
         <span className="chq-ffd--lb">{children}</span>
         <div className="chq-ffd--sl">
           <select
+            ref={this.selectRef}
             {...props}
             id={name}
             name={name}
