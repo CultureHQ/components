@@ -52,13 +52,17 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClose", function () {
+      var onClose = _this.props.onClose;
+
       _this.setState({
         open: false
       });
+
+      onClose();
     });
 
     _this.state = {
-      open: props.startOpen || false
+      open: props.startOpen
     };
     return _this;
   }
@@ -99,6 +103,11 @@ function (_Component) {
 
   return Modal;
 }(_react.Component);
+
+_defineProperty(Modal, "defaultProps", {
+  onClose: function onClose() {},
+  startOpen: false
+});
 
 Object.assign(Modal, {
   setAppElement: _ModalDialog.default.setAppElement,

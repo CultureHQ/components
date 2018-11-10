@@ -24,12 +24,20 @@ test("opens a modal when the onTrigger function is called", () => {
 });
 
 test("closes the modal the heading button is clicked", () => {
+  let called = false;
+  const onClose = () => {
+    called = true;
+  };
+
+  const trigger = onTrigger => <Button onClick={onTrigger}>Open</Button>;
+
   const component = mount(
-    <Modal startOpen trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}>
+    <Modal startOpen trigger={trigger} onClose={onClose}>
       <Modal.Heading>Heading</Modal.Heading>
     </Modal>
   );
 
   component.find(PlainButton).simulate("click");
   expect(component.find(".chq-pan--hd")).toHaveLength(0);
+  expect(called).toBe(true);
 });

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [4.1.0] - 2018-11-10
+### Added
+- The `onClose` callback to the `Modal` component.
+
 ## [4.0.0] - 2018-11-08
 ### Changed
 - [BREAKING] No longer explicitly requiring the styles for the package. This was never intended to be required, but here we are. Making this a major version bump in case this breaks styles.

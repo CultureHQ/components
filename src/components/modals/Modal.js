@@ -3,10 +3,15 @@ import React, { Component } from "react";
 import ModalDialog from "./ModalDialog";
 
 class Modal extends Component {
+  static defaultProps = {
+    onClose: () => {},
+    startOpen: false
+  };
+
   constructor(props) {
     super(props);
 
-    this.state = { open: props.startOpen || false };
+    this.state = { open: props.startOpen };
   }
 
   getChildren() {
@@ -25,7 +30,10 @@ class Modal extends Component {
   };
 
   handleClose = () => {
+    const { onClose } = this.props;
+
     this.setState({ open: false });
+    onClose();
   };
 
   render() {
