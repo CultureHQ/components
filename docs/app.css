@@ -60,10 +60,6 @@ pre {
   line-height: 42px;
 }
 
-.chq-bdg + .chq-bdg {
-  margin-left: 10px;
-}
-
 .chq-tmb {
   box-shadow: 0 0 1px rgba(0, 0, 0, .2);
 }
