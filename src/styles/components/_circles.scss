@@ -43,3 +43,107 @@
     }
   }
 }
+
+@keyframes chqCirSm {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-6%, -2%, 0);
+  }
+
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -2%, 0);
+  }
+
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes chqCirYl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-3%, -2%, 0);
+  }
+
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-2%, -1%, 0);
+  }
+
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes chqCirGr {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.1) translate3d(-6%, -2%, 0);
+  }
+
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-5%, 0, 0);
+  }
+
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes chqCirBl {
+  0% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  20% {
+    animation-timing-function: ease-out;
+    transform: scale(1.15) translate3d(-4%, -2%, 0);
+  }
+
+  40% {
+    animation-timing-function: ease-in;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  70% {
+    animation-timing-function: ease-out;
+    transform: scale(1.075) translate3d(-3%, -1%, 0);
+  }
+
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}

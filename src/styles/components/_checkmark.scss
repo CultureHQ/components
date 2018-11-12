@@ -54,3 +54,30 @@
     }
   }
 }
+
+@keyframes chqCmkFill {
+  from {
+    box-shadow: 0;
+  }
+
+  to {
+    box-shadow: inset 0 0 0 30px $color-primary-green;
+  }
+}
+
+@keyframes chqCmkScale {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes chqCmkStroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
