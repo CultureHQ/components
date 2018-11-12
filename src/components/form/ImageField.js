@@ -7,12 +7,28 @@ import ImageEditor from "../ImageEditor";
 import ImagePreview from "../ImagePreview";
 
 class ImageField extends Component {
+  static defaultProps = {
+    autoFocus: false,
+    onChange: () => {},
+    onFormChange: () => {}
+  };
+
+  inputRef = React.createRef();
+
   state = {
     editorOpen: false,
     failed: false,
     image: null,
     preview: null
   };
+
+  componentDidMount() {
+    const { autoFocus } = this.props;
+
+    if (autoFocus) {
+      this.inputRef.current.focus();
+    }
+  }
 
   handleFileSelected = ({ target: { files: [image] } }) => {
     this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
@@ -34,13 +50,8 @@ class ImageField extends Component {
       return { editorOpen, failed, image, preview: image && URL.createObjectURL(image) };
     });
 
-    if (onChange) {
-      onChange(image);
-    }
-
-    if (onFormChange) {
-      onFormChange(name, image);
-    }
+    onChange(image);
+    onFormChange(name, image);
   };
 
   handleClose = () => {
@@ -49,8 +60,8 @@ class ImageField extends Component {
 
   render() {
     const {
-      children, className, name, onChange, onFormChange, onError, progress,
-      submitted, value, ...props
+      autoFocus, children, className, name, onChange, onFormChange, onError,
+      progress, submitted, value, ...props
     } = this.props;
 
     const { editorOpen, failed, image, preview } = this.state;
@@ -72,6 +83,7 @@ class ImageField extends Component {
           </div>
           <input
             accept="image/*"
+            ref={this.inputRef}
             {...props}
             type="file"
             id={name}

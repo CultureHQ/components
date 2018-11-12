@@ -3,17 +3,17 @@ import React, { Component } from "react";
 import { NumberField } from "./FormFields";
 
 class CentsField extends Component {
+  static defaultProps = {
+    onChange: () => {},
+    onFormChange: () => {}
+  };
+
   handleChange = value => {
     const { name, onChange, onFormChange } = this.props;
     const amount = value ? Math.round(value * 100) : null;
 
-    if (onChange) {
-      onChange(amount);
-    }
-
-    if (onFormChange) {
-      onFormChange(name, amount);
-    }
+    onChange(amount);
+    onFormChange(name, amount);
   };
 
   handleValidate = value => {

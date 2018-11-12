@@ -5,6 +5,12 @@ import FormError from "./FormError";
 
 const buildFormField = type => {
   class FormField extends Component {
+    static defaultProps = {
+      autoFocus: false,
+      onChange: () => {},
+      onFormChange: () => {}
+    };
+
     inputRef = React.createRef();
 
     state = { touched: false };
@@ -24,13 +30,8 @@ const buildFormField = type => {
     handleChange = ({ target: { value } }) => {
       const { name, onChange, onFormChange } = this.props;
 
-      if (onChange) {
-        onChange(value);
-      }
-
-      if (onFormChange) {
-        onFormChange(name, value);
-      }
+      onChange(value);
+      onFormChange(name, value);
     };
 
     render() {
