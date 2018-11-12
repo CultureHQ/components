@@ -23,18 +23,37 @@ const SelectFieldOption = React.memo(({ active, option: { label, value }, onClic
   );
 });
 
-const SelectFieldValue = ({ display, inputRef, multiple, name, onChange, onDeselect, onOpen, value }) => (
-  <div role="button" onClick={onOpen} className="chq-ffd--sl--tog">
-    <input type="hidden" id={name} name={name} value={value} />
-    {multiple && value && value.map(item => (
-      <Badge key={item} icon="close" onClick={() => onDeselect(item)}>
-        {item}
-      </Badge>
-    ))}
-    <input type="text" ref={inputRef} onChange={onChange} value={display} />
-    <div className="chq-ffd--sl--ct" />
-  </div>
-);
+const SelectFieldValue = ({ display, inputRef, multiple, name, onChange, onDeselect, onOpen, value }) => {
+  if (!multiple) {
+    return (
+      <>
+        <input type="hidden" id={name} name={name} value={value} />
+        <input
+          type="text"
+          ref={inputRef}
+          className="chq-ffd--ctrl"
+          onClick={onOpen}
+          onChange={onChange}
+          value={display}
+        />
+        <div className="chq-ffd--sl--ct" />
+      </>
+    );
+  }
+
+  return (
+    <div role="button" onClick={onOpen} className="chq-ffd--sl--tog">
+      <input type="hidden" id={name} name={name} value={value} />
+      {multiple && value && value.map(item => (
+        <Badge key={item} icon="close" onClick={() => onDeselect(item)}>
+          {item}
+        </Badge>
+      ))}
+      <input type="text" ref={inputRef} onChange={onChange} value={display} />
+      <div className="chq-ffd--sl--ct" />
+    </div>
+  );
+};
 
 const SelectFieldOptions = ({ creatable, display, displayedOptions, multiple, onSelect, open, value }) => (
   <DoorEffect className="chq-ffd--sl--opts" open={open}>

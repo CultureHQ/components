@@ -65,6 +65,7 @@ class FileField extends Component {
         <span className="chq-ffd--lb">{children}</span>
         <div className="chq-ffd--fi">
           <input
+            className="chq-ffd--ctrl"
             ref={this.inputRef}
             {...props}
             type="file"
