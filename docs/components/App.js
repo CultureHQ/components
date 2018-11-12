@@ -722,15 +722,19 @@ const App = () => (
         <Panel.Body>
           <Form initialValues={{
             select: OPTIONS[0].value,
-            "select-creatable": OPTIONS[1].value,
-            "select-multiple": [OPTIONS[0].value, OPTIONS[1].value]
+            "select-cr": OPTIONS[1].value,
+            "select-ml": [OPTIONS[2].value, OPTIONS[3].value],
+            "select-cr-ml": [OPTIONS[4].value, OPTIONS[5].value]
           }}>
             <SelectField name="select" options={OPTIONS} required>Select</SelectField>
-            <SelectField name="select-creatable" options={OPTIONS} creatable required>
+            <SelectField name="select-cr" options={OPTIONS} creatable required>
               Select (Creatable)
             </SelectField>
-            <SelectField name="select-multiple" options={OPTIONS} multiple required>
+            <SelectField name="select-ml" options={OPTIONS} multiple required>
               Select (Multiple)
+            </SelectField>
+            <SelectField name="select-cr-ml" options={OPTIONS} creatable multiple required>
+              Select (Creatable, Multiple)
             </SelectField>
           </Form>
         </Panel.Body>

@@ -9,10 +9,10 @@ const appendValue = (value, selected) => (
   value ? [...value.filter(item => item !== selected), selected] : [selected]
 );
 
-const fuzzyMatch = matchable => {
-  const terms = matchable.toLowerCase().split(" ");
+const fuzzyFilter = matchable => {
+  const terms = matchable.toLowerCase().split(" ").filter(Boolean);
 
-  return value => value.toLowerCase().split(" ").some(segment => (
+  return ({ label }) => label.toLowerCase().split(" ").filter(Boolean).some(segment => (
     terms.some(term => segment.startsWith(term))
   ));
 };
@@ -92,18 +92,19 @@ const SelectFieldValue = ({ multiple, ...props }) => (
   multiple ? <SelectFieldMultiValue {...props} /> : <SelectFieldSingleValue {...props} />
 );
 
-const SelectFieldOptions = ({ creatable, display, displayedOptions, multiple, onDeselect, onSelect, open, value }) => {
+const SelectFieldOptions = ({ creatable, display, filteredOptions, multiple, onDeselect, onSelect, open, value }) => {
   const createOption = multiple ? !value.includes(display) : (display !== value);
 
   return (
     <DoorEffect className="chq-ffd--sl--opts" open={open}>
       {creatable && (display.length > 0) && createOption && (
         <SelectFieldOption
+          key={display}
           option={{ label: `Create option: ${display}`, value: display }}
           onSelect={onSelect}
         />
       )}
-      {displayedOptions.map(option => (
+      {filteredOptions.map(option => (
         <SelectFieldOption
           key={option.value}
           option={option}
@@ -112,7 +113,7 @@ const SelectFieldOptions = ({ creatable, display, displayedOptions, multiple, on
           active={multiple ? value.includes(option.value) : option.value === value}
         />
       ))}
-      {!creatable && (displayedOptions.length === 0) && createOption && (
+      {!creatable && (filteredOptions.length === 0) && createOption && (
         <p>No results found.</p>
       )}
     </DoorEffect>
@@ -137,7 +138,7 @@ class SelectField extends Component {
 
     this.state = {
       display: props.multiple ? "" : props.value,
-      displayedOptions: props.options,
+      filteredOptions: props.options,
       open: false
     };
   }
@@ -195,12 +196,9 @@ class SelectField extends Component {
     const { multiple, options, value } = this.props;
     const { display } = this.state;
 
-    const nextDisplay = ((!multiple && value === display) ? event.nativeEvent.data : event.target.value) || "";
-    const match = fuzzyMatch(nextDisplay);
-
     this.setState({
-      display: nextDisplay,
-      displayedOptions: options.filter(({ label }) => match(label))
+      display: ((!multiple && value === display) ? event.nativeEvent.data : event.target.value) || "",
+      filteredOptions: options.filter(fuzzyFilter(display))
     });
   };
 
@@ -225,14 +223,12 @@ class SelectField extends Component {
     const { multiple, options } = this.props;
     const effects = shouldClose ? { open: false } : {}
 
-    this.setState({ display: multiple ? "" : value, ...effects }, () => {
-      setTimeout(() => this.setState({ displayedOptions: options }), 150);
-    });
+    this.setState({ display: multiple ? "" : value, ...effects, filteredOptions: options });
   };
 
   render() {
-    const { children, className, creatable, multiple, name, value } = this.props;
-    const { display, displayedOptions, open } = this.state;
+    const { children, className, creatable, multiple, name, options, value } = this.props;
+    const { display, filteredOptions, open } = this.state;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -252,7 +248,7 @@ class SelectField extends Component {
           <SelectFieldOptions
             creatable={creatable}
             display={display}
-            displayedOptions={displayedOptions}
+            filteredOptions={filteredOptions}
             multiple={multiple}
             onDeselect={this.handleDeselect}
             onSelect={this.handleSelect}
