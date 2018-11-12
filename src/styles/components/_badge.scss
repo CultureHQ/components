@@ -9,9 +9,41 @@
   outline: none;
   padding: 5px 12px;
   text-decoration: none;
+  transition: border-color .3s;
+
+  svg {
+    height: 10px;
+    margin: 0 3px 0 0;
+    width: 10px;
+  }
+
+  path {
+    fill: $color-primary-light-font;
+    transition: fill .3s;
+  }
+
+  &:hover {
+    border-color: darken($color-border, 10%);
+
+    path {
+      fill: $color-primary-font;
+    }
+  }
 
   &-pr {
     border: 1px solid $color-primary-blue;
     color: $color-primary-blue;
+
+    path {
+      fill: $color-primary-blue;
+    }
+
+    &:hover {
+      border-color: $color-link-blue;
+
+      path {
+        fill: $color-primary-blue;
+      }
+    }
   }
 }
