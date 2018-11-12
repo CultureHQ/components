@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ## [Unreleased]
 ### Added
 - The `limitWidth` prop on `Panel` for enforcing a max width.
+- The `DoorEffect` component.
 
 ## [4.1.0] - 2018-11-10
 ### Added
