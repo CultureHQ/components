@@ -34,7 +34,7 @@ class SelectField extends Component {
     super(props);
 
     this.state = {
-      display: props.multiple ? "" : props.value,
+      display: props.multiple ? "" : (props.value || ""),
       filteredOptions: props.options,
       open: false
     };
