@@ -58,10 +58,13 @@ class SelectField extends Component {
   }
 
   handleWindowClick = event => {
+    const { options, value } = this.props;
     const { open } = this.state;
 
     if (open && !this.selectRef.current.contains(event.target)) {
-      this.setState({ open: false });
+      this.setState({ display: value, open: false }, () => {
+        setTimeout(() => this.setState({ displayedOptions: options }), 150);
+      });
     }
   };
 
