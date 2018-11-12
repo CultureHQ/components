@@ -1,21 +1,24 @@
 .chq-ffd--sl {
   position: relative;
 
-  select {
+  &--tog {
     @include appearance-none;
-    background: 0;
+    background: inherit;
     border: 0;
     border-bottom: 2px solid $color-border;
-    border-radius: 0;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    display: block;
+    cursor: pointer;
+    font-family: inherit;
     font-size: 1em;
     font-weight: $font-weight-light;
+    line-height: inherit;
     height: 42px;
     margin-bottom: 5px;
     outline: none;
     padding: 6px 12px;
+    position: relative;
+    text-align: left;
     transition: border-bottom .3s;
     width: 100%;
 
@@ -39,5 +42,56 @@
     top: 50%;
     vertical-align: middle;
     width: 0;
+  }
+
+  &--opts {
+    background-color: $color-white;
+    border: $color-box-shadow solid 1px;
+    box-shadow: 0 6px 12px $color-box-shadow;
+    padding: 5px 0;
+    position: absolute;
+    transform: scale3d(1, 0, 1);
+    transform-origin: top center;
+    width: 100%;
+
+    &-open,
+    &-closed {
+      animation: chqSlideDown 150ms forwards;
+    }
+
+    &-closed {
+      animation-direction: reverse;
+    }
+
+    button {
+      color: $color-primary-font;
+      display: block;
+      outline: none;
+      padding: 3px 30px;
+      position: relative;
+      text-align: left;
+      width: 100%;
+
+      &:hover {
+        background-color: $color-border;
+      }
+
+      &.chq-ffd--sl--opt-act {
+        &:before {
+          content: '✓';
+          left: .7em;
+          position: absolute;
+        }
+      }
+    }
+  }
+}
+
+@keyframes chqSlideDown {
+  from {
+    transform: scale3d(1, 0, 1);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
   }
 }
