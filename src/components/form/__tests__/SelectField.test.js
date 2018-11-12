@@ -10,7 +10,13 @@ const OPTIONS = [
 ];
 
 test("has no violations", async () => {
-  await expect(<SelectField name="select">SelectField</SelectField>).toHaveNoViolations();
+  const jsx = (
+    <SelectField name="select" options={OPTIONS}>
+      SelectField
+    </SelectField>
+  );
+
+  await expect(jsx).toHaveNoViolations();
 });
 
 test("passes on className", () => {
@@ -30,9 +36,7 @@ test("calls up to callbacks if they are provided", () => {
   const component = mount(
     <SelectField
       name="select"
-      onChange={changeValue => {
-        Object.assign(response, { changeValue });
-      }}
+      onChange={changeValue => Object.assign(response, { changeValue })}
       onFormChange={(formChangeName, formChangeValue) => {
         Object.assign(response, { formChangeName, formChangeValue });
       }}
@@ -40,7 +44,7 @@ test("calls up to callbacks if they are provided", () => {
     />
   );
 
-  component.find("select").simulate("change", { target: { value: "Harry" } });
+  component.instance().handleSelect("Harry");
 
   expect(response).toEqual({
     changeValue: "Harry",
@@ -52,5 +56,5 @@ test("calls up to callbacks if they are provided", () => {
 test("requests focus when autoFocus is given", () => {
   const component = mount(<SelectField name="select" autoFocus />);
 
-  expect(component.find(".chq-ffd--ctrl").props().id).toEqual(document.activeElement.id);
+  expect(document.activeElement.className).toEqual("chq-ffd--ctrl");
 });
