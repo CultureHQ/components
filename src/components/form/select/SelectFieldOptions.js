@@ -4,7 +4,8 @@ import classnames from "../../../classnames";
 import PlainButton from "../../buttons/PlainButton";
 import DoorEffect from "../../DoorEffect";
 
-const SelectFieldOption = React.memo(({ active, option: { label, value }, onDeselect, onSelect }) => {
+const SelectFieldOption = React.memo(({ active, option, onDeselect, onSelect }) => {
+  const { label, value } = option;
   const onClick = () => (active ? onDeselect : onSelect)(value);
 
   return (
@@ -14,7 +15,9 @@ const SelectFieldOption = React.memo(({ active, option: { label, value }, onDese
   );
 });
 
-const SelectFieldOptions = ({ creatable, display, filteredOptions, multiple, onDeselect, onSelect, open, value }) => {
+const SelectFieldOptions = ({
+  creatable, display, filteredOptions, multiple, onDeselect, onSelect, open, value
+}) => {
   const createOption = multiple ? !value.includes(display) : (display !== value);
 
   return (
