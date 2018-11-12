@@ -51,22 +51,37 @@ const SelectFieldMultiValueBadge = React.memo(({ value, onDeselect }) => {
   return <><Badge icon="close" onClick={onClick}>{value}</Badge>{" "}</>;
 });
 
-const SelectFieldMultiValue = ({ display, inputRef, multiple, name, onChange, onDeselect, onOpen, open, value }) => (
-  <div role="button" onClick={onOpen} className={classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open })}>
-    <input type="hidden" id={name} name={name} value={value} />
-    {value && value.map(item => (
-      <SelectFieldMultiValueBadge key={item} value={item} onDeselect={onDeselect} />
-    ))}
-    <input
-      type="text"
-      className="chq-ffd--sl--match"
-      ref={inputRef}
-      onChange={onChange}
-      value={display}
-    />
-    <div className="chq-ffd--sl--caret" />
-  </div>
-);
+class SelectFieldMultiValue extends Component {
+  handleKeyDown = event => {
+    const { display, onDeselect, value } = this.props;
+
+    if (!display && event.key === "Backspace" && value) {
+      onDeselect(value[value.length - 1]);
+    }
+  };
+
+  render() {
+    const { display, inputRef, multiple, name, onChange, onDeselect, onOpen, open, value } = this.props;
+
+    return (
+      <div role="button" onClick={onOpen} className={classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open })}>
+        <input type="hidden" id={name} name={name} value={value} />
+        {value && value.map(item => (
+          <SelectFieldMultiValueBadge key={item} value={item} onDeselect={onDeselect} />
+        ))}
+        <input
+          type="text"
+          className="chq-ffd--sl--match"
+          ref={inputRef}
+          onChange={onChange}
+          onKeyDown={this.handleKeyDown}
+          value={display}
+        />
+        <div className="chq-ffd--sl--caret" />
+      </div>
+    );
+  }
+};
 
 const SelectFieldValue = ({ multiple, ...props }) => (
   multiple ? <SelectFieldMultiValue {...props} /> : <SelectFieldSingleValue {...props} />
@@ -140,7 +155,7 @@ class SelectField extends Component {
     const { open } = this.state;
 
     if (open && !this.selectRef.current.contains(event.target)) {
-      this.selectValue(value);
+      this.selectValue(value, { open: false });
     }
   };
 
@@ -148,7 +163,7 @@ class SelectField extends Component {
     const { multiple, value } = this.props;
     const nextValue = multiple ? appendValue(value, selected) : selected;
 
-    this.selectValue(nextValue);
+    this.selectValue(nextValue, { open: false });
     this.propagateValue(nextValue);
   };
 
@@ -190,10 +205,10 @@ class SelectField extends Component {
     onFormChange(name, value);
   };
 
-  selectValue = value => {
+  selectValue = (value, effects = {}) => {
     const { multiple, options } = this.props;
 
-    this.setState({ display: multiple ? "" : value, open: false }, () => {
+    this.setState({ display: multiple ? "" : value, ...effects }, () => {
       setTimeout(() => this.setState({ displayedOptions: options }), 150);
     });
   };
