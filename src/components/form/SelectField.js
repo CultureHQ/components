@@ -21,11 +21,12 @@ const SelectFieldCaret = React.memo(({ open }) => (
   <div className={classnames("chq-ffd--sl--caret", { "chq-ffd--sl--caret-flip": open })} />
 ));
 
-const SelectFieldOption = React.memo(({ active, option: { label, value }, onClick }) => {
+const SelectFieldOption = React.memo(({ active, option: { label, value }, onDeselect, onSelect }) => {
+  const onClick = () => (active ? onDeselect : onSelect)(value);
   const className = active ? "chq-ffd--sl--opt-act" : null;
 
   return (
-    <PlainButton className={className} onClick={() => onClick(value)}>
+    <PlainButton className={className} onClick={onClick}>
       {label}
     </PlainButton>
   );
@@ -91,7 +92,7 @@ const SelectFieldValue = ({ multiple, ...props }) => (
   multiple ? <SelectFieldMultiValue {...props} /> : <SelectFieldSingleValue {...props} />
 );
 
-const SelectFieldOptions = ({ creatable, display, displayedOptions, multiple, onSelect, open, value }) => {
+const SelectFieldOptions = ({ creatable, display, displayedOptions, multiple, onDeselect, onSelect, open, value }) => {
   const createOption = multiple ? !value.includes(display) : (display !== value);
 
   return (
@@ -99,14 +100,15 @@ const SelectFieldOptions = ({ creatable, display, displayedOptions, multiple, on
       {creatable && (display.length > 0) && createOption && (
         <SelectFieldOption
           option={{ label: `Create option: ${display}`, value: display }}
-          onClick={onSelect}
+          onSelect={onSelect}
         />
       )}
       {displayedOptions.map(option => (
         <SelectFieldOption
           key={option.value}
           option={option}
-          onClick={onSelect}
+          onDeselect={onDeselect}
+          onSelect={onSelect}
           active={multiple ? value.includes(option.value) : option.value === value}
         />
       ))}
@@ -148,10 +150,12 @@ class SelectField extends Component {
     }
 
     window.addEventListener("click", this.handleWindowClick);
+    window.addEventListener("keydown", this.handleWindowKeyDown);
   }
 
   componentWillUnmount() {
     window.removeEventListener("click", this.handleWindowClick);
+    window.removeEventListener("keydown", this.handleWindowKeyDown);
   }
 
   handleWindowClick = event => {
@@ -159,7 +163,15 @@ class SelectField extends Component {
     const { open } = this.state;
 
     if (open && !this.selectRef.current.contains(event.target)) {
-      this.selectValue(value, { open: false });
+      this.selectValue(value, true);
+    }
+  };
+
+  handleWindowKeyDown = event => {
+    const { open } = this.state;
+
+    if (open && (event.key === "Escape") && this.selectRef.current.contains(event.target)) {
+      this.setState({ open: false });
     }
   };
 
@@ -167,15 +179,15 @@ class SelectField extends Component {
     const { multiple, value } = this.props;
     const nextValue = multiple ? appendValue(value, selected) : selected;
 
-    this.selectValue(nextValue, { open: false });
+    this.selectValue(nextValue, !multiple);
     this.propagateValue(nextValue);
   };
 
   handleDeselect = deselected => {
-    const { value } = this.props;
-    const nextValue = value.filter(item => item !== deselected);
+    const { multiple, value } = this.props;
+    const nextValue = multiple ? value.filter(item => item !== deselected) : "";
 
-    this.selectValue(nextValue);
+    this.selectValue(nextValue, !multiple);
     this.propagateValue(nextValue);
   };
 
@@ -209,8 +221,9 @@ class SelectField extends Component {
     onFormChange(name, value);
   };
 
-  selectValue = (value, effects = {}) => {
+  selectValue = (value, shouldClose) => {
     const { multiple, options } = this.props;
+    const effects = shouldClose ? { open: false } : {}
 
     this.setState({ display: multiple ? "" : value, ...effects }, () => {
       setTimeout(() => this.setState({ displayedOptions: options }), 150);
@@ -241,6 +254,7 @@ class SelectField extends Component {
             display={display}
             displayedOptions={displayedOptions}
             multiple={multiple}
+            onDeselect={this.handleDeselect}
             onSelect={this.handleSelect}
             open={open}
             value={value}
