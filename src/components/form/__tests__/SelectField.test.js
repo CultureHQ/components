@@ -49,14 +49,8 @@ test("calls up to callbacks if they are provided", () => {
   });
 });
 
-test("does not call callbacks when they are not provided", () => {
-  const component = mount(<SelectField name="select" options={OPTIONS} />);
-
-  component.find("select").simulate("change", { target: { value: "Harry" } });
-});
-
 test("requests focus when autoFocus is given", () => {
   const component = mount(<SelectField name="select" autoFocus />);
 
-  expect(component.find("select").props().id).toEqual(document.activeElement.id);
+  expect(component.find(".chq-ffd--ctrl").props().id).toEqual(document.activeElement.id);
 });

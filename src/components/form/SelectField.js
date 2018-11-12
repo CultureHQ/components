@@ -22,7 +22,8 @@ class SelectField extends Component {
     creatable: false,
     multiple: false,
     onChange: () => {},
-    onFormChange: () => {}
+    onFormChange: () => {},
+    options: []
   };
 
   inputRef = React.createRef();
