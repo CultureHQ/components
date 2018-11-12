@@ -18,7 +18,7 @@ test("functions as expected", () => {
     </Form>
   );
 
-  component.find("button.chq-ffd--dt").simulate("click");
+  component.find("button.chq-ffd--ctrl").simulate("click");
   component.find("button.chq-cal--day").at(15).simulate("click");
   component.find("button.chq-tsl--op").at(52).simulate("click");
   component.instance().submit();
@@ -40,7 +40,7 @@ test("allows clicking on select before making a time selection", () => {
 
   const component = mount(<DateTimeField onChange={onChange} />);
 
-  component.find("button.chq-ffd--dt").simulate("click");
+  component.find("button.chq-ffd--ctrl").simulate("click");
   component.find("button.chq-cal--day").at(15).simulate("click");
   component.find("Button").simulate("click");
 
@@ -55,7 +55,7 @@ test("works when clicking on a time before a date", () => {
 
   const component = mount(<DateTimeField onChange={onChange} />);
 
-  component.find("button.chq-ffd--dt").simulate("click");
+  component.find("button.chq-ffd--ctrl").simulate("click");
   component.find("button.chq-tsl--op").at(52).simulate("click");
 
   expect(received.endsWith("T13:00:00.000Z")).toBe(true);

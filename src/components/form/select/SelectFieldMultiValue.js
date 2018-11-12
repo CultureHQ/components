@@ -4,14 +4,14 @@ import classnames from "../../../classnames";
 import Badge from "../../buttons/Badge";
 import SelectFieldCaret from "./SelectFieldCaret";
 
-const SelectFieldMultiValueBadge = React.memo(({ value, onDeselect }) => {
+const SelectFieldMultiValueBadge = ({ value, onDeselect }) => {
   const onClick = event => {
     event.stopPropagation();
     onDeselect(value);
   };
 
   return <><Badge icon="close" onClick={onClick}>{value}</Badge>{" "}</>;
-});
+};
 
 class SelectFieldMultiValue extends Component {
   handleToggleKeyDown = event => {
