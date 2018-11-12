@@ -40,18 +40,20 @@
     display: block;
     font-size: 1em;
     font-weight: $font-weight-light;
-    height: 42px;
     margin-bottom: 5px;
+    min-height: 42px;
     outline: none;
     padding: 6px 12px;
     text-align: left;
     transition: border-bottom .3s;
     width: 100%;
 
+    &-fc,
     &:focus {
       border-bottom: 2px solid $color-primary-green;
     }
 
+    &-fc,
     &:focus,
     &:hover {
       box-shadow: inset 0 1px 1px $color-form-inset;
@@ -59,7 +61,6 @@
   }
 
   textarea {
-    height: auto;
     min-height: 6em;
     resize: vertical;
   }
@@ -71,7 +72,7 @@
     padding: 6px;
     position: absolute;
 
-    & + input {
+    & + .chq-ffd--ctrl {
       padding-left: 25px;
     }
   }

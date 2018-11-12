@@ -5,6 +5,10 @@ import Badge from "../buttons/Badge";
 import PlainButton from "../buttons/PlainButton";
 import DoorEffect from "../DoorEffect";
 
+const appendValue = (value, selected) => (
+  value ? [...value.filter(item => item !== selected), selected] : [selected]
+);
+
 const fuzzyMatch = matchable => {
   const terms = matchable.toLowerCase().split(" ");
 
@@ -34,20 +38,33 @@ const SelectFieldSingleValue = ({ display, inputRef, multiple, name, onChange, o
       onChange={onChange}
       value={display}
     />
-    <div className="chq-ffd--sl--ct" />
+    <div className="chq-ffd--sl--caret" />
   </>
 );
 
-const SelectFieldMultiValue = ({ display, inputRef, multiple, name, onChange, onDeselect, onOpen, value }) => (
-  <div role="button" onClick={onOpen} className="chq-ffd--sl--tog">
+const SelectFieldMultiValueBadge = React.memo(({ value, onDeselect }) => {
+  const onClick = event => {
+    event.stopPropagation();
+    onDeselect(value);
+  };
+
+  return <><Badge icon="close" onClick={onClick}>{value}</Badge>{" "}</>;
+});
+
+const SelectFieldMultiValue = ({ display, inputRef, multiple, name, onChange, onDeselect, onOpen, open, value }) => (
+  <div role="button" onClick={onOpen} className={classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open })}>
     <input type="hidden" id={name} name={name} value={value} />
     {value && value.map(item => (
-      <Badge key={item} icon="close" onClick={() => onDeselect(item)}>
-        {item}
-      </Badge>
+      <SelectFieldMultiValueBadge key={item} value={item} onDeselect={onDeselect} />
     ))}
-    <input type="text" ref={inputRef} onChange={onChange} value={display} />
-    <div className="chq-ffd--sl--ct" />
+    <input
+      type="text"
+      className="chq-ffd--sl--match"
+      ref={inputRef}
+      onChange={onChange}
+      value={display}
+    />
+    <div className="chq-ffd--sl--caret" />
   </div>
 );
 
@@ -129,7 +146,7 @@ class SelectField extends Component {
 
   handleSelect = selected => {
     const { multiple, value } = this.props;
-    const nextValue = multiple ? (value ? [...value, selected] : [selected]) : selected;
+    const nextValue = multiple ? appendValue(value, selected) : selected;
 
     this.selectValue(nextValue);
     this.propagateValue(nextValue);
@@ -157,6 +174,12 @@ class SelectField extends Component {
   };
 
   handleOpen = () => {
+    const { multiple } = this.props;
+
+    if (multiple) {
+      this.inputRef.current.focus();
+    }
+
     this.setState({ open: true });
   };
 
@@ -168,9 +191,9 @@ class SelectField extends Component {
   };
 
   selectValue = value => {
-    const { options } = this.props;
+    const { multiple, options } = this.props;
 
-    this.setState({ display: value, open: false }, () => {
+    this.setState({ display: multiple ? "" : value, open: false }, () => {
       setTimeout(() => this.setState({ displayedOptions: options }), 150);
     });
   };
@@ -191,6 +214,7 @@ class SelectField extends Component {
             onChange={this.handleChange}
             onDeselect={this.handleDeselect}
             onOpen={this.handleOpen}
+            open={open}
             value={value}
           />
           <SelectFieldOptions

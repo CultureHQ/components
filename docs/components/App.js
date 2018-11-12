@@ -67,9 +67,9 @@ const App = () => (
         <Prop name="primary = false">indicates a primary badge</Prop>
       </PropList>
 
-      <Badge>Default</Badge>
-      <Badge primary onClick={onClick}>Primary</Badge>
-      <Badge icon="clipboard">Icon</Badge>
+      <Badge>Default</Badge>{" "}
+      <Badge primary onClick={onClick}>Primary</Badge>{" "}
+      <Badge icon="clipboard">Icon</Badge>{" "}
       <Badge icon="clipboard" primary>Icon Primary</Badge>
 
       <Heading>BooleanField</Heading>
