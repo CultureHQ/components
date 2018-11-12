@@ -110,3 +110,9 @@ test("displays an accurate summary", () => {
   component.selectFiles([]);
   expect(component.getFileSummary()).toEqual("");
 });
+
+test("accepts autoFocus", () => {
+  const component = mount(<FileField name="file" autoFocus />);
+
+  expect(document.activeElement.id).toEqual("file");
+});
