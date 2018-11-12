@@ -55,6 +55,7 @@
     transform: scale3d(1, 0, 1);
     transform-origin: top center;
     width: 100%;
+    z-index: 1;
 
     &-open,
     &-closed {
