@@ -49,6 +49,7 @@ const buildFormField = type => {
           <>
             {addon && <span className="chq-ffd--ad">{addon}</span>}
             <input
+              className="chq-ffd--ctrl"
               ref={this.inputRef}
               {...props}
               type={type}

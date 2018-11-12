@@ -87,7 +87,7 @@ class DateTimeField extends Component {
           <span className="chq-ffd--lb">{children}</span>
           <PlainButton
             aria-label="Open dialog"
-            className="chq-ffd--dt"
+            className="chq-ffd--ctrl"
             onClick={this.handleOpen}
           >
             <DateTimeFieldDisplay value={normalValue} />
@@ -101,7 +101,7 @@ class DateTimeField extends Component {
         </label>
         {open && (
           <ModalDialog
-            className="chq-ffd--dt--md"
+            className="chq-ffd--dtmd"
             entrance="zoomIn"
             onClose={this.handleClose}
           >
