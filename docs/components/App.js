@@ -6,6 +6,7 @@ import CheckmarkContainer from "./CheckmarkContainer";
 import CheerButtonContainer from "./CheerButtonContainer";
 import CheerListContainer from "./CheerListContainer";
 import ClickCloseContainer from "./ClickCloseContainer";
+import DoorEffectContainer from "./DoorEffectContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
 import ImageEditorContainer from "./ImageEditorContainer";
@@ -15,8 +16,8 @@ import PaginationContainer from "./PaginationContainer";
 import {
   ActionButton, Badge, BooleanField, Button, CentsField, Checklist, Cheer,
   Circles, Confirm, ConfirmDelete, DateTimeField, EmailField, FeedItem,
-  FileField, Form, ImageField, ImagePreview, Info, Modal, MultiImageField,
-  Nav, NumberField, Panel, PasswordField, PlainButton, SelectField, Spinner,
+  FileField, Form, ImageField, ImagePreview, Info, Modal, MultiImageField, Nav,
+  NumberField, Panel, PasswordField, PlainButton, SelectField, Spinner,
   StringField, SubmitButton, Subnav, Success, Table, Tag, TextField, Thumbnail,
   Tooltip, Warning
 } from "../../src";
@@ -303,6 +304,23 @@ const App = () => (
           </Form>
         </Panel.Body>
       </Panel>
+
+      <Heading>DoorEffect</Heading>
+      <p>
+        A component that wraps something that can be open and closed. When
+        triggered to open with the <code>open</code> prop, it will add
+        <code>{"{className}-open"}</code> to the wrapping component, and when
+        closed it will add <code>{"{className}-closed"}</code> to the wrapping
+        component. This allows for the common pattern of a CSS animation, and
+        then reversing the direction on close.
+      </p>
+      <PropList>
+        <ClassNameProp />
+        <Prop name="duration = 150">how long the animation lasts (in ms)</Prop>
+        <Prop name="open = false">whether or not the component is currently open</Prop>
+      </PropList>
+
+      <DoorEffectContainer />
 
       <Heading>EmailField</Heading>
       <p>A string form field that accepts an email.</p>
