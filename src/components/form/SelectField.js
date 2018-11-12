@@ -1,20 +1,51 @@
 import React, { Component } from "react";
 
 import classnames from "../../classnames";
+import PlainButton from "../buttons/PlainButton";
+import DoorEffect from "../DoorEffect";
+
+const SelectFieldOption = React.memo(({ active, option: { label, value }, onClick }) => {
+  const className = active ? "chq-ffd--sl--opt-act" : null;
+
+  return (
+    <PlainButton className={className} onClick={() => onClick(value)}>
+      {label}
+    </PlainButton>
+  );
+});
 
 class SelectField extends Component {
+  buttonRef = React.createRef();
+
   selectRef = React.createRef();
+
+  state = { open: false };
 
   componentDidMount() {
     const { autoFocus } = this.props;
 
     if (autoFocus) {
-      this.selectRef.current.focus();
+      this.buttonRef.current.focus();
     }
+
+    window.addEventListener("click", this.handleWindowClick);
   }
 
-  handleChange = ({ target: { value } }) => {
+  componentWillUnmount() {
+    window.removeEventListener("click", this.handleWindowClick);
+  }
+
+  handleWindowClick = event => {
+    const { open } = this.state;
+
+    if (open && !this.selectRef.current.contains(event.target)) {
+      this.setState({ open: false });
+    }
+  };
+
+  handleClick = value => {
     const { name, onChange, onFormChange } = this.props;
+    this.setState({ open: false });
 
     if (onChange) {
       onChange(value);
@@ -25,31 +56,42 @@ class SelectField extends Component {
     }
   };
 
-  /* eslint-disable jsx-a11y/label-has-for */
-  // but why?, this looks like it should actually be working
+  handleToggle = () => {
+    this.setState(({ open }) => ({ open: !open }));
+  };
+
   render() {
     const {
       autoFocus, children, className, onChange, onFormChange, onError, name,
       options = [], required, submitted, value, ...props
     } = this.props;
 
+    const { open } = this.state;
+
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
-        <div className="chq-ffd--sl">
-          <select
-            ref={this.selectRef}
-            {...props}
-            id={name}
-            name={name}
-            onChange={this.handleChange}
-            value={value}
+        <div ref={this.selectRef} className="chq-ffd--sl">
+          <input type="hidden" id={name} name={name} value={value} />
+          <button
+            type="button"
+            ref={this.buttonRef}
+            className="chq-ffd--sl--tog"
+            onClick={this.handleToggle}
           >
-            {options.map(({ label, value: optionValue }) => (
-              <option key={optionValue} value={optionValue}>{label}</option>
+            {value}
+            <div className="chq-ffd--sl--ct" />
+          </button>
+          <DoorEffect className="chq-ffd--sl--opts" open={open}>
+            {options.map(option => (
+              <SelectFieldOption
+                key={option.value}
+                option={option}
+                onClick={this.handleClick}
+                active={option.value === value}
+              />
             ))}
-          </select>
-          <div className="chq-ffd--sl--ct" />
+          </DoorEffect>
         </div>
       </label>
     );
