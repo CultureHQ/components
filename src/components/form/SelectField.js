@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 import classnames from "../../classnames";
-import Badge from "../buttons/Badge";
-import PlainButton from "../buttons/PlainButton";
-import DoorEffect from "../DoorEffect";
-
 import SelectFieldValue from "./select/SelectFieldValue";
 import SelectFieldOptions from "./select/SelectFieldOptions";
 
@@ -60,7 +56,7 @@ class SelectField extends Component {
   }
 
   handleWindowClick = event => {
-    const { options, value } = this.props;
+    const { value } = this.props;
     const { open } = this.state;
 
     if (open && !this.selectRef.current.contains(event.target)) {
@@ -121,13 +117,15 @@ class SelectField extends Component {
 
   selectValue = (value, shouldClose) => {
     const { multiple, options } = this.props;
-    const effects = shouldClose ? { open: false } : {}
+    const effects = shouldClose ? { open: false } : {};
 
     this.setState({ display: multiple ? "" : value, ...effects, filteredOptions: options });
   };
 
+  /* eslint-disable jsx-a11y/label-has-for */
+  // we're following the rules for it but it can't figure that out
   render() {
-    const { children, className, creatable, multiple, name, options, value } = this.props;
+    const { children, className, creatable, multiple, name, value } = this.props;
     const { display, filteredOptions, open } = this.state;
 
     return (
