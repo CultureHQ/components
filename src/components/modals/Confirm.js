@@ -5,6 +5,10 @@ import Button from "../buttons/Button";
 import ModalDialog from "./ModalDialog";
 
 class Confirm extends Component {
+  static defaultProps = {
+    onOpen: () => {}
+  };
+
   constructor(props) {
     super(props);
 
@@ -14,10 +18,7 @@ class Confirm extends Component {
   handleOpen = () => {
     const { onOpen } = this.props;
 
-    if (onOpen) {
-      onOpen();
-    }
-
+    onOpen();
     this.setState({ open: true });
   };
 

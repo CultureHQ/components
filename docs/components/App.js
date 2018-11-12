@@ -604,6 +604,7 @@ const App = () => (
           <code>Panel.LoaderBody</code>, or <code>Panel.Footer</code>
         </Prop>
         <ClassNameProp />
+        <Prop name="limitWidth = false">whether or not to apply a maximum width and center the panel</Prop>
       </PropList>
 
       <Subcomponent>Panel.Heading</Subcomponent>
@@ -641,6 +642,10 @@ const App = () => (
       <Panel>
         <Panel.Heading primary>Primary Heading</Panel.Heading>
         <Panel.Body>Body</Panel.Body>
+      </Panel>
+
+      <Panel limitWidth>
+        <Panel.Body>A limited width panel.</Panel.Body>
       </Panel>
 
       <Heading>PasswordField</Heading>
