@@ -9,8 +9,13 @@
     position: absolute;
     right: 12px;
     top: 50%;
+    transition: transform 200ms;
     vertical-align: middle;
     width: 0;
+
+    &-flip {
+      transform: rotate(180deg);
+    }
   }
 
   .chq-bdg {

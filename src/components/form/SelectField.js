@@ -17,6 +17,10 @@ const fuzzyMatch = matchable => {
   ));
 };
 
+const SelectFieldCaret = React.memo(({ open }) => (
+  <div className={classnames("chq-ffd--sl--caret", { "chq-ffd--sl--caret-flip": open })} />
+));
+
 const SelectFieldOption = React.memo(({ active, option: { label, value }, onClick }) => {
   const className = active ? "chq-ffd--sl--opt-act" : null;
 
@@ -27,7 +31,7 @@ const SelectFieldOption = React.memo(({ active, option: { label, value }, onClic
   );
 });
 
-const SelectFieldSingleValue = ({ display, inputRef, multiple, name, onChange, onDeselect, onOpen, value }) => (
+const SelectFieldSingleValue = ({ display, inputRef, multiple, name, onChange, onDeselect, onOpen, open, value }) => (
   <>
     <input type="hidden" id={name} name={name} value={value} />
     <input
@@ -38,7 +42,7 @@ const SelectFieldSingleValue = ({ display, inputRef, multiple, name, onChange, o
       onChange={onChange}
       value={display}
     />
-    <div className="chq-ffd--sl--caret" />
+    <SelectFieldCaret open={open} />
   </>
 );
 
@@ -77,7 +81,7 @@ class SelectFieldMultiValue extends Component {
           onKeyDown={this.handleKeyDown}
           value={display}
         />
-        <div className="chq-ffd--sl--caret" />
+        <SelectFieldCaret open={open} />
       </div>
     );
   }
