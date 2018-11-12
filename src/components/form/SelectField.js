@@ -23,6 +23,13 @@ const SelectFieldOption = React.memo(({ active, option: { label, value }, onClic
 });
 
 class SelectField extends Component {
+  static defaultProps = {
+    autoFocus: false,
+    creatable: false,
+    onChange: () => {},
+    onFormChange: () => {}
+  };
+
   inputRef = React.createRef();
 
   selectRef = React.createRef();
@@ -64,13 +71,8 @@ class SelectField extends Component {
 
     this.setState({ display: value, displayedOptions: options, open: false });
 
-    if (onChange) {
-      onChange(value);
-    }
-
-    if (onFormChange) {
-      onFormChange(name, value);
-    }
+    onChange(value);
+    onFormChange(name, value);
   };
 
   handleChange = event => {
@@ -92,8 +94,8 @@ class SelectField extends Component {
 
   render() {
     const {
-      autoFocus, children, className, onChange, onFormChange, onError, name,
-      options = [], required, submitted, value, ...props
+      autoFocus, children, className, onChange, onFormChange,
+      onError, name, options = [], required, submitted, value, ...props
     } = this.props;
 
     const { display, displayedOptions, open } = this.state;
@@ -121,7 +123,7 @@ class SelectField extends Component {
                 active={option.value === value}
               />
             ))}
-            {displayedOptions.length === 0 && display !== value && (
+            {(displayedOptions.length === 0) && (display !== value) && (
               <p>No results found.</p>
             )}
           </DoorEffect>
