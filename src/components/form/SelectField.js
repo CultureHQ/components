@@ -4,6 +4,14 @@ import classnames from "../../classnames";
 import PlainButton from "../buttons/PlainButton";
 import DoorEffect from "../DoorEffect";
 
+const fuzzyMatch = matchable => {
+  const terms = matchable.toLowerCase().split(" ");
+
+  return value => value.toLowerCase().split(" ").some(segment => (
+    terms.some(term => segment.startsWith(term))
+  ));
+};
+
 const SelectFieldOption = React.memo(({ active, option: { label, value }, onClick }) => {
   const className = active ? "chq-ffd--sl--opt-act" : null;
 
@@ -15,11 +23,19 @@ const SelectFieldOption = React.memo(({ active, option: { label, value }, onClic
 });
 
 class SelectField extends Component {
-  buttonRef = React.createRef();
+  inputRef = React.createRef();
 
   selectRef = React.createRef();
 
-  state = { open: false };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      display: props.value,
+      displayedOptions: props.options,
+      open: false
+    };
+  }
 
   componentDidMount() {
     const { autoFocus } = this.props;
@@ -44,8 +60,9 @@ class SelectField extends Component {
   };
 
   handleClick = value => {
-    const { name, onChange, onFormChange } = this.props;
-    this.setState({ open: false });
+    const { name, options, onChange, onFormChange } = this.props;
+
+    this.setState({ display: value, displayedOptions: options, open: false });
 
     if (onChange) {
       onChange(value);
@@ -54,6 +71,19 @@ class SelectField extends Component {
     if (onFormChange) {
       onFormChange(name, value);
     }
+  };
+
+  handleChange = event => {
+    const { options, value } = this.props;
+    const { display } = this.state;
+
+    const nextDisplay = value === display ? (event.nativeEvent.data || "") : event.target.value;
+    const match = fuzzyMatch(nextDisplay);
+
+    this.setState({
+      display: nextDisplay,
+      displayedOptions: options.filter(({ label }) => match(label))
+    });
   };
 
   handleToggle = () => {
@@ -66,24 +96,24 @@ class SelectField extends Component {
       options = [], required, submitted, value, ...props
     } = this.props;
 
-    const { open } = this.state;
+    const { display, displayedOptions, open } = this.state;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
         <div ref={this.selectRef} className="chq-ffd--sl">
           <input type="hidden" id={name} name={name} value={value} />
-          <button
-            type="button"
-            ref={this.buttonRef}
+          <input
+            type="text"
+            ref={this.inputRef}
             className="chq-ffd--sl--tog"
             onClick={this.handleToggle}
-          >
-            {value}
-            <div className="chq-ffd--sl--ct" />
-          </button>
+            onChange={this.handleChange}
+            value={display}
+          />
+          <div className="chq-ffd--sl--ct" />
           <DoorEffect className="chq-ffd--sl--opts" open={open}>
-            {options.map(option => (
+            {displayedOptions.map(option => (
               <SelectFieldOption
                 key={option.value}
                 option={option}
@@ -91,6 +121,9 @@ class SelectField extends Component {
                 active={option.value === value}
               />
             ))}
+            {displayedOptions.length === 0 && display !== value && (
+              <p>No results found.</p>
+            )}
           </DoorEffect>
         </div>
       </label>
