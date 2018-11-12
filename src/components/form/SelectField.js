@@ -47,12 +47,10 @@ class SelectField extends Component {
     }
 
     window.addEventListener("click", this.handleWindowClick);
-    window.addEventListener("keydown", this.handleWindowKeyDown);
   }
 
   componentWillUnmount() {
     window.removeEventListener("click", this.handleWindowClick);
-    window.removeEventListener("keydown", this.handleWindowKeyDown);
   }
 
   handleWindowClick = event => {
@@ -64,18 +62,11 @@ class SelectField extends Component {
     }
   };
 
-  handleWindowKeyDown = event => {
-    const { open } = this.state;
-
-    if (open && (event.key === "Escape") && this.selectRef.current.contains(event.target)) {
-      this.setState({ open: false });
-    }
-  };
-
   handleSelect = selected => {
     const { multiple, value } = this.props;
     const nextValue = multiple ? appendValue(value, selected) : selected;
 
+    this.inputRef.current.focus();
     this.selectValue(nextValue, !multiple);
     this.propagateValue(nextValue);
   };
@@ -84,6 +75,7 @@ class SelectField extends Component {
     const { multiple, value } = this.props;
     const nextValue = multiple ? value.filter(item => item !== deselected) : "";
 
+    this.inputRef.current.focus();
     this.selectValue(nextValue, !multiple);
     this.propagateValue(nextValue);
   };
@@ -92,9 +84,12 @@ class SelectField extends Component {
     const { multiple, options, value } = this.props;
     const { display } = this.state;
 
+    const nextDisplay = ((!multiple && value === display) ? event.nativeEvent.data : event.target.value) || "";
+
     this.setState({
-      display: ((!multiple && value === display) ? event.nativeEvent.data : event.target.value) || "",
-      filteredOptions: options.filter(fuzzyFilter(display))
+      display: nextDisplay,
+      filteredOptions: nextDisplay ? options.filter(fuzzyFilter(nextDisplay)) : options,
+      open: true
     });
   };
 
@@ -108,6 +103,10 @@ class SelectField extends Component {
     this.setState({ open: true });
   };
 
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   propagateValue = value => {
     const { name, onChange, onFormChange } = this.props;
 
@@ -119,7 +118,9 @@ class SelectField extends Component {
     const { multiple, options } = this.props;
     const effects = shouldClose ? { open: false } : {};
 
-    this.setState({ display: multiple ? "" : value, ...effects, filteredOptions: options });
+    this.setState({ display: multiple ? "" : value, ...effects }, () => (
+      setTimeout(() => this.setState({ filteredOptions: options }), 150)
+    ));
   };
 
   /* eslint-disable jsx-a11y/label-has-for */
@@ -138,6 +139,7 @@ class SelectField extends Component {
             multiple={multiple}
             name={name}
             onChange={this.handleChange}
+            onClose={this.handleClose}
             onDeselect={this.handleDeselect}
             onOpen={this.handleOpen}
             open={open}
