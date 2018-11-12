@@ -433,6 +433,7 @@ const App = () => (
       <Heading>ImageField</Heading>
       <p>An image form component.</p>
       <PropList>
+        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="name">the name of the field</Prop>
@@ -555,6 +556,7 @@ const App = () => (
       <Heading>MultiImageField</Heading>
       <p>An image field component for selecting multiple images.</p>
       <PropList>
+        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="name">the name of the field</Prop>

@@ -131,3 +131,9 @@ test("handles clicking the file field", () => {
 
   expect(component.find("input").instance().value).toBe("");
 });
+
+test("accepts autoFocus", () => {
+  const component = mount(<MultiImageField name="images" autoFocus />);
+
+  expect(document.activeElement.id).toEqual("images");
+});
