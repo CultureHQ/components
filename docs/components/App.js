@@ -708,6 +708,7 @@ const App = () => (
         <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
+        <Prop name="creatable = false">whether or not new options could be created</Prop>
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
@@ -717,8 +718,18 @@ const App = () => (
 
       <Panel>
         <Panel.Body>
-          <Form initialValues={{ select: "The Prisoner of Azkaban" }}>
+          <Form initialValues={{ select: OPTIONS[0].value }}>
             <SelectField name="select" options={OPTIONS} required>Select</SelectField>
+          </Form>
+        </Panel.Body>
+      </Panel>
+
+      <Panel>
+        <Panel.Body>
+          <Form initialValues={{ select: OPTIONS[1].value }}>
+            <SelectField name="select" options={OPTIONS} creatable required>
+              Select (Creatable)
+            </SelectField>
           </Form>
         </Panel.Body>
       </Panel>

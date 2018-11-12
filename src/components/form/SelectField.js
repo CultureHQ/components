@@ -25,6 +25,7 @@ const SelectFieldOption = React.memo(({ active, option: { label, value }, onClic
 class SelectField extends Component {
   static defaultProps = {
     autoFocus: false,
+    creatable: false,
     onChange: () => {},
     onFormChange: () => {}
   };
@@ -62,16 +63,14 @@ class SelectField extends Component {
     const { open } = this.state;
 
     if (open && !this.selectRef.current.contains(event.target)) {
-      this.setState({ display: value, open: false }, () => {
-        setTimeout(() => this.setState({ displayedOptions: options }), 150);
-      });
+      this.selectValue(value);
     }
   };
 
   handleClick = value => {
     const { name, options, onChange, onFormChange } = this.props;
 
-    this.setState({ display: value, displayedOptions: options, open: false });
+    this.selectValue(value);
 
     onChange(value);
     onFormChange(name, value);
@@ -94,8 +93,16 @@ class SelectField extends Component {
     this.setState(({ open }) => ({ open: !open }));
   };
 
+  selectValue = value => {
+    const { options } = this.props;
+
+    this.setState({ display: value, open: false }, () => {
+      setTimeout(() => this.setState({ displayedOptions: options }), 150);
+    });
+  };
+
   render() {
-    const { children, className, name, value } = this.props;
+    const { children, className, creatable, name, value } = this.props;
     const { display, displayedOptions, open } = this.state;
 
     return (
@@ -113,6 +120,12 @@ class SelectField extends Component {
           />
           <div className="chq-ffd--sl--ct" />
           <DoorEffect className="chq-ffd--sl--opts" open={open}>
+            {(display.length > 0) && (display !== value) && creatable && (
+              <SelectFieldOption
+                option={{ label: `Create option: ${display}`, value: display }}
+                onClick={this.handleClick}
+              />
+            )}
             {displayedOptions.map(option => (
               <SelectFieldOption
                 key={option.value}
@@ -121,7 +134,7 @@ class SelectField extends Component {
                 active={option.value === value}
               />
             ))}
-            {(displayedOptions.length === 0) && (display !== value) && (
+            {(displayedOptions.length === 0) && (display !== value) && !creatable && (
               <p>No results found.</p>
             )}
           </DoorEffect>
