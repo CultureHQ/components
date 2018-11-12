@@ -23,3 +23,5 @@ ModalDialog.setAppElement(document.body);
 
 URL.createObjectURL = object => `blob:${object}`;
 URL.revokeObjectURL = () => {};
+
+window.requestAnimationFrame = callback => callback();
