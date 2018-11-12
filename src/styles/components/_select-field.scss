@@ -75,7 +75,7 @@
       width: 100%;
 
       &:hover {
-        background-color: $color-border;
+        background-color: $color-background;
       }
 
       &.chq-ffd--sl--opt-act {
@@ -85,6 +85,11 @@
           position: absolute;
         }
       }
+    }
+
+    p {
+      margin: 0;
+      padding: 3px 30px;
     }
   }
 }
