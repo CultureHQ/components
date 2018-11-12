@@ -4,12 +4,12 @@ import classnames from "../../../classnames";
 import PlainButton from "../../buttons/PlainButton";
 import DoorEffect from "../../DoorEffect";
 
-const SelectFieldOption = React.memo(({ active, option, onDeselect, onSelect }) => {
+const SelectFieldOption = React.memo(({ active, option, onDeselect, onSelect, tabIndex }) => {
   const { label, value } = option;
   const onClick = () => (active ? onDeselect : onSelect)(value);
 
   return (
-    <PlainButton className={classnames({ "chq-ffd--sl--opt-act": active })} onClick={onClick}>
+    <PlainButton className={classnames({ "chq-ffd--sl--opt-act": active })} onClick={onClick} tabIndex={tabIndex}>
       {label}
     </PlainButton>
   );
@@ -36,6 +36,7 @@ const SelectFieldOptions = ({
           onDeselect={onDeselect}
           onSelect={onSelect}
           active={multiple ? value.includes(option.value) : option.value === value}
+          tabIndex={open ? 0 : -1}
         />
       ))}
       {!creatable && (filteredOptions.length === 0) && createOption && (
