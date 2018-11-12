@@ -102,3 +102,9 @@ test("displays a progress bar if progress is reported", () => {
 
   expect(component.find(".chq-ffd--im--prog")).toHaveLength(1);
 });
+
+test("accepts autoFocus", () => {
+  const component = mount(<ImageField name="image" autoFocus />);
+
+  expect(document.activeElement.id).toEqual("image");
+});
