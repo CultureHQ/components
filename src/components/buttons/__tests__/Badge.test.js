@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 
 import Badge from "../Badge";
 
@@ -32,4 +32,10 @@ test("passes on onClick", () => {
 
   component.simulate("click");
   expect(clicked).toBe(true);
+});
+
+test("displays an icon if one is provided", () => {
+  const component = mount(<Badge icon="clipboard" />);
+
+  expect(component.find("svg")).toHaveLength(1);
 });
