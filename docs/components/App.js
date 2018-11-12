@@ -67,8 +67,10 @@ const App = () => (
         <Prop name="primary = false">indicates a primary badge</Prop>
       </PropList>
 
-      <Badge className="badge">Default</Badge>
-      <Badge className="badge" primary onClick={onClick}>Primary</Badge>
+      <Badge>Default</Badge>
+      <Badge primary onClick={onClick}>Primary</Badge>
+      <Badge icon="clipboard">Icon</Badge>
+      <Badge icon="clipboard" primary>Icon Primary</Badge>
 
       <Heading>BooleanField</Heading>
       <p>A form field that represents a boolean value.</p>
@@ -718,17 +720,17 @@ const App = () => (
 
       <Panel>
         <Panel.Body>
-          <Form initialValues={{ select: OPTIONS[0].value }}>
+          <Form initialValues={{
+            select: OPTIONS[0].value,
+            "select-creatable": OPTIONS[1].value,
+            "select-multiple": [OPTIONS[0].value, OPTIONS[1].value]
+          }}>
             <SelectField name="select" options={OPTIONS} required>Select</SelectField>
-          </Form>
-        </Panel.Body>
-      </Panel>
-
-      <Panel>
-        <Panel.Body>
-          <Form initialValues={{ select: OPTIONS[1].value }}>
-            <SelectField name="select" options={OPTIONS} creatable required>
+            <SelectField name="select-creatable" options={OPTIONS} creatable required>
               Select (Creatable)
+            </SelectField>
+            <SelectField name="select-multiple" options={OPTIONS} multiple required>
+              Select (Multiple)
             </SelectField>
           </Form>
         </Panel.Body>
