@@ -22,6 +22,7 @@
     transition: fill .3s;
   }
 
+  &:focus,
   &:hover {
     border-color: darken($color-border, 10%);
 
@@ -38,6 +39,7 @@
       fill: $color-primary-blue;
     }
 
+    &:focus,
     &:hover {
       border-color: $color-link-blue;
 
