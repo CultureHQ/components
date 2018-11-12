@@ -5,6 +5,9 @@ import Badge from "../buttons/Badge";
 import PlainButton from "../buttons/PlainButton";
 import DoorEffect from "../DoorEffect";
 
+import SelectFieldValue from "./select/SelectFieldValue";
+import SelectFieldOptions from "./select/SelectFieldOptions";
+
 const appendValue = (value, selected) => (
   value ? [...value.filter(item => item !== selected), selected] : [selected]
 );
@@ -15,109 +18,6 @@ const fuzzyFilter = matchable => {
   return ({ label }) => label.toLowerCase().split(" ").filter(Boolean).some(segment => (
     terms.some(term => segment.startsWith(term))
   ));
-};
-
-const SelectFieldCaret = React.memo(({ open }) => (
-  <div className={classnames("chq-ffd--sl--caret", { "chq-ffd--sl--caret-flip": open })} />
-));
-
-const SelectFieldOption = React.memo(({ active, option: { label, value }, onDeselect, onSelect }) => {
-  const onClick = () => (active ? onDeselect : onSelect)(value);
-  const className = active ? "chq-ffd--sl--opt-act" : null;
-
-  return (
-    <PlainButton className={className} onClick={onClick}>
-      {label}
-    </PlainButton>
-  );
-});
-
-const SelectFieldSingleValue = ({ display, inputRef, multiple, name, onChange, onDeselect, onOpen, open, value }) => (
-  <>
-    <input type="hidden" id={name} name={name} value={value} />
-    <input
-      type="text"
-      ref={inputRef}
-      className="chq-ffd--ctrl"
-      onClick={onOpen}
-      onChange={onChange}
-      value={display}
-    />
-    <SelectFieldCaret open={open} />
-  </>
-);
-
-const SelectFieldMultiValueBadge = React.memo(({ value, onDeselect }) => {
-  const onClick = event => {
-    event.stopPropagation();
-    onDeselect(value);
-  };
-
-  return <><Badge icon="close" onClick={onClick}>{value}</Badge>{" "}</>;
-});
-
-class SelectFieldMultiValue extends Component {
-  handleKeyDown = event => {
-    const { display, onDeselect, value } = this.props;
-
-    if (!display && event.key === "Backspace" && value) {
-      onDeselect(value[value.length - 1]);
-    }
-  };
-
-  render() {
-    const { display, inputRef, multiple, name, onChange, onDeselect, onOpen, open, value } = this.props;
-
-    return (
-      <div role="button" onClick={onOpen} className={classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open })}>
-        <input type="hidden" id={name} name={name} value={value} />
-        {value && value.map(item => (
-          <SelectFieldMultiValueBadge key={item} value={item} onDeselect={onDeselect} />
-        ))}
-        <input
-          type="text"
-          className="chq-ffd--sl--match"
-          ref={inputRef}
-          onChange={onChange}
-          onKeyDown={this.handleKeyDown}
-          value={display}
-        />
-        <SelectFieldCaret open={open} />
-      </div>
-    );
-  }
-};
-
-const SelectFieldValue = ({ multiple, ...props }) => (
-  multiple ? <SelectFieldMultiValue {...props} /> : <SelectFieldSingleValue {...props} />
-);
-
-const SelectFieldOptions = ({ creatable, display, filteredOptions, multiple, onDeselect, onSelect, open, value }) => {
-  const createOption = multiple ? !value.includes(display) : (display !== value);
-
-  return (
-    <DoorEffect className="chq-ffd--sl--opts" open={open}>
-      {creatable && (display.length > 0) && createOption && (
-        <SelectFieldOption
-          key={display}
-          option={{ label: `Create option: ${display}`, value: display }}
-          onSelect={onSelect}
-        />
-      )}
-      {filteredOptions.map(option => (
-        <SelectFieldOption
-          key={option.value}
-          option={option}
-          onDeselect={onDeselect}
-          onSelect={onSelect}
-          active={multiple ? value.includes(option.value) : option.value === value}
-        />
-      ))}
-      {!creatable && (filteredOptions.length === 0) && createOption && (
-        <p>No results found.</p>
-      )}
-    </DoorEffect>
-  );
 };
 
 class SelectField extends Component {
