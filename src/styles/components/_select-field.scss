@@ -62,6 +62,7 @@
       text-align: left;
       width: 100%;
 
+      &:focus,
       &:hover {
         background-color: $color-background;
       }
