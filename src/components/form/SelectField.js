@@ -55,27 +55,31 @@ const SelectFieldValue = ({ multiple, ...props }) => (
   multiple ? <SelectFieldMultiValue {...props} /> : <SelectFieldSingleValue {...props} />
 );
 
-const SelectFieldOptions = ({ creatable, display, displayedOptions, multiple, onSelect, open, value }) => (
-  <DoorEffect className="chq-ffd--sl--opts" open={open}>
-    {creatable && (display.length > 0) && (!multiple || (display !== value)) && (
-      <SelectFieldOption
-        option={{ label: `Create option: ${display}`, value: display }}
-        onClick={onSelect}
-      />
-    )}
-    {displayedOptions.map(option => (
-      <SelectFieldOption
-        key={option.value}
-        option={option}
-        onClick={onSelect}
-        active={multiple ? value.includes(option.value) : option.value === value}
-      />
-    ))}
-    {!creatable && (displayedOptions.length === 0) && (!multiple || (display !== value)) && (
-      <p>No results found.</p>
-    )}
-  </DoorEffect>
-);
+const SelectFieldOptions = ({ creatable, display, displayedOptions, multiple, onSelect, open, value }) => {
+  const createOption = multiple ? !value.includes(display) : (display !== value);
+
+  return (
+    <DoorEffect className="chq-ffd--sl--opts" open={open}>
+      {creatable && (display.length > 0) && createOption && (
+        <SelectFieldOption
+          option={{ label: `Create option: ${display}`, value: display }}
+          onClick={onSelect}
+        />
+      )}
+      {displayedOptions.map(option => (
+        <SelectFieldOption
+          key={option.value}
+          option={option}
+          onClick={onSelect}
+          active={multiple ? value.includes(option.value) : option.value === value}
+        />
+      ))}
+      {!creatable && (displayedOptions.length === 0) && createOption && (
+        <p>No results found.</p>
+      )}
+    </DoorEffect>
+  );
+};
 
 class SelectField extends Component {
   static defaultProps = {
