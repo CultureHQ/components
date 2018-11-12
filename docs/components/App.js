@@ -712,10 +712,11 @@ const App = () => (
         <ClassNameProp />
         <Prop name="creatable = false">whether or not new options could be created</Prop>
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
+        <Prop name="multiple = false">whether or not to accept multiple values</Prop>
         <Prop name="name">the name of the field</Prop>
         <Prop name="required?">indicates this field is required for submission</Prop>
         <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
-        <Prop name="value?">the value of the select field</Prop>
+        <Prop name="value?">the value of the select field - should be a nullable array if multiple is set</Prop>
       </PropList>
 
       <Panel>
