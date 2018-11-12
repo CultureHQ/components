@@ -5,6 +5,11 @@
   box-sizing: border-box;
   margin-bottom: 20px;
 
+  &-lim {
+    margin: 0 auto;
+    max-width: 1120px;
+  }
+
   &--hd {
     padding: 15px 15px 0;
 

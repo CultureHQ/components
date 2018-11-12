@@ -3,8 +3,10 @@ import React from "react";
 import classnames from "../classnames";
 import Loader from "./Loader";
 
-const Panel = ({ className, children }) => (
-  <div className={classnames("chq-pan", className)}>{children}</div>
+const Panel = ({ className, children, limitWidth }) => (
+  <div className={classnames("chq-pan", className, { "chq-pan-lim": limitWidth })}>
+    {children}
+  </div>
 );
 
 const PanelHeading = ({ className, children, primary }) => (
