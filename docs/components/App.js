@@ -372,6 +372,7 @@ const App = () => (
       <Heading>FileField</Heading>
       <p>A file form field.</p>
       <PropList>
+        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
         <Prop name="onChange?">a function that accepts one argument that represents the new value of the file field</Prop>
