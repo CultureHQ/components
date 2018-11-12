@@ -4,6 +4,11 @@ import Checkmark from "../Checkmark";
 import classnames from "../../classnames";
 
 class BooleanField extends Component {
+  static defaultProps = {
+    onChange: () => {},
+    onFormChange: () => {}
+  };
+
   componentDidMount() {
     const { value } = this.props;
 
@@ -15,13 +20,8 @@ class BooleanField extends Component {
   handleClick = checked => {
     const { name, onChange, onFormChange } = this.props;
 
-    if (onChange) {
-      onChange(checked);
-    }
-
-    if (onFormChange) {
-      onFormChange(name, checked);
-    }
+    onChange(checked);
+    onFormChange(name, checked);
   };
 
   render() {

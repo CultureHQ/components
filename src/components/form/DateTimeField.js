@@ -19,6 +19,11 @@ const normalizeTime = value => {
 };
 
 class DateTimeField extends Component {
+  static defaultProps = {
+    onChange: () => {},
+    onFormChange: () => {}
+  };
+
   state = { open: false, touched: false };
 
   getNormalValue = () => {
@@ -63,13 +68,8 @@ class DateTimeField extends Component {
       0
     ).toISOString();
 
-    if (onChange) {
-      onChange(value);
-    }
-
-    if (onFormChange) {
-      onFormChange(name, value);
-    }
+    onChange(value);
+    onFormChange(name, value);
   };
 
   render() {

@@ -25,7 +25,6 @@ const SelectFieldOption = React.memo(({ active, option: { label, value }, onClic
 class SelectField extends Component {
   static defaultProps = {
     autoFocus: false,
-    creatable: false,
     onChange: () => {},
     onFormChange: () => {}
   };
@@ -93,11 +92,7 @@ class SelectField extends Component {
   };
 
   render() {
-    const {
-      autoFocus, children, className, onChange, onFormChange,
-      onError, name, options = [], required, submitted, value, ...props
-    } = this.props;
-
+    const { children, className, name, value } = this.props;
     const { display, displayedOptions, open } = this.state;
 
     return (

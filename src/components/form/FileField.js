@@ -4,7 +4,24 @@ import classnames from "../../classnames";
 import FormError from "./FormError";
 
 class FileField extends Component {
+  static defaultProps = {
+    autoFocus: false,
+    multiple: false,
+    onChange: () => {},
+    onFormChange: () => {}
+  };
+
+  inputRef = React.createRef();
+
   state = { touched: false };
+
+  componentDidMount() {
+    const { autoFocus } = this.props;
+
+    if (autoFocus) {
+      this.inputRef.current.focus();
+    }
+  }
 
   getFileDisplay() {
     const { multiple, value } = this.props;
@@ -30,20 +47,15 @@ class FileField extends Component {
       value = multiple ? files : files[0];
     }
 
-    if (onChange) {
-      onChange(value);
-    }
-
-    if (onFormChange) {
-      onFormChange(name, value);
-    }
+    onChange(value);
+    onFormChange(name, value);
   };
 
   render() {
     const { multiple, name } = this.props;
     const {
-      children, className, onError, onFormChange, required, submitted,
-      validator, value, ...props
+      autoFocus, children, className, onError, onFormChange, required,
+      submitted, validator, value, ...props
     } = this.props;
 
     const { touched } = this.state;
@@ -52,7 +64,13 @@ class FileField extends Component {
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
         <div className="chq-ffd--fi">
-          <input {...props} type="file" id={name} onChange={this.handleChange} />
+          <input
+            ref={this.inputRef}
+            {...props}
+            type="file"
+            id={name}
+            onChange={this.handleChange}
+          />
           <div className="chq-ffd--di">
             <div className="chq-ffd--ch">Choose file{multiple && "s"}...</div>
             <div className="chq-ffd--fd">{this.getFileDisplay()}</div>

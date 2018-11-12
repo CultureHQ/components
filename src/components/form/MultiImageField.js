@@ -58,6 +58,12 @@ const Preview = ({ transport, onEdit, onRemove }) => (
 );
 
 class MultiImageField extends Component {
+  static defaultProps = {
+    autoFocus: false,
+    onChange: () => {},
+    onFormChange: () => {}
+  };
+
   inputRef = React.createRef();
 
   state = {
@@ -66,6 +72,14 @@ class MultiImageField extends Component {
     transports: []
   };
 
+  componentDidMount() {
+    const { autoFocus } = this.props;
+
+    if (autoFocus) {
+      this.inputRef.current.focus();
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     const { name, onChange, onFormChange } = this.props;
     const { transports: nextTransports } = this.state;
@@ -73,13 +87,8 @@ class MultiImageField extends Component {
     if (hashTransports(nextTransports) !== hashTransports(prevState.transports)) {
       const files = nextTransports.map(({ file }) => file);
 
-      if (onChange) {
-        onChange(files);
-      }
-
-      if (onFormChange) {
-        onFormChange(name, files);
-      }
+      onChange(files);
+      onFormChange(name, files);
     }
   }
 
@@ -135,8 +144,8 @@ class MultiImageField extends Component {
 
   render() {
     const {
-      children, className, name, onChange, onFormChange, onError, progress,
-      submitted, value, ...props
+      autoFocus, children, className, name, onChange, onFormChange, onError,
+      progress, submitted, value, ...props
     } = this.props;
 
     const { editorOpen, currentTransport, transports } = this.state;

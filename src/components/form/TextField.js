@@ -4,6 +4,12 @@ import classnames from "../../classnames";
 import FormError from "./FormError";
 
 class TextField extends Component {
+  static defaultProps = {
+    autoFocus: false,
+    onChange: () => {},
+    onFormChange: () => {}
+  };
+
   textAreaRef = React.createRef();
 
   state = { touched: false };
@@ -23,20 +29,15 @@ class TextField extends Component {
   handleChange = ({ target: { value } }) => {
     const { name, onChange, onFormChange } = this.props;
 
-    if (onChange) {
-      onChange(value);
-    }
-
-    if (onFormChange) {
-      onFormChange(name, value);
-    }
+    onChange(value);
+    onFormChange(name, value);
   };
 
   render() {
     const { name, value } = this.props;
     const {
-      children, className, onError, onFormChange, required, submitted,
-      validator, ...props
+      autoFocus, children, className, onError, onFormChange, required,
+      submitted, validator, ...props
     } = this.props;
 
     const { touched } = this.state;
