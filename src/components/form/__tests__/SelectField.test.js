@@ -3,6 +3,8 @@ import { mount } from "enzyme";
 
 import SelectField from "../SelectField";
 
+const twice = callback => [0, 1].forEach(callback);
+
 const OPTIONS = [
   { label: "Harry", value: "harry" },
   { label: "Hermione", value: "hermione" },
@@ -147,8 +149,6 @@ test("working with a single non-creatable field", () => {
   expect(component.find("#select").props().value).toEqual(OPTIONS[1].value);
   expect(component.find(".chq-ffd--ctrl").props().value).toEqual(OPTIONS[1].label);
 
-  const twice = callback => [0, 1].forEach(callback);
-
   twice(() => {
     component.find(".chq-ffd--ctrl").simulate("keydown", { key: "Enter" });
     expect(component.find("DoorEffect").props().open).toBe(true);
@@ -194,6 +194,27 @@ test("working with a multiple non-creatable field", () => {
 
   component.find("Badge").at(0).simulate("click");
   expect(component.getMultiValue()).toEqual([OPTIONS[1].value]);
+
+  twice(() => {
+    component.find(".chq-ffd--sl--match").simulate("keydown", { key: "Escape" });
+    expect(component.find("DoorEffect").props().open).toBe(false);
+  });
+
+  twice(() => {
+    component.find(".chq-ffd--sl--match").simulate("keydown", { key: "Enter" });
+    expect(component.find("DoorEffect").props().open).toBe(true);
+  });
+
+  twice(() => {
+    component.find(".chq-ffd--sl--match").simulate("keydown", { key: "Backspace" });
+    expect(component.getMultiValue()).toEqual([]);
+  });
+
+  component.find(".chq-ffd--sl--match").simulate("change", { target: { value: "Test" } });
+  component.find(".chq-ffd--sl--match").simulate("keydown", { key: "Backspace" });
+  expect(component.getMultiValue()).toEqual([]);
+
+  component.find(".chq-ffd--sl--match").simulate("keydown", { key: "Tab" });
 });
 
 test("working with a multiple creatable field", () => {
