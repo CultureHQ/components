@@ -15,10 +15,12 @@ const isCreatingOption = ({ display, multiple, options, value }) => {
 
 const SelectFieldOption = ({ active, option, onDeselect, onSelect, tabIndex }) => {
   const { label, value } = option;
+
+  const className = classnames({ "chq-ffd--sl--opt-act": active });
   const onClick = () => (active ? onDeselect : onSelect)(value);
 
   return (
-    <PlainButton className={classnames({ "chq-ffd--sl--opt-act": active })} onClick={onClick} tabIndex={tabIndex}>
+    <PlainButton className={className} onClick={onClick} tabIndex={tabIndex}>
       {label}
     </PlainButton>
   );

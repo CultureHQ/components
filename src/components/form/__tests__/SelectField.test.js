@@ -9,8 +9,8 @@ const OPTIONS = [
   { label: "Ron", value: "ron" }
 ];
 
-const Container = ({ creatable = false, multiple = false }) => {
-  const [value, setValue] = useState("");
+const Container = ({ creatable = false, multiple = false, value: initialValue = "" }) => {
+  const [value, setValue] = useState(initialValue);
 
   return (
     <SelectField
@@ -34,10 +34,15 @@ const mountWithUtils = jsx => {
       return component.find("input[type='hidden']").map(node => node.props().value);
     },
     matchSingleText(value) {
-      component.find(".chq-ffd--ctrl").simulate("change", { target: { value } });
+      component.find(".chq-ffd--ctrl").simulate("change", {
+        target: { value },
+        nativeEvent: { data: value[value.length - 1] }
+      });
+      component.update();
     },
     matchMultiText(value) {
       component.find(".chq-ffd--sl--match").simulate("change", { target: { value } });
+      component.update();
     }
   });
 };
@@ -92,8 +97,34 @@ test("requests focus when autoFocus is given", () => {
   expect(document.activeElement.className).toEqual("chq-ffd--ctrl");
 });
 
+test("closes the options when clicked outside the select field", () => {
+  const events = {};
+  window.addEventListener = jest.fn((event, callback) => {
+    events[event] = callback;
+  });
+
+  const component = mount(
+    <div>
+      <Container />
+      <div className="outside" />
+    </div>
+  );
+
+  component.find(".chq-ffd--ctrl").simulate("click");
+
+  events.click({ target: component.find(".chq-ffd--ctrl").instance() });
+  component.update();
+  expect(component.find("DoorEffect").props().open).toBe(true);
+
+  events.click({ target: component.find("div.outside").instance() });
+  component.update();
+  expect(component.find("DoorEffect").props().open).toBe(false);
+
+  component.unmount();
+});
+
 test("working with a single non-creatable field", () => {
-  const component = mountWithUtils(<Container />);
+  const component = mountWithUtils(<Container value="harry" />);
 
   component.matchSingleText("H");
   expect(component.find("SelectFieldOption")).toHaveLength(2);
@@ -109,8 +140,12 @@ test("working with a single non-creatable field", () => {
   expect(component.find("SelectFieldOption")).toHaveLength(3);
 
   component.find("SelectFieldOption").at(0).simulate("click");
-  expect(component.find("#select").props().value).toEqual(OPTIONS[0].value);
-  expect(component.find(".chq-ffd--ctrl").props().value).toEqual(OPTIONS[0].label);
+  expect(component.find("#select").props().value).toEqual("");
+  expect(component.find(".chq-ffd--ctrl").props().value).toEqual("");
+
+  component.find("SelectFieldOption").at(1).simulate("click");
+  expect(component.find("#select").props().value).toEqual(OPTIONS[1].value);
+  expect(component.find(".chq-ffd--ctrl").props().value).toEqual(OPTIONS[1].label);
 
   const twice = callback => [0, 1].forEach(callback);
 
@@ -142,6 +177,9 @@ test("working with a single creatable field", () => {
 
 test("working with a multiple non-creatable field", () => {
   const component = mountWithUtils(<Container multiple />);
+
+  component.find(".chq-ffd--ctrl").simulate("click");
+  expect(document.activeElement.className).toEqual("chq-ffd--sl--match");
 
   component.matchMultiText("H");
   expect(component.find("SelectFieldOption")).toHaveLength(2);
