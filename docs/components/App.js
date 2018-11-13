@@ -715,7 +715,7 @@ const App = () => (
         <ClassNameProp />
         <Prop name="onSearch">a callback prop for when a search has been triggered</Prop>
         <Prop name="onSearchChange?">a callback prop for when the search bar changes text</Prop>
-        <Prop name="placeholder = \"\"">a placeholder for the search bar</Prop>
+        <Prop name={"placeholder = \"\""}>a placeholder for the search bar</Prop>
         <Prop name="throttle = 300">how fast to allow searches to happen (in ms)</Prop>
       </PropList>
 
