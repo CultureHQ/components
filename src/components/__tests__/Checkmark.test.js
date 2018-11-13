@@ -20,14 +20,11 @@ test("passes on className", () => {
 });
 
 test("passes on onClick", () => {
-  let returnValue;
-  const onClick = checked => {
-    returnValue = checked;
-  };
+  const onClick = jest.fn();
 
   const component = shallow(<Checkmark checked onClick={onClick} />);
-  expect(returnValue).toBe(undefined);
+  expect(onClick).not.toHaveBeenCalled();
 
   component.simulate("click");
-  expect(returnValue).toBe(false);
+  expect(onClick).toHaveBeenLastCalledWith(false);
 });

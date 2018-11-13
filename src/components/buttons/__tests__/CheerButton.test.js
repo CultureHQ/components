@@ -20,16 +20,11 @@ test("has no violations", async () => {
 });
 
 test("renders a button and calls back", () => {
-  let received = null;
-  const onCheerToggle = state => {
-    received = state;
-    return Promise.resolve();
-  };
-
+  const onCheerToggle = jest.fn(() => Promise.resolve());
   const component = mount(<CheerButton onCheerToggle={onCheerToggle} />);
-  component.simulate("click");
 
-  expect(received).toBe(true);
+  component.simulate("click");
+  expect(onCheerToggle).toHaveBeenLastCalledWith(true);
 });
 
 test("renders a Cheer if it has been cheered", () => {

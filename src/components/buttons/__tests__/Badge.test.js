@@ -22,16 +22,13 @@ test("passes on className", () => {
 });
 
 test("passes on onClick", () => {
-  let clicked = false;
-  const onClick = () => {
-    clicked = true;
-  };
+  const onClick = jest.fn();
 
   const component = shallow(<Badge onClick={onClick} />);
-  expect(clicked).toBe(false);
+  expect(onClick).not.toHaveBeenCalled();
 
   component.simulate("click");
-  expect(clicked).toBe(true);
+  expect(onClick).toHaveBeenCalled();
 });
 
 test("displays an icon if one is provided", () => {

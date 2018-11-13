@@ -49,31 +49,23 @@ test("does not call callbacks when they are not provided", () => {
 });
 
 test("responds to edit callback", () => {
-  let response = null;
-  const onChange = value => {
-    response = value;
-  };
-
+  const onChange = jest.fn();
   const component = mount(<ImageField name="image" onChange={onChange} />);
 
   component.instance().handleImageEdited(image);
-  expect(response).toEqual(image);
+  expect(onChange).toHaveBeenLastCalledWith(image);
 
   component.unmount();
 });
 
 test("responds to failures", () => {
-  let response = "foo";
-  const onChange = value => {
-    response = value;
-  };
-
+  const onChange = jest.fn();
   const component = mount(<ImageField name="image" onChange={onChange} />);
 
   component.find("input").simulate("change", { target: { files: ["foo"] } });
   component.find("img").props().onError();
 
-  expect(response).toBe(null);
+  expect(onChange).toHaveBeenLastCalledWith(null);
 });
 
 test("handles closing the modal", () => {
@@ -86,15 +78,11 @@ test("handles closing the modal", () => {
 });
 
 test("handles deselecting files", () => {
-  let response = "foo";
-  const onChange = value => {
-    response = value;
-  };
-
+  const onChange = jest.fn();
   const component = mount(<ImageField name="image" onChange={onChange} />);
 
   component.find("input").simulate("change", { target: { files: [] } });
-  expect(response).toBe(null);
+  expect(onChange).toHaveBeenLastCalledWith(null);
 });
 
 test("displays a progress bar if progress is reported", () => {

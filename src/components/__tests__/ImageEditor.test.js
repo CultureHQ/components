@@ -72,11 +72,7 @@ test("can click zoom out to modify image", async () => {
 });
 
 test("can click save to save", async () => {
-  let response = null;
-  const onEdit = edited => {
-    response = edited;
-  };
-
+  const onEdit = jest.fn();
   const component = await mountEditor(onEdit);
 
   component.instance().cropper.getCroppedCanvas = () => ({
@@ -86,8 +82,7 @@ test("can click save to save", async () => {
   });
 
   component.clickSave();
-
-  expect(response).not.toBe(null);
+  expect(onEdit).toHaveBeenCalled();
 });
 
 test("does not attempt to set state if already unmounted", async () => {
