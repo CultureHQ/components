@@ -55,7 +55,7 @@ class SelectFieldMultiValue extends Component {
   };
 
   render() {
-    const { display, inputRef, name, onChange, onDeselect, onOpen, open, value } = this.props;
+    const { display, inputRef, name, onChange, onDeselect, onOpen, open } = this.props;
 
     const className = classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open });
     const currentOptions = this.getCurrentOptions();
