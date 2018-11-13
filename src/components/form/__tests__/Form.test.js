@@ -85,12 +85,7 @@ test("passes down initialValues", () => {
 });
 
 test("disallows submitting if validation fails", () => {
-  let submitted = null;
-  const onSubmit = values => {
-    submitted = values;
-    return Promise.resolve();
-  };
-
+  const onSubmit = jest.fn(() => Promise.resolve());
   const validator = value => (value === "Pass" ? null : "Fail");
 
   const component = mount(
@@ -100,9 +95,9 @@ test("disallows submitting if validation fails", () => {
   );
 
   component.simulate("submit");
-  expect(submitted).toBe(null);
+  expect(onSubmit).not.toHaveBeenCalled();
 
   component.find("#value").simulate("change", { target: { value: "Pass" } });
   component.simulate("submit");
-  expect(submitted).toEqual({ value: "Pass" });
+  expect(onSubmit.mock.calls[0][0]).toEqual({ value: "Pass" });
 });
