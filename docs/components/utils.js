@@ -6,13 +6,13 @@ export const TEXT = `
 `;
 
 export const OPTIONS = [
-  { label: "The Sorcerer's Stone", value: "The Sorcerer's Stone" },
-  { label: "The Chamber of Secrets", value: "The Chamber of Secrets" },
-  { label: "The Prisoner of Azkaban", value: "The Prisoner of Azkaban" },
-  { label: "The Goblet of Fire", value: "The Goblet of Fire" },
-  { label: "The Order of the Phoenix", value: "The Order of the Phoenix" },
-  { label: "The Half-Blood Prince", value: "The Half-Blood Prince" },
-  { label: "The Deathly Hallows", value: "The Deathly Hallows" }
+  { label: "The Sorcerer's Stone", value: "sorcerer" },
+  { label: "The Chamber of Secrets", value: "chamber" },
+  { label: "The Prisoner of Azkaban", value: "prisoner" },
+  { label: "The Goblet of Fire", value: "goblet" },
+  { label: "The Order of the Phoenix", value: "order" },
+  { label: "The Half-Blood Prince", value: "prince" },
+  { label: "The Deathly Hallows", value: "hallows" }
 ];
 
 // eslint-disable-next-line no-alert
