@@ -12,6 +12,7 @@ import IconsContainer from "./IconsContainer";
 import ImageEditorContainer from "./ImageEditorContainer";
 import LoaderContainer from "./LoaderContainer";
 import PaginationContainer from "./PaginationContainer";
+import SearchBarContainer from "./SearchBarContainer";
 
 import {
   ActionButton, Badge, BooleanField, Button, CentsField, Checklist, Cheer,
@@ -706,6 +707,19 @@ const App = () => (
       <PlainButton onClick={onClick}>
         Click me
       </PlainButton>
+
+      <Heading>SearchBar</Heading>
+      <p>A search bar that throttles the searches so it does not fire too quickly.</p>
+      <PropList>
+        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
+        <ClassNameProp />
+        <Prop name="onSearch">a callback prop for when a search has been triggered</Prop>
+        <Prop name="onSearchChange?">a callback prop for when the search bar changes text</Prop>
+        <Prop name="placeholder = \"\"">a placeholder for the search bar</Prop>
+        <Prop name="throttle = 300">how fast to allow searches to happen (in ms)</Prop>
+      </PropList>
+
+      <SearchBarContainer />
 
       <Heading>SelectField</Heading>
       <p>A select form field.</p>
