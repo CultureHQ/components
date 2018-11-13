@@ -1,12 +1,6 @@
 .chq-sbar {
   position: relative;
 
-  svg {
-    left: .5em;
-    position: absolute;
-    top: calc(50% - 11px);
-  }
-
   path {
     fill: $color-primary-light-font;
   }
@@ -32,5 +26,20 @@
       border-color: $color-primary-blue;
       box-shadow: inset 0 1px 1px $color-form-inset, 0 0 8px $search-bar-shadow;
     }
+  }
+
+  &--gls,
+  &--spn {
+    position: absolute;
+    top: calc(50% - 11px);
+  }
+
+  &--gls {
+    left: 9px;
+  }
+
+  &--spn {
+    animation: chqSpin 1s linear infinite;
+    right: 9px;
   }
 }

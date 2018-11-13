@@ -14,7 +14,7 @@ test("handles autoFocus", () => {
 });
 
 test("throttles search changes", () => {
-  const onSearch = jest.fn();
+  const onSearch = jest.fn(() => Promise.resolve());
   const component = mount(<SearchBar onSearch={onSearch} />);
 
   [1, 2, 3, 4, 5].forEach(index => {
@@ -22,6 +22,22 @@ test("throttles search changes", () => {
       target: { value: "Harry".slice(0, index) }
     });
   });
+
+  return new Promise(resolve => {
+    setTimeout(() => {
+      expect(onSearch).toHaveBeenCalledTimes(1);
+      expect(onSearch).toHaveBeenCalledWith("Harry");
+      resolve();
+    }, 500);
+  });
+});
+
+test("does not fire multiple queries for the same search", () => {
+  const onSearch = jest.fn();
+  const component = mount(<SearchBar onSearch={onSearch} />);
+
+  component.find("input").simulate("change", { target: { value: "Harry" } });
+  component.find("input").simulate("change", { target: { value: "Harry" } });
 
   return new Promise(resolve => {
     setTimeout(() => {

@@ -15,7 +15,7 @@ class SearchBar extends Component {
 
   timeout = 0;
 
-  state = { search: "" };
+  state = { search: "", searching: false };
 
   componentDidMount() {
     const { autoFocus } = this.props;
@@ -35,7 +35,11 @@ class SearchBar extends Component {
       }
 
       if (search) {
-        this.timeout = setTimeout(() => onSearch(search), throttle);
+        this.timeout = setTimeout(() => {
+          (onSearch(search) || Promise.resolve()).then(() => {
+            this.setState({ searching: false });
+          });
+        }, throttle);
       } else {
         onSearch(search);
       }
@@ -46,17 +50,16 @@ class SearchBar extends Component {
     const { onSearchChange } = this.props;
 
     onSearchChange(search);
-
-    this.setState({ search });
+    this.setState({ search, searching: search.length > 0 });
   };
 
   render() {
     const { className, placeholder } = this.props;
-    const { search } = this.state;
+    const { search, searching } = this.state;
 
     return (
       <div className={classnames("chq-sbar", className)}>
-        <Icon icon="ios-search-strong" />
+        <Icon className="chq-sbar--gls" icon="ios-search-strong" />
         <input
           ref={this.inputRef}
           aria-label="Search"
@@ -66,6 +69,7 @@ class SearchBar extends Component {
           onChange={this.handleChange}
           placeholder={placeholder}
         />
+        {searching && <Icon className="chq-sbar--spn" icon="load-c" />}
       </div>
     );
   }
