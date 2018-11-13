@@ -51,6 +51,12 @@ Object.defineProperty(exports, "ClickClose", {
     return _ClickClose.default;
   }
 });
+Object.defineProperty(exports, "DoorEffect", {
+  enumerable: true,
+  get: function get() {
+    return _DoorEffect.default;
+  }
+});
 Object.defineProperty(exports, "FeedItem", {
   enumerable: true,
   get: function get() {
@@ -103,6 +109,12 @@ Object.defineProperty(exports, "Panel", {
   enumerable: true,
   get: function get() {
     return _Panel.default;
+  }
+});
+Object.defineProperty(exports, "SearchBar", {
+  enumerable: true,
+  get: function get() {
+    return _SearchBar.default;
   }
 });
 Object.defineProperty(exports, "Spinner", {
@@ -314,6 +326,8 @@ var _Circles = _interopRequireDefault(require("./components/Circles"));
 
 var _ClickClose = _interopRequireDefault(require("./components/ClickClose"));
 
+var _DoorEffect = _interopRequireDefault(require("./components/DoorEffect"));
+
 var _FeedItem = _interopRequireDefault(require("./components/FeedItem"));
 
 var _Loader = _interopRequireDefault(require("./components/Loader"));
@@ -331,6 +345,8 @@ var _Nav = _interopRequireDefault(require("./components/Nav"));
 var _Pagination = _interopRequireDefault(require("./components/Pagination"));
 
 var _Panel = _interopRequireDefault(require("./components/Panel"));
+
+var _SearchBar = _interopRequireDefault(require("./components/SearchBar"));
 
 var _Spinner = _interopRequireDefault(require("./components/Spinner"));
 

@@ -7,12 +7,6 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Checkmark = _interopRequireDefault(require("../Checkmark"));
-
-var _classnames = _interopRequireDefault(require("../../classnames"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -35,43 +29,54 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var BooleanField =
+var DoorEffect =
 /*#__PURE__*/
-function (_Component) {
-  _inherits(BooleanField, _Component);
+function (_PureComponent) {
+  _inherits(DoorEffect, _PureComponent);
 
-  function BooleanField() {
+  function DoorEffect() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, BooleanField);
+    _classCallCheck(this, DoorEffect);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(BooleanField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DoorEffect)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (checked) {
-      var _this$props = _this.props,
-          name = _this$props.name,
-          onChange = _this$props.onChange,
-          onFormChange = _this$props.onFormChange;
-      onChange(checked);
-      onFormChange(name, checked);
-    });
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "doorRef", _react.default.createRef());
 
     return _this;
   }
 
-  _createClass(BooleanField, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var value = this.props.value;
+  _createClass(DoorEffect, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var _this$props = this.props,
+          className = _this$props.className,
+          _this$props$duration = _this$props.duration,
+          duration = _this$props$duration === void 0 ? 150 : _this$props$duration,
+          open = _this$props.open;
 
-      if (value === undefined || value === null) {
-        this.handleClick(false);
+      if (open !== prevProps.open) {
+        var classList = this.doorRef.current.classList;
+
+        if (open) {
+          window.requestAnimationFrame(function () {
+            return classList.add("".concat(className, "-open"));
+          });
+        } else {
+          classList.remove("".concat(className, "-open"));
+          window.requestAnimationFrame(function () {
+            return classList.add("".concat(className, "-closed"));
+          });
+          setTimeout(function () {
+            return classList.remove("".concat(className, "-closed"));
+          }, duration);
+        }
       }
     }
   }, {
@@ -79,24 +84,16 @@ function (_Component) {
     value: function render() {
       var _this$props2 = this.props,
           children = _this$props2.children,
-          className = _this$props2.className,
-          value = _this$props2.value;
+          className = _this$props2.className;
       return _react.default.createElement("div", {
-        className: (0, _classnames.default)("chq-ffd", className)
-      }, _react.default.createElement(_Checkmark.default, {
-        checked: value,
-        onClick: this.handleClick
-      }, children));
+        ref: this.doorRef,
+        className: className
+      }, children);
     }
   }]);
 
-  return BooleanField;
-}(_react.Component);
+  return DoorEffect;
+}(_react.PureComponent);
 
-_defineProperty(BooleanField, "defaultProps", {
-  onChange: function onChange() {},
-  onFormChange: function onFormChange() {}
-});
-
-var _default = BooleanField;
+var _default = DoorEffect;
 exports.default = _default;

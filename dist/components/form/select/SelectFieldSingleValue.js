@@ -7,9 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Checkmark = _interopRequireDefault(require("../Checkmark"));
-
-var _classnames = _interopRequireDefault(require("../../classnames"));
+var _SelectFieldCaret = _interopRequireDefault(require("./SelectFieldCaret"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35,68 +33,85 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var BooleanField =
+var SelectFieldSingleValue =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(BooleanField, _Component);
+  _inherits(SelectFieldSingleValue, _Component);
 
-  function BooleanField() {
+  function SelectFieldSingleValue() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, BooleanField);
+    _classCallCheck(this, SelectFieldSingleValue);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(BooleanField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(SelectFieldSingleValue)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (checked) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleKeyDown", function (event) {
       var _this$props = _this.props,
-          name = _this$props.name,
-          onChange = _this$props.onChange,
-          onFormChange = _this$props.onFormChange;
-      onChange(checked);
-      onFormChange(name, checked);
+          onClose = _this$props.onClose,
+          onOpen = _this$props.onOpen,
+          open = _this$props.open;
+
+      switch (event.key) {
+        case "Enter":
+          if (!open) {
+            onOpen();
+          }
+
+          break;
+
+        case "Escape":
+          if (open) {
+            onClose();
+          }
+
+          break;
+
+        default:
+          break;
+      }
     });
 
     return _this;
   }
 
-  _createClass(BooleanField, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var value = this.props.value;
-
-      if (value === undefined || value === null) {
-        this.handleClick(false);
-      }
-    }
-  }, {
+  _createClass(SelectFieldSingleValue, [{
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
-          children = _this$props2.children,
-          className = _this$props2.className,
+          display = _this$props2.display,
+          inputRef = _this$props2.inputRef,
+          name = _this$props2.name,
+          onChange = _this$props2.onChange,
+          onOpen = _this$props2.onOpen,
+          open = _this$props2.open,
           value = _this$props2.value;
-      return _react.default.createElement("div", {
-        className: (0, _classnames.default)("chq-ffd", className)
-      }, _react.default.createElement(_Checkmark.default, {
-        checked: value,
-        onClick: this.handleClick
-      }, children));
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("input", {
+        type: "hidden",
+        id: name,
+        name: name,
+        value: value
+      }), _react.default.createElement("input", {
+        type: "text",
+        ref: inputRef,
+        className: "chq-ffd--ctrl",
+        onClick: onOpen,
+        onChange: onChange,
+        onKeyDown: this.handleKeyDown,
+        value: display
+      }), _react.default.createElement(_SelectFieldCaret.default, {
+        open: open
+      }));
     }
   }]);
 
-  return BooleanField;
+  return SelectFieldSingleValue;
 }(_react.Component);
 
-_defineProperty(BooleanField, "defaultProps", {
-  onChange: function onChange() {},
-  onFormChange: function onFormChange() {}
-});
-
-var _default = BooleanField;
+var _default = SelectFieldSingleValue;
 exports.default = _default;

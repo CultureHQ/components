@@ -59,6 +59,8 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(FileField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "inputRef", _react.default.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       touched: false
     });
@@ -81,19 +83,23 @@ function (_Component) {
         value = multiple ? files : files[0];
       }
 
-      if (onChange) {
-        onChange(value);
-      }
-
-      if (onFormChange) {
-        onFormChange(name, value);
-      }
+      onChange(value);
+      onFormChange(name, value);
     });
 
     return _this;
   }
 
   _createClass(FileField, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var autoFocus = this.props.autoFocus;
+
+      if (autoFocus) {
+        this.inputRef.current.focus();
+      }
+    }
+  }, {
     key: "getFileDisplay",
     value: function getFileDisplay() {
       var _this$props2 = this.props,
@@ -121,6 +127,7 @@ function (_Component) {
           name = _this$props3.name;
 
       var _this$props4 = this.props,
+          autoFocus = _this$props4.autoFocus,
           children = _this$props4.children,
           className = _this$props4.className,
           onError = _this$props4.onError,
@@ -129,7 +136,7 @@ function (_Component) {
           submitted = _this$props4.submitted,
           validator = _this$props4.validator,
           value = _this$props4.value,
-          props = _objectWithoutProperties(_this$props4, ["children", "className", "onError", "onFormChange", "required", "submitted", "validator", "value"]);
+          props = _objectWithoutProperties(_this$props4, ["autoFocus", "children", "className", "onError", "onFormChange", "required", "submitted", "validator", "value"]);
 
       var touched = this.state.touched;
       return _react.default.createElement("label", {
@@ -139,7 +146,10 @@ function (_Component) {
         className: "chq-ffd--lb"
       }, children), _react.default.createElement("div", {
         className: "chq-ffd--fi"
-      }, _react.default.createElement("input", _extends({}, props, {
+      }, _react.default.createElement("input", _extends({
+        className: "chq-ffd--ctrl",
+        ref: this.inputRef
+      }, props, {
         type: "file",
         id: name,
         onChange: this.handleChange
@@ -163,6 +173,13 @@ function (_Component) {
 
   return FileField;
 }(_react.Component);
+
+_defineProperty(FileField, "defaultProps", {
+  autoFocus: false,
+  multiple: false,
+  onChange: function onChange() {},
+  onFormChange: function onFormChange() {}
+});
 
 var _default = FileField;
 exports.default = _default;

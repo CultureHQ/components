@@ -53,10 +53,7 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleOpen", function () {
       var onOpen = _this.props.onOpen;
-
-      if (onOpen) {
-        onOpen();
-      }
+      onOpen();
 
       _this.setState({
         open: true
@@ -119,6 +116,10 @@ function (_Component) {
 
   return Confirm;
 }(_react.Component);
+
+_defineProperty(Confirm, "defaultProps", {
+  onOpen: function onOpen() {}
+});
 
 var ConfirmDelete = function ConfirmDelete(props) {
   return _react.default.createElement(Confirm, _extends({

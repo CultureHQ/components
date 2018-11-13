@@ -77,14 +77,8 @@ function (_Component) {
           name = _this$props.name,
           onChange = _this$props.onChange,
           onFormChange = _this$props.onFormChange;
-
-      if (onChange) {
-        onChange(value);
-      }
-
-      if (onFormChange) {
-        onFormChange(name, value);
-      }
+      onChange(value);
+      onFormChange(name, value);
     });
 
     return _this;
@@ -107,6 +101,7 @@ function (_Component) {
           value = _this$props2.value;
 
       var _this$props3 = this.props,
+          autoFocus = _this$props3.autoFocus,
           children = _this$props3.children,
           className = _this$props3.className,
           onError = _this$props3.onError,
@@ -114,7 +109,7 @@ function (_Component) {
           required = _this$props3.required,
           submitted = _this$props3.submitted,
           validator = _this$props3.validator,
-          props = _objectWithoutProperties(_this$props3, ["children", "className", "onError", "onFormChange", "required", "submitted", "validator"]);
+          props = _objectWithoutProperties(_this$props3, ["autoFocus", "children", "className", "onError", "onFormChange", "required", "submitted", "validator"]);
 
       var touched = this.state.touched;
       return _react.default.createElement("label", {
@@ -123,6 +118,7 @@ function (_Component) {
       }, _react.default.createElement("span", {
         className: "chq-ffd--lb"
       }, children), _react.default.createElement("textarea", _extends({
+        className: "chq-ffd--ctrl chq-ffd--ctrl-text",
         ref: this.textAreaRef
       }, props, {
         id: name,
@@ -143,6 +139,12 @@ function (_Component) {
 
   return TextField;
 }(_react.Component);
+
+_defineProperty(TextField, "defaultProps", {
+  autoFocus: false,
+  onChange: function onChange() {},
+  onFormChange: function onFormChange() {}
+});
 
 var _default = TextField;
 exports.default = _default;

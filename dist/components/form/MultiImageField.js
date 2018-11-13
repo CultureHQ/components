@@ -225,6 +225,15 @@ function (_Component) {
   }
 
   _createClass(MultiImageField, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var autoFocus = this.props.autoFocus;
+
+      if (autoFocus) {
+        this.inputRef.current.focus();
+      }
+    }
+  }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
       var _this$props = this.props,
@@ -238,14 +247,8 @@ function (_Component) {
           var file = _ref9.file;
           return file;
         });
-
-        if (onChange) {
-          onChange(files);
-        }
-
-        if (onFormChange) {
-          onFormChange(name, files);
-        }
+        onChange(files);
+        onFormChange(name, files);
       }
     }
   }, {
@@ -254,6 +257,7 @@ function (_Component) {
       var _this2 = this;
 
       var _this$props2 = this.props,
+          autoFocus = _this$props2.autoFocus,
           children = _this$props2.children,
           className = _this$props2.className,
           name = _this$props2.name,
@@ -263,7 +267,7 @@ function (_Component) {
           progress = _this$props2.progress,
           submitted = _this$props2.submitted,
           value = _this$props2.value,
-          props = _objectWithoutProperties(_this$props2, ["children", "className", "name", "onChange", "onFormChange", "onError", "progress", "submitted", "value"]);
+          props = _objectWithoutProperties(_this$props2, ["autoFocus", "children", "className", "name", "onChange", "onFormChange", "onError", "progress", "submitted", "value"]);
 
       var _this$state = this.state,
           editorOpen = _this$state.editorOpen,
@@ -315,6 +319,12 @@ function (_Component) {
 
   return MultiImageField;
 }(_react.Component);
+
+_defineProperty(MultiImageField, "defaultProps", {
+  autoFocus: false,
+  onChange: function onChange() {},
+  onFormChange: function onFormChange() {}
+});
 
 var _default = MultiImageField;
 exports.default = _default;

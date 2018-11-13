@@ -61,14 +61,8 @@ function (_Component) {
           onChange = _this$props.onChange,
           onFormChange = _this$props.onFormChange;
       var amount = value ? Math.round(value * 100) : null;
-
-      if (onChange) {
-        onChange(amount);
-      }
-
-      if (onFormChange) {
-        onFormChange(name, amount);
-      }
+      onChange(amount);
+      onFormChange(name, amount);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleValidate", function (value) {
@@ -105,6 +99,11 @@ function (_Component) {
 
   return CentsField;
 }(_react.Component);
+
+_defineProperty(CentsField, "defaultProps", {
+  onChange: function onChange() {},
+  onFormChange: function onFormChange() {}
+});
 
 var _default = CentsField;
 exports.default = _default;

@@ -73,6 +73,8 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ImageField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "inputRef", _react.default.createRef());
+
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       editorOpen: false,
       failed: false,
@@ -126,13 +128,8 @@ function (_Component) {
         };
       });
 
-      if (onChange) {
-        onChange(image);
-      }
-
-      if (onFormChange) {
-        onFormChange(name, image);
-      }
+      onChange(image);
+      onFormChange(name, image);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClose", function () {
@@ -145,9 +142,19 @@ function (_Component) {
   }
 
   _createClass(ImageField, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var autoFocus = this.props.autoFocus;
+
+      if (autoFocus) {
+        this.inputRef.current.focus();
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
+          autoFocus = _this$props2.autoFocus,
           children = _this$props2.children,
           className = _this$props2.className,
           name = _this$props2.name,
@@ -157,7 +164,7 @@ function (_Component) {
           progress = _this$props2.progress,
           submitted = _this$props2.submitted,
           value = _this$props2.value,
-          props = _objectWithoutProperties(_this$props2, ["children", "className", "name", "onChange", "onFormChange", "onError", "progress", "submitted", "value"]);
+          props = _objectWithoutProperties(_this$props2, ["autoFocus", "children", "className", "name", "onChange", "onFormChange", "onError", "progress", "submitted", "value"]);
 
       var _this$state = this.state,
           editorOpen = _this$state.editorOpen,
@@ -183,7 +190,8 @@ function (_Component) {
       }, _react.default.createElement(_Icon.default, {
         icon: "ios-cloud-upload-outline"
       }), " ", "Upload an image"), _react.default.createElement("input", _extends({
-        accept: "image/*"
+        accept: "image/*",
+        ref: this.inputRef
       }, props, {
         type: "file",
         id: name,
@@ -210,6 +218,12 @@ function (_Component) {
 
   return ImageField;
 }(_react.Component);
+
+_defineProperty(ImageField, "defaultProps", {
+  autoFocus: false,
+  onChange: function onChange() {},
+  onFormChange: function onFormChange() {}
+});
 
 var _default = ImageField;
 exports.default = _default;

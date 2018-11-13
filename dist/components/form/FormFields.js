@@ -78,14 +78,8 @@ var buildFormField = function buildFormField(type) {
             name = _this$props.name,
             onChange = _this$props.onChange,
             onFormChange = _this$props.onFormChange;
-
-        if (onChange) {
-          onChange(value);
-        }
-
-        if (onFormChange) {
-          onFormChange(name, value);
-        }
+        onChange(value);
+        onFormChange(name, value);
       });
 
       return _this;
@@ -128,6 +122,7 @@ var buildFormField = function buildFormField(type) {
         }, children), _react.default.createElement(_react.default.Fragment, null, addon && _react.default.createElement("span", {
           className: "chq-ffd--ad"
         }, addon), _react.default.createElement("input", _extends({
+          className: "chq-ffd--ctrl",
           ref: this.inputRef
         }, props, {
           type: type,
@@ -149,6 +144,12 @@ var buildFormField = function buildFormField(type) {
 
     return FormField;
   }(_react.Component);
+
+  _defineProperty(FormField, "defaultProps", {
+    autoFocus: false,
+    onChange: function onChange() {},
+    onFormChange: function onFormChange() {}
+  });
 
   return FormField;
 };

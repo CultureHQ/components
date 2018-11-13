@@ -129,14 +129,8 @@ function (_Component) {
           onChange = _this$props.onChange,
           onFormChange = _this$props.onFormChange;
       var value = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.hours, time.minutes, 0).toISOString();
-
-      if (onChange) {
-        onChange(value);
-      }
-
-      if (onFormChange) {
-        onFormChange(name, value);
-      }
+      onChange(value);
+      onFormChange(name, value);
     });
 
     return _this;
@@ -165,7 +159,7 @@ function (_Component) {
         className: "chq-ffd--lb"
       }, children), _react.default.createElement(_PlainButton.default, {
         "aria-label": "Open dialog",
-        className: "chq-ffd--dt",
+        className: "chq-ffd--ctrl",
         onClick: this.handleOpen
       }, _react.default.createElement(_DateTimeFieldDisplay.default, {
         value: normalValue
@@ -175,7 +169,7 @@ function (_Component) {
         type: "hidden",
         value: normalValue ? normalValue.toISOString() : ""
       })), open && _react.default.createElement(_ModalDialog.default, {
-        className: "chq-ffd--dt--md",
+        className: "chq-ffd--dtmd",
         entrance: "zoomIn",
         onClose: this.handleClose
       }, _react.default.createElement(_ModalDialog.default.Heading, {
@@ -203,6 +197,11 @@ function (_Component) {
 
   return DateTimeField;
 }(_react.Component);
+
+_defineProperty(DateTimeField, "defaultProps", {
+  onChange: function onChange() {},
+  onFormChange: function onFormChange() {}
+});
 
 var _default = DateTimeField;
 exports.default = _default;

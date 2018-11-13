@@ -5,12 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [5.0.0] - 2018-11-13
 ### Added
 - The `limitWidth` prop on the `Panel` component for enforcing a max width.
 - The `DoorEffect` component.
 - The optional `icon` prop on the `Badge` component.
 - The optional `autoFocus` prop on the `FileField`, `ImageField`, and `MultiImageField` components.
 - The `SearchBar` component.
+
+### Changed
+- [BREAKING] A couple of the class names have been modified within forms, and it could potentially break the look of things. Therefore, making this a major version bump to stick to semver.
 
 ## [4.1.0] - 2018-11-10
 ### Added

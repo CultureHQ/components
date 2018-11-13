@@ -15,9 +15,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Panel = function Panel(_ref) {
   var className = _ref.className,
-      children = _ref.children;
+      children = _ref.children,
+      limitWidth = _ref.limitWidth;
   return _react.default.createElement("div", {
-    className: (0, _classnames.default)("chq-pan", className)
+    className: (0, _classnames.default)("chq-pan", className, {
+      "chq-pan-lim": limitWidth
+    })
   }, children);
 };
 

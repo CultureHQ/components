@@ -7,9 +7,9 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Checkmark = _interopRequireDefault(require("../Checkmark"));
+var _classnames = _interopRequireDefault(require("../classnames"));
 
-var _classnames = _interopRequireDefault(require("../../classnames"));
+var _Icon = _interopRequireDefault(require("./Icon"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35,68 +35,122 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var BooleanField =
+var SearchBar =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(BooleanField, _Component);
+  _inherits(SearchBar, _Component);
 
-  function BooleanField() {
+  function SearchBar() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, BooleanField);
+    _classCallCheck(this, SearchBar);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(BooleanField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(SearchBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (checked) {
-      var _this$props = _this.props,
-          name = _this$props.name,
-          onChange = _this$props.onChange,
-          onFormChange = _this$props.onFormChange;
-      onChange(checked);
-      onFormChange(name, checked);
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "inputRef", _react.default.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "timeout", 0);
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      search: "",
+      searching: false
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (_ref) {
+      var search = _ref.target.value;
+      var onSearchChange = _this.props.onSearchChange;
+      onSearchChange(search);
+
+      _this.setState({
+        search: search,
+        searching: search.length > 0
+      });
     });
 
     return _this;
   }
 
-  _createClass(BooleanField, [{
+  _createClass(SearchBar, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var value = this.props.value;
+      var autoFocus = this.props.autoFocus;
 
-      if (value === undefined || value === null) {
-        this.handleClick(false);
+      if (autoFocus) {
+        this.inputRef.current.focus();
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          onSearch = _this$props.onSearch,
+          throttle = _this$props.throttle;
+      var search = this.state.search;
+
+      if (search !== prevState.search) {
+        if (this.timeout) {
+          clearTimeout(this.timeout);
+        }
+
+        if (search) {
+          this.timeout = setTimeout(function () {
+            (onSearch(search) || Promise.resolve()).then(function () {
+              _this2.setState({
+                searching: false
+              });
+            });
+          }, throttle);
+        } else {
+          onSearch(search);
+        }
       }
     }
   }, {
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
-          children = _this$props2.children,
           className = _this$props2.className,
-          value = _this$props2.value;
+          placeholder = _this$props2.placeholder;
+      var _this$state = this.state,
+          search = _this$state.search,
+          searching = _this$state.searching;
       return _react.default.createElement("div", {
-        className: (0, _classnames.default)("chq-ffd", className)
-      }, _react.default.createElement(_Checkmark.default, {
-        checked: value,
-        onClick: this.handleClick
-      }, children));
+        className: (0, _classnames.default)("chq-sbar", className)
+      }, _react.default.createElement(_Icon.default, {
+        className: "chq-sbar--gls",
+        icon: "ios-search-strong"
+      }), _react.default.createElement("input", {
+        ref: this.inputRef,
+        "aria-label": "Search",
+        type: "search",
+        name: "search",
+        value: search,
+        onChange: this.handleChange,
+        placeholder: placeholder
+      }), searching && _react.default.createElement(_Icon.default, {
+        className: "chq-sbar--spn",
+        icon: "load-c"
+      }));
     }
   }]);
 
-  return BooleanField;
+  return SearchBar;
 }(_react.Component);
 
-_defineProperty(BooleanField, "defaultProps", {
-  onChange: function onChange() {},
-  onFormChange: function onFormChange() {}
+_defineProperty(SearchBar, "defaultProps", {
+  autoFocus: false,
+  onSearchChange: function onSearchChange() {},
+  placeholder: "",
+  throttle: 300
 });
 
-var _default = BooleanField;
+var _default = SearchBar;
 exports.default = _default;
