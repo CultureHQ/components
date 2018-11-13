@@ -29,17 +29,9 @@ class SelectFieldMultiValue extends Component {
     ));
   }
 
-  handleToggleKeyDown = event => {
-    const { open, onOpen } = this.props;
-
-    if (!open && event.key === "Enter") {
-      onOpen();
-    }
-  };
-
-  handleInputKeyDown = event => {
+  handleKeyDown = event => {
     event.stopPropagation();
-    const { display, onClose, onDeselect, value } = this.props;
+    const { display, onClose, onDeselect, onOpen, open, value } = this.props;
 
     switch (event.key) {
       case "Backspace":
@@ -47,8 +39,15 @@ class SelectFieldMultiValue extends Component {
           onDeselect(value[value.length - 1]);
         }
         break;
+      case "Enter":
+        if (!open) {
+          onOpen();
+        }
+        break;
       case "Escape":
-        onClose();
+        if (open) {
+          onClose();
+        }
         break;
       default:
         break;
@@ -62,7 +61,7 @@ class SelectFieldMultiValue extends Component {
     const currentOptions = this.getCurrentOptions();
 
     return (
-      <div role="button" tabIndex={0} onClick={onOpen} onKeyDown={this.handleToggleKeyDown} className={className}>
+      <div role="button" tabIndex={0} onClick={onOpen} onKeyDown={this.handleKeyDown} className={className}>
         {currentOptions.map((option, index) => (
           <Fragment key={option.value}>
             <input type="hidden" id={`${name}[${index}]`} name={`${name}[]`} value={option.value} />
@@ -74,7 +73,7 @@ class SelectFieldMultiValue extends Component {
           className="chq-ffd--sl--match"
           ref={inputRef}
           onChange={onChange}
-          onKeyDown={this.handleInputKeyDown}
+          onKeyDown={this.handleKeyDown}
           value={display}
         />
         <SelectFieldCaret open={open} />
