@@ -41,15 +41,11 @@ test("updates the visible month when a value is selected", () => {
 });
 
 test("does not attempt to update state if month did not change", () => {
-  let received = null;
-  const onChange = value => {
-    received = value;
-  };
-
   const value = new Date(2018, 0, 1, 0, 0, 0);
+  const onChange = jest.fn();
   const component = mount(<Calendar value={value} onChange={onChange} />);
 
   component.find("CalendarDay").at(15).simulate("click");
   expect(component.find(".chq-cal--head--lbl").text()).toEqual("January 2018");
-  expect(received.getMonth()).toEqual(0);
+  expect(onChange.mock.calls[0][0].getMonth()).toEqual(0);
 });

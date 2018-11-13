@@ -13,11 +13,7 @@ test("calls onClose when appropriate", () => {
     events[event] = callback;
   });
 
-  let received = false;
-  const onClose = () => {
-    received = true;
-  };
-
+  const onClose = jest.fn();
   const component = mount(
     <div>
       <ClickClose onClose={onClose} className="inside">
@@ -30,8 +26,8 @@ test("calls onClose when appropriate", () => {
   );
 
   events.click({ target: component.find("div.inside").instance() });
-  expect(received).toBe(false);
+  expect(onClose).not.toHaveBeenCalled();
 
   events.click({ target: component.find("div.outside").instance() });
-  expect(received).toBe(true);
+  expect(onClose).toHaveBeenCalled();
 });
