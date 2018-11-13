@@ -33,8 +33,13 @@ class SelectField extends Component {
   constructor(props) {
     super(props);
 
+    let display = "";
+    if (!props.multiple && props.value) {
+      display = props.options.find(({ value }) => value === props.value).label;
+    }
+
     this.state = {
-      display: props.multiple ? "" : (props.value || ""),
+      display,
       filteredOptions: props.options,
       open: false
     };
@@ -85,7 +90,8 @@ class SelectField extends Component {
     const { multiple, options, value } = this.props;
     const { display } = this.state;
 
-    const nextDisplay = ((!multiple && value === display) ? event.nativeEvent.data : event.target.value) || "";
+    const currentOption = (value && options.find(option => option.value === value)) || {};
+    const nextDisplay = ((!multiple && currentOption.label === display) ? event.nativeEvent.data : event.target.value) || "";
 
     this.setState({
       display: nextDisplay,
@@ -115,11 +121,17 @@ class SelectField extends Component {
     onFormChange(name, value);
   };
 
-  selectValue = (value, shouldClose) => {
+  selectValue = (nextValue, shouldClose) => {
     const { multiple, options } = this.props;
     const effects = shouldClose ? { open: false } : {};
 
-    this.setState({ display: multiple ? "" : value, ...effects }, () => (
+    let display = "";
+    if (!multiple) {
+      display = options.find(({ value }) => value === nextValue);
+      display = display ? display.label : nextValue;
+    }
+
+    this.setState({ display, ...effects }, () => (
       setTimeout(() => this.setState({ filteredOptions: options }), 150)
     ));
   };
@@ -127,7 +139,7 @@ class SelectField extends Component {
   /* eslint-disable jsx-a11y/label-has-for */
   // we're following the rules for it but it can't figure that out
   render() {
-    const { children, className, creatable, multiple, name, value } = this.props;
+    const { children, className, creatable, multiple, name, options, value } = this.props;
     const { display, filteredOptions, open } = this.state;
 
     return (
@@ -144,6 +156,7 @@ class SelectField extends Component {
             onDeselect={this.handleDeselect}
             onOpen={this.handleOpen}
             open={open}
+            options={options}
             value={value}
           />
           <SelectFieldOptions
@@ -154,6 +167,7 @@ class SelectField extends Component {
             onDeselect={this.handleDeselect}
             onSelect={this.handleSelect}
             open={open}
+            options={options}
             value={value}
           />
         </div>

@@ -4,6 +4,15 @@ import classnames from "../../../classnames";
 import PlainButton from "../../buttons/PlainButton";
 import DoorEffect from "../../DoorEffect";
 
+const isCreatingOption = ({ display, multiple, options, value }) => {
+  const matchedLabel = options.some(option => option.label === display);
+
+  if (!multiple) {
+    return !matchedLabel && display !== value;
+  }
+  return !matchedLabel && (!value || !value.some(item => item === display));
+};
+
 const SelectFieldOption = ({ active, option, onDeselect, onSelect, tabIndex }) => {
   const { label, value } = option;
   const onClick = () => (active ? onDeselect : onSelect)(value);
@@ -16,13 +25,13 @@ const SelectFieldOption = ({ active, option, onDeselect, onSelect, tabIndex }) =
 };
 
 const SelectFieldOptions = ({
-  creatable, display, filteredOptions, multiple, onDeselect, onSelect, open, value
+  creatable, display, filteredOptions, multiple, onDeselect, onSelect, open, options, value
 }) => {
-  const createOption = multiple ? !value.includes(display) : (display !== value);
+  const createOption = creatable && isCreatingOption({ display, multiple, options, value });
 
   return (
     <DoorEffect className="chq-ffd--sl--opts" open={open}>
-      {creatable && (display.length > 0) && createOption && (
+      {createOption && (display.length > 0) && (
         <SelectFieldOption
           key={display}
           option={{ label: `Create option: ${display}`, value: display }}
@@ -39,7 +48,7 @@ const SelectFieldOptions = ({
           tabIndex={open ? 0 : -1}
         />
       ))}
-      {!creatable && (filteredOptions.length === 0) && createOption && (
+      {!createOption && (filteredOptions.length === 0) && (
         <p>No results found.</p>
       )}
     </DoorEffect>

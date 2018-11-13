@@ -1,19 +1,34 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import classnames from "../../../classnames";
 import Badge from "../../buttons/Badge";
 import SelectFieldCaret from "./SelectFieldCaret";
 
-const SelectFieldMultiValueBadge = ({ value, onDeselect }) => {
+const SelectFieldMultiValueBadge = ({ option, onDeselect }) => {
+  const { label, value } = option;
+
   const onClick = event => {
     event.stopPropagation();
     onDeselect(value);
   };
 
-  return <><Badge icon="close" onClick={onClick}>{value}</Badge>{" "}</>;
+  return <><Badge icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
 };
 
 class SelectFieldMultiValue extends Component {
+  getCurrentOptions() {
+    const { options, value } = this.props;
+
+    if (!value) {
+      return [];
+    }
+
+    return value.map(item => (
+      options.find(option => option.value === item) // given option
+      || { label: item, value: item } // created option
+    ));
+  }
+
   handleToggleKeyDown = event => {
     const { open, onOpen } = this.props;
 
@@ -42,13 +57,17 @@ class SelectFieldMultiValue extends Component {
 
   render() {
     const { display, inputRef, name, onChange, onDeselect, onOpen, open, value } = this.props;
+
     const className = classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open });
+    const currentOptions = this.getCurrentOptions();
 
     return (
       <div role="button" tabIndex={0} onClick={onOpen} onKeyDown={this.handleToggleKeyDown} className={className}>
-        <input type="hidden" id={name} name={name} value={value} />
-        {value && value.map(item => (
-          <SelectFieldMultiValueBadge key={item} value={item} onDeselect={onDeselect} />
+        {currentOptions.map((option, index) => (
+          <Fragment key={option.value}>
+            <input type="hidden" id={`${name}[${index}]`} name={`${name}[]`} value={option.value} />
+            <SelectFieldMultiValueBadge option={option} onDeselect={onDeselect} />
+          </Fragment>
         ))}
         <input
           type="text"

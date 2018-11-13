@@ -4,15 +4,15 @@ import { mount } from "enzyme";
 import SelectField from "../SelectField";
 
 const OPTIONS = [
-  { label: "Harry", value: "Harry" },
-  { label: "Hermione", value: "Hermione" },
-  { label: "Ron", value: "Ron" }
+  { label: "Harry", value: "harry" },
+  { label: "Hermione", value: "hermione" },
+  { label: "Ron", value: "ron" }
 ];
 
 test("has no violations", async () => {
   const jsx = (
     <SelectField name="select" options={OPTIONS}>
-      SelectField
+      Select
     </SelectField>
   );
 
@@ -57,4 +57,28 @@ test("requests focus when autoFocus is given", () => {
   mount(<SelectField name="select" autoFocus />);
 
   expect(document.activeElement.className).toEqual("chq-ffd--ctrl");
+});
+
+test.only("working with a single non-creatable field", () => {
+  const component = mount(<SelectField name="select" options={OPTIONS}>Select</SelectField>);
+
+  component.matchText = value => {
+    component.find(".chq-ffd--ctrl").simulate("change", { target: { value } });
+  };
+
+  component.matchText("H");
+  expect(component.find("SelectFieldOption")).toHaveLength(2);
+
+  component.matchText("He");
+  expect(component.find("SelectFieldOption")).toHaveLength(1);
+
+  component.matchText("Hel");
+  expect(component.find("SelectFieldOption")).toHaveLength(0);
+  expect(component.find("p")).toHaveLength(1);
+
+  component.matchText("");
+  expect(component.find("SelectFieldOption")).toHaveLength(3);
+
+  component.find("SelectFieldOption").at(0).simulate("click");
+  expect(component.find(".chq-ffd--ctrl").props().value).toEqual(OPTIONS[0].label);
 });
