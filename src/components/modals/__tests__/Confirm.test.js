@@ -22,19 +22,18 @@ test("opens a modal when the onTrigger function is called", () => {
 });
 
 test("calls the onOpen callback if it is provided", () => {
-  let opened = false;
-
+  const onOpen = jest.fn();
   const component = mount(
     <Confirm
       trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
-      onOpen={() => { opened = true; }}
+      onOpen={onOpen}
     />
   );
 
-  expect(opened).toBe(false);
+  expect(onOpen).not.toHaveBeenCalled();
 
   component.find(Button).simulate("click");
-  expect(opened).toBe(true);
+  expect(onOpen).toHaveBeenCalled();
 });
 
 test("closes the modal the cancel button is clicked", () => {
@@ -45,11 +44,7 @@ test("closes the modal the cancel button is clicked", () => {
 });
 
 test("calls the onAccept callback and closes when the confirmation is accepted", () => {
-  let accepted = false;
-  const onAccept = () => {
-    accepted = true;
-  };
-
+  const onAccept = jest.fn();
   const component = mount(
     <Confirm danger onAccept={onAccept} startOpen trigger={() => {}}>
       Are you sure?
@@ -58,7 +53,7 @@ test("calls the onAccept callback and closes when the confirmation is accepted",
 
   component.find(".chq-btn-dg").simulate("click");
   expect(component.find(".chq-pan--bd")).toHaveLength(0);
-  expect(accepted).toBe(true);
+  expect(onAccept).toHaveBeenCalled();
 });
 
 test("ConfirmDelete sets default values", () => {

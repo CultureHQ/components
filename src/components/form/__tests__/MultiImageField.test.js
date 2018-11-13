@@ -60,48 +60,39 @@ test("responds to the open edit callback", () => {
 });
 
 test("responds to edit callback", () => {
-  let response = null;
-  const onChange = value => {
-    response = value;
-  };
-
+  const onChange = jest.fn();
   const component = mount(<MultiImageField name="images" onChange={onChange} />);
+
   component.setState({
     currentTransport: new Transport(image),
     transports: [new Transport(image), new Transport({ name: "foobar" })]
   });
 
   component.instance().handleImageEdited(image);
-  expect(response).toEqual([image, { name: "foobar" }]);
+  expect(onChange).toHaveBeenLastCalledWith([image, { name: "foobar" }]);
 
   component.unmount();
 });
 
 test("responds to failure callback", () => {
-  let response = null;
-  const onChange = value => {
-    response = value;
-  };
-
+  const onChange = jest.fn();
   const component = mount(<MultiImageField name="images" onChange={onChange} />);
+
   component.setState({
     currentTransport: new Transport(image),
     transports: [new Transport(image)]
   });
 
   component.instance().handleImageFailure();
-  expect(response).toEqual([]);
+  expect(onChange).toHaveBeenLastCalledWith([]);
 
   component.unmount();
 });
 
 test("responds to the remove callback", () => {
-  let response = null;
-  const onChange = value => {
-    response = value;
-  };
-
+  const onChange = jest.fn();
   const component = mount(<MultiImageField name="images" onChange={onChange} />);
+
   component.setState({
     currentTransport: new Transport(image),
     transports: [new Transport(image)]
@@ -110,7 +101,7 @@ test("responds to the remove callback", () => {
   const findEdit = node => node.text() && node.text().trim() === "Remove";
   component.find("button").findWhere(findEdit).simulate("click");
 
-  expect(response).toEqual([]);
+  expect(onChange).toHaveBeenLastCalledWith([]);
 
   component.unmount();
 });
