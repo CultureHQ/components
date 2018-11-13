@@ -90,11 +90,15 @@ class SelectField extends Component {
     const { multiple, options, value } = this.props;
     const { display } = this.state;
 
-    const currentOption = (value && options.find(option => option.value === value)) || {};
-    const nextDisplay = ((!multiple && currentOption.label === display) ? event.nativeEvent.data : event.target.value) || "";
+    let nextDisplay = event.target.value;
+
+    if (!multiple) {
+      const currentOption = (value && options.find(option => option.value === value)) || {};
+      nextDisplay = currentOption.label === display ? event.nativeEvent.data : nextDisplay;
+    }
 
     this.setState({
-      display: nextDisplay,
+      display: nextDisplay || "",
       filteredOptions: nextDisplay ? options.filter(fuzzyFilter(nextDisplay)) : options,
       open: true
     });
