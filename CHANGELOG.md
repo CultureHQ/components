@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `DoorEffect` component.
 - The optional `icon` prop on the `Badge` component.
 - The optional `autoFocus` prop on the `FileField`, `ImageField`, and `MultiImageField` components.
+- The `SearchBar` component.
 
 ## [4.1.0] - 2018-11-10
 ### Added
