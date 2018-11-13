@@ -54,7 +54,7 @@ test("calls up to callbacks if they are provided", () => {
 });
 
 test("requests focus when autoFocus is given", () => {
-  const component = mount(<SelectField name="select" autoFocus />);
+  mount(<SelectField name="select" autoFocus />);
 
   expect(document.activeElement.className).toEqual("chq-ffd--ctrl");
 });

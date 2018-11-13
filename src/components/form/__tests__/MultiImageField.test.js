@@ -133,7 +133,7 @@ test("handles clicking the file field", () => {
 });
 
 test("accepts autoFocus", () => {
-  const component = mount(<MultiImageField name="images" autoFocus />);
+  mount(<MultiImageField name="images" autoFocus />);
 
   expect(document.activeElement.id).toEqual("images");
 });

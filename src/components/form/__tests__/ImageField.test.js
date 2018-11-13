@@ -104,7 +104,7 @@ test("displays a progress bar if progress is reported", () => {
 });
 
 test("accepts autoFocus", () => {
-  const component = mount(<ImageField name="image" autoFocus />);
+  mount(<ImageField name="image" autoFocus />);
 
   expect(document.activeElement.id).toEqual("image");
 });
