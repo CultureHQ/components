@@ -112,7 +112,7 @@ test("displays an accurate summary", () => {
 });
 
 test("accepts autoFocus", () => {
-  const component = mount(<FileField name="file" autoFocus />);
+  mount(<FileField name="file" autoFocus />);
 
   expect(document.activeElement.id).toEqual("file");
 });

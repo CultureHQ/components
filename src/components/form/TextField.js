@@ -46,7 +46,7 @@ class TextField extends Component {
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
         <textarea
-          className="chq-ffd--ctrl"
+          className="chq-ffd--ctrl chq-ffd--ctrl-text"
           ref={this.textAreaRef}
           {...props}
           id={name}
