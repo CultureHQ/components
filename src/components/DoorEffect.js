@@ -1,10 +1,16 @@
 import React, { PureComponent } from "react";
 
 class DoorEffect extends PureComponent {
+  static defaultProps = {
+    duration: 150,
+    open: false,
+    tag: "div"
+  };
+
   doorRef = React.createRef();
 
   componentDidUpdate(prevProps) {
-    const { className, duration = 150, open } = this.props;
+    const { className, duration, open } = this.props;
 
     if (open !== prevProps.open) {
       const { classList } = this.doorRef.current;
@@ -21,12 +27,12 @@ class DoorEffect extends PureComponent {
   }
 
   render() {
-    const { children, className } = this.props;
+    const { children, className, tag: Tag } = this.props;
 
     return (
-      <div ref={this.doorRef} className={className}>
+      <Tag ref={this.doorRef} className={className}>
         {children}
-      </div>
+      </Tag>
     );
   }
 }

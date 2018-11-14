@@ -57,8 +57,7 @@ function (_PureComponent) {
     value: function componentDidUpdate(prevProps) {
       var _this$props = this.props,
           className = _this$props.className,
-          _this$props$duration = _this$props.duration,
-          duration = _this$props$duration === void 0 ? 150 : _this$props$duration,
+          duration = _this$props.duration,
           open = _this$props.open;
 
       if (open !== prevProps.open) {
@@ -84,8 +83,9 @@ function (_PureComponent) {
     value: function render() {
       var _this$props2 = this.props,
           children = _this$props2.children,
-          className = _this$props2.className;
-      return _react.default.createElement("div", {
+          className = _this$props2.className,
+          Tag = _this$props2.tag;
+      return _react.default.createElement(Tag, {
         ref: this.doorRef,
         className: className
       }, children);
@@ -94,6 +94,12 @@ function (_PureComponent) {
 
   return DoorEffect;
 }(_react.PureComponent);
+
+_defineProperty(DoorEffect, "defaultProps", {
+  duration: 150,
+  open: false,
+  tag: "div"
+});
 
 var _default = DoorEffect;
 exports.default = _default;

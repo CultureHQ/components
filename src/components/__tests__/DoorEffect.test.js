@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 
 import DoorEffect from "../DoorEffect";
 
-test("adds the -show class", () => {
+test("adds and removes the -open and -closed classes", () => {
   const component = mount(<DoorEffect className="test" />);
   expect(component.find("div").instance().className).toEqual("test");
 
@@ -19,4 +19,10 @@ test("adds the -show class", () => {
       resolve();
     }, 200);
   });
+});
+
+test("allows switching the tag type", () => {
+  const component = mount(<DoorEffect className="test" tag="section" />);
+
+  expect(component.find("section")).toHaveLength(1);
 });

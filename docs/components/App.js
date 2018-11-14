@@ -321,6 +321,7 @@ const App = () => (
         <ClassNameProp />
         <Prop name="duration = 150">how long the animation lasts (in ms)</Prop>
         <Prop name="open = false">whether or not the component is currently open</Prop>
+        <Prop name={"tag = \"div\""}>the tag type for the container</Prop>
       </PropList>
 
       <DoorEffectContainer />
