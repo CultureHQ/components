@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [5.1.1] - 2018-11-14
+### Changed
+- Some simple style fixes for Firefox to align with Chrome.
+
 ## [5.1.0] - 2018-11-13
 ### Added
 - The ability to specify the tag type of the `DoorEffect` component.

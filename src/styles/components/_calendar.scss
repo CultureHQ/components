@@ -18,6 +18,7 @@
 
     &--prev,
     &--next {
+      background: inherit;
       border: 0;
       border-radius: 5px;
       cursor: pointer;
@@ -77,6 +78,7 @@
   }
 
   .chq-cal--day {
+    border: 0;
     border-radius: 5px;
     color: $color-primary-font;
     cursor: pointer;

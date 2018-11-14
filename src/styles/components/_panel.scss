@@ -30,6 +30,7 @@
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       color: $color-white;
+      padding-bottom: 15px;
 
       h2 {
         font-size: 1em;
@@ -37,7 +38,7 @@
       }
 
       hr {
-        border: 0;
+        display: none;
       }
     }
   }

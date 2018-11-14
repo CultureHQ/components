@@ -154,6 +154,7 @@
       vertical-align: middle;
       width: 0; }
     .chq-cal--head--prev, .chq-cal--head--next {
+      background: inherit;
       border: 0;
       border-radius: 5px;
       cursor: pointer;
@@ -190,6 +191,7 @@
     display: flex;
     flex-wrap: wrap; }
   .chq-cal .chq-cal--day {
+    border: 0;
     border-radius: 5px;
     color: #5c5f67;
     cursor: pointer;
@@ -951,12 +953,13 @@
       background-color: #8cb4d6;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
-      color: #fff; }
+      color: #fff;
+      padding-bottom: 15px; }
       .chq-pan--hd-pr h2 {
         font-size: 1em;
         font-weight: 400; }
       .chq-pan--hd-pr hr {
-        border: 0; }
+        display: none; }
   .chq-pan--bd {
     font-weight: 200;
     padding: 15px; }
@@ -1195,6 +1198,7 @@
   max-height: 235px;
   overflow-y: auto; }
   .chq-tsl .chq-tsl--op {
+    border: 0;
     border-radius: 5px;
     color: #5c5f67;
     display: block;
