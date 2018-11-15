@@ -21,6 +21,12 @@
   .chq-bdg {
     font-size: .9em;
     margin-top: 5px;
+
+    svg {
+      height: 10px;
+      margin: 0 3px 0 0;
+      width: 10px;
+    }
   }
 
   &--match {

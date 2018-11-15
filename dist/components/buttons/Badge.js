@@ -20,11 +20,12 @@ var Badge = function Badge(_ref) {
       _ref$primary = _ref.primary,
       primary = _ref$primary === void 0 ? false : _ref$primary,
       onClick = _ref.onClick;
+  var classList = (0, _classnames.default)("chq-bdg", className, {
+    "chq-bdg-pr": primary
+  });
   return _react.default.createElement("button", {
     type: "button",
-    className: (0, _classnames.default)("chq-bdg", className, {
-      "chq-bdg-pr": primary
-    }),
+    className: classList,
     onClick: onClick
   }, icon && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Icon.default, {
     icon: icon

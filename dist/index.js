@@ -33,12 +33,6 @@ Object.defineProperty(exports, "Cheer", {
     return _Cheer.default;
   }
 });
-Object.defineProperty(exports, "CheerList", {
-  enumerable: true,
-  get: function get() {
-    return _CheerList.default;
-  }
-});
 Object.defineProperty(exports, "Circles", {
   enumerable: true,
   get: function get() {
@@ -319,8 +313,6 @@ var _Checklist = _interopRequireDefault(require("./components/Checklist"));
 var _Checkmark = _interopRequireDefault(require("./components/Checkmark"));
 
 var _Cheer = _interopRequireDefault(require("./components/Cheer"));
-
-var _CheerList = _interopRequireDefault(require("./components/CheerList"));
 
 var _Circles = _interopRequireDefault(require("./components/Circles"));
 

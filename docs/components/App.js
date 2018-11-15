@@ -4,7 +4,6 @@ import "../../src/styles/app.scss";
 import CalendarContainer from "./CalendarContainer";
 import CheckmarkContainer from "./CheckmarkContainer";
 import CheerButtonContainer from "./CheerButtonContainer";
-import CheerListContainer from "./CheerListContainer";
 import ClickCloseContainer from "./ClickCloseContainer";
 import DoorEffectContainer from "./DoorEffectContainer";
 import HamburgerContainer from "./HamburgerContainer";
@@ -213,31 +212,6 @@ const App = () => (
       <CheerButtonContainer cheered name="Harry" /><br />
       <CheerButtonContainer small />{" "}
       <CheerButtonContainer small cheered name="Ron" />
-
-      <Heading>CheerList</Heading>
-      <p>A list of cheers on an entity.</p>
-      <PropList>
-        <Prop name="cheered">the state of whether or not this entity has been cheered</Prop>
-        <Prop name="cheers">
-          an array of objects that look like <code>{"{ name }"}</code> that{" "}
-          represent other users having cheered the same entity
-        </Prop>
-        <Prop name="name?">an optional name that will appear in a tooltip</Prop>
-        <Prop name="onCheerToggle">
-          a callback function that accepts a boolean <code>cheered</code>{" "}
-          state and returns a <code>Promise</code>
-        </Prop>
-      </PropList>
-
-      <CheerListContainer
-        cheers={[
-          { name: "Hermione" },
-          { name: "Ron" },
-          { name: "Luna" },
-          { name: "Neville" }
-        ]}
-        name="Harry"
-      />
 
       <Heading>Circles</Heading>
       <p>The CultureHQ circles. (Try hovering.)</p>

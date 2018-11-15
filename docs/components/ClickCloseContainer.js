@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { ClickClose, PlainButton } from "../../src";
 
 const ClickCloseContainer = () => {
   const [open, setOpen] = useState(false);
 
-  const onClose = () => open && setOpen(false);
-  const onOpen = () => setOpen(true);
+  const onClose = useCallback(() => open && setOpen(false));
+  const onOpen = useCallback(() => setOpen(true));
 
   return (
     <ClickClose onClose={onClose}>

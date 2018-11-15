@@ -45,6 +45,7 @@
   &-pp {
     animation: chqChrPop .2s ease-in-out forwards;
     opacity: 0;
+    overflow: visible;
     transform: scale(.8);
 
     .chq-chr--fb {

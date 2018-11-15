@@ -1,6 +1,6 @@
 .chq-bdg {
   background: none;
-  border: 1px solid $color-border;
+  border: 1px solid darken($color-border, 10%);
   border-radius: 17px;
   color: $color-primary-font;
   cursor: pointer;
@@ -12,23 +12,14 @@
   transition: border-color .3s;
 
   svg {
-    height: 10px;
-    margin: 0 3px 0 0;
-    width: 10px;
+    height: 15px;
+    margin: 0 1px -2px 0;
+    width: 15px;
   }
 
   path {
-    fill: $color-primary-light-font;
+    fill: $color-primary-font;
     transition: fill .3s;
-  }
-
-  &:focus,
-  &:hover {
-    border-color: darken($color-border, 10%);
-
-    path {
-      fill: $color-primary-font;
-    }
   }
 
   &-pr {
@@ -37,15 +28,6 @@
 
     path {
       fill: $color-primary-blue;
-    }
-
-    &:focus,
-    &:hover {
-      border-color: $color-link-blue;
-
-      path {
-        fill: $color-primary-blue;
-      }
     }
   }
 }

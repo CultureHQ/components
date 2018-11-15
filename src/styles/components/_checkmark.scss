@@ -5,6 +5,7 @@
   font-size: 1em;
   outline: none;
   padding: 0;
+  text-align: left;
 
   svg {
     border: $color-primary-green solid 1px;
@@ -12,7 +13,8 @@
     box-shadow: inset 0 0 0 $color-primary-green;
     display: inline-block;
     height: 1.2em;
-    margin-right: .2em;
+    margin-right: 1em;
+    overflow: visible;
     stroke: $color-white;
     stroke-miterlimit: 10;
     stroke-width: 2;

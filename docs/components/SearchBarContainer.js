@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { Panel, SearchBar } from "../../src";
 
@@ -12,7 +12,7 @@ const match = search => OPTIONS.filter(option => (
 
 const SearchBarContainer = () => {
   const [matched, setMatched] = useState([]);
-  const onSearch = search => setMatched(search ? match(search) : []);
+  const onSearch = useCallback(search => setMatched(search ? match(search) : []));
 
   return (
     <Panel>

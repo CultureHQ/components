@@ -4,7 +4,6 @@ export { default as Calendar } from "./components/Calendar";
 export { default as Checklist } from "./components/Checklist";
 export { default as Checkmark } from "./components/Checkmark";
 export { default as Cheer } from "./components/Cheer";
-export { default as CheerList } from "./components/CheerList";
 export { default as Circles } from "./components/Circles";
 export { default as ClickClose } from "./components/ClickClose";
 export { default as DoorEffect } from "./components/DoorEffect";

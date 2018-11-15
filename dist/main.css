@@ -25,7 +25,7 @@
 
 .chq-bdg {
   background: none;
-  border: 1px solid #eaeaea;
+  border: 1px solid #d1d1d1;
   border-radius: 17px;
   color: #5c5f67;
   cursor: pointer;
@@ -36,25 +36,17 @@
   text-decoration: none;
   transition: border-color .3s; }
   .chq-bdg svg {
-    height: 10px;
-    margin: 0 3px 0 0;
-    width: 10px; }
+    height: 15px;
+    margin: 0 1px -2px 0;
+    width: 15px; }
   .chq-bdg path {
-    fill: #9c9fa7;
+    fill: #5c5f67;
     transition: fill .3s; }
-  .chq-bdg:focus, .chq-bdg:hover {
-    border-color: #d1d1d1; }
-    .chq-bdg:focus path, .chq-bdg:hover path {
-      fill: #5c5f67; }
   .chq-bdg-pr {
     border: 1px solid #8cb4d6;
     color: #8cb4d6; }
     .chq-bdg-pr path {
       fill: #8cb4d6; }
-    .chq-bdg-pr:focus, .chq-bdg-pr:hover {
-      border-color: #6a89af; }
-      .chq-bdg-pr:focus path, .chq-bdg-pr:hover path {
-        fill: #8cb4d6; }
 
 .chq-btn {
   background-color: #79b17d;
@@ -210,9 +202,11 @@
     .chq-cal .chq-cal--day-out {
       color: #e0e0e3; }
 
-.chq-chl .chq-cmk {
-  display: block;
-  margin-bottom: 1rem; }
+.chq-chl {
+  margin: 1em 0; }
+  .chq-chl .chq-cmk {
+    display: block;
+    margin-bottom: 1rem; }
 
 .chq-cmk {
   background: none;
@@ -220,17 +214,19 @@
   color: inherit;
   font-size: 1em;
   outline: none;
-  padding: 0; }
+  padding: 0;
+  text-align: left; }
   .chq-cmk svg {
     border: #79b17d solid 1px;
     border-radius: 50%;
     box-shadow: inset 0 0 0 #79b17d;
     display: inline-block;
     height: 1.2em;
-    margin-right: .2em;
+    margin-right: 1em;
     stroke: #fff;
     stroke-miterlimit: 10;
     stroke-width: 2;
+    overflow: visible;
     vertical-align: text-top;
     width: 1.2em; }
   .chq-cmk circle {
@@ -296,6 +292,7 @@
   .chq-chr-pp {
     animation: chqChrPop .2s ease-in-out forwards;
     opacity: 0;
+    overflow: visible;
     transform: scale(0.8); }
     .chq-chr-pp .chq-chr--fb-1 {
       animation: chqChrOne .8s forwards;
@@ -999,7 +996,7 @@
     font-size: 1em;
     font-weight: 200;
     margin-bottom: 5px;
-    min-height: 42px;
+    min-height: 36px;
     outline: none;
     padding: 6px 12px 6px 36px;
     text-align: left;
@@ -1035,6 +1032,10 @@
   .chq-ffd--sl .chq-bdg {
     font-size: .9em;
     margin-top: 5px; }
+    .chq-ffd--sl .chq-bdg svg {
+      height: 10px;
+      margin: 0 3px 0 0;
+      width: 10px; }
   .chq-ffd--sl--match {
     border: 0;
     border-radius: 0;
@@ -1243,6 +1244,7 @@
     transform: rotate(-45deg);
     width: 12px; }
   .chq-ttp:hover .chq-ttp--bbl {
+    border-collapse: separate;
     display: table; }
   .chq-ttp:hover .chq-ttp--tri {
     display: inline; }

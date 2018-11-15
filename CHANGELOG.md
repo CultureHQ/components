@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.0.0] - 2018-11-15
+### Changed
+- Various style modifications needed found from usage.
+
+### Removed
+- [BREAKING] The `CheerList` component because it was overly complicated, unused, and bloating the package size.
+
 ## [5.2.0] - 2018-11-15
 ### Added
 - The `diagram`, `heart-ol`, and `loc-ol` icons.
