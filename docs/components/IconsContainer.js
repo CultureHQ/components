@@ -1,14 +1,14 @@
 import React from "react";
 
-import { Icon } from "../../src";
+import { Icon, Tooltip } from "../../src";
 import paths from "../../src/icons.json";
 
 const IconsContainer = () => (
   <div className="icons">
     {Object.keys(paths).map(icon => (
-      <span key={icon} title={icon}>
+      <Tooltip key={icon} tip={icon}>
         <Icon icon={icon} />
-      </span>
+      </Tooltip>
     ))}
   </div>
 );
