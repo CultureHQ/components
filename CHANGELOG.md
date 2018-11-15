@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [5.2.0] - 2018-11-15
+### Added
+- The `diagram`, `heart-ol`, and `loc-ol` icons.
+
 ## [5.1.1] - 2018-11-14
 ### Changed
 - Some simple style fixes for Firefox to align with Chrome.
