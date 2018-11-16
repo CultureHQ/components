@@ -257,6 +257,7 @@ function (_Component) {
       var _this2 = this;
 
       var _this$props2 = this.props,
+          aspectRatio = _this$props2.aspectRatio,
           autoFocus = _this$props2.autoFocus,
           children = _this$props2.children,
           className = _this$props2.className,
@@ -267,7 +268,7 @@ function (_Component) {
           progress = _this$props2.progress,
           submitted = _this$props2.submitted,
           value = _this$props2.value,
-          props = _objectWithoutProperties(_this$props2, ["autoFocus", "children", "className", "name", "onChange", "onFormChange", "onError", "progress", "submitted", "value"]);
+          props = _objectWithoutProperties(_this$props2, ["aspectRatio", "autoFocus", "children", "className", "name", "onChange", "onFormChange", "onError", "progress", "submitted", "value"]);
 
       var _this$state = this.state,
           editorOpen = _this$state.editorOpen,
@@ -310,6 +311,7 @@ function (_Component) {
       }))), editorOpen && currentTransport && _react.default.createElement(_ModalDialog.default, {
         onClose: this.handleClose
       }, _react.default.createElement(_ModalDialog.default.Body, null, _react.default.createElement(_ImageEditor.default, {
+        aspectRatio: aspectRatio,
         image: currentTransport.preview,
         onEdit: this.handleImageEdited,
         onFailure: this.handleImageFailure
@@ -321,6 +323,7 @@ function (_Component) {
 }(_react.Component);
 
 _defineProperty(MultiImageField, "defaultProps", {
+  aspectRatio: null,
   autoFocus: false,
   onChange: function onChange() {},
   onFormChange: function onFormChange() {}

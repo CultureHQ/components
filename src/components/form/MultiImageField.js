@@ -59,6 +59,7 @@ const Preview = ({ transport, onEdit, onRemove }) => (
 
 class MultiImageField extends Component {
   static defaultProps = {
+    aspectRatio: null,
     autoFocus: false,
     onChange: () => {},
     onFormChange: () => {}
@@ -144,8 +145,8 @@ class MultiImageField extends Component {
 
   render() {
     const {
-      autoFocus, children, className, name, onChange, onFormChange, onError,
-      progress, submitted, value, ...props
+      aspectRatio, autoFocus, children, className, name, onChange, onFormChange,
+      onError, progress, submitted, value, ...props
     } = this.props;
 
     const { editorOpen, currentTransport, transports } = this.state;
@@ -194,6 +195,7 @@ class MultiImageField extends Component {
           <ModalDialog onClose={this.handleClose}>
             <ModalDialog.Body>
               <ImageEditor
+                aspectRatio={aspectRatio}
                 image={currentTransport.preview}
                 onEdit={this.handleImageEdited}
                 onFailure={this.handleImageFailure}

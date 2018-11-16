@@ -20,6 +20,10 @@ const cropperToImage = cropper => {
 };
 
 class ImageEditor extends Component {
+  static defaultProps = {
+    aspectRatio: null
+  };
+
   imageRef = React.createRef();
 
   componentDidMount() {
@@ -32,7 +36,10 @@ class ImageEditor extends Component {
 
     return Promise.all(promises).then(([{ default: Cropper }]) => {
       if (this.componentIsMounted) {
+        const { aspectRatio } = this.props;
+
         this.cropper = new Cropper(this.imageRef.current, {
+          aspectRatio,
           dragMove: "move",
           autoCropArea: 1,
           responsive: true

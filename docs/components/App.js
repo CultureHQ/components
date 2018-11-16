@@ -395,6 +395,7 @@ const App = () => (
       <Heading>ImageEditor</Heading>
       <p>Edits an image.</p>
       <PropList>
+        <Prop name="aspectRatio = null">the enforced aspect ratio on the cropper</Prop>
         <Prop name="image">an image object</Prop>
         <Prop name="onEdit">a callback for when the image has been saved</Prop>
         <Prop name="onFailure">a callback for when the image fails to load</Prop>
@@ -409,6 +410,7 @@ const App = () => (
       <Heading>ImageField</Heading>
       <p>An image form component.</p>
       <PropList>
+        <Prop name="aspectRatio = null">the enforced aspect ratio on the cropper</Prop>
         <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />
@@ -532,6 +534,7 @@ const App = () => (
       <Heading>MultiImageField</Heading>
       <p>An image field component for selecting multiple images.</p>
       <PropList>
+        <Prop name="aspectRatio = null">the enforced aspect ratio on the cropper</Prop>
         <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
         <Prop name="children">the label to display for the field</Prop>
         <ClassNameProp />

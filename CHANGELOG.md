@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.1.0] - 2018-11-16
+### Added
+- The optional `aspectRatio` prop to `ImageEditor`, `ImageField`, and `MultiImageField`.
+
 ## [6.0.0] - 2018-11-15
 ### Changed
 - Various style modifications needed found from usage.

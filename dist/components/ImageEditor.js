@@ -119,7 +119,9 @@ function (_Component) {
             Cropper = _ref2[0].default;
 
         if (_this2.componentIsMounted) {
+          var aspectRatio = _this2.props.aspectRatio;
           _this2.cropper = new Cropper(_this2.imageRef.current, {
+            aspectRatio: aspectRatio,
             dragMove: "move",
             autoCropArea: 1,
             responsive: true
@@ -183,6 +185,10 @@ function (_Component) {
 
   return ImageEditor;
 }(_react.Component);
+
+_defineProperty(ImageEditor, "defaultProps", {
+  aspectRatio: null
+});
 
 var _default = ImageEditor;
 exports.default = _default;

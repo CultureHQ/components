@@ -223,10 +223,10 @@
     display: inline-block;
     height: 1.2em;
     margin-right: 1em;
+    overflow: visible;
     stroke: #fff;
     stroke-miterlimit: 10;
     stroke-width: 2;
-    overflow: visible;
     vertical-align: text-top;
     width: 1.2em; }
   .chq-cmk circle {

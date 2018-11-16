@@ -8,6 +8,7 @@ import ImagePreview from "../ImagePreview";
 
 class ImageField extends Component {
   static defaultProps = {
+    aspectRatio: null,
     autoFocus: false,
     onChange: () => {},
     onFormChange: () => {}
@@ -60,8 +61,8 @@ class ImageField extends Component {
 
   render() {
     const {
-      autoFocus, children, className, name, onChange, onFormChange, onError,
-      progress, submitted, value, ...props
+      aspectRatio, autoFocus, children, className, name, onChange, onFormChange,
+      onError, progress, submitted, value, ...props
     } = this.props;
 
     const { editorOpen, failed, image, preview } = this.state;
@@ -103,6 +104,7 @@ class ImageField extends Component {
           <ModalDialog onClose={this.handleClose}>
             <ModalDialog.Body>
               <ImageEditor
+                aspectRatio={aspectRatio}
                 image={preview}
                 onEdit={this.handleImageEdited}
                 onFailure={this.handleImageFailure}
