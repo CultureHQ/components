@@ -11,7 +11,7 @@ const OPTIONS = [
   { label: "Ron", value: "ron" }
 ];
 
-const Container = ({ creatable = false, multiple = false, value: initialValue = "" }) => {
+const Container = ({ creatable = false, multiple = false, value: initialValue }) => {
   const [value, setValue] = useState(initialValue);
 
   return (

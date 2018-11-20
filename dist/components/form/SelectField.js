@@ -201,7 +201,7 @@ function (_Component) {
 
     var _display = "";
 
-    if (!props.multiple && props.value) {
+    if (!props.multiple && props.value !== undefined) {
       _display = props.options.find(function (_ref3) {
         var value = _ref3.value;
         return value === props.value;
