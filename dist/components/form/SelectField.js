@@ -205,7 +205,8 @@ function (_Component) {
       _display = props.options.find(function (_ref3) {
         var value = _ref3.value;
         return value === props.value;
-      }).label;
+      });
+      _display = _display ? _display.label : "";
     }
 
     _this.state = {

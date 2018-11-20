@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.2.2] - 2018-11-20
+### Changed
+- Allow `SelectField` to work if the initial value given is not contained in the passed options.
+
 ## [6.2.1] - 2018-11-20
 ### Changed
 - Allow `SelectField` to work with falsy values on initial render.

@@ -36,7 +36,8 @@ class SelectField extends Component {
 
     let display = "";
     if (!props.multiple && props.value !== undefined) {
-      display = props.options.find(({ value }) => value === props.value).label;
+      display = props.options.find(({ value }) => value === props.value);
+      display = display ? display.label : "";
     }
 
     this.state = {
