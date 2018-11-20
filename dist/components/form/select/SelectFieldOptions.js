@@ -88,7 +88,7 @@ var SelectFieldOptions = function SelectFieldOptions(_ref3) {
       option: option,
       onDeselect: onDeselect,
       onSelect: onSelect,
-      active: multiple ? value.includes(option.value) : option.value === value,
+      active: value && (multiple ? value.includes(option.value) : option.value === value),
       tabIndex: open ? 0 : -1
     });
   }), !createOption && filteredOptions.length === 0 && _react.default.createElement("p", null, "No results found."));

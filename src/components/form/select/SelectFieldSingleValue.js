@@ -27,7 +27,7 @@ class SelectFieldSingleValue extends Component {
 
     return (
       <>
-        <input type="hidden" id={name} name={name} value={value} />
+        <input type="hidden" id={name} name={name} value={value || ""} />
         <input
           type="text"
           ref={inputRef}

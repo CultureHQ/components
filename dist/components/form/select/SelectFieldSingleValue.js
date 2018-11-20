@@ -95,7 +95,7 @@ function (_Component) {
         type: "hidden",
         id: name,
         name: name,
-        value: value
+        value: value || ""
       }), _react.default.createElement("input", {
         type: "text",
         ref: inputRef,

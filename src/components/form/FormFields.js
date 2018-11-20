@@ -46,19 +46,17 @@ const buildFormField = type => {
       return (
         <label className={classnames("chq-ffd", className)} htmlFor={name}>
           <span className="chq-ffd--lb">{children}</span>
-          <>
-            {addon && <span className="chq-ffd--ad">{addon}</span>}
-            <input
-              className="chq-ffd--ctrl"
-              ref={this.inputRef}
-              {...props}
-              type={type}
-              id={name}
-              value={value || ""}
-              onBlur={this.handleBlur}
-              onChange={this.handleChange}
-            />
-          </>
+          {addon && <span className="chq-ffd--ad">{addon}</span>}
+          <input
+            className="chq-ffd--ctrl"
+            ref={this.inputRef}
+            {...props}
+            type={type}
+            id={name}
+            value={value || ""}
+            onBlur={this.handleBlur}
+            onChange={this.handleChange}
+          />
           <FormError
             name={name}
             onError={onError}

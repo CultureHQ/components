@@ -119,7 +119,7 @@ var buildFormField = function buildFormField(type) {
           htmlFor: name
         }, _react.default.createElement("span", {
           className: "chq-ffd--lb"
-        }, children), _react.default.createElement(_react.default.Fragment, null, addon && _react.default.createElement("span", {
+        }, children), addon && _react.default.createElement("span", {
           className: "chq-ffd--ad"
         }, addon), _react.default.createElement("input", _extends({
           className: "chq-ffd--ctrl",
@@ -130,7 +130,7 @@ var buildFormField = function buildFormField(type) {
           value: value || "",
           onBlur: this.handleBlur,
           onChange: this.handleChange
-        }))), _react.default.createElement(_FormError.default, {
+        })), _react.default.createElement(_FormError.default, {
           name: name,
           onError: onError,
           required: required,

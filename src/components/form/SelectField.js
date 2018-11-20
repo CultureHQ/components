@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import classnames from "../../classnames";
+import FormError from "./FormError";
 import SelectFieldValue from "./select/SelectFieldValue";
 import SelectFieldOptions from "./select/SelectFieldOptions";
 
@@ -41,7 +42,8 @@ class SelectField extends Component {
     this.state = {
       display,
       filteredOptions: props.options,
-      open: false
+      open: false,
+      touched: false
     };
   }
 
@@ -115,7 +117,7 @@ class SelectField extends Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false, touched: true });
   };
 
   propagateValue = value => {
@@ -132,10 +134,10 @@ class SelectField extends Component {
     let display = "";
     if (!multiple) {
       display = options.find(({ value }) => value === nextValue);
-      display = display ? display.label : nextValue;
+      display = display ? display.label : (nextValue || "");
     }
 
-    this.setState({ display, ...effects }, () => (
+    this.setState({ display, touched: true, ...effects }, () => (
       setTimeout(() => this.setState({ filteredOptions: options }), 150)
     ));
   };
@@ -143,8 +145,12 @@ class SelectField extends Component {
   /* eslint-disable jsx-a11y/label-has-for */
   // we're following the rules for it but it can't figure that out
   render() {
-    const { children, className, creatable, multiple, name, options, value } = this.props;
-    const { display, filteredOptions, open } = this.state;
+    const {
+      children, className, creatable, multiple, name, onError, options,
+      required, submitted, validator, value
+    } = this.props;
+
+    const { display, filteredOptions, open, touched } = this.state;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -175,6 +181,15 @@ class SelectField extends Component {
             value={value}
           />
         </div>
+        <FormError
+          name={name}
+          onError={onError}
+          required={required}
+          submitted={submitted}
+          touched={touched}
+          validator={validator}
+          value={value}
+        />
       </label>
     );
   }

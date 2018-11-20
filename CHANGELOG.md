@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [6.2.0] - 2018-11-20
+### Changed
+- Properly support `required` and `validator` on `SelectField`.
+- Don't break when `SelectField` `multiple` value is set and there is no initial value.
+
 ## [6.1.0] - 2018-11-16
 ### Added
 - The optional `aspectRatio` prop to `ImageEditor`, `ImageField`, and `MultiImageField`.

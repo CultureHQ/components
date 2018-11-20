@@ -9,6 +9,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("../../classnames"));
 
+var _FormError = _interopRequireDefault(require("./FormError"));
+
 var _SelectFieldValue = _interopRequireDefault(require("./select/SelectFieldValue"));
 
 var _SelectFieldOptions = _interopRequireDefault(require("./select/SelectFieldOptions"));
@@ -154,7 +156,8 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClose", function () {
       _this.setState({
-        open: false
+        open: false,
+        touched: true
       });
     });
 
@@ -181,11 +184,12 @@ function (_Component) {
           var value = _ref2.value;
           return value === nextValue;
         });
-        display = display ? display.label : nextValue;
+        display = display ? display.label : nextValue || "";
       }
 
       _this.setState(_objectSpread({
-        display: display
+        display: display,
+        touched: true
       }, effects), function () {
         return setTimeout(function () {
           return _this.setState({
@@ -207,7 +211,8 @@ function (_Component) {
     _this.state = {
       display: _display,
       filteredOptions: props.options,
-      open: false
+      open: false,
+      touched: false
     };
     return _this;
   }
@@ -240,12 +245,17 @@ function (_Component) {
           creatable = _this$props6.creatable,
           multiple = _this$props6.multiple,
           name = _this$props6.name,
+          onError = _this$props6.onError,
           options = _this$props6.options,
+          required = _this$props6.required,
+          submitted = _this$props6.submitted,
+          validator = _this$props6.validator,
           value = _this$props6.value;
       var _this$state = this.state,
           display = _this$state.display,
           filteredOptions = _this$state.filteredOptions,
-          open = _this$state.open;
+          open = _this$state.open,
+          touched = _this$state.touched;
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name
@@ -276,7 +286,15 @@ function (_Component) {
         open: open,
         options: options,
         value: value
-      })));
+      })), _react.default.createElement(_FormError.default, {
+        name: name,
+        onError: onError,
+        required: required,
+        submitted: submitted,
+        touched: touched,
+        validator: validator,
+        value: value
+      }));
     }
   }]);
 
