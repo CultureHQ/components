@@ -51,65 +51,63 @@ import Thumbnail from "./pages/Thumbnail";
 import Tooltip from "./pages/Tooltip";
 import Warning from "./pages/Warning";
 
-import { Modal as ModalComponent, Nav as NavComponent } from "../../src";
+import { Modal as ModalComponent } from "../../src";
 
 ModalComponent.setAppElement("#main");
 
 const App = () => (
-  <>
-    <NavComponent>{"<Nav>"}</NavComponent>
-    <div className="container">
-      <ActionButton />
-      <Badge />
-      <BooleanField />
-      <Button />
-      <Calendar />
-      <CentsField />
-      <Checklist />
-      <Checkmark />
-      <Cheer />
-      <CheerButton />
-      <Circles />
-      <ClickClose />
-      <Confirm />
-      <ConfirmDelete />
-      <DateTimeField />
-      <DoorEffect />
-      <EmailField />
-      <FeedItem />
-      <FileField />
-      <Form />
-      <Hamburger />
-      <Icon />
-      <ImageEditor />
-      <ImageField />
-      <ImagePreview />
-      <Info />
-      <Loader />
-      <Modal />
-      <ModalDialog />
-      <MultiImageField />
-      <Nav />
-      <NumberField />
-      <Pagination />
-      <Panel />
-      <PasswordField />
-      <PlainButton />
-      <SearchBar />
-      <SelectField />
-      <Spinner />
-      <StringField />
-      <SubmitButton />
-      <Subnav />
-      <Success />
-      <Table />
-      <Tag />
-      <TextField />
-      <Thumbnail />
-      <Tooltip />
-      <Warning />
-    </div>
-  </>
+  <div className="container">
+    <h1>@culturehq/components</h1>
+    <ActionButton />
+    <Badge />
+    <BooleanField />
+    <Button />
+    <Calendar />
+    <CentsField />
+    <Checklist />
+    <Checkmark />
+    <Cheer />
+    <CheerButton />
+    <Circles />
+    <ClickClose />
+    <Confirm />
+    <ConfirmDelete />
+    <DateTimeField />
+    <DoorEffect />
+    <EmailField />
+    <FeedItem />
+    <FileField />
+    <Form />
+    <Hamburger />
+    <Icon />
+    <ImageEditor />
+    <ImageField />
+    <ImagePreview />
+    <Info />
+    <Loader />
+    <Modal />
+    <ModalDialog />
+    <MultiImageField />
+    <Nav />
+    <NumberField />
+    <Pagination />
+    <Panel />
+    <PasswordField />
+    <PlainButton />
+    <SearchBar />
+    <SelectField />
+    <Spinner />
+    <StringField />
+    <SubmitButton />
+    <Subnav />
+    <Success />
+    <Table />
+    <Tag />
+    <TextField />
+    <Thumbnail />
+    <Tooltip />
+    <Warning />
+  </div>
 );
 
 export default App;
