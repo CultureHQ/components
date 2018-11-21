@@ -16,9 +16,10 @@ import SearchBarContainer from "./SearchBarContainer";
 import ActionButton from "./pages/ActionButton";
 import Badge from "./pages/Badge";
 import BooleanField from "./pages/BooleanField";
+import Button from "./pages/Button";
 
 import {
-  Button, CentsField, Checklist, Cheer,
+  Button as ButtonComp, CentsField, Checklist, Cheer,
   Circles, Confirm, ConfirmDelete, DateTimeField, EmailField, FeedItem,
   FileField, Form, ImageField, ImagePreview, Info, Modal, MultiImageField, Nav,
   NumberField, Panel, PasswordField, PlainButton, SelectField, Spinner,
@@ -53,37 +54,7 @@ const App = () => (
       <ActionButton />
       <Badge />
       <BooleanField />
-
-      <Heading>Button</Heading>
-      <p>A generic button component.</p>
-      <PropList>
-        <Prop name="children">displayed inside the button</Prop>
-        <ClassNameProp />
-        <Prop name="danger = false">indicates a permanent action</Prop>
-        <Prop name="disabled = false">disallows clicking on the button</Prop>
-        <Prop name="icon?">an icon to display inside the button</Prop>
-        <Prop name="inverted = false">indicates the inverted theme</Prop>
-        <Prop name="loading = false">displays a spinner inside the button</Prop>
-        <Prop name="onClick">the callback when the button is clicked</Prop>
-        <Prop name="primary = false">indicates a larger primary button</Prop>
-        <Prop name="small = false">indicates a small button</Prop>
-        <Prop name={"type = \"button\""}>the type of the button component</Prop>
-      </PropList>
-
-      <Button>Default</Button>{" "}
-      <Button icon="clipboard">Icon</Button>{" "}
-      <Button loading>Loading</Button>{" "}
-      <Button disabled>Disabled</Button>{" "}
-      <Button danger>Danger</Button>{" "}
-
-      <Button primary>Primary</Button>{" "}
-      <Button icon="clipboard" primary>Primary Icon</Button>{" "}
-
-      <Button small>Small</Button>{" "}
-      <Button icon="clipboard" small>Small Icon</Button>{" "}
-
-      <Button inverted>Inverted</Button>{" "}
-      <Button icon="clipboard" inverted>Inverted Icon</Button>
+      <Button />
 
       <Heading>Calendar</Heading>
       <p>A calendar component.</p>
@@ -211,7 +182,7 @@ const App = () => (
       <Confirm
         accept="Yes, create it!"
         onAccept={onAccept}
-        trigger={onTrigger => <Button onClick={onTrigger}>Create</Button>}
+        trigger={onTrigger => <ButtonComp onClick={onTrigger}>Create</ButtonComp>}
       >
         Are you sure you&#39;d like to create this resource?
       </Confirm>
@@ -225,7 +196,7 @@ const App = () => (
 
       <ConfirmDelete
         onAccept={onAccept}
-        trigger={onTrigger => <Button danger onClick={onTrigger}>Danger</Button>}
+        trigger={onTrigger => <ButtonComp danger onClick={onTrigger}>Danger</ButtonComp>}
       >
         Are you sure you&#39;d like to delete this resource?
       </ConfirmDelete>
@@ -453,7 +424,7 @@ const App = () => (
 
       <Modal
         entrance="slideIn"
-        trigger={onTrigger => <Button onClick={onTrigger}>slideIn modal</Button>}
+        trigger={onTrigger => <ButtonComp onClick={onTrigger}>slideIn modal</ButtonComp>}
       >
         <Modal.Heading>Chapter 1</Modal.Heading>
         <Modal.Body>{TEXT}</Modal.Body>
@@ -461,14 +432,14 @@ const App = () => (
       {" "}
       <Modal
         entrance="zoomIn"
-        trigger={onTrigger => <Button onClick={onTrigger}>zoomIn modal</Button>}
+        trigger={onTrigger => <ButtonComp onClick={onTrigger}>zoomIn modal</ButtonComp>}
       >
         <Modal.Heading>Chapter 2</Modal.Heading>
         <Modal.LoaderBody loading />
       </Modal>
       {" "}
       <Modal
-        trigger={onTrigger => <Button onClick={onTrigger}>narrow modal</Button>}
+        trigger={onTrigger => <ButtonComp onClick={onTrigger}>narrow modal</ButtonComp>}
         width="narrow"
       >
         <Modal.Heading>Chapter 3</Modal.Heading>
@@ -908,7 +879,7 @@ const App = () => (
       </PropList>
 
       <Tooltip tip={TEXT}>
-        <Button primary disabled>Some action</Button>
+        <ButtonComp primary disabled>Some action</ButtonComp>
       </Tooltip>
 
       <Heading>Warning</Heading>
