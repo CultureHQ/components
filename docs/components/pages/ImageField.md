@@ -1,0 +1,27 @@
+---
+prependJs:
+- import { ImageField, Form, Panel } from "../../../src";
+---
+
+## `<ImageField>`
+
+A image form field.
+
+* `aspectRatio = null` - the enforced aspect ratio on the cropper
+* `autoFocus = false` - whether or not the component should request focus on initial mount
+* `children` - the label to display for the field
+* `className?` - an extra class name
+* `name` - the name of the field
+* `onChange?` - a function that accepts one argument that represents the new value of the file field
+* `progress?` - a number out of 100 that represents the upload progress
+* `value?` - the value of the input field
+
+{{
+  <Panel>
+    <Panel.Body>
+      <Form initialValues={{ image: "culture.png" }}>
+        <ImageField name="image">Image</ImageField>
+      </Form>
+    </Panel.Body>
+  </Panel>
+}}

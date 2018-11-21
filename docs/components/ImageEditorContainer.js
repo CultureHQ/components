@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { ImageEditor } from "../../src";
+import { ImageEditor, Panel } from "../../src";
 
 class ImageEditorContainer extends Component {
   state = { image: false };
@@ -21,11 +21,13 @@ class ImageEditorContainer extends Component {
   render() {
     const { image } = this.state;
 
-    if (!image) {
-      return null;
-    }
-
-    return <ImageEditor image={image.src} onEdit={this.handleEdit} />;
+    return (
+      <Panel>
+        <Panel.Body>
+          {image && <ImageEditor image={image.src} onEdit={this.handleEdit} />}
+        </Panel.Body>
+      </Panel>
+    );
   }
 }
 
