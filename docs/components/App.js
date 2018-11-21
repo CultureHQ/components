@@ -1,8 +1,6 @@
 import React from "react";
 import "../../src/styles/app.scss";
 
-import CheckmarkContainer from "./CheckmarkContainer";
-import CheerButtonContainer from "./CheerButtonContainer";
 import ClickCloseContainer from "./ClickCloseContainer";
 import DoorEffectContainer from "./DoorEffectContainer";
 import HamburgerContainer from "./HamburgerContainer";
@@ -18,9 +16,13 @@ import BooleanField from "./pages/BooleanField";
 import Button from "./pages/Button";
 import Calendar from "./pages/Calendar";
 import CentsField from "./pages/CentsField";
+import Checklist from "./pages/Checklist";
+import Checkmark from "./pages/Checkmark";
+import Cheer from "./pages/Cheer";
+import CheerButton from "./pages/CheerButton";
 
 import {
-  Button as ButtonComp, Checklist, Cheer,
+  Button as ButtonComp,
   Circles, Confirm, ConfirmDelete, DateTimeField, EmailField, FeedItem,
   FileField, Form, ImageField, ImagePreview, Info, Modal, MultiImageField, Nav,
   NumberField, Panel, PasswordField, PlainButton, SelectField, Spinner,
@@ -58,72 +60,10 @@ const App = () => (
       <Button />
       <Calendar />
       <CentsField />
-
-      <Heading>Checklist</Heading>
-      <p>A list of items and their associated status.</p>
-      <PropList>
-        <Prop name="children">checklist items, usually <code>Checklist.Item</code> components</Prop>
-        <ClassNameProp />
-      </PropList>
-      <Subcomponent>Checklist.Item</Subcomponent>
-      <PropList>
-        <Prop name="children">displayed inside the item</Prop>
-        <Prop name="checked?">boolean value of whether or not this item is complete</Prop>
-      </PropList>
-
-      <Checklist>
-        <Checklist.Item checked>Checked</Checklist.Item>
-        <Checklist.Item>Unchecked</Checklist.Item>
-      </Checklist>
-
-      <Heading>Checkmark</Heading>
-      <p>A boolean value represented by a circle with an optional check.</p>
-      <PropList>
-        <Prop name="checked?">boolean value of whether or not this item is complete</Prop>
-        <Prop name="children?">an optional label for the circle</Prop>
-        <ClassNameProp />
-        <Prop name="onClick?">a click handler (allows this to be a controller component)</Prop>
-      </PropList>
-
-      <CheckmarkContainer />
-
-      <Heading>Cheer</Heading>
-      <p>An SVG of a person cheering.</p>
-      <PropList>
-        <ClassNameProp />
-        <Prop name={"color = \"darkblue\""}>
-          sets the fill of the SVG, can be one of <code>darkblue</code>,{" "}
-          <code>lightblue</code>, <code>yellow</code>, or <code>green</code>
-        </Prop>
-        <Prop name="name?">an optional name that will appear in a tooltip</Prop>
-        <Prop name="pop = false">whether or not this <code>Cheer</code> should pop in</Prop>
-        <Prop name="small = false">indicates a small <code>Cheer</code></Prop>
-      </PropList>
-
-      <Cheer color="darkblue" pop />
-      <Cheer name="Hermione" color="green" />
-      <Cheer name="Ron" color="lightblue" />
-      <Cheer name="Luna" color="yellow" />
-      <Cheer small name="Dobby" color="darkblue" />
-      <Cheer small name="Winky" color="green" />
-
-      <Heading>CheerButton</Heading>
-      <p>An SVG of a person cheering.</p>
-      <PropList>
-        <Prop name="cheered">the state of whether or not this entity has been cheered</Prop>
-        <ClassNameProp />
-        <Prop name="name?">an optional name that will appear in a tooltip</Prop>
-        <Prop name="onCheerToggle">
-          a callback function that accepts a boolean <code>cheered</code>{" "}
-          state and returns a <code>Promise</code>
-        </Prop>
-        <Prop name="small = false">indicates a small button (text will be hidden)</Prop>
-      </PropList>
-
-      <CheerButtonContainer />{" "}
-      <CheerButtonContainer cheered name="Harry" /><br />
-      <CheerButtonContainer small />{" "}
-      <CheerButtonContainer small cheered name="Ron" />
+      <Checklist />
+      <Checkmark />
+      <Cheer />
+      <CheerButton />
 
       <Heading>Circles</Heading>
       <p>The CultureHQ circles. (Try hovering.)</p>
