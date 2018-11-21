@@ -13,5 +13,9 @@ Displays pagination information with buttons for looking through different pages
 * `totalPages` - an integer representing the total number of pages
 
 {{
-  <PaginationContainer />
+  <PaginationContainer totalPages={1} />
+  <PaginationContainer totalPages={2} />
+  <PaginationContainer totalPages={4} />
+  <PaginationContainer totalPages={8} />
+  <PaginationContainer totalPages={16} />
 }}

@@ -57,24 +57,24 @@ header {
 
 .nav .chq-pan--bd {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
 @media (max-width: 1200px) {
   .nav .chq-pan--bd {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 25% 25% 25% 25%;
   }
 }
 
 @media (max-width: 900px) {
   .nav .chq-pan--bd {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 33.33% 33.33% 33.33%;
   }
 }
 
 @media (max-width: 600px) {
   .nav .chq-pan--bd {
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
   }
 }
 
