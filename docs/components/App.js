@@ -1,5 +1,5 @@
-import React from "react";
-import "../../src/styles/app.scss";
+import React, { useState, useCallback, useEffect } from "react";
+import { Router, Link, Location } from "@reach/router";
 
 import ActionButton from "./pages/ActionButton";
 import Badge from "./pages/Badge";
@@ -51,63 +51,153 @@ import Thumbnail from "./pages/Thumbnail";
 import Tooltip from "./pages/Tooltip";
 import Warning from "./pages/Warning";
 
-import { Modal as ModalComponent } from "../../src";
+import {
+  ActionButton as ActionButtonSrc,
+  DoorEffect as DoorEffectSrc,
+  Modal as ModalSrc,
+  Panel as PanelSrc
+} from "../../src";
 
-ModalComponent.setAppElement("#main");
+import "../../src/styles/app.scss";
+
+ModalSrc.setAppElement("#main");
+
+const Header = ({ location }) => {
+  const [navOpen, setNavOpen] = useState(false);
+  const onNavToggle = useCallback(() => setNavOpen(state => !state));
+
+  useEffect(() => setNavOpen(false), [location]);
+
+  return (
+    <>
+      <header>
+        <h1>@culturehq/components</h1>
+        <ActionButtonSrc onClick={onNavToggle}>
+          Components
+        </ActionButtonSrc>
+      </header>
+      <DoorEffectSrc className="nav" open={navOpen} duration={300}>
+        <PanelSrc>
+          <PanelSrc.Body>
+            <Link to="/action-button">ActionButton</Link>
+            <Link to="/badge">Badge</Link>
+            <Link to="/boolean-field">BooleanField</Link>
+            <Link to="/button">Button</Link>
+            <Link to="/calendar">Calendar</Link>
+            <Link to="/cents-field">CentsField</Link>
+            <Link to="/checklist">Checklist</Link>
+            <Link to="/checkmark">Checkmark</Link>
+            <Link to="/cheer">Cheer</Link>
+            <Link to="/cheer-button">CheerButton</Link>
+            <Link to="/circles">Circles</Link>
+            <Link to="/click-close">ClickClose</Link>
+            <Link to="/confirm">Confirm</Link>
+            <Link to="/confirm-delete">ConfirmDelete</Link>
+            <Link to="/date-time-field">DateTimeField</Link>
+            <Link to="/door-effect">DoorEffect</Link>
+            <Link to="/email-field">EmailField</Link>
+            <Link to="/feed-item">FeedItem</Link>
+            <Link to="/file-field">FileField</Link>
+            <Link to="/form">Form</Link>
+            <Link to="/hamburger">Hamburger</Link>
+            <Link to="/icon">Icon</Link>
+            <Link to="/image-editor">ImageEditor</Link>
+            <Link to="/image-field">ImageField</Link>
+            <Link to="/image-preview">ImagePreview</Link>
+            <Link to="/info">Info</Link>
+            <Link to="/loader">Loader</Link>
+            <Link to="/modal">Modal</Link>
+            <Link to="/modal-dialog">ModalDialog</Link>
+            <Link to="/multi-image-field">MultiImageField</Link>
+            <Link to="/nav">Nav</Link>
+            <Link to="/number-field">NumberField</Link>
+            <Link to="/pagination">Pagination</Link>
+            <Link to="/panel">Panel</Link>
+            <Link to="/password-field">PasswordField</Link>
+            <Link to="/plain-button">PlainButton</Link>
+            <Link to="/search-bar">SearchBar</Link>
+            <Link to="/select-field">SelectField</Link>
+            <Link to="/spinner">Spinner</Link>
+            <Link to="/string-field">StringField</Link>
+            <Link to="/submit-button">SubmitButton</Link>
+            <Link to="/subnav">Subnav</Link>
+            <Link to="/success">Success</Link>
+            <Link to="/table">Table</Link>
+            <Link to="/tag">Tag</Link>
+            <Link to="/text-field">TextField</Link>
+            <Link to="/thumbnail">Thumbnail</Link>
+            <Link to="/tooltip">Tooltip</Link>
+            <Link to="/warning">Warning</Link>
+          </PanelSrc.Body>
+        </PanelSrc>
+      </DoorEffectSrc>
+    </>
+  );
+};
+
+const Body = ({ location }) => (
+  <Router location={location}>
+    <ActionButton path="/action-button" />
+    <Badge path="/badge" />
+    <BooleanField path="/boolean-field" />
+    <Button path="/button" />
+    <Calendar path="/calendar" />
+    <CentsField path="/cents-field" />
+    <Checklist path="/checklist" />
+    <Checkmark path="/checkmark" />
+    <Cheer path="/cheer" />
+    <CheerButton path="/cheer-button" />
+    <Circles path="/circles" />
+    <ClickClose path="/click-close" />
+    <Confirm path="/confirm" />
+    <ConfirmDelete path="/confirm-delete" />
+    <DateTimeField path="/date-time-field" />
+    <DoorEffect path="/door-effect" />
+    <EmailField path="/email-field" />
+    <FeedItem path="/feed-item" />
+    <FileField path="/file-field" />
+    <Form path="/form" />
+    <Hamburger path="/hamburger" />
+    <Icon path="/icon" />
+    <ImageEditor path="/image-editor" />
+    <ImageField path="/image-field" />
+    <ImagePreview path="/image-preview" />
+    <Info path="/info" />
+    <Loader path="/loader" />
+    <Modal path="/modal" />
+    <ModalDialog path="/modal-dialog" />
+    <MultiImageField path="/multi-image-field" />
+    <Nav path="/nav" />
+    <NumberField path="/number-field" />
+    <Pagination path="/pagination" />
+    <Panel path="/panel" />
+    <PasswordField path="/password-field" />
+    <PlainButton path="/plain-button" />
+    <SearchBar path="/search-bar" />
+    <SelectField path="/select-field" />
+    <Spinner path="/spinner" />
+    <StringField path="/string-field" />
+    <SubmitButton path="/submit-button" />
+    <Subnav path="/subnav" />
+    <Success path="/success" />
+    <Table path="/table" />
+    <Tag path="/tag" />
+    <TextField path="/text-field" />
+    <Thumbnail path="/thumbnail" />
+    <Tooltip path="/tooltip" />
+    <Warning path="/warning" />
+  </Router>
+);
 
 const App = () => (
-  <div className="container">
-    <h1>@culturehq/components</h1>
-    <ActionButton />
-    <Badge />
-    <BooleanField />
-    <Button />
-    <Calendar />
-    <CentsField />
-    <Checklist />
-    <Checkmark />
-    <Cheer />
-    <CheerButton />
-    <Circles />
-    <ClickClose />
-    <Confirm />
-    <ConfirmDelete />
-    <DateTimeField />
-    <DoorEffect />
-    <EmailField />
-    <FeedItem />
-    <FileField />
-    <Form />
-    <Hamburger />
-    <Icon />
-    <ImageEditor />
-    <ImageField />
-    <ImagePreview />
-    <Info />
-    <Loader />
-    <Modal />
-    <ModalDialog />
-    <MultiImageField />
-    <Nav />
-    <NumberField />
-    <Pagination />
-    <Panel />
-    <PasswordField />
-    <PlainButton />
-    <SearchBar />
-    <SelectField />
-    <Spinner />
-    <StringField />
-    <SubmitButton />
-    <Subnav />
-    <Success />
-    <Table />
-    <Tag />
-    <TextField />
-    <Thumbnail />
-    <Tooltip />
-    <Warning />
-  </div>
+  <Location>
+    {({ location }) => (
+      <main>
+        <Header location={location} />
+        <Body location={location} />
+      </main>
+    )}
+  </Location>
 );
 
 export default App;
