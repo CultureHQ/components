@@ -1,7 +1,6 @@
 import React from "react";
 import "../../src/styles/app.scss";
 
-import CalendarContainer from "./CalendarContainer";
 import CheckmarkContainer from "./CheckmarkContainer";
 import CheerButtonContainer from "./CheerButtonContainer";
 import ClickCloseContainer from "./ClickCloseContainer";
@@ -17,9 +16,11 @@ import ActionButton from "./pages/ActionButton";
 import Badge from "./pages/Badge";
 import BooleanField from "./pages/BooleanField";
 import Button from "./pages/Button";
+import Calendar from "./pages/Calendar";
+import CentsField from "./pages/CentsField";
 
 import {
-  Button as ButtonComp, CentsField, Checklist, Cheer,
+  Button as ButtonComp, Checklist, Cheer,
   Circles, Confirm, ConfirmDelete, DateTimeField, EmailField, FeedItem,
   FileField, Form, ImageField, ImagePreview, Info, Modal, MultiImageField, Nav,
   NumberField, Panel, PasswordField, PlainButton, SelectField, Spinner,
@@ -55,36 +56,8 @@ const App = () => (
       <Badge />
       <BooleanField />
       <Button />
-
-      <Heading>Calendar</Heading>
-      <p>A calendar component.</p>
-      <PropList>
-        <ClassNameProp />
-        <Prop name="onChange">a function that accepts a new Date object representing the value of the selected day</Prop>
-        <Prop name="value">the currently selected day on the calendar</Prop>
-      </PropList>
-
-      <CalendarContainer />
-
-      <Heading>CentsField</Heading>
-      <p>A number form field that tracks in cents and displays in dollar amounts.</p>
-      <PropList>
-        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
-        <Prop name="children">the label to display for the field</Prop>
-        <ClassNameProp />
-        <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
-        <Prop name="name">the name of the field</Prop>
-        <Prop name="required?">indicates this field is required for submission</Prop>
-        <Prop name="value?">the value of the input field</Prop>
-      </PropList>
-
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <CentsField name="cents" required>Cents</CentsField>
-          </Form>
-        </Panel.Body>
-      </Panel>
+      <Calendar />
+      <CentsField />
 
       <Heading>Checklist</Heading>
       <p>A list of items and their associated status.</p>
