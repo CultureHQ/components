@@ -3,7 +3,7 @@ prependJs:
 - import { Form, Panel, TextField } from "../../../src";
 ---
 
-## `<StringField>`
+## `<TextField>`
 
 A text form field.
 

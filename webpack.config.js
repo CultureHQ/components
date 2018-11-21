@@ -36,6 +36,7 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, "docs")
+    contentBase: path.join(__dirname, "docs"),
+    historyApiFallback: true
   }
 };
