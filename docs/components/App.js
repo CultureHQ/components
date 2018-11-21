@@ -1,8 +1,6 @@
 import React from "react";
 import "../../src/styles/app.scss";
 
-import ClickCloseContainer from "./ClickCloseContainer";
-import DoorEffectContainer from "./DoorEffectContainer";
 import HamburgerContainer from "./HamburgerContainer";
 import IconsContainer from "./IconsContainer";
 import ImageEditorContainer from "./ImageEditorContainer";
@@ -20,11 +18,18 @@ import Checklist from "./pages/Checklist";
 import Checkmark from "./pages/Checkmark";
 import Cheer from "./pages/Cheer";
 import CheerButton from "./pages/CheerButton";
+import Circles from "./pages/Circles";
+import ClickClose from "./pages/ClickClose";
+import Confirm from "./pages/Confirm";
+import ConfirmDelete from "./pages/ConfirmDelete";
+import DateTimeField from "./pages/DateTimeField";
+import DoorEffect from "./pages/DoorEffect";
+import EmailField from "./pages/EmailField";
+import FeedItem from "./pages/FeedItem";
+import FileField from "./pages/FileField";
 
 import {
-  Button as ButtonComp,
-  Circles, Confirm, ConfirmDelete, DateTimeField, EmailField, FeedItem,
-  FileField, Form, ImageField, ImagePreview, Info, Modal, MultiImageField, Nav,
+  Button as ButtonComp, Form, ImageField, ImagePreview, Info, Modal, MultiImageField, Nav,
   NumberField, Panel, PasswordField, PlainButton, SelectField, Spinner,
   StringField, SubmitButton, Subnav, Success, Table, Tag, TextField, Thumbnail,
   Tooltip, Warning
@@ -64,157 +69,15 @@ const App = () => (
       <Checkmark />
       <Cheer />
       <CheerButton />
-
-      <Heading>Circles</Heading>
-      <p>The CultureHQ circles. (Try hovering.)</p>
-      <PropList>
-        <ClassNameProp />
-      </PropList>
-
       <Circles />
-
-      <Heading>ClickClose</Heading>
-      <p>A component for closing something when a click event occurs outside the component.</p>
-      <PropList>
-        <Prop name="children">the inside of the listener</Prop>
-        <ClassNameProp />
-        <Prop name={"component = \"div\""}>the component used to wrap the children</Prop>
-        <Prop name="onClose">the callback for when the click event occurs</Prop>
-      </PropList>
-
-      <ClickCloseContainer />
-
-      <Heading>Confirm</Heading>
-      <p>A confirmation dialog. It has the same props as the <code>Modal</code>{" "} component below, in addition to:</p>
-      <PropList>
-        <Prop name={"accept = \"Yes\""}>the text used for the accept button</Prop>
-        <Prop name="danger = false">indicates that the accept action is permanent</Prop>
-        <Prop name="onAccept">a callback when the action has been accepted</Prop>
-      </PropList>
-
-      <Confirm
-        accept="Yes, create it!"
-        onAccept={onAccept}
-        trigger={onTrigger => <ButtonComp onClick={onTrigger}>Create</ButtonComp>}
-      >
-        Are you sure you&#39;d like to create this resource?
-      </Confirm>
-
-      <Heading>ConfirmDelete</Heading>
-      <p>
-        A variation of a <code>Confirm</code> that is marked as dangerous{" "}
-        with a <code>Delete</code> button by default. Accepts all of the same{" "}
-        props as <code>Confirm</code>.
-      </p>
-
-      <ConfirmDelete
-        onAccept={onAccept}
-        trigger={onTrigger => <ButtonComp danger onClick={onTrigger}>Danger</ButtonComp>}
-      >
-        Are you sure you&#39;d like to delete this resource?
-      </ConfirmDelete>
-
-      <Heading>DateTimeField</Heading>
-      <p>A form field for selecting a date and time.</p>
-      <PropList>
-        <Prop name="children">the label to display for the field</Prop>
-        <ClassNameProp />
-        <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
-        <Prop name="name">the name of the field</Prop>
-        <Prop name="required?">indicates this field is required for submission</Prop>
-        <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
-        <Prop name="value?">the value of the input field</Prop>
-      </PropList>
-
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <DateTimeField name="datetime" required>Date/Time</DateTimeField>
-          </Form>
-        </Panel.Body>
-      </Panel>
-
-      <Heading>DoorEffect</Heading>
-      <p>
-        A component that wraps something that can be open and closed. When
-        triggered to open with the <code>open</code> prop, it will add
-        <code>{"{className}-open"}</code> to the wrapping component, and when
-        closed it will add <code>{"{className}-closed"}</code> to the wrapping
-        component. This allows for the common pattern of a CSS animation, and
-        then reversing the direction on close.
-      </p>
-      <PropList>
-        <ClassNameProp />
-        <Prop name="duration = 150">how long the animation lasts (in ms)</Prop>
-        <Prop name="open = false">whether or not the component is currently open</Prop>
-        <Prop name={"tag = \"div\""}>the tag type for the container</Prop>
-      </PropList>
-
-      <DoorEffectContainer />
-
-      <Heading>EmailField</Heading>
-      <p>A string form field that accepts an email.</p>
-      <PropList>
-        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
-        <Prop name="children">the label to display for the field</Prop>
-        <ClassNameProp />
-        <Prop name="onChange?">a function that accepts one argument that represents the new value of the input field</Prop>
-        <Prop name="name">the name of the field</Prop>
-        <Prop name="required?">indicates this field is required for submission</Prop>
-        <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
-        <Prop name="value?">the value of the input field</Prop>
-      </PropList>
-
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <EmailField name="email" required>Email</EmailField>
-          </Form>
-        </Panel.Body>
-      </Panel>
-
-      <Heading>FeedItem</Heading>
-      <p>A contained item in a feed.</p>
-      <PropList>
-        <Prop name="children">sections of the item, usually <code>FeedItem.Body</code> and <code>FeedItem.Footer</code> components</Prop>
-        <ClassNameProp />
-      </PropList>
-
-      <Subcomponent>FeedItem.Body</Subcomponent>
-      <PropList>
-        <Prop name="children">displayed inside the body</Prop>
-        <ClassNameProp />
-      </PropList>
-
-      <Subcomponent>FeedItem.Footer</Subcomponent>
-      <PropList>
-        <Prop name="children">displayed inside the footer</Prop>
-        <ClassNameProp />
-      </PropList>
-
-      <FeedItem>
-        <FeedItem.Body>This is a feed item.</FeedItem.Body>
-        <FeedItem.Footer>This is the footer of the feed item.</FeedItem.Footer>
-      </FeedItem>
-
-      <Heading>FileField</Heading>
-      <p>A file form field.</p>
-      <PropList>
-        <Prop name="autoFocus = false">whether or not the component should request focus on initial mount</Prop>
-        <Prop name="children">the label to display for the field</Prop>
-        <ClassNameProp />
-        <Prop name="onChange?">a function that accepts one argument that represents the new value of the file field</Prop>
-        <Prop name="multiple = false">whether or not this field accepts multiple files</Prop>
-        <Prop name="name">the name of the field</Prop>
-        <Prop name="required?">indicates this field is required for submission</Prop>
-        <Prop name="validator?">a function that should either return an error message string or <code>null</code></Prop>
-        <Prop name="value?">the value of the file field</Prop>
-      </PropList>
-
-      <Form>
-        <FileField name="file" required>File</FileField>
-        <FileField name="files" multiple required>Files</FileField>
-      </Form>
+      <ClickClose />
+      <Confirm />
+      <ConfirmDelete />
+      <DateTimeField />
+      <DoorEffect />
+      <EmailField />
+      <FeedItem />
+      <FileField />
 
       <Heading>Form</Heading>
       <p>A generic form component.</p>
