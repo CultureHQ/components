@@ -39,6 +39,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
+    "@mapbox/jsxtreme-markdown-loader": "^0.8.3",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",

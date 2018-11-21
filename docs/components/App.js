@@ -13,8 +13,12 @@ import LoaderContainer from "./LoaderContainer";
 import PaginationContainer from "./PaginationContainer";
 import SearchBarContainer from "./SearchBarContainer";
 
+import ActionButton from "./pages/ActionButton";
+import Badge from "./pages/Badge";
+import BooleanField from "./pages/BooleanField";
+
 import {
-  ActionButton, Badge, BooleanField, Button, CentsField, Checklist, Cheer,
+  Button, CentsField, Checklist, Cheer,
   Circles, Confirm, ConfirmDelete, DateTimeField, EmailField, FeedItem,
   FileField, Form, ImageField, ImagePreview, Info, Modal, MultiImageField, Nav,
   NumberField, Panel, PasswordField, PlainButton, SelectField, Spinner,
@@ -46,45 +50,9 @@ const App = () => (
     <Nav>{"<Nav>"}</Nav>
 
     <div className="container">
-      <Heading>ActionButton</Heading>
-      <p>A button that represents the user taking an action.</p>
-      <PropList>
-        <Prop name="children">displays inside the button</Prop>
-        <ClassNameProp />
-        <Prop name="icon?">an icon to display inside the button</Prop>
-        <Prop name="onClick?">a click handler</Prop>
-      </PropList>
-
-      <ActionButton onClick={onClick}>Default</ActionButton>{" "}
-      <ActionButton icon="clipboard" onClick={onClick}>Icon</ActionButton>
-
-      <Heading>Badge</Heading>
-      <p>A component for displaying associated metadata.</p>
-      <PropList>
-        <Prop name="children">displayed inside the badge</Prop>
-        <ClassNameProp />
-        <Prop name="onClick?">a click handler</Prop>
-        <Prop name="primary = false">indicates a primary badge</Prop>
-      </PropList>
-
-      <Badge>Default</Badge>{" "}
-      <Badge primary onClick={onClick}>Primary</Badge>{" "}
-      <Badge icon="clipboard">Icon</Badge>{" "}
-      <Badge icon="clipboard" primary>Icon Primary</Badge>
-
-      <Heading>BooleanField</Heading>
-      <p>A form field that represents a boolean value.</p>
-      <PropList>
-        <Prop name="children">the label to display for the field</Prop>
-        <ClassNameProp />
-        <Prop name="onChange?">a function that accepts one argument that represents the new value of the field</Prop>
-        <Prop name="name">the name of the field</Prop>
-        <Prop name="value?">the value of the input field</Prop>
-      </PropList>
-
-      <Form>
-        <BooleanField name="boolean">Boolean</BooleanField>
-      </Form>
+      <ActionButton />
+      <Badge />
+      <BooleanField />
 
       <Heading>Button</Heading>
       <p>A generic button component.</p>

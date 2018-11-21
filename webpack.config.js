@@ -6,6 +6,9 @@ module.exports = {
     filename: "index.js"
   },
   entry: path.join(__dirname, "docs", "app.js"),
+  resolve: {
+    extensions: [".js", ".json", ".css", ".scss", ".md"]
+  },
   module: {
     rules: [
       { test: /\.js$/, use: "babel-loader", exclude: /node_modules/ },
@@ -24,6 +27,11 @@ module.exports = {
           { loader: "style-loader" },
           { loader: "css-loader" }
         ]
+      },
+      {
+        test: /\.md$/,
+        use: "@mapbox/jsxtreme-markdown-loader",
+        exclude: /node_modules/
       }
     ]
   },
