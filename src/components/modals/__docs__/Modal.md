@@ -1,7 +1,7 @@
 ---
 prependJs:
-- import { Button, Modal } from "../../../src";
-- import { TEXT } from "../utils";
+- import Button from "../../buttons/Button";
+- import Modal from "../Modal";
 ---
 
 ## `<Modal>`
@@ -20,7 +20,12 @@ This component has the same subcomponents as the `Panel` component, just namespa
     trigger={onTrigger => <Button onClick={onTrigger}>slideIn modal</Button>}
   >
     <Modal.Heading>Chapter 1</Modal.Heading>
-    <Modal.Body>{TEXT}</Modal.Body>
+    <Modal.Body>
+      Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say{" "}
+      that they were perfectly normal, thank you very much. They were the{" "}
+      last people you'd expect to be involved in anything strange or{" "}
+      mysterious, because they just didn't hold with such nonsense.
+    </Modal.Body>
   </Modal>
   {" "}
   <Modal

@@ -51,10 +51,10 @@ import StringField from "../../src/components/form/__docs__/StringField";
 import SubmitButton from "../../src/components/form/__docs__/SubmitButton";
 import TextField from "../../src/components/form/__docs__/TextField";
 
-import Confirm from "./pages/Confirm";
-import ConfirmDelete from "./pages/ConfirmDelete";
-import Modal from "./pages/Modal";
-import ModalDialog from "./pages/ModalDialog";
+import Confirm from "../../src/components/modals/__docs__/Confirm";
+import ConfirmDelete from "../../src/components/modals/__docs__/ConfirmDelete";
+import Modal from "../../src/components/modals/__docs__/Modal";
+import ModalDialog from "../../src/components/modals/__docs__/ModalDialog";
 
 import {
   ActionButton as ActionButtonSrc,
