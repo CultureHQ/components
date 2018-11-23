@@ -1,11 +1,13 @@
 ---
 prependJs:
-- import { Form, NumberField, Panel } from "../../../src";
+- import { EmailField } from "../FormFields";
+- import Form from "../Form";
+- import Panel from "../../Panel";
 ---
 
-## `<NumberField>`
+## `<EmailField>`
 
-A number form field.
+A string form field that accepts an email.
 
 * `autoFocus = false` - whether or not the component should request focus on initial mount
 * `children` - the label to display for the field
@@ -20,7 +22,7 @@ A number form field.
   <Panel>
     <Panel.Body>
       <Form>
-        <NumberField name="number" required>Number</NumberField>
+        <EmailField name="email" required>Email</EmailField>
       </Form>
     </Panel.Body>
   </Panel>

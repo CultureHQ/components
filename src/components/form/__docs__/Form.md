@@ -1,6 +1,9 @@
 ---
 prependJs:
-- import { DateTimeField, Form, SelectField, StringField, SubmitButton } from "../../../src";
+- import Form from "../Form";
+- import SelectField from "../SelectField";
+- import { StringField } from "../FormFields";
+- import SubmitButton from "../SubmitButton";
 ---
 
 ## `<Form>`
@@ -44,18 +47,3 @@ A generic form component.
     </Form>
   </div>
 }}
-
-<!-- <SelectField
-  name="select"
-  required
-  options={[
-    { value: "alpha", label: "Alpha" },
-    { value: "beta", label: "Beta" },
-    { value: "gamma", label: "Gamma" }
-  ]}
->
-  Select
-</SelectField>
-<DateTimeField name="datetime" required>
-  DateTime
-</DateTimeField> -->

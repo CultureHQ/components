@@ -36,24 +36,25 @@ import CheerButton from "../../src/components/buttons/__docs__/CheerButton";
 import Hamburger from "../../src/components/buttons/__docs__/Hamburger";
 import PlainButton from "../../src/components/buttons/__docs__/PlainButton";
 
-import BooleanField from "./pages/BooleanField";
-import CentsField from "./pages/CentsField";
+import BooleanField from "../../src/components/form/__docs__/BooleanField";
+import CentsField from "../../src/components/form/__docs__/CentsField";
+import DateTimeField from "../../src/components/form/__docs__/DateTimeField";
+import EmailField from "../../src/components/form/__docs__/EmailField";
+import FileField from "../../src/components/form/__docs__/FileField";
+import Form from "../../src/components/form/__docs__/Form";
+import ImageField from "../../src/components/form/__docs__/ImageField";
+import MultiImageField from "../../src/components/form/__docs__/MultiImageField";
+import NumberField from "../../src/components/form/__docs__/NumberField";
+import PasswordField from "../../src/components/form/__docs__/PasswordField";
+import SelectField from "../../src/components/form/__docs__/SelectField";
+import StringField from "../../src/components/form/__docs__/StringField";
+import SubmitButton from "../../src/components/form/__docs__/SubmitButton";
+import TextField from "../../src/components/form/__docs__/TextField";
+
 import Confirm from "./pages/Confirm";
 import ConfirmDelete from "./pages/ConfirmDelete";
-import DateTimeField from "./pages/DateTimeField";
-import EmailField from "./pages/EmailField";
-import FileField from "./pages/FileField";
-import Form from "./pages/Form";
-import ImageField from "./pages/ImageField";
 import Modal from "./pages/Modal";
 import ModalDialog from "./pages/ModalDialog";
-import MultiImageField from "./pages/MultiImageField";
-import NumberField from "./pages/NumberField";
-import PasswordField from "./pages/PasswordField";
-import SelectField from "./pages/SelectField";
-import StringField from "./pages/StringField";
-import SubmitButton from "./pages/SubmitButton";
-import TextField from "./pages/TextField";
 
 import {
   ActionButton as ActionButtonSrc,

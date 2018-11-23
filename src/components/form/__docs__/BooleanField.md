@@ -1,7 +1,7 @@
 ---
 prependJs:
-- import { BooleanField, Form } from "../../../src";
-- import { onClick } from "../utils";
+- import BooleanField from "../BooleanField";
+- import Form from "../Form";
 ---
 
 ## `<BooleanField>`
