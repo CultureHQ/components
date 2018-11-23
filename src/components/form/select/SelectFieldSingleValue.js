@@ -23,7 +23,7 @@ class SelectFieldSingleValue extends Component {
   };
 
   render() {
-    const { display, inputRef, name, onChange, onOpen, open, value } = this.props;
+    const { display, inputRef, name, onChange, onOpen, open, placeholder, value } = this.props;
 
     return (
       <>
@@ -35,6 +35,7 @@ class SelectFieldSingleValue extends Component {
           onClick={onOpen}
           onChange={onChange}
           onKeyDown={this.handleKeyDown}
+          placeholder={placeholder}
           value={display}
         />
         <SelectFieldCaret open={open} />

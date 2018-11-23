@@ -157,7 +157,7 @@ class SelectField extends Component {
   render() {
     const {
       children, className, creatable, multiple, name, onError, options,
-      required, submitted, validator, value, values
+      placeholder, required, submitted, validator, value, values
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -179,6 +179,7 @@ class SelectField extends Component {
             onOpen={this.handleOpen}
             open={open}
             options={options}
+            placeholder={placeholder}
             value={normal}
           />
           <SelectFieldOptions

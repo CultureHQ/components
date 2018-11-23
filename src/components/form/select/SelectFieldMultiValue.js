@@ -55,7 +55,7 @@ class SelectFieldMultiValue extends Component {
   };
 
   render() {
-    const { display, inputRef, name, onChange, onDeselect, onOpen, open } = this.props;
+    const { display, inputRef, name, onChange, onDeselect, onOpen, open, placeholder } = this.props;
 
     const className = classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open });
     const currentOptions = this.getCurrentOptions();
@@ -74,6 +74,7 @@ class SelectFieldMultiValue extends Component {
           ref={inputRef}
           onChange={onChange}
           onKeyDown={this.handleKeyDown}
+          placeholder={placeholder}
           value={display}
         />
         <SelectFieldCaret open={open} />
