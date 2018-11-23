@@ -15,6 +15,8 @@ var _SelectFieldValue = _interopRequireDefault(require("./select/SelectFieldValu
 
 var _SelectFieldOptions = _interopRequireDefault(require("./select/SelectFieldOptions"));
 
+var _Form = require("./Form");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -251,12 +253,14 @@ function (_Component) {
           required = _this$props6.required,
           submitted = _this$props6.submitted,
           validator = _this$props6.validator,
-          value = _this$props6.value;
+          value = _this$props6.value,
+          values = _this$props6.values;
       var _this$state = this.state,
           display = _this$state.display,
           filteredOptions = _this$state.filteredOptions,
           open = _this$state.open,
           touched = _this$state.touched;
+      var normal = values[name] || value;
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name
@@ -276,7 +280,7 @@ function (_Component) {
         onOpen: this.handleOpen,
         open: open,
         options: options,
-        value: value
+        value: normal
       }), _react.default.createElement(_SelectFieldOptions.default, {
         creatable: creatable,
         display: display,
@@ -286,7 +290,7 @@ function (_Component) {
         onSelect: this.handleSelect,
         open: open,
         options: options,
-        value: value
+        value: normal
       })), _react.default.createElement(_FormError.default, {
         name: name,
         onError: onError,
@@ -294,7 +298,7 @@ function (_Component) {
         submitted: submitted,
         touched: touched,
         validator: validator,
-        value: value
+        value: normal
       }));
     }
   }]);
@@ -308,8 +312,10 @@ _defineProperty(SelectField, "defaultProps", {
   multiple: false,
   onChange: function onChange() {},
   onFormChange: function onFormChange() {},
-  options: []
+  options: [],
+  values: {}
 });
 
-var _default = SelectField;
+var _default = (0, _Form.withForm)(SelectField);
+
 exports.default = _default;

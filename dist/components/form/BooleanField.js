@@ -11,6 +11,8 @@ var _Checkmark = _interopRequireDefault(require("../Checkmark"));
 
 var _classnames = _interopRequireDefault(require("../../classnames"));
 
+var _Form = require("./Form");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -68,23 +70,30 @@ function (_Component) {
   _createClass(BooleanField, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var value = this.props.value;
+      var _this$props2 = this.props,
+          name = _this$props2.name,
+          value = _this$props2.value,
+          values = _this$props2.values;
+      var normal = values[name] || value;
 
-      if (value === undefined || value === null) {
+      if (normal === undefined || normal === null) {
         this.handleClick(false);
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          children = _this$props2.children,
-          className = _this$props2.className,
-          value = _this$props2.value;
+      var _this$props3 = this.props,
+          children = _this$props3.children,
+          className = _this$props3.className,
+          name = _this$props3.name,
+          value = _this$props3.value,
+          values = _this$props3.values;
+      var normal = values[name] || value;
       return _react.default.createElement("div", {
         className: (0, _classnames.default)("chq-ffd", className)
       }, _react.default.createElement(_Checkmark.default, {
-        checked: value,
+        checked: normal,
         onClick: this.handleClick
       }, children));
     }
@@ -95,8 +104,10 @@ function (_Component) {
 
 _defineProperty(BooleanField, "defaultProps", {
   onChange: function onChange() {},
-  onFormChange: function onFormChange() {}
+  onFormChange: function onFormChange() {},
+  values: {}
 });
 
-var _default = BooleanField;
+var _default = (0, _Form.withForm)(BooleanField);
+
 exports.default = _default;

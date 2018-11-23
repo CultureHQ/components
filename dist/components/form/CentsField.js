@@ -9,6 +9,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _FormFields = require("./FormFields");
 
+var _Form = require("./Form");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -36,6 +38,14 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var centsValidator = function centsValidator(value) {
+  if (value && parseFloat(value, 10) <= 0) {
+    return "Value must be greater than $0.00";
+  }
+
+  return null;
+};
 
 var CentsField =
 /*#__PURE__*/
@@ -65,14 +75,6 @@ function (_Component) {
       onFormChange(name, amount);
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleValidate", function (value) {
-      if (value && parseFloat(value, 10) <= 0) {
-        return "Value must be greater than $0.00";
-      }
-
-      return null;
-    });
-
     return _this;
   }
 
@@ -81,17 +83,20 @@ function (_Component) {
     value: function render() {
       var _this$props2 = this.props,
           children = _this$props2.children,
+          name = _this$props2.name,
           onChange = _this$props2.onChange,
           onFormChange = _this$props2.onFormChange,
           value = _this$props2.value,
-          props = _objectWithoutProperties(_this$props2, ["children", "onChange", "onFormChange", "value"]);
+          values = _this$props2.values,
+          props = _objectWithoutProperties(_this$props2, ["children", "name", "onChange", "onFormChange", "value", "values"]);
 
+      var normal = values[name] || value;
       return _react.default.createElement(_FormFields.NumberField, _extends({}, props, {
         step: ".01",
         min: "0",
         addon: "$",
-        value: Number.isFinite(value) ? value / 100 : "",
-        validator: this.handleValidate,
+        value: Number.isFinite(normal) ? normal / 100 : "",
+        validator: centsValidator,
         onChange: this.handleChange
       }), children);
     }
@@ -102,8 +107,10 @@ function (_Component) {
 
 _defineProperty(CentsField, "defaultProps", {
   onChange: function onChange() {},
-  onFormChange: function onFormChange() {}
+  onFormChange: function onFormChange() {},
+  values: {}
 });
 
-var _default = CentsField;
+var _default = (0, _Form.withForm)(CentsField);
+
 exports.default = _default;

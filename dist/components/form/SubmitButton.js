@@ -9,6 +9,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _Button = _interopRequireDefault(require("../buttons/Button"));
 
+var _Form = require("./Form");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -25,8 +27,13 @@ var SubmitButton = function SubmitButton(_ref) {
   var _ref$children = _ref.children,
       children = _ref$children === void 0 ? defaultButtonText : _ref$children,
       disabled = _ref.disabled,
+      errors = _ref.errors,
+      submitted = _ref.submitted,
       submitting = _ref.submitting,
-      props = _objectWithoutProperties(_ref, ["children", "disabled", "submitting"]);
+      values = _ref.values,
+      onError = _ref.onError,
+      onFormChange = _ref.onFormChange,
+      props = _objectWithoutProperties(_ref, ["children", "disabled", "errors", "submitted", "submitting", "values", "onError", "onFormChange"]);
 
   return _react.default.createElement(_Button.default, _extends({}, props, {
     disabled: disabled || submitting,
@@ -34,5 +41,6 @@ var SubmitButton = function SubmitButton(_ref) {
   }), children(submitting));
 };
 
-var _default = SubmitButton;
+var _default = (0, _Form.withForm)(SubmitButton);
+
 exports.default = _default;

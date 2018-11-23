@@ -17,6 +17,8 @@ var _ImageEditor = _interopRequireDefault(require("../ImageEditor"));
 
 var _ImagePreview = _interopRequireDefault(require("../ImagePreview"));
 
+var _Form = require("./Form");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -158,20 +160,24 @@ function (_Component) {
           autoFocus = _this$props2.autoFocus,
           children = _this$props2.children,
           className = _this$props2.className,
+          errors = _this$props2.errors,
           name = _this$props2.name,
           onChange = _this$props2.onChange,
-          onFormChange = _this$props2.onFormChange,
           onError = _this$props2.onError,
+          onFormChange = _this$props2.onFormChange,
           progress = _this$props2.progress,
           submitted = _this$props2.submitted,
+          submitting = _this$props2.submitting,
           value = _this$props2.value,
-          props = _objectWithoutProperties(_this$props2, ["aspectRatio", "autoFocus", "children", "className", "name", "onChange", "onFormChange", "onError", "progress", "submitted", "value"]);
+          values = _this$props2.values,
+          props = _objectWithoutProperties(_this$props2, ["aspectRatio", "autoFocus", "children", "className", "errors", "name", "onChange", "onError", "onFormChange", "progress", "submitted", "submitting", "value", "values"]);
 
       var _this$state = this.state,
           editorOpen = _this$state.editorOpen,
           failed = _this$state.failed,
           image = _this$state.image,
           preview = _this$state.preview;
+      var normal = values[name] || value;
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name
@@ -181,8 +187,8 @@ function (_Component) {
         className: "chq-ffd--im"
       }, _react.default.createElement(_ImagePreview.default, {
         image: image,
-        preview: preview || value
-      }), !value && _react.default.createElement("div", {
+        preview: preview || normal
+      }), !normal && _react.default.createElement("div", {
         className: "chq-ffd--im--ph"
       }, _react.default.createElement(_Icon.default, {
         icon: "images"
@@ -225,8 +231,10 @@ _defineProperty(ImageField, "defaultProps", {
   aspectRatio: null,
   autoFocus: false,
   onChange: function onChange() {},
-  onFormChange: function onFormChange() {}
+  onFormChange: function onFormChange() {},
+  values: {}
 });
 
-var _default = ImageField;
+var _default = (0, _Form.withForm)(ImageField);
+
 exports.default = _default;

@@ -11,6 +11,8 @@ var _classnames = _interopRequireDefault(require("../../classnames"));
 
 var _FormError = _interopRequireDefault(require("./FormError"));
 
+var _Form = require("./Form");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -98,22 +100,24 @@ var buildFormField = function buildFormField(type) {
       key: "render",
       value: function render() {
         var _this$props2 = this.props,
+            addon = _this$props2.addon,
+            autoFocus = _this$props2.autoFocus,
+            children = _this$props2.children,
+            className = _this$props2.className,
+            errors = _this$props2.errors,
             name = _this$props2.name,
-            value = _this$props2.value;
-
-        var _this$props3 = this.props,
-            addon = _this$props3.addon,
-            autoFocus = _this$props3.autoFocus,
-            children = _this$props3.children,
-            className = _this$props3.className,
-            onError = _this$props3.onError,
-            onFormChange = _this$props3.onFormChange,
-            required = _this$props3.required,
-            submitted = _this$props3.submitted,
-            validator = _this$props3.validator,
-            props = _objectWithoutProperties(_this$props3, ["addon", "autoFocus", "children", "className", "onError", "onFormChange", "required", "submitted", "validator"]);
+            onError = _this$props2.onError,
+            onFormChange = _this$props2.onFormChange,
+            required = _this$props2.required,
+            submitted = _this$props2.submitted,
+            submitting = _this$props2.submitting,
+            validator = _this$props2.validator,
+            value = _this$props2.value,
+            values = _this$props2.values,
+            props = _objectWithoutProperties(_this$props2, ["addon", "autoFocus", "children", "className", "errors", "name", "onError", "onFormChange", "required", "submitted", "submitting", "validator", "value", "values"]);
 
         var touched = this.state.touched;
+        var normal = values[name] || value;
         return _react.default.createElement("label", {
           className: (0, _classnames.default)("chq-ffd", className),
           htmlFor: name
@@ -127,7 +131,8 @@ var buildFormField = function buildFormField(type) {
         }, props, {
           type: type,
           id: name,
-          value: value || "",
+          name: name,
+          value: normal || "",
           onBlur: this.handleBlur,
           onChange: this.handleChange
         })), _react.default.createElement(_FormError.default, {
@@ -137,7 +142,7 @@ var buildFormField = function buildFormField(type) {
           submitted: submitted,
           touched: touched,
           validator: validator,
-          value: value
+          value: normal
         }));
       }
     }]);
@@ -148,10 +153,11 @@ var buildFormField = function buildFormField(type) {
   _defineProperty(FormField, "defaultProps", {
     autoFocus: false,
     onChange: function onChange() {},
-    onFormChange: function onFormChange() {}
+    onFormChange: function onFormChange() {},
+    values: {}
   });
 
-  return FormField;
+  return (0, _Form.withForm)(FormField);
 };
 
 var EmailField = buildFormField("email");
