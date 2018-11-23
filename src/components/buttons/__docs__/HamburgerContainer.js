@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Hamburger } from "../../src";
+import Hamburger from "../Hamburger";
 
 const HamburgerContainer = ({ open: initialOpen }) => {
   const [open, setOpen] = useState(initialOpen);

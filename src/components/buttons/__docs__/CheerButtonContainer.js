@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 
-import { CheerButton } from "../../src";
+import CheerButton from "../CheerButton";
 
 const CheerButtonContainer = ({ cheered: initialCheered, name, small }) => {
   const [cheered, setCheered] = useState(initialCheered);
