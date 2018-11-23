@@ -2,42 +2,37 @@ import React, { Component } from "react";
 
 import classnames from "../../classnames";
 
-import SubmitButton from "./SubmitButton";
-import BooleanField from "./BooleanField";
-import CentsField from "./CentsField";
-import DateTimeField from "./DateTimeField";
-import FileField from "./FileField";
-import ImageField from "./ImageField";
-import MultiImageField from "./MultiImageField";
-import SelectField from "./SelectField";
-import TextField from "./TextField";
-import { EmailField, NumberField, PasswordField, StringField } from "./FormFields";
+const { Provider, Consumer } = React.createContext({
+  errors: {},
+  submitted: false,
+  submitting: false,
+  values: {},
+  onError: () => {},
+  onFormChange: () => {}
+});
 
-const contains = haystack => needle => haystack.indexOf(needle) > -1;
+export const withForm = Child => {
+  const Parent = props => (
+    <Consumer>{state => <Child {...props} {...state} />}</Consumer>
+  );
 
-const isField = contains([
-  CentsField,
-  EmailField,
-  DateTimeField,
-  FileField,
-  ImageField,
-  MultiImageField,
-  NumberField,
-  PasswordField,
-  SelectField,
-  StringField,
-  TextField
-]);
+  const childName = Child.displayName || Child.name || "Component";
+  Parent.displayName = `withForm(${childName})`;
+
+  return Parent;
+};
 
 class Form extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      errors: {},
       submitted: false,
       submitting: false,
       values: props.initialValues || {},
-      errors: {}
+      onError: this.handleError,
+      onFormChange: this.handleFormChange
     };
   }
 
@@ -48,41 +43,6 @@ class Form extends Component {
   componentWillUnmount() {
     this.componentIsMounted = false;
   }
-
-  getChildren = () => {
-    const { children } = this.props;
-    const { submitted, submitting, values } = this.state;
-
-    return React.Children.map(children, child => {
-      if (!child) {
-        return child;
-      }
-
-      const { type, props } = child;
-
-      if (isField(type)) {
-        return React.cloneElement(child, {
-          onError: this.handleError,
-          onFormChange: this.handleFormChange,
-          submitted,
-          value: values[props.name]
-        });
-      }
-
-      if (type === BooleanField) {
-        return React.cloneElement(child, {
-          onFormChange: this.handleFormChange,
-          value: values[props.name]
-        });
-      }
-
-      if (type === SubmitButton) {
-        return React.cloneElement(child, { submitting });
-      }
-
-      return child;
-    });
-  };
 
   handleError = (name, error) => {
     this.setState(({ errors }) => ({
@@ -119,17 +79,21 @@ class Form extends Component {
       const submitted = onSubmit(values);
       if (submitted && submitted.then) {
         submitted.then(this.handleDoneSubmitting).catch(this.handleDoneSubmitting);
+      } else {
+        this.setState({ submitting: false });
       }
     }
   }
 
   render() {
-    const { className } = this.props;
+    const { children, className } = this.props;
 
     return (
-      <form className={classnames(className)} onSubmit={this.handleSubmit}>
-        {this.getChildren()}
-      </form>
+      <Provider value={this.state}>
+        <form className={classnames(className)} onSubmit={this.handleSubmit}>
+          {children}
+        </form>
+      </Provider>
     );
   }
 }

@@ -8,7 +8,8 @@ class FileField extends Component {
     autoFocus: false,
     multiple: false,
     onChange: () => {},
-    onFormChange: () => {}
+    onFormChange: () => {},
+    values: {}
   };
 
   inputRef = React.createRef();
@@ -52,13 +53,14 @@ class FileField extends Component {
   };
 
   render() {
-    const { multiple, name } = this.props;
     const {
-      autoFocus, children, className, onError, onFormChange, required,
-      submitted, validator, value, ...props
+      autoFocus, children, className, multiple, name, onError, onFormChange,
+      required, submitted, submitting, validator, value, values, ...props
     } = this.props;
 
     const { touched } = this.state;
+
+    const normal = values[name] || value;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -69,7 +71,9 @@ class FileField extends Component {
             ref={this.inputRef}
             {...props}
             type="file"
+            multiple={multiple}
             id={name}
+            name={name}
             onChange={this.handleChange}
           />
           <div className="chq-ffd--di">
@@ -84,7 +88,7 @@ class FileField extends Component {
           submitted={submitted}
           touched={touched}
           validator={validator}
-          value={value}
+          value={normal}
         />
       </label>
     );
