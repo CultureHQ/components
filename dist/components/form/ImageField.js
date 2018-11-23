@@ -17,6 +17,8 @@ var _ImageEditor = _interopRequireDefault(require("../ImageEditor"));
 
 var _ImagePreview = _interopRequireDefault(require("../ImagePreview"));
 
+var _FormError = _interopRequireDefault(require("./FormError"));
+
 var _Form = require("./Form");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -81,7 +83,8 @@ function (_Component) {
       editorOpen: false,
       failed: false,
       image: null,
-      preview: null
+      preview: null,
+      touched: false
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleFileSelected", function (_ref) {
@@ -126,7 +129,8 @@ function (_Component) {
           editorOpen: editorOpen,
           failed: failed,
           image: image,
-          preview: image && URL.createObjectURL(image)
+          preview: image && URL.createObjectURL(image),
+          touched: true
         };
       });
 
@@ -166,17 +170,20 @@ function (_Component) {
           onError = _this$props2.onError,
           onFormChange = _this$props2.onFormChange,
           progress = _this$props2.progress,
+          required = _this$props2.required,
           submitted = _this$props2.submitted,
           submitting = _this$props2.submitting,
+          validator = _this$props2.validator,
           value = _this$props2.value,
           values = _this$props2.values,
-          props = _objectWithoutProperties(_this$props2, ["aspectRatio", "autoFocus", "children", "className", "errors", "name", "onChange", "onError", "onFormChange", "progress", "submitted", "submitting", "value", "values"]);
+          props = _objectWithoutProperties(_this$props2, ["aspectRatio", "autoFocus", "children", "className", "errors", "name", "onChange", "onError", "onFormChange", "progress", "required", "submitted", "submitting", "validator", "value", "values"]);
 
       var _this$state = this.state,
           editorOpen = _this$state.editorOpen,
           failed = _this$state.failed,
           image = _this$state.image,
-          preview = _this$state.preview;
+          preview = _this$state.preview,
+          touched = _this$state.touched;
       var normal = value || values[name];
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
@@ -220,7 +227,15 @@ function (_Component) {
         image: preview,
         onEdit: this.handleImageEdited,
         onFailure: this.handleImageFailure
-      }))));
+      }))), _react.default.createElement(_FormError.default, {
+        name: name,
+        onError: onError,
+        required: required,
+        submitted: submitted,
+        touched: touched,
+        validator: validator,
+        value: normal
+      }));
     }
   }]);
 
