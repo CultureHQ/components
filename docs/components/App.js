@@ -1,4 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
+
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Router, Link, Location } from "@reach/router";
 
 import ActionButton from "./pages/ActionButton";
