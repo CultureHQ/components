@@ -2,6 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 
 import TextField from "../TextField";
+import Form from "../Form";
 
 test("has no violations", async () => {
   await expect(<TextField name="text">Text</TextField>).toHaveNoViolations();
@@ -15,31 +16,12 @@ test("passes on className", () => {
 });
 
 test("calls up to callbacks if they are provided", () => {
-  const response = {
-    changeValue: null,
-    formChangeName: null,
-    formChangeValue: null
-  };
-
-  const component = mount(
-    <TextField
-      name="text"
-      onChange={changeValue => {
-        Object.assign(response, { changeValue });
-      }}
-      onFormChange={(formChangeName, formChangeValue) => {
-        Object.assign(response, { formChangeName, formChangeValue });
-      }}
-    />
-  );
+  const onChange = jest.fn();
+  const component = mount(<TextField name="text" onChange={onChange} />);
 
   component.find("textarea").simulate("change", { target: { value: "Kevin" } });
 
-  expect(response).toEqual({
-    changeValue: "Kevin",
-    formChangeName: "text",
-    formChangeValue: "Kevin"
-  });
+  expect(onChange).toHaveBeenCalledWith("Kevin");
 });
 
 test("tracks touch status in component state", () => {
@@ -52,10 +34,10 @@ test("tracks touch status in component state", () => {
 });
 
 test("displays errors if submitted", () => {
-  const component = mount(<TextField name="text" required />);
+  const component = mount(<Form><TextField name="text" required /></Form>);
   expect(component.text()).toEqual("");
 
-  component.setProps({ submitted: true });
+  component.setState({ submitted: true });
   expect(component.text()).toEqual("Required");
 });
 

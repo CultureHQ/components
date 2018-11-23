@@ -74,7 +74,7 @@ function (_Component) {
           name = _this$props2.name,
           value = _this$props2.value,
           values = _this$props2.values;
-      var normal = values[name] || value;
+      var normal = value || values[name];
 
       if (normal === undefined || normal === null) {
         this.handleClick(false);
@@ -89,7 +89,7 @@ function (_Component) {
           name = _this$props3.name,
           value = _this$props3.value,
           values = _this$props3.values;
-      var normal = values[name] || value;
+      var normal = value || values[name];
       return _react.default.createElement("div", {
         className: (0, _classnames.default)("chq-ffd", className)
       }, _react.default.createElement(_Checkmark.default, {

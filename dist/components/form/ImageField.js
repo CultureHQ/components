@@ -177,7 +177,7 @@ function (_Component) {
           failed = _this$state.failed,
           image = _this$state.image,
           preview = _this$state.preview;
-      var normal = values[name] || value;
+      var normal = value || values[name];
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name

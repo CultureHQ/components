@@ -51,7 +51,7 @@ var _React$createContext = _react.default.createContext({
 var withForm = function withForm(Child) {
   var Parent = function Parent(props) {
     return _react.default.createElement(Consumer, null, function (state) {
-      return _react.default.createElement(Child, _extends({}, props, state));
+      return _react.default.createElement(Child, _extends({}, state, props));
     });
   };
 

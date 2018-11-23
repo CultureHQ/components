@@ -70,7 +70,7 @@ class ImageField extends Component {
 
     const { editorOpen, failed, image, preview } = this.state;
 
-    const normal = values[name] || value;
+    const normal = value || values[name];
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>

@@ -13,7 +13,7 @@ class BooleanField extends Component {
 
   componentDidMount() {
     const { name, value, values } = this.props;
-    const normal = values[name] || value;
+    const normal = value || values[name];
 
     if (normal === undefined || normal === null) {
       this.handleClick(false);
@@ -29,7 +29,7 @@ class BooleanField extends Component {
 
   render() {
     const { children, className, name, value, values } = this.props;
-    const normal = values[name] || value;
+    const normal = value || values[name];
 
     return (
       <div className={classnames("chq-ffd", className)}>

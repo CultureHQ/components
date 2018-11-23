@@ -4,31 +4,12 @@ import { mount } from "enzyme";
 import CentsField from "../CentsField";
 
 test("calls up to callbacks if they are provided", () => {
-  const response = {
-    changeValue: null,
-    formChangeName: null,
-    formChangeValue: null
-  };
-
-  const component = mount(
-    <CentsField
-      name="cents"
-      onChange={changeValue => {
-        Object.assign(response, { changeValue });
-      }}
-      onFormChange={(formChangeName, formChangeValue) => {
-        Object.assign(response, { formChangeName, formChangeValue });
-      }}
-    />
-  );
+  const onChange = jest.fn();
+  const component = mount(<CentsField name="cents" onChange={onChange} />);
 
   component.find("input").simulate("change", { target: { value: 1.23 } });
 
-  expect(response).toEqual({
-    changeValue: 123,
-    formChangeName: "cents",
-    formChangeValue: 123
-  });
+  expect(onChange).toHaveBeenCalledWith(123);
 });
 
 test("displays the value using cents", () => {

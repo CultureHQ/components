@@ -9,31 +9,14 @@ test("has no violations", async () => {
 });
 
 test("calls up to callbacks if they are provided", () => {
-  const response = {
-    changeValue: null,
-    formChangeName: null,
-    formChangeValue: null
-  };
-
-  const component = mount(
-    <ImageField
-      name="image"
-      onChange={changeValue => Object.assign(response, { changeValue })}
-      onFormChange={(formChangeName, formChangeValue) => {
-        Object.assign(response, { formChangeName, formChangeValue });
-      }}
-    />
-  );
+  const onChange = jest.fn();
+  const component = mount(<ImageField name="image" onChange={onChange} />);
 
   component.find("input").simulate("change", {
     target: { files: ["Some file"] }
   });
 
-  expect(response).toEqual({
-    changeValue: "Some file",
-    formChangeName: "image",
-    formChangeValue: "Some file"
-  });
+  expect(onChange).toHaveBeenCalledWith("Some file");
 
   component.unmount();
 });
@@ -52,7 +35,7 @@ test("responds to edit callback", () => {
   const onChange = jest.fn();
   const component = mount(<ImageField name="image" onChange={onChange} />);
 
-  component.instance().handleImageEdited(image);
+  component.find("ImageField").instance().handleImageEdited(image);
   expect(onChange).toHaveBeenLastCalledWith(image);
 
   component.unmount();
@@ -71,10 +54,10 @@ test("responds to failures", () => {
 test("handles closing the modal", () => {
   const component = mount(<ImageField name="image" />);
 
-  component.setState({ editorOpen: true });
-  component.instance().handleClose();
+  component.find("ImageField").instance().setState({ editorOpen: true });
+  component.find("ImageField").instance().handleClose();
 
-  expect(component.state().editorOpen).toBe(false);
+  expect(component.find("ImageField").instance().state.editorOpen).toBe(false);
 });
 
 test("handles deselecting files", () => {

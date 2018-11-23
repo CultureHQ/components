@@ -67,30 +67,14 @@ test("passes on className", () => {
 });
 
 test("calls up to callbacks if they are provided", () => {
-  const response = {
-    changeValue: null,
-    formChangeName: null,
-    formChangeValue: null
-  };
-
+  const onChange = jest.fn();
   const component = mount(
-    <SelectField
-      name="select"
-      onChange={changeValue => Object.assign(response, { changeValue })}
-      onFormChange={(formChangeName, formChangeValue) => {
-        Object.assign(response, { formChangeName, formChangeValue });
-      }}
-      options={OPTIONS}
-    />
+    <SelectField name="select" onChange={onChange} options={OPTIONS} />
   );
 
-  component.instance().handleSelect("Harry");
+  component.find("SelectField").instance().handleSelect("Harry");
 
-  expect(response).toEqual({
-    changeValue: "Harry",
-    formChangeName: "select",
-    formChangeValue: "Harry"
-  });
+  expect(onChange).toHaveBeenCalledWith("Harry");
 });
 
 test("requests focus when autoFocus is given", () => {

@@ -4,7 +4,7 @@ import classnames from "../../classnames";
 import FormError from "./FormError";
 import { withForm } from "./Form";
 
-const buildFormField = type => {
+const buildFormField = (type, displayName) => {
   class FormField extends Component {
     static defaultProps = {
       autoFocus: false,
@@ -45,7 +45,7 @@ const buildFormField = type => {
 
       const { touched } = this.state;
 
-      const normal = values[name] || value;
+      const normal = value || values[name];
 
       return (
         <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -76,10 +76,11 @@ const buildFormField = type => {
     }
   }
 
+  FormField.displayName = displayName;
   return withForm(FormField);
 };
 
-export const EmailField = buildFormField("email");
-export const NumberField = buildFormField("number");
-export const PasswordField = buildFormField("password");
-export const StringField = buildFormField("text");
+export const EmailField = buildFormField("email", "EmailField");
+export const NumberField = buildFormField("number", "NumberField");
+export const PasswordField = buildFormField("password", "PasswordField");
+export const StringField = buildFormField("text", "StringField");

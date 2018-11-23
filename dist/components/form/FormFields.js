@@ -43,7 +43,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var buildFormField = function buildFormField(type) {
+var buildFormField = function buildFormField(type, displayName) {
   var FormField =
   /*#__PURE__*/
   function (_Component) {
@@ -117,7 +117,7 @@ var buildFormField = function buildFormField(type) {
             props = _objectWithoutProperties(_this$props2, ["addon", "autoFocus", "children", "className", "errors", "name", "onError", "onFormChange", "required", "submitted", "submitting", "validator", "value", "values"]);
 
         var touched = this.state.touched;
-        var normal = values[name] || value;
+        var normal = value || values[name];
         return _react.default.createElement("label", {
           className: (0, _classnames.default)("chq-ffd", className),
           htmlFor: name
@@ -157,14 +157,15 @@ var buildFormField = function buildFormField(type) {
     values: {}
   });
 
+  FormField.displayName = displayName;
   return (0, _Form.withForm)(FormField);
 };
 
-var EmailField = buildFormField("email");
+var EmailField = buildFormField("email", "EmailField");
 exports.EmailField = EmailField;
-var NumberField = buildFormField("number");
+var NumberField = buildFormField("number", "NumberField");
 exports.NumberField = NumberField;
-var PasswordField = buildFormField("password");
+var PasswordField = buildFormField("password", "PasswordField");
 exports.PasswordField = PasswordField;
-var StringField = buildFormField("text");
+var StringField = buildFormField("text", "StringField");
 exports.StringField = StringField;
