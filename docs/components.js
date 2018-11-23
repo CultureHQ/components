@@ -50,6 +50,7 @@ import SelectField from "../src/components/form/__docs__/SelectField";
 import StringField from "../src/components/form/__docs__/StringField";
 import SubmitButton from "../src/components/form/__docs__/SubmitButton";
 import TextField from "../src/components/form/__docs__/TextField";
+import TimezoneField from "../src/components/form/__docs__/TimezoneField";
 
 import Confirm from "../src/components/modals/__docs__/Confirm";
 import ConfirmDelete from "../src/components/modals/__docs__/ConfirmDelete";
@@ -131,6 +132,7 @@ const Header = ({ location }) => {
             <Link to="/tag">Tag</Link>
             <Link to="/text-field">TextField</Link>
             <Link to="/thumbnail">Thumbnail</Link>
+            <Link to="/timezone-field">TimezoneField</Link>
             <Link to="/tooltip">Tooltip</Link>
             <Link to="/warning">Warning</Link>
           </PanelSrc.Body>
@@ -189,6 +191,7 @@ const Body = ({ location }) => (
     <Tag path="/tag" />
     <TextField path="/text-field" />
     <Thumbnail path="/thumbnail" />
+    <TimezoneField path="/timezone-field" />
     <Tooltip path="/tooltip" />
     <Warning path="/warning" />
   </Router>

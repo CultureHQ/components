@@ -144,7 +144,8 @@ function (_Component) {
           onChange = _this$props3.onChange,
           onDeselect = _this$props3.onDeselect,
           onOpen = _this$props3.onOpen,
-          open = _this$props3.open;
+          open = _this$props3.open,
+          placeholder = _this$props3.placeholder;
       var className = (0, _classnames.default)("chq-ffd--ctrl", {
         "chq-ffd--ctrl-fc": open
       });
@@ -173,6 +174,7 @@ function (_Component) {
         ref: inputRef,
         onChange: onChange,
         onKeyDown: this.handleKeyDown,
+        placeholder: placeholder,
         value: display
       }), _react.default.createElement(_SelectFieldCaret.default, {
         open: open

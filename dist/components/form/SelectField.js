@@ -264,6 +264,7 @@ function (_Component) {
           name = _this$props7.name,
           onError = _this$props7.onError,
           options = _this$props7.options,
+          placeholder = _this$props7.placeholder,
           required = _this$props7.required,
           submitted = _this$props7.submitted,
           validator = _this$props7.validator,
@@ -294,6 +295,7 @@ function (_Component) {
         onOpen: this.handleOpen,
         open: open,
         options: options,
+        placeholder: placeholder,
         value: normal
       }), _react.default.createElement(_SelectFieldOptions.default, {
         creatable: creatable,

@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+/**
+ * This script is used to take the timezones from google calendar. They have a
+ * subset of those used by moment-timezone that fits out purposes just fine. You
+ * can use this from within the browser to get the list of timezones and then
+ * update `timezones.json`.
+ */
+
+const container = document.querySelectorAll(".ry3kXd")[3];
+
+const timezones = [...container.children].slice(2).map(element => ({
+  label: element.getAttribute("aria-label"),
+  value: element.getAttribute("data-value")
+}));
+
+console.log(JSON.stringify(timezones, null, 2));
