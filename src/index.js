@@ -48,3 +48,4 @@ export { default as MultiImageField } from "./components/form/MultiImageField";
 export { default as SelectField } from "./components/form/SelectField";
 export { default as SubmitButton } from "./components/form/SubmitButton";
 export { default as TextField } from "./components/form/TextField";
+export { default as TimezoneField } from "./components/form/TimezoneField";
