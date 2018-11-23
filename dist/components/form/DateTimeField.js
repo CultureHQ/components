@@ -167,7 +167,7 @@ function (_Component) {
         className: "chq-ffd--lb"
       }, children), _react.default.createElement(_PlainButton.default, {
         "aria-label": "Open dialog",
-        className: "chq-ffd--ctrl",
+        className: "chq-ffd--ctrl chq-ffd--dt",
         onClick: this.handleOpen
       }, _react.default.createElement(_DateTimeFieldDisplay.default, {
         value: currentDate
