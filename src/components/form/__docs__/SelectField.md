@@ -1,7 +1,9 @@
 ---
 prependJs:
-- import { Form, Panel, SelectField } from "../../../src";
-- import { OPTIONS } from "../utils";
+- import Form from "../Form";
+- import Panel from "../../Panel";
+- import SelectField from "../SelectField";
+- import selectFieldOptions from "./selectFieldOptions.js";
 ---
 
 ## `<SelectField>`
@@ -24,28 +26,44 @@ A select form field.
     <Panel.Body>
       <Form
         initialValues={{
-          select: OPTIONS[0].value,
-          "select-cr": OPTIONS[1].value,
-          "select-ml": [OPTIONS[2].value, OPTIONS[3].value],
-          "select-cr-ml": [OPTIONS[4].value, OPTIONS[5].value]
+          select: selectFieldOptions[0].value,
+          "select-cr": selectFieldOptions[1].value,
+          "select-ml": [
+            selectFieldOptions[2].value,
+            selectFieldOptions[3].value
+          ],
+          "select-cr-ml": [
+            selectFieldOptions[4].value,
+            selectFieldOptions[5].value
+          ]
         }}
       >
         <SelectField
           name="select"
-          options={OPTIONS}
+          options={selectFieldOptions}
           required
         >
           Select
         </SelectField>
-        <SelectField name="select-cr" options={OPTIONS} creatable required>
+        <SelectField
+          name="select-cr"
+          options={selectFieldOptions}
+          creatable
+          required
+        >
           Select (Creatable)
         </SelectField>
-        <SelectField name="select-ml" options={OPTIONS} multiple required>
+        <SelectField
+          name="select-ml"
+          options={selectFieldOptions}
+          multiple
+          required
+        >
           Select (Multiple)
         </SelectField>
         <SelectField
           name="select-cr-ml"
-          options={OPTIONS}
+          options={selectFieldOptions}
           creatable
           multiple
           required

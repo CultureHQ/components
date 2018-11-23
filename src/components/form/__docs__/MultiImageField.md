@@ -1,6 +1,8 @@
 ---
 prependJs:
-- import { Form, MultiImageField, Panel } from "../../../src";
+- import Form from "../Form";
+- import MultiImageField from "../MultiImageField";
+- import Panel from "../../Panel";
 ---
 
 ## `<MultiImageField>`

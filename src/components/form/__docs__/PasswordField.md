@@ -1,12 +1,15 @@
 ---
 prependJs:
-- import { DateTimeField, Form, Panel } from "../../../src";
+- import Form from "../Form";
+- import Panel from "../../Panel";
+- import { PasswordField } from "../FormFields";
 ---
 
-## `<DateTimeField>`
+## `<PasswordField>`
 
-A form field for selecting a date and time.
+A password form field.
 
+* `autoFocus = false` - whether or not the component should request focus on initial mount
 * `children` - the label to display for the field
 * `className?` - an extra class name
 * `onChange?` - a function that accepts one argument that represents the new value of the input field
@@ -19,7 +22,7 @@ A form field for selecting a date and time.
   <Panel>
     <Panel.Body>
       <Form>
-        <DateTimeField name="datetime" required>Date/Time</DateTimeField>
+        <PasswordField name="password" required>Password</PasswordField>
       </Form>
     </Panel.Body>
   </Panel>

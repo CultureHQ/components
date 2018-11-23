@@ -1,26 +1,27 @@
 ---
 prependJs:
-- import { EmailField, Form, Panel } from "../../../src";
+- import CentsField from "../CentsField";
+- import Form from "../Form";
+- import Panel from "../../Panel";
 ---
 
-## `<EmailField>`
+## `<CentsField>`
 
-A string form field that accepts an email.
+A number form field that tracks in cents and displays in dollar amounts.
 
-* `autoFocus = false` - whether or not the component should request focus on initial mount
+* `autoFocus = false` - whether or not the component should requets focus on initial mount
 * `children` - the label to display for the field
 * `className?` - an extra class name
 * `onChange?` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required = false` - indicates this field is required for submission
-* `validator?` - a function that should either return an error message string or `null`
 * `value?` - the value of the input field
 
 {{
   <Panel>
     <Panel.Body>
       <Form>
-        <EmailField name="email" required>Email</EmailField>
+        <CentsField name="cents" required>Cents</CentsField>
       </Form>
     </Panel.Body>
   </Panel>

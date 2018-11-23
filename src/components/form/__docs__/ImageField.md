@@ -1,6 +1,8 @@
 ---
 prependJs:
-- import { ImageField, Form, Panel } from "../../../src";
+- import ImageField from "../ImageField";
+- import Form from "../Form";
+- import Panel from "../../Panel";
 ---
 
 ## `<ImageField>`

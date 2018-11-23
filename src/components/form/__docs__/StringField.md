@@ -1,11 +1,13 @@
 ---
 prependJs:
-- import { Form, Panel, PasswordField } from "../../../src";
+- import Form from "../Form";
+- import Panel from "../../Panel";
+- import { StringField } from "../FormFields";
 ---
 
-## `<PasswordField>`
+## `<StringField>`
 
-A password form field.
+A string form field.
 
 * `autoFocus = false` - whether or not the component should request focus on initial mount
 * `children` - the label to display for the field
@@ -20,7 +22,7 @@ A password form field.
   <Panel>
     <Panel.Body>
       <Form>
-        <PasswordField name="password" required>Password</PasswordField>
+        <StringField name="string" required>String</StringField>
       </Form>
     </Panel.Body>
   </Panel>

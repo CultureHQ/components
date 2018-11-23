@@ -1,13 +1,14 @@
 ---
 prependJs:
-- import { Form, Panel, TextField } from "../../../src";
+- import DateTimeField from "../DateTimeField";
+- import Form from "../Form";
+- import Panel from "../../Panel";
 ---
 
-## `<TextField>`
+## `<DateTimeField>`
 
-A text form field.
+A form field for selecting a date and time.
 
-* `autoFocus = false` - whether or not the component should request focus on initial mount
 * `children` - the label to display for the field
 * `className?` - an extra class name
 * `onChange?` - a function that accepts one argument that represents the new value of the input field
@@ -20,7 +21,7 @@ A text form field.
   <Panel>
     <Panel.Body>
       <Form>
-        <TextField name="text" required>Text</TextField>
+        <DateTimeField name="datetime" required>Date/Time</DateTimeField>
       </Form>
     </Panel.Body>
   </Panel>

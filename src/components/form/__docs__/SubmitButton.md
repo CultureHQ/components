@@ -1,6 +1,7 @@
 ---
 prependJs:
-- import { Form, SubmitButton } from "../../../src";
+- import Form from "../Form";
+- import SubmitButton from "../SubmitButton";
 ---
 
 ## `<SubmitButton>`
