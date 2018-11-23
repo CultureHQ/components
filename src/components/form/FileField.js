@@ -54,8 +54,9 @@ class FileField extends Component {
 
   render() {
     const {
-      autoFocus, children, className, multiple, name, onError, onFormChange,
-      required, submitted, submitting, validator, value, values, ...props
+      autoFocus, children, className, errors, multiple, name, onError,
+      onFormChange, required, submitted, submitting, validator, value, values,
+      ...props
     } = this.props;
 
     const { touched } = this.state;

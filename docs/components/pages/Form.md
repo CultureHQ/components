@@ -22,9 +22,11 @@ A generic form component.
         }
       }
     >
-      <StringField name="string" required>
-        String
-      </StringField>
+      <p>
+        <StringField name="string" required>
+          String
+        </StringField>
+      </p>
       <SubmitButton primary />
     </Form>
     <Form

@@ -22,6 +22,7 @@ export const withForm = Child => {
   return Parent;
 };
 
+/* eslint-disable react/no-unused-state */
 class Form extends Component {
   constructor(props) {
     super(props);
