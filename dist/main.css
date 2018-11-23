@@ -535,6 +535,9 @@
     .chq-cnf .chq-pan--ft .chq-btn-iv {
       margin-top: 3px; }
 
+.chq-ffd .chq-ffd--dt {
+  background-color: #fff; }
+
 .chq-ffd--dtmd .chq-pan--bd {
   display: flex; }
   .chq-ffd--dtmd .chq-pan--bd .chq-cal {
