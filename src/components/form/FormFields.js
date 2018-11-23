@@ -2,13 +2,15 @@ import React, { Component } from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
+import { withForm } from "./Form";
 
 const buildFormField = type => {
   class FormField extends Component {
     static defaultProps = {
       autoFocus: false,
       onChange: () => {},
-      onFormChange: () => {}
+      onFormChange: () => {},
+      values: {}
     };
 
     inputRef = React.createRef();
@@ -35,13 +37,15 @@ const buildFormField = type => {
     };
 
     render() {
-      const { name, value } = this.props;
       const {
-        addon, autoFocus, children, className, onError, onFormChange, required,
-        submitted, validator, ...props
+        addon, autoFocus, children, className, errors, name, onError,
+        onFormChange, required, submitted, submitting, validator, value, values,
+        ...props
       } = this.props;
 
       const { touched } = this.state;
+
+      const normal = values[name] || value;
 
       return (
         <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -53,7 +57,8 @@ const buildFormField = type => {
             {...props}
             type={type}
             id={name}
-            value={value || ""}
+            name={name}
+            value={normal || ""}
             onBlur={this.handleBlur}
             onChange={this.handleChange}
           />
@@ -64,14 +69,14 @@ const buildFormField = type => {
             submitted={submitted}
             touched={touched}
             validator={validator}
-            value={value}
+            value={normal}
           />
         </label>
       );
     }
   }
 
-  return FormField;
+  return withForm(FormField);
 };
 
 export const EmailField = buildFormField("email");

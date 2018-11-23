@@ -2,17 +2,20 @@ import React, { Component } from "react";
 
 import Checkmark from "../Checkmark";
 import classnames from "../../classnames";
+import { withForm } from "./Form";
 
 class BooleanField extends Component {
   static defaultProps = {
     onChange: () => {},
-    onFormChange: () => {}
+    onFormChange: () => {},
+    values: {}
   };
 
   componentDidMount() {
-    const { value } = this.props;
+    const { name, value, values } = this.props;
+    const normal = values[name] || value;
 
-    if (value === undefined || value === null) {
+    if (normal === undefined || normal === null) {
       this.handleClick(false);
     }
   }
@@ -25,11 +28,12 @@ class BooleanField extends Component {
   };
 
   render() {
-    const { children, className, value } = this.props;
+    const { children, className, name, value, values } = this.props;
+    const normal = values[name] || value;
 
     return (
       <div className={classnames("chq-ffd", className)}>
-        <Checkmark checked={value} onClick={this.handleClick}>
+        <Checkmark checked={normal} onClick={this.handleClick}>
           {children}
         </Checkmark>
       </div>
@@ -37,4 +41,4 @@ class BooleanField extends Component {
   }
 }
 
-export default BooleanField;
+export default withForm(BooleanField);

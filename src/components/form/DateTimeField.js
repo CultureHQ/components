@@ -10,6 +10,7 @@ import ModalDialog from "../modals/ModalDialog";
 import DateTimeFieldDisplay from "./DateTimeFieldDisplay";
 import FormError from "./FormError";
 import TimeSelect from "./TimeSelect";
+import { withForm } from "./Form";
 
 const normalizeTime = value => {
   if (value) {
@@ -21,15 +22,17 @@ const normalizeTime = value => {
 class DateTimeField extends Component {
   static defaultProps = {
     onChange: () => {},
-    onFormChange: () => {}
+    onFormChange: () => {},
+    values: {}
   };
 
   state = { open: false, touched: false };
 
-  getNormalValue = () => {
-    const { value } = this.props;
+  getDate = () => {
+    const { name, value, values } = this.props;
+    const normal = values[name] || value;
 
-    return value ? new Date(value) : null;
+    return normal ? new Date(normal) : null;
   };
 
   handleOpen = () => {
@@ -41,16 +44,16 @@ class DateTimeField extends Component {
   };
 
   handleDateChange = date => {
-    this.propagateChange(date, normalizeTime(this.getNormalValue()));
+    this.propagateChange(date, normalizeTime(this.getDate()));
   };
 
   handleTimeChange = (hours, minutes) => {
-    this.propagateChange(this.getNormalValue() || new Date(), { hours, minutes });
+    this.propagateChange(this.getDate() || new Date(), { hours, minutes });
     this.handleClose();
   };
 
   handleSelect = () => {
-    const normalValue = this.getNormalValue();
+    const normalValue = this.getDate();
 
     this.propagateChange(normalValue || new Date(), normalizeTime(normalValue));
     this.handleClose();
@@ -74,12 +77,14 @@ class DateTimeField extends Component {
 
   render() {
     const {
-      children, className, onError, name, required, submitted, value, validator
+      children, className, onError, name, required, submitted, value, values,
+      validator
     } = this.props;
 
     const { open, touched } = this.state;
 
-    const normalValue = this.getNormalValue();
+    const normal = values[name] || value;
+    const currentDate = this.getDate();
 
     return (
       <>
@@ -90,13 +95,13 @@ class DateTimeField extends Component {
             className="chq-ffd--ctrl"
             onClick={this.handleOpen}
           >
-            <DateTimeFieldDisplay value={normalValue} />
+            <DateTimeFieldDisplay value={currentDate} />
           </PlainButton>
           <input
             id={name}
             name={name}
             type="hidden"
-            value={normalValue ? normalValue.toISOString() : ""}
+            value={currentDate ? currentDate.toISOString() : ""}
           />
         </label>
         {open && (
@@ -109,8 +114,8 @@ class DateTimeField extends Component {
               {children}
             </ModalDialog.Heading>
             <ModalDialog.Body>
-              <Calendar value={normalValue} onChange={this.handleDateChange} />
-              <TimeSelect value={normalValue} onChange={this.handleTimeChange} />
+              <Calendar value={currentDate} onChange={this.handleDateChange} />
+              <TimeSelect value={currentDate} onChange={this.handleTimeChange} />
             </ModalDialog.Body>
             <ModalDialog.Footer>
               <Button primary onClick={this.handleSelect}>Select</Button>
@@ -124,11 +129,11 @@ class DateTimeField extends Component {
           submitted={submitted}
           touched={touched}
           validator={validator}
-          value={value}
+          value={normal}
         />
       </>
     );
   }
 }
 
-export default DateTimeField;
+export default withForm(DateTimeField);

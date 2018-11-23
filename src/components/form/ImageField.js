@@ -5,13 +5,15 @@ import Icon from "../Icon";
 import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
 import ImagePreview from "../ImagePreview";
+import { withForm } from "./Form";
 
 class ImageField extends Component {
   static defaultProps = {
     aspectRatio: null,
     autoFocus: false,
     onChange: () => {},
-    onFormChange: () => {}
+    onFormChange: () => {},
+    values: {}
   };
 
   inputRef = React.createRef();
@@ -61,18 +63,21 @@ class ImageField extends Component {
 
   render() {
     const {
-      aspectRatio, autoFocus, children, className, name, onChange, onFormChange,
-      onError, progress, submitted, value, ...props
+      aspectRatio, autoFocus, children, className, errors, name, onChange,
+      onError, onFormChange, progress, submitted, submitting, value, values,
+      ...props
     } = this.props;
 
     const { editorOpen, failed, image, preview } = this.state;
+
+    const normal = values[name] || value;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
         <div className="chq-ffd--im">
-          <ImagePreview image={image} preview={preview || value} />
-          {!value && (
+          <ImagePreview image={image} preview={preview || normal} />
+          {!normal && (
             <div className="chq-ffd--im--ph">
               <Icon icon="images" />
             </div>
@@ -117,4 +122,4 @@ class ImageField extends Component {
   }
 }
 
-export default ImageField;
+export default withForm(ImageField);
