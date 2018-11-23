@@ -2,6 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 
 import * as FormFields from "../FormFields";
+import Form from "../Form";
 
 const CASES = Object.keys(FormFields).map(fieldName => [fieldName, FormFields[fieldName]]);
 
@@ -18,31 +19,16 @@ describe.each(CASES)("%s", (fieldName, FormField) => {
   });
 
   test("calls up to callbacks if they are provided", () => {
-    const response = {
-      changeValue: null,
-      formChangeName: null,
-      formChangeValue: null
-    };
-
+    const onChange = jest.fn();
     const component = mount(
-      <FormField
-        name="name"
-        onChange={changeValue => {
-          Object.assign(response, { changeValue });
-        }}
-        onFormChange={(formChangeName, formChangeValue) => {
-          Object.assign(response, { formChangeName, formChangeValue });
-        }}
-      />
+      <Form>
+        <FormField name="name" onChange={onChange} />
+      </Form>
     );
 
     component.find("input").simulate("change", { target: { value: "Kevin" } });
 
-    expect(response).toEqual({
-      changeValue: "Kevin",
-      formChangeName: "name",
-      formChangeValue: "Kevin"
-    });
+    expect(onChange).toHaveBeenCalledWith("Kevin");
   });
 
   test("tracks touch status in component state", () => {
@@ -50,14 +36,15 @@ describe.each(CASES)("%s", (fieldName, FormField) => {
     expect(component.text()).toEqual("");
 
     component.find("input").simulate("blur");
+
     expect(component.text()).toEqual("Required");
   });
 
   test("displays errors if submitted", () => {
-    const component = mount(<FormField name="name" required />);
+    const component = mount(<Form><FormField name="name" required /></Form>);
     expect(component.text()).toEqual("");
 
-    component.setProps({ submitted: true });
+    component.setState({ submitted: true });
     expect(component.text()).toEqual("Required");
   });
 
