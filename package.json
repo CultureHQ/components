@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "yarn build:css && yarn build:js && yarn build:docs",
-    "build:js": "babel src --out-dir ./dist --ignore '**/__tests__' && sed -i '' -e \"s/styles\\/app.scss/main.css/\" dist/index.js && cp src/*.json dist",
+    "build:js": "babel src --out-dir ./dist --ignore '**/__tests__' --ignore '**/__docs__' && sed -i '' -e \"s/styles\\/app.scss/main.css/\" dist/index.js && cp src/*.json dist",
     "build:css": "node-sass src/styles/app.scss > dist/main.css",
     "build:docs": "webpack --mode production",
     "clean": "git ls-files -o | grep -v node_modules | xargs rm",
