@@ -7,7 +7,7 @@ module.exports = {
   },
   entry: path.join(__dirname, "docs", "app.js"),
   resolve: {
-    extensions: [".js", ".json", ".css", ".scss", ".md"]
+    extensions: [".js", ".json", ".css", ".scss", ".mdx"]
   },
   module: {
     rules: [
@@ -29,7 +29,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.md$/,
+        test: /\.mdx$/,
         use: [
           {
             loader: "@mapbox/jsxtreme-markdown-loader",
