@@ -1,6 +1,7 @@
 ---
 prependJs:
-- import { Button, Confirm } from "../../../src";
+- import Button from "../../buttons/Button";
+- import Confirm from "../Confirm";
 ---
 
 ## `<Confirm>`
