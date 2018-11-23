@@ -2,12 +2,14 @@ import React, { Component } from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
+import { withForm } from "./Form";
 
 class TextField extends Component {
   static defaultProps = {
     autoFocus: false,
     onChange: () => {},
-    onFormChange: () => {}
+    onFormChange: () => {},
+    values: {}
   };
 
   textAreaRef = React.createRef();
@@ -34,13 +36,14 @@ class TextField extends Component {
   };
 
   render() {
-    const { name, value } = this.props;
     const {
-      autoFocus, children, className, onError, onFormChange, required,
-      submitted, validator, ...props
+      autoFocus, children, className, errors, name, onError, onFormChange,
+      required, submitted, submitting, validator, value, values, ...props
     } = this.props;
 
     const { touched } = this.state;
+
+    const normal = values[name] || value;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -50,7 +53,8 @@ class TextField extends Component {
           ref={this.textAreaRef}
           {...props}
           id={name}
-          value={value || ""}
+          name={name}
+          value={normal || ""}
           onBlur={this.handleBlur}
           onChange={this.handleChange}
         />
@@ -61,11 +65,11 @@ class TextField extends Component {
           submitted={submitted}
           touched={touched}
           validator={validator}
-          value={value}
+          value={normal}
         />
       </label>
     );
   }
 }
 
-export default TextField;
+export default withForm(TextField);

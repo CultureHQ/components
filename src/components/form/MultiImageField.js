@@ -8,7 +8,7 @@ import ImagePreview from "../ImagePreview";
 import Table from "../Table";
 import ActionButton from "../buttons/ActionButton";
 import ModalDialog from "../modals/ModalDialog";
-
+import { withForm } from "./Form";
 import getHumanSize from "../../utils/get-human-size";
 
 const hashTransports = transports => transports.map(({ key }) => key).join(",");
@@ -62,7 +62,8 @@ class MultiImageField extends Component {
     aspectRatio: null,
     autoFocus: false,
     onChange: () => {},
-    onFormChange: () => {}
+    onFormChange: () => {},
+    values: {}
   };
 
   inputRef = React.createRef();
@@ -145,8 +146,9 @@ class MultiImageField extends Component {
 
   render() {
     const {
-      aspectRatio, autoFocus, children, className, name, onChange, onFormChange,
-      onError, progress, submitted, value, ...props
+      aspectRatio, autoFocus, children, className, errors, name, onChange,
+      onError, onFormChange, progress, submitted, submitting, value, values,
+      ...props
     } = this.props;
 
     const { editorOpen, currentTransport, transports } = this.state;
@@ -208,4 +210,4 @@ class MultiImageField extends Component {
   }
 }
 
-export default MultiImageField;
+export default withForm(MultiImageField);

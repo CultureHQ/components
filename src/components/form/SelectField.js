@@ -4,6 +4,7 @@ import classnames from "../../classnames";
 import FormError from "./FormError";
 import SelectFieldValue from "./select/SelectFieldValue";
 import SelectFieldOptions from "./select/SelectFieldOptions";
+import { withForm } from "./Form";
 
 const appendValue = (value, selected) => (
   value ? [...value.filter(item => item !== selected), selected] : [selected]
@@ -24,7 +25,8 @@ class SelectField extends Component {
     multiple: false,
     onChange: () => {},
     onFormChange: () => {},
-    options: []
+    options: [],
+    values: {}
   };
 
   inputRef = React.createRef();
@@ -148,10 +150,12 @@ class SelectField extends Component {
   render() {
     const {
       children, className, creatable, multiple, name, onError, options,
-      required, submitted, validator, value
+      required, submitted, validator, value, values
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
+
+    const normal = values[name] || value;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -168,7 +172,7 @@ class SelectField extends Component {
             onOpen={this.handleOpen}
             open={open}
             options={options}
-            value={value}
+            value={normal}
           />
           <SelectFieldOptions
             creatable={creatable}
@@ -179,7 +183,7 @@ class SelectField extends Component {
             onSelect={this.handleSelect}
             open={open}
             options={options}
-            value={value}
+            value={normal}
           />
         </div>
         <FormError
@@ -189,11 +193,11 @@ class SelectField extends Component {
           submitted={submitted}
           touched={touched}
           validator={validator}
-          value={value}
+          value={normal}
         />
       </label>
     );
   }
 }
 
-export default SelectField;
+export default withForm(SelectField);

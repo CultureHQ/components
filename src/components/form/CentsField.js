@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 
 import { NumberField } from "./FormFields";
+import { withForm } from "./Form";
+
+const centsValidator = value => {
+  if (value && parseFloat(value, 10) <= 0) {
+    return "Value must be greater than $0.00";
+  }
+  return null;
+};
 
 class CentsField extends Component {
   static defaultProps = {
     onChange: () => {},
-    onFormChange: () => {}
+    onFormChange: () => {},
+    values: {}
   };
 
   handleChange = value => {
@@ -16,15 +25,9 @@ class CentsField extends Component {
     onFormChange(name, amount);
   };
 
-  handleValidate = value => {
-    if (value && parseFloat(value, 10) <= 0) {
-      return "Value must be greater than $0.00";
-    }
-    return null;
-  };
-
   render() {
-    const { children, onChange, onFormChange, value, ...props } = this.props;
+    const { children, name, onChange, onFormChange, value, values, ...props } = this.props;
+    const normal = values[name] || value;
 
     return (
       <NumberField
@@ -32,8 +35,8 @@ class CentsField extends Component {
         step=".01"
         min="0"
         addon="$"
-        value={Number.isFinite(value) ? value / 100 : ""}
-        validator={this.handleValidate}
+        value={Number.isFinite(normal) ? normal / 100 : ""}
+        validator={centsValidator}
         onChange={this.handleChange}
       >
         {children}
@@ -42,4 +45,4 @@ class CentsField extends Component {
   }
 }
 
-export default CentsField;
+export default withForm(CentsField);
