@@ -120,7 +120,7 @@ function (_Component) {
           value = _this$props3.value,
           values = _this$props3.values;
       var normal = value || values[name];
-      var nextValue = multiple ? value.filter(function (item) {
+      var nextValue = multiple ? normal.filter(function (item) {
         return item !== deselected;
       }) : "";
 

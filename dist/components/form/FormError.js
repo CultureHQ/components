@@ -84,7 +84,7 @@ function (_Component) {
           value = _this$props.value;
       var error = null;
 
-      if (required && !value) {
+      if (required && !value && value !== false) {
         error = "Required";
       } else if (validator) {
         error = validator(value);

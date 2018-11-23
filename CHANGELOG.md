@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [7.0.2] - 2018-11-22
+### Changed
+- Allow `SelectField` to work when required with falsy values.
+
 ## [7.0.1] - 2018-11-22
 ### Changed
 - Fix up display for select fields.

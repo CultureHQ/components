@@ -24,7 +24,7 @@ class FormError extends Component {
 
     let error = null;
 
-    if (required && !value) {
+    if (required && !value && value !== false) {
       error = "Required";
     } else if (validator) {
       error = validator(value);

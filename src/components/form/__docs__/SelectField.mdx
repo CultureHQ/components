@@ -39,6 +39,16 @@ A select form field.
         }}
       >
         <SelectField
+          name="select-bo"
+          options={[
+            { value: true, label: "True" },
+            { value: false, label: "False" }
+          ]}
+          required
+        >
+          Select (Booleans)
+        </SelectField>
+        <SelectField
           name="select"
           options={selectFieldOptions}
           required
