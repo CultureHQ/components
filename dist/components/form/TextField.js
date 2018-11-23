@@ -115,7 +115,7 @@ function (_Component) {
           props = _objectWithoutProperties(_this$props2, ["autoFocus", "children", "className", "errors", "name", "onError", "onFormChange", "required", "submitted", "submitting", "validator", "value", "values"]);
 
       var touched = this.state.touched;
-      var normal = values[name] || value;
+      var normal = value || values[name];
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name

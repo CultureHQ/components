@@ -5,31 +5,12 @@ import BooleanField from "../BooleanField";
 import Checkmark from "../../Checkmark";
 
 test("calls up to callbacks if they are provided", () => {
-  const response = {
-    changeValue: null,
-    formChangeName: null,
-    formChangeValue: null
-  };
-
-  const component = mount(
-    <BooleanField
-      name="boolean"
-      onChange={changeValue => {
-        Object.assign(response, { changeValue });
-      }}
-      onFormChange={(formChangeName, formChangeValue) => {
-        Object.assign(response, { formChangeName, formChangeValue });
-      }}
-    />
-  );
+  const onChange = jest.fn();
+  const component = mount(<BooleanField name="boolean" onChange={onChange} />);
 
   component.find("button").simulate("click");
 
-  expect(response).toEqual({
-    changeValue: true,
-    formChangeName: "boolean",
-    formChangeValue: true
-  });
+  expect(onChange).toHaveBeenCalledWith(true);
 });
 
 test("works with initial values", () => {

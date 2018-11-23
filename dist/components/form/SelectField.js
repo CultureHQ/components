@@ -260,7 +260,7 @@ function (_Component) {
           filteredOptions = _this$state.filteredOptions,
           open = _this$state.open,
           touched = _this$state.touched;
-      var normal = values[name] || value;
+      var normal = value || values[name];
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name

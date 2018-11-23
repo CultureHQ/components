@@ -91,7 +91,7 @@ function (_Component) {
           name = _this$props.name,
           value = _this$props.value,
           values = _this$props.values;
-      var normal = values[name] || value;
+      var normal = value || values[name];
       return normal ? new Date(normal) : null;
     });
 
@@ -158,7 +158,7 @@ function (_Component) {
       var _this$state = this.state,
           open = _this$state.open,
           touched = _this$state.touched;
-      var normal = values[name] || value;
+      var normal = value || values[name];
       var currentDate = this.getDate();
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),

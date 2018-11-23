@@ -27,11 +27,12 @@ class CentsField extends Component {
 
   render() {
     const { children, name, onChange, onFormChange, value, values, ...props } = this.props;
-    const normal = values[name] || value;
+    const normal = value || values[name];
 
     return (
       <NumberField
         {...props}
+        name={name}
         step=".01"
         min="0"
         addon="$"

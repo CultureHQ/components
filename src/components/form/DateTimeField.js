@@ -30,7 +30,7 @@ class DateTimeField extends Component {
 
   getDate = () => {
     const { name, value, values } = this.props;
-    const normal = values[name] || value;
+    const normal = value || values[name];
 
     return normal ? new Date(normal) : null;
   };
@@ -83,7 +83,7 @@ class DateTimeField extends Component {
 
     const { open, touched } = this.state;
 
-    const normal = values[name] || value;
+    const normal = value || values[name];
     const currentDate = this.getDate();
 
     return (

@@ -90,8 +90,9 @@ function (_Component) {
           values = _this$props2.values,
           props = _objectWithoutProperties(_this$props2, ["children", "name", "onChange", "onFormChange", "value", "values"]);
 
-      var normal = values[name] || value;
+      var normal = value || values[name];
       return _react.default.createElement(_FormFields.NumberField, _extends({}, props, {
+        name: name,
         step: ".01",
         min: "0",
         addon: "$",

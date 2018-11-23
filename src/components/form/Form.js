@@ -13,7 +13,7 @@ const { Provider, Consumer } = React.createContext({
 
 export const withForm = Child => {
   const Parent = props => (
-    <Consumer>{state => <Child {...props} {...state} />}</Consumer>
+    <Consumer>{state => <Child {...state} {...props} />}</Consumer>
   );
 
   const childName = Child.displayName || Child.name || "Component";

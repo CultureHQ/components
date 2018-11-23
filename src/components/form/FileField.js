@@ -61,7 +61,7 @@ class FileField extends Component {
 
     const { touched } = this.state;
 
-    const normal = values[name] || value;
+    const normal = value || values[name];
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
