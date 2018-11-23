@@ -2,7 +2,10 @@
 prependJs:
 - import Form from "../Form";
 - import SelectField from "../SelectField";
-- import { StringField } from "../FormFields";
+- import BooleanField from "../BooleanField";
+- import DateTimeField from "../DateTimeField";
+- import { EmailField, StringField } from "../FormFields";
+- import TextField from "../TextField";
 - import SubmitButton from "../SubmitButton";
 ---
 
@@ -16,34 +19,31 @@ A generic form component.
 * `onSubmit` - a callback when the form has been submitted (expected to return a `Promise`)
 
 {{
-  <div>
-    <Form
-      onSubmit={
-        values => {
-          console.log(values);
-          return new Promise(resolve => setTimeout(resolve, 1000));
-        }
+  <Form
+    onSubmit={
+      values => {
+        console.log(values);
+        return new Promise(resolve => setTimeout(resolve, 1000));
       }
-    >
-      <p>
-        <StringField name="string" required>
-          String
-        </StringField>
-      </p>
+    }
+  >
+    <div>
+      <EmailField name="email">Email</EmailField>
+      <StringField name="string">String</StringField>
+      <SelectField
+        name="select"
+        options={[
+          { value: 1, label: "One" },
+          { value: 2, label: "Two" },
+          { value: 3, label: "Three" }
+        ]}
+      >
+        Select
+      </SelectField>
+      <TextField name="text">Text</TextField>
+      <DateTimeField name="datetime">DateTime</DateTimeField>
+      <BooleanField name="boolean">Boolean</BooleanField>
       <SubmitButton primary />
-    </Form>
-    <Form
-      onSubmit={
-        values => {
-          console.log(values);
-          return new Promise(resolve => setTimeout(resolve, 1000));
-        }
-      }
-    >
-      <StringField name="string" required>
-        String
-      </StringField>
-      <SubmitButton primary />
-    </Form>
-  </div>
+    </div>
+  </Form>
 }}

@@ -92,7 +92,7 @@ class DateTimeField extends Component {
           <span className="chq-ffd--lb">{children}</span>
           <PlainButton
             aria-label="Open dialog"
-            className="chq-ffd--ctrl"
+            className="chq-ffd--ctrl chq-ffd--dt"
             onClick={this.handleOpen}
           >
             <DateTimeFieldDisplay value={currentDate} />
