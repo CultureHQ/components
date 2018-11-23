@@ -1,7 +1,7 @@
 import React, { StrictMode, Suspense, lazy } from "react";
 import ReactDOM from "react-dom";
 
-const App = lazy(() => import(/* webpackChunkName: "app" */ "./components/App"));
+const App = lazy(() => import(/* webpackChunkName: "app" */ "./components"));
 
 const AsyncApp = () => (
   <StrictMode>
