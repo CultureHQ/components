@@ -36,9 +36,11 @@ class SelectField extends Component {
   constructor(props) {
     super(props);
 
+    const normal = props.value || props.values[props.name];
     let display = "";
-    if (!props.multiple && props.value !== undefined) {
-      display = props.options.find(({ value }) => value === props.value);
+
+    if (!props.multiple && normal !== undefined) {
+      display = props.options.find(({ value }) => value === normal);
       display = display ? display.label : "";
     }
 
@@ -65,17 +67,19 @@ class SelectField extends Component {
   }
 
   handleWindowClick = event => {
-    const { value } = this.props;
+    const { name, value, values } = this.props;
     const { open } = this.state;
 
     if (open && !this.selectRef.current.contains(event.target)) {
-      this.selectValue(value, true);
+      this.selectValue(value || values[name], true);
     }
   };
 
   handleSelect = selected => {
-    const { multiple, value } = this.props;
-    const nextValue = multiple ? appendValue(value, selected) : selected;
+    const { multiple, name, value, values } = this.props;
+
+    const normal = value || values[name];
+    const nextValue = multiple ? appendValue(normal, selected) : selected;
 
     this.inputRef.current.focus();
     this.selectValue(nextValue, !multiple);
@@ -83,8 +87,10 @@ class SelectField extends Component {
   };
 
   handleDeselect = deselected => {
-    const { multiple, value } = this.props;
-    const nextValue = multiple ? value.filter(item => item !== deselected) : "";
+    const { multiple, name, value, values } = this.props;
+
+    const normal = value || values[name];
+    const nextValue = multiple ? normal.filter(item => item !== deselected) : "";
 
     this.inputRef.current.focus();
     this.selectValue(nextValue, !multiple);
@@ -92,13 +98,14 @@ class SelectField extends Component {
   };
 
   handleChange = event => {
-    const { multiple, options, value } = this.props;
+    const { multiple, name, options, value, values } = this.props;
     const { display } = this.state;
 
+    const normal = value || values[name];
     let nextDisplay = event.target.value;
 
     if (!multiple) {
-      const currentOption = (value && options.find(option => option.value === value)) || {};
+      const currentOption = (normal && options.find(option => option.value === normal)) || {};
       nextDisplay = currentOption.label === display ? event.nativeEvent.data : nextDisplay;
     }
 

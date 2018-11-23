@@ -86,19 +86,25 @@ function (_Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "selectRef", _react.default.createRef());
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleWindowClick", function (event) {
-      var value = _this.props.value;
+      var _this$props = _this.props,
+          name = _this$props.name,
+          value = _this$props.value,
+          values = _this$props.values;
       var open = _this.state.open;
 
       if (open && !_this.selectRef.current.contains(event.target)) {
-        _this.selectValue(value, true);
+        _this.selectValue(value || values[name], true);
       }
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSelect", function (selected) {
-      var _this$props = _this.props,
-          multiple = _this$props.multiple,
-          value = _this$props.value;
-      var nextValue = multiple ? appendValue(value, selected) : selected;
+      var _this$props2 = _this.props,
+          multiple = _this$props2.multiple,
+          name = _this$props2.name,
+          value = _this$props2.value,
+          values = _this$props2.values;
+      var normal = value || values[name];
+      var nextValue = multiple ? appendValue(normal, selected) : selected;
 
       _this.inputRef.current.focus();
 
@@ -108,9 +114,12 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDeselect", function (deselected) {
-      var _this$props2 = _this.props,
-          multiple = _this$props2.multiple,
-          value = _this$props2.value;
+      var _this$props3 = _this.props,
+          multiple = _this$props3.multiple,
+          name = _this$props3.name,
+          value = _this$props3.value,
+          values = _this$props3.values;
+      var normal = value || values[name];
       var nextValue = multiple ? value.filter(function (item) {
         return item !== deselected;
       }) : "";
@@ -123,16 +132,19 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (event) {
-      var _this$props3 = _this.props,
-          multiple = _this$props3.multiple,
-          options = _this$props3.options,
-          value = _this$props3.value;
+      var _this$props4 = _this.props,
+          multiple = _this$props4.multiple,
+          name = _this$props4.name,
+          options = _this$props4.options,
+          value = _this$props4.value,
+          values = _this$props4.values;
       var display = _this.state.display;
+      var normal = value || values[name];
       var nextDisplay = event.target.value;
 
       if (!multiple) {
-        var currentOption = value && options.find(function (option) {
-          return option.value === value;
+        var currentOption = normal && options.find(function (option) {
+          return option.value === normal;
         }) || {};
         nextDisplay = currentOption.label === display ? event.nativeEvent.data : nextDisplay;
       }
@@ -164,18 +176,18 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "propagateValue", function (value) {
-      var _this$props4 = _this.props,
-          name = _this$props4.name,
-          onChange = _this$props4.onChange,
-          onFormChange = _this$props4.onFormChange;
+      var _this$props5 = _this.props,
+          name = _this$props5.name,
+          onChange = _this$props5.onChange,
+          onFormChange = _this$props5.onFormChange;
       onChange(value);
       onFormChange(name, value);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "selectValue", function (nextValue, shouldClose) {
-      var _this$props5 = _this.props,
-          multiple = _this$props5.multiple,
-          options = _this$props5.options;
+      var _this$props6 = _this.props,
+          multiple = _this$props6.multiple,
+          options = _this$props6.options;
       var effects = shouldClose ? {
         open: false
       } : {};
@@ -201,12 +213,14 @@ function (_Component) {
       });
     });
 
+    var _normal = props.value || props.values[props.name];
+
     var _display = "";
 
-    if (!props.multiple && props.value !== undefined) {
+    if (!props.multiple && _normal !== undefined) {
       _display = props.options.find(function (_ref3) {
         var value = _ref3.value;
-        return value === props.value;
+        return value === _normal;
       });
       _display = _display ? _display.label : "";
     }
@@ -242,19 +256,19 @@ function (_Component) {
     /* eslint-disable jsx-a11y/label-has-for */
     // we're following the rules for it but it can't figure that out
     value: function render() {
-      var _this$props6 = this.props,
-          children = _this$props6.children,
-          className = _this$props6.className,
-          creatable = _this$props6.creatable,
-          multiple = _this$props6.multiple,
-          name = _this$props6.name,
-          onError = _this$props6.onError,
-          options = _this$props6.options,
-          required = _this$props6.required,
-          submitted = _this$props6.submitted,
-          validator = _this$props6.validator,
-          value = _this$props6.value,
-          values = _this$props6.values;
+      var _this$props7 = this.props,
+          children = _this$props7.children,
+          className = _this$props7.className,
+          creatable = _this$props7.creatable,
+          multiple = _this$props7.multiple,
+          name = _this$props7.name,
+          onError = _this$props7.onError,
+          options = _this$props7.options,
+          required = _this$props7.required,
+          submitted = _this$props7.submitted,
+          validator = _this$props7.validator,
+          value = _this$props7.value,
+          values = _this$props7.values;
       var _this$state = this.state,
           display = _this$state.display,
           filteredOptions = _this$state.filteredOptions,
