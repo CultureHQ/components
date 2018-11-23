@@ -1,6 +1,6 @@
 ---
 prependJs:
-- import { Button } from "../../../src";
+- import Button from "../Button";
 ---
 
 ## `<Button>`

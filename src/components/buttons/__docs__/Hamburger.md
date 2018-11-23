@@ -1,6 +1,6 @@
 ---
 prependJs:
-- import HamburgerContainer from "../HamburgerContainer";
+- import HamburgerContainer from "./HamburgerContainer";
 ---
 
 ## `<Hamburger>`

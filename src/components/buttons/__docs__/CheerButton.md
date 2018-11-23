@@ -1,6 +1,6 @@
 ---
 prependJs:
-- import CheerButtonContainer from "../CheerButtonContainer";
+- import CheerButtonContainer from "./CheerButtonContainer";
 ---
 
 ## `<CheerButton>`

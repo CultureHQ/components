@@ -1,7 +1,6 @@
 ---
 prependJs:
-- import { ActionButton } from "../../../src";
-- import { onClick } from "../utils";
+- import ActionButton from "../ActionButton";
 ---
 
 ## `<ActionButton>`
@@ -14,6 +13,11 @@ A button that represents the user taking an action.
 * `onClick?` - a click handler
 
 {{
-  <ActionButton onClick={onClick}>Default</ActionButton>{" "}
-  <ActionButton icon="clipboard" onClick={onClick}>Icon</ActionButton>
+  <ActionButton onClick={() => alert("Clicked!")}>
+    Default
+  </ActionButton>
+  {" "}
+  <ActionButton icon="clipboard" onClick={() => alert("Clicked!")}>
+    Icon
+  </ActionButton>
 }}

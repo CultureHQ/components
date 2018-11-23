@@ -1,6 +1,6 @@
 ---
 prependJs:
-- import { PlainButton } from "../../../src";
+- import PlainButton from "../PlainButton";
 ---
 
 ## `<PlainButton>`

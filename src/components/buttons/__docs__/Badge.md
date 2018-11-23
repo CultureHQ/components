@@ -1,7 +1,6 @@
 ---
 prependJs:
-- import { Badge } from "../../../src";
-- import { onClick } from "../utils";
+- import Badge from "../Badge";
 ---
 
 ## `<Badge>`
@@ -15,7 +14,7 @@ A component for displaying associated metadata.
 
 {{
   <Badge>Default</Badge>{" "}
-  <Badge primary onClick={onClick}>Primary</Badge>{" "}
+  <Badge primary onClick={() => alert("Clicked!")}>Primary</Badge>{" "}
   <Badge icon="clipboard">Icon</Badge>{" "}
   <Badge icon="clipboard" primary>Icon Primary</Badge>
 }}
