@@ -5,6 +5,7 @@ import Icon from "../Icon";
 import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
 import ImagePreview from "../ImagePreview";
+import FormError from "./FormError";
 import { withForm } from "./Form";
 
 class ImageField extends Component {
@@ -22,7 +23,8 @@ class ImageField extends Component {
     editorOpen: false,
     failed: false,
     image: null,
-    preview: null
+    preview: null,
+    touched: false
   };
 
   componentDidMount() {
@@ -50,7 +52,14 @@ class ImageField extends Component {
 
     this.setState(state => {
       URL.revokeObjectURL(state.preview);
-      return { editorOpen, failed, image, preview: image && URL.createObjectURL(image) };
+
+      return {
+        editorOpen,
+        failed,
+        image,
+        preview: image && URL.createObjectURL(image),
+        touched: true
+      };
     });
 
     onChange(image);
@@ -64,11 +73,11 @@ class ImageField extends Component {
   render() {
     const {
       aspectRatio, autoFocus, children, className, errors, name, onChange,
-      onError, onFormChange, progress, submitted, submitting, value, values,
-      ...props
+      onError, onFormChange, progress, required, submitted, submitting,
+      validator, value, values, ...props
     } = this.props;
 
-    const { editorOpen, failed, image, preview } = this.state;
+    const { editorOpen, failed, image, preview, touched } = this.state;
 
     const normal = value || values[name];
 
@@ -117,6 +126,15 @@ class ImageField extends Component {
             </ModalDialog.Body>
           </ModalDialog>
         )}
+        <FormError
+          name={name}
+          onError={onError}
+          required={required}
+          submitted={submitted}
+          touched={touched}
+          validator={validator}
+          value={normal}
+        />
       </label>
     );
   }

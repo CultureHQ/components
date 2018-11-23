@@ -6,6 +6,7 @@ prependJs:
 - import DateTimeField from "../DateTimeField";
 - import { EmailField, StringField } from "../FormFields";
 - import TextField from "../TextField";
+- import ImageField from "../ImageField";
 - import SubmitButton from "../SubmitButton";
 ---
 
@@ -16,7 +17,7 @@ A generic form component.
 * `children` - the fields to display inside the form
 * `className?` - an extra class name
 * `initialValues = {}` - the initial values of the form field
-* `onSubmit` - a callback when the form has been submitted (expected to return a `Promise`)
+* `onSubmit` - a callback when the form has been submitted
 
 {{
   <Form
@@ -43,6 +44,7 @@ A generic form component.
       <TextField name="text">Text</TextField>
       <DateTimeField name="datetime">DateTime</DateTimeField>
       <BooleanField name="boolean">Boolean</BooleanField>
+      <ImageField name="image">Image</ImageField>
       <SubmitButton primary />
     </div>
   </Form>
