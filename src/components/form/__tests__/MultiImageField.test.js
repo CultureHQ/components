@@ -9,49 +9,27 @@ test("has no violations", async () => {
 });
 
 test("calls up to callbacks if they are provided", () => {
+  const onChange = jest.fn();
   const files = [{ name: "Some file" }, { name: "Some other file" }];
 
-  const response = {
-    changeValue: null,
-    formChangeName: null,
-    formChangeValue: null
-  };
-
   const component = mount(
-    <MultiImageField
-      name="images"
-      onChange={changeValue => Object.assign(response, { changeValue })}
-      onFormChange={(formChangeName, formChangeValue) => {
-        Object.assign(response, { formChangeName, formChangeValue });
-      }}
-    />
+    <MultiImageField name="images" onChange={onChange} />
   );
 
   component.find("input").simulate("change", { target: { files } });
 
-  expect(response).toEqual({
-    changeValue: files,
-    formChangeName: "images",
-    formChangeValue: files
-  });
-
-  component.unmount();
-});
-
-test("does not call callbacks when they are not provided", () => {
-  const component = mount(<MultiImageField name="image" />);
-
-  component.find("input").simulate("change", { target: { files: ["Some file"] } });
-
+  expect(onChange).toHaveBeenCalledWith(files);
   component.unmount();
 });
 
 test("responds to the open edit callback", () => {
   const component = mount(<MultiImageField name="images" />);
-  component.setState({
+
+  component.find("MultiImageField").instance().setState({
     currentTransport: new Transport(image),
     transports: [new Transport(image)]
   });
+  component.update();
 
   const findEdit = node => node.text() && node.text().trim() === "Edit";
   component.find("button").findWhere(findEdit).simulate("click");
@@ -63,12 +41,13 @@ test("responds to edit callback", () => {
   const onChange = jest.fn();
   const component = mount(<MultiImageField name="images" onChange={onChange} />);
 
-  component.setState({
+  component.find("MultiImageField").instance().setState({
     currentTransport: new Transport(image),
     transports: [new Transport(image), new Transport({ name: "foobar" })]
   });
+  component.update();
 
-  component.instance().handleImageEdited(image);
+  component.find("MultiImageField").instance().handleImageEdited(image);
   expect(onChange).toHaveBeenLastCalledWith([image, { name: "foobar" }]);
 
   component.unmount();
@@ -78,12 +57,13 @@ test("responds to failure callback", () => {
   const onChange = jest.fn();
   const component = mount(<MultiImageField name="images" onChange={onChange} />);
 
-  component.setState({
+  component.find("MultiImageField").instance().setState({
     currentTransport: new Transport(image),
     transports: [new Transport(image)]
   });
+  component.update();
 
-  component.instance().handleImageFailure();
+  component.find("MultiImageField").instance().handleImageFailure();
   expect(onChange).toHaveBeenLastCalledWith([]);
 
   component.unmount();
@@ -93,10 +73,11 @@ test("responds to the remove callback", () => {
   const onChange = jest.fn();
   const component = mount(<MultiImageField name="images" onChange={onChange} />);
 
-  component.setState({
+  component.find("MultiImageField").instance().setState({
     currentTransport: new Transport(image),
     transports: [new Transport(image)]
   });
+  component.update();
 
   const findEdit = node => node.text() && node.text().trim() === "Remove";
   component.find("button").findWhere(findEdit).simulate("click");
@@ -109,16 +90,16 @@ test("responds to the remove callback", () => {
 test("handles closing the modal", () => {
   const component = mount(<MultiImageField name="images" />);
 
-  component.setState({ editorOpen: true });
-  component.instance().handleClose();
+  component.find("MultiImageField").instance().setState({ editorOpen: true });
+  component.find("MultiImageField").instance().handleClose();
 
-  expect(component.state().editorOpen).toBe(false);
+  expect(component.find("MultiImageField").instance().state.editorOpen).toBe(false);
 });
 
 test("handles clicking the file field", () => {
   const component = mount(<MultiImageField name="images" />);
 
-  component.instance().handleClick();
+  component.find("MultiImageField").instance().handleClick();
 
   expect(component.find("input").instance().value).toBe("");
 });
