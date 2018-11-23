@@ -21,6 +21,8 @@ var _ActionButton = _interopRequireDefault(require("../buttons/ActionButton"));
 
 var _ModalDialog = _interopRequireDefault(require("../modals/ModalDialog"));
 
+var _Form = require("./Form");
+
 var _getHumanSize = _interopRequireDefault(require("../../utils/get-human-size"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -261,14 +263,17 @@ function (_Component) {
           autoFocus = _this$props2.autoFocus,
           children = _this$props2.children,
           className = _this$props2.className,
+          errors = _this$props2.errors,
           name = _this$props2.name,
           onChange = _this$props2.onChange,
-          onFormChange = _this$props2.onFormChange,
           onError = _this$props2.onError,
+          onFormChange = _this$props2.onFormChange,
           progress = _this$props2.progress,
           submitted = _this$props2.submitted,
+          submitting = _this$props2.submitting,
           value = _this$props2.value,
-          props = _objectWithoutProperties(_this$props2, ["aspectRatio", "autoFocus", "children", "className", "name", "onChange", "onFormChange", "onError", "progress", "submitted", "value"]);
+          values = _this$props2.values,
+          props = _objectWithoutProperties(_this$props2, ["aspectRatio", "autoFocus", "children", "className", "errors", "name", "onChange", "onError", "onFormChange", "progress", "submitted", "submitting", "value", "values"]);
 
       var _this$state = this.state,
           editorOpen = _this$state.editorOpen,
@@ -326,8 +331,10 @@ _defineProperty(MultiImageField, "defaultProps", {
   aspectRatio: null,
   autoFocus: false,
   onChange: function onChange() {},
-  onFormChange: function onFormChange() {}
+  onFormChange: function onFormChange() {},
+  values: {}
 });
 
-var _default = MultiImageField;
+var _default = (0, _Form.withForm)(MultiImageField);
+
 exports.default = _default;

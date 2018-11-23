@@ -123,22 +123,24 @@ function (_Component) {
     key: "render",
     value: function render() {
       var _this$props3 = this.props,
+          autoFocus = _this$props3.autoFocus,
+          children = _this$props3.children,
+          className = _this$props3.className,
+          errors = _this$props3.errors,
           multiple = _this$props3.multiple,
-          name = _this$props3.name;
-
-      var _this$props4 = this.props,
-          autoFocus = _this$props4.autoFocus,
-          children = _this$props4.children,
-          className = _this$props4.className,
-          onError = _this$props4.onError,
-          onFormChange = _this$props4.onFormChange,
-          required = _this$props4.required,
-          submitted = _this$props4.submitted,
-          validator = _this$props4.validator,
-          value = _this$props4.value,
-          props = _objectWithoutProperties(_this$props4, ["autoFocus", "children", "className", "onError", "onFormChange", "required", "submitted", "validator", "value"]);
+          name = _this$props3.name,
+          onError = _this$props3.onError,
+          onFormChange = _this$props3.onFormChange,
+          required = _this$props3.required,
+          submitted = _this$props3.submitted,
+          submitting = _this$props3.submitting,
+          validator = _this$props3.validator,
+          value = _this$props3.value,
+          values = _this$props3.values,
+          props = _objectWithoutProperties(_this$props3, ["autoFocus", "children", "className", "errors", "multiple", "name", "onError", "onFormChange", "required", "submitted", "submitting", "validator", "value", "values"]);
 
       var touched = this.state.touched;
+      var normal = values[name] || value;
       return _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name
@@ -151,7 +153,9 @@ function (_Component) {
         ref: this.inputRef
       }, props, {
         type: "file",
+        multiple: multiple,
         id: name,
+        name: name,
         onChange: this.handleChange
       })), _react.default.createElement("div", {
         className: "chq-ffd--di"
@@ -166,7 +170,7 @@ function (_Component) {
         submitted: submitted,
         touched: touched,
         validator: validator,
-        value: value
+        value: normal
       }));
     }
   }]);
@@ -178,7 +182,8 @@ _defineProperty(FileField, "defaultProps", {
   autoFocus: false,
   multiple: false,
   onChange: function onChange() {},
-  onFormChange: function onFormChange() {}
+  onFormChange: function onFormChange() {},
+  values: {}
 });
 
 var _default = FileField;

@@ -30,7 +30,12 @@ module.exports = {
       },
       {
         test: /\.md$/,
-        use: "@mapbox/jsxtreme-markdown-loader",
+        use: [
+          {
+            loader: "@mapbox/jsxtreme-markdown-loader",
+            options: { precompile: true }
+          }
+        ],
         exclude: /node_modules/
       }
     ]

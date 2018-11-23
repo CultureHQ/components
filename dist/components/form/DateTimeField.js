@@ -23,6 +23,8 @@ var _FormError = _interopRequireDefault(require("./FormError"));
 
 var _TimeSelect = _interopRequireDefault(require("./TimeSelect"));
 
+var _Form = require("./Form");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -84,9 +86,13 @@ function (_Component) {
       touched: false
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getNormalValue", function () {
-      var value = _this.props.value;
-      return value ? new Date(value) : null;
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getDate", function () {
+      var _this$props = _this.props,
+          name = _this$props.name,
+          value = _this$props.value,
+          values = _this$props.values;
+      var normal = values[name] || value;
+      return normal ? new Date(normal) : null;
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleOpen", function () {
@@ -103,11 +109,11 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDateChange", function (date) {
-      _this.propagateChange(date, normalizeTime(_this.getNormalValue()));
+      _this.propagateChange(date, normalizeTime(_this.getDate()));
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleTimeChange", function (hours, minutes) {
-      _this.propagateChange(_this.getNormalValue() || new Date(), {
+      _this.propagateChange(_this.getDate() || new Date(), {
         hours: hours,
         minutes: minutes
       });
@@ -116,7 +122,7 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSelect", function () {
-      var normalValue = _this.getNormalValue();
+      var normalValue = _this.getDate();
 
       _this.propagateChange(normalValue || new Date(), normalizeTime(normalValue));
 
@@ -124,10 +130,10 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "propagateChange", function (date, time) {
-      var _this$props = _this.props,
-          name = _this$props.name,
-          onChange = _this$props.onChange,
-          onFormChange = _this$props.onFormChange;
+      var _this$props2 = _this.props,
+          name = _this$props2.name,
+          onChange = _this$props2.onChange,
+          onFormChange = _this$props2.onFormChange;
       var value = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.hours, time.minutes, 0).toISOString();
       onChange(value);
       onFormChange(name, value);
@@ -139,19 +145,21 @@ function (_Component) {
   _createClass(DateTimeField, [{
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          children = _this$props2.children,
-          className = _this$props2.className,
-          onError = _this$props2.onError,
-          name = _this$props2.name,
-          required = _this$props2.required,
-          submitted = _this$props2.submitted,
-          value = _this$props2.value,
-          validator = _this$props2.validator;
+      var _this$props3 = this.props,
+          children = _this$props3.children,
+          className = _this$props3.className,
+          onError = _this$props3.onError,
+          name = _this$props3.name,
+          required = _this$props3.required,
+          submitted = _this$props3.submitted,
+          value = _this$props3.value,
+          values = _this$props3.values,
+          validator = _this$props3.validator;
       var _this$state = this.state,
           open = _this$state.open,
           touched = _this$state.touched;
-      var normalValue = this.getNormalValue();
+      var normal = values[name] || value;
+      var currentDate = this.getDate();
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name
@@ -162,12 +170,12 @@ function (_Component) {
         className: "chq-ffd--ctrl",
         onClick: this.handleOpen
       }, _react.default.createElement(_DateTimeFieldDisplay.default, {
-        value: normalValue
+        value: currentDate
       })), _react.default.createElement("input", {
         id: name,
         name: name,
         type: "hidden",
-        value: normalValue ? normalValue.toISOString() : ""
+        value: currentDate ? currentDate.toISOString() : ""
       })), open && _react.default.createElement(_ModalDialog.default, {
         className: "chq-ffd--dtmd",
         entrance: "zoomIn",
@@ -175,10 +183,10 @@ function (_Component) {
       }, _react.default.createElement(_ModalDialog.default.Heading, {
         onClose: this.handleClose
       }, children), _react.default.createElement(_ModalDialog.default.Body, null, _react.default.createElement(_Calendar.default, {
-        value: normalValue,
+        value: currentDate,
         onChange: this.handleDateChange
       }), _react.default.createElement(_TimeSelect.default, {
-        value: normalValue,
+        value: currentDate,
         onChange: this.handleTimeChange
       })), _react.default.createElement(_ModalDialog.default.Footer, null, _react.default.createElement(_Button.default, {
         primary: true,
@@ -190,7 +198,7 @@ function (_Component) {
         submitted: submitted,
         touched: touched,
         validator: validator,
-        value: value
+        value: normal
       }));
     }
   }]);
@@ -200,8 +208,10 @@ function (_Component) {
 
 _defineProperty(DateTimeField, "defaultProps", {
   onChange: function onChange() {},
-  onFormChange: function onFormChange() {}
+  onFormChange: function onFormChange() {},
+  values: {}
 });
 
-var _default = DateTimeField;
+var _default = (0, _Form.withForm)(DateTimeField);
+
 exports.default = _default;

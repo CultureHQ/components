@@ -3,31 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = exports.withForm = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("../../classnames"));
-
-var _SubmitButton = _interopRequireDefault(require("./SubmitButton"));
-
-var _BooleanField = _interopRequireDefault(require("./BooleanField"));
-
-var _CentsField = _interopRequireDefault(require("./CentsField"));
-
-var _DateTimeField = _interopRequireDefault(require("./DateTimeField"));
-
-var _FileField = _interopRequireDefault(require("./FileField"));
-
-var _ImageField = _interopRequireDefault(require("./ImageField"));
-
-var _MultiImageField = _interopRequireDefault(require("./MultiImageField"));
-
-var _SelectField = _interopRequireDefault(require("./SelectField"));
-
-var _TextField = _interopRequireDefault(require("./TextField"));
-
-var _FormFields = require("./FormFields");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -55,65 +35,46 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var contains = function contains(haystack) {
-  return function (needle) {
-    return haystack.indexOf(needle) > -1;
-  };
-};
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-var isField = contains([_CentsField.default, _FormFields.EmailField, _DateTimeField.default, _FileField.default, _ImageField.default, _MultiImageField.default, _FormFields.NumberField, _FormFields.PasswordField, _SelectField.default, _FormFields.StringField, _TextField.default]);
+var _React$createContext = _react.default.createContext({
+  errors: {},
+  submitted: false,
+  submitting: false,
+  values: {},
+  onError: function onError() {},
+  onFormChange: function onFormChange() {}
+}),
+    Provider = _React$createContext.Provider,
+    Consumer = _React$createContext.Consumer;
+
+var withForm = function withForm(Child) {
+  var Parent = function Parent(props) {
+    return _react.default.createElement(Consumer, null, function (state) {
+      return _react.default.createElement(Child, _extends({}, props, state));
+    });
+  };
+
+  var childName = Child.displayName || Child.name || "Component";
+  Parent.displayName = "withForm(".concat(childName, ")");
+  return Parent;
+};
+/* eslint-disable react/no-unused-state */
+
+
+exports.withForm = withForm;
 
 var Form =
 /*#__PURE__*/
 function (_Component) {
   _inherits(Form, _Component);
 
-  function Form(_props) {
+  function Form(props) {
     var _this;
 
     _classCallCheck(this, Form);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Form).call(this, _props));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getChildren", function () {
-      var children = _this.props.children;
-      var _this$state = _this.state,
-          submitted = _this$state.submitted,
-          submitting = _this$state.submitting,
-          values = _this$state.values;
-      return _react.default.Children.map(children, function (child) {
-        if (!child) {
-          return child;
-        }
-
-        var type = child.type,
-            props = child.props;
-
-        if (isField(type)) {
-          return _react.default.cloneElement(child, {
-            onError: _this.handleError,
-            onFormChange: _this.handleFormChange,
-            submitted: submitted,
-            value: values[props.name]
-          });
-        }
-
-        if (type === _BooleanField.default) {
-          return _react.default.cloneElement(child, {
-            onFormChange: _this.handleFormChange,
-            value: values[props.name]
-          });
-        }
-
-        if (type === _SubmitButton.default) {
-          return _react.default.cloneElement(child, {
-            submitting: submitting
-          });
-        }
-
-        return child;
-      });
-    });
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Form).call(this, props));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleError", function (name, error) {
       _this.setState(function (_ref) {
@@ -148,10 +109,12 @@ function (_Component) {
     });
 
     _this.state = {
+      errors: {},
       submitted: false,
       submitting: false,
-      values: _props.initialValues || {},
-      errors: {}
+      values: props.initialValues || {},
+      onError: _this.handleError,
+      onFormChange: _this.handleFormChange
     };
     return _this;
   }
@@ -170,9 +133,9 @@ function (_Component) {
     key: "submit",
     value: function submit() {
       var onSubmit = this.props.onSubmit;
-      var _this$state2 = this.state,
-          errors = _this$state2.errors,
-          values = _this$state2.values;
+      var _this$state = this.state,
+          errors = _this$state.errors,
+          values = _this$state.values;
       this.setState({
         submitted: true
       });
@@ -187,17 +150,25 @@ function (_Component) {
 
         if (submitted && submitted.then) {
           submitted.then(this.handleDoneSubmitting).catch(this.handleDoneSubmitting);
+        } else {
+          this.setState({
+            submitting: false
+          });
         }
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var className = this.props.className;
-      return _react.default.createElement("form", {
+      var _this$props = this.props,
+          children = _this$props.children,
+          className = _this$props.className;
+      return _react.default.createElement(Provider, {
+        value: this.state
+      }, _react.default.createElement("form", {
         className: (0, _classnames.default)(className),
         onSubmit: this.handleSubmit
-      }, this.getChildren());
+      }, children));
     }
   }]);
 
