@@ -21,7 +21,7 @@ class Icon extends Component {
   }
 
   loadIcon() {
-    return import(/* webpackChunkName: "icons" */ "../icons.json").then(paths => {
+    return import("../icons.json").then(paths => {
       const { icon } = this.props;
 
       if (this.componentIsMounted) {

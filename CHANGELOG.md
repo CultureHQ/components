@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [7.3.0] - 2018-11-24
+### Added
+- The `getTimezoneOffset` function.
+
 ## [7.2.1] - 2018-11-23
 ### Added
 - Export the `TimezoneField` component from the main index file.

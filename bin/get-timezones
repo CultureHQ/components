@@ -9,9 +9,13 @@
 
 const container = document.querySelectorAll(".ry3kXd")[3];
 
-const timezones = [...container.children].slice(2).map(element => ({
-  label: element.getAttribute("aria-label"),
-  value: element.getAttribute("data-value")
-}));
+const timezones = [...container.children].slice(2).map(element => {
+  const label = element.getAttribute("aria-label");
+
+  const [match, hours, minutes] = /^\(GMT([-+]\d\d):(\d\d)\).+$/.exec(label);
+  const offset = parseInt(hours, 10) * 60 + parseInt(minutes, 10);
+
+  return { label, value: element.getAttribute("data-value"), offset };
+});
 
 console.log(JSON.stringify(timezones, null, 2));

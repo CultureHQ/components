@@ -9,7 +9,7 @@ class TimezoneField extends Component {
   componentDidMount() {
     this.componentIsMounted = true;
 
-    return import(/* webpackChunkName: "timezones" */ "../../timezones.json").then(module => {
+    return import("../../timezones.json").then(module => {
       if (this.componentIsMounted) {
         this.setState({ timezones: module.default });
       }

@@ -68,9 +68,7 @@ function (_Component) {
       var _this2 = this;
 
       this.componentIsMounted = true;
-      return import(
-      /* webpackChunkName: "timezones" */
-      "../../timezones.json").then(function (module) {
+      return import("../../timezones.json").then(function (module) {
         if (_this2.componentIsMounted) {
           _this2.setState({
             timezones: module.default

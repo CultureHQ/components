@@ -80,9 +80,7 @@ function (_Component) {
     value: function loadIcon() {
       var _this2 = this;
 
-      return import(
-      /* webpackChunkName: "icons" */
-      "../icons.json").then(function (paths) {
+      return import("../icons.json").then(function (paths) {
         var icon = _this2.props.icon;
 
         if (_this2.componentIsMounted) {
