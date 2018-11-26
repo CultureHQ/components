@@ -20,11 +20,7 @@ const normalizeTime = value => {
 
 const padLeft = number => `0${number}`.slice(-2);
 
-const DateTimeFieldDisplay = ({ value }) => {
-  if (!value) {
-    return null;
-  }
-
+const makeDateTimeString = value => {
   const components = [
     value.getFullYear(),
     "-",
@@ -114,7 +110,7 @@ class DateTimeField extends Component {
             className="chq-ffd--ctrl chq-ffd--dt"
             onClick={this.handleOpen}
           >
-            <DateTimeFieldDisplay value={currentDate} />
+            {currentDate && makeDateTimeString(currentDate)}
           </PlainButton>
           <input
             id={name}
