@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
-class FormError extends Component {
-  state = { error: null };
+import { withForm } from "./Form";
 
+class FormError extends Component {
   componentDidMount() {
     this.deriveError();
   }
 
   componentDidUpdate(prevProps) {
-    const updateRequired = ["required", "validator", "value"].some(propName => {
+    const updateRequired = ["required", "validator", "values"].some(propName => {
       const { [propName]: propValue } = this.props;
 
       return propValue !== prevProps[propName];
@@ -20,9 +20,13 @@ class FormError extends Component {
   }
 
   deriveError() {
-    const { name, onError, required, validator, value } = this.props;
+    const { errors, name, onError, required, validator, values } = this.props;
+    const value = values[name];
 
-    let error = null;
+    // This is undefined on purpose so that when we compare against the previous
+    // value it doesn't unnecessarily update when there's no error on first
+    // render.
+    let error = undefined;
 
     if (required && !value && value !== false) {
       error = "Required";
@@ -30,16 +34,14 @@ class FormError extends Component {
       error = validator(value);
     }
 
-    this.setState({ error });
-
-    if (onError) {
+    if (error !== errors[name]) {
       onError(name, error);
     }
   }
 
   render() {
-    const { submitted, touched } = this.props;
-    const { error } = this.state;
+    const { errors, name, submitted, touched } = this.props;
+    const error = errors[name];
 
     if (!error || !(submitted || touched)) {
       return null;
@@ -49,4 +51,4 @@ class FormError extends Component {
   }
 }
 
-export default FormError;
+export default withForm(FormError);

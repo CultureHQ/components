@@ -1,14 +1,12 @@
-import React, { StrictMode, Suspense, lazy } from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom";
 
 const App = lazy(() => import(/* webpackChunkName: "app" */ "./components"));
 
 const AsyncApp = () => (
-  <StrictMode>
-    <Suspense fallback={<div />}>
-      <App />
-    </Suspense>
-  </StrictMode>
+  <Suspense fallback={<div />}>
+    <App />
+  </Suspense>
 );
 
 ReactDOM.render(<AsyncApp />, document.getElementById("main"));
