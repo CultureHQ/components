@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { mount } from "enzyme";
 
 import FileField from "../FileField";
+import Form from "../Form";
 
 const FileFieldContainer = props => {
   const [value, setValue] = useState(null);
@@ -59,7 +60,7 @@ test("calls up to callbacks if they are provided", () => {
 });
 
 test("tracks touch status in component state", () => {
-  const component = mount(<FileField name="name" required />);
+  const component = mount(<Form><FileField name="name" required /></Form>);
   expect(component.text()).not.toContain("Required");
 
   component.find("input[type='file']").simulate("change", {

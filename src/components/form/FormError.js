@@ -25,7 +25,7 @@ class FormError extends Component {
     // This is undefined on purpose so that when we compare against the previous
     // value it doesn't unnecessarily update when there's no error on first
     // render.
-    let error = undefined;
+    let error;
 
     if (required && !value && value !== false) {
       error = "Required";

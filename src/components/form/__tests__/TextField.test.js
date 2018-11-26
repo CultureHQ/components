@@ -25,7 +25,7 @@ test("calls up to callbacks if they are provided", () => {
 });
 
 test("tracks touch status in component state", () => {
-  const component = mount(<TextField name="text" required />);
+  const component = mount(<Form><TextField name="text" required /></Form>);
   expect(component.text()).toEqual("");
 
   component.find("textarea").simulate("change", { target: { value: "" } });

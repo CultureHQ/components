@@ -14,6 +14,7 @@ A form field for selecting a date and time.
 * `onChange?` - a function that accepts one argument that represents the new value of the input field
 * `name` - the name of the field
 * `required = false` - indicates this field is required for submission
+* `timezoneOffset = new Date().getTimezoneOffset()` - changes the timezone offset of the date time field to allow selecting times in a different zone
 * `validator?` - a function that should either return an error message string or `null`
 * `value?` - the value of the input field
 

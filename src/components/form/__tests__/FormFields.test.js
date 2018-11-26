@@ -32,7 +32,7 @@ describe.each(CASES)("%s", (fieldName, FormField) => {
   });
 
   test("tracks touch status in component state", () => {
-    const component = mount(<FormField name="name" required />);
+    const component = mount(<Form><FormField name="name" required /></Form>);
     expect(component.text()).toEqual("");
 
     component.find("input").simulate("blur");

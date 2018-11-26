@@ -20,19 +20,22 @@ const normalizeTime = value => {
 
 const padLeft = number => `0${number}`.slice(-2);
 
-const makeDateTimeString = value => {
+const makeDateTimeString = (value, timezoneOffset) => {
+  const offset = new Date().getTimezoneOffset() - timezoneOffset;
+  const date = new Date(+value + (offset * 60 * 1000));
+
   const components = [
-    value.getFullYear(),
+    date.getFullYear(),
     "-",
-    padLeft(value.getMonth() + 1),
+    padLeft(date.getMonth() + 1),
     "-",
-    padLeft(value.getDate()),
+    padLeft(date.getDate()),
     " ",
-    value.getHours() % 12 || 12,
+    date.getHours() % 12 || 12,
     ":",
-    padLeft(value.getMinutes()),
+    padLeft(date.getMinutes()),
     " ",
-    value.getHours() < 12 ? "AM" : "PM"
+    date.getHours() < 12 ? "AM" : "PM"
   ];
 
   return components.join("");
@@ -42,6 +45,7 @@ class DateTimeField extends Component {
   static defaultProps = {
     onChange: () => {},
     onFormChange: () => {},
+    timezoneOffset: new Date().getTimezoneOffset(),
     values: {}
   };
 
@@ -79,26 +83,31 @@ class DateTimeField extends Component {
   };
 
   propagateChange = (date, time) => {
-    const { name, onChange, onFormChange } = this.props;
+    const { name, timezoneOffset, onChange, onFormChange } = this.props;
 
-    const value = new Date(
+    let value = +new Date(
       date.getFullYear(),
       date.getMonth(),
       date.getDate(),
       time.hours,
       time.minutes,
       0
-    ).toISOString();
+    );
+
+    value += (timezoneOffset - new Date().getTimezoneOffset()) * 60 * 1000;
+    value = new Date(value).toISOString();
 
     onChange(value);
     onFormChange(name, value);
   };
 
   render() {
-    const { children, className, name, required, submitted, value, values, validator } = this.props;
+    const {
+      children, className, name, required, submitted, timezoneOffset, validator
+    } = this.props;
+
     const { open, touched } = this.state;
 
-    const normal = value || values[name];
     const currentDate = this.getDate();
 
     return (
@@ -110,7 +119,7 @@ class DateTimeField extends Component {
             className="chq-ffd--ctrl chq-ffd--dt"
             onClick={this.handleOpen}
           >
-            {currentDate && makeDateTimeString(currentDate)}
+            {currentDate && makeDateTimeString(currentDate, timezoneOffset)}
           </PlainButton>
           <input
             id={name}
@@ -143,7 +152,7 @@ class DateTimeField extends Component {
           submitted={submitted}
           touched={touched}
           validator={validator}
-          value={normal}
+          value={currentDate}
         />
       </>
     );

@@ -2,6 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 
 import CentsField from "../CentsField";
+import Form from "../Form";
 
 test("calls up to callbacks if they are provided", () => {
   const onChange = jest.fn();
@@ -19,10 +20,9 @@ test("displays the value using cents", () => {
 });
 
 test("validates that the value cannot be <= 0", () => {
-  const onError = jest.fn();
-  mount(<CentsField name="cents" value={-5} onError={onError} />);
+  const component = mount(<Form><CentsField name="cents" value={-5} /></Form>);
 
-  expect(onError).toHaveBeenCalled();
+  expect(component.state().errors.cents).not.toBe(undefined);
 });
 
 test("handles cases where the value is empty", () => {

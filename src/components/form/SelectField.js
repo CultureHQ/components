@@ -156,8 +156,8 @@ class SelectField extends Component {
   // we're following the rules for it but it can't figure that out
   render() {
     const {
-      children, className, creatable, multiple, name, onError, options,
-      placeholder, required, submitted, validator, value, values
+      children, className, creatable, multiple, name, options, placeholder,
+      required, submitted, validator, value, values
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
