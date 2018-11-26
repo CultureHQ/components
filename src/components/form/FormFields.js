@@ -64,7 +64,6 @@ const buildFormField = (type, displayName) => {
           />
           <FormError
             name={name}
-            onError={onError}
             required={required}
             submitted={submitted}
             touched={touched}

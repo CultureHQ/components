@@ -60,7 +60,6 @@ class TextField extends Component {
         />
         <FormError
           name={name}
-          onError={onError}
           required={required}
           submitted={submitted}
           touched={touched}

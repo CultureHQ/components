@@ -20,8 +20,7 @@ class FormError extends Component {
   }
 
   deriveError() {
-    const { errors, name, onError, required, validator, values } = this.props;
-    const value = values[name];
+    const { errors, name, onError, required, validator, value } = this.props;
 
     // This is undefined on purpose so that when we compare against the previous
     // value it doesn't unnecessarily update when there's no error on first

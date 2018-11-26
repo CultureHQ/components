@@ -26,7 +26,7 @@ class CentsField extends Component {
   };
 
   render() {
-    const { children, name, onChange, onFormChange, value, values, ...props } = this.props;
+    const { children, name, value, values, ...props } = this.props;
     const normal = value || values[name];
 
     return (

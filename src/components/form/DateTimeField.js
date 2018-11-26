@@ -76,11 +76,7 @@ class DateTimeField extends Component {
   };
 
   render() {
-    const {
-      children, className, onError, name, required, submitted, value, values,
-      validator
-    } = this.props;
-
+    const { children, className, name, required, submitted, value, values, validator } = this.props;
     const { open, touched } = this.state;
 
     const normal = value || values[name];
@@ -124,7 +120,6 @@ class DateTimeField extends Component {
         )}
         <FormError
           name={name}
-          onError={onError}
           required={required}
           submitted={submitted}
           touched={touched}
