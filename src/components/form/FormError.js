@@ -8,7 +8,7 @@ class FormError extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const updateRequired = ["required", "validator", "values"].some(propName => {
+    const updateRequired = ["required", "validator", "value"].some(propName => {
       const { [propName]: propValue } = this.props;
 
       return propValue !== prevProps[propName];
