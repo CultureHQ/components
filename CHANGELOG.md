@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [7.3.1] - 2018-11-30
+### Changed
+- Added a slight margin top and bottom on the badge component.
+
 ## [7.3.0] - 2018-11-24
 ### Added
 - The `getTimezoneOffset` function.
