@@ -12,6 +12,13 @@ import FormError from "./FormError";
 import TimeSelect from "./TimeSelect";
 import { withForm } from "./Form";
 
+const makeTimeSelectValue = value => {
+  const hours = value ? value.getUTCHours() : 12;
+  const minutes = value ? Math.floor(value.getUTCMinutes() / 15) * 15 : 0;
+
+  return `${hours}:${minutes}`;
+};
+
 const normalizeTime = value => {
   if (value) {
     return { hours: value.getHours(), minutes: value.getMinutes() };
@@ -116,7 +123,10 @@ class DateTimeField extends Component {
             </ModalDialog.Heading>
             <ModalDialog.Body>
               <Calendar value={currentDate} onChange={this.handleDateChange} />
-              <TimeSelect value={currentDate} onChange={this.handleTimeChange} />
+              <TimeSelect
+                value={makeTimeSelectValue(currentDate)}
+                onChange={this.handleTimeChange}
+              />
             </ModalDialog.Body>
             <ModalDialog.Footer>
               <Button primary onClick={this.handleSelect}>Select</Button>
