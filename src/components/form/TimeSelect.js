@@ -2,13 +2,6 @@ import React, { Component } from "react";
 
 import TimeSelectOption from "./TimeSelectOption";
 
-const normalizeValue = value => {
-  const hours = value ? value.getHours() : 12;
-  const minutes = value ? Math.floor(value.getMinutes() / 15) * 15 : 0;
-
-  return `${hours}:${minutes}`;
-};
-
 const padLeft = number => `0${number}`.slice(-2);
 
 const TIME_SELECT_OPTIONS = [];
@@ -38,7 +31,6 @@ class TimeSelect extends Component {
 
   render() {
     const { value, onChange } = this.props;
-    const valueNormal = normalizeValue(value);
 
     return (
       <div className="chq-tsl" ref={this.selectRef}>
@@ -46,7 +38,7 @@ class TimeSelect extends Component {
           <TimeSelectOption
             key={option.value}
             option={option}
-            value={valueNormal}
+            value={value}
             onClick={onChange}
             activeOptionRef={this.activeOptionRef}
           />
