@@ -26,7 +26,9 @@ class TimeSelect extends Component {
     const option = this.activeOptionRef.current;
     const select = this.selectRef.current;
 
-    select.scrollTop = Math.max(0, option.offsetTop - select.offsetTop - 46);
+    if (option && select) {
+      select.scrollTop = Math.max(0, option.offsetTop - select.offsetTop - 46);
+    }
   }
 
   render() {
