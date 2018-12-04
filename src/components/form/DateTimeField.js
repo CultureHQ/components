@@ -11,6 +11,13 @@ import FormError from "./FormError";
 import TimeSelect from "./TimeSelect";
 import { withForm } from "./Form";
 
+const getStdTimezoneOffset = () => {
+  const date = new Date();
+  const jan = new Date(date.getFullYear(), 0, 1);
+  const jul = new Date(date.getFullYear(), 6, 1);
+  return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+};
+
 const padLeft = number => `0${number}`.slice(-2);
 
 const makeDateTime = (value, offset) => {
@@ -47,7 +54,7 @@ const makeTimeSelectValue = (value, offset) => {
 
 class DateTimeField extends Component {
   static defaultProps = {
-    offset: -new Date().getTimezoneOffset(),
+    offset: -getStdTimezoneOffset(),
     onChange: () => {},
     onFormChange: () => {},
     values: {}
