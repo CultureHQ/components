@@ -7,27 +7,47 @@ import Button from "../buttons/Button";
 import PlainButton from "../buttons/PlainButton";
 import ModalDialog from "../modals/ModalDialog";
 
-import DateTimeFieldDisplay from "./DateTimeFieldDisplay";
 import FormError from "./FormError";
 import TimeSelect from "./TimeSelect";
 import { withForm } from "./Form";
 
-const makeTimeSelectValue = value => {
-  const hours = value ? value.getUTCHours() : 12;
-  const minutes = value ? Math.floor(value.getUTCMinutes() / 15) * 15 : 0;
+const padLeft = number => `0${number}`.slice(-2);
+
+const makeDateTime = (value, offset) => {
+  if (!value) {
+    return null;
+  }
+
+  const date = new Date(+new Date(value) + offset * 60 * 1000);
+  const components = [
+    date.getUTCFullYear(),
+    "-",
+    padLeft(date.getUTCMonth() + 1),
+    "-",
+    padLeft(date.getUTCDate()),
+    " ",
+    date.getUTCHours() % 12 || 12,
+    ":",
+    padLeft(date.getUTCMinutes()),
+    " ",
+    date.getUTCHours() < 12 ? "AM" : "PM"
+  ];
+
+  return components.join("");
+};
+
+const makeTimeSelectValue = (value, offset) => {
+  const date = value ? new Date(value) : null;
+
+  const hours = date ? (date.getUTCHours() + Math.floor(offset / 60)) : 12;
+  const minutes = date ? (Math.floor(date.getUTCMinutes() / 15) * 15 + (offset % 60)) : 0;
 
   return `${hours}:${minutes}`;
 };
 
-const normalizeTime = value => {
-  if (value) {
-    return { hours: value.getHours(), minutes: value.getMinutes() };
-  }
-  return { hours: 12, minutes: 0 };
-};
-
 class DateTimeField extends Component {
   static defaultProps = {
+    offset: -new Date().getTimezoneOffset(),
     onChange: () => {},
     onFormChange: () => {},
     values: {}
@@ -35,11 +55,10 @@ class DateTimeField extends Component {
 
   state = { open: false, touched: false };
 
-  getDate = () => {
+  getValue = () => {
     const { name, value, values } = this.props;
-    const normal = value || values[name];
 
-    return normal ? new Date(normal) : null;
+    return value || values[name];
   };
 
   handleOpen = () => {
@@ -50,49 +69,68 @@ class DateTimeField extends Component {
     this.setState({ open: false, touched: true });
   };
 
-  handleDateChange = date => {
-    const normal = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-    this.propagateChange(normal, normalizeTime(this.getDate()));
+  handleDateChange = newDate => {
+    const { offset } = this.props;
+
+    const value = this.getValue();
+    const date = value ? new Date(value) : new Date();
+
+    this.propagateChange(new Date(Date.UTC(
+      newDate.getUTCFullYear(),
+      newDate.getUTCMonth(),
+      newDate.getUTCDate(),
+      value ? date.getUTCHours() : (12 - Math.floor(offset / 60)),
+      value ? date.getUTCMinutes() : (0 - (offset % 60)),
+      0
+    )).toISOString());
   };
 
   handleTimeChange = (hours, minutes) => {
-    this.propagateChange(this.getDate() || new Date(), { hours, minutes });
+    const { offset } = this.props;
+
+    const value = this.getValue();
+    const date = value ? new Date(value) : new Date();
+
+    this.propagateChange(new Date(Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      hours - Math.floor(offset / 60),
+      minutes - (offset % 60),
+      0
+    )).toISOString());
     this.handleClose();
   };
 
   handleSelect = () => {
-    const normalValue = this.getDate();
+    const { offset } = this.props;
 
-    this.propagateChange(normalValue || new Date(), normalizeTime(normalValue));
+    const value = this.getValue();
+    const date = value ? new Date(value) : new Date();
+
+    this.propagateChange(new Date(Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      value ? date.getUTCHours() : (12 - Math.floor(offset / 60)),
+      value ? date.getUTCMinutes() : (0 - (offset % 60)),
+      0
+    )).toISOString());
     this.handleClose();
   };
 
-  propagateChange = (date, time) => {
+  propagateChange = value => {
     const { name, onChange, onFormChange } = this.props;
-
-    const value = new Date(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate(),
-      time.hours,
-      time.minutes,
-      0
-    ).toISOString();
 
     onChange(value);
     onFormChange(name, value);
   };
 
   render() {
-    const {
-      children, className, onError, name, required, submitted, value, values,
-      validator
-    } = this.props;
-
+    const { children, className, onError, name, offset, required, submitted, validator } = this.props;
     const { open, touched } = this.state;
 
-    const normal = value || values[name];
-    const currentDate = this.getDate();
+    const value = this.getValue();
 
     return (
       <>
@@ -103,13 +141,13 @@ class DateTimeField extends Component {
             className="chq-ffd--ctrl chq-ffd--dt"
             onClick={this.handleOpen}
           >
-            <DateTimeFieldDisplay value={currentDate} />
+            {makeDateTime(value, offset)}
           </PlainButton>
           <input
             id={name}
             name={name}
             type="hidden"
-            value={currentDate ? currentDate.toISOString() : ""}
+            value={value || ""}
           />
         </label>
         {open && (
@@ -122,9 +160,12 @@ class DateTimeField extends Component {
               {children}
             </ModalDialog.Heading>
             <ModalDialog.Body>
-              <Calendar value={currentDate} onChange={this.handleDateChange} />
+              <Calendar
+                value={value ? new Date(value) : new Date()}
+                onChange={this.handleDateChange}
+              />
               <TimeSelect
-                value={makeTimeSelectValue(currentDate)}
+                value={makeTimeSelectValue(value, offset)}
                 onChange={this.handleTimeChange}
               />
             </ModalDialog.Body>
@@ -140,7 +181,7 @@ class DateTimeField extends Component {
           submitted={submitted}
           touched={touched}
           validator={validator}
-          value={normal}
+          value={value}
         />
       </>
     );
