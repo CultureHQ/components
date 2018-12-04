@@ -44,7 +44,8 @@ class DateTimeField extends Component {
   };
 
   handleDateChange = date => {
-    this.propagateChange(date, normalizeTime(this.getDate()));
+    const normal = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+    this.propagateChange(normal, normalizeTime(this.getDate()));
   };
 
   handleTimeChange = (hours, minutes) => {

@@ -3,31 +3,31 @@ import React from "react";
 import classnames from "../../classnames";
 import CalendarDay from "./CalendarDay";
 
-const hashMonth = date => `${date.getFullYear()}-${date.getMonth() + 1}`;
-const hashDate = date => `${hashMonth(date)}-${date.getDate()}`;
+const hashMonth = date => `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}`;
+const hashDate = date => `${hashMonth(date)}-${date.getUTCDate()}`;
 
 const CalendarDays = ({ value, visibleValue, onChange }) => {
-  const visibleYear = visibleValue.getFullYear();
-  const visibleMonth = visibleValue.getMonth();
+  const visibleYear = visibleValue.getUTCFullYear();
+  const visibleMonth = visibleValue.getUTCMonth();
 
-  const daysInMonth = new Date(visibleYear, visibleMonth + 1, 0).getDate();
-  const daysInPrevMonth = new Date(visibleYear, visibleMonth, 0).getDate();
+  const daysInMonth = new Date(visibleYear, visibleMonth + 1, 0).getUTCDate();
+  const daysInPrevMonth = new Date(visibleYear, visibleMonth, 0).getUTCDate();
 
-  const firstDayOfWeek = new Date(visibleYear, visibleMonth, 1).getDay();
-  const lastDayOfWeek = new Date(visibleYear, visibleMonth + 1, 0).getDay();
+  const firstDayOfWeek = new Date(visibleYear, visibleMonth, 1).getUTCDay();
+  const lastDayOfWeek = new Date(visibleYear, visibleMonth + 1, 0).getUTCDay();
 
   const days = [];
 
   for (let idx = firstDayOfWeek - 1; idx >= 0; idx -= 1) {
-    days.push(new Date(visibleYear, visibleMonth - 1, daysInPrevMonth - idx));
+    days.push(new Date(Date.UTC(visibleYear, visibleMonth - 1, daysInPrevMonth - idx)));
   }
 
   for (let idx = 1; idx <= daysInMonth; idx += 1) {
-    days.push(new Date(visibleYear, visibleMonth, idx));
+    days.push(new Date(Date.UTC(visibleYear, visibleMonth, idx)));
   }
 
   for (let idx = lastDayOfWeek; idx < 6; idx += 1) {
-    days.push(new Date(visibleYear, visibleMonth + 1, idx - lastDayOfWeek + 1));
+    days.push(new Date(Date.UTC(visibleYear, visibleMonth + 1, idx - lastDayOfWeek + 1)));
   }
 
   const valueDateHash = hashDate(value);
