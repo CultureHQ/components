@@ -14,7 +14,7 @@ class CalendarDay extends Component {
 
     return (
       <PlainButton className={className} onClick={this.handleClick}>
-        {day.getDate()}
+        {day.getUTCDate()}
       </PlainButton>
     );
   }

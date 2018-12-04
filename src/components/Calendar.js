@@ -3,9 +3,11 @@ import React, { Component } from "react";
 import locales from "../locales";
 import CalendarDays from "./calendar/CalendarDays";
 
-const getStartOfMonth = date => new Date(date.getFullYear(), date.getMonth(), 1);
+const getStartOfMonth = date => (
+  new Date(date.getUTCFullYear(), date.getUTCMonth(), 1)
+);
 
-const hashMonth = date => `${date.getFullYear()}-${date.getMonth() + 1}`;
+const hashMonth = date => `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}`;
 
 class Calendar extends Component {
   constructor(props) {
@@ -27,7 +29,7 @@ class Calendar extends Component {
   handlePrevMonthClick = () => {
     this.setState(({ visibleValue }) => {
       const nextVisibleValue = new Date(visibleValue);
-      nextVisibleValue.setMonth(nextVisibleValue.getMonth() - 1);
+      nextVisibleValue.setMonth(nextVisibleValue.getUTCMonth() - 1);
 
       return { visibleValue: nextVisibleValue };
     });
@@ -36,7 +38,7 @@ class Calendar extends Component {
   handleNextMonthClick = () => {
     this.setState(({ visibleValue }) => {
       const nextVisibleValue = new Date(visibleValue);
-      nextVisibleValue.setMonth(nextVisibleValue.getMonth() + 1);
+      nextVisibleValue.setMonth(nextVisibleValue.getUTCMonth() + 1);
 
       return { visibleValue: nextVisibleValue };
     });
@@ -64,9 +66,9 @@ class Calendar extends Component {
             <em className="chq-cal--head--ct" />&nbsp;
           </button>
           <div className="chq-cal--head--lbl">
-            {locales.en.monthNames[visibleValue.getMonth()]}
+            {locales.en.monthNames[visibleValue.getUTCMonth()]}
             {" "}
-            {visibleValue.getFullYear()}
+            {visibleValue.getUTCFullYear()}
           </div>
         </div>
         <div className="chq-cal--months">
