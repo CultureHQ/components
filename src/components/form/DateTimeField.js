@@ -75,14 +75,14 @@ class DateTimeField extends Component {
     const value = this.getValue();
     const date = value ? new Date(value) : new Date();
 
-    this.propagateChange(new Date(Date.UTC(
+    this.propagateChange(Date.UTC(
       newDate.getUTCFullYear(),
       newDate.getUTCMonth(),
       newDate.getUTCDate(),
       value ? date.getUTCHours() : (12 - Math.floor(offset / 60)),
       value ? date.getUTCMinutes() : (0 - (offset % 60)),
       0
-    )).toISOString());
+    ));
   };
 
   handleTimeChange = (hours, minutes) => {
@@ -91,14 +91,14 @@ class DateTimeField extends Component {
     const value = this.getValue();
     const date = value ? new Date(value) : new Date();
 
-    this.propagateChange(new Date(Date.UTC(
+    this.propagateChange(Date.UTC(
       date.getUTCFullYear(),
       date.getUTCMonth(),
       date.getUTCDate(),
       hours - Math.floor(offset / 60),
       minutes - (offset % 60),
       0
-    )).toISOString());
+    ));
     this.handleClose();
   };
 
@@ -108,26 +108,30 @@ class DateTimeField extends Component {
     const value = this.getValue();
     const date = value ? new Date(value) : new Date();
 
-    this.propagateChange(new Date(Date.UTC(
+    this.propagateChange(Date.UTC(
       date.getUTCFullYear(),
       date.getUTCMonth(),
       date.getUTCDate(),
       value ? date.getUTCHours() : (12 - Math.floor(offset / 60)),
       value ? date.getUTCMinutes() : (0 - (offset % 60)),
       0
-    )).toISOString());
+    ));
     this.handleClose();
   };
 
-  propagateChange = value => {
+  propagateChange = timestamp => {
     const { name, onChange, onFormChange } = this.props;
+    const value = new Date(timestamp).toISOString();
 
     onChange(value);
     onFormChange(name, value);
   };
 
   render() {
-    const { children, className, onError, name, offset, required, submitted, validator } = this.props;
+    const {
+      children, className, onError, name, offset, required, submitted, validator
+    } = this.props;
+
     const { open, touched } = this.state;
 
     const value = this.getValue();
