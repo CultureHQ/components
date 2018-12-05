@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [8.0.1] - 2018-12-05
+### Removed
+- Unnecessary files in the `dist` directory
+
 ## [8.0.0] - 2018-12-05
 ### Added
 - The `onOffsetChange` function to the `TimezoneField` component.
