@@ -14,35 +14,35 @@ var _CalendarDay = _interopRequireDefault(require("./CalendarDay"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var hashMonth = function hashMonth(date) {
-  return "".concat(date.getFullYear(), "-").concat(date.getMonth() + 1);
+  return "".concat(date.getUTCFullYear(), "-").concat(date.getUTCMonth() + 1);
 };
 
 var hashDate = function hashDate(date) {
-  return "".concat(hashMonth(date), "-").concat(date.getDate());
+  return "".concat(hashMonth(date), "-").concat(date.getUTCDate());
 };
 
 var CalendarDays = function CalendarDays(_ref) {
   var value = _ref.value,
       visibleValue = _ref.visibleValue,
       onChange = _ref.onChange;
-  var visibleYear = visibleValue.getFullYear();
-  var visibleMonth = visibleValue.getMonth();
-  var daysInMonth = new Date(visibleYear, visibleMonth + 1, 0).getDate();
-  var daysInPrevMonth = new Date(visibleYear, visibleMonth, 0).getDate();
-  var firstDayOfWeek = new Date(visibleYear, visibleMonth, 1).getDay();
-  var lastDayOfWeek = new Date(visibleYear, visibleMonth + 1, 0).getDay();
+  var visibleYear = visibleValue.getUTCFullYear();
+  var visibleMonth = visibleValue.getUTCMonth();
+  var daysInMonth = new Date(visibleYear, visibleMonth + 1, 0).getUTCDate();
+  var daysInPrevMonth = new Date(visibleYear, visibleMonth, 0).getUTCDate();
+  var firstDayOfWeek = new Date(visibleYear, visibleMonth, 1).getUTCDay();
+  var lastDayOfWeek = new Date(visibleYear, visibleMonth + 1, 0).getUTCDay();
   var days = [];
 
   for (var idx = firstDayOfWeek - 1; idx >= 0; idx -= 1) {
-    days.push(new Date(visibleYear, visibleMonth - 1, daysInPrevMonth - idx));
+    days.push(new Date(Date.UTC(visibleYear, visibleMonth - 1, daysInPrevMonth - idx)));
   }
 
   for (var _idx = 1; _idx <= daysInMonth; _idx += 1) {
-    days.push(new Date(visibleYear, visibleMonth, _idx));
+    days.push(new Date(Date.UTC(visibleYear, visibleMonth, _idx)));
   }
 
   for (var _idx2 = lastDayOfWeek; _idx2 < 6; _idx2 += 1) {
-    days.push(new Date(visibleYear, visibleMonth + 1, _idx2 - lastDayOfWeek + 1));
+    days.push(new Date(Date.UTC(visibleYear, visibleMonth + 1, _idx2 - lastDayOfWeek + 1)));
   }
 
   var valueDateHash = hashDate(value);

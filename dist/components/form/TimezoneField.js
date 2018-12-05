@@ -11,6 +11,8 @@ var _SelectField = _interopRequireDefault(require("./SelectField"));
 
 var _FormFields = require("./FormFields");
 
+var _Form = require("./Form");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -18,6 +20,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -59,6 +65,24 @@ function (_Component) {
       timezones: null
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (value) {
+      var _this$props = _this.props,
+          onChange = _this$props.onChange,
+          onOffsetChange = _this$props.onOffsetChange;
+      var timezones = _this.state.timezones;
+      onChange(value);
+
+      if (timezones) {
+        var match = timezones.find(function (timezone) {
+          return timezone.value === value;
+        });
+
+        if (match) {
+          onOffsetChange(match.offset);
+        }
+      }
+    });
+
     return _this;
   }
 
@@ -68,12 +92,30 @@ function (_Component) {
       var _this2 = this;
 
       this.componentIsMounted = true;
-      return import("../../timezones.json").then(function (module) {
-        if (_this2.componentIsMounted) {
-          _this2.setState({
-            timezones: module.default
-          });
+      return import("../../timezones.json").then(function (_ref) {
+        var timezones = _ref.default;
+
+        if (!_this2.componentIsMounted) {
+          return;
         }
+
+        var _this2$props = _this2.props,
+            name = _this2$props.name,
+            onOffsetChange = _this2$props.onOffsetChange,
+            value = _this2$props.value,
+            values = _this2$props.values;
+        var normal = value || values[name];
+        var match = timezones.find(function (timezone) {
+          return timezone.value === normal;
+        });
+
+        if (match) {
+          onOffsetChange(match.offset);
+        }
+
+        _this2.setState({
+          timezones: timezones
+        });
       }).catch(function () {// this catch is largely here because in the case that you're not in an
         // environment that supports dynamic import (like jest when you're not
         // compiling vendored code) it will spam the console otherwise
@@ -87,13 +129,20 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this$props2 = this.props,
+          onOffsetChange = _this$props2.onOffsetChange,
+          props = _objectWithoutProperties(_this$props2, ["onOffsetChange"]);
+
       var timezones = this.state.timezones;
 
       if (!timezones) {
-        return _react.default.createElement(_FormFields.StringField, this.props);
+        return _react.default.createElement(_FormFields.StringField, _extends({}, props, {
+          onChange: this.handleChange
+        }));
       }
 
-      return _react.default.createElement(_SelectField.default, _extends({}, this.props, {
+      return _react.default.createElement(_SelectField.default, _extends({}, props, {
+        onChange: this.handleChange,
         options: timezones
       }));
     }
@@ -102,5 +151,11 @@ function (_Component) {
   return TimezoneField;
 }(_react.Component);
 
-var _default = TimezoneField;
+_defineProperty(TimezoneField, "defaultProps", {
+  onChange: function onChange() {},
+  onOffsetChange: function onOffsetChange() {}
+});
+
+var _default = (0, _Form.withForm)(TimezoneField);
+
 exports.default = _default;

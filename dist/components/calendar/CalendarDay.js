@@ -70,7 +70,7 @@ function (_Component) {
       return _react.default.createElement(_PlainButton.default, {
         className: className,
         onClick: this.handleClick
-      }, day.getDate());
+      }, day.getUTCDate());
     }
   }]);
 

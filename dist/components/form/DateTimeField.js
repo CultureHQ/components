@@ -17,8 +17,6 @@ var _PlainButton = _interopRequireDefault(require("../buttons/PlainButton"));
 
 var _ModalDialog = _interopRequireDefault(require("../modals/ModalDialog"));
 
-var _DateTimeFieldDisplay = _interopRequireDefault(require("./DateTimeFieldDisplay"));
-
 var _FormError = _interopRequireDefault(require("./FormError"));
 
 var _TimeSelect = _interopRequireDefault(require("./TimeSelect"));
@@ -49,18 +47,45 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var normalizeTime = function normalizeTime(value) {
-  if (value) {
-    return {
-      hours: value.getHours(),
-      minutes: value.getMinutes()
-    };
+var getStdTimezoneOffset = function getStdTimezoneOffset() {
+  var date = new Date();
+  var jan = new Date(date.getFullYear(), 0, 1);
+  var jul = new Date(date.getFullYear(), 6, 1);
+  return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+};
+
+var padLeft = function padLeft(number) {
+  return "0".concat(number).slice(-2);
+};
+
+var getDateWithOffset = function getDateWithOffset(value, offset) {
+  return new Date(+new Date(value) + offset * 60 * 1000);
+};
+
+var makeDateTime = function makeDateTime(value, offset) {
+  if (!value) {
+    return null;
   }
 
-  return {
-    hours: 12,
-    minutes: 0
-  };
+  var date = getDateWithOffset(value, offset);
+  var components = [date.getUTCFullYear(), "-", padLeft(date.getUTCMonth() + 1), "-", padLeft(date.getUTCDate()), " ", date.getUTCHours() % 12 || 12, ":", padLeft(date.getUTCMinutes()), " ", date.getUTCHours() < 12 ? "AM" : "PM"];
+  return components.join("");
+};
+
+var makeCalendarValue = function makeCalendarValue(value, offset) {
+  var date = value ? new Date(value) : new Date();
+  return new Date(+new Date(date) + offset * 60 * 1000);
+};
+
+var makeTimeSelectValue = function makeTimeSelectValue(value, offset) {
+  if (!value) {
+    return "12:0";
+  }
+
+  var date = new Date(value);
+  var hours = (date.getUTCHours() + Math.floor(offset / 60) + 24) % 24;
+  var minutes = Math.floor(date.getUTCMinutes() / 15) * 15 + offset % 60;
+  return "".concat(hours, ":").concat(minutes);
 };
 
 var DateTimeField =
@@ -86,13 +111,12 @@ function (_Component) {
       touched: false
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getDate", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getValue", function () {
       var _this$props = _this.props,
           name = _this$props.name,
           value = _this$props.value,
           values = _this$props.values;
-      var normal = value || values[name];
-      return normal ? new Date(normal) : null;
+      return value || values[name];
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleOpen", function () {
@@ -108,33 +132,47 @@ function (_Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDateChange", function (date) {
-      _this.propagateChange(date, normalizeTime(_this.getDate()));
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDateChange", function (newDate) {
+      var offset = _this.props.offset;
+
+      var value = _this.getValue();
+
+      var date = value ? new Date(value) : new Date();
+
+      _this.propagateChange(newDate.getUTCFullYear(), newDate.getUTCMonth(), newDate.getUTCDate(), value ? date.getUTCHours() : 12 - Math.floor(offset / 60), value ? date.getUTCMinutes() : 0 - offset % 60);
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleTimeChange", function (hours, minutes) {
-      _this.propagateChange(_this.getDate() || new Date(), {
-        hours: hours,
-        minutes: minutes
-      });
+      var offset = _this.props.offset;
+
+      var value = _this.getValue();
+
+      var date = getDateWithOffset(value ? new Date(value) : new Date(), offset);
+      var inUTC = new Date([date.getFullYear(), "-", padLeft(date.getUTCMonth() + 1), "-", padLeft(date.getUTCDate()), "T", padLeft(hours), ":", padLeft(minutes), ":00", offset < 0 ? "-" : "+", padLeft(Math.abs(Math.floor(offset / 60))), padLeft(Math.abs(offset % 60))].join(""));
+
+      _this.propagateChange(inUTC.getUTCFullYear(), inUTC.getUTCMonth(), inUTC.getUTCDate(), inUTC.getUTCHours(), inUTC.getUTCMinutes());
 
       _this.handleClose();
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSelect", function () {
-      var normalValue = _this.getDate();
+      var offset = _this.props.offset;
 
-      _this.propagateChange(normalValue || new Date(), normalizeTime(normalValue));
+      var value = _this.getValue();
+
+      var date = value ? new Date(value) : new Date();
+
+      _this.propagateChange(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), value ? date.getUTCHours() : 12 - Math.floor(offset / 60), value ? date.getUTCMinutes() : 0 - offset % 60);
 
       _this.handleClose();
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "propagateChange", function (date, time) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "propagateChange", function (year, month, date, hours, minutes) {
       var _this$props2 = _this.props,
           name = _this$props2.name,
           onChange = _this$props2.onChange,
           onFormChange = _this$props2.onFormChange;
-      var value = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.hours, time.minutes, 0).toISOString();
+      var value = new Date(Date.UTC(year, month, date, hours, minutes, 0)).toISOString();
       onChange(value);
       onFormChange(name, value);
     });
@@ -150,16 +188,14 @@ function (_Component) {
           className = _this$props3.className,
           onError = _this$props3.onError,
           name = _this$props3.name,
+          offset = _this$props3.offset,
           required = _this$props3.required,
           submitted = _this$props3.submitted,
-          value = _this$props3.value,
-          values = _this$props3.values,
           validator = _this$props3.validator;
       var _this$state = this.state,
           open = _this$state.open,
           touched = _this$state.touched;
-      var normal = value || values[name];
-      var currentDate = this.getDate();
+      var value = this.getValue();
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("label", {
         className: (0, _classnames.default)("chq-ffd", className),
         htmlFor: name
@@ -169,13 +205,11 @@ function (_Component) {
         "aria-label": "Open dialog",
         className: "chq-ffd--ctrl chq-ffd--dt",
         onClick: this.handleOpen
-      }, _react.default.createElement(_DateTimeFieldDisplay.default, {
-        value: currentDate
-      })), _react.default.createElement("input", {
+      }, makeDateTime(value, offset)), _react.default.createElement("input", {
         id: name,
         name: name,
         type: "hidden",
-        value: currentDate ? currentDate.toISOString() : ""
+        value: value || ""
       })), open && _react.default.createElement(_ModalDialog.default, {
         className: "chq-ffd--dtmd",
         entrance: "zoomIn",
@@ -183,10 +217,10 @@ function (_Component) {
       }, _react.default.createElement(_ModalDialog.default.Heading, {
         onClose: this.handleClose
       }, children), _react.default.createElement(_ModalDialog.default.Body, null, _react.default.createElement(_Calendar.default, {
-        value: currentDate,
+        value: makeCalendarValue(value, offset),
         onChange: this.handleDateChange
       }), _react.default.createElement(_TimeSelect.default, {
-        value: currentDate,
+        value: makeTimeSelectValue(value, offset),
         onChange: this.handleTimeChange
       })), _react.default.createElement(_ModalDialog.default.Footer, null, _react.default.createElement(_Button.default, {
         primary: true,
@@ -198,7 +232,7 @@ function (_Component) {
         submitted: submitted,
         touched: touched,
         validator: validator,
-        value: normal
+        value: value
       }));
     }
   }]);
@@ -207,6 +241,7 @@ function (_Component) {
 }(_react.Component);
 
 _defineProperty(DateTimeField, "defaultProps", {
+  offset: -getStdTimezoneOffset(),
   onChange: function onChange() {},
   onFormChange: function onFormChange() {},
   values: {}

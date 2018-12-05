@@ -33,12 +33,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var normalizeValue = function normalizeValue(value) {
-  var hours = value ? value.getHours() : 12;
-  var minutes = value ? Math.floor(value.getMinutes() / 15) * 15 : 0;
-  return "".concat(hours, ":").concat(minutes);
-};
-
 var padLeft = function padLeft(number) {
   return "0".concat(number).slice(-2);
 };
@@ -85,7 +79,10 @@ function (_Component) {
     value: function componentDidMount() {
       var option = this.activeOptionRef.current;
       var select = this.selectRef.current;
-      select.scrollTop = Math.max(0, option.offsetTop - select.offsetTop - 46);
+
+      if (option && select) {
+        select.scrollTop = Math.max(0, option.offsetTop - select.offsetTop - 46);
+      }
     }
   }, {
     key: "render",
@@ -95,7 +92,6 @@ function (_Component) {
       var _this$props = this.props,
           value = _this$props.value,
           onChange = _this$props.onChange;
-      var valueNormal = normalizeValue(value);
       return _react.default.createElement("div", {
         className: "chq-tsl",
         ref: this.selectRef
@@ -103,7 +99,7 @@ function (_Component) {
         return _react.default.createElement(_TimeSelectOption.default, {
           key: option.value,
           option: option,
-          value: valueNormal,
+          value: value,
           onClick: onChange,
           activeOptionRef: _this2.activeOptionRef
         });

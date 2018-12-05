@@ -36,11 +36,11 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var getStartOfMonth = function getStartOfMonth(date) {
-  return new Date(date.getFullYear(), date.getMonth(), 1);
+  return new Date(date.getUTCFullYear(), date.getUTCMonth(), 1);
 };
 
 var hashMonth = function hashMonth(date) {
-  return "".concat(date.getFullYear(), "-").concat(date.getMonth() + 1);
+  return "".concat(date.getUTCFullYear(), "-").concat(date.getUTCMonth() + 1);
 };
 
 var Calendar =
@@ -59,7 +59,7 @@ function (_Component) {
       _this.setState(function (_ref) {
         var visibleValue = _ref.visibleValue;
         var nextVisibleValue = new Date(visibleValue);
-        nextVisibleValue.setMonth(nextVisibleValue.getMonth() - 1);
+        nextVisibleValue.setMonth(nextVisibleValue.getUTCMonth() - 1);
         return {
           visibleValue: nextVisibleValue
         };
@@ -70,7 +70,7 @@ function (_Component) {
       _this.setState(function (_ref2) {
         var visibleValue = _ref2.visibleValue;
         var nextVisibleValue = new Date(visibleValue);
-        nextVisibleValue.setMonth(nextVisibleValue.getMonth() + 1);
+        nextVisibleValue.setMonth(nextVisibleValue.getUTCMonth() + 1);
         return {
           visibleValue: nextVisibleValue
         };
@@ -121,7 +121,7 @@ function (_Component) {
         className: "chq-cal--head--ct"
       }), "\xA0"), _react.default.createElement("div", {
         className: "chq-cal--head--lbl"
-      }, _locales.default.en.monthNames[visibleValue.getMonth()], " ", visibleValue.getFullYear())), _react.default.createElement("div", {
+      }, _locales.default.en.monthNames[visibleValue.getUTCMonth()], " ", visibleValue.getUTCFullYear())), _react.default.createElement("div", {
         className: "chq-cal--months"
       }, _locales.default.en.dayAbbrs.map(function (abbr) {
         return _react.default.createElement("strong", {
