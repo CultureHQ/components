@@ -22,12 +22,16 @@ const getStdTimezoneOffset = () => {
 
 const padLeft = number => `0${number}`.slice(-2);
 
+const getDateWithOffset = (value, offset) => (
+  new Date(+new Date(value) + offset * 60 * 1000)
+);
+
 const makeDateTime = (value, offset) => {
   if (!value) {
     return null;
   }
 
-  const date = new Date(+new Date(value) + offset * 60 * 1000);
+  const date = getDateWithOffset(value, offset);
   const components = [
     date.getUTCFullYear(),
     "-",
@@ -45,11 +49,20 @@ const makeDateTime = (value, offset) => {
   return components.join("");
 };
 
-const makeTimeSelectValue = (value, offset) => {
-  const date = value ? new Date(value) : null;
+const makeCalendarValue = (value, offset) => {
+  const date = value ? new Date(value) : new Date();
 
-  const hours = date ? (date.getUTCHours() + Math.floor(offset / 60)) : 12;
-  const minutes = date ? (Math.floor(date.getUTCMinutes() / 15) * 15 + (offset % 60)) : 0;
+  return new Date(+new Date(date) + offset * 60 * 1000);
+};
+
+const makeTimeSelectValue = (value, offset) => {
+  if (!value) {
+    return "12:0";
+  }
+
+  const date = new Date(value);
+  const hours = ((date.getUTCHours() + Math.floor(offset / 60)) + 24) % 24;
+  const minutes = Math.floor(date.getUTCMinutes() / 15) * 15 + (offset % 60);
 
   return `${hours}:${minutes}`;
 };
@@ -84,30 +97,44 @@ class DateTimeField extends Component {
     const value = this.getValue();
     const date = value ? new Date(value) : new Date();
 
-    this.propagateChange(Date.UTC(
+    this.propagateChange(
       newDate.getUTCFullYear(),
       newDate.getUTCMonth(),
       newDate.getUTCDate(),
       value ? date.getUTCHours() : (12 - Math.floor(offset / 60)),
-      value ? date.getUTCMinutes() : (0 - (offset % 60)),
-      0
-    ));
+      value ? date.getUTCMinutes() : (0 - (offset % 60))
+    );
   };
 
   handleTimeChange = (hours, minutes) => {
     const { offset } = this.props;
 
     const value = this.getValue();
-    const date = value ? new Date(value) : new Date();
 
-    this.propagateChange(Date.UTC(
-      date.getUTCFullYear(),
-      date.getUTCMonth(),
-      date.getUTCDate(),
-      hours - Math.floor(offset / 60),
-      minutes - (offset % 60),
-      0
-    ));
+    const date = getDateWithOffset(value ? new Date(value) : new Date(), offset);
+    const inUTC = new Date([
+      date.getFullYear(),
+      "-",
+      padLeft(date.getUTCMonth() + 1),
+      "-",
+      padLeft(date.getUTCDate()),
+      "T",
+      padLeft(hours),
+      ":",
+      padLeft(minutes),
+      ":00",
+      offset < 0 ? "-" : "+",
+      padLeft(Math.abs(Math.floor(offset / 60))),
+      padLeft(Math.abs(offset % 60))
+    ].join(""));
+
+    this.propagateChange(
+      inUTC.getUTCFullYear(),
+      inUTC.getUTCMonth(),
+      inUTC.getUTCDate(),
+      inUTC.getUTCHours(),
+      inUTC.getUTCMinutes()
+    );
     this.handleClose();
   };
 
@@ -117,20 +144,19 @@ class DateTimeField extends Component {
     const value = this.getValue();
     const date = value ? new Date(value) : new Date();
 
-    this.propagateChange(Date.UTC(
+    this.propagateChange(
       date.getUTCFullYear(),
       date.getUTCMonth(),
       date.getUTCDate(),
       value ? date.getUTCHours() : (12 - Math.floor(offset / 60)),
-      value ? date.getUTCMinutes() : (0 - (offset % 60)),
-      0
-    ));
+      value ? date.getUTCMinutes() : (0 - (offset % 60))
+    );
     this.handleClose();
   };
 
-  propagateChange = timestamp => {
+  propagateChange = (year, month, date, hours, minutes) => {
     const { name, onChange, onFormChange } = this.props;
-    const value = new Date(timestamp).toISOString();
+    const value = new Date(Date.UTC(year, month, date, hours, minutes, 0)).toISOString();
 
     onChange(value);
     onFormChange(name, value);
@@ -174,7 +200,7 @@ class DateTimeField extends Component {
             </ModalDialog.Heading>
             <ModalDialog.Body>
               <Calendar
-                value={value ? new Date(value) : new Date()}
+                value={makeCalendarValue(value, offset)}
                 onChange={this.handleDateChange}
               />
               <TimeSelect
