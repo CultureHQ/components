@@ -1,5 +1,4 @@
 export { default as classnames } from "./classnames";
-export { default as getTimezoneOffset } from "./utils/get-timezone-offset";
 
 export { default as Calendar } from "./components/Calendar";
 export { default as Checklist } from "./components/Checklist";

@@ -8,7 +8,7 @@ test("waits for timezones before switching to a select", async () => {
 
   expect(component.find("StringField")).toHaveLength(1);
 
-  await component.instance().componentDidMount();
+  await component.find("TimezoneField").instance().componentDidMount();
   component.update();
 
   expect(component.find("SelectField")).toHaveLength(1);
