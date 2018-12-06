@@ -79,6 +79,7 @@ function (_Component) {
   _createClass(SearchBar, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.componentIsMounted = true;
       var autoFocus = this.props.autoFocus;
 
       if (autoFocus) {
@@ -96,22 +97,34 @@ function (_Component) {
       var search = this.state.search;
 
       if (search !== prevState.search) {
-        if (this.timeout) {
-          clearTimeout(this.timeout);
-        }
+        clearTimeout(this.timeout);
 
         if (search) {
-          this.timeout = setTimeout(function () {
-            (onSearch(search) || Promise.resolve()).then(function () {
-              _this2.setState({
-                searching: false
-              });
+          var performSearch = function performSearch() {
+            return (onSearch(search) || Promise.resolve()).then(function () {
+              if (_this2.componentIsMounted) {
+                _this2.setState({
+                  searching: false
+                });
+              }
             });
-          }, throttle);
+          };
+
+          if (throttle) {
+            this.timeout = setTimeout(performSearch, throttle);
+          } else {
+            performSearch();
+          }
         } else {
           onSearch(search);
         }
       }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.componentIsMounted = false;
+      clearTimeout(this.timeout);
     }
   }, {
     key: "render",

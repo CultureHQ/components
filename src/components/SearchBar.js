@@ -18,6 +18,7 @@ class SearchBar extends Component {
   state = { search: "", searching: false };
 
   componentDidMount() {
+    this.componentIsMounted = true;
     const { autoFocus } = this.props;
 
     if (autoFocus) {
@@ -30,20 +31,29 @@ class SearchBar extends Component {
     const { search } = this.state;
 
     if (search !== prevState.search) {
-      if (this.timeout) {
-        clearTimeout(this.timeout);
-      }
+      clearTimeout(this.timeout);
 
       if (search) {
-        this.timeout = setTimeout(() => {
-          (onSearch(search) || Promise.resolve()).then(() => {
+        const performSearch = () => (onSearch(search) || Promise.resolve()).then(() => {
+          if (this.componentIsMounted) {
             this.setState({ searching: false });
-          });
-        }, throttle);
+          }
+        });
+
+        if (throttle) {
+          this.timeout = setTimeout(performSearch, throttle);
+        } else {
+          performSearch();
+        }
       } else {
         onSearch(search);
       }
     }
+  }
+
+  componentWillUnmount() {
+    this.componentIsMounted = false;
+    clearTimeout(this.timeout);
   }
 
   handleChange = ({ target: { value: search } }) => {
