@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [9.0.0] - 2018-12-06
+### Changed
+- Make `cropperjs` and `react-modal` dependencies instead of just peer dependencies.
+
 ## [8.1.0] - 2018-12-06
 ### Added
 - The ability to set the `throttle` prop on the `SearchBar` component to `null` to allow immediate searches.

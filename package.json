@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/components",
-  "version": "8.1.0",
+  "version": "9.0.0",
   "description": "CultureHQ's component library",
   "main": "dist/index.js",
   "scripts": {
@@ -27,10 +27,12 @@
   },
   "homepage": "https://github.com/CultureHQ/components#readme",
   "peerDependencies": {
-    "cropperjs": "^1",
     "react": "^16",
-    "react-dom": "^16",
-    "react-modal": "^3"
+    "react-dom": "^16"
+  },
+  "dependencies": {
+    "cropperjs": "^1.4.3",
+    "react-modal": "^3.6.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
@@ -46,7 +48,6 @@
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-dynamic-import-node": "^2.2.0",
-    "cropperjs": "^1.4.3",
     "css-loader": "^1.0.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
@@ -62,7 +63,6 @@
     "prettier": "^1.15.2",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
-    "react-modal": "^3.6.1",
     "sass-lint": "^1.12.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
