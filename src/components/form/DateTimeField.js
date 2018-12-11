@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import classnames from "../../classnames";
+import locales from "../../locales";
 
 import Calendar from "../Calendar";
 import Button from "../buttons/Button";
@@ -33,11 +34,11 @@ const makeDateTime = (value, offset) => {
 
   const date = getDateWithOffset(value, offset);
   const components = [
+    locales.en.monthNames[date.getUTCMonth()],
+    " ",
+    date.getUTCDate(),
+    ", ",
     date.getUTCFullYear(),
-    "-",
-    padLeft(date.getUTCMonth() + 1),
-    "-",
-    padLeft(date.getUTCDate()),
     " ",
     date.getUTCHours() % 12 || 12,
     ":",

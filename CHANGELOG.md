@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 - Support for drag and drop on the `ImageField` component.
 
+### Changed
+- The `DateTimeField` display now uses the full month name.
+
 ## [10.0.0] - 2018-12-11
 ### Changed
 - The `Calendar` component `onChange` signature has changed to `onChange(year, month, day)`. This makes more sense when working with a calendar because it shouldn't be returning a date that is linked to a specific time zone.
