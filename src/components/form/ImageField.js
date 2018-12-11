@@ -20,6 +20,7 @@ class ImageField extends Component {
   inputRef = React.createRef();
 
   state = {
+    dragging: false,
     editorOpen: false,
     failed: false,
     image: null,
@@ -70,6 +71,26 @@ class ImageField extends Component {
     this.setState({ editorOpen: false });
   };
 
+  handleDragEnter = () => {
+    this.setState({ dragging: true });
+  };
+
+  handleDragLeave = () => {
+    this.setState({ dragging: false });
+  };
+
+  handleDragOver = event => {
+    event.preventDefault();
+    return false;
+  };
+
+  handleDrop = event => {
+    event.preventDefault();
+
+    const image = event.dataTransfer.files[0];
+    this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
+  };
+
   render() {
     const {
       aspectRatio, autoFocus, children, className, errors, name, onChange,
@@ -77,14 +98,20 @@ class ImageField extends Component {
       validator, value, values, ...props
     } = this.props;
 
-    const { editorOpen, failed, image, preview, touched } = this.state;
+    const { dragging, editorOpen, failed, image, preview, touched } = this.state;
 
     const normal = value || values[name];
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
-        <div className="chq-ffd--im">
+        <div
+          className={classnames("chq-ffd--im", { "chq-ffd--im-drag": dragging })}
+          onDragEnter={this.handleDragEnter}
+          onDragLeave={this.handleDragLeave}
+          onDragOver={this.handleDragOver}
+          onDrop={this.handleDrop}
+        >
           <ImagePreview image={image} preview={preview || normal} />
           {!normal && (
             <div className="chq-ffd--im--ph">
