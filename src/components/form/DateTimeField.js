@@ -91,18 +91,34 @@ class DateTimeField extends Component {
     this.setState({ open: false, touched: true });
   };
 
-  handleDateChange = newDate => {
+  handleDateChange = (year, month, day) => {
     const { offset } = this.props;
 
     const value = this.getValue();
-    const date = value ? new Date(value) : new Date();
+
+    const date = getDateWithOffset(value ? new Date(value) : new Date(), offset);
+    const inUTC = new Date([
+      year,
+      "-",
+      padLeft(month + 1),
+      "-",
+      padLeft(day),
+      "T",
+      padLeft(value ? date.getUTCHours() : (12 - Math.floor(offset / 60))),
+      ":",
+      padLeft(value ? date.getUTCMinutes() : (0 - (offset % 60))),
+      ":00",
+      offset < 0 ? "-" : "+",
+      padLeft(Math.abs(Math.floor(offset / 60))),
+      padLeft(Math.abs(offset % 60))
+    ].join(""));
 
     this.propagateChange(
-      newDate.getUTCFullYear(),
-      newDate.getUTCMonth(),
-      newDate.getUTCDate(),
-      value ? date.getUTCHours() : (12 - Math.floor(offset / 60)),
-      value ? date.getUTCMinutes() : (0 - (offset % 60))
+      inUTC.getUTCFullYear(),
+      inUTC.getUTCMonth(),
+      inUTC.getUTCDate(),
+      inUTC.getUTCHours(),
+      inUTC.getUTCMinutes()
     );
   };
 

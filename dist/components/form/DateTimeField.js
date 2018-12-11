@@ -132,14 +132,15 @@ function (_Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDateChange", function (newDate) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDateChange", function (year, month, day) {
       var offset = _this.props.offset;
 
       var value = _this.getValue();
 
-      var date = value ? new Date(value) : new Date();
+      var date = getDateWithOffset(value ? new Date(value) : new Date(), offset);
+      var inUTC = new Date([year, "-", padLeft(month + 1), "-", padLeft(day), "T", padLeft(value ? date.getUTCHours() : 12 - Math.floor(offset / 60)), ":", padLeft(value ? date.getUTCMinutes() : 0 - offset % 60), ":00", offset < 0 ? "-" : "+", padLeft(Math.abs(Math.floor(offset / 60))), padLeft(Math.abs(offset % 60))].join(""));
 
-      _this.propagateChange(newDate.getUTCFullYear(), newDate.getUTCMonth(), newDate.getUTCDate(), value ? date.getUTCHours() : 12 - Math.floor(offset / 60), value ? date.getUTCMinutes() : 0 - offset % 60);
+      _this.propagateChange(inUTC.getUTCFullYear(), inUTC.getUTCMonth(), inUTC.getUTCDate(), inUTC.getUTCHours(), inUTC.getUTCMinutes());
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleTimeChange", function (hours, minutes) {

@@ -53,9 +53,11 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function () {
       var _this$props = _this.props,
+          year = _this$props.year,
+          month = _this$props.month,
           day = _this$props.day,
           onClick = _this$props.onClick;
-      onClick(day);
+      onClick(year, month, day);
     });
 
     return _this;
@@ -70,7 +72,7 @@ function (_Component) {
       return _react.default.createElement(_PlainButton.default, {
         className: className,
         onClick: this.handleClick
-      }, day.getUTCDate());
+      }, day);
     }
   }]);
 

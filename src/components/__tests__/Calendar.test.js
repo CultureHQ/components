@@ -47,5 +47,5 @@ test("does not attempt to update state if month did not change", () => {
 
   component.find("CalendarDay").at(15).simulate("click");
   expect(component.find(".chq-cal--head--lbl").text()).toEqual("January 2018");
-  expect(onChange.mock.calls[0][0].getMonth()).toEqual(0);
+  expect(onChange.mock.calls[0][1]).toEqual(0);
 });

@@ -4,9 +4,9 @@ import PlainButton from "../buttons/PlainButton";
 
 class CalendarDay extends Component {
   handleClick = () => {
-    const { day, onClick } = this.props;
+    const { year, month, day, onClick } = this.props;
 
-    onClick(day);
+    onClick(year, month, day);
   };
 
   render() {
@@ -14,7 +14,7 @@ class CalendarDay extends Component {
 
     return (
       <PlainButton className={className} onClick={this.handleClick}>
-        {day.getUTCDate()}
+        {day}
       </PlainButton>
     );
   }
