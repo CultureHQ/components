@@ -29,10 +29,10 @@ A generic form component.
     }
   >
     <div>
-      <EmailField name="email">Email</EmailField>
-      <StringField name="string">String</StringField>
+      <EmailField name="form-email">Email</EmailField>
+      <StringField name="form-string">String</StringField>
       <SelectField
-        name="select"
+        name="form-select"
         options={[
           { value: 1, label: "One" },
           { value: 2, label: "Two" },
@@ -41,10 +41,10 @@ A generic form component.
       >
         Select
       </SelectField>
-      <TextField name="text">Text</TextField>
-      <DateTimeField name="datetime">DateTime</DateTimeField>
-      <BooleanField name="boolean">Boolean</BooleanField>
-      <ImageField name="image">Image</ImageField>
+      <TextField name="form-text">Text</TextField>
+      <DateTimeField name="form-datetime">DateTime</DateTimeField>
+      <BooleanField name="form-boolean">Boolean</BooleanField>
+      <ImageField name="form-image">Image</ImageField>
       <SubmitButton primary />
     </div>
   </Form>
