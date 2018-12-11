@@ -9,6 +9,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("../../classnames"));
 
+var _locales = _interopRequireDefault(require("../../locales"));
+
 var _Calendar = _interopRequireDefault(require("../Calendar"));
 
 var _Button = _interopRequireDefault(require("../buttons/Button"));
@@ -68,7 +70,7 @@ var makeDateTime = function makeDateTime(value, offset) {
   }
 
   var date = getDateWithOffset(value, offset);
-  var components = [date.getUTCFullYear(), "-", padLeft(date.getUTCMonth() + 1), "-", padLeft(date.getUTCDate()), " ", date.getUTCHours() % 12 || 12, ":", padLeft(date.getUTCMinutes()), " ", date.getUTCHours() < 12 ? "AM" : "PM"];
+  var components = [_locales.default.en.monthNames[date.getUTCMonth()], " ", date.getUTCDate(), ", ", date.getUTCFullYear(), " ", date.getUTCHours() % 12 || 12, ":", padLeft(date.getUTCMinutes()), " ", date.getUTCHours() < 12 ? "AM" : "PM"];
   return components.join("");
 };
 

@@ -80,6 +80,7 @@ function (_Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "inputRef", _react.default.createRef());
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      dragging: false,
       editorOpen: false,
       failed: false,
       image: null,
@@ -144,6 +145,34 @@ function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDragEnter", function () {
+      _this.setState({
+        dragging: true
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDragLeave", function () {
+      _this.setState({
+        dragging: false
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDragOver", function (event) {
+      event.preventDefault();
+      return false;
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDrop", function (event) {
+      event.preventDefault();
+      var image = event.dataTransfer.files[0];
+
+      _this.handleImageSelected({
+        editorOpen: !!image,
+        failed: false,
+        image: image || null
+      });
+    });
+
     return _this;
   }
 
@@ -179,6 +208,7 @@ function (_Component) {
           props = _objectWithoutProperties(_this$props2, ["aspectRatio", "autoFocus", "children", "className", "errors", "name", "onChange", "onError", "onFormChange", "progress", "required", "submitted", "submitting", "validator", "value", "values"]);
 
       var _this$state = this.state,
+          dragging = _this$state.dragging,
           editorOpen = _this$state.editorOpen,
           failed = _this$state.failed,
           image = _this$state.image,
@@ -191,7 +221,13 @@ function (_Component) {
       }, _react.default.createElement("span", {
         className: "chq-ffd--lb"
       }, children), _react.default.createElement("div", {
-        className: "chq-ffd--im"
+        className: (0, _classnames.default)("chq-ffd--im", {
+          "chq-ffd--im-drag": dragging
+        }),
+        onDragEnter: this.handleDragEnter,
+        onDragLeave: this.handleDragLeave,
+        onDragOver: this.handleDragOver,
+        onDrop: this.handleDrop
       }, _react.default.createElement(_ImagePreview.default, {
         image: image,
         preview: preview || normal
