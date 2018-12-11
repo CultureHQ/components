@@ -243,6 +243,12 @@ Object.defineProperty(exports, "Form", {
     return _Form.default;
   }
 });
+Object.defineProperty(exports, "withForm", {
+  enumerable: true,
+  get: function get() {
+    return _Form.withForm;
+  }
+});
 Object.defineProperty(exports, "EmailField", {
   enumerable: true,
   get: function get() {
@@ -277,12 +283,6 @@ Object.defineProperty(exports, "ImageField", {
   enumerable: true,
   get: function get() {
     return _ImageField.default;
-  }
-});
-Object.defineProperty(exports, "MultiImageField", {
-  enumerable: true,
-  get: function get() {
-    return _MultiImageField.default;
   }
 });
 Object.defineProperty(exports, "SelectField", {
@@ -386,15 +386,13 @@ var _CentsField = _interopRequireDefault(require("./components/form/CentsField")
 
 var _DateTimeField = _interopRequireDefault(require("./components/form/DateTimeField"));
 
-var _Form = _interopRequireDefault(require("./components/form/Form"));
+var _Form = _interopRequireWildcard(require("./components/form/Form"));
 
 var _FormFields = require("./components/form/FormFields");
 
 var _FileField = _interopRequireDefault(require("./components/form/FileField"));
 
 var _ImageField = _interopRequireDefault(require("./components/form/ImageField"));
-
-var _MultiImageField = _interopRequireDefault(require("./components/form/MultiImageField"));
 
 var _SelectField = _interopRequireDefault(require("./components/form/SelectField"));
 

@@ -40,7 +40,6 @@ import EmailField from "../src/components/form/__docs__/EmailField";
 import FileField from "../src/components/form/__docs__/FileField";
 import Form from "../src/components/form/__docs__/Form";
 import ImageField from "../src/components/form/__docs__/ImageField";
-import MultiImageField from "../src/components/form/__docs__/MultiImageField";
 import NumberField from "../src/components/form/__docs__/NumberField";
 import PasswordField from "../src/components/form/__docs__/PasswordField";
 import SelectField from "../src/components/form/__docs__/SelectField";
@@ -63,56 +62,55 @@ const App = () => (
   <>
     <NavSrc>@culturehq/components</NavSrc>
     <main>
-      <ActionButton path="/action-button" />
-      <Badge path="/badge" />
-      <BooleanField path="/boolean-field" />
-      <Button path="/button" />
-      <Calendar path="/calendar" />
-      <CentsField path="/cents-field" />
-      <Checklist path="/checklist" />
-      <Checkmark path="/checkmark" />
-      <Cheer path="/cheer" />
-      <CheerButton path="/cheer-button" />
-      <Circles path="/circles" />
-      <ClickClose path="/click-close" />
-      <Confirm path="/confirm" />
-      <ConfirmDelete path="/confirm-delete" />
-      <DateTimeField path="/date-time-field" />
-      <DoorEffect path="/door-effect" />
-      <EmailField path="/email-field" />
-      <FeedItem path="/feed-item" />
-      <FileField path="/file-field" />
-      <Form path="/form" />
-      <Hamburger path="/hamburger" />
-      <Icon path="/icon" />
-      <ImageEditor path="/image-editor" />
-      <ImageField path="/image-field" />
-      <ImagePreview path="/image-preview" />
-      <Info path="/info" />
-      <Loader path="/loader" />
-      <Modal path="/modal" />
-      <ModalDialog path="/modal-dialog" />
-      <MultiImageField path="/multi-image-field" />
-      <Nav path="/nav" />
-      <NumberField path="/number-field" />
-      <Pagination path="/pagination" />
-      <Panel path="/panel" />
-      <PasswordField path="/password-field" />
-      <PlainButton path="/plain-button" />
-      <SearchBar path="/search-bar" />
-      <SelectField path="/select-field" />
-      <Spinner path="/spinner" />
-      <StringField path="/string-field" />
-      <SubmitButton path="/submit-button" />
-      <Subnav path="/subnav" />
-      <Success path="/success" />
-      <Table path="/table" />
-      <Tag path="/tag" />
-      <TextField path="/text-field" />
-      <Thumbnail path="/thumbnail" />
-      <TimezoneField path="/timezone-field" />
-      <Tooltip path="/tooltip" />
-      <Warning path="/warning" />
+      <ActionButton />
+      <Badge />
+      <BooleanField />
+      <Button />
+      <Calendar />
+      <CentsField />
+      <Checklist />
+      <Checkmark />
+      <Cheer />
+      <CheerButton />
+      <Circles />
+      <ClickClose />
+      <Confirm />
+      <ConfirmDelete />
+      <DateTimeField />
+      <DoorEffect />
+      <EmailField />
+      <FeedItem />
+      <FileField />
+      <Form />
+      <Hamburger />
+      <Icon />
+      <ImageEditor />
+      <ImageField />
+      <ImagePreview />
+      <Info />
+      <Loader />
+      <Modal />
+      <ModalDialog />
+      <Nav />
+      <NumberField />
+      <Pagination />
+      <Panel />
+      <PasswordField />
+      <PlainButton />
+      <SearchBar />
+      <SelectField />
+      <Spinner />
+      <StringField />
+      <SubmitButton />
+      <Subnav />
+      <Success />
+      <Table />
+      <Tag />
+      <TextField />
+      <Thumbnail />
+      <TimezoneField />
+      <Tooltip />
+      <Warning />
     </main>
     <footer>
       <p>
