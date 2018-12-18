@@ -859,6 +859,11 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@culturehq/eslint-config@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@culturehq/eslint-config/-/eslint-config-0.1.0.tgz#38f47aaeddd7bb49987a1f22cbfe0d382642f0a7"
+  integrity sha512-VodxShHeYrH/N9MbDerCu+3JWVrAVXfsZT1LSJqCuWiUL6Vr7yjqyWuhmqwCfvYgxigPtJYs2d7k8Hv3pyzayA==
+
 "@mapbox/hast-util-table-cell-style@^0.1.2":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@mapbox/hast-util-table-cell-style/-/hast-util-table-cell-style-0.1.3.tgz#5b7166ae01297d72216932b245e4b2f0b642dca6"

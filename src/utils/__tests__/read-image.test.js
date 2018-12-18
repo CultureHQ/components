@@ -13,7 +13,7 @@ beforeAll(() => {
     set(callback) {
       imageOnload = callback;
       this.onloadCallback = callback;
-    },
+    }
   });
 });
 
