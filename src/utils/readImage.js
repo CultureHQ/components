@@ -1,4 +1,4 @@
-import getRotation from "./get-rotation";
+import getRotation from "./getRotation";
 
 export const ROTATIONS = [
   {},

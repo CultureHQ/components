@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import readImage from "../utils/read-image";
+import readImage from "../utils/readImage";
 
 class ImagePreview extends Component {
   containerRef = React.createRef();

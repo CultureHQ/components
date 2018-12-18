@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import readImage, { ROTATIONS } from "../read-image";
+import readImage, { ROTATIONS } from "../readImage";
 
 let imageOnload = null;
 

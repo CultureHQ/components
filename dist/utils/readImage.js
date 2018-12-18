@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.ROTATIONS = void 0;
 
-var _getRotation = _interopRequireDefault(require("./get-rotation"));
+var _getRotation = _interopRequireDefault(require("./getRotation"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

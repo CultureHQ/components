@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _readImage = _interopRequireDefault(require("../utils/read-image"));
+var _readImage = _interopRequireDefault(require("../utils/readImage"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

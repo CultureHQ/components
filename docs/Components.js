@@ -53,12 +53,12 @@ import ConfirmDelete from "../src/components/modals/__docs__/ConfirmDelete";
 import Modal from "../src/components/modals/__docs__/Modal";
 import ModalDialog from "../src/components/modals/__docs__/ModalDialog";
 
-import { Modal as ModalSrc, Nav as NavSrc } from "../src";
+import { Modal as ModalSrc, Nav as NavSrc } from "../src/components";
 import "../src/styles/app.scss";
 
 ModalSrc.setAppElement("#main");
 
-const App = () => (
+const Components = () => (
   <>
     <NavSrc>@culturehq/components</NavSrc>
     <main>
@@ -121,4 +121,4 @@ const App = () => (
   </>
 );
 
-export default App;
+export default Components;
