@@ -140,7 +140,7 @@ function (_Component) {
       var value = _this.getValue();
 
       var date = getDateWithOffset(value ? new Date(value) : new Date(), offset);
-      var inUTC = new Date([year, "-", padLeft(month + 1), "-", padLeft(day), "T", padLeft(value ? date.getUTCHours() : 12 - Math.floor(offset / 60)), ":", padLeft(value ? date.getUTCMinutes() : 0 - offset % 60), ":00", offset < 0 ? "-" : "+", padLeft(Math.abs(Math.floor(offset / 60))), padLeft(Math.abs(offset % 60))].join(""));
+      var inUTC = new Date([year, "-", padLeft(month + 1), "-", padLeft(day), "T", padLeft(value ? date.getUTCHours() : 12 - Math.floor(offset / 60)), ":", padLeft(value ? date.getUTCMinutes() : 0 - offset % 60), ":00", offset < 0 ? "-" : "+", padLeft(Math.abs(Math.floor(offset / 60))), ":", padLeft(Math.abs(offset % 60))].join(""));
 
       _this.propagateChange(inUTC.getUTCFullYear(), inUTC.getUTCMonth(), inUTC.getUTCDate(), inUTC.getUTCHours(), inUTC.getUTCMinutes());
     });
@@ -151,7 +151,7 @@ function (_Component) {
       var value = _this.getValue();
 
       var date = getDateWithOffset(value ? new Date(value) : new Date(), offset);
-      var inUTC = new Date([date.getFullYear(), "-", padLeft(date.getUTCMonth() + 1), "-", padLeft(date.getUTCDate()), "T", padLeft(hours), ":", padLeft(minutes), ":00", offset < 0 ? "-" : "+", padLeft(Math.abs(Math.floor(offset / 60))), padLeft(Math.abs(offset % 60))].join(""));
+      var inUTC = new Date([date.getFullYear(), "-", padLeft(date.getUTCMonth() + 1), "-", padLeft(date.getUTCDate()), "T", padLeft(hours), ":", padLeft(minutes), ":00", offset < 0 ? "-" : "+", padLeft(Math.abs(Math.floor(offset / 60))), ":", padLeft(Math.abs(offset % 60))].join(""));
 
       _this.propagateChange(inUTC.getUTCFullYear(), inUTC.getUTCMonth(), inUTC.getUTCDate(), inUTC.getUTCHours(), inUTC.getUTCMinutes());
 

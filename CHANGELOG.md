@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [11.0.1] - 2018-12-18
+### Changed
+- Fixed up the date parsing for Safari in the `DateTimeSelect`.
+
 ## [11.0.0] - 2018-12-11
 ### Added
 - Export the `withForm` HOC for accessing form data from external components.

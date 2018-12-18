@@ -111,6 +111,7 @@ class DateTimeField extends Component {
       ":00",
       offset < 0 ? "-" : "+",
       padLeft(Math.abs(Math.floor(offset / 60))),
+      ":",
       padLeft(Math.abs(offset % 60))
     ].join(""));
 
@@ -127,8 +128,8 @@ class DateTimeField extends Component {
     const { offset } = this.props;
 
     const value = this.getValue();
-
     const date = getDateWithOffset(value ? new Date(value) : new Date(), offset);
+
     const inUTC = new Date([
       date.getFullYear(),
       "-",
@@ -142,6 +143,7 @@ class DateTimeField extends Component {
       ":00",
       offset < 0 ? "-" : "+",
       padLeft(Math.abs(Math.floor(offset / 60))),
+      ":",
       padLeft(Math.abs(offset % 60))
     ].join(""));
 
