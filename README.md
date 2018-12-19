@@ -1,6 +1,5 @@
 # @culturehq/components
 
-[![Build Status](https://travis-ci.com/CultureHQ/components.svg?branch=master)](https://travis-ci.com/CultureHQ/components)
 [![Package Version](https://img.shields.io/npm/v/@culturehq/components.svg)](https://www.npmjs.com/package/@culturehq/components)
 
 CultureHQ's component library.
