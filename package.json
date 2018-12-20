@@ -12,7 +12,6 @@
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint .",
     "lint:css": "sass-lint -c .sass-lint.yml -v --max-warnings 0",
-    "prettier": "prettier --write '**/*.js'",
     "start": "webpack-dev-server --mode development --hot",
     "test": "TZ=UTC jest"
   },
@@ -43,7 +42,6 @@
     "@babel/preset-react": "^7.0.0",
     "@culturehq/eslint-config": "^0.2.0",
     "@mapbox/jsxtreme-markdown-loader": "^0.8.3",
-    "@reach/router": "^1.2.1",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
@@ -60,7 +58,6 @@
     "jest": "^23.6.0",
     "jest-axe": "^3.1.0",
     "node-sass": "^4.11.0",
-    "prettier": "^1.15.2",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
     "sass-lint": "^1.12.1",

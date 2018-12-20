@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
 import Calendar from "../src/components/__docs__/Calendar";
 import Checklist from "../src/components/__docs__/Checklist";
@@ -112,12 +113,22 @@ const Components = () => (
       <Tooltip />
       <Warning />
     </main>
-    <footer>
-      <p>
-        Copyright (c) 2018 CultureHQ<br />
-        <a href="https://github.com/CultureHQ/components">github.com/CultureHQ/components</a>
-      </p>
-    </footer>
+    {ReactDOM.createPortal(
+      <footer>
+        <p>
+          Copyright (c) 2018 CultureHQ
+          <br />
+          <a href="https://github.com/CultureHQ/components">
+            github.com/CultureHQ/components
+          </a>
+          <br />
+          <a href="https://engineering.culturehq.com">
+            engineering.culturehq.com
+          </a>
+        </p>
+      </footer>,
+      document.body
+    )}
   </>
 );
 
