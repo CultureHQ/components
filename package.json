@@ -46,6 +46,7 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
+    "babel-plugin-codegen": "^3.0.0",
     "babel-plugin-dynamic-import-node": "^2.2.0",
     "css-loader": "^2.0.1",
     "enzyme": "^3.8.0",
