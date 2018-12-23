@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [11.1.2] - 2018-12-23
+### Changed
+- Fix up dist file naming.
+
 ## [11.1.1] - 2018-12-23
 ### Changed
 - Update the list of timezones.
