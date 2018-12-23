@@ -8,6 +8,7 @@ export { default as Circles } from "./components/Circles";
 export { default as ClickClose } from "./components/ClickClose";
 export { default as DoorEffect } from "./components/DoorEffect";
 export { default as FeedItem } from "./components/FeedItem";
+export { default as Grid } from "./components/Grid";
 export { default as Loader } from "./components/Loader";
 export { default as Icon } from "./components/Icon";
 export { default as ImageEditor } from "./components/ImageEditor";
