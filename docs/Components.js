@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import /* codegen */ "./Main";
+/* eslint-disable react/jsx-no-undef */
 
 import { Modal as ModalSrc, Nav as NavSrc } from "../src/components";
 import "../src/styles/app.scss";
