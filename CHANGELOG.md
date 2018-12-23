@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [11.1.1] - 2018-12-23
+### Changed
+- Update the list of timezones.
+
 ## [11.1.0] - 2018-12-23
 ### Added
 - The `Grid` component.

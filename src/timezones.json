@@ -1276,12 +1276,12 @@
   },
   {
     "label": "(GMT+05:30) India Standard Time - Kolkata",
-    "value": "Asia/Calcutta",
+    "value": "Asia/Kolkata",
     "offset": 330
   },
   {
     "label": "(GMT+05:45) Nepal Time",
-    "value": "Asia/Katmandu",
+    "value": "Asia/Kathmandu",
     "offset": 345
   },
   {
@@ -1366,7 +1366,7 @@
   },
   {
     "label": "(GMT+07:00) Indochina Time - Ho Chi Minh City",
-    "value": "Asia/Saigon",
+    "value": "Asia/Ho_Chi_Minh",
     "offset": 420
   },
   {

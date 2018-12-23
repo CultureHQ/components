@@ -57,6 +57,12 @@ Object.defineProperty(exports, "FeedItem", {
     return _FeedItem.default;
   }
 });
+Object.defineProperty(exports, "Grid", {
+  enumerable: true,
+  get: function get() {
+    return _Grid.default;
+  }
+});
 Object.defineProperty(exports, "Loader", {
   enumerable: true,
   get: function get() {
@@ -327,6 +333,8 @@ var _ClickClose = _interopRequireDefault(require("./components/ClickClose"));
 var _DoorEffect = _interopRequireDefault(require("./components/DoorEffect"));
 
 var _FeedItem = _interopRequireDefault(require("./components/FeedItem"));
+
+var _Grid = _interopRequireDefault(require("./components/Grid"));
 
 var _Loader = _interopRequireDefault(require("./components/Loader"));
 
