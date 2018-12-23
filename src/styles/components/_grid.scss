@@ -1,84 +1,44 @@
+$spacing: 8px;
+
+@mixin grid-size($size) {
+  @for $col from 1 through 11 {
+    &--#{$size}-#{$col} {
+      flex-basis: calc(#{$col / 12 * 100}% - #{$spacing});
+    }
+  }
+
+  &--#{$size}-12 {
+    flex-basis: 100%;
+  }
+}
+
 .chq-grid {
   align-content: stretch;
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 
   &--item {
     flex-basis: 100%;
+    margin: ($spacing / 2) 0;
   }
 
-  &--xs-1 { flex-basis: calc(8.33% - 4px); }
-  &--xs-2 { flex-basis: calc(16.66% - 4px); }
-  &--xs-3 { flex-basis: calc(25% - 4px); }
-  &--xs-4 { flex-basis: calc(33.33% - 4px); }
-  &--xs-5 { flex-basis: calc(41.66% - 4px); }
-  &--xs-6 { flex-basis: calc(50% - 4px); }
-  &--xs-7 { flex-basis: calc(58.33% - 4px); }
-  &--xs-8 { flex-basis: calc(66.66% - 4px); }
-  &--xs-9 { flex-basis: calc(75% - 4px); }
-  &--xs-10 { flex-basis: calc(83.33% - 4px); }
-  &--xs-11 { flex-basis: calc(91.66% - 4px); }
-  &--xs-12 { flex-basis: calc(100% - 4px); }
+  @include grid-size("xs");
 
   @media (min-width: 768px) {
-    &--sm-1 { flex-basis: calc(8.33% - 4px); }
-    &--sm-2 { flex-basis: calc(16.66% - 4px); }
-    &--sm-3 { flex-basis: calc(25% - 4px); }
-    &--sm-4 { flex-basis: calc(33.33% - 4px); }
-    &--sm-5 { flex-basis: calc(41.66% - 4px); }
-    &--sm-6 { flex-basis: calc(50% - 4px); }
-    &--sm-7 { flex-basis: calc(58.33% - 4px); }
-    &--sm-8 { flex-basis: calc(66.66% - 4px); }
-    &--sm-9 { flex-basis: calc(75% - 4px); }
-    &--sm-10 { flex-basis: calc(83.33% - 4px); }
-    &--sm-11 { flex-basis: calc(91.66% - 4px); }
-    &--sm-12 { flex-basis: calc(100% - 4px); }
+    @include grid-size("sm");
   }
 
   @media (min-width: 992px) {
-    &--md-1 { flex-basis: calc(8.33% - 4px); }
-    &--md-2 { flex-basis: calc(16.66% - 4px); }
-    &--md-3 { flex-basis: calc(25% - 4px); }
-    &--md-4 { flex-basis: calc(33.33% - 4px); }
-    &--md-5 { flex-basis: calc(41.66% - 4px); }
-    &--md-6 { flex-basis: calc(50% - 4px); }
-    &--md-7 { flex-basis: calc(58.33% - 4px); }
-    &--md-8 { flex-basis: calc(66.66% - 4px); }
-    &--md-9 { flex-basis: calc(75% - 4px); }
-    &--md-10 { flex-basis: calc(83.33% - 4px); }
-    &--md-11 { flex-basis: calc(91.66% - 4px); }
-    &--md-12 { flex-basis: calc(100% - 4px); }
+    @include grid-size("md");
   }
 
   @media (min-width: 1200px) {
-    &--lg-1 { flex-basis: calc(8.33% - 4px); }
-    &--lg-2 { flex-basis: calc(16.66% - 4px); }
-    &--lg-3 { flex-basis: calc(25% - 4px); }
-    &--lg-4 { flex-basis: calc(33.33% - 4px); }
-    &--lg-5 { flex-basis: calc(41.66% - 4px); }
-    &--lg-6 { flex-basis: calc(50% - 4px); }
-    &--lg-7 { flex-basis: calc(58.33% - 4px); }
-    &--lg-8 { flex-basis: calc(66.66% - 4px); }
-    &--lg-9 { flex-basis: calc(75% - 4px); }
-    &--lg-10 { flex-basis: calc(83.33% - 4px); }
-    &--lg-11 { flex-basis: calc(91.66% - 4px); }
-    &--lg-12 { flex-basis: calc(100% - 4px); }
+    @include grid-size("lg");
   }
 
   @media (min-width: 1400px) {
-    &--xl-1 { flex-basis: calc(8.33% - 4px); }
-    &--xl-2 { flex-basis: calc(16.66% - 4px); }
-    &--xl-3 { flex-basis: calc(25% - 4px); }
-    &--xl-4 { flex-basis: calc(33.33% - 4px); }
-    &--xl-5 { flex-basis: calc(41.66% - 4px); }
-    &--xl-6 { flex-basis: calc(50% - 4px); }
-    &--xl-7 { flex-basis: calc(58.33% - 4px); }
-    &--xl-8 { flex-basis: calc(66.66% - 4px); }
-    &--xl-9 { flex-basis: calc(75% - 4px); }
-    &--xl-10 { flex-basis: calc(83.33% - 4px); }
-    &--xl-11 { flex-basis: calc(91.66% - 4px); }
-    &--xl-12 { flex-basis: calc(100% - 4px); }
+    @include grid-size("xl");
   }
 }

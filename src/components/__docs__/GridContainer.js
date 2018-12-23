@@ -2,28 +2,31 @@ import React, { useEffect, useState } from "react";
 
 import Grid from "../Grid";
 
-const getNumber = width => {
+const getSize = width => {
   if (width >= 1400) {
-    return 2;
+    return "xl";
   }
   if (width >= 1200) {
-    return 3;
+    return "lg";
   }
   if (width >= 992) {
-    return 4;
+    return "md";
   }
   if (width >= 768) {
-    return 6;
+    return "sm";
   }
-  return 12;
+  return "xs";
 };
 
+const smallSizes = { xs: 12, sm: 6, md: 4, lg: 3, xl: 2 };
+const largeSizes = { xs: 12, sm: 12, md: 6, lg: 4, xl: 4 };
+
 const GridContainer = () => {
-  const [number, setNumber] = useState(getNumber(window.innerWidth));
+  const [size, setSize] = useState(getSize(window.innerWidth));
 
   useEffect(() => {
     const onResize = event => (
-      setNumber(getNumber(event.currentTarget.innerWidth))
+      setSize(getSize(event.currentTarget.innerWidth))
     );
 
     window.addEventListener("resize", onResize);
@@ -31,13 +34,22 @@ const GridContainer = () => {
   });
 
   return (
-    <Grid>
-      {[1, 2, 3, 4, 5, 6].map(item => (
-        <Grid.Item key={item} xs={12} sm={6} md={4} lg={3} xl={2}>
-          {number}
-        </Grid.Item>
-      ))}
-    </Grid>
+    <>
+      <Grid>
+        {[1, 2, 3, 4, 5, 6].map(item => (
+          <Grid.Item key={item} {...smallSizes}>
+            {smallSizes[size]}
+          </Grid.Item>
+        ))}
+      </Grid>
+      <Grid>
+        {[1, 2, 3].map(item => (
+          <Grid.Item key={item} {...largeSizes}>
+            {largeSizes[size]}
+          </Grid.Item>
+        ))}
+      </Grid>
+    </>
   );
 };
 
