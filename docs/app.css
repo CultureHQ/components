@@ -105,7 +105,7 @@ pre {
   animation-direction: reverse;
 }
 
-.chq-grid--item {
+.chq-grid-size {
   background-color: gray;
   border-radius: 5px;
   color: white;

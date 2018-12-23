@@ -3,12 +3,18 @@ $spacing: 8px;
 @mixin grid-size($size) {
   @for $col from 1 through 11 {
     &--#{$size}-#{$col} {
-      flex-basis: calc(#{$col / 12 * 100}% - #{$spacing});
+      display: block;
+      flex-basis: $col / 12 * 100%;
     }
   }
 
   &--#{$size}-12 {
+    display: block;
     flex-basis: 100%;
+  }
+
+  &--#{$size}-hid {
+    display: none;
   }
 }
 
@@ -17,11 +23,10 @@ $spacing: 8px;
   align-items: flex-start;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   &--item {
     flex-basis: 100%;
-    margin: ($spacing / 2) 0;
   }
 
   @include grid-size('xs');
