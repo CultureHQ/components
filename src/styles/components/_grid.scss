@@ -24,21 +24,21 @@ $spacing: 8px;
     margin: ($spacing / 2) 0;
   }
 
-  @include grid-size("xs");
+  @include grid-size('xs');
 
   @media (min-width: 768px) {
-    @include grid-size("sm");
+    @include grid-size('sm');
   }
 
   @media (min-width: 992px) {
-    @include grid-size("md");
+    @include grid-size('md');
   }
 
   @media (min-width: 1200px) {
-    @include grid-size("lg");
+    @include grid-size('lg');
   }
 
   @media (min-width: 1400px) {
-    @include grid-size("xl");
+    @include grid-size('xl');
   }
 }
