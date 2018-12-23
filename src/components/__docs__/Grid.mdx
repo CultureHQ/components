@@ -9,6 +9,7 @@ Sets up a layout in a grid.
 
 * `children` - displayed inside the grid
 * `className?` - an extra class name
+* `spacing` - determines how much spacing (in `px`) to place between the items
 
 ### `<Grid.Item>`
 
@@ -16,11 +17,11 @@ An item within the grid that fits into the pattern.
 
 * `children` - displayed inside the grid
 * `className?` - an extra class name
-* `xs?` - a number out of 12 representing the width
-* `sm?` - a number out of 12 representing the width at the `sm` breakpoint (`768px`) and above
-* `md?` - a number out of 12 representing the width at the `md` breakpoint (`992px`) and above
-* `lg?` - a number out of 12 representing the width at the `lg` breakpoint (`1200px`) and above
-* `xl?` - a number out of 12 representing the width at the `xl` breakpoint (`1400px`)
+* `xs?` - a number out of 12 representing the width (if `false`, the item is not displayed at this breakpoint)
+* `sm?` - a number out of 12 representing the width at the `sm` breakpoint (`768px`) and above (if `false`, the item is not displayed at this breakpoint)
+* `md?` - a number out of 12 representing the width at the `md` breakpoint (`992px`) and above (if `false`, the item is not displayed at this breakpoint)
+* `lg?` - a number out of 12 representing the width at the `lg` breakpoint (`1200px`) and above (if `false`, the item is not displayed at this breakpoint)
+* `xl?` - a number out of 12 representing the width at the `xl` breakpoint (`1400px`) (if `false`, the item is not displayed at this breakpoint)
 
 {{
   <GridContainer />
