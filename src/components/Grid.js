@@ -2,8 +2,8 @@ import React from "react";
 
 import classnames from "../classnames";
 
-const Grid = ({ children }) => (
-  <div className="chq-grid">
+const Grid = ({ children, className }) => (
+  <div className={classnames("chq-grid", className)}>
     {children}
   </div>
 );
