@@ -131,6 +131,7 @@ function (_Component) {
     value: function render() {
       var _this$props2 = this.props,
           className = _this$props2.className,
+          autoComplete = _this$props2.autoComplete,
           placeholder = _this$props2.placeholder;
       var _this$state = this.state,
           search = _this$state.search,
@@ -147,6 +148,7 @@ function (_Component) {
         name: "search",
         value: search,
         onChange: this.handleChange,
+        autoComplete: autoComplete,
         placeholder: placeholder
       }), searching && _react.default.createElement(_Icon.default, {
         className: "chq-sbar--spn",
@@ -159,6 +161,7 @@ function (_Component) {
 }(_react.Component);
 
 _defineProperty(SearchBar, "defaultProps", {
+  autoComplete: "on",
   autoFocus: false,
   onSearchChange: function onSearchChange() {},
   placeholder: "",

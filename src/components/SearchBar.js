@@ -5,6 +5,7 @@ import Icon from "./Icon";
 
 class SearchBar extends Component {
   static defaultProps = {
+    autoComplete: "on",
     autoFocus: false,
     onSearchChange: () => {},
     placeholder: "",
@@ -64,7 +65,7 @@ class SearchBar extends Component {
   };
 
   render() {
-    const { className, placeholder } = this.props;
+    const { className, autoComplete, placeholder } = this.props;
     const { search, searching } = this.state;
 
     return (
@@ -77,6 +78,7 @@ class SearchBar extends Component {
           name="search"
           value={search}
           onChange={this.handleChange}
+          autoComplete={autoComplete}
           placeholder={placeholder}
         />
         {searching && <Icon className="chq-sbar--spn" icon="load-c" />}

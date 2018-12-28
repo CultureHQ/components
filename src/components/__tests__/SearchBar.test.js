@@ -3,7 +3,8 @@ import { mount } from "enzyme";
 
 import SearchBar from "../SearchBar";
 
-test("has no violations", async () => {
+// skipping until https://github.com/dequelabs/axe-core/issues/1109 is closed
+test.skip("has no violations", async () => {
   await expect(<SearchBar />).toHaveNoViolations();
 });
 
@@ -58,4 +59,10 @@ test("immediately calls onSearch when the value empties", () => {
 
   expect(onSearch).toHaveBeenCalledTimes(1);
   expect(onSearch).toHaveBeenCalledWith("");
+});
+
+test("supports the autoComplete prop", () => {
+  const component = mount(<SearchBar autoComplete="off" />);
+
+  expect(component.find("input").props().autoComplete).toEqual("off");
 });

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [11.3.0] - 2018-12-28
+### Added
+- Support the `autoComplete` property on the `SearchBar` component.
+
 ## [11.2.1] - 2018-12-28
 ### Changed
 - Recompute offsets for tooltip when the tip changes.
