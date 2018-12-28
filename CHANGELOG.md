@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [11.2.0] - 2018-12-28
+### Added
+- The `tags` icon.
+
 ## [11.1.2] - 2018-12-23
 ### Changed
 - Fix up dist file naming.
