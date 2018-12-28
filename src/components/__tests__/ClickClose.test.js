@@ -31,3 +31,9 @@ test("calls onClose when appropriate", () => {
   events.click({ target: component.find("div.outside").instance() });
   expect(onClose).toHaveBeenCalled();
 });
+
+test("passes on other props", () => {
+  const component = mount(<ClickClose aria-label="Label" />);
+
+  expect(component.find("div").props()["aria-label"]).toEqual("Label");
+});

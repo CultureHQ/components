@@ -21,10 +21,10 @@ class ClickClose extends Component {
   };
 
   render() {
-    const { children, className, component: Container = "div" } = this.props;
+    const { children, component: Container = "div", ...props } = this.props;
 
     return (
-      <Container ref={this.containerRef} className={className}>
+      <Container ref={this.containerRef} {...props}>
         {children}
       </Container>
     );
