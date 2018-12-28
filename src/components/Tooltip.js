@@ -12,6 +12,14 @@ class Tooltip extends Component {
     window.addEventListener("resize", this.recomputeOffsets);
   }
 
+  componentDidUpdate(prevProps) {
+    const { tip } = this.props;
+
+    if (tip !== prevProps.tip) {
+      this.requestComputeOffsets();
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.recomputeOffsets);
   }

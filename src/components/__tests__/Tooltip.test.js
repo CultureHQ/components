@@ -43,3 +43,16 @@ test("does not break when one of the refs is null", () => {
 
   expect(() => component.instance().computeOffsets()).not.toThrow();
 });
+
+test("recomputes offsets when the tip changes", () => {
+  const component = mount(<Tooltip tip="Tip">Inner content</Tooltip>);
+
+  const requestComputeOffsets = jest.fn();
+  component.instance().requestComputeOffsets = requestComputeOffsets;
+
+  component.setProps({ tip: "Tip" });
+  expect(requestComputeOffsets).not.toHaveBeenCalled();
+
+  component.setProps({ tip: "A different tip" });
+  expect(requestComputeOffsets).toHaveBeenCalledTimes(1);
+});

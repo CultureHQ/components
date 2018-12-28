@@ -100,6 +100,15 @@ function (_Component) {
       window.addEventListener("resize", this.recomputeOffsets);
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var tip = this.props.tip;
+
+      if (tip !== prevProps.tip) {
+        this.requestComputeOffsets();
+      }
+    }
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       window.removeEventListener("resize", this.recomputeOffsets);
