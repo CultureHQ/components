@@ -43,7 +43,7 @@ var CheerSVG = function CheerSVG(_ref) {
     r: "55",
     cy: "60",
     cx: "171"
-  }), _react.default.createElement("circle", {
+  }), pop && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("circle", {
     className: "chq-chr--fb chq-chr--fb-1",
     r: "40",
     cy: "0",
@@ -78,7 +78,7 @@ var CheerSVG = function CheerSVG(_ref) {
     r: "40",
     cy: "-101",
     cx: "170"
-  }));
+  })));
 };
 
 var Cheer = function Cheer(_ref2) {

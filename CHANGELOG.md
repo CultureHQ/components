@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [11.5.0] - 2018-01-18
+### Added
+- Reduce rendering time by not showing confetti when `Cheer` is not set to `pop`.
+
 ## [11.4.0] - 2018-12-28
 ### Added
 - Support forwarding props on to the `ClickClose` component.
