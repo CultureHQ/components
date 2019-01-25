@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/components",
-  "version": "11.5.0",
+  "version": "11.5.1",
   "description": "CultureHQ's component library",
   "main": "dist/components.js",
   "scripts": {
@@ -72,7 +72,9 @@
     "moduleNameMapper": {
       "\\.scss$": "identity-obj-proxy"
     },
-    "setupTestFrameworkScriptFile": "./setupTests.js",
+    "setupFilesAfterEnv": [
+      "./setupTests.js"
+    ],
     "testRegex": ".test.js",
     "testURL": "http://localhost"
   }

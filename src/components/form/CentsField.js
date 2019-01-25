@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
-import { NumberField } from "./FormFields";
+import classnames from "../../classnames";
+import FormError from "./FormError";
 import { withForm } from "./Form";
 
 const centsValidator = value => {
@@ -12,12 +13,29 @@ const centsValidator = value => {
 
 class CentsField extends Component {
   static defaultProps = {
+    autoFocus: false,
     onChange: () => {},
     onFormChange: () => {},
     values: {}
   };
 
-  handleChange = value => {
+  inputRef = React.createRef();
+
+  state = { touched: false };
+
+  componentDidMount() {
+    const { autoFocus } = this.props;
+
+    if (autoFocus) {
+      this.inputRef.current.focus();
+    }
+  }
+
+  handleBlur = () => {
+    this.setState({ touched: true });
+  };
+
+  handleChange = ({ target: { value } }) => {
     const { name, onChange, onFormChange } = this.props;
     const amount = value ? Math.round(value * 100) : null;
 
@@ -26,22 +44,42 @@ class CentsField extends Component {
   };
 
   render() {
-    const { children, name, onChange, onFormChange, value, values, ...props } = this.props;
+    const {
+      autoFocus, children, className, errors, name, onError, onFormChange,
+      required, submitted, submitting, value, values, ...props
+    } = this.props;
+
+    const { touched } = this.state;
+
     const normal = value || values[name];
 
     return (
-      <NumberField
-        {...props}
-        name={name}
-        step=".01"
-        min="0"
-        addon="$"
-        value={Number.isFinite(normal) ? normal / 100 : ""}
-        validator={centsValidator}
-        onChange={this.handleChange}
-      >
-        {children}
-      </NumberField>
+      <label className={classnames("chq-ffd", className)} htmlFor={name}>
+        <span className="chq-ffd--lb">{children}</span>
+        <span className="chq-ffd--ad">$</span>
+        <input
+          className="chq-ffd--ctrl"
+          ref={this.inputRef}
+          {...props}
+          type="number"
+          id={name}
+          name={name}
+          min="0"
+          step=".01"
+          value={Number.isFinite(normal) ? normal / 100 : ""}
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
+        />
+        <FormError
+          name={name}
+          onError={onError}
+          required={required}
+          submitted={submitted}
+          touched={touched}
+          validator={centsValidator}
+          value={normal}
+        />
+      </label>
     );
   }
 }

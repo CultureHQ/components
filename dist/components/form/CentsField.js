@@ -7,9 +7,13 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _FormFields = require("./FormFields");
+var _classnames = _interopRequireDefault(require("../../classnames"));
+
+var _FormError = _interopRequireDefault(require("./FormError"));
 
 var _Form = require("./Form");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -65,7 +69,20 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CentsField)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (value) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "inputRef", _react.default.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      touched: false
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleBlur", function () {
+      _this.setState({
+        touched: true
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (_ref) {
+      var value = _ref.target.value;
       var _this$props = _this.props,
           name = _this$props.name,
           onChange = _this$props.onChange,
@@ -79,27 +96,62 @@ function (_Component) {
   }
 
   _createClass(CentsField, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var autoFocus = this.props.autoFocus;
+
+      if (autoFocus) {
+        this.inputRef.current.focus();
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props2 = this.props,
+          autoFocus = _this$props2.autoFocus,
           children = _this$props2.children,
+          className = _this$props2.className,
+          errors = _this$props2.errors,
           name = _this$props2.name,
-          onChange = _this$props2.onChange,
+          onError = _this$props2.onError,
           onFormChange = _this$props2.onFormChange,
+          required = _this$props2.required,
+          submitted = _this$props2.submitted,
+          submitting = _this$props2.submitting,
           value = _this$props2.value,
           values = _this$props2.values,
-          props = _objectWithoutProperties(_this$props2, ["children", "name", "onChange", "onFormChange", "value", "values"]);
+          props = _objectWithoutProperties(_this$props2, ["autoFocus", "children", "className", "errors", "name", "onError", "onFormChange", "required", "submitted", "submitting", "value", "values"]);
 
+      var touched = this.state.touched;
       var normal = value || values[name];
-      return _react.default.createElement(_FormFields.NumberField, _extends({}, props, {
+      return _react.default.createElement("label", {
+        className: (0, _classnames.default)("chq-ffd", className),
+        htmlFor: name
+      }, _react.default.createElement("span", {
+        className: "chq-ffd--lb"
+      }, children), _react.default.createElement("span", {
+        className: "chq-ffd--ad"
+      }, "$"), _react.default.createElement("input", _extends({
+        className: "chq-ffd--ctrl",
+        ref: this.inputRef
+      }, props, {
+        type: "number",
+        id: name,
         name: name,
-        step: ".01",
         min: "0",
-        addon: "$",
+        step: ".01",
         value: Number.isFinite(normal) ? normal / 100 : "",
-        validator: centsValidator,
+        onBlur: this.handleBlur,
         onChange: this.handleChange
-      }), children);
+      })), _react.default.createElement(_FormError.default, {
+        name: name,
+        onError: onError,
+        required: required,
+        submitted: submitted,
+        touched: touched,
+        validator: centsValidator,
+        value: normal
+      }));
     }
   }]);
 
@@ -107,6 +159,7 @@ function (_Component) {
 }(_react.Component);
 
 _defineProperty(CentsField, "defaultProps", {
+  autoFocus: false,
   onChange: function onChange() {},
   onFormChange: function onFormChange() {},
   values: {}
