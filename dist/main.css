@@ -562,8 +562,10 @@
     padding: 15px; }
 
 .chq-ffd {
+  border: 0;
   display: block;
   font-weight: normal;
+  padding: 0;
   position: relative; }
   .chq-ffd + .chq-ffd {
     margin-top: 20px; }
@@ -612,6 +614,32 @@
     position: absolute; }
     .chq-ffd--ad + .chq-ffd--ctrl {
       padding-left: 25px; }
+  .chq-ffd--radio {
+    cursor: pointer;
+    display: block; }
+    .chq-ffd--radio-check {
+      border: 2px solid #9c9fa7;
+      border-radius: 1.5em;
+      display: inline-block;
+      height: 1.5em;
+      margin: 0 1em 0 0;
+      position: relative;
+      top: 5px;
+      width: 1.5em; }
+      .chq-ffd--radio-check::before {
+        background-color: transparent;
+        border-radius: 1em;
+        content: ' ';
+        height: 1em;
+        left: calc(50% - .5em);
+        position: absolute;
+        top: calc(50% - .5em);
+        transition: background-color .1s ease-in-out;
+        width: 1em; }
+    .chq-ffd--radio input {
+      display: none; }
+      .chq-ffd--radio input:checked + .chq-ffd--radio-check::before {
+        background-color: #9c9fa7; }
 
 .chq-ffd--di {
   background-color: #fff;

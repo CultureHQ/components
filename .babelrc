@@ -5,12 +5,15 @@
     "codegen"
   ],
   "presets": [
-    ["@babel/preset-env", { "targets": { "node": "10" } }],
+    "@babel/preset-env",
     "@babel/preset-react"
   ],
   "env": {
     "test": {
-      "plugins": ["dynamic-import-node"]
+      "plugins": ["dynamic-import-node"],
+      "presets": [
+        ["@babel/preset-env", { "targets": { "node": "10" } }],
+      ]
     }
   }
 }
