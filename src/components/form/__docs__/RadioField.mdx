@@ -1,0 +1,40 @@
+---
+prependJs:
+- import Form from "../Form";
+- import Panel from "../../Panel";
+- import RadioField from "../RadioField";
+---
+
+## `<RadioField>`
+
+A form field containing a set of radio buttons.
+
+* `children` - the label to display for the field
+* `className?` - an extra class name
+* `onChange?` - a function that accepts one argument that represents the new value of the input field
+* `options` - a list of options for the radio buttons that look like `{ label, value }`
+* `name` - the name of the field
+* `required = false` - indicates this field is required for submission
+* `validator?` - a function that should either return an error message string or `null`
+* `value?` - the value of the radio field
+
+{{
+  <Panel>
+    <Panel.Body>
+      <Form initialValues={{ radio: false }}>
+        <RadioField
+          name="radio"
+          options={[
+            { value: "gryffindor", label: "Gryffindor" },
+            { value: "hufflepuff", label: "Hufflepuff" },
+            { value: "ravenclaw", label: "Ravenclaw" },
+            { value: "slytherin", label: "Slytherin" }
+          ]}
+          required
+        >
+          Radio
+        </RadioField>
+      </Form>
+    </Panel.Body>
+  </Panel>
+}}
