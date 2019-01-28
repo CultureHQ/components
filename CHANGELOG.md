@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [11.6.1] - 2019-01-28
+### Added
+- Fixed up the `RadioField` export.
+
 ## [11.6.0] - 2019-01-28
 ### Added
 - The `RadioField` component.

@@ -291,6 +291,12 @@ Object.defineProperty(exports, "ImageField", {
     return _ImageField.default;
   }
 });
+Object.defineProperty(exports, "RadioField", {
+  enumerable: true,
+  get: function get() {
+    return _RadioField.default;
+  }
+});
 Object.defineProperty(exports, "SelectField", {
   enumerable: true,
   get: function get() {
@@ -401,6 +407,8 @@ var _FormFields = require("./components/form/FormFields");
 var _FileField = _interopRequireDefault(require("./components/form/FileField"));
 
 var _ImageField = _interopRequireDefault(require("./components/form/ImageField"));
+
+var _RadioField = _interopRequireDefault(require("./components/form/RadioField"));
 
 var _SelectField = _interopRequireDefault(require("./components/form/SelectField"));
 
