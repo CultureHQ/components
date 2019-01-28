@@ -1,6 +1,8 @@
 .chq-ffd {
+  border: 0;
   display: block;
   font-weight: normal;
+  padding: 0;
   position: relative;
 
   & + & {
@@ -74,6 +76,44 @@
 
     & + .chq-ffd--ctrl {
       padding-left: 25px;
+    }
+  }
+
+  &--radio {
+    cursor: pointer;
+    display: block;
+
+    &-check {
+      border: 2px solid $color-primary-light-font;
+      border-radius: 1.5em;
+      display: inline-block;
+      height: 1.5em;
+      margin: 0 1em 0 0;
+      position: relative;
+      top: 5px;
+      width: 1.5em;
+
+      &::before {
+        background-color: transparent;
+        border-radius: 1em;
+        content: ' ';
+        height: 1em;
+        left: calc(50% - .5em);
+        position: absolute;
+        top: calc(50% - .5em);
+        transition: background-color .1s ease-in-out;
+        width: 1em;
+      }
+    }
+
+    input {
+      display: none;
+
+      &:checked + .chq-ffd--radio-check {
+        &::before {
+          background-color: $color-primary-light-font;
+        }
+      }
     }
   }
 }
