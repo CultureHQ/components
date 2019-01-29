@@ -20,8 +20,10 @@
   }
 
   &--lb {
+    border-bottom: 0;
     color: $color-primary-light-font;
     display: block;
+    font-size: 1em;
     margin-bottom: 5px;
   }
 
@@ -82,6 +84,7 @@
   &--radio {
     cursor: pointer;
     display: block;
+    font-weight: $font-weight-light;
 
     &-check {
       border: 2px solid $color-primary-light-font;

@@ -574,8 +574,10 @@
   .chq-ffd .chq-cmk {
     color: #9c9fa7; }
   .chq-ffd--lb {
+    border-bottom: 0;
     color: #9c9fa7;
     display: block;
+    font-size: 1em;
     margin-bottom: 5px; }
   .chq-ffd--rq {
     color: #c14c4c;
@@ -616,7 +618,8 @@
       padding-left: 25px; }
   .chq-ffd--radio {
     cursor: pointer;
-    display: block; }
+    display: block;
+    font-weight: 200; }
     .chq-ffd--radio-check {
       border: 2px solid #9c9fa7;
       border-radius: 1.5em;

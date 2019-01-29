@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/components",
-  "version": "11.6.1",
+  "version": "11.6.2",
   "description": "CultureHQ's component library",
   "main": "dist/components.js",
   "scripts": {
@@ -77,5 +77,11 @@
     ],
     "testRegex": ".test.js",
     "testURL": "http://localhost"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie < 11",
+    "not op_mini all"
+  ]
 }
