@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [11.6.4] - 2019-01-29
+### Changed
+- Fixing badly built package.
+
 ## [11.6.3] - 2019-01-29
 ### Changed
 - Remove the `onChange` listener accidentally added to the `RadioField` `fieldset` tag.

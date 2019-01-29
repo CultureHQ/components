@@ -94,6 +94,7 @@ function (_Component) {
           className = _this$props2.className,
           errors = _this$props2.errors,
           name = _this$props2.name,
+          onChange = _this$props2.onChange,
           onError = _this$props2.onError,
           onFormChange = _this$props2.onFormChange,
           options = _this$props2.options,
@@ -103,7 +104,7 @@ function (_Component) {
           validator = _this$props2.validator,
           value = _this$props2.value,
           values = _this$props2.values,
-          props = _objectWithoutProperties(_this$props2, ["children", "className", "errors", "name", "onError", "onFormChange", "options", "required", "submitted", "submitting", "validator", "value", "values"]);
+          props = _objectWithoutProperties(_this$props2, ["children", "className", "errors", "name", "onChange", "onError", "onFormChange", "options", "required", "submitted", "submitting", "validator", "value", "values"]);
 
       var touched = this.state.touched;
       var normal = value || values[name];
