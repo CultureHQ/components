@@ -37,6 +37,7 @@ test("calls up to callbacks if they are provided", () => {
     target: { value: testOptions[0].value }
   });
 
+  expect(onChange).toHaveBeenCalledTimes(1);
   expect(onChange).toHaveBeenCalledWith(testOptions[0].value);
 });
 

@@ -27,8 +27,9 @@ class RadioField extends Component {
 
   render() {
     const {
-      children, className, errors, name, onError, onFormChange, options,
-      required, submitted, submitting, validator, value, values, ...props
+      children, className, errors, name, onChange, onError, onFormChange,
+      options, required, submitted, submitting, validator, value, values,
+      ...props
     } = this.props;
 
     const { touched } = this.state;

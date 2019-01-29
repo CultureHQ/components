@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [11.6.3] - 2019-01-29
+### Changed
+- Remove the `onChange` listener accidentally added to the `RadioField` `fieldset` tag.
+
 ## [11.6.2] - 2019-01-29
 ### Changed
 - Reinforce radio styles.
@@ -556,7 +560,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/v11.5.1...HEAD
+[Unreleased]: https://github.com/CultureHQ/components/compare/v11.6.3...HEAD
+[11.6.3]: https://github.com/CultureHQ/components/compare/v11.6.2...v11.6.3
+[11.6.2]: https://github.com/CultureHQ/components/compare/v11.6.1...v11.6.2
+[11.6.1]: https://github.com/CultureHQ/components/compare/v11.6.0...v11.6.1
+[11.6.0]: https://github.com/CultureHQ/components/compare/v11.5.1...v11.6.0
 [11.5.1]: https://github.com/CultureHQ/components/compare/v11.5.0...v11.5.1
 [11.5.0]: https://github.com/CultureHQ/components/compare/v11.4.0...v11.5.0
 [11.4.0]: https://github.com/CultureHQ/components/compare/v11.3.0...v11.4.0
