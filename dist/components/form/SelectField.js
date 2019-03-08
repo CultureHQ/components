@@ -35,11 +35,11 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -81,11 +81,11 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SelectField).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "inputRef", _react.default.createRef());
+    _defineProperty(_assertThisInitialized(_this), "inputRef", _react.default.createRef());
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "selectRef", _react.default.createRef());
+    _defineProperty(_assertThisInitialized(_this), "selectRef", _react.default.createRef());
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleWindowClick", function (event) {
+    _defineProperty(_assertThisInitialized(_this), "handleWindowClick", function (event) {
       var _this$props = _this.props,
           name = _this$props.name,
           value = _this$props.value,
@@ -97,7 +97,7 @@ function (_Component) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSelect", function (selected) {
+    _defineProperty(_assertThisInitialized(_this), "handleSelect", function (selected) {
       var _this$props2 = _this.props,
           multiple = _this$props2.multiple,
           name = _this$props2.name,
@@ -113,7 +113,7 @@ function (_Component) {
       _this.propagateValue(nextValue);
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDeselect", function (deselected) {
+    _defineProperty(_assertThisInitialized(_this), "handleDeselect", function (deselected) {
       var _this$props3 = _this.props,
           multiple = _this$props3.multiple,
           name = _this$props3.name,
@@ -131,7 +131,7 @@ function (_Component) {
       _this.propagateValue(nextValue);
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleChange", function (event) {
+    _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
       var _this$props4 = _this.props,
           multiple = _this$props4.multiple,
           name = _this$props4.name,
@@ -156,7 +156,7 @@ function (_Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleOpen", function () {
+    _defineProperty(_assertThisInitialized(_this), "handleOpen", function () {
       var multiple = _this.props.multiple;
 
       if (multiple) {
@@ -168,14 +168,14 @@ function (_Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClose", function () {
+    _defineProperty(_assertThisInitialized(_this), "handleClose", function () {
       _this.setState({
         open: false,
         touched: true
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "propagateValue", function (value) {
+    _defineProperty(_assertThisInitialized(_this), "propagateValue", function (value) {
       var _this$props5 = _this.props,
           name = _this$props5.name,
           onChange = _this$props5.onChange,
@@ -184,7 +184,7 @@ function (_Component) {
       onFormChange(name, value);
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "selectValue", function (nextValue, shouldClose) {
+    _defineProperty(_assertThisInitialized(_this), "selectValue", function (nextValue, shouldClose) {
       var _this$props6 = _this.props,
           multiple = _this$props6.multiple,
           options = _this$props6.options;

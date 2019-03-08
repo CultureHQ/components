@@ -26,21 +26,17 @@ const GridContainer = () => {
 
   return (
     <>
-      <Grid spacing={8}>
+      <Grid>
         {[1, 2, 3, 4, 5, 6].map(item => (
           <Grid.Item key={item} {...smallSizes}>
             <div className="chq-grid-size">{smallSizes[size]}</div>
           </Grid.Item>
         ))}
-      </Grid>
-      <Grid spacing={8}>
         {[1, 2, 3].map(item => (
           <Grid.Item key={item} {...largeSizes}>
             <div className="chq-grid-size">{largeSizes[size]}</div>
           </Grid.Item>
         ))}
-      </Grid>
-      <Grid spacing={8}>
         <Grid.Item xs={false} md={1}>
           <div className="chq-grid-size">
             {({ md: 1, lg: 1, xl: 1 }[size])}

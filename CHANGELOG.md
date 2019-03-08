@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.0.0] - 2019-03-08
+### Changed
+- Fixed a bug where pixel rounding widths within the `Grid.Item` component were causing wrapping when they shouldn't have.
+
+### Removed
+- The `spacing` prop from the `Grid` component (just defaulting to `16px` distance between until we need another option).
+
 ## [11.7.0] - 2019-02-20
 ### Added
 - The `hammer` and `refresh` icons.

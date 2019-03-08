@@ -21,11 +21,11 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -47,13 +47,13 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Tooltip)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "bubble", _react.default.createRef());
+    _defineProperty(_assertThisInitialized(_this), "bubble", _react.default.createRef());
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "tooltip", _react.default.createRef());
+    _defineProperty(_assertThisInitialized(_this), "tooltip", _react.default.createRef());
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "triangle", _react.default.createRef());
+    _defineProperty(_assertThisInitialized(_this), "triangle", _react.default.createRef());
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "computeOffsets", function () {
+    _defineProperty(_assertThisInitialized(_this), "computeOffsets", function () {
       var bubble = _this.bubble.current;
       var tooltip = _this.tooltip.current;
       var triangle = _this.triangle.current; // In the case that this component is not mounted, it can get into a state
@@ -78,7 +78,7 @@ function (_Component) {
       bubble.style.visibility = null;
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "recomputeOffsets", function () {
+    _defineProperty(_assertThisInitialized(_this), "recomputeOffsets", function () {
       if (_this.timeout) {
         clearTimeout(_this.timeout);
       }
@@ -86,7 +86,7 @@ function (_Component) {
       _this.timeout = setTimeout(_this.requestComputeOffsets, 1000);
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "requestComputeOffsets", function () {
+    _defineProperty(_assertThisInitialized(_this), "requestComputeOffsets", function () {
       window.requestAnimationFrame(_this.computeOffsets);
     });
 

@@ -2,10 +2,6 @@ import React from "react";
 
 import classnames from "../classnames";
 
-const getGridStyles = spacing => (
-  spacing ? { margin: `-${spacing / 2}px` } : null
-);
-
 const getItemClassName = (className, sizeProps) => {
   let classList = classnames("chq-grid--item", className);
 
@@ -20,20 +16,14 @@ const getItemClassName = (className, sizeProps) => {
   return classList;
 };
 
-const getItemStyles = spacing => (
-  spacing ? { padding: `${spacing / 2}px` } : null
-);
-
-const Grid = ({ children, className, spacing }) => (
-  <div className={classnames("chq-grid", className)} style={getGridStyles(spacing)}>
-    {React.Children.map(children, child => (
-      React.cloneElement(child, { spacing })
-    ))}
+const Grid = ({ children, className }) => (
+  <div className={classnames("chq-grid", className)}>
+    {children}
   </div>
 );
 
-const GridItem = ({ children, className, spacing, ...sizeProps }) => (
-  <div className={getItemClassName(className, sizeProps)} style={getItemStyles(spacing)}>
+const GridItem = ({ children, className, ...sizeProps }) => (
+  <div className={getItemClassName(className, sizeProps)}>
     {children}
   </div>
 );

@@ -688,42 +688,44 @@
   align-items: flex-start;
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  margin: -8px; }
   .chq-grid--item {
-    flex-basis: 100%; }
+    flex-basis: 100%;
+    padding: 8px; }
   .chq-grid--xs-1 {
     display: block;
-    flex-basis: 8.33333%; }
+    flex-basis: 8.3333%; }
   .chq-grid--xs-2 {
     display: block;
-    flex-basis: 16.66667%; }
+    flex-basis: 16.6666%; }
   .chq-grid--xs-3 {
     display: block;
     flex-basis: 25%; }
   .chq-grid--xs-4 {
     display: block;
-    flex-basis: 33.33333%; }
+    flex-basis: 33.3333%; }
   .chq-grid--xs-5 {
     display: block;
-    flex-basis: 41.66667%; }
+    flex-basis: 41.6666%; }
   .chq-grid--xs-6 {
     display: block;
     flex-basis: 50%; }
   .chq-grid--xs-7 {
     display: block;
-    flex-basis: 58.33333%; }
+    flex-basis: 58.3333%; }
   .chq-grid--xs-8 {
     display: block;
-    flex-basis: 66.66667%; }
+    flex-basis: 66.6666%; }
   .chq-grid--xs-9 {
     display: block;
     flex-basis: 75%; }
   .chq-grid--xs-10 {
     display: block;
-    flex-basis: 83.33333%; }
+    flex-basis: 83.3333%; }
   .chq-grid--xs-11 {
     display: block;
-    flex-basis: 91.66667%; }
+    flex-basis: 91.6666%; }
   .chq-grid--xs-12 {
     display: block;
     flex-basis: 100%; }
@@ -732,37 +734,37 @@
   @media (min-width: 768px) {
     .chq-grid--sm-1 {
       display: block;
-      flex-basis: 8.33333%; }
+      flex-basis: 8.3333%; }
     .chq-grid--sm-2 {
       display: block;
-      flex-basis: 16.66667%; }
+      flex-basis: 16.6666%; }
     .chq-grid--sm-3 {
       display: block;
       flex-basis: 25%; }
     .chq-grid--sm-4 {
       display: block;
-      flex-basis: 33.33333%; }
+      flex-basis: 33.3333%; }
     .chq-grid--sm-5 {
       display: block;
-      flex-basis: 41.66667%; }
+      flex-basis: 41.6666%; }
     .chq-grid--sm-6 {
       display: block;
       flex-basis: 50%; }
     .chq-grid--sm-7 {
       display: block;
-      flex-basis: 58.33333%; }
+      flex-basis: 58.3333%; }
     .chq-grid--sm-8 {
       display: block;
-      flex-basis: 66.66667%; }
+      flex-basis: 66.6666%; }
     .chq-grid--sm-9 {
       display: block;
       flex-basis: 75%; }
     .chq-grid--sm-10 {
       display: block;
-      flex-basis: 83.33333%; }
+      flex-basis: 83.3333%; }
     .chq-grid--sm-11 {
       display: block;
-      flex-basis: 91.66667%; }
+      flex-basis: 91.6666%; }
     .chq-grid--sm-12 {
       display: block;
       flex-basis: 100%; }
@@ -771,37 +773,37 @@
   @media (min-width: 992px) {
     .chq-grid--md-1 {
       display: block;
-      flex-basis: 8.33333%; }
+      flex-basis: 8.3333%; }
     .chq-grid--md-2 {
       display: block;
-      flex-basis: 16.66667%; }
+      flex-basis: 16.6666%; }
     .chq-grid--md-3 {
       display: block;
       flex-basis: 25%; }
     .chq-grid--md-4 {
       display: block;
-      flex-basis: 33.33333%; }
+      flex-basis: 33.3333%; }
     .chq-grid--md-5 {
       display: block;
-      flex-basis: 41.66667%; }
+      flex-basis: 41.6666%; }
     .chq-grid--md-6 {
       display: block;
       flex-basis: 50%; }
     .chq-grid--md-7 {
       display: block;
-      flex-basis: 58.33333%; }
+      flex-basis: 58.3333%; }
     .chq-grid--md-8 {
       display: block;
-      flex-basis: 66.66667%; }
+      flex-basis: 66.6666%; }
     .chq-grid--md-9 {
       display: block;
       flex-basis: 75%; }
     .chq-grid--md-10 {
       display: block;
-      flex-basis: 83.33333%; }
+      flex-basis: 83.3333%; }
     .chq-grid--md-11 {
       display: block;
-      flex-basis: 91.66667%; }
+      flex-basis: 91.6666%; }
     .chq-grid--md-12 {
       display: block;
       flex-basis: 100%; }
@@ -810,37 +812,37 @@
   @media (min-width: 1200px) {
     .chq-grid--lg-1 {
       display: block;
-      flex-basis: 8.33333%; }
+      flex-basis: 8.3333%; }
     .chq-grid--lg-2 {
       display: block;
-      flex-basis: 16.66667%; }
+      flex-basis: 16.6666%; }
     .chq-grid--lg-3 {
       display: block;
       flex-basis: 25%; }
     .chq-grid--lg-4 {
       display: block;
-      flex-basis: 33.33333%; }
+      flex-basis: 33.3333%; }
     .chq-grid--lg-5 {
       display: block;
-      flex-basis: 41.66667%; }
+      flex-basis: 41.6666%; }
     .chq-grid--lg-6 {
       display: block;
       flex-basis: 50%; }
     .chq-grid--lg-7 {
       display: block;
-      flex-basis: 58.33333%; }
+      flex-basis: 58.3333%; }
     .chq-grid--lg-8 {
       display: block;
-      flex-basis: 66.66667%; }
+      flex-basis: 66.6666%; }
     .chq-grid--lg-9 {
       display: block;
       flex-basis: 75%; }
     .chq-grid--lg-10 {
       display: block;
-      flex-basis: 83.33333%; }
+      flex-basis: 83.3333%; }
     .chq-grid--lg-11 {
       display: block;
-      flex-basis: 91.66667%; }
+      flex-basis: 91.6666%; }
     .chq-grid--lg-12 {
       display: block;
       flex-basis: 100%; }
@@ -849,37 +851,37 @@
   @media (min-width: 1400px) {
     .chq-grid--xl-1 {
       display: block;
-      flex-basis: 8.33333%; }
+      flex-basis: 8.3333%; }
     .chq-grid--xl-2 {
       display: block;
-      flex-basis: 16.66667%; }
+      flex-basis: 16.6666%; }
     .chq-grid--xl-3 {
       display: block;
       flex-basis: 25%; }
     .chq-grid--xl-4 {
       display: block;
-      flex-basis: 33.33333%; }
+      flex-basis: 33.3333%; }
     .chq-grid--xl-5 {
       display: block;
-      flex-basis: 41.66667%; }
+      flex-basis: 41.6666%; }
     .chq-grid--xl-6 {
       display: block;
       flex-basis: 50%; }
     .chq-grid--xl-7 {
       display: block;
-      flex-basis: 58.33333%; }
+      flex-basis: 58.3333%; }
     .chq-grid--xl-8 {
       display: block;
-      flex-basis: 66.66667%; }
+      flex-basis: 66.6666%; }
     .chq-grid--xl-9 {
       display: block;
       flex-basis: 75%; }
     .chq-grid--xl-10 {
       display: block;
-      flex-basis: 83.33333%; }
+      flex-basis: 83.3333%; }
     .chq-grid--xl-11 {
       display: block;
-      flex-basis: 91.66667%; }
+      flex-basis: 91.6666%; }
     .chq-grid--xl-12 {
       display: block;
       flex-basis: 100%; }
