@@ -16,6 +16,7 @@ const Button = ({
   className,
   type = "button",
   icon,
+  fillParent = false,
   inverted,
   primary,
   small,
@@ -28,6 +29,7 @@ const Button = ({
     type={type}
     className={
       classnames("chq-btn", className, {
+        "chq-btn-fp": fillParent,
         "chq-btn-iv": inverted,
         "chq-btn-pr": primary,
         "chq-btn-sm": small,

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.1.0] - 2019-03-11
+### Added
+- The `fillParent` optional prop to the `Button` component to make it full width.
+
 ## [12.0.0] - 2019-03-08
 ### Changed
 - Fixed a bug where pixel rounding widths within the `Grid.Item` component were causing wrapping when they shouldn't have.
