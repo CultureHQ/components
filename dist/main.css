@@ -87,6 +87,8 @@
   .chq-btn:disabled {
     cursor: not-allowed;
     opacity: .6; }
+  .chq-btn-fp {
+    width: 100%; }
   .chq-btn-iv {
     background-color: #fff;
     color: #79b17d; }

@@ -33,16 +33,19 @@ var Button = function Button(_ref2) {
       _ref2$type = _ref2.type,
       type = _ref2$type === void 0 ? "button" : _ref2$type,
       icon = _ref2.icon,
+      _ref2$fillParent = _ref2.fillParent,
+      fillParent = _ref2$fillParent === void 0 ? false : _ref2$fillParent,
       inverted = _ref2.inverted,
       primary = _ref2.primary,
       small = _ref2.small,
       loading = _ref2.loading,
       danger = _ref2.danger,
-      props = _objectWithoutProperties(_ref2, ["children", "className", "type", "icon", "inverted", "primary", "small", "loading", "danger"]);
+      props = _objectWithoutProperties(_ref2, ["children", "className", "type", "icon", "fillParent", "inverted", "primary", "small", "loading", "danger"]);
 
   return _react.default.createElement("button", _extends({}, props, {
     type: type,
     className: (0, _classnames.default)("chq-btn", className, {
+      "chq-btn-fp": fillParent,
       "chq-btn-iv": inverted,
       "chq-btn-pr": primary,
       "chq-btn-sm": small,
