@@ -931,10 +931,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@culturehq/eslint-config@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@culturehq/eslint-config/-/eslint-config-0.2.0.tgz#6545b0ddf16dce83ff8d3367582b03ce869b6276"
-  integrity sha512-YRnjZjGQFB/fcqnHK/mmm+yb6zvbEH+aOjv9z19XjtfAbPys4d4X8/v1nALWnQ+QsVZS1wjLgCVnV0v1sttZ/Q==
+"@culturehq/eslint-config@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@culturehq/eslint-config/-/eslint-config-0.3.0.tgz#ddeb2674157b51de78e1c95ae78779a429394b4d"
+  integrity sha512-OjwmlYrkEhn7ghAhM7N7/60UkxdgM2syb/d7PckCdS6UB5MhifNSaWe/X6C8XwAhzBuxHfh3vTZDW/XhMWLrTw==
   dependencies:
     eslint-config-airbnb "^17.1.0"
     eslint-plugin-filenames "^1.3.2"
@@ -4060,6 +4060,11 @@ eslint-plugin-jsx-a11y@^6.2.1:
     emoji-regex "^7.0.2"
     has "^1.0.3"
     jsx-ast-utils "^2.0.1"
+
+eslint-plugin-react-hooks@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.5.0.tgz#cdd958cfff55bd5fa4f84db90d1490fb5ca4ae2b"
+  integrity sha512-iwDuWR2ReRgvJsNm8fXPtTKdg78IVQF8I4+am3ntztPf/+nPnWZfArFu6aXpaC75/iCYRrkqI8nPCYkxJstmpA==
 
 eslint-plugin-react@^7.12.4:
   version "7.12.4"

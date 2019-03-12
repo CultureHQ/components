@@ -15,7 +15,7 @@ const getStdTimezoneOffset = () => {
 
 const DateTimeFieldContainer = () => {
   const [offset, setOffset] = useState(-getStdTimezoneOffset());
-  const onOffsetChange = useCallback(({ target: { value } }) => setOffset(value));
+  const onOffsetChange = useCallback(({ target: { value } }) => setOffset(value), [setOffset]);
 
   return (
     <Panel>

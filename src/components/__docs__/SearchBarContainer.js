@@ -14,13 +14,15 @@ const SearchBarContainer = () => {
   const [matchedStudents, setMatchedStudents] = useState([]);
   const [matchedHouses, setMatchedHouses] = useState([]);
 
-  const onStudentSearch = useCallback(search => (
-    setMatchedStudents(search ? match(search, STUDENTS) : [])
-  ));
+  const onStudentSearch = useCallback(
+    search => setMatchedStudents(search ? match(search, STUDENTS) : []),
+    [setMatchedStudents]
+  );
 
-  const onHouseSearch = useCallback(search => (
-    setMatchedHouses(search ? match(search, HOUSES) : [])
-  ));
+  const onHouseSearch = useCallback(
+    search => setMatchedHouses(search ? match(search, HOUSES) : []),
+    [setMatchedHouses]
+  );
 
   return (
     <Panel>

@@ -9,7 +9,7 @@
 
 const container = document.querySelectorAll(".ry3kXd")[3];
 
-const timezones = [...container.children].slice(2).map(element => {
+const timezones = [...container.children].map(element => {
   const label = element.getAttribute("aria-label");
 
   const [match, hours, minutes] = /^\(GMT([-+]\d\d):(\d\d)\).+$/.exec(label);

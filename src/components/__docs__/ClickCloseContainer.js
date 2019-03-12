@@ -6,8 +6,8 @@ import PlainButton from "../buttons/PlainButton";
 const ClickCloseContainer = () => {
   const [open, setOpen] = useState(false);
 
-  const onClose = useCallback(() => open && setOpen(false));
-  const onOpen = useCallback(() => setOpen(true));
+  const onClose = useCallback(() => open && setOpen(false), [open, setOpen]);
+  const onOpen = useCallback(() => setOpen(true), [setOpen]);
 
   return (
     <ClickClose onClose={onClose}>

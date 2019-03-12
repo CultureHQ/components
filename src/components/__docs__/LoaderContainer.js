@@ -6,7 +6,7 @@ import Loader from "../Loader";
 const LoaderContainer = () => {
   const [loading, setLoading] = useState(true);
 
-  const onClick = useCallback(() => setLoading(state => !state));
+  const onClick = useCallback(() => setLoading(state => !state), [setLoading]);
 
   return (
     <>
