@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.1.3] - 2019-03-12
+### Changed
+- Rebuild missing `dist` files. Double yikes.
+
 ## [12.1.2] - 2019-03-12
 ### Changed
 - Updated the timezone offsets for DST. Yikes.
@@ -587,7 +591,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/v12.1.2...HEAD
+[Unreleased]: https://github.com/CultureHQ/components/compare/v12.1.3...HEAD
+[12.1.3]: https://github.com/CultureHQ/components/compare/v12.1.2...v12.1.3
 [12.1.2]: https://github.com/CultureHQ/components/compare/v12.1.1...v12.1.2
 [12.1.1]: https://github.com/CultureHQ/components/compare/v12.1.0...v12.1.1
 [12.1.0]: https://github.com/CultureHQ/components/compare/v12.0.0...v12.1.0
