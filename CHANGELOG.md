@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.2.0] - 2019-03-18
+### Added
+- The `rss` icon.
+
 ## [12.1.3] - 2019-03-12
 ### Changed
 - Rebuild missing `dist` files. Double yikes.
