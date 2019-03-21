@@ -598,10 +598,10 @@
     "@babel/helper-module-transforms" "^7.1.0"
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/plugin-transform-named-capturing-groups-regex@^7.3.0":
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-named-capturing-groups-regex/-/plugin-transform-named-capturing-groups-regex-7.3.0.tgz#140b52985b2d6ef0cb092ef3b29502b990f9cd50"
-  integrity sha512-NxIoNVhk9ZxS+9lSoAQ/LM0V2UEvARLttEHUrRDGKFaAxOYQcrkN/nLRE+BbbicCAvZPl7wMP0X60HsHE5DtQw==
+"@babel/plugin-transform-named-capturing-groups-regex@^7.4.2":
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-named-capturing-groups-regex/-/plugin-transform-named-capturing-groups-regex-7.4.2.tgz#800391136d6cbcc80728dbdba3c1c6e46f86c12e"
+  integrity sha512-NsAuliSwkL3WO2dzWTOL1oZJHm0TM8ZY8ZSxk2ANyKkt5SQlToGA4pzctmq1BEjoacurdwZ3xp2dCQWJkME0gQ==
   dependencies:
     regexp-tree "^0.1.0"
 
@@ -715,9 +715,9 @@
     regexpu-core "^4.1.3"
 
 "@babel/preset-env@^7.4.1":
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.4.1.tgz#80e19ad76f62fb136d57ee4b963db3e8a6840bad"
-  integrity sha512-uC2DeVb6ljdjBGhJCyHxNZfSJEVgPdUm2R5cX85GCl1Qreo5sMM5g85ntqtzRF7XRYGgnRmV5we9cdlvo1wJvg==
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.4.2.tgz#2f5ba1de2daefa9dcca653848f96c7ce2e406676"
+  integrity sha512-OEz6VOZaI9LW08CWVS3d9g/0jZA6YCn1gsKIy/fut7yZCJti5Lm1/Hi+uo/U+ODm7g4I6gULrCP+/+laT8xAsA==
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
     "@babel/helper-plugin-utils" "^7.0.0"
@@ -747,7 +747,7 @@
     "@babel/plugin-transform-modules-commonjs" "^7.4.0"
     "@babel/plugin-transform-modules-systemjs" "^7.4.0"
     "@babel/plugin-transform-modules-umd" "^7.2.0"
-    "@babel/plugin-transform-named-capturing-groups-regex" "^7.3.0"
+    "@babel/plugin-transform-named-capturing-groups-regex" "^7.4.2"
     "@babel/plugin-transform-new-target" "^7.4.0"
     "@babel/plugin-transform-object-super" "^7.2.0"
     "@babel/plugin-transform-parameters" "^7.4.0"
@@ -896,61 +896,7 @@
     globals "^11.1.0"
     lodash "^4.17.11"
 
-"@babel/types@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0.tgz#6e191793d3c854d19c6749989e3bc55f0e962118"
-  integrity sha512-5tPDap4bGKTLPtci2SUl/B7Gv8RnuJFuQoWx26RJobS0fFrz4reUA3JnwIM+HVHEmWE0C1mzKhDtTp8NsWY02Q==
-  dependencies:
-    esutils "^2.0.2"
-    lodash "^4.17.10"
-    to-fast-properties "^2.0.0"
-
-"@babel/types@^7.1.2":
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.1.2.tgz#183e7952cf6691628afdc2e2b90d03240bac80c0"
-  integrity sha512-pb1I05sZEKiSlMUV9UReaqsCPUpgbHHHu2n1piRm7JkuBkm6QxcaIzKu6FMnMtCbih/cEYTR+RGYYC96Yk9HAg==
-  dependencies:
-    esutils "^2.0.2"
-    lodash "^4.17.10"
-    to-fast-properties "^2.0.0"
-
-"@babel/types@^7.1.5":
-  version "7.1.5"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.1.5.tgz#12fe64e91a431234b7017b4227a78cc0eec4e081"
-  integrity sha512-sJeqa/d9eM/bax8Ivg+fXF7FpN3E/ZmTrWbkk6r+g7biVYfALMnLin4dKijsaqEhpd2xvOGfQTkQkD31YCVV4A==
-  dependencies:
-    esutils "^2.0.2"
-    lodash "^4.17.10"
-    to-fast-properties "^2.0.0"
-
-"@babel/types@^7.2.0":
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.2.0.tgz#7941c5b2d8060e06f9601d6be7c223eef906d5d8"
-  integrity sha512-b4v7dyfApuKDvmPb+O488UlGuR1WbwMXFsO/cyqMrnfvRAChZKJAYeeglWTjUO1b9UghKKgepAQM5tsvBJca6A==
-  dependencies:
-    esutils "^2.0.2"
-    lodash "^4.17.10"
-    to-fast-properties "^2.0.0"
-
-"@babel/types@^7.2.2":
-  version "7.2.2"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.2.2.tgz#44e10fc24e33af524488b716cdaee5360ea8ed1e"
-  integrity sha512-fKCuD6UFUMkR541eDWL+2ih/xFZBXPOg/7EQFeTluMDebfqR4jrpaCjLhkWlQS4hT6nRa2PMEgXKbRB5/H2fpg==
-  dependencies:
-    esutils "^2.0.2"
-    lodash "^4.17.10"
-    to-fast-properties "^2.0.0"
-
-"@babel/types@^7.3.0":
-  version "7.3.4"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.3.4.tgz#bf482eaeaffb367a28abbf9357a94963235d90ed"
-  integrity sha512-WEkp8MsLftM7O/ty580wAmZzN1nDmCACc5+jFzUt+GUFNNIi3LdRlueYz0YIlmJhlZx1QYDMZL5vdWCL0fNjFQ==
-  dependencies:
-    esutils "^2.0.2"
-    lodash "^4.17.11"
-    to-fast-properties "^2.0.0"
-
-"@babel/types@^7.4.0":
+"@babel/types@^7.0.0", "@babel/types@^7.1.2", "@babel/types@^7.1.5", "@babel/types@^7.2.0", "@babel/types@^7.2.2", "@babel/types@^7.3.0", "@babel/types@^7.4.0":
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.4.0.tgz#670724f77d24cce6cc7d8cf64599d511d164894c"
   integrity sha512-aPvkXyU2SPOnztlgo8n9cEiXW755mgyvueUPcpStqdzoSPm0fjO0vQBjLkt3JKJW7ufikfcnMTTPsN1xaTsBPA==
