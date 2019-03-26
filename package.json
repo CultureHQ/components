@@ -13,7 +13,9 @@
     "lint:js": "eslint .",
     "lint:css": "sass-lint -c .sass-lint.yml -v --max-warnings 0",
     "start": "webpack-dev-server --mode development --hot",
-    "test": "TZ=UTC jest"
+    "test": "TZ=UTC jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -42,6 +44,7 @@
     "@babel/preset-react": "^7.0.0",
     "@culturehq/eslint-config": "^1.0.2",
     "@mapbox/jsxtreme-markdown-loader": "^0.8.3",
+    "@storybook/cli": "^5.0.5",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
@@ -59,10 +62,15 @@
     "react-dom": "^16.8.5",
     "sass-lint": "^1.12.1",
     "sass-loader": "^7.1.0",
+    "storybook": "^1.0.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.13"
+    "webpack-dev-server": "^3.1.13",
+    "@storybook/react": "^5.0.5",
+    "@storybook/addon-actions": "^5.0.5",
+    "@storybook/addon-links": "^5.0.5",
+    "@storybook/addons": "^5.0.5"
   },
   "jest": {
     "moduleNameMapper": {
