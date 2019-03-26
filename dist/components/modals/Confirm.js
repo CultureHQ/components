@@ -107,6 +107,7 @@ function (_Component) {
         inverted: true,
         onClick: this.handleClose
       }, "Cancel")), _react.default.createElement("div", null, _react.default.createElement(_Button.default, {
+        autoFocus: true,
         primary: true,
         danger: danger,
         onClick: this.handleAccept

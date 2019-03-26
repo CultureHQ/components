@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.3.0] - 2019-03-26
+### Added
+- For confirmation modals, the primary action should be auto-focused.
+
 ## [12.2.0] - 2019-03-18
 ### Added
 - The `rss` icon.

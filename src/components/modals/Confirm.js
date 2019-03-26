@@ -56,7 +56,9 @@ class Confirm extends Component {
                 <Button inverted onClick={this.handleClose}>Cancel</Button>
               </div>
               <div>
-                <Button primary danger={danger} onClick={this.handleAccept}>{accept}</Button>
+                <Button autoFocus primary danger={danger} onClick={this.handleAccept}>
+                  {accept}
+                </Button>
               </div>
             </ModalDialog.Footer>
           </ModalDialog>
