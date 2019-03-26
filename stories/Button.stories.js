@@ -38,4 +38,3 @@ storiesOf("Button", module)
   .add("icon + primary", () => <Button icon="clipboard" primary>Primary Icon</Button>)
   .add("icon + small", () => <Button icon="clipboard" small>Small Icon</Button>)
   .add("icon + inverted", () => <Button icon="clipboard" inverted>Inverted Icon</Button>);
-
