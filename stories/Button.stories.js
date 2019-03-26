@@ -4,11 +4,7 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, optionsKnob, text } from "@storybook/addon-knobs";
 
 import { Button } from "../src/components";
-import icons from "../src/icons.json";
-
-const iconOpts = Object.keys(icons).reduce(
-  (accum, icon) => ({ ...accum, [icon]: icon }), { none: null }
-);
+import iconOptions from "./iconOptions";
 
 storiesOf("Button", module)
   .addDecorator(withKnobs)
@@ -18,7 +14,7 @@ storiesOf("Button", module)
       danger: boolean("danger", false),
       disabled: boolean("disabled", false),
       fillParent: boolean("fillParent", false),
-      icon: optionsKnob("icon", iconOpts, null, { display: "select" }),
+      icon: optionsKnob("icon", iconOptions, null, { display: "select" }),
       inverted: boolean("inverted", false),
       loading: boolean("loading", false),
       onClick: action("onClick"),
