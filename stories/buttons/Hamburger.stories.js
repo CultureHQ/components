@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean } from "@storybook/addon-knobs";
 
-import { Hamburger } from "../src/components";
+import { Hamburger } from "../../src/components";
 
 const Container = props => (
   <div style={{ backgroundColor: "#2c3e4f", display: "inline-block" }}>

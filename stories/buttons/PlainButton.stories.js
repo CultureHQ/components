@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { text } from "@storybook/addon-knobs";
 
-import { PlainButton } from "../src/components";
+import { PlainButton } from "../../src/components";
 
 storiesOf("Buttons/PlainButton", module)
   .add("default", () => {
