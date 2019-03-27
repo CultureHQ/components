@@ -4,3 +4,16 @@ body {
   font-size: 16px;
   line-height: 1.42857143;
 }
+
+.door-effect {
+  opacity: 0;
+}
+
+.door-effect-open,
+.door-effect-closed {
+  animation: chqMdlZoomIn 300ms forwards;
+}
+
+.door-effect-closed {
+  animation-direction: reverse;
+}
