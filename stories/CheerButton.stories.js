@@ -5,7 +5,7 @@ import { boolean, text } from "@storybook/addon-knobs";
 
 import { CheerButton } from "../src/components";
 
-storiesOf("CheerButton", module)
+storiesOf("Buttons/CheerButton", module)
   .add("default", () => {
     const props = {
       cheered: boolean("cheered", false),

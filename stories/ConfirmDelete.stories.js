@@ -5,7 +5,7 @@ import { boolean, text } from "@storybook/addon-knobs";
 
 import { Button, ConfirmDelete } from "../src/components";
 
-storiesOf("ConfirmDelete", module)
+storiesOf("Modals/ConfirmDelete", module)
   .add("default", () => {
     const trigger = text("trigger", "Delete")
     const children = text(
