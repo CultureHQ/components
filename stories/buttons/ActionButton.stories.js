@@ -3,8 +3,8 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
 
-import { ActionButton } from "../src/components";
-import iconOptions from "./utils/iconOptions";
+import { ActionButton } from "../../src/components";
+import iconOptions from "../utils/iconOptions";
 
 storiesOf("Buttons/ActionButton", module)
   .add("default", () => {
