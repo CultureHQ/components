@@ -1515,6 +1515,26 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
+"@storybook/addon-a11y@^5.0.5":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-5.0.5.tgz#82dbe8c8927af9fb6f00135d036684bef84ee57a"
+  integrity sha512-gW2ZwC7rl8PnERjxGqx0LxgRpJxqxrOM0Wo/moJ0qZs9szCJ0FgIa8BuoBduFvAS9eFDSF44uUJfOxsrLuNHcw==
+  dependencies:
+    "@storybook/addons" "5.0.5"
+    "@storybook/client-logger" "5.0.5"
+    "@storybook/components" "5.0.5"
+    "@storybook/core-events" "5.0.5"
+    "@storybook/theming" "5.0.5"
+    axe-core "^3.1.2"
+    common-tags "^1.8.0"
+    core-js "^2.6.5"
+    global "^4.3.2"
+    memoizerific "^1.11.3"
+    prop-types "^15.6.2"
+    react "^16.8.1"
+    react-dom "^16.8.1"
+    util-deprecate "^1.0.2"
+
 "@storybook/addon-actions@^5.0.5":
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.0.5.tgz#9179d08262c326c865021f5ecd173708c82edc87"
@@ -2795,6 +2815,11 @@ axe-core@3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.1.2.tgz#ca0aff897ebefca7552f97859dc1217c06c4f9e6"
   integrity sha512-e1WVs0SQu3tM29J9a/mISGvlo2kdCStE+yffIAJF6eb42FS+eUFEVz9j4rgDeV2TAfPJmuOZdRetWYycIbK7Vg==
+
+axe-core@^3.1.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.2.2.tgz#b06d6e9ae4636d706068843272bfaeed3fe97362"
+  integrity sha512-gAy4kMSPpuRJV3mwictJqlg5LhE84Vw2CydKdC4tvrLhR6+G3KW51zbL/vYujcLA2jvWOq3HMHrVeNuw+mrLVA==
 
 axobject-query@^2.0.2:
   version "2.0.2"
