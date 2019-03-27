@@ -4,7 +4,7 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, optionsKnob, text } from "@storybook/addon-knobs";
 
 import { Button } from "../src/components";
-import iconOptions from "./iconOptions";
+import iconOptions from "./utils/iconOptions";
 
 storiesOf("Button", module)
   .addDecorator(withKnobs)
