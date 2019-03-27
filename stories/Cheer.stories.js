@@ -16,7 +16,9 @@ storiesOf("Cheer", module)
   .addDecorator(withKnobs)
   .add("default", () => {
     const props = {
-      color: optionsKnob("color", colorOptions, "darkblue", { display: "inline-radio" }),
+      color: optionsKnob("color", colorOptions, "darkblue", {
+        display: "inline-radio"
+      }),
       name: text("name", null),
       pop: boolean("pop", false),
       small: boolean("small", false)
