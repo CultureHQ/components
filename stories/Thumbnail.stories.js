@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
 
 import { Thumbnail } from "../src/components";
-import image from "./utils/culture.png";
+import image from "./public/culture.png";
 
 const sizeOptions = {
   small: "small",
