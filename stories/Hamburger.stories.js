@@ -11,7 +11,7 @@ const Container = props => (
   </div>
 );
 
-storiesOf("Hamburger", module)
+storiesOf("Buttons/Hamburger", module)
   .add("default", () => {
     const props = {
       onToggle: action("onToggle"),

@@ -6,7 +6,7 @@ import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
 import { Button } from "../src/components";
 import iconOptions from "./utils/iconOptions";
 
-storiesOf("Button", module)
+storiesOf("Buttons/Button", module)
   .add("default", () => {
     const children = text("children", "Default");
     const props = {

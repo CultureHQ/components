@@ -5,7 +5,7 @@ import { boolean, text } from "@storybook/addon-knobs";
 
 import { Button, Confirm } from "../src/components";
 
-storiesOf("Confirm", module)
+storiesOf("Modals/Confirm", module)
   .add("default", () => {
     const trigger = text("trigger", "Create")
     const children = text(
