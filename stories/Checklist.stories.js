@@ -1,11 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, boolean, text } from "@storybook/addon-knobs";
+import { boolean, text } from "@storybook/addon-knobs";
 
 import { Checklist } from "../src/components";
 
 storiesOf("Checklist", module)
-  .addDecorator(withKnobs)
   .add("default", () => {
     const checked = {
       first: boolean("first", true),

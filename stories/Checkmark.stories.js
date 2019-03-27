@@ -1,12 +1,11 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, text } from "@storybook/addon-knobs";
+import { boolean, text } from "@storybook/addon-knobs";
 
 import { Checkmark } from "../src/components";
 
 storiesOf("Checkmark", module)
-  .addDecorator(withKnobs)
   .add("default", () => {
     const children = text("children", null);
     const props = {

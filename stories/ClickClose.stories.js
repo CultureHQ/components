@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, optionsKnob } from "@storybook/addon-knobs";
+import { optionsKnob } from "@storybook/addon-knobs";
 
 import { ClickClose, PlainButton } from "../src/components";
 
@@ -36,7 +36,6 @@ const componentOptions = {
 };
 
 storiesOf("ClickClose", module)
-  .addDecorator(withKnobs)
   .add("default", () => {
     const props = {
       component: optionsKnob("component", componentOptions, "div", {
