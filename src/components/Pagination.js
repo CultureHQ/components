@@ -57,7 +57,7 @@ const NextPage = ({ currentPage, totalPages, onClick }) => (
   </PageLink>
 );
 
-const Pagination = ({ className, currentPage: current, totalPages: total, onClick }) => {
+const Pagination = ({ className, currentPage: current = 1, totalPages: total, onClick }) => {
   if (total < 2) {
     return null;
   }
