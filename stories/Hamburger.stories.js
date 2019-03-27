@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean } from "@storybook/addon-knobs";
+import { boolean } from "@storybook/addon-knobs";
 
 import { Hamburger } from "../src/components";
 
@@ -12,7 +12,6 @@ const Container = props => (
 );
 
 storiesOf("Hamburger", module)
-  .addDecorator(withKnobs)
   .add("default", () => {
     const props = {
       onToggle: action("onToggle"),

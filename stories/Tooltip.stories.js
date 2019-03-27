@@ -1,11 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { text } from "@storybook/addon-knobs";
 
 import { Button, Tooltip } from "../src/components";
 
 storiesOf("Tooltip", module)
-  .addDecorator(withKnobs)
   .add("default", () => {
     const tip = text("tip", "This is a tooltip!");
 

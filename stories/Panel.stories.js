@@ -1,12 +1,11 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, text } from "@storybook/addon-knobs";
+import { boolean, text } from "@storybook/addon-knobs";
 
 import { Panel } from "../src/components";
 
 storiesOf("Panel", module)
-  .addDecorator(withKnobs)
   .add("default", () => {
     const limitWidth = boolean("limitWidth", false);
     const primary = boolean("primary", false);

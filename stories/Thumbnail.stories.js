@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, boolean, optionsKnob, text } from "@storybook/addon-knobs";
+import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
 
 import { Thumbnail } from "../src/components";
 import image from "./utils/culture.png";
@@ -12,7 +12,6 @@ const sizeOptions = {
 };
 
 storiesOf("Thumbnail", module)
-  .addDecorator(withKnobs)
   .add("default", () => {
     const props = {
       image,

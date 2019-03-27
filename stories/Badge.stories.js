@@ -1,13 +1,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, optionsKnob, text } from "@storybook/addon-knobs";
+import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
 
 import { Badge } from "../src/components";
 import iconOptions from "./utils/iconOptions";
 
 storiesOf("Badge", module)
-  .addDecorator(withKnobs)
   .add("default", () => {
     const children = text("children", "Default");
     const props = {

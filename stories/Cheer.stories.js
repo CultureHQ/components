@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, optionsKnob, text } from "@storybook/addon-knobs";
+import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
 
 import { Cheer } from "../src/components";
 
@@ -13,7 +13,6 @@ const colorOptions = {
 };
 
 storiesOf("Cheer", module)
-  .addDecorator(withKnobs)
   .add("default", () => {
     const props = {
       color: optionsKnob("color", colorOptions, "darkblue", {

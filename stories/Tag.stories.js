@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, optionsKnob, text } from "@storybook/addon-knobs";
+import { optionsKnob, text } from "@storybook/addon-knobs";
 
 import { Tag } from "../src/components";
 
@@ -11,7 +11,6 @@ const colorOptions = {
 };
 
 storiesOf("Tag", module)
-  .addDecorator(withKnobs)
   .add("default", () => {
     const children = text("children", "Tag");
     const props = {

@@ -1,11 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { text } from "@storybook/addon-knobs";
 
 import { FeedItem } from "../src/components";
 
 storiesOf("FeedItem", module)
-  .addDecorator(withKnobs)
   .add("default", () => {
     const texts = {
       body: text("body", "This is a feed item."),
