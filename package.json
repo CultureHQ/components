@@ -44,6 +44,7 @@
     "@babel/preset-react": "^7.0.0",
     "@culturehq/eslint-config": "^1.0.2",
     "@mapbox/jsxtreme-markdown-loader": "^0.8.3",
+    "@storybook/addon-a11y": "^5.0.5",
     "@storybook/addon-actions": "^5.0.5",
     "@storybook/addon-knobs": "^5.0.5",
     "@storybook/addon-links": "^5.0.5",
