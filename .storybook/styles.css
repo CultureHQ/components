@@ -17,3 +17,7 @@ body {
 .door-effect-closed {
   animation-direction: reverse;
 }
+
+.min-height {
+  min-height: 200px;
+}
