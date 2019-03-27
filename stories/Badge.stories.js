@@ -20,4 +20,6 @@ storiesOf("Badge", module)
   })
   .add("primary", () => <Badge primary>Primary</Badge>)
   .add("icon", () => <Badge icon="clipboard">Icon</Badge>)
-  .add("icon + primary", () => <Badge icon="clipboard" primary>Primary Icon</Badge>);
+  .add("icon + primary", () => (
+    <Badge icon="clipboard" primary>Primary Icon</Badge>
+  ));
