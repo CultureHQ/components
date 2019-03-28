@@ -3,8 +3,7 @@ import { mount } from "enzyme";
 
 import SearchBar from "../SearchBar";
 
-// skipping until https://github.com/dequelabs/axe-core/issues/1109 is closed
-test.skip("has no violations", async () => {
+test("has no violations", async () => {
   await expect(<SearchBar />).toHaveNoViolations();
 });
 
