@@ -7,7 +7,7 @@ import { Button, ConfirmDelete } from "../../src/components";
 
 storiesOf("Modals/ConfirmDelete", module)
   .add("default", () => {
-    const trigger = text("trigger", "Delete")
+    const trigger = text("trigger", "Delete");
     const children = text(
       "children",
       "Are you sure you would like to delete this resource?"

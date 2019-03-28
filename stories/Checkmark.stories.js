@@ -13,6 +13,6 @@ storiesOf("Checkmark", module)
       onClick: action("onClick")
     };
 
-    return <Checkmark {...props}>{children}</Checkmark>
+    return <Checkmark {...props}>{children}</Checkmark>;
   })
   .add("checked", () => <Checkmark checked />);

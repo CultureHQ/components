@@ -14,8 +14,6 @@ import {
   TextField
 } from "../../src/components";
 
-import iconOptions from "../utils/iconOptions";
-
 storiesOf("Form/Form", module)
   .add("default", () => {
     const onSubmitAction = action("onSubmit");

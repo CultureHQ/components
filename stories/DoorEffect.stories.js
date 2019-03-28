@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
-import { boolean, number } from "@storybook/addon-knobs";
 
 import { Button, DoorEffect, Panel } from "../src/components";
 

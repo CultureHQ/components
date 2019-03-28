@@ -16,7 +16,7 @@ const Container = ({ onClose: onCloseAction, ...props }) => {
       }
       onCloseAction();
     },
-    [open, setOpen]
+    [onCloseAction, open, setOpen]
   );
 
   return (

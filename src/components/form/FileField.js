@@ -34,7 +34,7 @@ class FileField extends Component {
     }
 
     if (multiple) {
-      return Array.from(normal).map(({ name }) => name).join(", ");
+      return Array.from(normal).map(file => file.name).join(", ");
     }
 
     return normal.name;

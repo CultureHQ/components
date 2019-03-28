@@ -10,7 +10,7 @@
     "build:docs": "build-storybook -s ./stories/public -o ./docs",
     "clean": "git ls-files -o | grep -v node_modules | xargs rm",
     "lint": "yarn lint:js && yarn lint:css",
-    "lint:js": "eslint .",
+    "lint:js": "eslint --cache .",
     "lint:css": "sass-lint -c .sass-lint.yml -v --max-warnings 0",
     "start": "webpack-dev-server --mode development --hot",
     "storybook": "start-storybook -p 6006 -s ./stories/public",

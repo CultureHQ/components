@@ -7,7 +7,7 @@ import { Button, Confirm } from "../../src/components";
 
 storiesOf("Modals/Confirm", module)
   .add("default", () => {
-    const trigger = text("trigger", "Create")
+    const trigger = text("trigger", "Create");
     const children = text(
       "children",
       "Are you sure you would like to create this resource?"

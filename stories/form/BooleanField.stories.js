@@ -4,7 +4,6 @@ import { action } from "@storybook/addon-actions";
 import { optionsKnob, text } from "@storybook/addon-knobs";
 
 import { BooleanField, Form } from "../../src/components";
-import iconOptions from "../utils/iconOptions";
 
 const valueOptions = {
   null: "null",
