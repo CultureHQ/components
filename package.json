@@ -70,7 +70,6 @@
     "react-dom": "^16.8.5",
     "sass-lint": "^1.12.1",
     "sass-loader": "^7.1.0",
-    "storybook": "^1.0.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",

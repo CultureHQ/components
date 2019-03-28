@@ -34,5 +34,5 @@ export default create({
 
   brandTitle: "@culturehq/components",
   brandUrl: "https://engineering.culturehq.com/components",
-  brandImage: "https://assets.culturehq.com/CultureHQ-logo.png",
+  brandImage: "CultureHQ-logo.png",
 });

@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, text } from "@storybook/addon-knobs";
 
-import { Button, ConfirmDelete } from "../src/components";
+import { Button, ConfirmDelete } from "../../src/components";
 
 storiesOf("Modals/ConfirmDelete", module)
   .add("default", () => {
