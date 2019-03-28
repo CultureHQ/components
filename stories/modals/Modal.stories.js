@@ -72,4 +72,13 @@ storiesOf("Modals/Modal", module)
       <Modal.Heading>Chapter 3</Modal.Heading>
       <Modal.LoaderBody loading />
     </Modal>
+  ), config)
+  .add("startOpen", () => (
+    <Modal
+      startOpen
+      trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
+    >
+      <Modal.Heading>Chapter 4</Modal.Heading>
+      <Modal.LoaderBody loading />
+    </Modal>
   ), config);
