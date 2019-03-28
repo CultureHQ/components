@@ -11,6 +11,8 @@ var _classnames = _interopRequireDefault(require("../../classnames"));
 
 var _FormError = _interopRequireDefault(require("./FormError"));
 
+var _Form = require("./Form");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -104,20 +106,22 @@ function (_Component) {
     value: function getFileDisplay() {
       var _this$props2 = this.props,
           multiple = _this$props2.multiple,
-          value = _this$props2.value;
+          name = _this$props2.name,
+          value = _this$props2.value,
+          values = _this$props2.values;
+      var normal = value || values[name];
 
-      if (!value) {
+      if (!normal) {
         return "";
       }
 
       if (multiple) {
-        return Array.from(value).map(function (_ref2) {
-          var name = _ref2.name;
-          return name;
+        return Array.from(normal).map(function (file) {
+          return file.name;
         }).join(", ");
       }
 
-      return value.name;
+      return normal.name;
     }
   }, {
     key: "render",
@@ -186,5 +190,6 @@ _defineProperty(FileField, "defaultProps", {
   values: {}
 });
 
-var _default = FileField;
+var _default = (0, _Form.withForm)(FileField);
+
 exports.default = _default;

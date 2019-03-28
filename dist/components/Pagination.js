@@ -139,7 +139,8 @@ var NextPage = function NextPage(_ref3) {
 
 var Pagination = function Pagination(_ref4) {
   var className = _ref4.className,
-      current = _ref4.currentPage,
+      _ref4$currentPage = _ref4.currentPage,
+      current = _ref4$currentPage === void 0 ? 1 : _ref4$currentPage,
       total = _ref4.totalPages,
       onClick = _ref4.onClick;
 

@@ -110,13 +110,15 @@ function (_Component) {
       }, _react.default.createElement("button", {
         type: "button",
         className: "chq-cal--head--prev",
-        onClick: this.handlePrevMonthClick
+        onClick: this.handlePrevMonthClick,
+        "aria-label": "Previous month"
       }, _react.default.createElement("em", {
         className: "chq-cal--head--ct"
       }), "\xA0"), _react.default.createElement("button", {
         type: "button",
         className: "chq-cal--head--next",
-        onClick: this.handleNextMonthClick
+        onClick: this.handleNextMonthClick,
+        "aria-label": "Next month"
       }, _react.default.createElement("em", {
         className: "chq-cal--head--ct"
       }), "\xA0"), _react.default.createElement("div", {

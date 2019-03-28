@@ -592,6 +592,7 @@
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     box-shadow: none;
+    box-sizing: border-box;
     color: #5c5f67;
     display: block;
     font-size: 1em;
