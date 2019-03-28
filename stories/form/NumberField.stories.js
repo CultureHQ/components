@@ -3,15 +3,15 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, text } from "@storybook/addon-knobs";
 
-import { EmailField, Form, Panel } from "../../src/components";
+import { NumberField, Form, Panel } from "../../src/components";
 
-storiesOf("Form/EmailField", module)
+storiesOf("Form/NumberField", module)
   .add("default", () => {
-    const children = text("children", "Email");
+    const children = text("children", "Number");
     const props = {
       autoFocus: boolean("autoFocus", false),
       onChange: action("onChange"),
-      name: text("name", "email"),
+      name: text("name", "number"),
       required: boolean("required", false),
       value: text("value", null)
     };
@@ -20,7 +20,7 @@ storiesOf("Form/EmailField", module)
       <Panel>
         <Panel.Body>
           <Form>
-            <EmailField {...props}>{children}</EmailField>
+            <NumberField {...props}>{children}</NumberField>
           </Form>
         </Panel.Body>
       </Panel>
@@ -30,7 +30,7 @@ storiesOf("Form/EmailField", module)
     <Panel>
       <Panel.Body>
         <Form>
-          <EmailField name="email" autoFocus>Email</EmailField>
+          <NumberField name="number" autoFocus>Number</NumberField>
         </Form>
       </Panel.Body>
     </Panel>
@@ -39,26 +39,26 @@ storiesOf("Form/EmailField", module)
     <Panel>
       <Panel.Body>
         <Form>
-          <EmailField name="email" required>Email</EmailField>
+          <NumberField name="number" required>Number</NumberField>
         </Form>
       </Panel.Body>
     </Panel>
   ))
   .add("validator", () => {
     const validator = value => {
-      if (value.match(/^[a\.@]+$/)) {
+      if (value >= 1 && value <= 10) {
         return null;
       }
-      return "Value can only include `a`s, `.`s, and `@`s.";
+      return "Value must be between 1 and 10.";
     };
 
     return (
       <Panel>
         <Panel.Body>
           <Form>
-            <EmailField name="email" required validator={validator}>
-              Email
-            </EmailField>
+            <NumberField name="email" required validator={validator}>
+              Number
+            </NumberField>
           </Form>
         </Panel.Body>
       </Panel>
