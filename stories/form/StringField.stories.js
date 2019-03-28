@@ -13,7 +13,7 @@ storiesOf("Form/StringField", module)
       onChange: action("onChange"),
       name: text("name", "string"),
       required: boolean("required", false),
-      value: text("value", null)
+      value: text("value", undefined)
     };
 
     return (
