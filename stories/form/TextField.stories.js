@@ -5,6 +5,16 @@ import { boolean, text } from "@storybook/addon-knobs";
 
 import { TextField, Form, Panel } from "../../src/components";
 
+const Container = ({ children, ...props }) => (
+  <Panel>
+    <Panel.Body>
+      <Form>
+        <TextField {...props}>{children}</TextField>
+      </Form>
+    </Panel.Body>
+  </Panel>
+);
+
 storiesOf("Form/TextField", module)
   .add("default", () => {
     const children = text("children", "Text");
@@ -16,34 +26,10 @@ storiesOf("Form/TextField", module)
       value: text("value", undefined)
     };
 
-    return (
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <TextField {...props}>{children}</TextField>
-          </Form>
-        </Panel.Body>
-      </Panel>
-    );
+    return <Container {...props}>{children}</Container>;
   })
-  .add("autoFocus", () => (
-    <Panel>
-      <Panel.Body>
-        <Form>
-          <TextField name="text" autoFocus>Text</TextField>
-        </Form>
-      </Panel.Body>
-    </Panel>
-  ))
-  .add("required", () => (
-    <Panel>
-      <Panel.Body>
-        <Form>
-          <TextField name="text" required>Text</TextField>
-        </Form>
-      </Panel.Body>
-    </Panel>
-  ))
+  .add("autoFocus", () => <Container name="text" autoFocus>Text</Container>)
+  .add("required", () => <Container name="text" required>Text</Container>)
   .add("validator", () => {
     const validator = value => {
       if (value.length >= 6) {
@@ -53,14 +39,6 @@ storiesOf("Form/TextField", module)
     };
 
     return (
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <TextField name="text" required validator={validator}>
-              Text
-            </TextField>
-          </Form>
-        </Panel.Body>
-      </Panel>
+      <Container name="text" required validator={validator}>Text</Container>
     );
   });

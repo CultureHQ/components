@@ -5,6 +5,16 @@ import { boolean, text } from "@storybook/addon-knobs";
 
 import { EmailField, Form, Panel } from "../../src/components";
 
+const Container = ({ children, ...props }) => (
+  <Panel>
+    <Panel.Body>
+      <Form>
+        <EmailField {...props}>{children}</EmailField>
+      </Form>
+    </Panel.Body>
+  </Panel>
+);
+
 storiesOf("Form/EmailField", module)
   .add("default", () => {
     const children = text("children", "Email");
@@ -16,34 +26,10 @@ storiesOf("Form/EmailField", module)
       value: text("value", undefined)
     };
 
-    return (
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <EmailField {...props}>{children}</EmailField>
-          </Form>
-        </Panel.Body>
-      </Panel>
-    );
+    return <Container {...props}>{children}</Container>;
   })
-  .add("autoFocus", () => (
-    <Panel>
-      <Panel.Body>
-        <Form>
-          <EmailField name="email" autoFocus>Email</EmailField>
-        </Form>
-      </Panel.Body>
-    </Panel>
-  ))
-  .add("required", () => (
-    <Panel>
-      <Panel.Body>
-        <Form>
-          <EmailField name="email" required>Email</EmailField>
-        </Form>
-      </Panel.Body>
-    </Panel>
-  ))
+  .add("autoFocus", () => <Container name="email" autoFocus>Email</Container>)
+  .add("required", () => <Container name="email" required>Email</Container>)
   .add("validator", () => {
     const validator = value => {
       if (value.match(/^[a\.@]+$/)) {
@@ -53,14 +39,6 @@ storiesOf("Form/EmailField", module)
     };
 
     return (
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <EmailField name="email" required validator={validator}>
-              Email
-            </EmailField>
-          </Form>
-        </Panel.Body>
-      </Panel>
+      <Container name="email" required validator={validator}>Email</Container>
     );
   });

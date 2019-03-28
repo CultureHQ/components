@@ -5,6 +5,16 @@ import { boolean, text } from "@storybook/addon-knobs";
 
 import { PasswordField, Form, Panel } from "../../src/components";
 
+const Container = ({ children, ...props }) => (
+  <Panel>
+    <Panel.Body>
+      <Form>
+        <PasswordField {...props}>{children}</PasswordField>
+      </Form>
+    </Panel.Body>
+  </Panel>
+);
+
 storiesOf("Form/PasswordField", module)
   .add("default", () => {
     const children = text("children", "Password");
@@ -16,33 +26,13 @@ storiesOf("Form/PasswordField", module)
       value: text("value", undefined)
     };
 
-    return (
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <PasswordField {...props}>{children}</PasswordField>
-          </Form>
-        </Panel.Body>
-      </Panel>
-    );
+    return <Container {...props}>{children}</Container>;
   })
   .add("autoFocus", () => (
-    <Panel>
-      <Panel.Body>
-        <Form>
-          <PasswordField name="password" autoFocus>Password</PasswordField>
-        </Form>
-      </Panel.Body>
-    </Panel>
+    <Container name="password" autoFocus>Password</Container>
   ))
   .add("required", () => (
-    <Panel>
-      <Panel.Body>
-        <Form>
-          <PasswordField name="password" required>Password</PasswordField>
-        </Form>
-      </Panel.Body>
-    </Panel>
+    <Container name="password" required>Password</Container>
   ))
   .add("validator", () => {
     const validator = value => {
@@ -53,14 +43,8 @@ storiesOf("Form/PasswordField", module)
     };
 
     return (
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <PasswordField name="password" required validator={validator}>
-              Password
-            </PasswordField>
-          </Form>
-        </Panel.Body>
-      </Panel>
+      <Container name="password" required validator={validator}>
+        Password
+      </Container>
     );
   });
