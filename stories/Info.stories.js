@@ -8,5 +8,5 @@ storiesOf("Info", module)
   .add("default", () => {
     const children = text("children", "This is an info");
 
-    return <Info>{children}</Info>
+    return <Info>{children}</Info>;
   });

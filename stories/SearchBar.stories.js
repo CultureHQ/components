@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 import { number, text } from "@storybook/addon-knobs";
 
 import { Panel, SearchBar } from "../src/components";
@@ -11,11 +10,9 @@ const match = (search, options) => options.filter(option => (
 
 const Container = ({ haystack, placeholder, throttle }) => {
   const [matches, setMatches] = useState([]);
-  const [matchedHouses, setMatchedHouses] = useState([]);
-
   const onSearch = useCallback(
     search => setMatches(search ? match(search, haystack) : []),
-    [setMatches]
+    [haystack, setMatches]
   );
 
   return (

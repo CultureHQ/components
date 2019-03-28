@@ -12,7 +12,7 @@ storiesOf("Buttons/Badge", module)
     const props = {
       icon: optionsKnob("icon", iconOptions, null, { display: "select" }),
       onClick: action("onClick"),
-      primary: boolean("primary", false),
+      primary: boolean("primary", false)
     };
 
     return <Badge {...props}>{children}</Badge>;

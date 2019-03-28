@@ -8,5 +8,5 @@ storiesOf("Success", module)
   .add("default", () => {
     const children = text("children", "This is a success");
 
-    return <Success>{children}</Success>
+    return <Success>{children}</Success>;
   });

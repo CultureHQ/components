@@ -25,7 +25,7 @@ storiesOf("Form/SubmitButton", module)
     return (
       <Form onSubmit={onSubmit}>
         <SubmitButton {...props}>
-          {submitting => submitting ? texts.submitting : texts.submit}
+          {submitting => (submitting ? texts.submitting : texts.submit)}
         </SubmitButton>
       </Form>
     );

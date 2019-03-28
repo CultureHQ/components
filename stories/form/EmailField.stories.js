@@ -32,7 +32,7 @@ storiesOf("Form/EmailField", module)
   .add("required", () => <Container name="email" required>Email</Container>)
   .add("validator", () => {
     const validator = value => {
-      if (value.match(/^[a\.@]+$/)) {
+      if (value.match(/^[a.@]+$/)) {
         return null;
       }
       return "Value can only include `a`s, `.`s, and `@`s.";

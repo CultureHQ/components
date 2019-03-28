@@ -6,10 +6,10 @@ import { boolean, date, text } from "@storybook/addon-knobs";
 import { DateTimeField, Form, Panel } from "../../src/components";
 
 const getStdTimezoneOffset = () => {
-  const date = new Date();
+  const tester = new Date();
 
-  const jan = new Date(date.getFullYear(), 0, 1);
-  const jul = new Date(date.getFullYear(), 6, 1);
+  const jan = new Date(tester.getFullYear(), 0, 1);
+  const jul = new Date(tester.getFullYear(), 6, 1);
 
   return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
 };
@@ -80,4 +80,3 @@ storiesOf("Form/DateTimeField", module)
       </Container>
     );
   });
-
