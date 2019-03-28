@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.3.1] - 2019-03-28
+### Changed
+- Fixed bug with `FileField` not properly using `Form` values.
+- Added `aria-label` to `Calendar` month navigation buttons.
+- Defaulted the `currentPage` prop on the `Pagination` component to `1`.
+
 ## [12.3.0] - 2019-03-26
 ### Added
 - For confirmation modals, the primary action should be auto-focused.
