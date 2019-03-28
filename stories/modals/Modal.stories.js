@@ -22,6 +22,10 @@ const widthOptions = {
   normal: "normal"
 };
 
+const config = {
+  knobs: { escapeHTML: false }
+};
+
 storiesOf("Modals/Modal", module)
   .add("default", () => {
     const texts = {
@@ -50,24 +54,22 @@ storiesOf("Modals/Modal", module)
         <Modal.Body>{texts.body}</Modal.Body>
       </Modal>
     );
-  }, { knobs: { escapeHTML: false } });
-
-/*
-{{
-  <Modal
-    entrance="zoomIn"
-    trigger={onTrigger => <Button onClick={onTrigger}>zoomIn modal</Button>}
-  >
-    <Modal.Heading>Chapter 2</Modal.Heading>
-    <Modal.LoaderBody loading />
-  </Modal>
-  {" "}
-  <Modal
-    trigger={onTrigger => <Button onClick={onTrigger}>narrow modal</Button>}
-    width="narrow"
-  >
-    <Modal.Heading>Chapter 3</Modal.Heading>
-    <Modal.LoaderBody loading />
-  </Modal>
-}}
-*/
+  }, config)
+  .add("zoomIn", () => (
+    <Modal
+      entrance="zoomIn"
+      trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
+    >
+      <Modal.Heading>Chapter 2</Modal.Heading>
+      <Modal.LoaderBody loading />
+    </Modal>
+  ), config)
+  .add("narrow", () => (
+    <Modal
+      width="narrow"
+      trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
+    >
+      <Modal.Heading>Chapter 3</Modal.Heading>
+      <Modal.LoaderBody loading />
+    </Modal>
+  ), config);
