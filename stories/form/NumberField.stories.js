@@ -5,6 +5,16 @@ import { boolean, text } from "@storybook/addon-knobs";
 
 import { NumberField, Form, Panel } from "../../src/components";
 
+const Container = ({ children, ...props }) => (
+  <Panel>
+    <Panel.Body>
+      <Form>
+        <NumberField {...props}>{children}</NumberField>
+      </Form>
+    </Panel.Body>
+  </Panel>
+);
+
 storiesOf("Form/NumberField", module)
   .add("default", () => {
     const children = text("children", "Number");
@@ -16,34 +26,10 @@ storiesOf("Form/NumberField", module)
       value: text("value", undefined)
     };
 
-    return (
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <NumberField {...props}>{children}</NumberField>
-          </Form>
-        </Panel.Body>
-      </Panel>
-    );
+    return <Container {...props}>{children}</Container>;
   })
-  .add("autoFocus", () => (
-    <Panel>
-      <Panel.Body>
-        <Form>
-          <NumberField name="number" autoFocus>Number</NumberField>
-        </Form>
-      </Panel.Body>
-    </Panel>
-  ))
-  .add("required", () => (
-    <Panel>
-      <Panel.Body>
-        <Form>
-          <NumberField name="number" required>Number</NumberField>
-        </Form>
-      </Panel.Body>
-    </Panel>
-  ))
+  .add("autoFocus", () => <Container name="number" autoFocus>Number</Container>)
+  .add("required", () => <Container name="number" required>Number</Container>)
   .add("validator", () => {
     const validator = value => {
       if (value >= 1 && value <= 10) {
@@ -53,14 +39,6 @@ storiesOf("Form/NumberField", module)
     };
 
     return (
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <NumberField name="number" required validator={validator}>
-              Number
-            </NumberField>
-          </Form>
-        </Panel.Body>
-      </Panel>
+      <Container name="number" required validator={validator}>Number</Container>
     );
   });

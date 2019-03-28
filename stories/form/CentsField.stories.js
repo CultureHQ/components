@@ -5,6 +5,16 @@ import { boolean, number, text } from "@storybook/addon-knobs";
 
 import { CentsField, Form, Panel } from "../../src/components";
 
+const Container = ({ children, ...props }) => (
+  <Panel>
+    <Panel.Body>
+      <Form>
+        <CentsField {...props}>{children}</CentsField>
+      </Form>
+    </Panel.Body>
+  </Panel>
+);
+
 storiesOf("Form/CentsField", module)
   .add("default", () => {
     const children = text("children", "Cents");
@@ -16,31 +26,7 @@ storiesOf("Form/CentsField", module)
       value: number("value", null)
     };
 
-    return (
-      <Panel>
-        <Panel.Body>
-          <Form>
-            <CentsField {...props}>{children}</CentsField>
-          </Form>
-        </Panel.Body>
-      </Panel>
-    );
+    return <Container {...props}>{children}</Container>;
   })
-  .add("autoFocus", () => (
-    <Panel>
-      <Panel.Body>
-        <Form>
-          <CentsField name="cents" autoFocus>Cents</CentsField>
-        </Form>
-      </Panel.Body>
-    </Panel>
-  ))
-  .add("required", () => (
-    <Panel>
-      <Panel.Body>
-        <Form>
-          <CentsField name="cents" required>Cents</CentsField>
-        </Form>
-      </Panel.Body>
-    </Panel>
-  ));
+  .add("autoFocus", () => <Container name="cents" autoFocus>Cents</Container>)
+  .add("required", () => <Container name="cents" required>Cents</Container>);
