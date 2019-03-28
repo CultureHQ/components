@@ -50,7 +50,7 @@ storiesOf("Modals/Modal", module)
         <Modal.Body>{texts.body}</Modal.Body>
       </Modal>
     );
-  });
+  }, { knobs: { escapeHTML: false } });
 
 /*
 {{
