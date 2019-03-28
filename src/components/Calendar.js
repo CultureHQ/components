@@ -55,6 +55,7 @@ class Calendar extends Component {
             type="button"
             className="chq-cal--head--prev"
             onClick={this.handlePrevMonthClick}
+            aria-label="Previous month"
           >
             <em className="chq-cal--head--ct" />&nbsp;
           </button>
@@ -62,6 +63,7 @@ class Calendar extends Component {
             type="button"
             className="chq-cal--head--next"
             onClick={this.handleNextMonthClick}
+            aria-label="Next month"
           >
             <em className="chq-cal--head--ct" />&nbsp;
           </button>
