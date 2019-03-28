@@ -12,6 +12,10 @@ const options = [
   { value: "slytherin", label: "Slytherin" }
 ];
 
+const valueOptions = options.reduce(
+  (accum, option) => ({ ...accum, [option.label]: option.value }), {}
+);
+
 const Container = ({ children, ...props }) => (
   <Panel>
     <Panel.Body>
@@ -32,7 +36,9 @@ storiesOf("Form/RadioField", module)
       onChange: action("onChange"),
       name: text("name", "radio"),
       required: boolean("required", false),
-      value: text("value", undefined)
+      value: optionsKnob("value", valueOptions, null, {
+        display: "inline-radio"
+      })
     };
 
     return <Container {...props}>{children}</Container>;
