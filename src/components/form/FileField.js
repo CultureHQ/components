@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
+import { withForm } from "./Form";
 
 class FileField extends Component {
   static defaultProps = {
@@ -25,17 +26,18 @@ class FileField extends Component {
   }
 
   getFileDisplay() {
-    const { multiple, value } = this.props;
+    const { multiple, name, value, values } = this.props;
+    const normal = value || values[name];
 
-    if (!value) {
+    if (!normal) {
       return "";
     }
 
     if (multiple) {
-      return Array.from(value).map(({ name }) => name).join(", ");
+      return Array.from(normal).map(({ name }) => name).join(", ");
     }
 
-    return value.name;
+    return normal.name;
   }
 
   handleChange = ({ target: { files } }) => {
@@ -96,4 +98,4 @@ class FileField extends Component {
   }
 }
 
-export default FileField;
+export default withForm(FileField);
