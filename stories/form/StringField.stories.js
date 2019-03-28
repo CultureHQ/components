@@ -3,15 +3,15 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, text } from "@storybook/addon-knobs";
 
-import { NumberField, Form, Panel } from "../../src/components";
+import { StringField, Form, Panel } from "../../src/components";
 
-storiesOf("Form/NumberField", module)
+storiesOf("Form/StringField", module)
   .add("default", () => {
-    const children = text("children", "Number");
+    const children = text("children", "String");
     const props = {
       autoFocus: boolean("autoFocus", false),
       onChange: action("onChange"),
-      name: text("name", "number"),
+      name: text("name", "string"),
       required: boolean("required", false),
       value: text("value", null)
     };
@@ -20,7 +20,7 @@ storiesOf("Form/NumberField", module)
       <Panel>
         <Panel.Body>
           <Form>
-            <NumberField {...props}>{children}</NumberField>
+            <StringField {...props}>{children}</StringField>
           </Form>
         </Panel.Body>
       </Panel>
@@ -30,7 +30,7 @@ storiesOf("Form/NumberField", module)
     <Panel>
       <Panel.Body>
         <Form>
-          <NumberField name="number" autoFocus>Number</NumberField>
+          <StringField name="string" autoFocus>String</StringField>
         </Form>
       </Panel.Body>
     </Panel>
@@ -39,26 +39,26 @@ storiesOf("Form/NumberField", module)
     <Panel>
       <Panel.Body>
         <Form>
-          <NumberField name="number" required>Number</NumberField>
+          <StringField name="string" required>String</StringField>
         </Form>
       </Panel.Body>
     </Panel>
   ))
   .add("validator", () => {
     const validator = value => {
-      if (value >= 1 && value <= 10) {
+      if (value.length >= 6) {
         return null;
       }
-      return "Value must be between 1 and 10.";
+      return "Value must be at least 6 characters.";
     };
 
     return (
       <Panel>
         <Panel.Body>
           <Form>
-            <NumberField name="number" required validator={validator}>
-              Number
-            </NumberField>
+            <StringField name="string" required validator={validator}>
+              String
+            </StringField>
           </Form>
         </Panel.Body>
       </Panel>
