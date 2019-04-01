@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.3.3] - 2019-04-01
+### Changed
+- Fix up previously incorrect package version.
+
 ## [12.3.2] - 2019-04-01
 ### Changed
 - Update timezones to latest.
@@ -609,7 +613,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/v12.1.3...HEAD
+[Unreleased]: https://github.com/CultureHQ/components/compare/v12.3.3...HEAD
+[12.3.3]: https://github.com/CultureHQ/components/compare/v12.3.2...v12.3.3
+[12.3.2]: https://github.com/CultureHQ/components/compare/v12.3.1...v12.3.2
+[12.3.1]: https://github.com/CultureHQ/components/compare/v12.3.0...v12.3.1
+[12.3.0]: https://github.com/CultureHQ/components/compare/v12.2.0...v12.3.0
+[12.2.0]: https://github.com/CultureHQ/components/compare/v12.1.3...v12.2.0
 [12.1.3]: https://github.com/CultureHQ/components/compare/v12.1.2...v12.1.3
 [12.1.2]: https://github.com/CultureHQ/components/compare/v12.1.1...v12.1.2
 [12.1.1]: https://github.com/CultureHQ/components/compare/v12.1.0...v12.1.1
