@@ -26,7 +26,7 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/core@7.2.2", "@babel/core@^7.1.0":
+"@babel/core@7.2.2":
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.2.2.tgz#07adba6dde27bb5ad8d8672f15fde3e08184a687"
   integrity sha512-59vB0RWt09cAct5EIe58+NzGP4TFSD3Bz//2/ELy3ZeTeKF6VTD1AXlH8BGGbCX0PuobZBsIzO7IAI9PH67eKw==
@@ -46,7 +46,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@^7.1.6", "@babel/core@^7.2.2", "@babel/core@^7.4.0":
+"@babel/core@^7.1.0", "@babel/core@^7.1.6", "@babel/core@^7.3.4", "@babel/core@^7.4.0":
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.4.0.tgz#248fd6874b7d755010bfe61f557461d4f446d9e9"
   integrity sha512-Dzl7U0/T69DFOTwqz/FJdnOSWS57NpjNfCwMKHABr589Lg8uX1RrlBIJ7L5Dubt/xkLsx0xH5EBFzlBVes1ayA==
@@ -1582,14 +1582,14 @@
     core-js "^2.6.5"
 
 "@storybook/cli@^5.0.5":
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/@storybook/cli/-/cli-5.0.5.tgz#878c2d10684238c65d2c4273426dd5c74abaf05a"
-  integrity sha512-tyc21E3uk6+nz87w8nUywIcKPA/ei32xAhjAIMhV4z/g51eiwJFWFwkMe+1mmPdcb6Zw6Dk94kRC+/ouIh+3sA==
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@storybook/cli/-/cli-5.0.6.tgz#5456c1d47ef5755505c62fd77f5e5df187f9a1bb"
+  integrity sha512-ABeN7cSHKWlNDbCvV9SsSBIflHAlCsvGx+8PoX0frakMd3HV8r3wG5bYKUu9zKllLuVcqZRmHSiVi8+ynCGK2A==
   dependencies:
-    "@babel/core" "^7.2.2"
-    "@babel/preset-env" "^7.3.1"
+    "@babel/core" "^7.3.4"
+    "@babel/preset-env" "^7.4.1"
     "@babel/register" "^7.0.0"
-    "@storybook/codemod" "5.0.5"
+    "@storybook/codemod" "5.0.6"
     chalk "^2.4.1"
     commander "^2.19.0"
     core-js "^2.6.5"
@@ -1629,10 +1629,10 @@
   dependencies:
     core-js "^2.6.5"
 
-"@storybook/codemod@5.0.5":
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-5.0.5.tgz#90dadfface7badb7c999da1379ca696a865bc649"
-  integrity sha512-imLYryFldZ1CMul7raWzZ28bdi6V9L1vuu1tKCenSrzUosLebccJiZFiBnKk5nsNom7rUpT/TS05laO2hvCLxA==
+"@storybook/codemod@5.0.6":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-5.0.6.tgz#c5eb87fecc694a4b260db22d316cfda63efd20b2"
+  integrity sha512-4OKaCza/XbGAN1djuYWsMeO6Ey1BTA/xYmABx7FoZsfS5CDjcpyoQZ8sVlCKUZhaED6RcOwbDQpb+4IyyocTAA==
   dependencies:
     core-js "^2.6.5"
     jscodeshift "^0.6.3"
@@ -3801,12 +3801,7 @@ commander@2.17.x, commander@~2.17.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
 
-commander@^2.11.0, commander@^2.8.1:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.16.0.tgz#f16390593996ceb4f3eeb020b31d78528f7f8a50"
-  integrity sha512-sVXqklSaotK9at437sFlFpyOcJonxe0yST/AG9DkQKUdIE6IqGIMv4SfAQSKaJbSdVEJYItASCrBiVQHq1HQew==
-
-commander@^2.19.0, commander@~2.19.0:
+commander@^2.11.0, commander@^2.19.0, commander@^2.8.1, commander@~2.19.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
   integrity sha512-6tvAOO+D6OENvRAh524Dh9jcfKTYDQAqvqezbCW82xj5X0pSrcpxtvRKHLG0yBY6SD7PSDrJaj+0AiOcKVd1Xg==
@@ -3969,12 +3964,7 @@ core-js@^1.0.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
   integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
 
-core-js@^2.4.0:
-  version "2.5.7"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
-  integrity sha512-RszJCAxg/PP6uzXVXL6BsxSXx/B05oJAQ2vkJRjyjrEcNVycaqOmNb5OTxZPE3xa5gwZduqza6L9JOCenh/Ecw==
-
-core-js@^2.5.7, core-js@^2.6.5:
+core-js@^2.4.0, core-js@^2.5.7, core-js@^2.6.5:
   version "2.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
   integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
