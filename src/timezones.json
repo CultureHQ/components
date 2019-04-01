@@ -510,6 +510,11 @@
     "offset": -240
   },
   {
+    "label": "(GMT-04:00) Paraguay Time",
+    "value": "America/Asuncion",
+    "offset": -240
+  },
+  {
     "label": "(GMT-04:00) Venezuela Time",
     "value": "America/Caracas",
     "offset": -240
@@ -660,11 +665,6 @@
     "offset": -180
   },
   {
-    "label": "(GMT-03:00) Paraguay Time",
-    "value": "America/Asuncion",
-    "offset": -180
-  },
-  {
     "label": "(GMT-03:00) Punta Arenas Time",
     "value": "America/Punta_Arenas",
     "offset": -180
@@ -682,11 +682,6 @@
   {
     "label": "(GMT-03:00) Uruguay Standard Time",
     "value": "America/Montevideo",
-    "offset": -180
-  },
-  {
-    "label": "(GMT-03:00) West Greenland Time",
-    "value": "America/Godthab",
     "offset": -180
   },
   {
@@ -715,9 +710,9 @@
     "offset": -120
   },
   {
-    "label": "(GMT-01:00) Azores Time",
-    "value": "Atlantic/Azores",
-    "offset": -60
+    "label": "(GMT-02:00) West Greenland Time",
+    "value": "America/Godthab",
+    "offset": -120
   },
   {
     "label": "(GMT-01:00) Cape Verde Standard Time",
@@ -725,13 +720,18 @@
     "offset": -60
   },
   {
-    "label": "(GMT-01:00) East Greenland Time",
-    "value": "America/Scoresbysund",
-    "offset": -60
+    "label": "(GMT+00:00) Azores Time",
+    "value": "Atlantic/Azores",
+    "offset": 0
   },
   {
     "label": "(GMT+00:00) Coordinated Universal Time",
     "value": "UTC",
+    "offset": 0
+  },
+  {
+    "label": "(GMT+00:00) East Greenland Time",
+    "value": "America/Scoresbysund",
     "offset": 0
   },
   {
@@ -775,41 +775,6 @@
     "offset": 0
   },
   {
-    "label": "(GMT+00:00) Ireland Time",
-    "value": "Europe/Dublin",
-    "offset": 0
-  },
-  {
-    "label": "(GMT+00:00) Troll Time",
-    "value": "Antarctica/Troll",
-    "offset": 0
-  },
-  {
-    "label": "(GMT+00:00) United Kingdom Time",
-    "value": "Europe/London",
-    "offset": 0
-  },
-  {
-    "label": "(GMT+00:00) Western European Time - Canary",
-    "value": "Atlantic/Canary",
-    "offset": 0
-  },
-  {
-    "label": "(GMT+00:00) Western European Time - Faroe",
-    "value": "Atlantic/Faroe",
-    "offset": 0
-  },
-  {
-    "label": "(GMT+00:00) Western European Time - Lisbon",
-    "value": "Europe/Lisbon",
-    "offset": 0
-  },
-  {
-    "label": "(GMT+00:00) Western European Time - Madeira",
-    "value": "Atlantic/Madeira",
-    "offset": 0
-  },
-  {
     "label": "(GMT+01:00) Central European Standard Time - Algiers",
     "value": "Africa/Algiers",
     "offset": 60
@@ -820,118 +785,18 @@
     "offset": 60
   },
   {
-    "label": "(GMT+01:00) Central European Time - Amsterdam",
-    "value": "Europe/Amsterdam",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Andorra",
-    "value": "Europe/Andorra",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Belgrade",
-    "value": "Europe/Belgrade",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Berlin",
-    "value": "Europe/Berlin",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Brussels",
-    "value": "Europe/Brussels",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Budapest",
-    "value": "Europe/Budapest",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Ceuta",
-    "value": "Africa/Ceuta",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Copenhagen",
-    "value": "Europe/Copenhagen",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Gibraltar",
-    "value": "Europe/Gibraltar",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Luxembourg",
-    "value": "Europe/Luxembourg",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Madrid",
-    "value": "Europe/Madrid",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Malta",
-    "value": "Europe/Malta",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Monaco",
-    "value": "Europe/Monaco",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Oslo",
-    "value": "Europe/Oslo",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Paris",
-    "value": "Europe/Paris",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Prague",
-    "value": "Europe/Prague",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Rome",
-    "value": "Europe/Rome",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Stockholm",
-    "value": "Europe/Stockholm",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Tirane",
-    "value": "Europe/Tirane",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Vienna",
-    "value": "Europe/Vienna",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Warsaw",
-    "value": "Europe/Warsaw",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Central European Time - Zurich",
-    "value": "Europe/Zurich",
+    "label": "(GMT+01:00) Ireland Time",
+    "value": "Europe/Dublin",
     "offset": 60
   },
   {
     "label": "(GMT+01:00) Morocco Time",
     "value": "Africa/Casablanca",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) United Kingdom Time",
+    "value": "Europe/London",
     "offset": 60
   },
   {
@@ -942,6 +807,26 @@
   {
     "label": "(GMT+01:00) West Africa Standard Time - Ndjamena",
     "value": "Africa/Ndjamena",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Western European Time - Canary",
+    "value": "Atlantic/Canary",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Western European Time - Faroe",
+    "value": "Atlantic/Faroe",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Western European Time - Lisbon",
+    "value": "Europe/Lisbon",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Western European Time - Madeira",
+    "value": "Atlantic/Madeira",
     "offset": 60
   },
   {
@@ -965,6 +850,116 @@
     "offset": 120
   },
   {
+    "label": "(GMT+02:00) Central European Time - Amsterdam",
+    "value": "Europe/Amsterdam",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Andorra",
+    "value": "Europe/Andorra",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Belgrade",
+    "value": "Europe/Belgrade",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Berlin",
+    "value": "Europe/Berlin",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Brussels",
+    "value": "Europe/Brussels",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Budapest",
+    "value": "Europe/Budapest",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Ceuta",
+    "value": "Africa/Ceuta",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Copenhagen",
+    "value": "Europe/Copenhagen",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Gibraltar",
+    "value": "Europe/Gibraltar",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Luxembourg",
+    "value": "Europe/Luxembourg",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Madrid",
+    "value": "Europe/Madrid",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Malta",
+    "value": "Europe/Malta",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Monaco",
+    "value": "Europe/Monaco",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Oslo",
+    "value": "Europe/Oslo",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Paris",
+    "value": "Europe/Paris",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Prague",
+    "value": "Europe/Prague",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Rome",
+    "value": "Europe/Rome",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Stockholm",
+    "value": "Europe/Stockholm",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Tirane",
+    "value": "Europe/Tirane",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Vienna",
+    "value": "Europe/Vienna",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Warsaw",
+    "value": "Europe/Warsaw",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Central European Time - Zurich",
+    "value": "Europe/Zurich",
+    "offset": 120
+  },
+  {
     "label": "(GMT+02:00) Eastern European Standard Time - Cairo",
     "value": "Africa/Cairo",
     "offset": 120
@@ -980,103 +975,13 @@
     "offset": 120
   },
   {
-    "label": "(GMT+02:00) Eastern European Time - Amman",
-    "value": "Asia/Amman",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Athens",
-    "value": "Europe/Athens",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Beirut",
-    "value": "Asia/Beirut",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Bucharest",
-    "value": "Europe/Bucharest",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Chisinau",
-    "value": "Europe/Chisinau",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Damascus",
-    "value": "Asia/Damascus",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Gaza",
-    "value": "Asia/Gaza",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Hebron",
-    "value": "Asia/Hebron",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Helsinki",
-    "value": "Europe/Helsinki",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Kiev",
-    "value": "Europe/Kiev",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Nicosia",
-    "value": "Asia/Nicosia",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Riga",
-    "value": "Europe/Riga",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Sofia",
-    "value": "Europe/Sofia",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Tallinn",
-    "value": "Europe/Tallinn",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Uzhhorod",
-    "value": "Europe/Uzhgorod",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Vilnius",
-    "value": "Europe/Vilnius",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Eastern European Time - Zaporozhye",
-    "value": "Europe/Zaporozhye",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Famagusta Time",
-    "value": "Asia/Famagusta",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Israel Time",
-    "value": "Asia/Jerusalem",
-    "offset": 120
-  },
-  {
     "label": "(GMT+02:00) South Africa Standard Time",
     "value": "Africa/Johannesburg",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Troll Time",
+    "value": "Antarctica/Troll",
     "offset": 120
   },
   {
@@ -1102,6 +1007,101 @@
   {
     "label": "(GMT+03:00) East Africa Time - Nairobi",
     "value": "Africa/Nairobi",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time",
+    "value": "Asia/Amman",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time",
+    "value": "Asia/Damascus",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time",
+    "value": "Asia/Gaza",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time",
+    "value": "Asia/Hebron",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Athens",
+    "value": "Europe/Athens",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Beirut",
+    "value": "Asia/Beirut",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Bucharest",
+    "value": "Europe/Bucharest",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Chisinau",
+    "value": "Europe/Chisinau",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Helsinki",
+    "value": "Europe/Helsinki",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Kiev",
+    "value": "Europe/Kiev",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Nicosia",
+    "value": "Asia/Nicosia",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Riga",
+    "value": "Europe/Riga",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Sofia",
+    "value": "Europe/Sofia",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Tallinn",
+    "value": "Europe/Tallinn",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Uzhhorod",
+    "value": "Europe/Uzhgorod",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Vilnius",
+    "value": "Europe/Vilnius",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Zaporozhye",
+    "value": "Europe/Zaporozhye",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Famagusta Time",
+    "value": "Asia/Famagusta",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Israel Time",
+    "value": "Asia/Jerusalem",
     "offset": 180
   },
   {
@@ -1133,11 +1133,6 @@
     "label": "(GMT+03:00) Turkey Time",
     "value": "Europe/Istanbul",
     "offset": 180
-  },
-  {
-    "label": "(GMT+03:30) Iran Time",
-    "value": "Asia/Tehran",
-    "offset": 210
   },
   {
     "label": "(GMT+04:00) Armenia Standard Time",
@@ -1202,6 +1197,11 @@
   {
     "label": "(GMT+04:30) Afghanistan Time",
     "value": "Asia/Kabul",
+    "offset": 270
+  },
+  {
+    "label": "(GMT+04:30) Iran Time",
+    "value": "Asia/Tehran",
     "offset": 270
   },
   {

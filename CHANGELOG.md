@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.3.2] - 2019-04-01
+### Changed
+- Update timezones to latest.
+
 ## [12.3.1] - 2019-03-28
 ### Changed
 - Fixed bug with `FileField` not properly using `Form` values.
