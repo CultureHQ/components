@@ -209,6 +209,7 @@ function (_Component) {
         className: "chq-ffd--ctrl chq-ffd--dt",
         onClick: this.handleOpen
       }, makeDateTime(value, offset)), _react.default.createElement("input", {
+        "aria-label": name,
         id: name,
         name: name,
         type: "hidden",

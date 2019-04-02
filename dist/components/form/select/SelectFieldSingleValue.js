@@ -93,11 +93,13 @@ function (_Component) {
           placeholder = _this$props2.placeholder,
           value = _this$props2.value;
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("input", {
+        "aria-label": name,
         type: "hidden",
         id: name,
         name: name,
         value: value || ""
       }), _react.default.createElement("input", {
+        "aria-label": "Value",
         type: "text",
         ref: inputRef,
         className: "chq-ffd--ctrl",

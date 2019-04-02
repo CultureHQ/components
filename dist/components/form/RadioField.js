@@ -118,6 +118,7 @@ function (_Component) {
           className: "chq-ffd--radio",
           htmlFor: "".concat(name).concat(index + 1)
         }, _react.default.createElement("input", {
+          "aria-label": name,
           type: "radio",
           id: "".concat(name).concat(index + 1),
           name: name,

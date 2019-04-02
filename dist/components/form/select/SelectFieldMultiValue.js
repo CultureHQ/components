@@ -160,6 +160,7 @@ function (_Component) {
         return _react.default.createElement(_react.Fragment, {
           key: option.value
         }, _react.default.createElement("input", {
+          "aria-label": "".concat(name, " ").concat(index),
           type: "hidden",
           id: "".concat(name, "[").concat(index, "]"),
           name: "".concat(name, "[]"),
@@ -169,6 +170,7 @@ function (_Component) {
           onDeselect: onDeselect
         }));
       }), _react.default.createElement("input", {
+        "aria-label": "Search",
         type: "text",
         className: "chq-ffd--sl--match",
         ref: inputRef,

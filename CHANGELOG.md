@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.3.4] - 2019-04-02
+### Changed
+- Update the `hammer` icon to be a cross with a wrench.
+
 ## [12.3.3] - 2019-04-01
 ### Changed
 - Fix up previously incorrect package version.
@@ -613,7 +617,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/v12.3.3...HEAD
+[Unreleased]: https://github.com/CultureHQ/components/compare/v12.3.4...HEAD
+[12.3.4]: https://github.com/CultureHQ/components/compare/v12.3.3...v12.3.4
 [12.3.3]: https://github.com/CultureHQ/components/compare/v12.3.2...v12.3.3
 [12.3.2]: https://github.com/CultureHQ/components/compare/v12.3.1...v12.3.2
 [12.3.1]: https://github.com/CultureHQ/components/compare/v12.3.0...v12.3.1
