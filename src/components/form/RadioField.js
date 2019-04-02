@@ -42,6 +42,7 @@ class RadioField extends Component {
         {options.map((option, index) => (
           <label key={option.value} className="chq-ffd--radio" htmlFor={`${name}${index + 1}`}>
             <input
+              aria-label={name}
               type="radio"
               id={`${name}${index + 1}`}
               name={name}

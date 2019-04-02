@@ -64,11 +64,18 @@ class SelectFieldMultiValue extends Component {
       <div role="button" tabIndex={0} onClick={onOpen} onKeyDown={this.handleKeyDown} className={className}>
         {currentOptions.map((option, index) => (
           <Fragment key={option.value}>
-            <input type="hidden" id={`${name}[${index}]`} name={`${name}[]`} value={option.value} />
+            <input
+              aria-label={`${name} ${index}`}
+              type="hidden"
+              id={`${name}[${index}]`}
+              name={`${name}[]`}
+              value={option.value}
+            />
             <SelectFieldMultiValueBadge option={option} onDeselect={onDeselect} />
           </Fragment>
         ))}
         <input
+          aria-label="Search"
           type="text"
           className="chq-ffd--sl--match"
           ref={inputRef}

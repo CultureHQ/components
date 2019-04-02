@@ -35,6 +35,7 @@ const Container = ({ children, ...props }) => {
           Offset
           {" "}
           <input
+            aria-label="Offset"
             id="offset"
             name="offset"
             type="number"

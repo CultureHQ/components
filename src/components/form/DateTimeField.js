@@ -202,6 +202,7 @@ class DateTimeField extends Component {
             {makeDateTime(value, offset)}
           </PlainButton>
           <input
+            aria-label={name}
             id={name}
             name={name}
             type="hidden"

@@ -27,8 +27,9 @@ class SelectFieldSingleValue extends Component {
 
     return (
       <>
-        <input type="hidden" id={name} name={name} value={value || ""} />
+        <input aria-label={name} type="hidden" id={name} name={name} value={value || ""} />
         <input
+          aria-label="Value"
           type="text"
           ref={inputRef}
           className="chq-ffd--ctrl"
