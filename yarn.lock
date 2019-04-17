@@ -1878,6 +1878,13 @@
   dependencies:
     core-js "^2.6.5"
 
+"@storybook/client-logger@5.0.9":
+  version "5.0.9"
+  resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-5.0.9.tgz#39dcabcfaee3ea04cab5a95ac9027459581d1731"
+  integrity sha512-EIWrXzScR5Ex1rdPgngECFrY8c/ngR4V6lgMdEJypW2GUbcRDRZPdJ13KSaDvkbSwkfHKZmKsjYLlOM2Ss0oOg==
+  dependencies:
+    core-js "^2.6.5"
+
 "@storybook/codemod@5.0.6":
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-5.0.6.tgz#c5eb87fecc694a4b260db22d316cfda63efd20b2"
@@ -2048,7 +2055,7 @@
     memoizerific "^1.11.3"
     qs "^6.5.2"
 
-"@storybook/theming@5.0.6", "@storybook/theming@^5.0.6":
+"@storybook/theming@5.0.6":
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.0.6.tgz#5827d780eb45a031ad27cd19bd87cd70a818546f"
   integrity sha512-Kz0/ujHknhan7DHApLIdSzfLAMbpo7AEKmi+R060ZV0ImGmAP9O7Ytqws7u1O25fgA4AgCDyeDpT4N9i83la+w==
@@ -2056,6 +2063,26 @@
     "@emotion/core" "^10.0.7"
     "@emotion/styled" "^10.0.7"
     "@storybook/client-logger" "5.0.6"
+    common-tags "^1.8.0"
+    core-js "^2.6.5"
+    deep-object-diff "^1.1.0"
+    emotion-theming "^10.0.7"
+    global "^4.3.2"
+    lodash.isequal "^4.5.0"
+    lodash.mergewith "^4.6.1"
+    memoizerific "^1.11.3"
+    polished "^2.3.3"
+    prop-types "^15.6.2"
+    react-inspector "^2.3.1"
+
+"@storybook/theming@^5.0.6":
+  version "5.0.9"
+  resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.0.9.tgz#3daef3d2eb5d9e4f68399f44920df3d6e62fd623"
+  integrity sha512-KuzRKaQIyYwFPc6MSWdpMCy4lQlvcmCNDMTRzH73+qNewka+c+gdOBzgQt3dn3uG0e8hBbsa1gx/URTZAgf7Pg==
+  dependencies:
+    "@emotion/core" "^10.0.7"
+    "@emotion/styled" "^10.0.7"
+    "@storybook/client-logger" "5.0.9"
     common-tags "^1.8.0"
     core-js "^2.6.5"
     deep-object-diff "^1.1.0"
@@ -4280,12 +4307,7 @@ core-js@^1.0.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
   integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
 
-core-js@^2.4.0:
-  version "2.5.7"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
-  integrity sha512-RszJCAxg/PP6uzXVXL6BsxSXx/B05oJAQ2vkJRjyjrEcNVycaqOmNb5OTxZPE3xa5gwZduqza6L9JOCenh/Ecw==
-
-core-js@^2.5.7, core-js@^2.6.5:
+core-js@^2.4.0, core-js@^2.5.7, core-js@^2.6.5:
   version "2.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
   integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
