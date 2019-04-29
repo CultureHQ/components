@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.4.1] - 2019-04-29
+### Changed
+- Fix up broken build.
+
 ## [12.4.0] - 2019-04-29
 ### Added
 - The `slides` icon.
@@ -624,7 +628,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/v12.4.0...HEAD
+[Unreleased]: https://github.com/CultureHQ/components/compare/v12.4.1...HEAD
+[12.4.1]: https://github.com/CultureHQ/components/compare/v12.4.0...v12.4.1
 [12.4.0]: https://github.com/CultureHQ/components/compare/v12.3.4...v12.4.0
 [12.3.4]: https://github.com/CultureHQ/components/compare/v12.3.3...v12.3.4
 [12.3.3]: https://github.com/CultureHQ/components/compare/v12.3.2...v12.3.3
