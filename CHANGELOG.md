@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [12.4.0] - 2019-04-29
+### Added
+- The `slides` icon.
+
 ### Changed
 - Switched to using `@culturehq/scripts` for development.
 
@@ -619,7 +624,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/v12.3.4...HEAD
+[Unreleased]: https://github.com/CultureHQ/components/compare/v12.4.0...HEAD
+[12.4.0]: https://github.com/CultureHQ/components/compare/v12.3.4...v12.4.0
 [12.3.4]: https://github.com/CultureHQ/components/compare/v12.3.3...v12.3.4
 [12.3.3]: https://github.com/CultureHQ/components/compare/v12.3.2...v12.3.3
 [12.3.2]: https://github.com/CultureHQ/components/compare/v12.3.1...v12.3.2

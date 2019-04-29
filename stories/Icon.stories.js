@@ -1,13 +1,19 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { optionsKnob } from "@storybook/addon-knobs";
 
-import { Icon } from "../src/components";
-import iconOptions from "./utils/iconOptions";
+import { Icon, Tooltip } from "../src/components";
+import icons from "../src/icons.json";
 
 storiesOf("Icon", module)
-  .add("default", () => {
-    const icon = optionsKnob("icon", iconOptions, null, { display: "select" });
-
-    return <Icon icon={icon} />;
-  });
+  .add("default", () => (
+    <div style={{ padding: "3em" }}>
+      {Object.keys(icons).map(icon => (
+        <>
+          <Tooltip tip={icon}>
+            <Icon icon={icon} />
+          </Tooltip>
+          {" "}
+        </>
+      ))}
+    </div>
+  ));
