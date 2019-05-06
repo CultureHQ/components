@@ -1264,6 +1264,9 @@
       height: 10px;
       margin: 0 3px 0 0;
       width: 10px; }
+  .chq-ffd--sl--place {
+    color: #888;
+    font-weight: 200; }
   .chq-ffd--sl--match {
     border: 0;
     border-radius: 0;
@@ -1274,7 +1277,12 @@
     font-weight: 200;
     margin-top: 5px;
     outline: none;
-    padding: 0; }
+    padding: 0;
+    width: 1px; }
+    .chq-ffd--sl--match:focus {
+      width: auto; }
+      .chq-ffd--sl--match:focus + .chq-ffd--sl--place {
+        display: none; }
   .chq-ffd--sl--opts {
     background-color: #fff;
     border: rgba(0, 0, 0, 0.2) solid 1px;

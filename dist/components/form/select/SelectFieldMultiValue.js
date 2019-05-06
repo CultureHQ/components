@@ -176,9 +176,10 @@ function (_Component) {
         ref: inputRef,
         onChange: onChange,
         onKeyDown: this.handleKeyDown,
-        placeholder: placeholder,
         value: display
-      }), _react.default.createElement(_SelectFieldCaret.default, {
+      }), placeholder && !display && _react.default.createElement("span", {
+        className: "chq-ffd--sl--place"
+      }, placeholder), _react.default.createElement(_SelectFieldCaret.default, {
         open: open
       }));
     }
