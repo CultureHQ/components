@@ -29,6 +29,11 @@
     }
   }
 
+  &--place {
+    color: $color-secondary-font;
+    font-weight: $font-weight-light;
+  }
+
   &--match {
     border: 0;
     border-radius: 0;
@@ -40,6 +45,15 @@
     margin-top: 5px;
     outline: none;
     padding: 0;
+    width: 1px;
+
+    &:focus {
+      width: auto;
+
+      & + .chq-ffd--sl--place {
+        display: none;
+      }
+    }
   }
 
   &--opts {

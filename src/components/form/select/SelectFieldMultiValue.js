@@ -81,9 +81,9 @@ class SelectFieldMultiValue extends Component {
           ref={inputRef}
           onChange={onChange}
           onKeyDown={this.handleKeyDown}
-          placeholder={placeholder}
           value={display}
         />
+        {placeholder && !display && <span className="chq-ffd--sl--place">{placeholder}</span>}
         <SelectFieldCaret open={open} />
       </div>
     );
