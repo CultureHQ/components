@@ -13,6 +13,8 @@ const buildFormField = (type, displayName) => {
       values: {}
     };
 
+    static displayName = displayName;
+
     inputRef = React.createRef();
 
     state = { touched: false };
@@ -76,7 +78,6 @@ const buildFormField = (type, displayName) => {
     }
   }
 
-  FormField.displayName = displayName;
   return withForm(FormField);
 };
 
