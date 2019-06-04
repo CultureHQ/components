@@ -54,7 +54,7 @@ test("tracks touch status in component state", () => {
 
 test("displays errors if submitted", () => {
   const component = mount(<Form><RadioField name="radio" options={testOptions} required /></Form>);
-  expect(component.find("FormError").text()).toEqual(null);
+  expect(component.find("FormError").text()).toEqual("");
 
   component.setState({ submitted: true });
   expect(component.find("FormError").text()).toEqual("Required");
