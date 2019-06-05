@@ -13,14 +13,6 @@ var _CalendarDay = _interopRequireDefault(require("./CalendarDay"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -39,7 +31,11 @@ var getPrevMonthFillDays = function getPrevMonthFillDays(visibleValue) {
   var prevMonth = (visibleMonth - 1 + 12) % 12;
 
   for (var idx = firstDayOfWeek - 1; idx >= 0; idx -= 1) {
-    days.push([prevYear, prevMonth, daysInPrevMonth - idx]);
+    days.push({
+      year: prevYear,
+      month: prevMonth,
+      day: daysInPrevMonth - idx
+    });
   }
 
   return days;
@@ -52,7 +48,11 @@ var getCurrentMonthDays = function getCurrentMonthDays(value) {
   var days = [];
 
   for (var day = 1; day <= maxDay; day += 1) {
-    days.push([year, month, day]);
+    days.push({
+      year: year,
+      month: month,
+      day: day
+    });
   }
 
   return days;
@@ -67,7 +67,11 @@ var getNextMonthFillDays = function getNextMonthFillDays(visibleValue) {
   var nextMonth = (visibleMonth + 1) % 12;
 
   for (var idx = lastDayOfWeek; idx < 6; idx += 1) {
-    days.push([nextYear, nextMonth, idx - lastDayOfWeek + 1]);
+    days.push({
+      year: nextYear,
+      month: nextMonth,
+      day: idx - lastDayOfWeek + 1
+    });
   }
 
   return days;
@@ -83,11 +87,9 @@ var CalendarDays = function CalendarDays(_ref) {
   var days = _toConsumableArray(getPrevMonthFillDays(visibleValue)).concat(_toConsumableArray(getCurrentMonthDays(visibleValue)), _toConsumableArray(getNextMonthFillDays(visibleValue)));
 
   return days.map(function (_ref2) {
-    var _ref3 = _slicedToArray(_ref2, 3),
-        year = _ref3[0],
-        month = _ref3[1],
-        day = _ref3[2];
-
+    var year = _ref2.year,
+        month = _ref2.month,
+        day = _ref2.day;
     var dayDateHash = "".concat(year, "-").concat(month, "-").concat(day);
     var className = (0, _classnames.default)("chq-cal--day", {
       "chq-cal--day-act": dayDateHash === valueHash,

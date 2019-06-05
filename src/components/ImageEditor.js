@@ -34,8 +34,9 @@ class ImageEditor extends Component {
       import("cropperjs/dist/cropper.css")
     ];
 
-    return Promise.all(promises).then(([{ default: Cropper }]) => {
+    return Promise.all(promises).then(responses => {
       if (this.componentIsMounted) {
+        const Cropper = responses[0].default;
         const { aspectRatio } = this.props;
 
         this.cropper = new Cropper(this.imageRef.current, {

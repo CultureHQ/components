@@ -36,7 +36,8 @@ class ImageField extends Component {
     }
   }
 
-  handleFileSelected = ({ target: { files: [image] } }) => {
+  handleFileSelected = ({ target: { files } }) => {
+    const image = files[0];
     this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
   };
 

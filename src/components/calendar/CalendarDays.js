@@ -16,7 +16,7 @@ const getPrevMonthFillDays = visibleValue => {
   const prevMonth = (visibleMonth - 1 + 12) % 12;
 
   for (let idx = firstDayOfWeek - 1; idx >= 0; idx -= 1) {
-    days.push([prevYear, prevMonth, daysInPrevMonth - idx]);
+    days.push({ year: prevYear, month: prevMonth, day: daysInPrevMonth - idx });
   }
 
   return days;
@@ -30,7 +30,7 @@ const getCurrentMonthDays = value => {
   const days = [];
 
   for (let day = 1; day <= maxDay; day += 1) {
-    days.push([year, month, day]);
+    days.push({ year, month, day });
   }
 
   return days;
@@ -47,7 +47,7 @@ const getNextMonthFillDays = visibleValue => {
   const nextMonth = (visibleMonth + 1) % 12;
 
   for (let idx = lastDayOfWeek; idx < 6; idx += 1) {
-    days.push([nextYear, nextMonth, idx - lastDayOfWeek + 1]);
+    days.push({ year: nextYear, month: nextMonth, day: idx - lastDayOfWeek + 1 });
   }
 
   return days;
@@ -63,7 +63,7 @@ const CalendarDays = ({ value, visibleValue, onChange }) => {
     ...getNextMonthFillDays(visibleValue)
   ];
 
-  return days.map(([year, month, day]) => {
+  return days.map(({ year, month, day }) => {
     const dayDateHash = `${year}-${month}-${day}`;
 
     const className = classnames("chq-cal--day", {

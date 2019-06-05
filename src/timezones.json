@@ -80,16 +80,6 @@
     "offset": -420
   },
   {
-    "label": "(GMT-07:00) Mexican Pacific Time - Chihuahua",
-    "value": "America/Chihuahua",
-    "offset": -420
-  },
-  {
-    "label": "(GMT-07:00) Mexican Pacific Time - Mazatlan",
-    "value": "America/Mazatlan",
-    "offset": -420
-  },
-  {
     "label": "(GMT-07:00) Mountain Standard Time - Creston",
     "value": "America/Creston",
     "offset": -420
@@ -175,28 +165,23 @@
     "offset": -360
   },
   {
-    "label": "(GMT-06:00) Central Time (Bahia Banderas)",
-    "value": "America/Bahia_Banderas",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Central Time (Merida)",
-    "value": "America/Merida",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Central Time (Mexico)",
-    "value": "America/Mexico_City",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Central Time (Monterrey)",
-    "value": "America/Monterrey",
+    "label": "(GMT-06:00) Easter Island Time",
+    "value": "Pacific/Easter",
     "offset": -360
   },
   {
     "label": "(GMT-06:00) Galapagos Time",
     "value": "Pacific/Galapagos",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Mexican Pacific Time - Chihuahua",
+    "value": "America/Chihuahua",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Mexican Pacific Time - Mazatlan",
+    "value": "America/Mazatlan",
     "offset": -360
   },
   {
@@ -245,6 +230,11 @@
     "offset": -300
   },
   {
+    "label": "(GMT-05:00) Central Time - Bahia Banderas",
+    "value": "America/Bahia_Banderas",
+    "offset": -300
+  },
+  {
     "label": "(GMT-05:00) Central Time - Beulah, North Dakota",
     "value": "America/North_Dakota/Beulah",
     "offset": -300
@@ -272,6 +262,21 @@
   {
     "label": "(GMT-05:00) Central Time - Menominee",
     "value": "America/Menominee",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Central Time - Merida",
+    "value": "America/Merida",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Central Time - Mexico City",
+    "value": "America/Mexico_City",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Central Time - Monterrey",
+    "value": "America/Monterrey",
     "offset": -300
   },
   {
@@ -307,11 +312,6 @@
   {
     "label": "(GMT-05:00) Colombia Standard Time",
     "value": "America/Bogota",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Easter Island Time",
-    "value": "Pacific/Easter",
     "offset": -300
   },
   {
@@ -407,6 +407,11 @@
   {
     "label": "(GMT-04:00) Bolivia Time",
     "value": "America/La_Paz",
+    "offset": -240
+  },
+  {
+    "label": "(GMT-04:00) Chile Time",
+    "value": "America/Santiago",
     "offset": -240
   },
   {
@@ -645,11 +650,6 @@
     "offset": -180
   },
   {
-    "label": "(GMT-03:00) Chile Time",
-    "value": "America/Santiago",
-    "offset": -180
-  },
-  {
     "label": "(GMT-03:00) Falkland Islands Standard Time",
     "value": "Atlantic/Stanley",
     "offset": -180
@@ -775,6 +775,16 @@
     "offset": 0
   },
   {
+    "label": "(GMT+00:00) Morocco Time",
+    "value": "Africa/Casablanca",
+    "offset": 0
+  },
+  {
+    "label": "(GMT+00:00) Western Sahara Time",
+    "value": "Africa/El_Aaiun",
+    "offset": 0
+  },
+  {
     "label": "(GMT+01:00) Central European Standard Time - Algiers",
     "value": "Africa/Algiers",
     "offset": 60
@@ -787,11 +797,6 @@
   {
     "label": "(GMT+01:00) Ireland Time",
     "value": "Europe/Dublin",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Morocco Time",
-    "value": "Africa/Casablanca",
     "offset": 60
   },
   {
@@ -827,11 +832,6 @@
   {
     "label": "(GMT+01:00) Western European Time - Madeira",
     "value": "Atlantic/Madeira",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Western Sahara Time",
-    "value": "Africa/El_Aaiun",
     "offset": 60
   },
   {
@@ -1010,23 +1010,8 @@
     "offset": 180
   },
   {
-    "label": "(GMT+03:00) Eastern European Time",
+    "label": "(GMT+03:00) Eastern European Time - Amman",
     "value": "Asia/Amman",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time",
-    "value": "Asia/Damascus",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time",
-    "value": "Asia/Gaza",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time",
-    "value": "Asia/Hebron",
     "offset": 180
   },
   {
@@ -1047,6 +1032,21 @@
   {
     "label": "(GMT+03:00) Eastern European Time - Chisinau",
     "value": "Europe/Chisinau",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Damascus",
+    "value": "Asia/Damascus",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Gaza",
+    "value": "Asia/Gaza",
+    "offset": 180
+  },
+  {
+    "label": "(GMT+03:00) Eastern European Time - Hebron",
+    "value": "Asia/Hebron",
     "offset": 180
   },
   {
@@ -1305,7 +1305,7 @@
     "offset": 360
   },
   {
-    "label": "(GMT+06:00) East Kazakhstan Time - Qostanay",
+    "label": "(GMT+06:00) East Kazakhstan Time - Kostanay",
     "value": "Asia/Qostanay",
     "offset": 360
   },
@@ -1425,7 +1425,7 @@
     "offset": 480
   },
   {
-    "label": "(GMT+08:00) China Standard Time - Macau",
+    "label": "(GMT+08:00) China Standard Time - Macao",
     "value": "Asia/Macau",
     "offset": 480
   },
@@ -1535,6 +1535,16 @@
     "offset": 570
   },
   {
+    "label": "(GMT+09:30) Central Australia Time - Adelaide",
+    "value": "Australia/Adelaide",
+    "offset": 570
+  },
+  {
+    "label": "(GMT+09:30) Central Australia Time - Broken Hill",
+    "value": "Australia/Broken_Hill",
+    "offset": 570
+  },
+  {
     "label": "(GMT+10:00) Australian Eastern Standard Time - Brisbane",
     "value": "Australia/Brisbane",
     "offset": 600
@@ -1560,6 +1570,26 @@
     "offset": 600
   },
   {
+    "label": "(GMT+10:00) Eastern Australia Time - Currie",
+    "value": "Australia/Currie",
+    "offset": 600
+  },
+  {
+    "label": "(GMT+10:00) Eastern Australia Time - Hobart",
+    "value": "Australia/Hobart",
+    "offset": 600
+  },
+  {
+    "label": "(GMT+10:00) Eastern Australia Time - Melbourne",
+    "value": "Australia/Melbourne",
+    "offset": 600
+  },
+  {
+    "label": "(GMT+10:00) Eastern Australia Time - Sydney",
+    "value": "Australia/Sydney",
+    "offset": 600
+  },
+  {
     "label": "(GMT+10:00) Papua New Guinea Time",
     "value": "Pacific/Port_Moresby",
     "offset": 600
@@ -1575,13 +1605,8 @@
     "offset": 600
   },
   {
-    "label": "(GMT+10:30) Central Australia Time - Adelaide",
-    "value": "Australia/Adelaide",
-    "offset": 630
-  },
-  {
-    "label": "(GMT+10:30) Central Australia Time - Broken Hill",
-    "value": "Australia/Broken_Hill",
+    "label": "(GMT+10:30) Lord Howe Time",
+    "value": "Australia/Lord_Howe",
     "offset": 630
   },
   {
@@ -1590,33 +1615,8 @@
     "offset": 660
   },
   {
-    "label": "(GMT+11:00) Eastern Australia Time - Currie",
-    "value": "Australia/Currie",
-    "offset": 660
-  },
-  {
-    "label": "(GMT+11:00) Eastern Australia Time - Hobart",
-    "value": "Australia/Hobart",
-    "offset": 660
-  },
-  {
-    "label": "(GMT+11:00) Eastern Australia Time - Melbourne",
-    "value": "Australia/Melbourne",
-    "offset": 660
-  },
-  {
-    "label": "(GMT+11:00) Eastern Australia Time - Sydney",
-    "value": "Australia/Sydney",
-    "offset": 660
-  },
-  {
     "label": "(GMT+11:00) Kosrae Time",
     "value": "Pacific/Kosrae",
-    "offset": 660
-  },
-  {
-    "label": "(GMT+11:00) Lord Howe Time",
-    "value": "Australia/Lord_Howe",
     "offset": 660
   },
   {
@@ -1695,6 +1695,11 @@
     "offset": 720
   },
   {
+    "label": "(GMT+12:00) New Zealand Time",
+    "value": "Pacific/Auckland",
+    "offset": 720
+  },
+  {
     "label": "(GMT+12:00) Petropavlovsk-Kamchatski Standard Time",
     "value": "Asia/Kamchatka",
     "offset": 720
@@ -1715,8 +1720,13 @@
     "offset": 720
   },
   {
-    "label": "(GMT+13:00) New Zealand Time",
-    "value": "Pacific/Auckland",
+    "label": "(GMT+12:45) Chatham Time",
+    "value": "Pacific/Chatham",
+    "offset": 765
+  },
+  {
+    "label": "(GMT+13:00) Apia Time",
+    "value": "Pacific/Apia",
     "offset": 780
   },
   {
@@ -1733,16 +1743,6 @@
     "label": "(GMT+13:00) Tonga Standard Time",
     "value": "Pacific/Tongatapu",
     "offset": 780
-  },
-  {
-    "label": "(GMT+13:45) Chatham Time",
-    "value": "Pacific/Chatham",
-    "offset": 825
-  },
-  {
-    "label": "(GMT+14:00) Apia Time",
-    "value": "Pacific/Apia",
-    "offset": 840
   },
   {
     "label": "(GMT+14:00) Line Islands Time",

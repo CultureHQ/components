@@ -61,7 +61,8 @@ const readImage = (image, preview, maxWidth, maxHeight) => {
 
   imageObj.src = preview;
 
-  return Promise.all(promises).then(([rotation]) => {
+  return Promise.all(promises).then(responses => {
+    const rotation = responses[0];
     const dimensions = rotation >= 5
       ? getRotatedDimensions(imageObj, maxWidth, maxHeight)
       : getNonRotatedDimensions(imageObj, maxWidth, maxHeight);

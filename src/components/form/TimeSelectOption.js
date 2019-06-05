@@ -6,9 +6,9 @@ import PlainButton from "../buttons/PlainButton";
 class TimeSelectOption extends Component {
   handleClick = () => {
     const { onClick, option } = this.props;
-    const [hours, minutes] = option.value.split(":");
+    const parts = option.value.split(":");
 
-    onClick(hours, minutes);
+    onClick(parts[0], parts[1]);
   };
 
   render() {
