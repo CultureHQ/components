@@ -23,7 +23,10 @@ $spacing: 8px;
 
   &--item {
     flex-basis: 100%;
-    padding: 8px;
+
+    &--inner {
+      padding: 8px;
+    }
   }
 
   @include grid-size('xs');

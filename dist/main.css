@@ -694,8 +694,9 @@
   justify-content: flex-start;
   margin: -8px; }
   .chq-grid--item {
-    flex-basis: 100%;
-    padding: 8px; }
+    flex-basis: 100%; }
+    .chq-grid--item--inner {
+      padding: 8px; }
   .chq-grid--xs-1 {
     display: block;
     flex-basis: 8.3333%; }

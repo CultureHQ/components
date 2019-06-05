@@ -22,9 +22,12 @@ const Grid = ({ children, className }) => (
   </div>
 );
 
+// Inner div necessary per https://github.com/philipwalton/flexbugs#flexbug-7
 const GridItem = ({ children, className, ...sizeProps }) => (
   <div className={getItemClassName(className, sizeProps)}>
-    {children}
+    <div className="chq-grid--item--inner">
+      {children}
+    </div>
   </div>
 );
 

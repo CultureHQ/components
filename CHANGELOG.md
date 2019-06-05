@@ -6,7 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.4.4] - 2019-06-05
+### Changed
+- Fix up `Grid` component spacing on IE 11 because it doesn't respect `box-sizing: border-box` when implementing `flex-basis`.
+
 ## [12.4.3] - 2019-06-05
+### Changed
 - Remove usage of array destructuring so that clients don't have to have polyfilled `Symbol.iterator`.
 
 ## [12.4.2] - 2019-05-06
@@ -635,7 +640,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[Unreleased]: https://github.com/CultureHQ/components/compare/v12.4.2...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v12.4.4...HEAD
+[12.4.4]: https://github.com/CultureHQ/components/compare/v12.4.3...v12.4.4
+[12.4.3]: https://github.com/CultureHQ/components/compare/v12.4.2...v12.4.3
 [12.4.2]: https://github.com/CultureHQ/components/compare/v12.4.1...v12.4.2
 [12.4.1]: https://github.com/CultureHQ/components/compare/v12.4.0...v12.4.1
 [12.4.0]: https://github.com/CultureHQ/components/compare/v12.3.4...v12.4.0

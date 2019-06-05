@@ -36,33 +36,37 @@ const Container = () => {
   });
 
   return (
-    <Grid>
-      {[1, 2, 3, 4, 5, 6].map(item => (
-        <Grid.Item key={item} {...smallSizes}>
-          <div style={style}>{smallSizes[size]}</div>
+    <>
+      <Grid>
+        {[1, 2, 3, 4, 5, 6].map(item => (
+          <Grid.Item key={item} {...smallSizes}>
+            <div style={style}>{smallSizes[size]}</div>
+          </Grid.Item>
+        ))}
+      </Grid>
+      <Grid>
+        {[1, 2, 3].map(item => (
+          <Grid.Item key={item} {...largeSizes}>
+            <div style={style}>{largeSizes[size]}</div>
+          </Grid.Item>
+        ))}
+        <Grid.Item xs={false} md={1}>
+          <div style={style}>
+            {({ md: 1, lg: 1, xl: 1 }[size])}
+          </div>
         </Grid.Item>
-      ))}
-      {[1, 2, 3].map(item => (
-        <Grid.Item key={item} {...largeSizes}>
-          <div style={style}>{largeSizes[size]}</div>
+        <Grid.Item xs={6} md={5}>
+          <div style={style}>
+            {({ xs: 6, sm: 6, md: 5, lg: 5, xl: 5 }[size])}
+          </div>
         </Grid.Item>
-      ))}
-      <Grid.Item xs={false} md={1}>
-        <div style={style}>
-          {({ md: 1, lg: 1, xl: 1 }[size])}
-        </div>
-      </Grid.Item>
-      <Grid.Item xs={6} md={5}>
-        <div style={style}>
-          {({ xs: 6, sm: 6, md: 5, lg: 5, xl: 5 }[size])}
-        </div>
-      </Grid.Item>
-      <Grid.Item xs={6}>
-        <div style={style}>
-          6
-        </div>
-      </Grid.Item>
-    </Grid>
+        <Grid.Item xs={6}>
+          <div style={style}>
+            6
+          </div>
+        </Grid.Item>
+      </Grid>
+    </>
   );
 };
 

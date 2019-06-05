@@ -33,7 +33,8 @@ var Grid = function Grid(_ref) {
   return _react.default.createElement("div", {
     className: (0, _classnames.default)("chq-grid", className)
   }, children);
-};
+}; // Inner div necessary per https://github.com/philipwalton/flexbugs#flexbug-7
+
 
 var GridItem = function GridItem(_ref2) {
   var children = _ref2.children,
@@ -42,7 +43,9 @@ var GridItem = function GridItem(_ref2) {
 
   return _react.default.createElement("div", {
     className: getItemClassName(className, sizeProps)
-  }, children);
+  }, _react.default.createElement("div", {
+    className: "chq-grid--item--inner"
+  }, children));
 };
 
 Grid.Item = GridItem;
