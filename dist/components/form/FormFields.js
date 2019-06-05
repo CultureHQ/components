@@ -157,7 +157,8 @@ var buildFormField = function buildFormField(type, displayName) {
     values: {}
   });
 
-  FormField.displayName = displayName;
+  _defineProperty(FormField, "displayName", displayName);
+
   return (0, _Form.withForm)(FormField);
 };
 
