@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.5.0] - 2019-06-07
+
+### Added
+
+- The `lightbulb` icon.
+
 ## [12.4.5] - 2019-06-07
 
 ### Changed
@@ -927,7 +933,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v12.4.5...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v12.5.0...HEAD
+[12.5.0]: https://github.com/CultureHQ/components/compare/v12.4.5...v12.5.0
 [12.4.5]: https://github.com/CultureHQ/components/compare/v12.4.4...v12.4.5
 [12.4.4]: https://github.com/CultureHQ/components/compare/v12.4.3...v12.4.4
 [12.4.3]: https://github.com/CultureHQ/components/compare/v12.4.2...v12.4.3
