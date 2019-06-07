@@ -6,251 +6,375 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
-## [12.4.4] - 2019-06-05
+## [12.4.5] - 2019-06-07
+
 ### Changed
+
+- Use the `prepublishOnly` npm script so that the `dist` directory does not need to be checked in.
+
+## [12.4.4] - 2019-06-05
+
+### Changed
+
 - Fix up `Grid` component spacing on IE 11 because it doesn't respect `box-sizing: border-box` when implementing `flex-basis`.
 
 ## [12.4.3] - 2019-06-05
+
 ### Changed
+
 - Remove usage of array destructuring so that clients don't have to have polyfilled `Symbol.iterator`.
 
 ## [12.4.2] - 2019-05-06
+
 ### Changed
+
 - Control select-multi placeholder manually since it gets cut off from within the input.
 
 ## [12.4.1] - 2019-04-29
+
 ### Changed
+
 - Fix up broken build.
 
 ## [12.4.0] - 2019-04-29
+
 ### Added
+
 - The `slides` icon.
 
 ### Changed
+
 - Switched to using `@culturehq/scripts` for development.
 
 ## [12.3.4] - 2019-04-02
+
 ### Changed
+
 - Update the `hammer` icon to be a cross with a wrench.
 
 ## [12.3.3] - 2019-04-01
+
 ### Changed
+
 - Fix up previously incorrect package version.
 
 ## [12.3.2] - 2019-04-01
+
 ### Changed
+
 - Update timezones to latest.
 
 ## [12.3.1] - 2019-03-28
+
 ### Changed
+
 - Fixed bug with `FileField` not properly using `Form` values.
 - Added `aria-label` to `Calendar` month navigation buttons.
 - Defaulted the `currentPage` prop on the `Pagination` component to `1`.
 
 ## [12.3.0] - 2019-03-26
+
 ### Added
+
 - For confirmation modals, the primary action should be auto-focused.
 
 ## [12.2.0] - 2019-03-18
+
 ### Added
+
 - The `rss` icon.
 
 ## [12.1.3] - 2019-03-12
+
 ### Changed
+
 - Rebuild missing `dist` files. Double yikes.
 
 ## [12.1.2] - 2019-03-12
+
 ### Changed
+
 - Updated the timezone offsets for DST. Yikes.
 
 ## [12.1.1] - 2019-03-11
+
 ### Changed
+
 - Rebuild missing `dist` files.
 
 ## [12.1.0] - 2019-03-11
+
 ### Added
+
 - The `fillParent` optional prop to the `Button` component to make it full width.
 
 ## [12.0.0] - 2019-03-08
+
 ### Changed
+
 - Fixed a bug where pixel rounding widths within the `Grid.Item` component were causing wrapping when they shouldn't have.
 
 ### Removed
+
 - The `spacing` prop from the `Grid` component (just defaulting to `16px` distance between until we need another option).
 
 ## [11.7.0] - 2019-02-20
+
 ### Added
+
 - The `hammer` and `refresh` icons.
 
 ## [11.6.4] - 2019-01-29
+
 ### Changed
+
 - Fixing badly built package.
 
 ## [11.6.3] - 2019-01-29
+
 ### Changed
+
 - Remove the `onChange` listener accidentally added to the `RadioField` `fieldset` tag.
 
 ## [11.6.2] - 2019-01-29
+
 ### Changed
+
 - Reinforce radio styles.
 
 ## [11.6.1] - 2019-01-28
+
 ### Added
+
 - Fixed up the `RadioField` export.
 
 ## [11.6.0] - 2019-01-28
+
 ### Added
+
 - The `RadioField` component.
 
 ## [11.5.1] - 2019-01-25
+
 ### Changed
+
 - Fixed up the cents field multiplying by 100.
 
 ## [11.5.0] - 2019-01-18
+
 ### Added
+
 - Reduce rendering time by not showing confetti when `Cheer` is not set to `pop`.
 
 ## [11.4.0] - 2018-12-28
+
 ### Added
+
 - Support forwarding props on to the `ClickClose` component.
 
 ## [11.3.0] - 2018-12-28
+
 ### Added
+
 - Support the `autoComplete` property on the `SearchBar` component.
 
 ## [11.2.1] - 2018-12-28
+
 ### Changed
+
 - Recompute offsets for tooltip when the tip changes.
 
 ## [11.2.0] - 2018-12-28
+
 ### Added
+
 - The `tags` icon.
 
 ## [11.1.2] - 2018-12-23
+
 ### Changed
+
 - Fix up dist file naming.
 
 ## [11.1.1] - 2018-12-23
+
 ### Changed
+
 - Update the list of timezones.
 
 ## [11.1.0] - 2018-12-23
+
 ### Added
+
 - The `Grid` component.
 
 ## [11.0.1] - 2018-12-18
+
 ### Changed
+
 - Fixed up the date parsing for Safari in the `DateTimeSelect`.
 
 ## [11.0.0] - 2018-12-11
+
 ### Added
+
 - Export the `withForm` HOC for accessing form data from external components.
 
 ### Removed
+
 - The `MultiImageField` component.
 
 ## [10.1.0] - 2018-12-11
+
 ### Added
+
 - Support for drag and drop on the `ImageField` component.
 
 ### Changed
+
 - The `DateTimeField` display now uses the full month name.
 
 ## [10.0.0] - 2018-12-11
+
 ### Changed
+
 - The `Calendar` component `onChange` signature has changed to `onChange(year, month, day)`. This makes more sense when working with a calendar because it shouldn't be returning a date that is linked to a specific time zone.
 - The `DateTimeField` now properly handles previous years and subsequent years when clicking from December or January.
 
 ## [9.0.0] - 2018-12-06
+
 ### Changed
+
 - Make `cropperjs` and `react-modal` dependencies instead of just peer dependencies.
 
 ## [8.1.0] - 2018-12-06
+
 ### Added
+
 - The ability to set the `throttle` prop on the `SearchBar` component to `null` to allow immediate searches.
 
 ## [8.0.1] - 2018-12-05
+
 ### Removed
+
 - Unnecessary files in the `dist` directory
 
 ## [8.0.0] - 2018-12-05
+
 ### Added
+
 - The `onOffsetChange` function to the `TimezoneField` component.
 
 ### Removed
+
 - [BREAKING] The `getTimezoneOffset` function.
 
 ## [7.3.1] - 2018-11-30
+
 ### Changed
+
 - Added a slight margin top and bottom on the badge component.
 
 ## [7.3.0] - 2018-11-24
+
 ### Added
+
 - The `getTimezoneOffset` function.
 
 ## [7.2.1] - 2018-11-23
+
 ### Added
+
 - Export the `TimezoneField` component from the main index file.
 
 ## [7.2.0] - 2018-11-23
+
 ### Added
+
 - Support `placeholder` on `SelectField` components.
 - The `TimezoneField` component.
 
 ## [7.1.0] - 2018-11-23
+
 ### Added
+
 - Support `required` and `validator` on `ImageField` components.
 
 ## [7.0.2] - 2018-11-22
+
 ### Changed
+
 - Allow `SelectField` to work when required with falsy values.
 
 ## [7.0.1] - 2018-11-22
+
 ### Changed
+
 - Fix up display for select fields.
 
 ## [7.0.0] - 2018-11-22
+
 ### Changed
+
 - Potentially breaking: change `Form` component to use React's context in order to allow form fields to be multiple levels deep.
 
 ## [6.2.2] - 2018-11-20
+
 ### Changed
+
 - Allow `SelectField` to work if the initial value given is not contained in the passed options.
 
 ## [6.2.1] - 2018-11-20
+
 ### Changed
+
 - Allow `SelectField` to work with falsy values on initial render.
 
 ## [6.2.0] - 2018-11-20
+
 ### Changed
+
 - Properly support `required` and `validator` on `SelectField`.
 - Don't break when `SelectField` `multiple` value is set and there is no initial value.
 
 ## [6.1.0] - 2018-11-16
+
 ### Added
+
 - The optional `aspectRatio` prop to `ImageEditor`, `ImageField`, and `MultiImageField`.
 
 ## [6.0.0] - 2018-11-15
+
 ### Changed
+
 - Various style modifications needed found from usage.
 
 ### Removed
+
 - [BREAKING] The `CheerList` component because it was overly complicated, unused, and bloating the package size.
 
 ## [5.2.0] - 2018-11-15
+
 ### Added
+
 - The `diagram`, `heart-ol`, and `loc-ol` icons.
 
 ## [5.1.1] - 2018-11-14
+
 ### Changed
+
 - Some simple style fixes for Firefox to align with Chrome.
 
 ## [5.1.0] - 2018-11-13
+
 ### Added
+
 - The ability to specify the tag type of the `DoorEffect` component.
 
 ## [5.0.0] - 2018-11-13
+
 ### Added
+
 - The `limitWidth` prop on the `Panel` component for enforcing a max width.
 - The `DoorEffect` component.
 - The optional `icon` prop on the `Badge` component.
@@ -258,212 +382,300 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `SearchBar` component.
 
 ### Changed
+
 - [BREAKING] A couple of the class names have been modified within forms, and it could potentially break the look of things. Therefore, making this a major version bump to stick to semver.
 
 ## [4.1.0] - 2018-11-10
+
 ### Added
+
 - The `onClose` callback to the `Modal` component.
 
 ## [4.0.0] - 2018-11-08
+
 ### Changed
+
 - [BREAKING] No longer explicitly requiring the styles for the package. This was never intended to be required, but here we are. Making this a major version bump in case this breaks styles.
 
 ## [3.19.0] - 2018-11-08
+
 ### Added
+
 - The `autoFocus` prop to `EmailField`, `NumberField`, `PasswordField`, `StringField`, `SelectField`, and `TextField`.
 
 ## [3.18.0] - 2018-11-07
+
 ### Added
+
 - The `MultiImageField` component.
 - The `ActionButton` component.
 
 ## [3.17.1] - 2018-11-06
+
 ### Changed
+
 - No longer auto rotating image previews in mobile Safari because it reads EXIF data automatically.
 
 ## [3.17.0] - 2018-11-06
+
 ### Added
+
 - Expose the `ImagePreview` component.
 
 ### Changed
+
 - Enforce max width and height.
 
 ## [3.16.2] - 2018-11-06
+
 ### Changed
+
 - Fixed the auto rotation when reading images.
 
 ## [3.16.1] - 2018-11-05
+
 ### Added
+
 - Correctly rotate JPG images in upload preview.
 
 ## [3.16.0] - 2018-10-30
+
 ### Added
+
 - The `ClickClose` component.
 
 ## [3.15.1] - 2018-10-25
+
 ### Changed
+
 - Fixed the missing `locales.json` file.
 
 ## [3.15.0] - 2018-10-24
+
 ### Added
+
 - The `DateTimeField` component.
 - The `Calendar` component.
 
 ## [3.14.1] - 2018-10-17
+
 ### Changed
+
 - Ensure `URL.revokeObjectURL` is called so we don't leak memory when allocating object URLs from within the `ImageField` component.
 - Allow an initial value to be passed to an image field.
 
 ## [3.14.0] - 2018-10-16
+
 ### Added
+
 - The `TextField` component.
 
 ### Removed
+
 - The ability to submit the image editor with the enter key. Mostly because it was super annoying.
 
 ## [3.13.0] - 2018-10-12
+
 ### Added
+
 - The `ImageField` component.
 - The `ImageEditor` component.
 
 ### Changed
+
 - Made the `Table` component have a margin on top as well.
 
 ## [3.12.0] - 2018-10-11
+
 ### Added
+
 - The `Table` component.
 - The `SelectField` component.
 
 ## [3.11.4] - 2018-10-09
+
 ### Changed
+
 - Fixed the max-width on modal dialogs when on a small screen.
 - Fixed Safari bug where tooltip bubbles would stick around.
 
 ## [3.11.3] - 2018-10-07
+
 ### Changed
+
 - Fix up form errors when components are not part of the form library.
 
 ## [3.11.2] - 2018-10-04
+
 ### Changed
+
 - Set the cursor to pointer on the file upload button.
 
 ## [3.11.1] - 2018-10-04
+
 ### Changed
+
 - Removed the duplicated style declarations.
 
 ## [3.11.0] - 2018-10-01
+
 ### Added
+
 - The `ol` and `ul` icons.
 
 ## [3.10.0] - 2018-09-26
+
 ### Added
+
 - The `contentRef` prop on `ModalDialog` to pass on to `react-modal`.
 - The `contentRef` prop on `Confirm` modals to pass on to the nested `ModalDialog`.
 - The `onOpen` callback for `Confirm` modals.
 - The `submit()` member function on `Form` components.
 
 ### Changed
+
 - The `onSubmit` of a `Form` component no longer needs to return a `Promise`.
 
 ## [3.9.1] - 2018-09-19
+
 ### Changed
+
 - Catch import errors from `Icon`.
 
 ## [3.9.0] - 2018-09-19
+
 ### Added
+
 - The `ConfirmDelete` component for setting some simple defaults for a `Confirm` that represents a delete action.
 
 ## [3.8.1] - 2018-09-19
+
 ### Changed
+
 - Force remove the bottom padding of `hr` tags in modal headers.
 
 ## [3.8.0] - 2018-09-19
+
 ### Added
+
 - The `ModalDialog` component (and a peer dependency on `react-modal` as a result).
 - The `Modal` component for wrapping a `ModalDialog` with open/closed state.
 - The `Confirm` component for confirming a user action with a dialog.
 - The optional `danger` prop on buttons to indicate a dangerous action.
 
 ### Changed
+
 - Fixed up the tooltips display on top of cheers.
 
 ## [3.7.1] - 2018-09-18
+
 ### Changed
+
 - Changed the display of the `Tooltip` component to be `inline-table` as opposed to `inline-block` so it won't collapse around the text.
 
 ## [3.7.0] - 2018-09-18
+
 ### Added
+
 - The optional `small` prop to `CheerButton` and `Cheer` to allow for smaller cheers (used for comments).
 
 ## [3.6.1] - 2018-09-18
+
 ### Changed
+
 - Fixed up non-spec `border: none` to be `border: 0` for the `PlainButton` component.
 
 ## [3.6.0] - 2018-09-18
+
 ### Added
+
 - The `PlainButton` component.
 
 ## [3.5.0] - 2018-09-14
+
 ### Added
+
 - The `Cheer` component.
 - The `CheerButton` component.
 - The `Tooltip` component.
 - The `CheerList` component.
 
 ## [3.4.0] - 2018-09-13
+
 ### Changed
+
 - Made consistent the font weights of the panel headings and the panel bodies as they currently are on the product (normal weight on primary headings and light weight on bodies).
 - The display of the `Spinner` component now looks consistent with the `Circles` component.
 
 ## [3.3.0] - 2018-09-13
+
 ### Added
+
 - The optional `primary` boolean prop to the `Panel.Heading` component, in order to delineate panels that should be highlighted.
 
 ## [3.2.1] - 2018-09-05
+
 ### Changed
+
 - Slightly change the UI of the `FileField` component by adding a `Choose file(s)...` prompt.
 
 ## [3.2.0] - 2018-09-05
+
 ### Added
+
 - The `FileField` component.
 - The `Panel.LoaderBody` subcomponent, for when the body is still being loaded.
 
 ### Changed
+
 - Increased the `z-index` in the `Nav` component to have it hide the content below it.
 - Improve a11y by adding an `aria-label` to the `Hamburger` button.
 - Don't bother hiding error when form fields are focused, as it causes too much blinking and confusion.
 - Properly handle when the value for `required` or `validator` changes on form fields.
 
 ## [3.1.0] - 2018-08-29
+
 ### Added
+
 - The `BooleanField` component.
 - The ability to use `children` within a `Checkmark` component.
 
 ## [3.0.2] - 2018-08-29
+
 ### Changed
+
 - Enforce a normal font weight over the entire label within forms.
 
 ## [3.0.1] - 2018-08-29
+
 ### Changed
+
 - Enforce a normal font weight for labels within forms.
 - Remove the `required` attribute from form fields since we're handling it ourselves.
 
 ## [3.0.0] - 2018-08-28
+
 ### Added
+
 - The `SubmitButton` component, used within `Form` components.
 - The ability to set a `validator` prop on form fields that should either return an error message string or `null`.
 
 ### Changed
+
 - All of the form fields no longer track the value in state, they rely on being controlled components.
 - The value of the label for form fields is now set using `children`.
 - `Form` components now fully take over the `onChange` value of various form fields and use it to track state.
 
 ## [2.3.0] - 2018-08-21
+
 ### Added
+
 - The ability to set `initialValues` on a `Form` component.
 
 ## [2.2.0] - 2018-08-21
+
 ### Added
+
 - The `Spinner` component.
 - The `Loader` component.
 - The `Panel` component.
@@ -472,175 +684,251 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `CentsField` component.
 
 ### Changed
+
 - Renamed animations to be consistent with naming style throughout the rest of the component library e.g., `chqSpin`.
 - The `Nav` component now displays on scroll if the previous scroll position was zero. This fixes the behavior of hiding the nav when the page first loads.
 
 ## [2.1.1] - 2018-07-31
+
 ### Changed
+
 - The main color on the `Pagination` component to be the primary blue instead of the weird other blue.
 
 ## [2.1.0] - 2018-07-31
+
 ### Added
+
 - The `Pagination` component.
 
 ## [2.0.2] - 2018-07-30
+
 ### Changed
+
 - Added the new "checked" value to the callback for the `Checkmark` component.
 
 ## [2.0.1] - 2018-07-27
+
 ### Changed
+
 - Package names can't have capital letters anymore: "@culturehq/components".
 
 ## [2.0.0] - 2018-07-27
+
 ### Added
+
 - A ton of documentation to the README.
 
 ### Changed
+
 - The package name from "culturehq-components" to "@CultureHQ/components".
 
 ### Removed
+
 - The ability to pass arbitrary props beyond normally expected ones such as `className` or `onClick`.
 
 ## [1.6.0] - 2018-07-27
+
 ### Added
+
 - The `Checklist` component.
 - The `Checkmark` component.
 
 ## [1.5.0] - 2018-07-26
+
 ### Added
+
 - The `pin` icon.
 - The `pin-outline` icon.
 
 ## [1.4.1] - 2018-07-23
+
 ### Changed
+
 - Scale down the `checklist` and `calendar-filled` icons by 20%.
 
 ## [1.4.0] - 2018-07-23
+
 ### Added
+
 - The `checklist` icon.
 - The `calendar-filled` icon.
 
 ### Changed
+
 - The `thumbsup` icon to be fully filled.
 - The `thumbsdown` icon to reflect the `thumbsup` icon.
 
 ## [1.3.0] - 2018-07-18
+
 ### Changed
+
 - Don't use webpack to build the final release, just use babel.
 
 ## [1.2.0] - 2018-07-13
+
 ### Added
+
 - The `Hamburger` component.
 
 ## [1.1.1] - 2018-07-12
+
 ### Changed
+
 - Fixed the `className` prop overriding other classes on the `Nav` component.
 
 ## [1.1.0] - 2018-07-12
+
 ### Added
+
 - The `Nav` component.
 - `sass-lint` to the build pipeline.
 
 ### Changed
+
 - Removed outlines from the `Badge` component.
 
 ## [1.0.3] - 2018-07-10
+
 ### Changed
+
 - Allow `Subnav` to function as a controller component properly.
 
 ## [1.0.2] - 2018-07-10
+
 ### Changed
+
 - Added explicit rules for the `Subnav.Item` component's hover.
 
 ## [1.0.1] - 2018-07-10
+
 ### Changed
+
 - Made the `Badge` component use a `1em` font-size instead of `1rem`.
 
 ## [1.0.0] - 2018-07-09
+
 ### Changed
+
 - Removed the `styled-components` dependency in favor of using the `sass-loader` from `webpack`.
 
 ## [0.1.0] - 2018-07-03
+
 ### Added
+
 - The `Badge` component.
 
 ## [0.0.16] - 2018-07-02
+
 ### Added
+
 - The optional `square` prop on the `Thumbnail` component for turning off rounded borders.
 
 ## [0.0.15] - 2018-06-25
+
 ### Added
+
 - The `FeedItem` component.
 
 ## [0.0.14] - 2018-06-25
+
 ### Added
+
 - The `trophy-cup` icon.
 
 ## [0.0.13] - 2018-06-25
+
 ### Added
+
 - The `calendar-add`, `calendar-check`, `calendar-clock`, `calendar-date`, `calendar-gear`, `feedback`, `image-add`, `people`, `person-check`, `thumbsup-outline`, and `trophy-star` icons.
 
 ## [0.0.12] - 2018-06-25
+
 ### Removed
+
 - The unnecessary `example.js` file from the distribution directory by properly using webpack dev and prod builds.
 
 ## [0.0.11] - 2018-06-25
+
 ### Changed
+
 - Readded the dynamic import of the `icons.json` file.
 
 ## [0.0.10] - 2018-06-25
+
 ### Changed
+
 - Simplified the `Subnav` component, assuming everything functions off the `onChange` prop.
 
 ## [0.0.9] - 2018-06-23
+
 ### Changed
+
 - Enforce `text-decoration` and `color` on hover of the `Subnav.Item` component.
 
 ## [0.0.8] - 2018-06-23
+
 ### Added
+
 - The `Subnav` component.
 
 ## [0.0.7] - 2018-06-22
+
 ### Added
+
 - The `Button` component.
 - The optional `size` prop to the `Thumbnail` component.
 
 ### Changed
+
 - Removed the dynamic import of the `icons.json` file since it's so much smaller now.
 
 ## [0.0.6] - 2018-06-19
+
 ### Changed
+
 - The font color on the `Info` component to use the primary font color.
 
 ## [0.0.5] - 2018-06-19
+
 ### Added
+
 - `eslint` and the corresponding `yarn lint` command.
 - `prettier` and the corresponding `yarn prettier` command.
 
 ### Changed
+
 - Pass on any extra props to the root in each display component (allows things like passing `className` as a prop).
 
 ## [0.0.4] - 2018-06-18
+
 ### Added
+
 - The `Icon` component, as well as the dev libraries needed to support dynamic import in webpack.
 - The `Tag` component.
 - The `Thumbnail` component.
 
 ## [0.0.3] - 2018-06-15
+
 ### Changed
+
 - Explicitly add the `styled-components` dependency.
 
 ## [0.0.2] - 2018-06-15
+
 ### Added
+
 - The `Info` component.
 - The `Success` component.
 
 ## [0.0.1] - 2018-06-15
+
 ### Added
+
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v12.4.4...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v12.4.5...HEAD
+[12.4.5]: https://github.com/CultureHQ/components/compare/v12.4.4...v12.4.5
 [12.4.4]: https://github.com/CultureHQ/components/compare/v12.4.3...v12.4.4
 [12.4.3]: https://github.com/CultureHQ/components/compare/v12.4.2...v12.4.3
 [12.4.2]: https://github.com/CultureHQ/components/compare/v12.4.1...v12.4.2

@@ -1,19 +1,18 @@
 {
   "name": "@culturehq/components",
-  "version": "12.4.4",
+  "version": "12.4.5",
   "description": "CultureHQ's component library",
   "main": "dist/components.js",
   "scripts": {
-    "build": "yarn build:css && yarn build:js && yarn build:docs",
     "build:js": "babel src --out-dir ./dist --ignore '**/__tests__' --ignore '**/__docs__' && cp src/*.json dist",
     "build:css": "node-sass src/styles/app.scss > dist/main.css",
-    "build:docs": "build-storybook -s ./stories/public -o ./docs",
     "clean": "git ls-files -o | grep -v node_modules | xargs rm",
+    "docs": "build-storybook -s ./stories/public -o ./docs",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "chq-scripts lint",
     "lint:css": "sass-lint -c .sass-lint.yml -v --max-warnings 0",
-    "start": "webpack-dev-server --mode development --hot",
-    "storybook": "start-storybook -p 6006 -s ./stories/public",
+    "prepublishOnly": "rm -rf dist && mkdir dist && yarn build:css && yarn build:js",
+    "start": "start-storybook -p 6006 -s ./stories/public",
     "test": "TZ=UTC chq-scripts test"
   },
   "repository": {

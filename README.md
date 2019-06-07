@@ -12,7 +12,9 @@ You can import all of the components as separate named exports from the main pac
 import { Button } from "@culturehq/components";
 
 const App = () => (
-  <Button primary icon="clipboard">Take Survey</Button>
+  <Button primary icon="clipboard">
+    Take Survey
+  </Button>
 );
 
 export default App;
