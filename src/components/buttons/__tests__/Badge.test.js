@@ -36,3 +36,9 @@ test("displays an icon if one is provided", () => {
 
   expect(component.find("svg")).toHaveLength(1);
 });
+
+test("passes along any other props", () => {
+  const component = shallow(<Badge data-value="foo" />);
+
+  expect(component.find("[data-value=\"foo\"]")).toHaveLength(1);
+});
