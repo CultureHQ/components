@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.8.1] - 2019-06-11
+
+### Changed
+
+- Disallow pointer events on the SVG inside the `Badge` component so that `onClick` handlers function properly.
+
 ## [12.8.0] - 2019-06-11
 
 ### Changed
@@ -951,7 +957,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v12.8.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v12.8.1...HEAD
+[12.8.1]: https://github.com/CultureHQ/components/compare/v12.8.0...v12.8.1
 [12.8.0]: https://github.com/CultureHQ/components/compare/v12.7.0...v12.8.0
 [12.7.0]: https://github.com/CultureHQ/components/compare/v12.6.0...v12.7.0
 [12.6.0]: https://github.com/CultureHQ/components/compare/v12.5.0...v12.6.0
