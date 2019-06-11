@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.8.0] - 2019-06-11
+
+### Changed
+
+- Pass along any extra props to the `Badge` component.
+
 ## [12.7.0] - 2019-06-07
 
 ### Added
@@ -945,7 +951,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v12.7.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v12.8.0...HEAD
+[12.8.0]: https://github.com/CultureHQ/components/compare/v12.7.0...v12.8.0
 [12.7.0]: https://github.com/CultureHQ/components/compare/v12.6.0...v12.7.0
 [12.6.0]: https://github.com/CultureHQ/components/compare/v12.5.0...v12.6.0
 [12.5.0]: https://github.com/CultureHQ/components/compare/v12.4.5...v12.5.0
