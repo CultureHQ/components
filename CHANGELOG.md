@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.8.2] - 2019-06-12
+
+### Changed
+
+- Don't use `background: inherit` as that doesn't really work on IE11. Instead use `background: transparent`.
+
 ## [12.8.1] - 2019-06-11
 
 ### Changed
@@ -957,7 +963,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v12.8.1...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v12.8.2...HEAD
+[12.8.2]: https://github.com/CultureHQ/components/compare/v12.8.1...v12.8.2
 [12.8.1]: https://github.com/CultureHQ/components/compare/v12.8.0...v12.8.1
 [12.8.0]: https://github.com/CultureHQ/components/compare/v12.7.0...v12.8.0
 [12.7.0]: https://github.com/CultureHQ/components/compare/v12.6.0...v12.7.0
