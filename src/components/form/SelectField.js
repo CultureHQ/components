@@ -10,12 +10,18 @@ const appendValue = (value, selected) => (
   value ? [...value.filter(item => item !== selected), selected] : [selected]
 );
 
-const fuzzyFilter = matchable => {
+const fuzzyFilter = (options, matchable) => {
+  if (!matchable) {
+    return options;
+  }
+
   const terms = matchable.toLowerCase().split(" ").filter(Boolean);
 
-  return ({ label }) => label.toLowerCase().split(" ").filter(Boolean).some(segment => (
-    terms.some(term => segment.startsWith(term))
-  ));
+  return options.filter(
+    ({ label }) => label.toLowerCase().split(" ").filter(Boolean).some(segment => (
+      terms.some(term => segment.startsWith(term))
+    ))
+  );
 };
 
 class SelectField extends Component {
@@ -60,6 +66,15 @@ class SelectField extends Component {
     }
 
     window.addEventListener("click", this.handleWindowClick);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { options } = this.props;
+    const { display } = this.state;
+
+    if (prevProps.options !== options) {
+      this.setState({ filteredOptions: fuzzyFilter(options, display) });
+    }
   }
 
   componentWillUnmount() {
@@ -111,7 +126,7 @@ class SelectField extends Component {
 
     this.setState({
       display: nextDisplay || "",
-      filteredOptions: nextDisplay ? options.filter(fuzzyFilter(nextDisplay)) : options,
+      filteredOptions: fuzzyFilter(options, nextDisplay),
       open: true
     });
   };
