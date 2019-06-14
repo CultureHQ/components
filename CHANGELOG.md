@@ -6,11 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [12.8.4] - 2019-06-14
+
+### Changed
+
+- When the `options` prop on `SelectField` is updated on a select with `multiple = false`, make sure to update the display in the text field so that the value is displayed before the dropdown is clicked.
+
 ## [12.8.3] - 2019-06-14
 
 ### Changed
 
-- When the `options` prop on `SelectField` are updated, make sure to update the filtered options so that the first render of the dropdown is populated.
+- When the `options` prop on `SelectField` is updated, make sure to update the filtered options so that the first render of the dropdown is populated.
 
 ## [12.8.2] - 2019-06-12
 
@@ -969,7 +975,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v12.8.3...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v12.8.4...HEAD
+[12.8.4]: https://github.com/CultureHQ/components/compare/v12.8.3...v12.8.4
 [12.8.3]: https://github.com/CultureHQ/components/compare/v12.8.2...v12.8.3
 [12.8.2]: https://github.com/CultureHQ/components/compare/v12.8.1...v12.8.2
 [12.8.1]: https://github.com/CultureHQ/components/compare/v12.8.0...v12.8.1

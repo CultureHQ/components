@@ -24,6 +24,18 @@ const fuzzyFilter = (options, matchable) => {
   );
 };
 
+const getDisplay = props => {
+  const normal = props.value || props.values[props.name];
+  let display = "";
+
+  if (!props.multiple && normal !== undefined) {
+    display = props.options.find(({ value }) => value === normal);
+    display = display ? display.label : "";
+  }
+
+  return display;
+};
+
 class SelectField extends Component {
   static defaultProps = {
     autoFocus: false,
@@ -42,16 +54,8 @@ class SelectField extends Component {
   constructor(props) {
     super(props);
 
-    const normal = props.value || props.values[props.name];
-    let display = "";
-
-    if (!props.multiple && normal !== undefined) {
-      display = props.options.find(({ value }) => value === normal);
-      display = display ? display.label : "";
-    }
-
     this.state = {
-      display,
+      display: getDisplay(props),
       filteredOptions: props.options,
       open: false,
       touched: false
@@ -73,7 +77,10 @@ class SelectField extends Component {
     const { display } = this.state;
 
     if (prevProps.options !== options) {
-      this.setState({ filteredOptions: fuzzyFilter(options, display) });
+      this.setState({
+        display: getDisplay(this.props),
+        filteredOptions: fuzzyFilter(options, display)
+      });
     }
   }
 
