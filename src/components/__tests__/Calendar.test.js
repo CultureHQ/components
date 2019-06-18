@@ -1,51 +1,52 @@
 import React from "react";
-import { mount } from "enzyme";
+import { act, fireEvent, render } from "@testing-library/react";
 
 import Calendar from "../Calendar";
 
 test("functions properly when no value is passed in", () => {
-  const component = mount(<Calendar />);
+  const { queryByText } = render(<Calendar />);
 
-  expect(component.find("CalendarDay").length).toBeGreaterThan(0);
+  expect(queryByText("15")).toBeTruthy();
 });
 
 test("displays expected days with padding at beginning and end", () => {
-  const value = new Date(2018, 0, 1, 0, 0, 0);
-  const component = mount(<Calendar value={value} />);
+  const { queryAllByRole } = render(<Calendar year={2018} month={0} day={1} />);
 
-  expect(component.find("CalendarDay")).toHaveLength(35);
+  expect(queryAllByRole("button")).toHaveLength(37);
 });
 
 test("allows toggling left to go to previous months", () => {
-  const value = new Date(2018, 0, 1, 0, 0, 0);
-  const component = mount(<Calendar value={value} />);
+  const { getByLabelText, queryByText } = render(<Calendar year={2018} month={0} day={1} />);
 
-  component.find("button.chq-cal--head--prev").simulate("click");
-  expect(component.find(".chq-cal--head--lbl").text()).toEqual("December 2017");
+  act(() => void fireEvent.click(getByLabelText("Previous month")));
+
+  expect(queryByText("December 2017")).toBeTruthy();
 });
 
 test("allows toggling right to go to next months", () => {
-  const value = new Date(2018, 0, 1, 0, 0, 0);
-  const component = mount(<Calendar value={value} />);
+  const { getByLabelText, queryByText } = render(<Calendar year={2018} month={0} day={1} />);
 
-  component.find("button.chq-cal--head--next").simulate("click");
-  expect(component.find(".chq-cal--head--lbl").text()).toEqual("February 2018");
+  act(() => void fireEvent.click(getByLabelText("Next month")));
+
+  expect(queryByText("February 2018")).toBeTruthy();
 });
 
 test("updates the visible month when a value is selected", () => {
-  const value = new Date(2018, 0, 1, 0, 0, 0);
-  const component = mount(<Calendar value={value} />);
+  const { rerender, queryByText } = render(<Calendar year={2018} month={0} day={1} />);
 
-  component.setProps({ value: new Date(2019, 0, 1, 0, 0, 0) });
-  expect(component.find(".chq-cal--head--lbl").text()).toEqual("January 2019");
+  rerender(<Calendar year={2019} month={0} day={1} />);
+
+  expect(queryByText("January 2019"));
 });
 
-test("does not attempt to update state if month did not change", () => {
-  const value = new Date(2018, 0, 1, 0, 0, 0);
+test("calls up to the onChange when a new date is clicked", () => {
   const onChange = jest.fn();
-  const component = mount(<Calendar value={value} onChange={onChange} />);
+  const { getByText, queryByText } = render(
+    <Calendar year={2018} month={0} day={1} onChange={onChange} />
+  );
 
-  component.find("CalendarDay").at(15).simulate("click");
-  expect(component.find(".chq-cal--head--lbl").text()).toEqual("January 2018");
-  expect(onChange.mock.calls[0][1]).toEqual(0);
+  act(() => void fireEvent.click(getByText("15")));
+
+  expect(onChange).toHaveBeenCalledWith(2018, 0, 15);
+  expect(queryByText("January 2018")).toBeTruthy();
 });

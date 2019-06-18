@@ -47,7 +47,7 @@ const getNextMonthFillValues = visible => {
 };
 
 const makeActiveHash = (year, month, day) => {
-  if (year && month && day) {
+  if (year !== null && month !== null && day !== null) {
     return `${year}-${month}-${day}`;
   }
 
@@ -55,10 +55,10 @@ const makeActiveHash = (year, month, day) => {
   return `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 };
 
-const Calendar = ({ year, month, day, onChange }) => {
+const Calendar = ({ year = null, month = null, day = null, onChange }) => {
   const [visible, setVisible] = useState(() => ({
-    year: year || new Date().getFullYear(),
-    month: month || new Date().getMonth()
+    year: year === null ? new Date().getFullYear() : year,
+    month: month === null ? new Date().getMonth() : month
   }));
 
   useEffect(
