@@ -46,14 +46,16 @@ const getNextMonthFillValues = visible => {
   return values;
 };
 
-const today = new Date();
+const makeActiveHash = (year, month, day) => {
+  if (year && month && day) {
+    return `${year}-${month}-${day}`;
+  }
 
-const Calendar = ({
-  year = today.getFullYear(),
-  month = today.getMonth(),
-  day = today.getDate(),
-  onChange
-}) => {
+  const today = new Date();
+  return `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+};
+
+const Calendar = ({ year, month, day, onChange }) => {
   const [visible, setVisible] = useState(() => ({
     year: year || new Date().getFullYear(),
     month: month || new Date().getMonth()
@@ -61,7 +63,7 @@ const Calendar = ({
 
   useEffect(
     () => {
-      if ((year !== visible.year) || (month !== visible.month)) {
+      if (year && month && ((year !== visible.year) || (month !== visible.month))) {
         setVisible({ year, month });
       }
     },
@@ -81,7 +83,7 @@ const Calendar = ({
     return { year: nextVisible.getFullYear(), month: nextVisible.getMonth() };
   });
 
-  const activeHash = `${year}-${month}-${day}`;
+  const activeHash = makeActiveHash(year, month, day);
   const values = useMemo(
     () => [
       ...getPrevMonthFillValues(visible),
