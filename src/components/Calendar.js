@@ -100,7 +100,7 @@ const Calendar = ({ year, month, day, onChange }) => {
           type="button"
           className="chq-cal--head--prev"
           onClick={onPrevMonthClick}
-          aria-label="Previous month"
+          aria-label={locales.en.calendar.nav.prev}
         >
           <em className="chq-cal--head--ct" />&nbsp;
         </button>
@@ -108,18 +108,18 @@ const Calendar = ({ year, month, day, onChange }) => {
           type="button"
           className="chq-cal--head--next"
           onClick={onNextMonthClick}
-          aria-label="Next month"
+          aria-label={locales.en.calendar.nav.next}
         >
           <em className="chq-cal--head--ct" />&nbsp;
         </button>
         <div className="chq-cal--head--lbl">
-          {locales.en.monthNames[visible.month]}
+          {locales.en.calendar.monthNames[visible.month]}
           {" "}
           {visible.year}
         </div>
       </div>
       <div className="chq-cal--months">
-        {locales.en.dayAbbrs.map(abbr => (
+        {locales.en.calendar.dayAbbrs.map(abbr => (
           <strong key={abbr}>{abbr}</strong>
         ))}
       </div>
