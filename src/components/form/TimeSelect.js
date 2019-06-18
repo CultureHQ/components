@@ -12,31 +12,12 @@ for (let hours = 0; hours < 24; hours += 1) {
     const meridian = hours < 12 ? "AM" : "PM";
 
     TIME_SELECT_OPTIONS.push({
-      label: `${padLeft(hours % 12 || 12)}:${padLeft(minutes)} ${meridian}`,
-      value: `${hours}:${minutes}`
+      hours,
+      minutes,
+      label: `${padLeft(hours % 12 || 12)}:${padLeft(minutes)} ${meridian}`
     });
   }
 }
-
-const TimeSelectOption = ({ option, value, onClick, activeOptionRef }) => {
-  const isActive = option.value === value;
-  const onButtonClick = () => {
-    const parts = option.value.split(":");
-
-    onClick(parts[0], parts[1]);
-  };
-
-  return (
-    <PlainButton
-      ref={isActive ? activeOptionRef : null}
-      className={classnames("chq-tsl--op", { "chq-tsl--op-act": isActive })}
-      value={option.value}
-      onClick={onButtonClick}
-    >
-      {option.label}
-    </PlainButton>
-  );
-};
 
 class TimeSelect extends Component {
   activeOptionRef = React.createRef();
@@ -53,19 +34,24 @@ class TimeSelect extends Component {
   }
 
   render() {
-    const { value, onChange } = this.props;
+    const { hours, minutes, onChange } = this.props;
 
     return (
       <div className="chq-tsl" ref={this.selectRef}>
-        {TIME_SELECT_OPTIONS.map(option => (
-          <TimeSelectOption
-            key={option.value}
-            option={option}
-            value={value}
-            onClick={onChange}
-            activeOptionRef={this.activeOptionRef}
-          />
-        ))}
+        {TIME_SELECT_OPTIONS.map(option => {
+          const isActive = hours === option.hours && minutes === option.minutes;
+
+          return (
+            <PlainButton
+              key={`${option.hours}:${option.minutes}`}
+              ref={isActive ? this.activeOptionRef : null}
+              className={classnames("chq-tsl--op", { "chq-tsl--op-act": isActive })}
+              onClick={() => onChange(option.hours, option.minutes)}
+            >
+              {option.label}
+            </PlainButton>
+          );
+        })}
       </div>
     );
   }

@@ -63,14 +63,14 @@ const makeCalendarValue = (value, offset) => {
 
 const makeTimeSelectValue = (value, offset) => {
   if (!value) {
-    return "12:0";
+    return { hours: 12, minutes: 0 };
   }
 
   const date = new Date(value);
   const hours = ((date.getUTCHours() + Math.floor(offset / 60)) + 24) % 24;
   const minutes = Math.floor(date.getUTCMinutes() / 15) * 15 + (offset % 60);
 
-  return `${hours}:${minutes}`;
+  return { hours, minutes };
 };
 
 class DateTimeField extends Component {
@@ -229,7 +229,7 @@ class DateTimeField extends Component {
                 onChange={this.handleDateChange}
               />
               <TimeSelect
-                value={makeTimeSelectValue(value, offset)}
+                {...makeTimeSelectValue(value, offset)}
                 onChange={this.handleTimeChange}
               />
             </ModalDialog.Body>
