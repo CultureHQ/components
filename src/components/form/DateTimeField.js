@@ -12,15 +12,6 @@ import FormError from "./FormError";
 import TimeSelect from "./TimeSelect";
 import { withForm } from "./Form";
 
-const getStdTimezoneOffset = () => {
-  const date = new Date();
-
-  const jan = new Date(date.getFullYear(), 0, 1);
-  const jul = new Date(date.getFullYear(), 6, 1);
-
-  return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
-};
-
 const padLeft = number => `0${number}`.slice(-2);
 
 const getDateWithOffset = (value, offset) => (
@@ -55,9 +46,9 @@ const makeCalendarValue = (value, offset) => {
   const offsetDate = new Date(+new Date(date) + offset * 60 * 1000);
 
   return {
-    year: offsetDate.getFullYear(),
-    month: offsetDate.getMonth(),
-    day: offsetDate.getDate()
+    year: offsetDate.getUTCFullYear(),
+    month: offsetDate.getUTCMonth(),
+    day: offsetDate.getUTCDate()
   };
 };
 
@@ -75,7 +66,7 @@ const makeTimeSelectValue = (value, offset) => {
 
 class DateTimeField extends Component {
   static defaultProps = {
-    offset: -getStdTimezoneOffset(),
+    offset: -new Date().getTimezoneOffset(),
     onChange: () => {},
     onFormChange: () => {},
     values: {}

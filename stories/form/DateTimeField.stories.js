@@ -5,17 +5,8 @@ import { boolean, date, text } from "@storybook/addon-knobs";
 
 import { DateTimeField, Form, Panel } from "../../src/components";
 
-const getStdTimezoneOffset = () => {
-  const tester = new Date();
-
-  const jan = new Date(tester.getFullYear(), 0, 1);
-  const jul = new Date(tester.getFullYear(), 6, 1);
-
-  return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
-};
-
 const Container = ({ children, ...props }) => {
-  const [offset, setOffset] = useState(-getStdTimezoneOffset());
+  const [offset, setOffset] = useState(() => -new Date().getTimezoneOffset());
   const onOffsetChange = useCallback(
     ({ target: { value } }) => setOffset(value),
     [setOffset]
