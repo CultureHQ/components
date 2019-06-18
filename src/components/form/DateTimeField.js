@@ -34,7 +34,7 @@ const makeDateTime = (value, offset) => {
 
   const date = getDateWithOffset(value, offset);
   const components = [
-    locales.en.monthNames[date.getUTCMonth()],
+    locales.en.calendar.monthNames[date.getUTCMonth()],
     " ",
     date.getUTCDate(),
     ", ",
