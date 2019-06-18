@@ -52,8 +52,13 @@ const makeDateTime = (value, offset) => {
 
 const makeCalendarValue = (value, offset) => {
   const date = value ? new Date(value) : new Date();
+  const offsetDate = new Date(+new Date(date) + offset * 60 * 1000);
 
-  return new Date(+new Date(date) + offset * 60 * 1000);
+  return {
+    year: offsetDate.getFullYear(),
+    month: offsetDate.getMonth(),
+    day: offsetDate.getDate()
+  };
 };
 
 const makeTimeSelectValue = (value, offset) => {
@@ -220,7 +225,7 @@ class DateTimeField extends Component {
             </ModalDialog.Heading>
             <ModalDialog.Body>
               <Calendar
-                value={makeCalendarValue(value, offset)}
+                {...makeCalendarValue(value, offset)}
                 onChange={this.handleDateChange}
               />
               <TimeSelect
