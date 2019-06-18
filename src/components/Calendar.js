@@ -1,179 +1,145 @@
-import React, { Component } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import classnames from "../classnames";
 import locales from "../locales";
 
 import PlainButton from "./buttons/PlainButton";
 
-const getPrevMonthFillDays = (visibleYear, visibleMonth) => {
-  const daysInPrevMonth = new Date(visibleYear, visibleMonth, 0).getDate();
-  const firstDayOfWeek = new Date(visibleYear, visibleMonth, 1).getDay();
+const getPrevMonthFillValues = visible => {
+  const daysInPrevMonth = new Date(visible.year, visible.month, 0).getDate();
+  const firstDayOfWeek = new Date(visible.year, visible.month, 1).getDay();
 
-  const days = [];
+  const values = [];
 
-  const prevYear = visibleYear - (visibleMonth === 0 ? 1 : 0);
-  const prevMonth = (visibleMonth - 1 + 12) % 12;
+  const prevYear = visible.year - (visible.month === 0 ? 1 : 0);
+  const prevMonth = (visible.month - 1 + 12) % 12;
 
   for (let idx = firstDayOfWeek - 1; idx >= 0; idx -= 1) {
-    days.push({ year: prevYear, month: prevMonth, day: daysInPrevMonth - idx });
+    values.push({ year: prevYear, month: prevMonth, day: daysInPrevMonth - idx, fill: true });
   }
 
-  return days;
+  return values;
 };
 
-const getCurrentMonthDays = (visibleYear, visibleMonth) => {
-  const maxDay = new Date(visibleYear, visibleMonth + 1, 0).getDate();
-  const days = [];
+const getCurrentMonthValues = visible => {
+  const maxDay = new Date(visible.year, visible.month + 1, 0).getDate();
+  const values = [];
 
   for (let day = 1; day <= maxDay; day += 1) {
-    days.push({ year: visibleYear, month: visibleMonth, day });
+    values.push({ year: visible.year, month: visible.month, day, fill: false });
   }
 
-  return days;
+  return values;
 };
 
-const getNextMonthFillDays = (visibleYear, visibleMonth) => {
-  const lastDayOfWeek = new Date(visibleYear, visibleMonth + 1, 0).getDay();
-  const days = [];
+const getNextMonthFillValues = visible => {
+  const lastDayOfWeek = new Date(visible.year, visible.month + 1, 0).getDay();
+  const values = [];
 
-  const nextYear = visibleYear + (visibleMonth === 11 ? 1 : 0);
-  const nextMonth = (visibleMonth + 1) % 12;
+  const nextYear = visible.year + (visible.month === 11 ? 1 : 0);
+  const nextMonth = (visible.month + 1) % 12;
 
   for (let idx = lastDayOfWeek; idx < 6; idx += 1) {
-    days.push({ year: nextYear, month: nextMonth, day: idx - lastDayOfWeek + 1 });
+    values.push({ year: nextYear, month: nextMonth, day: idx - lastDayOfWeek + 1, fill: true });
   }
 
-  return days;
+  return values;
 };
 
-const CalendarDays = ({ value, visibleYear, visibleMonth, onChange }) => {
-  const valueHash = `${value.year}-${value.month}-${value.day}`;
-  const days = [
-    ...getPrevMonthFillDays(visibleYear, visibleMonth),
-    ...getCurrentMonthDays(visibleYear, visibleMonth),
-    ...getNextMonthFillDays(visibleYear, visibleMonth)
-  ];
+const today = new Date();
 
-  return days.map(({ year, month, day }) => {
-    const dayDateHash = `${year}-${month}-${day}`;
-    const onClick = () => onChange(year, month, day);
+const Calendar = ({
+  year = today.getFullYear(),
+  month = today.getMonth(),
+  day = today.getDate(),
+  onChange
+}) => {
+  const [visible, setVisible] = useState(() => ({
+    year: year || new Date().getFullYear(),
+    month: month || new Date().getMonth()
+  }));
 
-    const className = classnames("chq-cal--day", {
-      "chq-cal--day-act": (dayDateHash === valueHash),
-      "chq-cal--day-out": (month !== visibleMonth)
-    });
-
-    return (
-      <PlainButton key={dayDateHash} className={className} onClick={onClick}>
-        {day}
-      </PlainButton>
-    );
-  });
-};
-
-const getValue = (year, month, day) => {
-  if (year) {
-    return { year, month, day };
-  }
-
-  const date = new Date();
-
-  return {
-    year: date.getFullYear(),
-    month: date.getMonth(),
-    day: date.getDate()
-  };
-};
-
-class Calendar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      visibleYear: props.year || new Date().getFullYear(),
-      visibleMonth: props.month || new Date().getMonth()
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    const { year, month } = this.props;
-    const { visibleYear, visibleMonth } = this.state;
-
-    if ((prevProps.year != year) || (prevProps.month !== month)) {
-      if ((year != visibleYear) || (month != visibleMonth)) {
-        // eslint-disable-next-line react/no-did-update-set-state
-        this.setState({ visibleYear: year, visibleMonth: month });
+  useEffect(
+    () => {
+      if ((year !== visible.year) || (month !== visible.month)) {
+        setVisible({ year, month });
       }
-    }
-  }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [year, month]
+  );
 
-  handlePrevMonthClick = () => {
-    this.setState(({ visibleYear, visibleMonth }) => {
-      const nextVisibleDate = new Date(visibleYear, visibleMonth - 1, 1);
+  const onPrevMonthClick = () => setVisible(current => {
+    const nextVisible = new Date(current.year, current.month - 1, 1);
 
-      return {
-        visibleYear: nextVisibleDate.getFullYear(),
-        visibleMonth: nextVisibleDate.getMonth()
-      };
-    });
-  };
+    return { year: nextVisible.getFullYear(), month: nextVisible.getMonth() };
+  });
 
-  handleNextMonthClick = () => {
-    this.setState(({ visibleYear, visibleMonth }) => {
-      const nextVisibleDate = new Date(visibleYear, visibleMonth + 1, 1);
+  const onNextMonthClick = () => setVisible(current => {
+    const nextVisible = new Date(current.year, current.month + 1, 1);
 
-      return {
-        visibleYear: nextVisibleDate.getFullYear(),
-        visibleMonth: nextVisibleDate.getMonth()
-      };
-    });
-  };
+    return { year: nextVisible.getFullYear(), month: nextVisible.getMonth() };
+  });
 
-  render() {
-    const { onChange, year, month, day } = this.props;
-    const { visibleYear, visibleMonth } = this.state;
+  const activeHash = `${year}-${month}-${day}`;
+  const values = useMemo(
+    () => [
+      ...getPrevMonthFillValues(visible),
+      ...getCurrentMonthValues(visible),
+      ...getNextMonthFillValues(visible)
+    ],
+    [visible]
+  );
 
-    return (
-      <div className="chq-cal">
-        <div className="chq-cal--head">
-          <button
-            type="button"
-            className="chq-cal--head--prev"
-            onClick={this.handlePrevMonthClick}
-            aria-label="Previous month"
-          >
-            <em className="chq-cal--head--ct" />&nbsp;
-          </button>
-          <button
-            type="button"
-            className="chq-cal--head--next"
-            onClick={this.handleNextMonthClick}
-            aria-label="Next month"
-          >
-            <em className="chq-cal--head--ct" />&nbsp;
-          </button>
-          <div className="chq-cal--head--lbl">
-            {locales.en.monthNames[visibleMonth]}
-            {" "}
-            {visibleYear}
-          </div>
-        </div>
-        <div className="chq-cal--months">
-          {locales.en.dayAbbrs.map(abbr => (
-            <strong key={abbr}>{abbr}</strong>
-          ))}
-        </div>
-        <div className="chq-cal--days">
-          <CalendarDays
-            value={getValue(year, month, day)}
-            visibleYear={visibleYear}
-            visibleMonth={visibleMonth}
-            onChange={onChange}
-          />
+  return (
+    <div className="chq-cal">
+      <div className="chq-cal--head">
+        <button
+          type="button"
+          className="chq-cal--head--prev"
+          onClick={onPrevMonthClick}
+          aria-label="Previous month"
+        >
+          <em className="chq-cal--head--ct" />&nbsp;
+        </button>
+        <button
+          type="button"
+          className="chq-cal--head--next"
+          onClick={onNextMonthClick}
+          aria-label="Next month"
+        >
+          <em className="chq-cal--head--ct" />&nbsp;
+        </button>
+        <div className="chq-cal--head--lbl">
+          {locales.en.monthNames[visible.month]}
+          {" "}
+          {visible.year}
         </div>
       </div>
-    );
-  }
-}
+      <div className="chq-cal--months">
+        {locales.en.dayAbbrs.map(abbr => (
+          <strong key={abbr}>{abbr}</strong>
+        ))}
+      </div>
+      <div className="chq-cal--days">
+        {values.map(value => {
+          const valueHash = `${value.year}-${value.month}-${value.day}`;
+          const onClick = () => onChange(value.year, value.month, value.day);
+
+          const className = classnames("chq-cal--day", {
+            "chq-cal--day-act": (valueHash === activeHash),
+            "chq-cal--day-out": value.fill
+          });
+
+          return (
+            <PlainButton key={valueHash} className={className} onClick={onClick}>
+              {value.day}
+            </PlainButton>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 export default Calendar;
