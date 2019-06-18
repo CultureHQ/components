@@ -1,13 +1,78 @@
 import React, { Component } from "react";
 
+import classnames from "../classnames";
 import locales from "../locales";
-import CalendarDays from "./calendar/CalendarDays";
 
-const getStartOfMonth = date => (
-  new Date(date.getUTCFullYear(), date.getUTCMonth(), 1)
-);
+import PlainButton from "./buttons/PlainButton";
 
+const getStartOfMonth = date => new Date(date.getUTCFullYear(), date.getUTCMonth(), 1);
 const hashMonth = date => `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}`;
+
+const getPrevMonthFillDays = (visibleYear, visibleMonth) => {
+  const daysInPrevMonth = new Date(visibleYear, visibleMonth, 0).getUTCDate();
+  const firstDayOfWeek = new Date(visibleYear, visibleMonth, 1).getUTCDay();
+
+  const days = [];
+
+  const prevYear = visibleYear - (visibleMonth === 0 ? 1 : 0);
+  const prevMonth = (visibleMonth - 1 + 12) % 12;
+
+  for (let idx = firstDayOfWeek - 1; idx >= 0; idx -= 1) {
+    days.push({ year: prevYear, month: prevMonth, day: daysInPrevMonth - idx });
+  }
+
+  return days;
+};
+
+const getCurrentMonthDays = (visibleYear, visibleMonth) => {
+  const maxDay = new Date(visibleYear, visibleMonth + 1, 0).getUTCDate();
+  const days = [];
+
+  for (let day = 1; day <= maxDay; day += 1) {
+    days.push({ year: visibleYear, month: visibleMonth, day });
+  }
+
+  return days;
+};
+
+const getNextMonthFillDays = (visibleYear, visibleMonth) => {
+  const lastDayOfWeek = new Date(visibleYear, visibleMonth + 1, 0).getUTCDay();
+  const days = [];
+
+  const nextYear = visibleYear + (visibleMonth === 11 ? 1 : 0);
+  const nextMonth = (visibleMonth + 1) % 12;
+
+  for (let idx = lastDayOfWeek; idx < 6; idx += 1) {
+    days.push({ year: nextYear, month: nextMonth, day: idx - lastDayOfWeek + 1 });
+  }
+
+  return days;
+};
+
+const CalendarDays = ({ value, visibleYear, visibleMonth, onChange }) => {
+  const valueHash = `${value.getUTCFullYear()}-${value.getUTCMonth()}-${value.getUTCDate()}`;
+  const days = [
+    ...getPrevMonthFillDays(visibleYear, visibleMonth),
+    ...getCurrentMonthDays(visibleYear, visibleMonth),
+    ...getNextMonthFillDays(visibleYear, visibleMonth)
+  ];
+
+  return days.map(({ year, month, day }) => {
+    const dayDateHash = `${year}-${month}-${day}`;
+    const onClick = () => onChange(year, month, day);
+
+    const className = classnames("chq-cal--day", {
+      "chq-cal--day-act": (dayDateHash === valueHash),
+      "chq-cal--day-out": (month !== visibleMonth)
+    });
+
+    return (
+      <PlainButton key={dayDateHash} className={className} onClick={onClick}>
+        {day}
+      </PlainButton>
+    );
+  });
+};
 
 class Calendar extends Component {
   constructor(props) {
@@ -48,6 +113,9 @@ class Calendar extends Component {
     const { onChange, value } = this.props;
     const { visibleValue } = this.state;
 
+    const visibleYear = visibleValue.getUTCFullYear();
+    const visibleMonth = visibleValue.getUTCMonth();
+
     return (
       <div className="chq-cal">
         <div className="chq-cal--head">
@@ -68,9 +136,9 @@ class Calendar extends Component {
             <em className="chq-cal--head--ct" />&nbsp;
           </button>
           <div className="chq-cal--head--lbl">
-            {locales.en.monthNames[visibleValue.getUTCMonth()]}
+            {locales.en.monthNames[visibleMonth]}
             {" "}
-            {visibleValue.getUTCFullYear()}
+            {visibleYear}
           </div>
         </div>
         <div className="chq-cal--months">
@@ -81,7 +149,8 @@ class Calendar extends Component {
         <div className="chq-cal--days">
           <CalendarDays
             value={value || new Date()}
-            visibleValue={visibleValue}
+            visibleYear={visibleYear}
+            visibleMonth={visibleMonth}
             onChange={onChange}
           />
         </div>
