@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
-import TimeSelectOption from "./TimeSelectOption";
+import classnames from "../../classnames";
+import PlainButton from "../buttons/PlainButton";
 
 const padLeft = number => `0${number}`.slice(-2);
 
@@ -16,6 +17,26 @@ for (let hours = 0; hours < 24; hours += 1) {
     });
   }
 }
+
+const TimeSelectOption = ({ option, value, onClick, activeOptionRef }) => {
+  const isActive = option.value === value;
+  const onButtonClick = () => {
+    const parts = option.value.split(":");
+
+    onClick(parts[0], parts[1]);
+  };
+
+  return (
+    <PlainButton
+      ref={isActive ? activeOptionRef : null}
+      className={classnames("chq-tsl--op", { "chq-tsl--op-act": isActive })}
+      value={option.value}
+      onClick={onButtonClick}
+    >
+      {option.label}
+    </PlainButton>
+  );
+};
 
 class TimeSelect extends Component {
   activeOptionRef = React.createRef();
