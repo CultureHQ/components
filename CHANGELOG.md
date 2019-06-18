@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+
+- Change the `Calendar` component to deal directly with `year`, `month`, and `day` props such that it isn't impacted by timezones.
+- [INTERNAL] Switch to using `@testing-library/react` for tests instead of enzyme.
+
 ## [12.8.4] - 2019-06-14
 
 ### Changed
