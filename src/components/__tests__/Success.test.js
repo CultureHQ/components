@@ -1,18 +1,21 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 
 import Success from "../Success";
 
-test("renders without crashing", async () => {
+test("renders without crashing", () => {
   const message = "This is a success.";
-  const component = <Success>{message}</Success>;
+  const { queryByText } = render(<Success>{message}</Success>);
 
-  expect(shallow(component).html()).toContain(message);
-  await expect(component).toHaveNoViolations();
+  expect(queryByText(message)).toBeTruthy();
 });
 
-test("passes on className", () => {
-  const component = shallow(<Success className="success" />);
+test("has no violations", () => (
+  expect(<Success>This is a success</Success>).toHaveNoViolations()
+));
 
-  expect(component.hasClass("success")).toBe(true);
+test("passes on className", () => {
+  const { container } = render(<Success className="success" />);
+
+  expect(container.querySelector(".success")).toBeTruthy();
 });
