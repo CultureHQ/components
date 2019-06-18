@@ -5,18 +5,9 @@ import locales from "../locales";
 
 import PlainButton from "./buttons/PlainButton";
 
-const getVisibleState = date => {
-  const visibleValue = new Date(date.getUTCFullYear(), date.getUTCMonth(), 1);
-
-  return {
-    visibleYear: visibleValue.getUTCFullYear(),
-    visibleMonth: visibleValue.getUTCMonth()
-  };
-};
-
 const getPrevMonthFillDays = (visibleYear, visibleMonth) => {
-  const daysInPrevMonth = new Date(visibleYear, visibleMonth, 0).getUTCDate();
-  const firstDayOfWeek = new Date(visibleYear, visibleMonth, 1).getUTCDay();
+  const daysInPrevMonth = new Date(visibleYear, visibleMonth, 0).getDate();
+  const firstDayOfWeek = new Date(visibleYear, visibleMonth, 1).getDay();
 
   const days = [];
 
@@ -31,7 +22,7 @@ const getPrevMonthFillDays = (visibleYear, visibleMonth) => {
 };
 
 const getCurrentMonthDays = (visibleYear, visibleMonth) => {
-  const maxDay = new Date(visibleYear, visibleMonth + 1, 0).getUTCDate();
+  const maxDay = new Date(visibleYear, visibleMonth + 1, 0).getDate();
   const days = [];
 
   for (let day = 1; day <= maxDay; day += 1) {
@@ -42,7 +33,7 @@ const getCurrentMonthDays = (visibleYear, visibleMonth) => {
 };
 
 const getNextMonthFillDays = (visibleYear, visibleMonth) => {
-  const lastDayOfWeek = new Date(visibleYear, visibleMonth + 1, 0).getUTCDay();
+  const lastDayOfWeek = new Date(visibleYear, visibleMonth + 1, 0).getDay();
   const days = [];
 
   const nextYear = visibleYear + (visibleMonth === 11 ? 1 : 0);
@@ -56,7 +47,7 @@ const getNextMonthFillDays = (visibleYear, visibleMonth) => {
 };
 
 const CalendarDays = ({ value, visibleYear, visibleMonth, onChange }) => {
-  const valueHash = `${value.getUTCFullYear()}-${value.getUTCMonth()}-${value.getUTCDate()}`;
+  const valueHash = `${value.year}-${value.month}-${value.day}`;
   const days = [
     ...getPrevMonthFillDays(visibleYear, visibleMonth),
     ...getCurrentMonthDays(visibleYear, visibleMonth),
@@ -80,40 +71,66 @@ const CalendarDays = ({ value, visibleYear, visibleMonth, onChange }) => {
   });
 };
 
+const getValue = (year, month, day) => {
+  if (year) {
+    return { year, month, day };
+  }
+
+  const date = new Date();
+
+  return {
+    year: date.getFullYear(),
+    month: date.getMonth(),
+    day: date.getDate()
+  };
+};
+
 class Calendar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = getVisibleState(props.value || new Date());
+    this.state = {
+      visibleYear: props.year || new Date().getFullYear(),
+      visibleMonth: props.month || new Date().getMonth()
+    };
   }
 
   componentDidUpdate(prevProps) {
-    const { value } = this.props;
+    const { year, month } = this.props;
     const { visibleYear, visibleMonth } = this.state;
 
-    if (
-      prevProps.value !== value
-      && `${value.getUTCFullYear()}-${value.getUTCMonth()}` !== `${visibleYear}-${visibleMonth}`
-    ) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState(getVisibleState(value));
+    if ((prevProps.year != year) || (prevProps.month !== month)) {
+      if ((year != visibleYear) || (month != visibleMonth)) {
+        // eslint-disable-next-line react/no-did-update-set-state
+        this.setState({ visibleYear: year, visibleMonth: month });
+      }
     }
   }
 
   handlePrevMonthClick = () => {
-    this.setState(({ visibleYear, visibleMonth }) => (
-      getVisibleState(new Date(visibleYear, visibleMonth - 1, 1))
-    ));
+    this.setState(({ visibleYear, visibleMonth }) => {
+      const nextVisibleDate = new Date(visibleYear, visibleMonth - 1, 1);
+
+      return {
+        visibleYear: nextVisibleDate.getFullYear(),
+        visibleMonth: nextVisibleDate.getMonth()
+      };
+    });
   };
 
   handleNextMonthClick = () => {
-    this.setState(({ visibleYear, visibleMonth }) => (
-      getVisibleState(new Date(visibleYear, visibleMonth + 1, 1))
-    ));
+    this.setState(({ visibleYear, visibleMonth }) => {
+      const nextVisibleDate = new Date(visibleYear, visibleMonth + 1, 1);
+
+      return {
+        visibleYear: nextVisibleDate.getFullYear(),
+        visibleMonth: nextVisibleDate.getMonth()
+      };
+    });
   };
 
   render() {
-    const { onChange, value } = this.props;
+    const { onChange, year, month, day } = this.props;
     const { visibleYear, visibleMonth } = this.state;
 
     return (
@@ -148,7 +165,7 @@ class Calendar extends Component {
         </div>
         <div className="chq-cal--days">
           <CalendarDays
-            value={value || new Date()}
+            value={getValue(year, month, day)}
             visibleYear={visibleYear}
             visibleMonth={visibleMonth}
             onChange={onChange}

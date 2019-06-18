@@ -6,13 +6,20 @@ import { date } from "@storybook/addon-knobs";
 import { Calendar } from "../src/components";
 
 const Container = ({ onChange }) => {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState({ year: null, month: null, day: null });
   const onCalendarChange = (year, month, day) => {
-    setValue(new Date(year, month, day));
+    setValue({ year, month, day });
     onChange(year, month, day);
   };
 
-  return <Calendar value={value} onChange={onCalendarChange} />;
+  return (
+    <Calendar
+      year={value.year}
+      month={value.month}
+      day={value.day}
+      onChange={onCalendarChange}
+    />
+  );
 };
 
 storiesOf("Calendar", module)
