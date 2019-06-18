@@ -53,7 +53,9 @@ class ImageField extends Component {
     const { name, onChange, onFormChange } = this.props;
 
     this.setState(state => {
-      URL.revokeObjectURL(state.preview);
+      if (state.preview) {
+        URL.revokeObjectURL(state.preview);
+      }
 
       return {
         editorOpen,
