@@ -19,6 +19,20 @@ for (let hours = 0; hours < 24; hours += 1) {
   }
 }
 
+const TimeSelectOption = ({ activeOptionRef, hours, minutes, onChange, option }) => {
+  const isActive = hours === option.hours && minutes === option.minutes;
+
+  return (
+    <PlainButton
+      ref={isActive ? activeOptionRef : null}
+      className={classnames("chq-tsl--op", { "chq-tsl--op-act": isActive })}
+      onClick={() => onChange(option.hours, option.minutes)}
+    >
+      {option.label}
+    </PlainButton>
+  );
+};
+
 const TimeSelect = ({ hours, minutes, onChange }) => {
   const activeOptionRef = useRef();
   const selectRef = useRef();
@@ -37,20 +51,16 @@ const TimeSelect = ({ hours, minutes, onChange }) => {
 
   return (
     <div className="chq-tsl" ref={selectRef}>
-      {TIME_SELECT_OPTIONS.map(option => {
-        const isActive = hours === option.hours && minutes === option.minutes;
-
-        return (
-          <PlainButton
-            key={`${option.hours}:${option.minutes}`}
-            ref={isActive ? activeOptionRef : null}
-            className={classnames("chq-tsl--op", { "chq-tsl--op-act": isActive })}
-            onClick={() => onChange(option.hours, option.minutes)}
-          >
-            {option.label}
-          </PlainButton>
-        );
-      })}
+      {TIME_SELECT_OPTIONS.map(option => (
+        <TimeSelectOption
+          key={`${option.hours}:${option.minutes}`}
+          activeOptionRef={activeOptionRef}
+          hours={hours}
+          minutes={minutes}
+          onChange={onChange}
+          option={option}
+        />
+      ))}
     </div>
   );
 };
