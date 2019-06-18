@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useRef } from "react";
 
 import classnames from "../../classnames";
 import PlainButton from "../buttons/PlainButton";
@@ -19,42 +19,40 @@ for (let hours = 0; hours < 24; hours += 1) {
   }
 }
 
-class TimeSelect extends Component {
-  activeOptionRef = React.createRef();
+const TimeSelect = ({ hours, minutes, onChange }) => {
+  const activeOptionRef = useRef();
+  const selectRef = useRef();
 
-  selectRef = React.createRef();
+  useEffect(
+    () => {
+      const activeOption = activeOptionRef.current;
+      const select = selectRef.current;
 
-  componentDidMount() {
-    const option = this.activeOptionRef.current;
-    const select = this.selectRef.current;
+      if (activeOption && select) {
+        select.scrollTop = Math.max(0, activeOption.offsetTop - select.offsetTop - 46);
+      }
+    },
+    [activeOptionRef, selectRef]
+  );
 
-    if (option && select) {
-      select.scrollTop = Math.max(0, option.offsetTop - select.offsetTop - 46);
-    }
-  }
+  return (
+    <div className="chq-tsl" ref={selectRef}>
+      {TIME_SELECT_OPTIONS.map(option => {
+        const isActive = hours === option.hours && minutes === option.minutes;
 
-  render() {
-    const { hours, minutes, onChange } = this.props;
-
-    return (
-      <div className="chq-tsl" ref={this.selectRef}>
-        {TIME_SELECT_OPTIONS.map(option => {
-          const isActive = hours === option.hours && minutes === option.minutes;
-
-          return (
-            <PlainButton
-              key={`${option.hours}:${option.minutes}`}
-              ref={isActive ? this.activeOptionRef : null}
-              className={classnames("chq-tsl--op", { "chq-tsl--op-act": isActive })}
-              onClick={() => onChange(option.hours, option.minutes)}
-            >
-              {option.label}
-            </PlainButton>
-          );
-        })}
-      </div>
-    );
-  }
-}
+        return (
+          <PlainButton
+            key={`${option.hours}:${option.minutes}`}
+            ref={isActive ? activeOptionRef : null}
+            className={classnames("chq-tsl--op", { "chq-tsl--op-act": isActive })}
+            onClick={() => onChange(option.hours, option.minutes)}
+          >
+            {option.label}
+          </PlainButton>
+        );
+      })}
+    </div>
+  );
+};
 
 export default TimeSelect;

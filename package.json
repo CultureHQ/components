@@ -26,8 +26,8 @@
   },
   "homepage": "https://github.com/CultureHQ/components#readme",
   "peerDependencies": {
-    "react": "^16",
-    "react-dom": "^16"
+    "react": ">= 16.8",
+    "react-dom": ">= 16.8"
   },
   "dependencies": {
     "cropperjs": "^1.5.1",
