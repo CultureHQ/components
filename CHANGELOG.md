@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+
+- Don't attempt to use `URL.revokeObjectURL` if the preview for the image is null. (This isn't actually a problem, but IE11 throws a warning.)
+
 ## [13.0.0] - 2019-06-18
 
 ### Changed
