@@ -5,8 +5,14 @@ import locales from "../locales";
 
 import PlainButton from "./buttons/PlainButton";
 
-const getStartOfMonth = date => new Date(date.getUTCFullYear(), date.getUTCMonth(), 1);
-const hashMonth = date => `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}`;
+const getVisibleState = date => {
+  const visibleValue = new Date(date.getUTCFullYear(), date.getUTCMonth(), 1);
+
+  return {
+    visibleYear: visibleValue.getUTCFullYear(),
+    visibleMonth: visibleValue.getUTCMonth()
+  };
+};
 
 const getPrevMonthFillDays = (visibleYear, visibleMonth) => {
   const daysInPrevMonth = new Date(visibleYear, visibleMonth, 0).getUTCDate();
@@ -78,43 +84,37 @@ class Calendar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { visibleValue: getStartOfMonth(props.value || new Date()) };
+    this.state = getVisibleState(props.value || new Date());
   }
 
   componentDidUpdate(prevProps) {
     const { value } = this.props;
-    const { visibleValue } = this.state;
+    const { visibleYear, visibleMonth } = this.state;
 
-    if (prevProps.value !== value && hashMonth(value) !== hashMonth(visibleValue)) {
+    if (
+      prevProps.value !== value
+      && `${value.getUTCFullYear()}-${value.getUTCMonth()}` !== `${visibleYear}-${visibleMonth}`
+    ) {
       // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ visibleValue: getStartOfMonth(value) });
+      this.setState(getVisibleState(value));
     }
   }
 
   handlePrevMonthClick = () => {
-    this.setState(({ visibleValue }) => {
-      const nextVisibleValue = new Date(visibleValue);
-      nextVisibleValue.setMonth(nextVisibleValue.getUTCMonth() - 1);
-
-      return { visibleValue: nextVisibleValue };
-    });
+    this.setState(({ visibleYear, visibleMonth }) => (
+      getVisibleState(new Date(visibleYear, visibleMonth - 1, 1))
+    ));
   };
 
   handleNextMonthClick = () => {
-    this.setState(({ visibleValue }) => {
-      const nextVisibleValue = new Date(visibleValue);
-      nextVisibleValue.setMonth(nextVisibleValue.getUTCMonth() + 1);
-
-      return { visibleValue: nextVisibleValue };
-    });
+    this.setState(({ visibleYear, visibleMonth }) => (
+      getVisibleState(new Date(visibleYear, visibleMonth + 1, 1))
+    ));
   };
 
   render() {
     const { onChange, value } = this.props;
-    const { visibleValue } = this.state;
-
-    const visibleYear = visibleValue.getUTCFullYear();
-    const visibleMonth = visibleValue.getUTCMonth();
+    const { visibleYear, visibleMonth } = this.state;
 
     return (
       <div className="chq-cal">
