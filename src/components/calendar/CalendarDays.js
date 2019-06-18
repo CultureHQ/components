@@ -1,7 +1,7 @@
 import React from "react";
 
 import classnames from "../../classnames";
-import CalendarDay from "./CalendarDay";
+import PlainButton from "../buttons/PlainButton";
 
 const getPrevMonthFillDays = visibleValue => {
   const visibleYear = visibleValue.getUTCFullYear();
@@ -65,6 +65,7 @@ const CalendarDays = ({ value, visibleValue, onChange }) => {
 
   return days.map(({ year, month, day }) => {
     const dayDateHash = `${year}-${month}-${day}`;
+    const onClick = () => onChange(year, month, day);
 
     const className = classnames("chq-cal--day", {
       "chq-cal--day-act": (dayDateHash === valueHash),
@@ -72,14 +73,9 @@ const CalendarDays = ({ value, visibleValue, onChange }) => {
     });
 
     return (
-      <CalendarDay
-        key={dayDateHash}
-        year={year}
-        month={month}
-        day={day}
-        className={className}
-        onClick={onChange}
-      />
+      <PlainButton key={dayDateHash} className={className} onClick={onClick}>
+        {day}
+      </PlainButton>
     );
   });
 };
