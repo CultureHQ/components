@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [13.0.0] - 2019-06-18
+
 ### Changed
 
 - Change the `Calendar` component to deal directly with `year`, `month`, and `day` props such that it isn't impacted by timezones.
@@ -980,7 +982,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v12.8.4...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v13.0.0...HEAD
+[13.0.0]: https://github.com/CultureHQ/components/compare/v12.8.4...v13.0.0
 [12.8.4]: https://github.com/CultureHQ/components/compare/v12.8.3...v12.8.4
 [12.8.3]: https://github.com/CultureHQ/components/compare/v12.8.2...v12.8.3
 [12.8.2]: https://github.com/CultureHQ/components/compare/v12.8.1...v12.8.2
