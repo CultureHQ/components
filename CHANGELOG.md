@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [13.1.0] - 2019-06-21
+
+### Added
+
+- The `view-grid` and `view-list` icons.
+
 ### Changed
 
 - Don't attempt to use `URL.revokeObjectURL` if the preview for the image is null. (This isn't actually a problem, but IE11 throws a warning.)
@@ -986,7 +992,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v13.0.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v13.1.0...HEAD
+[13.1.0]: https://github.com/CultureHQ/components/compare/v13.0.0...v13.1.0
 [13.0.0]: https://github.com/CultureHQ/components/compare/v12.8.4...v13.0.0
 [12.8.4]: https://github.com/CultureHQ/components/compare/v12.8.3...v12.8.4
 [12.8.3]: https://github.com/CultureHQ/components/compare/v12.8.2...v12.8.3
