@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [13.2.0] - 2019-06-24
+
 ### Changed
 
 - Made `Checkmark` into a function instead of a class component.
@@ -998,7 +1000,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v13.1.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v13.2.0...HEAD
+[13.2.0]: https://github.com/CultureHQ/components/compare/v13.1.0...v13.2.0
 [13.1.0]: https://github.com/CultureHQ/components/compare/v13.0.0...v13.1.0
 [13.0.0]: https://github.com/CultureHQ/components/compare/v12.8.4...v13.0.0
 [12.8.4]: https://github.com/CultureHQ/components/compare/v12.8.3...v12.8.4
