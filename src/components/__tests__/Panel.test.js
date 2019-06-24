@@ -27,7 +27,7 @@ test("has no violations", () => {
   );
 
   return expect(component).toHaveNoViolations();
-})
+});
 
 test("Panel passes on className", () => {
   const { container } = render(<Panel className="panel" />);
