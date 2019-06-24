@@ -30,7 +30,7 @@ test("renders without crashing", () => {
 });
 
 test("passes on className", () => {
-  const { container} = render(<FeedItem className="feed-item" />);
+  const { container } = render(<FeedItem className="feed-item" />);
 
   expect(container.querySelector(".feed-item")).toBeTruthy();
 });
