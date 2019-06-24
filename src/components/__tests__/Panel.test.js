@@ -1,9 +1,23 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { render } from "@testing-library/react";
 
 import Panel from "../Panel";
 
 test("renders without crashing", async () => {
+  const { queryByText } = render(
+    <Panel>
+      <Panel.Heading>Heading</Panel.Heading>
+      <Panel.Body>Body</Panel.Body>
+      <Panel.Footer>Footer</Panel.Footer>
+    </Panel>
+  );
+
+  ["Heading", "Body", "Footer"].forEach(text => {
+    expect(queryByText(text)).toBeTruthy();
+  });
+});
+
+test("has no violations", () => {
   const component = (
     <Panel>
       <Panel.Heading>Heading</Panel.Heading>
@@ -12,49 +26,54 @@ test("renders without crashing", async () => {
     </Panel>
   );
 
-  expect(mount(component).find("div")).toHaveLength(4);
-  await expect(component).toHaveNoViolations();
-});
+  return expect(component).toHaveNoViolations();
+})
 
 test("Panel passes on className", () => {
-  const component = shallow(<Panel className="panel" />);
+  const { container } = render(<Panel className="panel" />);
 
-  expect(component.hasClass("chq-pan")).toBe(true);
-  expect(component.hasClass("panel")).toBe(true);
+  expect(container.querySelector(".panel")).toBeTruthy();
+});
+
+test("Panel passes on other props", () => {
+  const { queryByRole } = render(<Panel role="presentation" />);
+
+  expect(queryByRole("presentation")).toBeTruthy();
 });
 
 test("PanelHeading passes on className", () => {
-  const component = shallow(<Panel.Heading className="panel-heading" />);
+  const { container } = render(<Panel.Heading className="panel-heading" />);
 
-  expect(component.hasClass("chq-pan--hd")).toBe(true);
-  expect(component.hasClass("panel-heading")).toBe(true);
+  expect(container.querySelector(".panel-heading")).toBeTruthy();
 });
 
 test("PanelBody passes on className", () => {
-  const component = shallow(<Panel.Body className="panel-body" />);
+  const { container } = render(<Panel.Body className="panel-body" />);
 
-  expect(component.hasClass("chq-pan--bd")).toBe(true);
-  expect(component.hasClass("panel-body")).toBe(true);
+  expect(container.querySelector(".panel-body")).toBeTruthy();
 });
 
 test("PanelLoaderBody passes on className", () => {
-  const component = mount(<Panel.LoaderBody className="panel-loader-body" />);
+  const { container } = render(
+    <Panel.LoaderBody className="panel-loader-body" />
+  );
 
-  expect(component.find(".chq-pan--bd")).toHaveLength(1);
-  expect(component.hasClass("panel-loader-body")).toBe(true);
+  expect(container.querySelector(".panel-loader-body")).toBeTruthy();
 });
 
 test("PanelFooter passes on className", () => {
-  const component = shallow(<Panel.Footer className="panel-footer" />);
+  const { container } = render(<Panel.Footer className="panel-footer" />);
 
-  expect(component.hasClass("chq-pan--ft")).toBe(true);
-  expect(component.hasClass("panel-footer")).toBe(true);
+  expect(container.querySelector(".panel-footer")).toBeTruthy();
 });
 
 test("PanelLoaderBody handles loading", () => {
-  const component = mount(<Panel.LoaderBody loading>Loaded</Panel.LoaderBody>);
-  expect(component.text()).toEqual("");
+  const { rerender, queryByText } = render(
+    <Panel.LoaderBody loading>Loaded</Panel.LoaderBody>
+  );
 
-  component.setProps({ loading: false });
-  expect(component.text()).toEqual("Loaded");
+  expect(queryByText("Loaded")).toBeFalsy();
+
+  rerender(<Panel.LoaderBody loading={false}>Loaded</Panel.LoaderBody>);
+  expect(queryByText("Loaded")).toBeTruthy();
 });
