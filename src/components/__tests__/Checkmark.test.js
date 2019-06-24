@@ -1,30 +1,24 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 
 import Checkmark from "../Checkmark";
 
-test("has no violations", async () => {
-  await expect(<Checkmark />).toHaveNoViolations();
-});
-
-test("renders without crashing", () => {
-  const component = shallow(<Checkmark />);
-
-  expect(component.type()).toEqual("button");
-});
+test("has no violations", () => (
+  expect(<Checkmark />).toHaveNoViolations()
+));
 
 test("passes on className", () => {
-  const component = shallow(<Checkmark className="checkmark" />);
+  const { container } = render(<Checkmark className="checkmark" />);
 
-  expect(component.hasClass("checkmark")).toBe(true);
+  expect(container.querySelector(".checkmark")).toBeTruthy();
 });
 
 test("passes on onClick", () => {
   const onClick = jest.fn();
 
-  const component = shallow(<Checkmark checked onClick={onClick} />);
+  const { getByRole } = render(<Checkmark checked onClick={onClick} />);
   expect(onClick).not.toHaveBeenCalled();
 
-  component.simulate("click");
+  fireEvent.click(getByRole("button"));
   expect(onClick).toHaveBeenLastCalledWith(false);
 });
