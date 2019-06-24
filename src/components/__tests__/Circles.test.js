@@ -1,21 +1,14 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 
 import Circles from "../Circles";
 
-test("has no violations", async () => {
-  await expect(<Circles />).toHaveNoViolations();
-});
-
-test("renders without crashing", () => {
-  const component = shallow(<Circles />);
-
-  expect(component.type()).toEqual("svg");
-});
+test("has no violations", () => (
+  expect(<Circles />).toHaveNoViolations()
+));
 
 test("passes on className", () => {
-  const component = shallow(<Circles className="circles" />);
+  const { container } = render(<Circles className="circles" />);
 
-  expect(component.hasClass("circles")).toBe(true);
-  expect(component.hasClass("chq-cir")).toBe(true);
+  expect(container.querySelector(".circles")).toBeTruthy();
 });
