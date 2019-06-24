@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+
+- Made `Checkmark` into a function instead of a class component.
+- Added the `aria-hidden` and `role="presentation"` props to the `Icon` svg element.
+- Forwarded on remaining props to the `Panel` component's div.
+
 ## [13.1.0] - 2019-06-21
 
 ### Added
