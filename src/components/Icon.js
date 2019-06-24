@@ -39,7 +39,14 @@ class Icon extends Component {
     const { d } = this.state;
 
     return (
-      <svg width="22px" height="22px" viewBox="0 0 1024 1024" className={className}>
+      <svg
+        aria-hidden
+        role="presentation"
+        width="22px"
+        height="22px"
+        viewBox="0 0 1024 1024"
+        className={className}
+      >
         {d && <path d={d} />}
       </svg>
     );

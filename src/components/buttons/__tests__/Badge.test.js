@@ -1,44 +1,43 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 
 import Badge from "../Badge";
 
-test("has no violations", async () => {
-  await expect(<Badge>This is a badge.</Badge>).toHaveNoViolations();
-});
+test("has no violations", () => (
+  expect(<Badge>This is a badge.</Badge>).toHaveNoViolations()
+));
 
 test("renders without crashing", () => {
-  const message = "This is a badge.";
-  const component = shallow(<Badge>{message}</Badge>);
+  const text = "This is a badge.";
+  const { queryByText } = render(<Badge>{text}</Badge>);
 
-  expect(component.html()).toContain(message);
+  expect(queryByText(text)).toBeTruthy();
 });
 
 test("passes on className", () => {
-  const component = shallow(<Badge className="badge" />);
+  const { container } = render(<Badge className="badge" />);
 
-  expect(component.hasClass("badge")).toBe(true);
-  expect(component.hasClass("chq-bdg")).toBe(true);
+  expect(container.querySelector(".badge")).toBeTruthy();
 });
 
 test("passes on onClick", () => {
   const onClick = jest.fn();
 
-  const component = shallow(<Badge onClick={onClick} />);
+  const { getByRole } = render(<Badge onClick={onClick} />);
   expect(onClick).not.toHaveBeenCalled();
 
-  component.simulate("click");
+  fireEvent.click(getByRole("button"));
   expect(onClick).toHaveBeenCalled();
 });
 
 test("displays an icon if one is provided", () => {
-  const component = mount(<Badge icon="clipboard" />);
+  const { queryByRole } = render(<Badge icon="clipboard" />);
 
-  expect(component.find("svg")).toHaveLength(1);
+  expect(queryByRole("presentation")).toBeTruthy();
 });
 
 test("passes along any other props", () => {
-  const component = shallow(<Badge data-value="foo" />);
+  const { container } = render(<Badge data-value="foo" />);
 
-  expect(component.find("[data-value=\"foo\"]")).toHaveLength(1);
+  expect(container.querySelector("[data-value=\"foo\"]")).toBeTruthy();
 });
