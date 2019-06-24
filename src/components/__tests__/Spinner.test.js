@@ -1,18 +1,14 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 
 import Spinner from "../Spinner";
 
-test("renders without crashing", async () => {
-  const component = <Spinner />;
-
-  expect(shallow(component).type()).toEqual("div");
-  await expect(component).toHaveNoViolations();
-});
+test("has no violations", () => (
+  expect(<Spinner />).toHaveNoViolations()
+));
 
 test("passes on className", () => {
-  const component = shallow(<Spinner className="spinner" />);
+  const { container } = render(<Spinner className="spinner" />);
 
-  expect(component.hasClass("spinner")).toBe(true);
-  expect(component.hasClass("chq-spn")).toBe(true);
+  expect(container.querySelector(".spinner")).toBeTruthy();
 });
