@@ -40,7 +40,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "@culturehq/scripts": "^2.0.0",
+    "@culturehq/scripts": "^2.1.0",
     "@storybook/addon-a11y": "^5.1.9",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-knobs": "^5.1.9",
@@ -50,13 +50,12 @@
     "@storybook/cli": "^5.1.9",
     "@storybook/react": "^5.1.9",
     "@storybook/theming": "^5.1.9",
-    "@testing-library/react": "^8.0.1",
+    "@testing-library/react": "^8.0.4",
     "babel-loader": "^8.0.5",
     "babel-plugin-dynamic-import-node": "^2.2.0",
     "css-loader": "^3.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.13.1",
-    "eslint": "^6.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest-axe": "^3.1.1",
     "node-sass": "^4.12.0",
@@ -67,10 +66,9 @@
     "webpack": "^4.35.0"
   },
   "eslintConfig": {
-    "extends": "@culturehq",
+    "extends": "./node_modules/@culturehq/scripts/node_modules/@culturehq/eslint-config",
     "rules": {
-      "import/no-extraneous-dependencies": "off",
-      "react/jsx-props-no-spreading": "off"
+      "import/no-extraneous-dependencies": "off"
     }
   },
   "jest": {
