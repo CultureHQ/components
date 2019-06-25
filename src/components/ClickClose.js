@@ -1,34 +1,35 @@
-import React, { Component } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 
-class ClickClose extends Component {
-  containerRef = React.createRef();
+const useClickOutside = onClose => {
+  const containerRef = useRef(null);
+  const callback = useCallback(
+    event => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        onClose();
+      }
+    },
+    [onClose]
+  );
 
-  componentDidMount() {
-    window.addEventListener("click", this.handleClick);
-  }
+  useEffect(
+    () => {
+      document.addEventListener("click", callback);
+      return () => document.removeEventListener("click", callback);
+    },
+    [callback]
+  );
 
-  componentWillUnmount() {
-    window.removeEventListener("click", this.handleClick);
-  }
+  return containerRef;
+};
 
-  handleClick = event => {
-    if (this.containerRef.current.contains(event.target)) {
-      return;
-    }
+const ClickClose = ({ children, component: Container = "div", onClose, ...props }) => {
+  const containerRef = useClickOutside(onClose);
 
-    const { onClose } = this.props;
-    onClose();
-  };
-
-  render() {
-    const { children, component: Container = "div", ...props } = this.props;
-
-    return (
-      <Container ref={this.containerRef} {...props}>
-        {children}
-      </Container>
-    );
-  }
-}
+  return (
+    <Container ref={containerRef} {...props}>
+      {children}
+    </Container>
+  );
+};
 
 export default ClickClose;
