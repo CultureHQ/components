@@ -1,35 +1,32 @@
 import React from "react";
-import { mount } from "enzyme";
+import { render } from "@testing-library/react";
 
 import Cheer from "../Cheer";
-import Tooltip from "../Tooltip";
 
-test("has no violations", async () => {
-  await expect(<Cheer />).toHaveNoViolations();
-});
+test("has no violations", () => (
+  expect(<Cheer />).toHaveNoViolations()
+));
 
 test("passes on className", () => {
-  const component = mount(<Cheer className="cheer" />);
+  const { container } = render(<Cheer className="cheer" />);
 
-  expect(component.find("svg").hasClass("cheer")).toBe(true);
-  expect(component.find("svg").hasClass("chq-chr")).toBe(true);
+  expect(container.querySelector(".cheer")).toBeTruthy();
 });
 
 test("allows you to pass different colors", () => {
-  const component = mount(<Cheer color="yellow" />);
+  const { container } = render(<Cheer color="yellow" />);
 
-  expect(component.find("svg").hasClass("chq-chr-yw")).toBe(true);
-  expect(component.find("svg").hasClass("chq-chr")).toBe(true);
+  expect(container.querySelector(".chq-chr-yw")).toBeTruthy();
 });
 
 test("renders a tooltip if you pass a name", () => {
-  const component = mount(<Cheer name="Harry" />);
+  const { container } = render(<Cheer name="Harry" />);
 
-  expect(component.find(Tooltip)).toHaveLength(1);
+  expect(container.querySelectorAll(".chq-ttp")).toHaveLength(1);
 });
 
 test("adds the animation class if the pop prop is passed", () => {
-  const component = mount(<Cheer pop />);
+  const { container } = render(<Cheer pop />);
 
-  expect(component.find("svg").hasClass("chq-chr-pp")).toBe(true);
+  expect(container.querySelector(".chq-chr-pp")).toBeTruthy();
 });
