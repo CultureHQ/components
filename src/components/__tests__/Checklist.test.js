@@ -1,9 +1,9 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { render } from "@testing-library/react";
 
 import Checklist from "../Checklist";
 
-test("has no violations", async () => {
+test("has no violations", () => {
   const component = (
     <Checklist>
       <Checklist.Item>This is unchecked.</Checklist.Item>
@@ -11,25 +11,18 @@ test("has no violations", async () => {
     </Checklist>
   );
 
-  await expect(component).toHaveNoViolations();
-});
-
-test("renders without crashing", () => {
-  const component = shallow(<Checklist />);
-
-  expect(component.type()).toEqual("div");
+  return expect(component).toHaveNoViolations();
 });
 
 test("passes on className", () => {
-  const component = shallow(<Checklist className="checklist" />);
+  const { container } = render(<Checklist className="checklist" />);
 
-  expect(component.hasClass("checklist")).toBe(true);
+  expect(container.querySelector(".checklist")).toBeTruthy();
 });
 
 test("renders an item without crashing", () => {
-  const message = "checklist item";
-  const component = mount(<Checklist.Item checked>{message}</Checklist.Item>);
+  const text = "checklist item";
+  const { queryByText } = render(<Checklist.Item checked>{text}</Checklist.Item>);
 
-  expect(component.find("button").hasClass("chq-cmk-ck")).toBe(true);
-  expect(component.find("button").text()).toContain(message);
+  expect(queryByText(text)).toBeTruthy();
 });
