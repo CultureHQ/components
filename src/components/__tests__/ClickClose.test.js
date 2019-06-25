@@ -1,39 +1,30 @@
 import React from "react";
-import { mount } from "enzyme";
+import { act, fireEvent, render } from "@testing-library/react";
 
 import ClickClose from "../ClickClose";
 
-test("has no violations", async () => {
-  await expect(<ClickClose>Test</ClickClose>).toHaveNoViolations();
-});
+test("has no violations", () => (
+  expect(<ClickClose>Test</ClickClose>).toHaveNoViolations()
+));
 
 test("calls onClose when appropriate", () => {
-  const events = {};
-  window.addEventListener = jest.fn((event, callback) => {
-    events[event] = callback;
-  });
-
   const onClose = jest.fn();
-  const component = mount(
-    <div>
-      <ClickClose onClose={onClose} className="inside">
-        Inside
-      </ClickClose>
-      <div className="outside">
-        Outside
-      </div>
-    </div>
+  const { getByText } = render(
+    <main>
+      <ClickClose onClose={onClose} className="inside">Inside</ClickClose>
+      <div>Outside</div>
+    </main>
   );
 
-  events.click({ target: component.find("div.inside").instance() });
+  act(() => void fireEvent.click(getByText("Inside")));
   expect(onClose).not.toHaveBeenCalled();
 
-  events.click({ target: component.find("div.outside").instance() });
+  act(() => void fireEvent.click(getByText("Outside")));
   expect(onClose).toHaveBeenCalled();
 });
 
 test("passes on other props", () => {
-  const component = mount(<ClickClose aria-label="Label" />);
+  const { queryByLabelText } = render(<ClickClose aria-label="Label" />);
 
-  expect(component.find("div").props()["aria-label"]).toEqual("Label");
+  expect(queryByLabelText("Label")).toBeTruthy();
 });
