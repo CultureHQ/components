@@ -4568,9 +4568,9 @@ create-react-context@^0.2.1:
     gud "^1.0.0"
 
 cropperjs@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/cropperjs/-/cropperjs-1.5.1.tgz#3bf93c6e89bf46d18cccc27160cd7d9b936cac7a"
-  integrity sha512-b6+gzlkhxEUswBNVwYct6fz+sJYdbmW7F6dAXwNkjTVfZcPcXBYADnVzvxNYcSOPkh/ytzmTRktbNkg5/Uw/PQ==
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/cropperjs/-/cropperjs-1.5.2.tgz#7cfcd4da06e13c27d1eda6d29e099403c30f8157"
+  integrity sha512-Yt9rrJ8L8yQYOglG7cVbsvxX7kDxdw5FUQfOSNfBYrb46435udbRTG19YefpDw36g+0hSgnagLXpx61uKyWFNg==
 
 cross-spawn@6.0.5, cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
