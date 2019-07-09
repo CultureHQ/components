@@ -38,7 +38,7 @@
     "@babel/core": "^7.5.0",
     "@babel/plugin-proposal-class-properties": "^7.5.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-env": "^7.5.3",
     "@babel/preset-react": "^7.0.0",
     "@culturehq/scripts": "^2.1.0",
     "@storybook/addon-a11y": "^5.1.9",
@@ -63,7 +63,7 @@
     "react-dom": "^16.8.6",
     "sass-lint": "^1.12.1",
     "sass-loader": "^7.1.0",
-    "webpack": "^4.35.2"
+    "webpack": "^4.35.3"
   },
   "eslintConfig": {
     "extends": "@culturehq",
