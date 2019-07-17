@@ -2,8 +2,15 @@ import React from "react";
 
 import classnames from "../classnames";
 
-const Thumbnail = ({ className, image, size = "small", square = false, title }) => (
-  <div
+const Thumbnail = ({
+  as: Element = "div",
+  className,
+  image,
+  size = "small",
+  square = false,
+  title
+}) => (
+  <Element
     className={
       classnames("chq-tmb", className, {
         "chq-tmb-md": size === "medium",

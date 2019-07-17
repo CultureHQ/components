@@ -11,10 +11,18 @@ const sizeOptions = {
   large: "large"
 };
 
+const asOptions = {
+  div: "div",
+  span: "span"
+};
+
 storiesOf("Thumbnail", module)
   .add("default", () => {
     const props = {
       image,
+      as: optionsKnob("as", asOptions, "div", {
+        display: "inline-radio"
+      }),
       size: optionsKnob("size", sizeOptions, "small", {
         display: "inline-radio"
       }),
