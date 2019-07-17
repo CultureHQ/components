@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [13.3.0] - 2019-07-17
+
 ### Added
 
 - The ability to switch the component type of the `Thumbnail` component with the `as` prop.
@@ -1004,7 +1006,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v13.2.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v13.3.0...HEAD
+[13.3.0]: https://github.com/CultureHQ/components/compare/v13.2.0...v13.3.0
 [13.2.0]: https://github.com/CultureHQ/components/compare/v13.1.0...v13.2.0
 [13.1.0]: https://github.com/CultureHQ/components/compare/v13.0.0...v13.1.0
 [13.0.0]: https://github.com/CultureHQ/components/compare/v12.8.4...v13.0.0
