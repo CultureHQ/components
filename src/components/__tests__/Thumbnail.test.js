@@ -1,17 +1,24 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 
 import Thumbnail from "../Thumbnail";
 
-test("renders without crashing", async () => {
-  const component = <Thumbnail image="https://robohash.org/1" />;
+test("renders without crashing", () => (
+  expect(<Thumbnail image="https://robohash.org/1" />).toHaveNoViolations()
+));
 
-  expect(shallow(component).html()).toContain("div");
-  await expect(component).toHaveNoViolations();
+test("allows you to use a different component", () => {
+  const { container } = render(
+    <Thumbnail image="https://robohash.org/1" as="span" />
+  );
+
+  expect(container.querySelector("span")).toBeTruthy();
 });
 
 test("passes on className", () => {
-  const component = shallow(<Thumbnail image="https://robohash.org/1" className="thumbnail" />);
+  const { container } = render(
+    <Thumbnail image="https://robohash.org/1" className="thumbnail" />
+  );
 
-  expect(component.hasClass("thumbnail")).toBe(true);
+  expect(container.querySelector(".thumbnail")).toBeTruthy();
 });
