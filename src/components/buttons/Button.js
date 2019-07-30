@@ -12,6 +12,7 @@ const ButtonIcon = ({ icon, loading }) => (
 );
 
 const Button = ({
+  as: Element = "button",
   children,
   className,
   type = "button",
@@ -23,24 +24,29 @@ const Button = ({
   loading,
   danger,
   ...props
-}) => (
-  <button // eslint-disable-line react/button-has-type
-    {...props}
-    type={type}
-    className={
-      classnames("chq-btn", className, {
-        "chq-btn-fp": fillParent,
-        "chq-btn-iv": inverted,
-        "chq-btn-pr": primary,
-        "chq-btn-sm": small,
-        "chq-btn-ld": loading,
-        "chq-btn-dg": danger
-      })
-    }
-  >
-    {(loading || icon) && <ButtonIcon icon={icon} loading={loading} />}
-    {children}
-  </button>
-);
+}) => {
+  const buttonProps = {
+    ...props,
+    className: classnames("chq-btn", className, {
+      "chq-btn-fp": fillParent,
+      "chq-btn-iv": inverted,
+      "chq-btn-pr": primary,
+      "chq-btn-sm": small,
+      "chq-btn-ld": loading,
+      "chq-btn-dg": danger
+    })
+  };
+
+  if (Element === "button") {
+    buttonProps.type = type;
+  }
+
+  return (
+    <Element {...buttonProps}>
+      {(loading || icon) && <ButtonIcon icon={icon} loading={loading} />}
+      {children}
+    </Element>
+  );
+};
 
 export default Button;

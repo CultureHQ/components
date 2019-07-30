@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Added
+
+- The ability to switch the component type of the `Button` component with the `as` prop.
+
 ## [13.3.0] - 2019-07-17
 
 ### Added

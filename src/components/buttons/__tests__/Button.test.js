@@ -1,40 +1,51 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { render, waitForDomChange } from "@testing-library/react";
 
 import Button from "../Button";
-import Icon from "../../Icon";
+import icons from "../../../icons.json";
 
-test("has no violations", async () => {
-  await expect(<Button>This is a button.</Button>).toHaveNoViolations();
-});
+const editIconPath = icons.edit.join(" ");
+const loadingIconPath = icons["load-c"].join(" ");
+
+const getIconPath = async container => {
+  await waitForDomChange({ container });
+  return container.querySelector("path").getAttribute("d");
+};
+
+test("has no violations", () => (
+  expect(<Button>This is a button.</Button>).toHaveNoViolations()
+));
 
 test("renders without crashing", () => {
   const message = "This is a button.";
-  const component = shallow(<Button>{message}</Button>);
+  const { queryByText } = render(<Button>{message}</Button>);
 
-  expect(component.html()).toContain(message);
+  expect(queryByText(message)).toBeTruthy();
 });
 
 test("passes on extra props", () => {
-  const component = shallow(<Button className="button" />);
+  const { container } = render(<Button className="button" />);
 
-  expect(component.hasClass("button")).toBe(true);
+  expect(container.querySelector(".button")).toBeTruthy();
 });
 
-test("displays a loading indicator", () => {
-  const component = mount(<Button loading>Loading</Button>);
+test("displays a loading indicator", async () => {
+  const { container } = render(<Button loading>Loading</Button>);
+  const iconPath = await getIconPath(container);
 
-  expect(component.find(Icon).props().icon).toEqual("load-c");
+  expect(iconPath).toEqual(loadingIconPath);
 });
 
-test("displays a regular icon", () => {
-  const component = mount(<Button icon="edit">Button</Button>);
+test("displays a regular icon", async () => {
+  const { container } = render(<Button icon="edit">Button</Button>);
+  const iconPath = await getIconPath(container);
 
-  expect(component.find(Icon).props().icon).toEqual("edit");
+  expect(iconPath).toEqual(editIconPath);
 });
 
-test("loading overrides the regular icon", () => {
-  const component = mount(<Button loading icon="edit">Button</Button>);
+test("loading overrides the regular icon", async () => {
+  const { container } = render(<Button loading icon="edit">Button</Button>);
+  const iconPath = await getIconPath(container);
 
-  expect(component.find(Icon).props().icon).toEqual("load-c");
+  expect(iconPath).toEqual(loadingIconPath);
 });
