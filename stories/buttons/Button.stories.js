@@ -10,6 +10,9 @@ storiesOf("Buttons/Button", module)
   .add("default", () => {
     const children = text("children", "Default");
     const props = {
+      as: optionsKnob("as", { button: "button", a: "a" }, "button", {
+        display: "inline-radio"
+      }),
       danger: boolean("danger", false),
       disabled: boolean("disabled", false),
       fillParent: boolean("fillParent", false),
