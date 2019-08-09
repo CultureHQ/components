@@ -86,6 +86,7 @@ class SelectField extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("click", this.handleWindowClick);
+    clearTimeout(this.timeout);
   }
 
   handleWindowClick = event => {
@@ -169,9 +170,9 @@ class SelectField extends Component {
       display = display ? display.label : (nextValue || "");
     }
 
-    this.setState({ display, touched: true, ...effects }, () => (
-      setTimeout(() => this.setState({ filteredOptions: options }), 150)
-    ));
+    this.setState({ display, touched: true, ...effects }, () => {
+      this.timeout = setTimeout(() => this.setState({ filteredOptions: options }), 150);
+    });
   };
 
   /* eslint-disable jsx-a11y/label-has-for */
