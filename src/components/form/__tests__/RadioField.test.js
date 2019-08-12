@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 
 import RadioField from "../RadioField";
 import Form from "../Form";
@@ -11,51 +11,62 @@ const testOptions = [
   { value: "slytherin", label: "Slytherin" }
 ];
 
-test("has no violations", async () => {
-  await expect(
+test("has no violations", () => (
+  expect(
     <RadioField name="radio" options={testOptions}>
       Radio
     </RadioField>
-  ).toHaveNoViolations();
-});
+  ).toHaveNoViolations()
+));
 
 test("passes on className", () => {
-  const component = mount(<RadioField name="radio" className="radio" />);
+  const { container } = render(<RadioField name="radio" className="radio" />);
 
-  expect(component.find(".chq-ffd").hasClass("radio")).toBe(true);
+  expect(container.querySelector(".radio")).toBeTruthy();
 });
 
 test("calls up to callbacks if they are provided", () => {
   const onChange = jest.fn();
-  const component = mount(
+  const { getAllByRole } = render(
     <Form>
       <RadioField name="radio" options={testOptions} onChange={onChange} />
     </Form>
   );
 
-  component.find("label input").at(0).simulate("change", {
-    target: { value: testOptions[0].value }
-  });
+  fireEvent.click(getAllByRole("radio")[1]);
 
   expect(onChange).toHaveBeenCalledTimes(1);
-  expect(onChange).toHaveBeenCalledWith(testOptions[0].value);
+  expect(onChange).toHaveBeenCalledWith(testOptions[1].value);
 });
 
 test("tracks touch status in component state", () => {
-  const component = mount(
+  const { getAllByRole, queryByText } = render(
     <RadioField required name="radio" options={testOptions} />
   );
 
-  component.find("input").at(0).simulate("change", { target: { value: null } });
-  component.find("input").at(0).simulate("blur");
+  const radios = getAllByRole("radio");
+  expect(queryByText("Required")).toBeFalsy();
 
-  expect(component.find("FormError").text()).toEqual("Required");
+  fireEvent.change(radios[0], { target: { value: null } });
+  fireEvent.blur(radios[0]);
+
+  expect(queryByText("Required")).toBeTruthy();
 });
 
 test("displays errors if submitted", () => {
-  const component = mount(<Form><RadioField name="radio" options={testOptions} required /></Form>);
-  expect(component.find("FormError").text()).toEqual("");
+  const { queryByText, rerender } = render(
+    <Form>
+      <RadioField name="radio" options={testOptions} required />
+    </Form>
+  );
 
-  component.setState({ submitted: true });
-  expect(component.find("FormError").text()).toEqual("Required");
+  expect(queryByText("Required")).toBeFalsy();
+
+  rerender(
+    <Form>
+      <RadioField name="radio" options={testOptions} required submitted />
+    </Form>
+  );
+
+  expect(queryByText("Required")).toBeTruthy();
 });
