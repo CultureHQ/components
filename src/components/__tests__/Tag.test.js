@@ -1,18 +1,21 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 
 import Tag from "../Tag";
 
-test("renders without crashing", async () => {
-  const message = "Tag.";
-  const component = <Tag>{message}</Tag>;
+test("has no violations", () => (
+  expect(<Tag>This is a tag</Tag>).toHaveNoViolations()
+));
 
-  expect(shallow(component).html()).toContain(message);
-  await expect(component).toHaveNoViolations();
+test("renders without crashing", () => {
+  const message = "Tag.";
+  const { queryByText } = render(<Tag>{message}</Tag>);
+
+  expect(queryByText(message)).toBeTruthy();
 });
 
 test("passes on className", () => {
-  const component = shallow(<Tag className="tag" />);
+  const { container } = render(<Tag className="tag" />);
 
-  expect(component.hasClass("tag")).toBe(true);
+  expect(container.querySelector(".tag")).toBeTruthy();
 });
