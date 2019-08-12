@@ -9,7 +9,9 @@ test("has no violations", () => (
 ));
 
 test("passes on className", () => {
-  const { container } = render(<TextField name="text" className="text-field" />);
+  const { container } = render(
+    <TextField name="text" className="text-field" />
+  );
 
   expect(container.querySelector(".text-field")).toBeTruthy();
 });
@@ -24,7 +26,10 @@ test("calls up to callbacks if they are provided", () => {
 });
 
 test("tracks touch status in component state", () => {
-  const { container, getByRole, queryByText } = render(<TextField name="text" required />);
+  const { container, getByRole, queryByText } = render(
+    <TextField name="text" required />
+  );
+
   expect(container.textContent).toEqual("");
 
   fireEvent.change(getByRole("textbox"), { target: { value: "" } });
@@ -34,7 +39,10 @@ test("tracks touch status in component state", () => {
 });
 
 test("displays errors if submitted", () => {
-  const { container, queryByText, rerender } = render(<Form><TextField name="text" required /></Form>);
+  const { container, queryByText, rerender } = render(
+    <Form><TextField name="text" required /></Form>
+  );
+
   expect(container.textContent).toEqual("");
 
   rerender(<Form><TextField name="text" required submitted /></Form>);

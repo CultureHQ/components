@@ -1,56 +1,66 @@
 import React from "react";
-import { mount } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 
 import * as FormFields from "../FormFields";
 import Form from "../Form";
 
-const CASES = Object.keys(FormFields).map(fieldName => [fieldName, FormFields[fieldName]]);
+const CASES = Object.keys(FormFields).map(
+  fieldName => [fieldName, FormFields[fieldName]]
+);
 
 describe.each(CASES)("%s", (fieldName, FormField) => {
-  test("has no violations", async () => {
-    await expect(<FormField name="field">Field</FormField>).toHaveNoViolations();
-  });
+  test("has no violations", () => (
+    expect(<FormField name="field">Field</FormField>).toHaveNoViolations()
+  ));
 
   test("passes on className", () => {
-    const component = mount(<FormField name="name" className="form-field" />);
+    const { container } = render(
+      <FormField name="name" className="form-field" />
+    );
 
-    expect(component.find("label").hasClass("chq-ffd")).toBe(true);
-    expect(component.find("label").hasClass("form-field")).toBe(true);
+    expect(container.querySelector(".form-field")).toBeTruthy();
   });
 
   test("calls up to callbacks if they are provided", () => {
     const onChange = jest.fn();
-    const component = mount(
+    const { getByRole } = render(
       <Form>
         <FormField name="name" onChange={onChange} />
       </Form>
     );
 
-    component.find("input").simulate("change", { target: { value: "Kevin" } });
+    fireEvent.change(getByRole("textbox"), { target: { value: "123" } });
 
-    expect(onChange).toHaveBeenCalledWith("Kevin");
+    expect(onChange).toHaveBeenCalledWith("123");
   });
 
   test("tracks touch status in component state", () => {
-    const component = mount(<FormField name="name" required />);
-    expect(component.text()).toEqual("");
+    const { container, getByRole, queryByText } = render(
+      <FormField name="name" required />
+    );
 
-    component.find("input").simulate("blur");
+    expect(container.textContent).toEqual("");
 
-    expect(component.text()).toEqual("Required");
+    fireEvent.blur(getByRole("textbox"));
+
+    expect(queryByText("Required")).toBeTruthy();
   });
 
   test("displays errors if submitted", () => {
-    const component = mount(<Form><FormField name="name" required /></Form>);
-    expect(component.text()).toEqual("");
+    const { container, queryByText, rerender } = render(
+      <Form><FormField name="name" required /></Form>
+    );
 
-    component.setState({ submitted: true });
-    expect(component.text()).toEqual("Required");
+    expect(container.textContent).toEqual("");
+
+    rerender(<Form><FormField name="name" required submitted /></Form>);
+
+    expect(queryByText("Required")).toBeTruthy();
   });
 
   test("requests focus when autoFocus is given", () => {
-    const component = mount(<FormField name="name" autoFocus />);
+    const { getByRole } = render(<FormField name="name" autoFocus />);
 
-    expect(component.find("input").props().id).toEqual(document.activeElement.id);
+    expect(getByRole("textbox").id).toEqual(document.activeElement.id);
   });
 });
