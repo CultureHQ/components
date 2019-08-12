@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+
+- Use `aria-current` instead of a custom class for indicating current tab in the `Subnav` component.
+
 ## [14.0.0] - 2019-08-12
 
 ### Changed

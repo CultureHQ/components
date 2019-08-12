@@ -59,5 +59,5 @@ test("additionally functions as a controlled component", () => {
   const buttons = getAllByRole("button");
   act(() => void fireEvent.click(buttons[1]));
 
-  expect(buttons[1].classList).toContain("chq-snv--it-active");
+  expect(buttons[1].getAttribute("aria-current")).toEqual("true");
 });

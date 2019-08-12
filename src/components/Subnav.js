@@ -43,18 +43,17 @@ class Subnav extends Component {
   }
 }
 
-const SubnavItem = ({ children, className, active, onClick }) => {
-  const classNames = classnames(
-    "chq-snv--it",
-    { "chq-snv--it-active": active },
-    className
-  );
+const SubnavItem = ({ children, className, active, onClick }) => (
+  <button
+    type="button"
+    aria-current={active}
+    className={classnames("chq-snv--it", className)}
+    onClick={onClick}
+  >
+    {children}
+  </button>
+);
 
-  return <button type="button" className={classNames} onClick={onClick}>{children}</button>;
-};
-
-Object.assign(Subnav, {
-  Item: SubnavItem
-});
+Subnav.Item = SubnavItem;
 
 export default Subnav;
