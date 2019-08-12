@@ -37,16 +37,6 @@ const getDisplay = props => {
 };
 
 class SelectField extends Component {
-  static defaultProps = {
-    autoFocus: false,
-    creatable: false,
-    multiple: false,
-    onChange: () => {},
-    onFormChange: () => {},
-    options: [],
-    values: {}
-  };
-
   inputRef = React.createRef();
 
   selectRef = React.createRef();
@@ -230,5 +220,15 @@ class SelectField extends Component {
     );
   }
 }
+
+SelectField.defaultProps = {
+  autoFocus: false,
+  creatable: false,
+  multiple: false,
+  onChange: () => {},
+  onFormChange: () => {},
+  options: [],
+  values: {}
+};
 
 export default withForm(SelectField);

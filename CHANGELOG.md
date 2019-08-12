@@ -6,9 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [14.0.0] - 2019-08-12
+
 ### Changed
 
 - Clear selection timeout when `SelectField` is unmounted so it doesn't leak memory.
+- The peer dependency for `react` and `react-dom` has been bumped to `16.9`.
 
 ## [13.4.0] - 2019-07-30
 
@@ -1016,7 +1019,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v13.4.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v14.0.0...HEAD
+[14.0.0]: https://github.com/CultureHQ/components/compare/v13.4.0...v14.0.0
 [13.4.0]: https://github.com/CultureHQ/components/compare/v13.3.0...v13.4.0
 [13.3.0]: https://github.com/CultureHQ/components/compare/v13.2.0...v13.3.0
 [13.2.0]: https://github.com/CultureHQ/components/compare/v13.1.0...v13.2.0

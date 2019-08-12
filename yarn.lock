@@ -1681,10 +1681,10 @@
     eslint-plugin-react "^7.14.3"
     eslint-plugin-react-hooks "^1.7.0"
 
-"@culturehq/scripts@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@culturehq/scripts/-/scripts-3.0.0.tgz#656e9458f88f0f5f08aa100b5077ae700fc21ba8"
-  integrity sha512-ZBlnXwRIFxnlqPUCrEfqf6UUqOUHbMKz4kOVMJhL1QlHR/zhZIRyFH6SF7tkaUdeGzV2X3IdCWcF5Oybd6h+2A==
+"@culturehq/scripts@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@culturehq/scripts/-/scripts-3.0.1.tgz#c7b78d125b6376c7e2f849a58df07ef9100c3223"
+  integrity sha512-UnBy8g7iC8JpioPGfAa9Fpj7SzmdbEZ1dLIhae9ooMhmFVYcauOuAx7n/7c0PftE2XLjXWjiIKoOmV1aVLIRPw==
   dependencies:
     "@babel/core" "^7.5.5"
     "@culturehq/eslint-config" "^3.0.0"
@@ -3437,7 +3437,7 @@ babel-plugin-dynamic-import-node@2.2.0:
   dependencies:
     object.assign "^4.1.0"
 
-babel-plugin-dynamic-import-node@^2.2.0, babel-plugin-dynamic-import-node@^2.3.0:
+babel-plugin-dynamic-import-node@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-dynamic-import-node/-/babel-plugin-dynamic-import-node-2.3.0.tgz#f00f507bdaa3c3e3ff6e7e5e98d90a7acab96f7f"
   integrity sha512-o6qFkpeQEBxcqt0XYlWzAVxNCSCZdUgcR8IRlhD/8DylxjjO4foPcvTW0GGKa/cVt3rvxZ7o5ippJ+/0nvLhlQ==

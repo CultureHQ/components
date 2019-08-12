@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/components",
-  "version": "13.4.0",
+  "version": "14.0.0",
   "description": "CultureHQ's component library",
   "main": "dist/components.js",
   "scripts": {
@@ -26,8 +26,8 @@
   },
   "homepage": "https://github.com/CultureHQ/components#readme",
   "peerDependencies": {
-    "react": ">= 16.8",
-    "react-dom": ">= 16.8"
+    "react": ">= 16.9",
+    "react-dom": ">= 16.9"
   },
   "dependencies": {
     "cropperjs": "^1.5.4",
@@ -37,10 +37,9 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "@culturehq/scripts": "^3.0.0",
+    "@culturehq/scripts": "^3.0.1",
     "@storybook/addon-a11y": "^5.1.10",
     "@storybook/addon-actions": "^5.1.10",
     "@storybook/addon-knobs": "^5.1.10",
@@ -52,7 +51,6 @@
     "@storybook/theming": "^5.1.10",
     "@testing-library/react": "^9.1.0",
     "babel-loader": "^8.0.5",
-    "babel-plugin-dynamic-import-node": "^2.2.0",
     "css-loader": "^3.1.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.13.1",
@@ -76,8 +74,7 @@
       "\\.scss$": "identity-obj-proxy"
     },
     "setupFilesAfterEnv": [
-      "./setupTests.js",
-      "@testing-library/react/cleanup-after-each"
+      "./setupTests.js"
     ],
     "testRegex": ".test.js",
     "testURL": "http://localhost"

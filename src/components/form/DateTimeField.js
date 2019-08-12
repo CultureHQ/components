@@ -65,13 +65,6 @@ const makeTimeSelectValue = (value, offset) => {
 };
 
 class DateTimeField extends Component {
-  static defaultProps = {
-    offset: -new Date().getTimezoneOffset(),
-    onChange: () => {},
-    onFormChange: () => {},
-    values: {}
-  };
-
   state = { open: false, touched: false };
 
   getValue = () => {
@@ -242,5 +235,12 @@ class DateTimeField extends Component {
     );
   }
 }
+
+DateTimeField.defaultProps = {
+  offset: -new Date().getTimezoneOffset(),
+  onChange: () => {},
+  onFormChange: () => {},
+  values: {}
+};
 
 export default withForm(DateTimeField);

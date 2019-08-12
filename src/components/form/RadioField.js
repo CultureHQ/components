@@ -5,13 +5,6 @@ import FormError from "./FormError";
 import { withForm } from "./Form";
 
 class RadioField extends Component {
-  static defaultProps = {
-    onChange: () => {},
-    onFormChange: () => {},
-    options: [],
-    values: {}
-  };
-
   state = { touched: false };
 
   handleBlur = () => {
@@ -69,5 +62,12 @@ class RadioField extends Component {
     );
   }
 }
+
+RadioField.defaultProps = {
+  onChange: () => {},
+  onFormChange: () => {},
+  options: [],
+  values: {}
+};
 
 export default withForm(RadioField);

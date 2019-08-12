@@ -12,13 +12,6 @@ const centsValidator = value => {
 };
 
 class CentsField extends Component {
-  static defaultProps = {
-    autoFocus: false,
-    onChange: () => {},
-    onFormChange: () => {},
-    values: {}
-  };
-
   inputRef = React.createRef();
 
   state = { touched: false };
@@ -83,5 +76,12 @@ class CentsField extends Component {
     );
   }
 }
+
+CentsField.defaultProps = {
+  autoFocus: false,
+  onChange: () => {},
+  onFormChange: () => {},
+  values: {}
+};
 
 export default withForm(CentsField);

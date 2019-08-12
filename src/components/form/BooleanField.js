@@ -5,12 +5,6 @@ import classnames from "../../classnames";
 import { withForm } from "./Form";
 
 class BooleanField extends Component {
-  static defaultProps = {
-    onChange: () => {},
-    onFormChange: () => {},
-    values: {}
-  };
-
   componentDidMount() {
     const { name, value, values } = this.props;
     const normal = value || values[name];
@@ -40,5 +34,11 @@ class BooleanField extends Component {
     );
   }
 }
+
+BooleanField.defaultProps = {
+  onChange: () => {},
+  onFormChange: () => {},
+  values: {}
+};
 
 export default withForm(BooleanField);

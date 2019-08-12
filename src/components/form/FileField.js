@@ -5,14 +5,6 @@ import FormError from "./FormError";
 import { withForm } from "./Form";
 
 class FileField extends Component {
-  static defaultProps = {
-    autoFocus: false,
-    multiple: false,
-    onChange: () => {},
-    onFormChange: () => {},
-    values: {}
-  };
-
   inputRef = React.createRef();
 
   state = { touched: false };
@@ -97,5 +89,13 @@ class FileField extends Component {
     );
   }
 }
+
+FileField.defaultProps = {
+  autoFocus: false,
+  multiple: false,
+  onChange: () => {},
+  onFormChange: () => {},
+  values: {}
+};
 
 export default withForm(FileField);

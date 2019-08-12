@@ -4,14 +4,6 @@ import classnames from "../classnames";
 import Icon from "./Icon";
 
 class SearchBar extends Component {
-  static defaultProps = {
-    autoComplete: "on",
-    autoFocus: false,
-    onSearchChange: () => {},
-    placeholder: "",
-    throttle: 300
-  };
-
   inputRef = React.createRef();
 
   timeout = 0;
@@ -86,5 +78,13 @@ class SearchBar extends Component {
     );
   }
 }
+
+SearchBar.defaultProps = {
+  autoComplete: "on",
+  autoFocus: false,
+  onSearchChange: () => {},
+  placeholder: "",
+  throttle: 300
+};
 
 export default SearchBar;

@@ -5,11 +5,6 @@ import { StringField } from "./FormFields";
 import { withForm } from "./Form";
 
 class TimezoneField extends Component {
-  static defaultProps = {
-    onChange: () => {},
-    onOffsetChange: () => {}
-  };
-
   state = { timezones: null };
 
   componentDidMount() {
@@ -65,5 +60,10 @@ class TimezoneField extends Component {
     return <SelectField {...props} onChange={this.handleChange} options={timezones} />;
   }
 }
+
+TimezoneField.defaultProps = {
+  onChange: () => {},
+  onOffsetChange: () => {}
+};
 
 export default withForm(TimezoneField);

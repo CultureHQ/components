@@ -5,13 +5,6 @@ import FormError from "./FormError";
 import { withForm } from "./Form";
 
 class TextField extends Component {
-  static defaultProps = {
-    autoFocus: false,
-    onChange: () => {},
-    onFormChange: () => {},
-    values: {}
-  };
-
   textAreaRef = React.createRef();
 
   state = { touched: false };
@@ -71,5 +64,12 @@ class TextField extends Component {
     );
   }
 }
+
+TextField.defaultProps = {
+  autoFocus: false,
+  onChange: () => {},
+  onFormChange: () => {},
+  values: {}
+};
 
 export default withForm(TextField);
