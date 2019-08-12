@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { render, waitForDomChange } from "@testing-library/react";
 
 import ImagePreview from "../ImagePreview";
 import * as readImage from "../../utils/readImage";
@@ -10,34 +10,27 @@ test("reads image and loads it", async () => {
     styles: { height: "200px" }
   }));
 
-  const component = mount(<ImagePreview preview="culture.png" />);
-  expect(component.find("img")).toHaveLength(0);
+  const { container, queryByRole } = render(<ImagePreview preview="culture.png" />);
+  expect(queryByRole("img")).toBeFalsy();
 
-  await component.instance().enqueueLoad();
-  component.update();
+  await waitForDomChange({ container });
 
-  expect(component.find("img")).toHaveLength(1);
-  expect(component.find("img").prop("style")).toHaveProperty("height", "200px");
+  expect(queryByRole("img")).toBeTruthy();
+  expect(queryByRole("img").style).toHaveProperty("height", "200px");
 });
 
-test("does not attempt to set state when unmounted while waiting", async () => {
+test("does not attempt to set state when unmounted while waiting", () => {
   readImage.default = jest.fn(() => new Promise(resolve => (
     setTimeout(() => resolve({ src: "culturehq.png", styles: { height: "200px" } }), 200)
   )));
 
-  const component = mount(<ImagePreview preview="culture.png" />);
-  expect(component.find("img")).toHaveLength(0);
+  const { container, queryByRole, unmount } = render(
+    <ImagePreview preview="culture.png" />
+  );
 
-  const promise = component.instance().enqueueLoad();
-  component.unmount();
-  await promise;
-});
+  expect(queryByRole("img")).toBeFalsy();
 
-test("references parent height if already loaded", () => {
-  const component = mount(<div><ImagePreview preview="culturehq.png" /></div>);
-
-  component.find(ImagePreview).instance().setState({ src: "culturehq.png" });
-  component.update();
-
-  component.find(ImagePreview).instance().enqueueLoad();
+  return waitForDomChange({ container }).then(() => {
+    unmount();
+  });
 });
