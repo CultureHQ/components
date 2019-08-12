@@ -1,28 +1,32 @@
 import React from "react";
-import { mount } from "enzyme";
+import { render } from "@testing-library/react";
 
 import DoorEffect from "../DoorEffect";
 
 test("adds and removes the -open and -closed classes", () => {
-  const component = mount(<DoorEffect className="test" />);
-  expect(component.find("div").instance().className).toEqual("test");
+  const { container, rerender } = render(<DoorEffect className="test" />);
+  const { classList } = container.firstChild;
 
-  component.setProps({ open: true });
-  expect(component.find("div").instance().className).toEqual("test test-open");
+  expect(classList).toHaveLength(1);
+  expect(classList).toContain("test");
 
-  component.setProps({ open: false });
-  expect(component.find("div").instance().className).toEqual("test test-closed");
+  rerender(<DoorEffect className="test" open />);
+  expect(classList).toContain("test-open");
+
+  rerender(<DoorEffect className="test" open={false} />);
+  expect(classList).toContain("test-closed");
 
   return new Promise(resolve => {
     setTimeout(() => {
-      expect(component.find("div").instance().className).toEqual("test");
+      expect(classList).toHaveLength(1);
+      expect(classList).toContain("test");
       resolve();
     }, 200);
   });
 });
 
 test("allows switching the tag type", () => {
-  const component = mount(<DoorEffect className="test" tag="section" />);
+  const { container } = render(<DoorEffect className="test" tag="section" />);
 
-  expect(component.find("section")).toHaveLength(1);
+  expect(container.querySelector("section")).toBeTruthy();
 });
