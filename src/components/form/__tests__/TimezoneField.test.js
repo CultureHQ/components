@@ -1,16 +1,16 @@
 import React from "react";
-import { mount } from "enzyme";
+import { render, waitForDomChange } from "@testing-library/react";
 
 import TimezoneField from "../TimezoneField";
 
 test("waits for timezones before switching to a select", async () => {
-  const component = mount(<TimezoneField name="timezone" />);
+  const { container, getByLabelText, getByRole } = render(
+    <TimezoneField name="timezone" />
+  );
 
-  expect(component.find("StringField")).toHaveLength(1);
+  expect(getByRole("textbox")).toBeTruthy();
 
-  await component.find("TimezoneField").instance().componentDidMount();
-  component.update();
+  await waitForDomChange({ container });
 
-  expect(component.find("SelectField")).toHaveLength(1);
-  component.unmount();
+  expect(getByLabelText("Value")).toBeTruthy();
 });
