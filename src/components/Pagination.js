@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import classnames from "../classnames";
 
-const Spacer = () => <span className="chq-pag--sp">...</span>;
+const Spacer = () => <span aria-hidden="true" className="chq-pag--sp">...</span>;
 
 class PageLink extends Component {
   handleClick = () => {
