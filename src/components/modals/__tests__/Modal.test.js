@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 
 import Button from "../../buttons/Button";
 import PlainButton from "../../buttons/PlainButton";
@@ -7,8 +7,7 @@ import Modal from "../Modal";
 
 test("opens a modal when the onTrigger function is called", () => {
   const message = "This is the body of the modal";
-
-  const component = mount(
+  const { getByText, queryByText } = render(
     <Modal trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}>
       <Modal.Heading>Heading</Modal.Heading>
       <Modal.Body>{message}</Modal.Body>
@@ -16,24 +15,25 @@ test("opens a modal when the onTrigger function is called", () => {
     </Modal>
   );
 
-  expect(component.find(".chq-pan--bd")).toHaveLength(0);
+  expect(queryByText(message)).toBeFalsy();
 
-  component.find(Button).simulate("click");
-  expect(component.find(".chq-pan--bd")).toHaveLength(1);
-  expect(component.find(Modal.Body).text()).toContain(message);
+  fireEvent.click(getByText("Open"));
+
+  expect(queryByText(message)).toBeTruthy();
 });
 
 test("closes the modal the heading button is clicked", () => {
   const onClose = jest.fn();
   const trigger = onTrigger => <Button onClick={onTrigger}>Open</Button>;
 
-  const component = mount(
+  const { getByLabelText, queryByText } = render(
     <Modal startOpen trigger={trigger} onClose={onClose}>
       <Modal.Heading>Heading</Modal.Heading>
     </Modal>
   );
 
-  component.find(PlainButton).simulate("click");
-  expect(component.find(".chq-pan--hd")).toHaveLength(0);
+  fireEvent.click(getByLabelText("Close"));
+
+  expect(queryByText("Heading")).toBeFalsy();
   expect(onClose).toHaveBeenCalled();
 });

@@ -20,11 +20,18 @@ const widths = {
 const ModalDialogHeading = ({ children, className, onClose }) => (
   <Panel.Heading primary className={className}>
     {children}
-    <PlainButton className="chq-mdl--cl" onClick={onClose}>
+    <PlainButton aria-label="Close" className="chq-mdl--cl" onClick={onClose}>
       <Icon icon="ios-close-empty" />
     </PlainButton>
   </Panel.Heading>
 );
+
+const modalStyle = {
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, .3)",
+    zIndex: 2147483647
+  }
+};
 
 const ModalDialog = ({ children, className, contentRef, entrance = "slideIn", onClose, width = "normal" }) => (
   <ReactModal
@@ -32,12 +39,7 @@ const ModalDialog = ({ children, className, contentRef, entrance = "slideIn", on
     contentRef={contentRef}
     onRequestClose={onClose}
     isOpen
-    style={{
-      overlay: {
-        backgroundColor: "rgba(0, 0, 0, .3)",
-        zIndex: 2147483647
-      }
-    }}
+    style={modalStyle}
   >
     {children}
   </ReactModal>
