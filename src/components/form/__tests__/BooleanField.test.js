@@ -1,22 +1,21 @@
 import React from "react";
-import { mount } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 
 import BooleanField from "../BooleanField";
-import Checkmark from "../../Checkmark";
 
 test("calls up to callbacks if they are provided", () => {
   const onChange = jest.fn();
-  const component = mount(<BooleanField name="boolean" onChange={onChange} />);
+  const { getByRole } = render(<BooleanField name="boolean" onChange={onChange} />);
 
-  component.find("button").simulate("click");
+  fireEvent.click(getByRole("button"));
 
   expect(onChange).toHaveBeenCalledWith(true);
 });
 
 test("works with initial values", () => {
-  const component = mount(<BooleanField name="boolean" value />);
+  const { getByRole } = render(<BooleanField name="boolean" value />);
 
-  expect(component.find(Checkmark).props().checked).toBe(true);
+  expect(getByRole("button").classList).toContain("chq-cmk-ck");
 
-  component.find("button").simulate("click");
+  fireEvent.click(getByRole("button"));
 });
