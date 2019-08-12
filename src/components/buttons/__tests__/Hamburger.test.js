@@ -1,37 +1,37 @@
 import React, { useState } from "react";
-import { shallow, mount } from "enzyme";
+import { act, fireEvent, render } from "@testing-library/react";
 
 import Hamburger from "../Hamburger";
 
-const HamburgerContainer = ({ open: initialOpen }) => {
+const Container = ({ open: initialOpen }) => {
   const [open, setOpen] = useState(initialOpen);
   const onToggle = () => setOpen(prevOpen => !prevOpen);
 
   return <Hamburger open={open} onToggle={onToggle} />;
 };
 
-test("has no violations", async () => {
-  await expect(<Hamburger />).toHaveNoViolations();
-});
+test("has no violations", () => (
+  expect(<Hamburger />).toHaveNoViolations()
+));
 
 test("renders without crashing", () => {
-  const component = shallow(<Hamburger />);
+  const { container } = render(<Hamburger />);
 
-  expect(component.type()).toEqual("button");
+  expect(container.querySelector("button")).toBeTruthy();
 });
 
 test("passes on extra props", () => {
-  const component = shallow(<Hamburger className="ham" />);
+  const { container } = render(<Hamburger className="ham" />);
 
-  expect(component.hasClass("ham")).toBe(true);
-  expect(component.hasClass("chq-ham")).toBe(true);
+  expect(container.querySelector(".ham")).toBeTruthy();
 });
 
 test("functions as a controlled component", () => {
-  const component = mount(<HamburgerContainer />);
+  const { container, getByLabelText } = render(<Container />);
 
-  component.find(Hamburger).simulate("click");
-  component.update();
+  expect(container.querySelector(".chq-ham-op")).toBeFalsy();
 
-  expect(component.find(Hamburger).props().open).toBe(true);
+  act(() => void fireEvent.click(getByLabelText("Menu Toggle")));
+
+  expect(container.querySelector(".chq-ham-op")).toBeTruthy();
 });
