@@ -1,43 +1,34 @@
 import React from "react";
-import { mount } from "enzyme";
+import { render, waitForDomChange } from "@testing-library/react";
 
 import Icon from "../Icon";
 import { close } from "../../icons.json";
 
-test("has no violations", async () => {
-  await expect(<Icon icon="checkmark" />).toHaveNoViolations();
-});
+test("has no violations", () => (
+  expect(<Icon icon="checkmark" />).toHaveNoViolations()
+));
 
 test("renders without crashing", async () => {
-  const component = await mount(<Icon icon="checkmark" />);
-  expect(component.find("path")).toHaveLength(0);
+  const { container, getByRole } = render(<Icon icon="checkmark" />);
+  expect(getByRole("presentation").firstChild).toBeFalsy();
 
-  await component.instance().componentDidMount();
-  component.update();
+  await waitForDomChange({ container });
 
-  expect(component.find("path")).toHaveLength(1);
-  component.unmount();
+  expect(getByRole("presentation").firstChild).toBeTruthy();
 });
 
 test("passes on className", async () => {
-  const component = await mount(<Icon icon="checkmark" className="icon" />);
+  const { container } = render(<Icon icon="checkmark" className="icon" />);
 
-  expect(component.hasClass("icon")).toBe(true);
+  expect(container.querySelector(".icon")).toBeTruthy();
 });
 
 test("updates the icon when the prop changes", async () => {
-  const component = await mount(<Icon icon="checkmark" />);
+  const { container, rerender } = render(<Icon icon="checkmark" />);
 
-  component.setProps({ icon: "close" });
-  await component.instance().loadIcon();
-  component.update();
+  rerender(<Icon icon="close" />);
+  await waitForDomChange({ container });
 
-  expect(component.state().d).toEqual(close.join(" "));
-});
-
-test("does not attempt to set state once it been unmounted", async () => {
-  const component = await mount(<Icon icon="checkmark" />);
-
-  component.instance().loadIcon();
-  component.unmount();
+  const path = container.querySelector("path");
+  expect(path.getAttribute("d")).toEqual(close.join(" "));
 });
