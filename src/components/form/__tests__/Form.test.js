@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 
 import Form from "../Form";
 import BooleanField from "../BooleanField";
@@ -8,10 +8,17 @@ import { EmailField, StringField } from "../FormFields";
 import TextField from "../TextField";
 import SubmitButton from "../SubmitButton";
 
-const mountFullForm = () => {
-  const component = mount(
+test("passes on className", () => {
+  const { container } = render(<Form className="form" />);
+
+  expect(container.querySelector(".form")).toBeTruthy();
+});
+
+test("gathers values as they change and submits them", () => {
+  const onSubmit = jest.fn();
+  const { getByLabelText, getByRole } = render(
     <Form
-      onSubmit={submitted => { component.submitted = submitted; }}
+      onSubmit={onSubmit}
       initialValues={{ email: "kevin@culturehq.com" }}
     >
       <BooleanField name="boolean">Boolean</BooleanField>
@@ -24,80 +31,82 @@ const mountFullForm = () => {
     </Form>
   );
 
-  component.find("#name").simulate("change", { target: { value: "Kevin" } });
+  fireEvent.change(getByLabelText("Name"), {
+    target: { value: "Kevin" }
+  });
 
-  return component;
-};
+  fireEvent.submit(getByRole("form"));
 
-test("passes on className", () => {
-  const component = mount(<Form className="form" />);
-
-  expect(component.hasClass("form")).toBe(true);
-});
-
-test("gathers values as they change and submits them", () => {
-  const component = mountFullForm();
-  component.simulate("submit");
-
-  expect(component.submitted).toEqual({
+  expect(onSubmit).toHaveBeenCalledWith({
     boolean: false,
     name: "Kevin",
     email: "kevin@culturehq.com"
   });
-
-  component.unmount();
 });
 
 test("allows calling submit manually", () => {
-  const component = mountFullForm();
-  component.instance().submit();
+  const formRef = React.createRef();
+  const onSubmit = jest.fn();
 
-  expect(component.submitted.name).toEqual("Kevin");
+  render(
+    <Form ref={formRef} onSubmit={onSubmit} initialValues={{ email: "kevin@culturehq.com" }}>
+      <EmailField name="email">Email</EmailField>
+      <SubmitButton />
+    </Form>
+  );
+
+  formRef.current.submit();
+
+  expect(onSubmit).toHaveBeenCalled();
 });
 
 test("does not attempt to setState once the component is unmounted", () => {
-  const component = mount(
+  const { getAllByRole, unmount } = render(
     <Form
       onSubmit={() => (
         new Promise(resolve => {
-          component.unmount();
+          unmount();
           resolve();
         })
       )}
     >
       <BooleanField name="boolean">Boolean</BooleanField>
+      <SubmitButton />
     </Form>
   );
 
-  component.instance().submit();
+  fireEvent.click(getAllByRole("button")[1]);
 });
 
 test("passes down initialValues", () => {
-  const component = mount(
+  const { getAllByRole } = render(
     <Form initialValues={{ cents: 523, name: "Kevin" }}>
       <CentsField name="cents">Cents</CentsField>
       <StringField name="name">Name</StringField>
     </Form>
   );
 
-  expect(component.find("#cents").props().value).toEqual(5.23);
-  expect(component.find("#name").props().value).toEqual("Kevin");
+  const [centsInput, nameInput] = getAllByRole("textbox");
+
+  expect(centsInput).toHaveProperty("value", "5.23");
+  expect(nameInput).toHaveProperty("value", "Kevin");
 });
 
 test("disallows submitting if validation fails", () => {
   const onSubmit = jest.fn(() => Promise.resolve());
   const validator = value => (value === "Pass" ? null : "Fail");
 
-  const component = mount(
+  const { getByRole } = render(
     <Form onSubmit={onSubmit}>
       <StringField name="value" validator={validator}>Value</StringField>
+      <SubmitButton />
     </Form>
   );
 
-  component.simulate("submit");
+  fireEvent.click(getByRole("button"));
   expect(onSubmit).not.toHaveBeenCalled();
 
-  component.find("#value").simulate("change", { target: { value: "Pass" } });
-  component.simulate("submit");
+  fireEvent.change(getByRole("textbox"), { target: { value: "Pass" } });
+  fireEvent.click(getByRole("button"));
   expect(onSubmit.mock.calls[0][0]).toEqual({ value: "Pass" });
 });
