@@ -1,19 +1,21 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 
 import PlainButton from "../PlainButton";
 
-test("renders without crashing", async () => {
-  const message = "This is a button.";
-  const component = <PlainButton>{message}</PlainButton>;
+test("has no violations", () => (
+  expect(<PlainButton>This is a button.</PlainButton>).toHaveNoViolations()
+));
 
-  expect(shallow(component).html()).toContain(message);
-  await expect(component).toHaveNoViolations();
+test("renders without crashing", () => {
+  const message = "This is a button.";
+  const { queryByText } = render(<PlainButton>{message}</PlainButton>);
+
+  expect(queryByText(message)).toBeTruthy();
 });
 
 test("passes on className", () => {
-  const component = shallow(<PlainButton className="plain-button" />);
+  const { container } = render(<PlainButton className="plain-button" />);
 
-  expect(component.hasClass("plain-button")).toBe(true);
-  expect(component.hasClass("chq-pbn")).toBe(true);
+  expect(container.querySelector(".plain-button")).toBeTruthy();
 });
