@@ -1,28 +1,30 @@
 import React from "react";
-import { mount } from "enzyme";
+import { render, waitForDomChange } from "@testing-library/react";
 
 import ActionButton from "../ActionButton";
-import Icon from "../../Icon";
+import icons from "../../../icons.json";
 
-test("has no violations", async () => {
-  await expect(<ActionButton>This is a button.</ActionButton>).toHaveNoViolations();
-});
+test("has no violations", () => (
+  expect(<ActionButton>This is a button.</ActionButton>).toHaveNoViolations()
+));
 
 test("renders without crashing", () => {
   const message = "This is a button.";
-  const component = mount(<ActionButton>{message}</ActionButton>);
+  const { queryByText } = render(<ActionButton>{message}</ActionButton>);
 
-  expect(component.html()).toContain(message);
+  expect(queryByText(message)).toBeTruthy();
 });
 
 test("passes on extra props", () => {
-  const component = mount(<ActionButton className="button" />);
+  const { container } = render(<ActionButton className="button" />);
 
-  expect(component.find("button").hasClass("button")).toBe(true);
+  expect(container.querySelector(".button")).toBeTruthy();
 });
 
-test("displays a regular icon", () => {
-  const component = mount(<ActionButton icon="edit">Button</ActionButton>);
+test("displays a regular icon", async () => {
+  const { container } = render(<ActionButton icon="edit">Button</ActionButton>);
+  await waitForDomChange({ container });
 
-  expect(component.find(Icon).props().icon).toEqual("edit");
+  const iconPath = container.querySelector("path").getAttribute("d");
+  expect(iconPath).toEqual(icons.edit.join(" "));
 });
