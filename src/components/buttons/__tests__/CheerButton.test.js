@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { mount } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 
-import Cheer from "../../Cheer";
 import CheerButton from "../CheerButton";
 
-const Container = ({ cheered: initialCheered, small }) => {
-  const [cheered, setCheered] = useState(initialCheered || false);
+const Container = ({ cheered: initialCheered = false, small }) => {
+  const [cheered, setCheered] = useState(initialCheered);
 
   const onCheerToggle = nextCheered => {
     setCheered(nextCheered);
@@ -15,43 +14,46 @@ const Container = ({ cheered: initialCheered, small }) => {
   return <CheerButton cheered={cheered} small={small} onCheerToggle={onCheerToggle} />;
 };
 
-test("has no violations", async () => {
-  await expect(<CheerButton cheered />).toHaveNoViolations();
-});
+test("has no violations", () => (
+  expect(<CheerButton cheered />).toHaveNoViolations()
+));
 
 test("renders a button and calls back", () => {
   const onCheerToggle = jest.fn(() => Promise.resolve());
-  const component = mount(<CheerButton onCheerToggle={onCheerToggle} />);
+  const { getByRole } = render(<CheerButton onCheerToggle={onCheerToggle} />);
 
-  component.simulate("click");
+  fireEvent.click(getByRole("button"));
+
   expect(onCheerToggle).toHaveBeenLastCalledWith(true);
 });
 
 test("renders a Cheer if it has been cheered", () => {
-  const component = mount(<CheerButton cheered />);
+  const { container } = render(<CheerButton cheered />);
 
-  expect(component.find(Cheer)).toHaveLength(2);
+  expect(container.querySelectorAll("svg")).toHaveLength(2);
 });
 
 test("pops in the Cheer if it was not initially cheered", () => {
-  const component = mount(<Container />);
+  const { container, getByRole } = render(<Container />);
 
-  component.simulate("click");
-  component.update();
+  fireEvent.click(getByRole("button"));
 
-  expect(component.find(Cheer)).toHaveLength(2);
-  expect(component.find(Cheer).last().find("svg").hasClass("chq-chr-pp")).toBe(true);
+  const cheers = container.querySelectorAll("svg");
+
+  expect(cheers).toHaveLength(2);
+  expect(cheers[1].classList).toContain("chq-chr-pp");
 });
 
 test("does not pop in the Cheer if it was initially cheered", () => {
-  const component = mount(<Container cheered />);
+  const { container } = render(<Container cheered />);
+  const cheers = container.querySelectorAll("svg");
 
-  expect(component.find(Cheer)).toHaveLength(2);
-  expect(component.find(Cheer).last().find("svg").hasClass("chq-chr-pp")).toBe(false);
+  expect(cheers).toHaveLength(2);
+  expect(cheers[1].classList).not.toContain("chq-chr-pp");
 });
 
 test("does not display text when small", () => {
-  const component = mount(<Container small />);
+  const { container } = render(<Container small />);
 
-  expect(component.text()).toEqual("");
+  expect(container.textContent).toEqual("");
 });
