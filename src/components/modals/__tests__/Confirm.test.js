@@ -3,7 +3,6 @@ import { fireEvent, render } from "@testing-library/react";
 
 import Button from "../../buttons/Button";
 import Confirm, { ConfirmDelete } from "../Confirm";
-import ModalDialog from "../ModalDialog";
 
 test("opens a modal when the onTrigger function is called", () => {
   const message = "This is the body of the confirmation";

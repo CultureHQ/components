@@ -2,7 +2,6 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import Button from "../../buttons/Button";
-import PlainButton from "../../buttons/PlainButton";
 import Modal from "../Modal";
 
 test("opens a modal when the onTrigger function is called", () => {
