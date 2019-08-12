@@ -1,17 +1,20 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 
 import Table from "../Table";
 
-test("renders without crashing", async () => {
-  const component = <Table />;
+test("has no violations", () => (
+  expect(<Table />).toHaveNoViolations()
+));
 
-  expect(shallow(component).type()).toEqual("table");
-  await expect(component).toHaveNoViolations();
+test("renders without crashing", () => {
+  const { getByRole } = render(<Table />);
+
+  expect(getByRole("table")).toBeTruthy();
 });
 
 test("passes on className", () => {
-  const component = shallow(<Table className="table" />);
+  const { container } = render(<Table className="table" />);
 
-  expect(component.hasClass("table")).toBe(true);
+  expect(container.querySelector(".table")).toBeTruthy();
 });
