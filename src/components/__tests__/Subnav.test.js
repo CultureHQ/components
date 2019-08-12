@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { mount } from "enzyme";
+import { act, fireEvent, render } from "@testing-library/react";
 
 import Subnav from "../Subnav";
 
-const SubnavContainer = ({ children }) => {
+const Container = ({ children }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -13,11 +13,23 @@ const SubnavContainer = ({ children }) => {
   );
 };
 
-test("renders without crashing", async () => {
+test("has no violations", () => {
+  const component = (
+    <Subnav>
+      <Subnav.Item>One</Subnav.Item>
+      <Subnav.Item>Two</Subnav.Item>
+      <Subnav.Item>Three</Subnav.Item>
+    </Subnav>
+  );
+
+  return expect(component).toHaveNoViolations();
+});
+
+test("renders without crashing", () => {
   const clicks = [];
   const onChange = index => clicks.push(index);
 
-  const component = (
+  const { getAllByRole } = render(
     <Subnav onChange={onChange}>
       <Subnav.Item>One</Subnav.Item>
       <Subnav.Item>Two</Subnav.Item>
@@ -25,27 +37,27 @@ test("renders without crashing", async () => {
     </Subnav>
   );
 
-  const mounted = mount(component);
   const pattern = [2, 0, 1];
+  const buttons = getAllByRole("button");
 
   pattern.forEach(index => {
-    mounted.find(Subnav.Item).at(index).simulate("click");
+    fireEvent.click(buttons[index]);
   });
 
   expect(clicks).toEqual(pattern);
-  await expect(component).toHaveNoViolations();
 });
 
 test("additionally functions as a controlled component", () => {
-  const component = mount(
-    <SubnavContainer>
+  const { getAllByRole } = render(
+    <Container>
       <Subnav.Item>One</Subnav.Item>
       <Subnav.Item>Two</Subnav.Item>
       <Subnav.Item>Three</Subnav.Item>
-    </SubnavContainer>
+    </Container>
   );
 
-  component.find(Subnav.Item).at(1).simulate("click");
-  expect(component.find(Subnav).props().activeIndex).toEqual(1);
-  expect(component.find(Subnav.Item).at(1).props().active).toBe(true);
+  const buttons = getAllByRole("button");
+  act(() => void fireEvent.click(buttons[1]));
+
+  expect(buttons[1].classList).toContain("chq-snv--it-active");
 });
