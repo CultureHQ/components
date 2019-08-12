@@ -1,26 +1,26 @@
 import React from "react";
-import { mount } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 
 import SearchBar from "../SearchBar";
 
-test("has no violations", async () => {
-  await expect(<SearchBar />).toHaveNoViolations();
-});
+test("has no violations", () => (
+  expect(<SearchBar />).toHaveNoViolations()
+));
 
 test("handles autoFocus", () => {
-  mount(<SearchBar autoFocus />);
+  render(<SearchBar autoFocus />);
 
   expect(document.activeElement.name).toEqual("search");
 });
 
 test("throttles search changes", () => {
   const onSearch = jest.fn(() => Promise.resolve());
-  const component = mount(<SearchBar onSearch={onSearch} />);
+  const { getByRole } = render(<SearchBar onSearch={onSearch} />);
+
+  const searchbox = getByRole("searchbox");
 
   [1, 2, 3, 4, 5].forEach(index => {
-    component.find("input").simulate("change", {
-      target: { value: "Harry".slice(0, index) }
-    });
+    fireEvent.change(searchbox, { target: { value: "Harry".slice(0, index) } });
   });
 
   return new Promise(resolve => {
@@ -34,10 +34,11 @@ test("throttles search changes", () => {
 
 test("does not fire multiple queries for the same search", () => {
   const onSearch = jest.fn();
-  const component = mount(<SearchBar onSearch={onSearch} />);
+  const { getByRole } = render(<SearchBar onSearch={onSearch} />);
 
-  component.find("input").simulate("change", { target: { value: "Harry" } });
-  component.find("input").simulate("change", { target: { value: "Harry" } });
+  const searchbox = getByRole("searchbox");
+  fireEvent.change(searchbox, { target: { value: "Harry" } });
+  fireEvent.change(searchbox, { target: { value: "Harry" } });
 
   return new Promise(resolve => {
     setTimeout(() => {
@@ -50,18 +51,19 @@ test("does not fire multiple queries for the same search", () => {
 
 test("immediately calls onSearch when the value empties", () => {
   const onSearch = jest.fn();
-  const component = mount(<SearchBar onSearch={onSearch} />);
+  const { getByRole } = render(<SearchBar onSearch={onSearch} />);
 
-  component.find("input").simulate("change", { target: { value: "Harry" } });
-  component.find("input").simulate("change", { target: { value: "Harry" } });
-  component.find("input").simulate("change", { target: { value: "" } });
+  const searchbox = getByRole("searchbox");
+  fireEvent.change(searchbox, { target: { value: "Harry" } });
+  fireEvent.change(searchbox, { target: { value: "Harry" } });
+  fireEvent.change(searchbox, { target: { value: "" } });
 
   expect(onSearch).toHaveBeenCalledTimes(1);
   expect(onSearch).toHaveBeenCalledWith("");
 });
 
 test("supports the autoComplete prop", () => {
-  const component = mount(<SearchBar autoComplete="off" />);
+  const { getByRole } = render(<SearchBar autoComplete="off" />);
 
-  expect(component.find("input").props().autoComplete).toEqual("off");
+  expect(getByRole("searchbox")).toHaveProperty("autocomplete", "off");
 });
