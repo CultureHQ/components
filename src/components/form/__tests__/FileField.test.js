@@ -1,118 +1,68 @@
 import React, { useState } from "react";
-import { mount } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 
 import FileField from "../FileField";
 
-const FileFieldContainer = props => {
+const Container = props => {
   const [value, setValue] = useState(null);
 
   return <FileField {...props} value={value} onChange={setValue} />;
 };
 
-const mountWithUtils = component => {
-  const mounted = mount(component);
-
-  return Object.assign(mounted, {
-    selectFiles: files => (
-      mounted.find("input[type='file']").simulate("change", { target: { files } })
-    ),
-    getFileSummary: () => mounted.find(".chq-ffd--fd").text()
-  });
-};
-
 test("passes on className", () => {
-  const component = mount(<FileField name="name" className="file-field" />);
+  const { container } = render(<FileField name="name" className="file" />);
 
-  expect(component.find("label").hasClass("chq-ffd")).toBe(true);
-  expect(component.find("label").hasClass("file-field")).toBe(true);
+  expect(container.firstChild.classList).toContain("file");
 });
 
-test("calls up to callbacks if they are provided", () => {
+test("calls up to onChange if it is provided", () => {
+  const onChange = jest.fn();
+  const { getByRole } = render(<FileField name="file" onChange={onChange} />);
+
   const file = { name: "foo" };
+  fireEvent.change(getByRole("textbox"), { target: { files: [file] } });
 
-  const response = {
-    changeValue: null,
-    formChangeName: null,
-    formChangeValue: null
-  };
-
-  const component = mountWithUtils(
-    <FileField
-      name="file"
-      value={file}
-      onChange={changeValue => {
-        Object.assign(response, { changeValue });
-      }}
-      onFormChange={(formChangeName, formChangeValue) => {
-        Object.assign(response, { formChangeName, formChangeValue });
-      }}
-    />
-  );
-
-  component.selectFiles([file]);
-
-  expect(response).toEqual({
-    changeValue: file,
-    formChangeName: "file",
-    formChangeValue: file
-  });
+  expect(onChange).toHaveBeenCalledWith(file);
 });
 
 test("tracks touch status in component state", () => {
-  const component = mount(<FileField name="name" required />);
-  expect(component.text()).not.toContain("Required");
+  const { getByRole, queryByText } = render(<FileField name="name" required />);
+  expect(queryByText("Required")).toBeFalsy();
 
-  component.find("input[type='file']").simulate("change", {
+  fireEvent.change(getByRole("textbox"), {
     target: { files: [{ foo: "bar" }] }
   });
-  expect(component.text()).toContain("Required");
+
+  expect(queryByText("Required")).toBeTruthy();
 });
 
 test("works with multiple files", () => {
-  const files = [{ name: "foo" }, { name: "bar" }, { name: "baz" }];
-
-  const response = {
-    changeValue: null,
-    formChangeName: null,
-    formChangeValue: null
-  };
-
-  const component = mountWithUtils(
-    <FileField
-      multiple
-      value={files}
-      name="files"
-      onChange={changeValue => {
-        Object.assign(response, { changeValue });
-      }}
-      onFormChange={(formChangeName, formChangeValue) => {
-        Object.assign(response, { formChangeName, formChangeValue });
-      }}
-    />
+  const onChange = jest.fn();
+  const { getByRole } = render(
+    <FileField multiple name="files" onChange={onChange} />
   );
 
-  component.selectFiles(files);
+  const files = [{ name: "foo" }, { name: "bar" }, { name: "baz" }];
+  fireEvent.change(getByRole("textbox"), { target: { files } });
 
-  expect(response).toEqual({
-    changeValue: files,
-    formChangeName: "files",
-    formChangeValue: files
-  });
+  expect(onChange).toHaveBeenCalledWith(files);
 });
 
 test("displays an accurate summary", () => {
   const files = [{ name: "foo" }, { name: "bar" }, { name: "baz" }];
-  const component = mountWithUtils(<FileFieldContainer multiple name="files" />);
+  const { container, getByRole } = render(<Container multiple name="files" />);
 
-  component.selectFiles(files);
-  expect(component.getFileSummary()).toEqual("foo, bar, baz");
+  const summary = container.querySelector(".chq-ffd--fd");
 
-  component.selectFiles([]);
-  expect(component.getFileSummary()).toEqual("");
+  fireEvent.change(getByRole("textbox"), { target: { files } });
+  expect(summary.textContent).toEqual("foo, bar, baz");
+
+  fireEvent.change(getByRole("textbox"), { target: { files: [] } });
+  expect(summary.textContent).toEqual("");
 });
 
 test("accepts autoFocus", () => {
-  mount(<FileField name="file" autoFocus />);
+  render(<FileField name="file" autoFocus />);
 
   expect(document.activeElement.id).toEqual("file");
 });
