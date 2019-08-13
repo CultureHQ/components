@@ -1,9 +1,22 @@
 import React, { useState } from "react";
-import { mount } from "enzyme";
+import { createEvent, fireEvent, render, within } from "@testing-library/react";
 
 import SelectField from "../SelectField";
 
 const twice = callback => [0, 1].forEach(callback);
+
+const makeFireChange = node => value => {
+  const event = createEvent.change(node, { target: { value } });
+
+  // We're doing this so that we can purposefully add to the nativeEvent side
+  // of react's SyntheticEvent class
+  event.data = value[value.length - 1];
+  return node.dispatchEvent(event);
+};
+
+const getMultiValue = container => (
+  Array.from(container.querySelectorAll("[name='select[]']")).map(node => node.value)
+);
 
 const OPTIONS = [
   { label: "Harry", value: "harry" },
@@ -28,186 +41,167 @@ const Container = ({ creatable = false, multiple = false, value: initialValue })
   );
 };
 
-const mountWithUtils = jsx => {
-  const component = mount(jsx);
-
-  return Object.assign(component, {
-    getMultiValue() {
-      return component.find("input[type='hidden']").map(node => node.props().value);
-    },
-    matchSingleText(value) {
-      component.find(".chq-ffd--ctrl").simulate("change", {
-        target: { value },
-        nativeEvent: { data: value[value.length - 1] }
-      });
-      component.update();
-    },
-    matchMultiText(value) {
-      component.find(".chq-ffd--sl--match").simulate("change", { target: { value } });
-      component.update();
-    }
-  });
-};
-
-test("has no violations", async () => {
+test("has no violations", () => {
   const jsx = (
     <SelectField name="select" options={OPTIONS}>
       Select
     </SelectField>
   );
 
-  await expect(jsx).toHaveNoViolations();
+  return expect(jsx).toHaveNoViolations();
 });
 
 test("passes on className", () => {
-  const component = mount(<SelectField name="select" className="select-field" />);
+  const { container } = render(
+    <SelectField name="select" className="select-field" />
+  );
 
-  expect(component.find("label").hasClass("chq-ffd")).toBe(true);
-  expect(component.find("label").hasClass("select-field")).toBe(true);
+  expect(container.firstChild.classList).toContain("select-field");
 });
 
 test("calls up to callbacks if they are provided", () => {
   const onChange = jest.fn();
-  const component = mount(
+  const { getByText } = render(
     <SelectField name="select" onChange={onChange} options={OPTIONS} />
   );
 
-  component.find("SelectField").instance().handleSelect("Harry");
+  fireEvent.click(getByText("Harry"));
 
-  expect(onChange).toHaveBeenCalledWith("Harry");
+  expect(onChange).toHaveBeenCalledWith("harry");
 });
 
 test("requests focus when autoFocus is given", () => {
-  mount(<SelectField name="select" autoFocus />);
+  render(<SelectField name="select" autoFocus />);
 
   expect(document.activeElement.className).toEqual("chq-ffd--ctrl");
 });
 
 test("closes the options when clicked outside the select field", () => {
-  const events = {};
-  window.addEventListener = jest.fn((event, callback) => {
-    events[event] = callback;
-  });
-
-  const component = mount(
+  const { container, getByLabelText } = render(
     <div>
       <Container />
       <div className="outside" />
     </div>
   );
 
-  component.find(".chq-ffd--ctrl").simulate("click");
+  fireEvent.click(getByLabelText("Value"));
 
-  events.click({ target: component.find(".chq-ffd--ctrl").instance() });
-  component.update();
-  expect(component.find("DoorEffect").props().open).toBe(true);
+  fireEvent.click(getByLabelText("Value"));
+  expect(container.querySelector(".chq-ffd--sl--opts-open")).toBeTruthy();
 
-  events.click({ target: component.find("div.outside").instance() });
-  component.update();
-  expect(component.find("DoorEffect").props().open).toBe(false);
-
-  component.unmount();
+  fireEvent.click(container.querySelector(".outside"));
+  expect(container.querySelector(".chq-ffd--sl--opts-open")).toBeFalsy();
 });
 
 test("working with a single non-creatable field", () => {
-  const component = mountWithUtils(<Container value="harry" />);
+  const { container, getAllByRole, getByLabelText, getByText, queryAllByRole } = render(
+    <Container value="harry" />
+  );
 
-  component.matchSingleText("H");
-  expect(component.find("SelectFieldOption")).toHaveLength(2);
+  const fireChange = makeFireChange(getByLabelText("Value"));
 
-  component.matchSingleText("He");
-  expect(component.find("SelectFieldOption")).toHaveLength(1);
+  fireChange("H");
+  expect(queryAllByRole("button")).toHaveLength(2);
 
-  component.matchSingleText("Hel");
-  expect(component.find("SelectFieldOption")).toHaveLength(0);
-  expect(component.find("p")).toHaveLength(1);
+  fireChange("He");
+  expect(queryAllByRole("button")).toHaveLength(1);
 
-  component.matchSingleText("");
-  expect(component.find("SelectFieldOption")).toHaveLength(3);
+  fireChange("Hel");
+  expect(queryAllByRole("button")).toHaveLength(0);
+  expect(getByText("No results found.")).toBeTruthy();
 
-  component.find("SelectFieldOption").at(0).simulate("click");
-  expect(component.find("#select").props().value).toEqual("");
-  expect(component.find(".chq-ffd--ctrl").props().value).toEqual("");
+  fireChange("");
+  expect(queryAllByRole("button")).toHaveLength(3);
 
-  component.find("SelectFieldOption").at(1).simulate("click");
-  expect(component.find("#select").props().value).toEqual(OPTIONS[1].value);
-  expect(component.find(".chq-ffd--ctrl").props().value).toEqual(OPTIONS[1].label);
+  fireEvent.click(getAllByRole("button")[0]);
+  expect(getByLabelText("Value")).toHaveProperty("value", "");
+
+  fireEvent.click(getAllByRole("button")[1]);
+  expect(getByLabelText("select")).toHaveProperty("value", OPTIONS[1].value);
+  expect(getByLabelText("Value")).toHaveProperty("value", OPTIONS[1].label);
 
   twice(() => {
-    component.find(".chq-ffd--ctrl").simulate("keydown", { key: "Enter" });
-    expect(component.find("DoorEffect").props().open).toBe(true);
+    fireEvent.keyDown(getByLabelText("Value"), { key: "Enter" });
+    expect(container.querySelector(".chq-ffd--sl--opts-open")).toBeTruthy();
   });
 
   twice(() => {
-    component.find(".chq-ffd--ctrl").simulate("keydown", { key: "Escape" });
-    expect(component.find("DoorEffect").props().open).toBe(false);
+    fireEvent.keyDown(getByLabelText("Value"), { key: "Escape" });
+    expect(container.querySelector(".chq-ffd--sl--opts-open")).toBeFalsy();
   });
 
-  component.find(".chq-ffd--ctrl").simulate("keydown", { key: "Backspace" });
-  expect(component.find("DoorEffect").props().open).toBe(false);
+  fireEvent.keyDown(getByLabelText("Value"), { key: "Backspace" });
+  expect(container.querySelector(".chq-ffd--sl--opts-open")).toBeFalsy();
 });
 
 test("working with a single creatable field", () => {
-  const component = mountWithUtils(<Container creatable />);
+  const { getByLabelText, getByRole, queryAllByRole, queryByText } = render(
+    <Container creatable />
+  );
 
-  component.matchSingleText("Hello");
-  expect(component.find("SelectFieldOption")).toHaveLength(1);
-  expect(component.find("p")).toHaveLength(0);
+  makeFireChange(getByLabelText("Value"))("Hello");
+  expect(queryAllByRole("button")).toHaveLength(1);
+  expect(queryByText("No results found.")).toBeFalsy();
 
-  component.find("SelectFieldOption").simulate("click");
-  expect(component.find("#select").props().value).toEqual("Hello");
-  expect(component.find(".chq-ffd--ctrl").props().value).toEqual("Hello");
+  fireEvent.click(getByRole("button"));
+  expect(getByLabelText("select")).toHaveProperty("value", "Hello");
+  expect(getByLabelText("Value")).toHaveProperty("value", "Hello");
 });
 
 test("working with a multiple non-creatable field", () => {
-  const component = mountWithUtils(<Container multiple />);
+  const { container, getAllByRole, getByLabelText } = render(
+    <Container multiple />
+  );
 
-  component.find(".chq-ffd--ctrl").simulate("click");
+  const fireChange = makeFireChange(getByLabelText("Search"));
+  const options = within(container.querySelector(".chq-ffd--sl--opts"));
+
+  fireEvent.click(getAllByRole("button")[0]);
   expect(document.activeElement.className).toEqual("chq-ffd--sl--match");
 
-  component.matchMultiText("H");
-  expect(component.find("SelectFieldOption")).toHaveLength(2);
+  fireChange("H");
+  expect(options.getAllByRole("button")).toHaveLength(2);
 
-  component.find("SelectFieldOption").at(0).simulate("click");
-  expect(component.find("Badge")).toHaveLength(1);
-  expect(component.getMultiValue()).toEqual([OPTIONS[0].value]);
+  fireEvent.click(options.getAllByRole("button")[0]);
+  expect(getMultiValue(container)).toEqual([OPTIONS[0].value]);
 
-  component.find("SelectFieldOption").at(1).simulate("click");
-  expect(component.find("Badge")).toHaveLength(2);
-  expect(component.getMultiValue()).toEqual([OPTIONS[0].value, OPTIONS[1].value]);
+  fireEvent.click(options.getAllByRole("button")[1]);
+  expect(getMultiValue(container)).toEqual([OPTIONS[0].value, OPTIONS[1].value]);
 
-  component.find("Badge").at(0).simulate("click");
-  expect(component.getMultiValue()).toEqual([OPTIONS[1].value]);
+  fireEvent.click(options.getAllByRole("button")[0]);
+  expect(getMultiValue(container)).toEqual([OPTIONS[1].value]);
 
   twice(() => {
-    component.find(".chq-ffd--sl--match").simulate("keydown", { key: "Escape" });
-    expect(component.find("DoorEffect").props().open).toBe(false);
+    fireEvent.keyDown(getByLabelText("Search"), { key: "Escape" });
+    expect(container.querySelector(".chq-ffd--sl--opts-open")).toBeFalsy();
   });
 
   twice(() => {
-    component.find(".chq-ffd--sl--match").simulate("keydown", { key: "Enter" });
-    expect(component.find("DoorEffect").props().open).toBe(true);
+    fireEvent.keyDown(getByLabelText("Search"), { key: "Enter" });
+    expect(container.querySelector(".chq-ffd--sl--opts-open")).toBeTruthy();
   });
 
   twice(() => {
-    component.find(".chq-ffd--sl--match").simulate("keydown", { key: "Backspace" });
-    expect(component.getMultiValue()).toEqual([]);
+    fireEvent.keyDown(getByLabelText("Search"), { key: "Backspace" });
+    expect(getMultiValue(container)).toEqual([]);
   });
 
-  component.find(".chq-ffd--sl--match").simulate("change", { target: { value: "Test" } });
-  component.find(".chq-ffd--sl--match").simulate("keydown", { key: "Backspace" });
-  expect(component.getMultiValue()).toEqual([]);
+  fireChange("Test");
+  fireEvent.keyDown(getByLabelText("Search"), { key: "Backspace" });
+  expect(getMultiValue(container)).toEqual([]);
 
-  component.find(".chq-ffd--sl--match").simulate("keydown", { key: "Tab" });
+  fireEvent.keyDown(getByLabelText("Search"), { key: "Tab" });
 });
 
 test("working with a multiple creatable field", () => {
-  const component = mountWithUtils(<Container creatable multiple />);
+  const { container, getAllByRole, getByLabelText, queryAllByRole, queryByText } = render(
+    <Container creatable multiple />
+  );
 
-  component.matchMultiText("Hello");
-  expect(component.find("SelectFieldOption")).toHaveLength(1);
-  expect(component.find("p")).toHaveLength(0);
+  makeFireChange(getByLabelText("Search"))("Hello");
+  expect(queryAllByRole("button")).toHaveLength(2);
+  expect(queryByText("No results found.")).toBeFalsy();
 
-  component.find("SelectFieldOption").simulate("click");
-  expect(component.getMultiValue()).toEqual(["Hello"]);
+  fireEvent.click(getAllByRole("button")[1]);
+  expect(getMultiValue(container)).toEqual(["Hello"]);
 });
