@@ -16,17 +16,6 @@ class Nav extends Component {
     window.removeEventListener("scroll", this.handleWindowScroll);
   }
 
-  getClassList() {
-    const { className } = this.props;
-    const { navDisplayed } = this.state;
-
-    return classnames(
-      "chq-nav",
-      { "chq-nav-hd": !navDisplayed },
-      className
-    );
-  }
-
   handleWindowScroll = () => {
     const { prevScroll } = this.state;
     const nextScroll = window.pageYOffset;
@@ -39,8 +28,17 @@ class Nav extends Component {
 
   render() {
     const { children, className, ...props } = this.props;
+    const { navDisplayed } = this.state;
 
-    return <nav className={this.getClassList()} {...props}>{children}</nav>;
+    return (
+      <nav
+        aria-hidden={!navDisplayed}
+        className={classnames("chq-nav", className)}
+        {...props}
+      >
+        {children}
+      </nav>
+    );
   }
 }
 

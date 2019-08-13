@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Changed
 
 - Use `aria-current` instead of a custom class for indicating current tab in the `Subnav` component.
+- Use `aria-hidden` instead of a custom class for indicating whether or not the `Nav` component is visible.
 
 ## [14.0.0] - 2019-08-12
 
