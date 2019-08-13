@@ -2,7 +2,6 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 import Loader from "../Loader";
-import Spinner from "../Spinner";
 
 const Loaded = () => <p>Loaded</p>;
 
