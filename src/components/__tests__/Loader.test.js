@@ -1,87 +1,101 @@
 import React from "react";
-import { mount } from "enzyme";
+import { render } from "@testing-library/react";
 
 import Loader from "../Loader";
 import Spinner from "../Spinner";
 
-const Loaded = () => <p>Content loaded!</p>;
+const Loaded = () => <p>Loaded</p>;
 
-test("has no violations", async () => {
-  await expect(<Loader loading />).toHaveNoViolations();
-});
+test("has no violations", () => (
+  expect(<Loader loading />).toHaveNoViolations()
+));
 
 test("passes on className", () => {
-  const component = mount(<Loader loading className="loader"><Loaded /></Loader>);
+  const { container } = render(
+    <Loader loading className="loader">
+      <Loaded />
+    </Loader>
+  );
 
-  expect(component.find(".chq-ldr")).toHaveLength(1);
-  expect(component.find(".chq-ldr").hasClass("loader")).toBe(true);
+  expect(container.firstChild.classList).toContain("loader");
 });
 
 test("renders a placeholder if loading and not yet spinning", () => {
-  const component = mount(<Loader loading><Loaded /></Loader>);
+  const { container, queryByText } = render(
+    <Loader loading>
+      <Loaded />
+    </Loader>
+  );
 
-  expect(component.find(Loaded)).toHaveLength(0);
-  expect(component.hasClass("chq-ldr-sp")).toBe(false);
+  expect(queryByText("Loaded")).toBeFalsy();
+  expect(container.querySelector("[aria-hidden='true']")).toBeTruthy();
 });
 
-test("does not set a timeout if the loader is not loading", () => {
-  const component = mount(<Loader><Loaded /></Loader>);
+test("automatically renders content if loading is false", () => {
+  const { queryByText } = render(
+    <Loader>
+      <Loaded />
+    </Loader>
+  );
 
-  expect(component.instance().timeout).toBe(undefined);
-  expect(component.find(Loaded)).toHaveLength(1);
+  expect(queryByText("Loaded")).toBeTruthy();
 });
 
 test("does not render a spinner if the loading is completed", done => {
-  const component = mount(<Loader loading><Loaded /></Loader>);
+  const { queryByText, rerender } = render(
+    <Loader loading>
+      <Loaded />
+    </Loader>
+  );
 
   setTimeout(() => {
-    component.update();
-    expect(component.find(Spinner)).toHaveLength(0);
-
+    expect(queryByText("Loaded")).toBeTruthy();
     done();
   }, 250);
 
-  component.setProps({ loading: false });
+  rerender(
+    <Loader>
+      <Loaded />
+    </Loader>
+  );
 });
 
 test("renders a spinner if loading takes too long", done => {
-  const component = mount(<Loader loading><Loaded /></Loader>);
+  const { container } = render(
+    <Loader loading>
+      <Loaded />
+    </Loader>
+  );
 
   setTimeout(() => {
-    component.update();
-    expect(component.find(".chq-ldr").hasClass("chq-ldr-sp")).toBe(true);
-
+    expect(container.querySelector("[aria-hidden='false']")).toBeTruthy();
     done();
   }, 250);
 });
 
 test("renders the content once it has loaded", () => {
-  const component = mount(<Loader loading><Loaded /></Loader>);
+  const { queryByText, rerender } = render(
+    <Loader loading>
+      <Loaded />
+    </Loader>
+  );
 
-  component.setProps({ loading: false });
-  component.update();
+  rerender(
+    <Loader>
+      <Loaded />
+    </Loader>
+  );
 
-  expect(component.find(Loaded)).toHaveLength(1);
+  expect(queryByText("Loaded")).toBeTruthy();
 });
 
 test("clears the timeout if it exists when the component unmounts", done => {
-  const component = mount(<Loader loading><Loaded /></Loader>);
+  const { unmount } = render(
+    <Loader loading>
+      <Loaded />
+    </Loader>
+  );
 
-  expect(component.instance().timeout).not.toBe(null);
-
-  setTimeout(() => {
-    component.instance().componentWillUnmount();
-    expect(component.instance().timeout).toBe(null);
-
-    done();
-  }, 250);
-});
-
-test("clears the timeout when the component unmounts", () => {
-  const component = mount(<Loader loading><Loaded /></Loader>);
-
-  expect(component.instance().timeout).not.toBe(null);
-  component.instance().componentWillUnmount();
-
-  expect(component.instance().timeout).toBe(null);
+  unmount();
+  setTimeout(done, 250);
 });
