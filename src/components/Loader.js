@@ -45,8 +45,8 @@ class Loader extends Component {
     }
 
     return (
-      <div className={classnames("chq-ldr", className, { "chq-ldr-sp": spinning })}>
-        <Spinner />
+      <div className={classnames("chq-ldr", className)}>
+        <Spinner aria-hidden={!spinning} />
       </div>
     );
   }

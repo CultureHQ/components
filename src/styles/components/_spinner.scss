@@ -12,6 +12,10 @@
   .chq-cir--sm {
     display: none;
   }
+
+  &[aria-hidden='true'] {
+    visibility: hidden;
+  }
 }
 
 @keyframes chqChunkRotate {
