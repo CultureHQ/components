@@ -24,22 +24,22 @@ test("hides the nav when the page is scrolled down", () => {
   window.pageYOffset = 25;
 
   const { container } = render(<Nav />);
-  expect(container.firstChild.classList).not.toContain("chq-nav-hd");
+  expect(container.firstChild.getAttribute("aria-hidden")).toEqual("false");
 
   window.pageYOffset = 50;
   fireEvent.scroll(window);
 
-  expect(container.firstChild.classList).toContain("chq-nav-hd");
+  expect(container.firstChild.getAttribute("aria-hidden")).toEqual("true");
 });
 
 test("shows the nav when the page is scrolled up", () => {
   window.pageYOffset = 100;
 
   const { container } = render(<Nav />);
-  expect(container.firstChild.classList).not.toContain("chq-nav-hd");
+  expect(container.firstChild.getAttribute("aria-hidden")).toEqual("false");
 
   window.pageYOffset = 50;
   fireEvent.scroll(window);
 
-  expect(container.firstChild.classList).not.toContain("chq-nav-hd");
+  expect(container.firstChild.getAttribute("aria-hidden")).toEqual("false");
 });
