@@ -45,3 +45,21 @@ test("functions without an onChange", () => {
 
   fireEvent.change(getByRole("textbox"), { target: { value: "" } });
 });
+
+test("tracks touch status in component state", () => {
+  const { getByRole, queryByText } = render(
+    <CentsField name="cents" required />
+  );
+
+  expect(queryByText("Required")).toBeFalsy();
+
+  fireEvent.blur(getByRole("textbox"));
+
+  expect(queryByText("Required")).toBeTruthy();
+});
+
+test("requests focus when autoFocus is given", () => {
+  const { getByRole } = render(<CentsField name="cents" autoFocus />);
+
+  expect(getByRole("textbox").id).toEqual(document.activeElement.id);
+});
