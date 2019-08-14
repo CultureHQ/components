@@ -7,10 +7,15 @@ import { CheerButton } from "../../src/components";
 
 storiesOf("Buttons/CheerButton", module)
   .add("default", () => {
+    const onCheerToggle = action("onCheerToggle");
+
     const props = {
       cheered: boolean("cheered", false),
       name: text("name", null),
-      onCheerToggle: action("onCheerToggle"),
+      onCheerToggle: (...args) => {
+        onCheerToggle(...args);
+        return new Promise(resolve => setTimeout(resolve, 1000));
+      },
       small: boolean("small", false)
     };
 
