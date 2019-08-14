@@ -161,7 +161,17 @@ class SelectField extends Component {
     }
 
     this.setState({ display, touched: true, ...effects }, () => {
-      this.timeout = setTimeout(() => this.setState({ filteredOptions: options }), 150);
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+      }
+
+      this.timeout = setTimeout(
+        () => {
+          this.setState({ filteredOptions: options });
+          this.timeout = null;
+        },
+        150
+      );
     });
   };
 
