@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Use `aria-hidden` instead of a custom class for indicating whether or not to display the `Spinner` component within a `Loader` component.
 - Use `role=progressbar` and `aria-value*` attributes for the `ImageField` progressbar.
 - The `CheerButton` component now uses hooks instead of being a class component.
+- The `Nav` component now uses hooks instead of being a class component.
 
 ## [14.0.0] - 2019-08-12
 

@@ -1,45 +1,49 @@
-import React, { Component } from "react";
+import React, { useEffect, useReducer } from "react";
 
 import classnames from "../classnames";
 
-class Nav extends Component {
-  state = {
-    navDisplayed: true,
-    prevScroll: window.pageYOffset
-  };
+const makeInitialState = () => ({
+  displayed: true,
+  scroll: window.pageYOffset
+});
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleWindowScroll);
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "scroll":
+      return {
+        ...state,
+        displayed: state.scroll === 0 || action.scroll <= 30 || state.scroll > action.scroll,
+        scroll: action.scroll
+      };
+    default:
+      throw new Error();
   }
+};
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleWindowScroll);
-  }
+const Nav = ({ children, className, ...props }) => {
+  const [state, dispatch] = useReducer(reducer, null, makeInitialState);
 
-  handleWindowScroll = () => {
-    const { prevScroll } = this.state;
-    const nextScroll = window.pageYOffset;
+  useEffect(
+    () => {
+      const onScroll = () => {
+        dispatch({ type: "scroll", scroll: window.pageYOffset });
+      };
 
-    this.setState({
-      navDisplayed: prevScroll === 0 || nextScroll <= 30 || prevScroll > nextScroll,
-      prevScroll: nextScroll
-    });
-  };
+      window.addEventListener("scroll", onScroll);
+      return () => window.removeEventListener("scroll", onScroll);
+    },
+    [dispatch]
+  );
 
-  render() {
-    const { children, className, ...props } = this.props;
-    const { navDisplayed } = this.state;
-
-    return (
-      <nav
-        aria-hidden={!navDisplayed}
-        className={classnames("chq-nav", className)}
-        {...props}
-      >
-        {children}
-      </nav>
-    );
-  }
-}
+  return (
+    <nav
+      aria-hidden={!state.displayed}
+      className={classnames("chq-nav", className)}
+      {...props}
+    >
+      {children}
+    </nav>
+  );
+};
 
 export default Nav;
