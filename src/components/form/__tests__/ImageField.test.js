@@ -1,81 +1,75 @@
 import React from "react";
-import { mount } from "enzyme";
+import { fireEvent, render, waitForElement } from "@testing-library/react";
 
 import ImageField from "../ImageField";
-import image from "../../__tests__/__mocks__/image";
+import mockImage from "../../__tests__/__mocks__/image";
 
-test("has no violations", async () => {
-  await expect(<ImageField name="image" />).toHaveNoViolations();
+jest.mock("cropperjs", () => class {
+  destroy() {} // eslint-disable-line class-methods-use-this
+
+  getCroppedCanvas() { // eslint-disable-line class-methods-use-this
+    return { toDataURL: () => mockImage };
+  }
 });
+
+test("has no violations", () => (
+  expect(<ImageField name="image" />).toHaveNoViolations()
+));
 
 test("calls up to callbacks if they are provided", () => {
   const onChange = jest.fn();
-  const component = mount(<ImageField name="image" onChange={onChange} />);
+  const { getByRole } = render(<ImageField name="image" onChange={onChange} />);
 
-  component.find("input").simulate("change", {
+  fireEvent.change(getByRole("textbox"), {
     target: { files: ["Some file"] }
   });
 
   expect(onChange).toHaveBeenCalledWith("Some file");
-
-  component.unmount();
 });
 
-test("does not call callbacks when they are not provided", () => {
-  const component = mount(<ImageField name="image" />);
-
-  component.find("input").simulate("change", {
-    target: { files: ["Some file"] }
-  });
-
-  component.unmount();
-});
-
-test("responds to edit callback", () => {
+test("responds to edit callback", async () => {
   const onChange = jest.fn();
-  const component = mount(<ImageField name="image" onChange={onChange} />);
+  const { container, getByAltText, getByRole, getByText } = render(
+    <ImageField name="image" onChange={onChange} />
+  );
 
-  component.find("ImageField").instance().handleImageEdited(image);
-  expect(onChange).toHaveBeenLastCalledWith(image);
+  fireEvent.change(getByRole("textbox"), { target: { files: [mockImage] } });
+  await waitForElement(() => getByAltText(/Preview/), { container });
 
-  component.unmount();
-});
+  fireEvent.click(getByText("Save"));
 
-test("responds to failures", () => {
-  const onChange = jest.fn();
-  const component = mount(<ImageField name="image" onChange={onChange} />);
-
-  component.find("input").simulate("change", { target: { files: ["foo"] } });
-  component.find("img").props().onError();
-
-  expect(onChange).toHaveBeenLastCalledWith(null);
+  expect(onChange).toHaveBeenCalledTimes(2);
+  expect(onChange.mock.calls[1][0] instanceof Blob).toBe(true);
 });
 
 test("handles closing the modal", () => {
-  const component = mount(<ImageField name="image" />);
+  const { getByRole, queryByLabelText } = render(
+    <ImageField name="image" />
+  );
 
-  component.find("ImageField").instance().setState({ editorOpen: true });
-  component.find("ImageField").instance().handleClose();
+  fireEvent.change(getByRole("textbox"), { target: { files: [mockImage] } });
+  expect(queryByLabelText("Rotate left")).toBeTruthy();
 
-  expect(component.find("ImageField").instance().state.editorOpen).toBe(false);
+  fireEvent.click(document.querySelector(".ReactModal__Overlay"));
+  expect(queryByLabelText("Rotate left")).toBeFalsy();
 });
 
 test("handles deselecting files", () => {
   const onChange = jest.fn();
-  const component = mount(<ImageField name="image" onChange={onChange} />);
+  const { getByRole } = render(<ImageField name="image" onChange={onChange} />);
 
-  component.find("input").simulate("change", { target: { files: [] } });
+  fireEvent.change(getByRole("textbox"), { target: { files: [] } });
   expect(onChange).toHaveBeenLastCalledWith(null);
 });
 
 test("displays a progress bar if progress is reported", () => {
-  const component = mount(<ImageField name="image" progress={5} />);
+  const { queryByRole } = render(<ImageField name="image" progress={5} />);
 
-  expect(component.find(".chq-ffd--im--prog")).toHaveLength(1);
+  expect(queryByRole("progressbar")).toBeTruthy();
 });
 
 test("accepts autoFocus", () => {
-  mount(<ImageField name="image" autoFocus />);
+  render(<ImageField name="image" autoFocus />);
 
   expect(document.activeElement.id).toEqual("image");
 });

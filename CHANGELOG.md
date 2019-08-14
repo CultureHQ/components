@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Use `aria-current` instead of a custom class for indicating current tab in the `Subnav` component.
 - Use `aria-hidden` instead of a custom class for indicating whether or not the `Nav` component is visible.
 - Use `aria-hidden` instead of a custom class for indicating whether or not to display the `Spinner` component within a `Loader` component.
+- Use `role=progressbar` and `aria-value*` attributes for the `ImageField` progressbar.
 
 ## [14.0.0] - 2019-08-12
 

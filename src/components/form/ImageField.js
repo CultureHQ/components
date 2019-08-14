@@ -128,8 +128,14 @@ class ImageField extends Component {
             onChange={this.handleFileSelected}
           />
           {progress && (
-            <div className="chq-ffd--im--prog">
-              <div data-value={progress} style={{ width: `${progress}%` }} />
+            <div
+              className="chq-ffd--im--prog"
+              role="progressbar"
+              aria-valuemin={0}
+              aria-valuenow={progress}
+              aria-valuemax={100}
+            >
+              <div style={{ width: `${progress}%` }} />
             </div>
           )}
         </div>

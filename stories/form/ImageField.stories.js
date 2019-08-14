@@ -22,6 +22,7 @@ storiesOf("Form/ImageField", module)
       aspectRatio: number("aspectRatio", null),
       autoFocus: boolean("autoFocus", false),
       onChange: action("onChange"),
+      progress: number("progress", null),
       name: text("name", "image"),
       required: boolean("required", false),
       value: text("value", "culture.png")

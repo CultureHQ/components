@@ -61,8 +61,10 @@
       height: 100%;
       transition: background-color .25s, width .25s;
       width: 0%;
+    }
 
-      &[data-value='100'] {
+    &[aria-valuenow='100'] {
+      & > div {
         background-color: $color-primary-green;
       }
     }

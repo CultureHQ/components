@@ -71,6 +71,7 @@
   },
   "jest": {
     "moduleNameMapper": {
+      "\\.css$": "identity-obj-proxy",
       "\\.scss$": "identity-obj-proxy"
     },
     "setupFilesAfterEnv": [
