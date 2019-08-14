@@ -39,7 +39,7 @@
       }
     }
 
-    &-ac {
+    &[aria-current='true'] {
       background-color: $color-primary-blue;
       border-color: $color-primary-blue;
       color: $color-white;

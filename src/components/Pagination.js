@@ -1,37 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 
 import classnames from "../classnames";
 
 const Spacer = () => <span aria-hidden="true" className="chq-pag--sp">...</span>;
 
-class PageLink extends Component {
-  handleClick = () => {
-    const { page, isActive, onClick } = this.props;
-
-    if (!isActive) {
+const PageLink = ({ disabled, children, current, onClick, page }) => {
+  const onButtonClick = () => {
+    if (!current) {
       onClick(page);
     }
   };
 
-  render() {
-    const { disabled, children, isActive } = this.props;
-
-    const className = classnames("chq-pag--bn", {
-      "chq-pag--bn-ac": isActive
-    });
-
-    return (
-      <button
-        type="button"
-        disabled={disabled}
-        className={className}
-        onClick={this.handleClick}
-      >
-        {children}
-      </button>
-    );
-  }
-}
+  return (
+    <button
+      type="button"
+      disabled={disabled}
+      aria-current={current}
+      className="chq-pag--bn"
+      onClick={onButtonClick}
+    >
+      {children}
+    </button>
+  );
+};
 
 const Page = ({ page, ...props }) => (
   <PageLink page={page} {...props}>{page}</PageLink>
@@ -75,7 +66,7 @@ const Pagination = ({ className, currentPage: current = 1, totalPages: total, on
         current === 5 ? <Page page={2} onClick={onClick} /> : <Spacer />
       )}
       {innerWindow.map(page => (
-        <Page key={page} page={page} isActive={page === current} onClick={onClick} />
+        <Page key={page} page={page} current={page === current} onClick={onClick} />
       ))}
       {current < total - 3 && (
         current === total - 4 ? <Page page={total - 1} onClick={onClick} /> : <Spacer />

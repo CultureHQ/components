@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Use `role=progressbar` and `aria-value*` attributes for the `ImageField` progressbar.
 - The `CheerButton` component now uses hooks instead of being a class component.
 - The `Nav` component now uses hooks instead of being a class component.
+- The `Pagination` individual pages now use `aria-current` instead of a custom class for indicating whether or not the page is the current page.
 
 ## [14.0.0] - 2019-08-12
 
