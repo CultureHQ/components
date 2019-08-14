@@ -1,93 +1,89 @@
 import React from "react";
-import { mount } from "enzyme";
+import { fireEvent, render, waitForDomChange } from "@testing-library/react";
 
 import ImageEditor from "../ImageEditor";
-import image from "./__mocks__/image";
+import mockImage from "./__mocks__/image";
 
-const mountEditor = async (onEdit = null) => {
-  const component = mount(<ImageEditor image={image} onEdit={onEdit} />);
+let angle;
+let zoom;
 
-  await component.instance().componentDidMount();
-  component.instance().cropper.replace(image);
+jest.mock("cropperjs", () => class {
+  destroy() {}
 
-  Object.defineProperty(component.instance().cropper.image, "naturalWidth", { value: 128 });
-  Object.defineProperty(component.instance().cropper.image, "naturalHeight", { value: 128 });
-  component.instance().cropper.image.onload();
+  getCroppedCanvas() {
+    return { toDataURL: () => mockImage };
+  }
 
-  component.clickControl = label => {
-    const button = component.find("ActionButton").findWhere(node => (
-      node.type() === "button" && node.props()["aria-label"] === label
-    ));
+  rotate(delta) {
+    angle += delta;
+  }
 
-    button.simulate("click");
-  };
-
-  component.clickSave = () => {
-    const button = component.find("Button").findWhere(node => (
-      node.type() === "button" && node.text().trim() === "Save"
-    ));
-
-    button.simulate("click");
-  };
-
-  return component;
-};
-
-test("has no violations", async () => {
-  await expect(<ImageEditor image={image} />).toHaveNoViolations();
+  zoom(delta) {
+    zoom += delta;
+  }
 });
 
+beforeEach(() => {
+  angle = 0;
+  zoom = 0;
+});
+
+test("has no violations", () => (
+  expect(<ImageEditor image={mockImage} />).toHaveNoViolations()
+));
+
 test("can click rotate left to modify image", async () => {
-  const component = await mountEditor();
+  const { container, getByLabelText } = render(
+    <ImageEditor image={mockImage} />
+  );
 
-  component.clickControl("Rotate left");
-  expect(component.instance().cropper.imageData.rotate).toEqual(-45);
+  await waitForDomChange({ container });
+  fireEvent.click(getByLabelText("Rotate left"));
 
-  component.unmount();
+  expect(angle).toEqual(-45);
 });
 
 test("can click rotate right to modify image", async () => {
-  const component = await mountEditor();
+  const { container, getByLabelText } = render(
+    <ImageEditor image={mockImage} />
+  );
 
-  component.clickControl("Rotate right");
-  expect(component.instance().cropper.imageData.rotate).toEqual(45);
+  await waitForDomChange({ container });
+  fireEvent.click(getByLabelText("Rotate right"));
 
-  component.unmount();
+  expect(angle).toEqual(45);
 });
 
 test("can click zoom in to modify image", async () => {
-  const component = await mountEditor();
-  const { top } = component.instance().cropper.canvasData;
+  const { container, getByLabelText } = render(
+    <ImageEditor image={mockImage} />
+  );
 
-  component.clickControl("Zoom in");
-  expect(component.instance().cropper.canvasData.top).toBeLessThan(top);
+  await waitForDomChange({ container });
+  fireEvent.click(getByLabelText("Zoom in"));
+
+  expect(zoom).toEqual(0.2);
 });
 
 test("can click zoom out to modify image", async () => {
-  const component = await mountEditor();
-  const { top } = component.instance().cropper.canvasData;
+  const { container, getByLabelText } = render(
+    <ImageEditor image={mockImage} />
+  );
 
-  component.clickControl("Zoom out");
-  expect(component.instance().cropper.canvasData.top).toBeGreaterThan(top);
+  await waitForDomChange({ container });
+  fireEvent.click(getByLabelText("Zoom out"));
+
+  expect(zoom).toEqual(-0.2);
 });
 
 test("can click save to save", async () => {
   const onEdit = jest.fn();
-  const component = await mountEditor(onEdit);
+  const { container, getByText } = render(
+    <ImageEditor image={mockImage} onEdit={onEdit} />
+  );
 
-  component.instance().cropper.getCroppedCanvas = () => ({
-    toDataURL() {
-      return image;
-    }
-  });
+  await waitForDomChange({ container });
+  fireEvent.click(getByText("Save"));
 
-  component.clickSave();
   expect(onEdit).toHaveBeenCalled();
-});
-
-test("does not attempt to set state if already unmounted", async () => {
-  const component = await mountEditor();
-
-  component.instance().componentDidMount();
-  component.unmount();
 });
