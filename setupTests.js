@@ -1,21 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { configure, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { render } from "@testing-library/react";
 import { axe, toHaveNoViolations } from "jest-axe";
 
 import { ModalDialog } from "./src/components";
 
-configure({ adapter: new Adapter() });
-
 expect.extend({
   async toHaveNoViolations(jsx) {
-    const component = mount(jsx);
-    const assessment = await axe(component.html());
-
-    const response = toHaveNoViolations.toHaveNoViolations(assessment);
-    component.unmount();
-
-    return response;
+    const assessment = await axe(render(jsx).container);
+    return toHaveNoViolations.toHaveNoViolations(assessment);
   }
 });
 
