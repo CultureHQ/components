@@ -2,6 +2,8 @@ import React from "react";
 import { fireEvent, render, waitForDomChange } from "@testing-library/react";
 
 import ImageEditor from "../ImageEditor";
+
+// eslint-disable-next-line jest/no-mocks-import
 import mockImage from "./__mocks__/image";
 
 let angle;
@@ -87,5 +89,5 @@ test("can click save to save", async () => {
   await waitForDomChange({ container });
   fireEvent.click(getByText("Save"));
 
-  expect(onEdit).toHaveBeenCalled();
+  expect(onEdit).toHaveBeenCalledTimes(1);
 });

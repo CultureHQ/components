@@ -2,6 +2,8 @@ import React from "react";
 import { fireEvent, render, waitForElement } from "@testing-library/react";
 
 import ImageField from "../ImageField";
+
+// eslint-disable-next-line jest/no-mocks-import
 import mockImage from "../../__tests__/__mocks__/image";
 
 jest.mock("cropperjs", () => class {

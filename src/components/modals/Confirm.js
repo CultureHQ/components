@@ -5,6 +5,10 @@ import Button from "../buttons/Button";
 import ModalDialog from "./ModalDialog";
 
 class Confirm extends Component {
+  static defaultProps = {
+    onOpen: () => {}
+  };
+
   constructor(props) {
     super(props);
 
@@ -63,10 +67,6 @@ class Confirm extends Component {
     );
   }
 }
-
-Confirm.defaultProps = {
-  onOpen: () => {}
-};
 
 export const ConfirmDelete = props => (
   <Confirm accept="Delete" danger {...props} />

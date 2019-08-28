@@ -1,6 +1,12 @@
 import React, { PureComponent } from "react";
 
 class DoorEffect extends PureComponent {
+  static defaultProps = {
+    duration: 150,
+    open: false,
+    tag: "div"
+  };
+
   doorRef = React.createRef();
 
   componentDidUpdate(prevProps) {
@@ -30,11 +36,5 @@ class DoorEffect extends PureComponent {
     );
   }
 }
-
-DoorEffect.defaultProps = {
-  duration: 150,
-  open: false,
-  tag: "div"
-};
 
 export default DoorEffect;

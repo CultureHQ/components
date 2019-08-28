@@ -20,6 +20,10 @@ const cropperToImage = cropper => {
 };
 
 class ImageEditor extends Component {
+  static defaultProps = {
+    aspectRatio: null
+  };
+
   imageRef = React.createRef();
 
   componentDidMount() {
@@ -121,9 +125,5 @@ class ImageEditor extends Component {
     );
   }
 }
-
-ImageEditor.defaultProps = {
-  aspectRatio: null
-};
 
 export default ImageEditor;

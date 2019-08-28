@@ -27,7 +27,7 @@ test("passes on onClick", () => {
   expect(onClick).not.toHaveBeenCalled();
 
   fireEvent.click(getByRole("button"));
-  expect(onClick).toHaveBeenCalled();
+  expect(onClick).toHaveBeenCalledTimes(1);
 });
 
 test("displays an icon if one is provided", () => {

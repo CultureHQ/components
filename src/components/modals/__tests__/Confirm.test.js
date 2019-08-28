@@ -32,7 +32,7 @@ test("calls the onOpen callback if it is provided", () => {
 
   fireEvent.click(getByText("Open"));
 
-  expect(onOpen).toHaveBeenCalled();
+  expect(onOpen).toHaveBeenCalledTimes(1);
 });
 
 test("closes the modal the cancel button is clicked", () => {
@@ -62,7 +62,7 @@ test("calls the onAccept callback and closes when the confirmation is accepted",
   fireEvent.click(getByText("Yes"));
 
   expect(queryByText(message)).toBeFalsy();
-  expect(onAccept).toHaveBeenCalled();
+  expect(onAccept).toHaveBeenCalledTimes(1);
 });
 
 test("ConfirmDelete sets default values", () => {

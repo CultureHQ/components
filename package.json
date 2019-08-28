@@ -62,7 +62,10 @@
     "webpack": "^4.39.3"
   },
   "eslintConfig": {
-    "extends": "@culturehq",
+    "extends": [
+      "@culturehq",
+      "@culturehq/eslint-config/react"
+    ],
     "rules": {
       "import/no-extraneous-dependencies": "off"
     }

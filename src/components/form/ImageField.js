@@ -9,6 +9,14 @@ import FormError from "./FormError";
 import { withForm } from "./Form";
 
 class ImageField extends Component {
+  static defaultProps = {
+    aspectRatio: null,
+    autoFocus: false,
+    onChange: () => {},
+    onFormChange: () => {},
+    values: {}
+  };
+
   inputRef = React.createRef();
 
   state = {
@@ -167,13 +175,5 @@ class ImageField extends Component {
     );
   }
 }
-
-ImageField.defaultProps = {
-  aspectRatio: null,
-  autoFocus: false,
-  onChange: () => {},
-  onFormChange: () => {},
-  values: {}
-};
 
 export default withForm(ImageField);

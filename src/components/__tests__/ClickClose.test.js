@@ -20,7 +20,7 @@ test("calls onClose when appropriate", () => {
   expect(onClose).not.toHaveBeenCalled();
 
   act(() => void fireEvent.click(getByText("Outside")));
-  expect(onClose).toHaveBeenCalled();
+  expect(onClose).toHaveBeenCalledTimes(1);
 });
 
 test("passes on other props", () => {

@@ -36,7 +36,7 @@ test("updates the visible month when a value is selected", () => {
 
   rerender(<Calendar year={2019} month={0} day={1} />);
 
-  expect(queryByText("January 2019"));
+  expect(queryByText("January 2019")).toBeTruthy();
 });
 
 test("calls up to the onChange when a new date is clicked", () => {

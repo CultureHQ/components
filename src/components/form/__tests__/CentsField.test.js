@@ -26,7 +26,7 @@ test("validates that the value cannot be <= 0", () => {
   const onError = jest.fn();
   render(<CentsField name="cents" value={-5} onError={onError} />);
 
-  expect(onError).toHaveBeenCalled();
+  expect(onError).toHaveBeenCalledTimes(1);
 });
 
 test("handles cases where the value is empty", () => {

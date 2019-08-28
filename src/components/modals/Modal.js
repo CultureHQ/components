@@ -3,6 +3,11 @@ import React, { Component } from "react";
 import ModalDialog from "./ModalDialog";
 
 class Modal extends Component {
+  static defaultProps = {
+    onClose: () => {},
+    startOpen: false
+  };
+
   constructor(props) {
     super(props);
 
@@ -52,11 +57,6 @@ class Modal extends Component {
     );
   }
 }
-
-Modal.defaultProps = {
-  onClose: () => {},
-  startOpen: false
-};
 
 Object.assign(Modal, {
   setAppElement: ModalDialog.setAppElement,

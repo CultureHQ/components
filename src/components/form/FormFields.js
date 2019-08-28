@@ -6,6 +6,15 @@ import { withForm } from "./Form";
 
 const buildFormField = (type, displayName) => {
   class FormField extends Component {
+    static defaultProps = {
+      autoFocus: false,
+      onChange: () => {},
+      onFormChange: () => {},
+      values: {}
+    };
+
+    static displayName = displayName;
+
     inputRef = React.createRef();
 
     state = { touched: false };
@@ -68,15 +77,6 @@ const buildFormField = (type, displayName) => {
       );
     }
   }
-
-  FormField.defaultProps = {
-    autoFocus: false,
-    onChange: () => {},
-    onFormChange: () => {},
-    values: {}
-  };
-
-  FormField.displayName = displayName;
 
   return withForm(FormField);
 };

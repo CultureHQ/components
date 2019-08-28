@@ -27,58 +27,74 @@ const config = {
 };
 
 storiesOf("Modals/Modal", module)
-  .add("default", () => {
-    const texts = {
-      heading: text("heading", "Chapter 1"),
-      body: text("body", defaultText)
-    };
+  .add(
+    "default",
+    () => {
+      const texts = {
+        heading: text("heading", "Chapter 1"),
+        body: text("body", defaultText)
+      };
 
-    const primary = boolean("primary", false);
-    const props = {
-      entrance: optionsKnob("entrance", entranceOptions, "slideIn", {
-        display: "inline-radio"
-      }),
-      onClose: action("onClose"),
-      startOpen: boolean("startOpen", false),
-      width: optionsKnob("width", widthOptions, "normal", {
-        display: "inline-radio"
-      })
-    };
+      const primary = boolean("primary", false);
+      const props = {
+        entrance: optionsKnob("entrance", entranceOptions, "slideIn", {
+          display: "inline-radio"
+        }),
+        onClose: action("onClose"),
+        startOpen: boolean("startOpen", false),
+        width: optionsKnob("width", widthOptions, "normal", {
+          display: "inline-radio"
+        })
+      };
 
-    return (
+      return (
+        <Modal
+          {...props}
+          trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
+        >
+          <Modal.Heading primary={primary}>{texts.heading}</Modal.Heading>
+          <Modal.Body>{texts.body}</Modal.Body>
+        </Modal>
+      );
+    },
+    config
+  )
+  .add(
+    "zoomIn",
+    () => (
       <Modal
-        {...props}
+        entrance="zoomIn"
         trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
       >
-        <Modal.Heading primary={primary}>{texts.heading}</Modal.Heading>
-        <Modal.Body>{texts.body}</Modal.Body>
+        <Modal.Heading>Chapter 2</Modal.Heading>
+        <Modal.LoaderBody loading />
       </Modal>
-    );
-  }, config)
-  .add("zoomIn", () => (
-    <Modal
-      entrance="zoomIn"
-      trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
-    >
-      <Modal.Heading>Chapter 2</Modal.Heading>
-      <Modal.LoaderBody loading />
-    </Modal>
-  ), config)
-  .add("narrow", () => (
-    <Modal
-      width="narrow"
-      trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
-    >
-      <Modal.Heading>Chapter 3</Modal.Heading>
-      <Modal.LoaderBody loading />
-    </Modal>
-  ), config)
-  .add("startOpen", () => (
-    <Modal
-      startOpen
-      trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
-    >
-      <Modal.Heading>Chapter 4</Modal.Heading>
-      <Modal.LoaderBody loading />
-    </Modal>
-  ), config);
+    ),
+    config
+  )
+  .add(
+    "narrow",
+    () => (
+      <Modal
+        width="narrow"
+        trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
+      >
+        <Modal.Heading>Chapter 3</Modal.Heading>
+        <Modal.LoaderBody loading />
+      </Modal>
+    ),
+    config
+  )
+  .add(
+    "startOpen",
+    () => (
+      <Modal
+        startOpen
+        trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
+      >
+        <Modal.Heading>Chapter 4</Modal.Heading>
+        <Modal.LoaderBody loading />
+      </Modal>
+    ),
+    config
+  );

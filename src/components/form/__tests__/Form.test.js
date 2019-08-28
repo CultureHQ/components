@@ -57,7 +57,7 @@ test("allows calling submit manually", () => {
 
   formRef.current.submit();
 
-  expect(onSubmit).toHaveBeenCalled();
+  expect(onSubmit).toHaveBeenCalledTimes(1);
 });
 
 test("does not attempt to setState once the component is unmounted", () => {
