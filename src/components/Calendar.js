@@ -63,7 +63,11 @@ const Calendar = ({ year = null, month = null, day = null, onChange }) => {
 
   useEffect(
     () => {
-      if (year && month && ((year !== visible.year) || (month !== visible.month))) {
+      if (
+        (year !== null)
+        && (month !== null)
+        && ((year !== visible.year) || (month !== visible.month))
+      ) {
         setVisible({ year, month });
       }
     },

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [15.0.1] - 2019-08-28
+
+### Changed
+
+- Fix up a bug with the `Calendar` component where the visible month would not change when the month was January.
+
 ## [15.0.0] - 2019-08-14
 
 ### Changed
@@ -1031,7 +1037,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v15.0.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v15.0.1...HEAD
+[15.0.1]: https://github.com/CultureHQ/components/compare/v15.0.0...v15.0.1
 [15.0.0]: https://github.com/CultureHQ/components/compare/v14.0.0...v15.0.0
 [14.0.0]: https://github.com/CultureHQ/components/compare/v13.4.0...v14.0.0
 [13.4.0]: https://github.com/CultureHQ/components/compare/v13.3.0...v13.4.0
