@@ -5,7 +5,7 @@ class Icon extends Component {
 
   componentDidMount() {
     this.componentIsMounted = true;
-    return this.loadIcon();
+    this.loadIcon();
   }
 
   componentDidUpdate({ icon }) {
@@ -21,7 +21,7 @@ class Icon extends Component {
   }
 
   loadIcon() {
-    return import("../icons.json").then(paths => {
+    import("../icons.json").then(paths => {
       const { icon } = this.props;
 
       if (this.componentIsMounted) {
