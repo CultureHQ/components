@@ -1,11 +1,17 @@
-import React from "react";
+import * as React from "react";
 
 import classnames from "../classnames";
+import { HTMLContainerProps } from "../types";
 
-const getItemClassName = (className, sizeProps) => {
+type Size = "xs" | "sm" | "md" | "lg" | "xl";
+const sizes: Size[] = ["xs", "sm", "md", "lg", "xl"];
+
+type SizeProps = Record<Size, undefined | number | false>;
+
+const getItemClassName = (className: undefined | string, sizeProps: SizeProps) => {
   let classList = classnames("chq-grid--item", className);
 
-  ["xs", "sm", "md", "lg", "xl"].forEach(size => {
+  sizes.forEach(size => {
     if (sizeProps[size]) {
       classList = `${classList} chq-grid--${size}-${sizeProps[size]}`;
     } else if (sizeProps[size] === false) {
@@ -16,14 +22,16 @@ const getItemClassName = (className, sizeProps) => {
   return classList;
 };
 
-const Grid = ({ children, className }) => (
+const Grid = ({ children, className }: HTMLContainerProps) => (
   <div className={classnames("chq-grid", className)}>
     {children}
   </div>
 );
 
+type GridItemProps = HTMLContainerProps & SizeProps;
+
 // Inner div necessary per https://github.com/philipwalton/flexbugs#flexbug-7
-const GridItem = ({ children, className, ...sizeProps }) => (
+const GridItem = ({ children, className, ...sizeProps }: GridItemProps) => (
   <div className={getItemClassName(className, sizeProps)}>
     <div className="chq-grid--item--inner">
       {children}
