@@ -1,13 +1,17 @@
-import React, { useEffect, useReducer } from "react";
+import * as React from "react";
 
 import classnames from "../classnames";
+import { HTMLContainerProps } from "../types";
 
 const makeInitialState = () => ({
   displayed: true,
   scroll: window.pageYOffset
 });
 
-const reducer = (state, action) => {
+type NavState = { displayed: boolean, scroll: number };
+type NavAction = { type: "scroll", scroll: number };
+
+const reducer = (state: NavState, action: NavAction) => {
   switch (action.type) {
     case "scroll":
       return {
@@ -20,10 +24,12 @@ const reducer = (state, action) => {
   }
 };
 
-const Nav = ({ children, className, ...props }) => {
-  const [state, dispatch] = useReducer(reducer, null, makeInitialState);
+type NavProps = HTMLContainerProps & React.HTMLProps<HTMLElement>;
 
-  useEffect(
+const Nav = ({ children, className, ...props }: NavProps) => {
+  const [state, dispatch] = React.useReducer<typeof reducer, null>(reducer, null, makeInitialState);
+
+  React.useEffect(
     () => {
       const onScroll = () => {
         dispatch({ type: "scroll", scroll: window.pageYOffset });
