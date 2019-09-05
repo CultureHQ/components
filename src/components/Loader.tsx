@@ -1,11 +1,30 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import classnames from "../classnames";
+import { HTMLContainerProps } from "../types";
 
 import Spinner from "./Spinner";
 
-class Loader extends Component {
-  state = { spinning: false };
+type LoaderProps = HTMLContainerProps & {
+  loading: boolean;
+};
+
+type LoaderState = {
+  spinning: boolean;
+};
+
+class Loader extends React.Component<LoaderProps, LoaderState> {
+  private componentIsMounted: boolean;
+  private timeout: null | ReturnType<typeof setTimeout>;
+
+  constructor(props: LoaderProps) {
+    super(props);
+
+    this.componentIsMounted = false;
+    this.timeout = null;
+
+    this.state = { spinning: false };
+  }
 
   componentDidMount = () => {
     const { loading } = this.props;
