@@ -4,9 +4,10 @@
   "description": "CultureHQ's component library",
   "main": "dist/components.js",
   "scripts": {
-    "build:js": "babel src --out-dir ./dist --ignore '**/__tests__' --ignore '**/__docs__' && cp src/*.json dist",
+    "build:js": "rm -rf dist && yarn tsc && cp src/*.json dist",
     "build:css": "node-sass src/styles/app.scss > dist/main.css",
     "clean": "git ls-files -o | grep -v node_modules | xargs rm",
+    "compile": "tsc --noEmit",
     "docs": "build-storybook -s ./stories/public -o ./docs",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "chq-scripts lint",
@@ -39,6 +40,7 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
     "@culturehq/scripts": "^4.1.1",
     "@storybook/addon-a11y": "^5.2.0",
     "@storybook/addon-actions": "^5.2.0",
@@ -50,6 +52,8 @@
     "@storybook/react": "^5.2.0",
     "@storybook/theming": "^5.2.0",
     "@testing-library/react": "^9.1.1",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
     "babel-loader": "^8.0.5",
     "css-loader": "^3.1.0",
     "identity-obj-proxy": "^3.0.0",
@@ -59,6 +63,7 @@
     "react-dom": "^16.9.0",
     "sass-lint": "^1.12.1",
     "sass-loader": "^8.0.0",
+    "typescript": "^3.6.2",
     "webpack": "^4.40.2"
   },
   "eslintConfig": {
