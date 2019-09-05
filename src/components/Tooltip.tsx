@@ -1,18 +1,28 @@
-import React, { Component } from "react";
+import * as React from "react";
 
-class Tooltip extends Component {
-  bubble = React.createRef();
+type TooltipProps = {
+  children: React.ReactNode;
+  tip: string;
+};
 
-  tooltip = React.createRef();
+class Tooltip extends React.Component<TooltipProps, {}> {
+  private bubble = React.createRef<HTMLSpanElement>();
 
-  triangle = React.createRef();
+  private frame: null | ReturnType<typeof window.requestAnimationFrame> = null;
+
+  private timeout: null | ReturnType<typeof window.setTimeout> = null;
+
+  private tooltip = React.createRef<HTMLSpanElement>();
+
+  private triangle = React.createRef<HTMLSpanElement>();
 
   componentDidMount() {
     this.requestComputeOffsets();
+
     window.addEventListener("resize", this.recomputeOffsets);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: TooltipProps) {
     const { tip } = this.props;
 
     if (tip !== prevProps.tip) {
@@ -22,6 +32,14 @@ class Tooltip extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.recomputeOffsets);
+
+    if (this.frame) {
+      window.cancelAnimationFrame(this.frame);
+    }
+
+    if (this.timeout) {
+      window.clearTimeout(this.timeout);
+    }
   }
 
   computeOffsets = () => {
@@ -50,18 +68,21 @@ class Tooltip extends Component {
     bubble.style.left = `${bubbleOffset}px`;
     bubble.style.display = null;
     bubble.style.visibility = null;
+
+    this.frame = null;
   };
 
   recomputeOffsets = () => {
     if (this.timeout) {
-      clearTimeout(this.timeout);
+      window.clearTimeout(this.timeout);
     }
 
-    this.timeout = setTimeout(this.requestComputeOffsets, 1000);
+    this.timeout = window.setTimeout(this.requestComputeOffsets, 1000);
   };
 
   requestComputeOffsets = () => {
-    window.requestAnimationFrame(this.computeOffsets);
+    this.frame = window.requestAnimationFrame(this.computeOffsets);
+    this.timeout = null;
   };
 
   render() {
