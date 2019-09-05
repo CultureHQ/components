@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { HTMLContainerProps } from "../types";
+import { HTMLContainerProps } from "../typings";
 
 type Size = "xs" | "sm" | "md" | "lg" | "xl";
 const sizes: Size[] = ["xs", "sm", "md", "lg", "xl"];

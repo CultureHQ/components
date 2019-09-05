@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { HTMLContainerProps } from "../types";
+import { HTMLContainerProps } from "../typings";
 
 import Checkmark from "./Checkmark";
 
