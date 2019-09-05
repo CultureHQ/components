@@ -1,17 +1,16 @@
-import React from "react";
+import * as React from "react";
 
 import classnames from "../classnames";
+import { HTMLContainerProps } from "../types";
 
 import Checkmark from "./Checkmark";
 
-const Checklist = ({ children, className }) => (
+const Checklist = ({ children, className }: HTMLContainerProps) => (
   <div className={classnames("chq-chl", className)}>
     {children}
   </div>
 );
 
-Object.assign(Checklist, {
-  Item: Checkmark
-});
+Checklist.Item = Checkmark;
 
 export default Checklist;
