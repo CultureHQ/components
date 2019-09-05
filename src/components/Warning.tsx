@@ -1,13 +1,9 @@
 import * as React from "react";
 
 import classnames from "../classnames";
+import { HTMLContainerProps } from "../types";
 
-type WarningProps = {
-  children: React.ReactNode;
-  className?: string;
-};
-
-const Warning = ({ children, className }: WarningProps) => (
+const Warning = ({ children, className }: HTMLContainerProps) => (
   <div className={classnames("chq-wrn", className)}>
     <p>{children}</p>
   </div>

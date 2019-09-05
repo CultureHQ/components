@@ -1,13 +1,9 @@
 import * as React from "react";
 
 import classnames from "../classnames";
+import { HTMLContainerProps } from "../types";
 
-type TableProps = {
-  children: React.ReactNode;
-  className?: string;
-};
-
-const Table = ({ children, className }: TableProps) => (
+const Table = ({ children, className }: HTMLContainerProps) => (
   <table className={classnames("chq-tbl", className)}>{children}</table>
 );
 
