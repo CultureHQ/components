@@ -1,26 +1,33 @@
 const path = require("path");
+const includePath = path.resolve(__dirname, "../");
 
 module.exports = async ({ config, mode }) => {
   config.resolve.extensions.push(".ts", ".tsx");
 
   config.module.rules.push({
     test: /\.tsx?/,
-    loaders: [
-      require.resolve("awesome-typescript-loader"),
-      require.resolve('react-docgen-typescript-loader')
+    use: [
+      { loader: require.resolve("awesome-typescript-loader") },
+      { loader: require.resolve("react-docgen-typescript-loader") }
     ],
-    include: path.resolve(__dirname, "../")
+    include: includePath
   });
 
   config.module.rules.push({
     test: /\.scss$/,
-    loaders: ["style-loader", "css-loader", "sass-loader"],
-    include: path.resolve(__dirname, "../"),
+    use: [
+      { loader: "style-loader" },
+      { loader: "css-loader" },
+      { loader: "sass-loader" }
+    ],
+    include: includePath
   });
 
   config.module.rules.push({
     test: /\.stories\.jsx?$/,
-    loaders: [require.resolve("@storybook/addon-storysource/loader")],
+    use: [
+      { loader: require.resolve("@storybook/addon-storysource/loader") }
+    ],
     enforce: "pre",
   });
 

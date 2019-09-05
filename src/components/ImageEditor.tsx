@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import * as React from "react";
+import Cropper from "cropperjs";
 
 import ActionButton from "./buttons/ActionButton";
 import Button from "./buttons/Button";
 import Icon from "./Icon";
 
-const cropperToImage = cropper => {
+const cropperToImage = (cropper: Cropper) => {
   const type = "image/jpeg";
   const canvas = cropper.getCroppedCanvas({ fillColor: "#ffffff" });
   const binary = window.atob(canvas.toDataURL(type).split(",")[1]);
@@ -19,38 +20,42 @@ const cropperToImage = cropper => {
   return new Blob([byteArray], { type });
 };
 
-class ImageEditor extends Component {
-  static defaultProps = {
-    aspectRatio: null
-  };
+type ImageEditorProps = {
+  aspectRatio?: number;
+  image: string;
+  onEdit: (blob: Blob) => void;
+  onFailure: () => void;
+};
 
-  imageRef = React.createRef();
+class ImageEditor extends React.Component<ImageEditorProps, {}> {
+  private cropper: null | Cropper = null;
+
+  private componentIsMounted: boolean = false;
+
+  private imageRef = React.createRef<HTMLImageElement>();
 
   componentDidMount() {
     this.componentIsMounted = true;
 
-    const promises = [
-      import("cropperjs"),
-      import("cropperjs/dist/cropper.css")
-    ];
+    import("./cropper")
+      .then(({ default: Cropper }) => {
+        const image = this.imageRef.current;
 
-    return Promise.all(promises).then(responses => {
-      if (this.componentIsMounted) {
-        const Cropper = responses[0].default;
-        const { aspectRatio } = this.props;
+        if (this.componentIsMounted && image) {
+          const { aspectRatio } = this.props;
 
-        this.cropper = new Cropper(this.imageRef.current, {
-          aspectRatio,
-          dragMove: "move",
-          autoCropArea: 1,
-          responsive: true
-        });
-      }
-    }).catch(() => {
-      // this catch is largely here because in the case that you're not in an
-      // environment that supports dynamic import (like jest when you're not
-      // compiling vendored code) it will spam the console otherwise
-    });
+          this.cropper = new Cropper(image, {
+            aspectRatio,
+            dragMode: "move",
+            autoCropArea: 1,
+            responsive: true
+          });
+        }
+      }).catch(() => {
+        // this catch is largely here because in the case that you're not in an
+        // environment that supports dynamic import (like jest when you're not
+        // compiling vendored code) it will spam the console otherwise
+      });
   }
 
   componentWillUnmount() {
@@ -62,25 +67,35 @@ class ImageEditor extends Component {
   }
 
   handleRotateLeft = () => {
-    this.cropper.rotate(-45);
+    if (this.cropper) {
+      this.cropper.rotate(-45);
+    }
   };
 
   handleRotateRight = () => {
-    this.cropper.rotate(45);
+    if (this.cropper) {
+      this.cropper.rotate(45);
+    }
   };
 
   handleZoomIn = () => {
-    this.cropper.zoom(0.2);
+    if (this.cropper) {
+      this.cropper.zoom(0.2);
+    }
   };
 
   handleZoomOut = () => {
-    this.cropper.zoom(-0.2);
+    if (this.cropper) {
+      this.cropper.zoom(-0.2);
+    }
   };
 
   handleSave = () => {
     const { onEdit } = this.props;
 
-    onEdit(cropperToImage(this.cropper));
+    if (this.cropper) {
+      onEdit(cropperToImage(this.cropper));
+    }
   };
 
   render() {
