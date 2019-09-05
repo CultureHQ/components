@@ -1,10 +1,9 @@
 import * as React from "react";
 
 import classnames from "../classnames";
+import { HTMLContainerProps } from "../types";
 
-type TagProps = {
-  children: React.ReactNode;
-  className?: string;
+type TagProps = HTMLContainerProps & {
   color: "blue" | "gray" | "red";
 };
 

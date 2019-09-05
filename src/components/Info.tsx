@@ -1,13 +1,9 @@
 import * as React from "react";
 
 import classnames from "../classnames";
+import { HTMLContainerProps } from "../types";
 
-type InfoProps = {
-  children: React.ReactNode;
-  className?: string;
-};
-
-const Info = ({ children, className }: InfoProps) => (
+const Info = ({ children, className }: HTMLContainerProps) => (
   <div className={classnames("chq-inf", className)}>
     <p>{children}</p>
   </div>
