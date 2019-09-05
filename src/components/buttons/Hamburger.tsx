@@ -1,8 +1,14 @@
-import React from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
 
-const Hamburger = ({ className, open, onToggle }) => (
+type HamburgerProps = {
+  className?: string;
+  open?: boolean;
+  onToggle: (event: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+const Hamburger = ({ className, open = false, onToggle }: HamburgerProps) => (
   <button
     type="button"
     className={classnames("chq-ham", className, { "chq-ham-op": open })}
