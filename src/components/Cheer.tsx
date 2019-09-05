@@ -1,19 +1,26 @@
-import React from "react";
+import * as React from "react";
 
 import classnames from "../classnames";
 import Tooltip from "./Tooltip";
 
-export const COLORS = {
+const colors = {
   darkblue: "db",
   green: "gr",
   lightblue: "lb",
   yellow: "yw"
 };
 
-const CheerSVG = ({ className, color = "darkblue", pop, small }) => (
+type CheerSVGProps = {
+  className?: string;
+  color?: keyof typeof colors;
+  pop?: boolean;
+  small?: boolean;
+};
+
+const CheerSVG = ({ className, color = "darkblue", pop = false, small = false }: CheerSVGProps) => (
   <svg
     className={
-      classnames("chq-chr", className, `chq-chr-${COLORS[color]}`, {
+      classnames("chq-chr", className, `chq-chr-${colors[color]}`, {
         "chq-chr-pp": pop,
         "chq-chr-sm": small
       })
@@ -37,7 +44,11 @@ const CheerSVG = ({ className, color = "darkblue", pop, small }) => (
   </svg>
 );
 
-const Cheer = ({ name, ...props }) => {
+type CheerProps = CheerSVGProps & {
+  name?: string;
+};
+
+const Cheer = ({ name, ...props }: CheerProps) => {
   if (name) {
     return <Tooltip tip={name}><CheerSVG {...props} /></Tooltip>;
   }
