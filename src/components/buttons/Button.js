@@ -14,15 +14,15 @@ const ButtonIcon = ({ icon, loading }) => (
 const Button = ({
   as: Element = "button",
   children,
-  className,
+  className = undefined,
   type = "button",
-  icon,
+  icon = null,
   fillParent = false,
-  inverted,
-  primary,
-  small,
-  loading,
-  danger,
+  inverted = false,
+  primary = false,
+  small = false,
+  loading = false,
+  danger = false,
   ...props
 }) => {
   const buttonProps = {

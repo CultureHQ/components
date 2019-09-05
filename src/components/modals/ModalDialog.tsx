@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactModal from "react-modal";
 
 import classnames from "../../classnames";
-import { HTMLContainerProps } from "../../types";
+import { HTMLContainerProps } from "../../typings";
 
 import PlainButton from "../buttons/PlainButton";
 import Icon from "../Icon";
