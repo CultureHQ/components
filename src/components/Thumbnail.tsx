@@ -1,6 +1,15 @@
-import React from "react";
+import * as React from "react";
 
 import classnames from "../classnames";
+
+type ThumbnailProps = {
+  as?: keyof React.ReactHTML | React.ComponentType;
+  className?: string;
+  image: string;
+  size?: "small" | "medium" | "large";
+  square?: boolean;
+  title?: string;
+};
 
 const Thumbnail = ({
   as: Element = "div",
@@ -9,7 +18,7 @@ const Thumbnail = ({
   size = "small",
   square = false,
   title
-}) => (
+}: ThumbnailProps) => (
   <Element
     className={
       classnames("chq-tmb", className, {
