@@ -1,11 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
+import * as React from "react";
 
 import classnames from "../classnames";
-import locales from "../locales";
+import * as locales from "../locales.json";
 
 import PlainButton from "./buttons/PlainButton";
 
-const getPrevMonthFillValues = visible => {
+type CalendarView = {
+  year: number;
+  month: number;
+};
+
+const getPrevMonthFillValues = (visible: CalendarView) => {
   const daysInPrevMonth = new Date(visible.year, visible.month, 0).getDate();
   const firstDayOfWeek = new Date(visible.year, visible.month, 1).getDay();
 
@@ -21,7 +26,7 @@ const getPrevMonthFillValues = visible => {
   return values;
 };
 
-const getCurrentMonthValues = visible => {
+const getCurrentMonthValues = (visible: CalendarView) => {
   const maxDay = new Date(visible.year, visible.month + 1, 0).getDate();
   const values = [];
 
@@ -32,7 +37,7 @@ const getCurrentMonthValues = visible => {
   return values;
 };
 
-const getNextMonthFillValues = visible => {
+const getNextMonthFillValues = (visible: CalendarView) => {
   const lastDayOfWeek = new Date(visible.year, visible.month + 1, 0).getDay();
   const values = [];
 
@@ -46,7 +51,7 @@ const getNextMonthFillValues = visible => {
   return values;
 };
 
-const makeActiveHash = (year, month, day) => {
+const makeActiveHash = (year: null | number, month: null | number, day: null | number) => {
   if (year !== null && month !== null && day !== null) {
     return `${year}-${month}-${day}`;
   }
@@ -55,13 +60,20 @@ const makeActiveHash = (year, month, day) => {
   return `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 };
 
-const Calendar = ({ year = null, month = null, day = null, onChange }) => {
-  const [visible, setVisible] = useState(() => ({
+type CalendarProps = {
+  year: null | number;
+  month: null | number;
+  day: null | number;
+  onChange: (year: number, month: number, day: number) => void;
+};
+
+const Calendar = ({ year = null, month = null, day = null, onChange }: CalendarProps) => {
+  const [visible, setVisible] = React.useState<CalendarView>(() => ({
     year: year === null ? new Date().getFullYear() : year,
     month: month === null ? new Date().getMonth() : month
   }));
 
-  useEffect(
+  React.useEffect(
     () => {
       if (
         (year !== null)
@@ -88,7 +100,7 @@ const Calendar = ({ year = null, month = null, day = null, onChange }) => {
   });
 
   const activeHash = makeActiveHash(year, month, day);
-  const values = useMemo(
+  const values = React.useMemo(
     () => [
       ...getPrevMonthFillValues(visible),
       ...getCurrentMonthValues(visible),
@@ -123,7 +135,7 @@ const Calendar = ({ year = null, month = null, day = null, onChange }) => {
         </div>
       </div>
       <div className="chq-cal--months">
-        {locales.en.calendar.dayAbbrs.map(abbr => (
+        {locales.en.calendar.dayAbbrs.map((abbr: string) => (
           <strong key={abbr}>{abbr}</strong>
         ))}
       </div>
