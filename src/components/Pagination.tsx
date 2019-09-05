@@ -1,10 +1,19 @@
-import React from "react";
+import * as React from "react";
 
 import classnames from "../classnames";
 
 const Spacer = () => <span aria-hidden="true" className="chq-pag--sp">...</span>;
 
-const PageLink = ({ disabled, children, current, onClick, page }) => {
+type PageOnClick = (page: number) => void;
+type PageLinkProps = {
+  disabled?: boolean;
+  children: React.ReactNode;
+  current?: boolean;
+  onClick: PageOnClick;
+  page: number;
+};
+
+const PageLink = ({ disabled, children, current, onClick, page }: PageLinkProps) => {
   const onButtonClick = () => {
     if (!current) {
       onClick(page);
@@ -24,11 +33,18 @@ const PageLink = ({ disabled, children, current, onClick, page }) => {
   );
 };
 
-const Page = ({ page, ...props }) => (
+type PageProps = Omit<PageLinkProps, "children">;
+
+const Page = ({ page, ...props }: PageProps) => (
   <PageLink page={page} {...props}>{page}</PageLink>
 );
 
-const PrevPage = ({ currentPage, onClick }) => (
+type PrevPageProps = {
+  currentPage: number;
+  onClick: PageOnClick;
+};
+
+const PrevPage = ({ currentPage, onClick }: PrevPageProps) => (
   <PageLink
     disabled={currentPage === 1}
     page={currentPage - 1}
@@ -38,7 +54,13 @@ const PrevPage = ({ currentPage, onClick }) => (
   </PageLink>
 );
 
-const NextPage = ({ currentPage, totalPages, onClick }) => (
+type NextPageProps = {
+  currentPage: number;
+  onClick: PageOnClick;
+  totalPages: number;
+};
+
+const NextPage = ({ currentPage, totalPages, onClick }: NextPageProps) => (
   <PageLink
     disabled={currentPage === totalPages}
     page={currentPage + 1}
@@ -48,7 +70,14 @@ const NextPage = ({ currentPage, totalPages, onClick }) => (
   </PageLink>
 );
 
-const Pagination = ({ className, currentPage: current = 1, totalPages: total, onClick }) => {
+type PaginationProps = {
+  className?: string;
+  currentPage: number;
+  onClick: PageOnClick;
+  totalPages: number;
+};
+
+const Pagination = ({ className, currentPage: current = 1, totalPages: total, onClick }: PaginationProps) => {
   if (total < 2) {
     return null;
   }
