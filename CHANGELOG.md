@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Removed
+
+- Remove `setAppElement` from static on `Modal` and `ModalDialog` in favor of the `appElement` prop on `Confirm`, `ConfirmDelete`, `Modal`, and `ModalDialog`. Defaults to `document.body`.
+
 ## [15.0.1] - 2019-08-28
 
 ### Changed

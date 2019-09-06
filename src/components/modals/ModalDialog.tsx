@@ -39,14 +39,24 @@ const modalStyle = {
 };
 
 type ModalDialogProps = HTMLContainerProps & {
+  appElement?: string | HTMLElement;
   contentRef?: (instance: HTMLDivElement) => void;
   entrance?: keyof typeof entrances;
   onClose?: (event: (React.MouseEvent | React.KeyboardEvent)) => void;
   width?: keyof typeof widths;
 };
 
-const ModalDialog = ({ children, className, contentRef, entrance = "slideIn", onClose, width = "normal" }: ModalDialogProps) => (
+const ModalDialog = ({
+  appElement = document.body,
+  children,
+  className,
+  contentRef,
+  entrance = "slideIn",
+  onClose,
+  width = "normal"
+}: ModalDialogProps) => (
   <ReactModal
+    appElement={appElement}
     className={classnames("chq-mdl", className, entrances[entrance], widths[width])}
     contentRef={contentRef}
     onRequestClose={onClose}
@@ -57,7 +67,6 @@ const ModalDialog = ({ children, className, contentRef, entrance = "slideIn", on
   </ReactModal>
 );
 
-ModalDialog.setAppElement = ReactModal.setAppElement;
 ModalDialog.Heading = ModalDialogHeading;
 ModalDialog.Body = Panel.Body;
 ModalDialog.LoaderBody = Panel.LoaderBody;
