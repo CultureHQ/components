@@ -47,7 +47,7 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
   };
 
   render() {
-    const { accept = "Yes", children, className, contentRef, danger, entrance, trigger, width } = this.props;
+    const { accept = "Yes", appElement, children, className, contentRef, danger, entrance, trigger, width } = this.props;
     const { open } = this.state;
 
     const classList = classnames("chq-cnf", className);
@@ -57,6 +57,7 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
         {trigger(this.handleOpen)}
         {open && (
           <ModalDialog
+            appElement={appElement}
             className={classList}
             contentRef={contentRef}
             entrance={entrance}
