@@ -1,8 +1,12 @@
-import React from "react";
+import * as React from "react";
 
 import classnames from "../../../classnames";
 
-const SelectFieldCaret = ({ open }) => (
+type SelectFieldCaretProps = {
+  open: boolean;
+};
+
+const SelectFieldCaret = ({ open }: SelectFieldCaretProps) => (
   <div className={classnames("chq-ffd--sl--caret", { "chq-ffd--sl--caret-flip": open })} />
 );
 
