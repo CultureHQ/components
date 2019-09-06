@@ -1,9 +1,21 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import SelectFieldCaret from "./SelectFieldCaret";
 
-class SelectFieldSingleValue extends Component {
-  handleKeyDown = event => {
+type SelectFieldSingleValueProps = {
+  display: string;
+  inputRef: React.RefObject<HTMLInputElement>;
+  name: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onClose: () => void;
+  onOpen: () => void;
+  open: boolean;
+  placeholder: string;
+  value: string;
+};
+
+class SelectFieldSingleValue extends React.Component<SelectFieldSingleValueProps, {}> {
+  handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const { onClose, onOpen, open } = this.props;
 
     switch (event.key) {
