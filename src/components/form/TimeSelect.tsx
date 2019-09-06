@@ -27,21 +27,22 @@ for (let hours = 0; hours < 24; hours += 1) {
 type TimeSelectOnChange = (hours: number, minutes: number) => void;
 
 type TimeSelectButtonProps = {
-  activeOptionRef: React.RefObject<HTMLButtonElement>;
+  currentOptionRef: React.RefObject<HTMLButtonElement>;
   hours: number;
   minutes: number;
   onChange: TimeSelectOnChange;
   option: TimeSelectOption;
 };
 
-const TimeSelectButton = ({ activeOptionRef, hours, minutes, onChange, option }: TimeSelectButtonProps) => {
-  const isActive = hours === option.hours && minutes === option.minutes;
+const TimeSelectButton = ({ currentOptionRef, hours, minutes, onChange, option }: TimeSelectButtonProps) => {
+  const current = hours === option.hours && minutes === option.minutes;
 
   return (
     <PlainButton
-      ref={isActive ? activeOptionRef : null}
-      className={classnames("chq-tsl--op", { "chq-tsl--op-act": isActive })}
+      aria-current={current}
+      className="chq-tsl--op"
       onClick={() => onChange(option.hours, option.minutes)}
+      ref={current ? currentOptionRef : null}
     >
       {option.label}
     </PlainButton>
@@ -55,19 +56,19 @@ type TimeSelectProps = {
 };
 
 const TimeSelect = ({ hours, minutes, onChange }: TimeSelectProps) => {
-  const activeOptionRef = React.useRef<HTMLButtonElement>(null);
+  const currentOptionRef = React.useRef<HTMLButtonElement>(null);
   const selectRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(
     () => {
-      const activeOption = activeOptionRef.current;
+      const currentOption = currentOptionRef.current;
       const select = selectRef.current;
 
-      if (activeOption && select) {
-        select.scrollTop = Math.max(0, activeOption.offsetTop - select.offsetTop - 46);
+      if (currentOption && select) {
+        select.scrollTop = Math.max(0, currentOption.offsetTop - select.offsetTop - 46);
       }
     },
-    [activeOptionRef, selectRef]
+    [currentOptionRef, selectRef]
   );
 
   return (
@@ -75,7 +76,7 @@ const TimeSelect = ({ hours, minutes, onChange }: TimeSelectProps) => {
       {timeSelectOptions.map(option => (
         <TimeSelectButton
           key={`${option.hours}:${option.minutes}`}
-          activeOptionRef={activeOptionRef}
+          currentOptionRef={currentOptionRef}
           hours={hours}
           minutes={minutes}
           onChange={onChange}
