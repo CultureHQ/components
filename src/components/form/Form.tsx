@@ -1,32 +1,42 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
+import { HTMLContainerProps } from "../../typings";
 
-const { Provider, Consumer } = React.createContext({
+type FormValue = undefined | boolean | string | number;
+type FormValues = { [key: string]: FormValue };
+
+type FormProps = HTMLContainerProps & {
+  initialValues?: FormValues;
+  onSubmit: (values: FormValues) => void | Promise<any>;
+};
+
+export type FormState = {
+  errors: { [key: string]: string };
+  submitted: boolean;
+  submitting: boolean;
+  values: FormValues;
+  onError: (name: string, error: string) => void;
+  onFormChange: (name: string, value: FormValue) => void;
+};
+
+const { Provider, Consumer } = React.createContext<FormState>({
   errors: {},
   submitted: false,
   submitting: false,
   values: {},
-  onError: () => {},
-  onFormChange: () => {}
+  onError: (name: string, error: string) => {},
+  onFormChange: (name: string, value: FormValue) => {}
 });
 
-export const withForm = Child => {
-  const Parent = props => (
-    <Consumer>{state => <Child {...state} {...props} />}</Consumer>
-  );
-
-  const childName = Child.displayName || Child.name || "Component";
-  Parent.displayName = `withForm(${childName})`;
-
-  return Parent;
-};
-
 /* eslint-disable react/no-unused-state */
-class Form extends Component {
-  constructor(props) {
+class Form extends React.Component<FormProps, FormState> {
+  private componentIsMounted: boolean;
+
+  constructor(props: FormProps) {
     super(props);
 
+    this.componentIsMounted = false;
     this.state = {
       errors: {},
       submitted: false,
@@ -45,19 +55,19 @@ class Form extends Component {
     this.componentIsMounted = false;
   }
 
-  handleError = (name, error) => {
+  handleError = (name: string, error: string) => {
     this.setState(({ errors }) => ({
       errors: { ...errors, [name]: error }
     }));
   };
 
-  handleFormChange = (name, value) => {
+  handleFormChange = (name: string, value: FormValue) => {
     this.setState(({ values }) => ({
       values: { ...values, [name]: value }
     }));
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     this.submit();
   };
@@ -98,5 +108,16 @@ class Form extends Component {
     );
   }
 }
+
+export const withForm = <P extends {}>(Child: React.ComponentType<P & FormState>) => {
+  const Parent = (props: P) => (
+    <Consumer>{state => <Child {...state} {...props} />}</Consumer>
+  );
+
+  const childName = Child.displayName || Child.name || "Component";
+  Parent.displayName = `withForm(${childName})`;
+
+  return Parent;
+};
 
 export default Form;
