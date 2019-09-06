@@ -1,35 +1,46 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import Checkmark from "../Checkmark";
 import classnames from "../../classnames";
-import { withForm } from "./Form";
+import { FormState, withForm } from "./Form";
 
-class BooleanField extends Component {
+type BooleanFieldProps = {
+  children: React.ReactNode;
+  className?: string;
+  name: string;
+  onChange?: (value: boolean) => {};
+  value?: boolean;
+};
+
+class BooleanField extends React.Component<BooleanFieldProps & FormState, {}> {
   static defaultProps = {
-    onChange: () => {},
-    onFormChange: () => {},
     values: {}
   };
 
   componentDidMount() {
     const { name, value, values } = this.props;
-    const normal = value || values[name];
+    const normal = value || (values[name] as boolean);
 
     if (normal === undefined || normal === null) {
       this.handleClick(false);
     }
   }
 
-  handleClick = checked => {
+  handleClick = (checked: boolean) => {
     const { name, onChange, onFormChange } = this.props;
 
-    onChange(checked);
-    onFormChange(name, checked);
+    if (onChange) {
+      onChange(checked);
+    }
+
+    if (onFormChange) {
+      onFormChange(name, checked);
+    }
   };
 
   render() {
     const { children, className, name, value, values } = this.props;
-    const normal = value || values[name];
+    const normal = value || (values[name] as boolean);
 
     return (
       <div className={classnames("chq-ffd", className)}>
