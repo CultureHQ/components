@@ -1,17 +1,22 @@
-import React, { useEffect, useRef } from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
 import PlainButton from "../buttons/PlainButton";
 
-const padLeft = number => `0${number}`.slice(-2);
+type TimeSelectOption = {
+  hours: number;
+  minutes: number;
+  label: string;
+};
 
-const TIME_SELECT_OPTIONS = [];
+const padLeft = (value: number) => `0${value}`.slice(-2);
+const timeSelectOptions: TimeSelectOption[] = [];
 
 for (let hours = 0; hours < 24; hours += 1) {
   for (let minutes = 0; minutes < 60; minutes += 15) {
     const meridian = hours < 12 ? "AM" : "PM";
 
-    TIME_SELECT_OPTIONS.push({
+    timeSelectOptions.push({
       hours,
       minutes,
       label: `${padLeft(hours % 12 || 12)}:${padLeft(minutes)} ${meridian}`
@@ -19,7 +24,17 @@ for (let hours = 0; hours < 24; hours += 1) {
   }
 }
 
-const TimeSelectOption = ({ activeOptionRef, hours, minutes, onChange, option }) => {
+type TimeSelectOnChange = (hours: number, minutes: number) => void;
+
+type TimeSelectButtonProps = {
+  activeOptionRef: React.RefObject<HTMLButtonElement>;
+  hours: number;
+  minutes: number;
+  onChange: TimeSelectOnChange;
+  option: TimeSelectOption;
+};
+
+const TimeSelectButton = ({ activeOptionRef, hours, minutes, onChange, option }: TimeSelectButtonProps) => {
   const isActive = hours === option.hours && minutes === option.minutes;
 
   return (
@@ -33,11 +48,17 @@ const TimeSelectOption = ({ activeOptionRef, hours, minutes, onChange, option })
   );
 };
 
-const TimeSelect = ({ hours, minutes, onChange }) => {
-  const activeOptionRef = useRef();
-  const selectRef = useRef();
+type TimeSelectProps = {
+  hours: number;
+  minutes: number;
+  onChange: TimeSelectOnChange;
+};
 
-  useEffect(
+const TimeSelect = ({ hours, minutes, onChange }: TimeSelectProps) => {
+  const activeOptionRef = React.useRef<HTMLButtonElement>(null);
+  const selectRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(
     () => {
       const activeOption = activeOptionRef.current;
       const select = selectRef.current;
@@ -51,8 +72,8 @@ const TimeSelect = ({ hours, minutes, onChange }) => {
 
   return (
     <div className="chq-tsl" ref={selectRef}>
-      {TIME_SELECT_OPTIONS.map(option => (
-        <TimeSelectOption
+      {timeSelectOptions.map(option => (
+        <TimeSelectButton
           key={`${option.hours}:${option.minutes}`}
           activeOptionRef={activeOptionRef}
           hours={hours}
