@@ -15,25 +15,26 @@ class TimezoneField extends Component {
   componentDidMount() {
     this.componentIsMounted = true;
 
-    return import("../../timezones.json").then(({ default: timezones }) => {
-      if (!this.componentIsMounted) {
-        return;
-      }
+    import("../../timezones.json")
+      .then(({ default: timezones }) => {
+        if (!this.componentIsMounted) {
+          return;
+        }
 
-      const { name, onOffsetChange, value, values } = this.props;
-      const normal = value || values[name];
+        const { name, onOffsetChange, value, values } = this.props;
+        const normal = value || values[name];
 
-      const match = timezones.find(timezone => timezone.value === normal);
-      if (match) {
-        onOffsetChange(match.offset);
-      }
+        const match = timezones.find(timezone => timezone.value === normal);
+        if (match) {
+          onOffsetChange(match.offset);
+        }
 
-      this.setState({ timezones });
-    }).catch(() => {
-      // this catch is largely here because in the case that you're not in an
-      // environment that supports dynamic import (like jest when you're not
-      // compiling vendored code) it will spam the console otherwise
-    });
+        this.setState({ timezones });
+      }).catch(() => {
+        // this catch is largely here because in the case that you're not in an
+        // environment that supports dynamic import (like jest when you're not
+        // compiling vendored code) it will spam the console otherwise
+      });
   }
 
   componentWillUnmount() {
