@@ -28,7 +28,7 @@ type ImageFieldState = {
   dragging: boolean;
   failed: boolean;
   image: ImageFieldValue;
-  preview: string | undefined;
+  preview: string | null;
   touched: boolean;
 };
 
@@ -40,7 +40,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     editorOpen: false,
     failed: false,
     image: null,
-    preview: undefined,
+    preview: null,
     touched: false
   };
 
@@ -80,7 +80,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
         editorOpen,
         failed,
         image,
-        preview: image ? URL.createObjectURL(image) : undefined,
+        preview: image ? URL.createObjectURL(image) : null,
         touched: true
       };
     });
@@ -125,7 +125,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
 
     const { dragging, editorOpen, failed, image, preview, touched } = this.state;
 
-    const normal = value || values[name];
+    const normal = value || (values[name] as ImageFieldValue | undefined) || null;
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>

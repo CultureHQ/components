@@ -22,7 +22,7 @@ const cropperToImage = (cropper: Cropper) => {
 
 type ImageEditorProps = {
   aspectRatio?: number;
-  image?: string;
+  image: string | null;
   onEdit: (blob: Blob) => void;
   onFailure: () => void;
 };
@@ -131,7 +131,7 @@ class ImageEditor extends React.Component<ImageEditorProps, {}> {
         <div className="chq-ied--img">
           <img
             ref={this.imageRef}
-            src={image}
+            src={image || undefined}
             alt="Preview"
             onError={onFailure}
           />
