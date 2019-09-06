@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
 import Icon from "../Icon";
@@ -6,42 +6,61 @@ import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
 import ImagePreview from "../ImagePreview";
 import FormError from "./FormError";
-import { withForm } from "./Form";
+import { FormState, withForm } from "./Form";
 
-class ImageField extends Component {
-  static defaultProps = {
-    aspectRatio: null,
-    autoFocus: false,
-    onChange: () => {},
-    onFormChange: () => {},
-    values: {}
-  };
+type ImageFieldValue = Blob | File | null;
 
-  inputRef = React.createRef();
+type ImageFieldProps = React.HTMLAttributes<HTMLInputElement> & {
+  aspectRatio?: number;
+  autoFocus?: boolean;
+  children: React.ReactNode;
+  className?: string;
+  name: string;
+  onChange?: (value: ImageFieldValue) => void;
+  progress?: number;
+  required?: boolean;
+  validator?: (value: ImageFieldValue) => string | null;
+  value?: ImageFieldValue;
+};
+
+type ImageFieldState = {
+  editorOpen: boolean;
+  dragging: boolean;
+  failed: boolean;
+  image: ImageFieldValue;
+  preview: string | undefined;
+  touched: boolean;
+};
+
+class ImageField extends React.Component<ImageFieldProps & FormState, ImageFieldState> {
+  inputRef = React.createRef<HTMLInputElement>();
 
   state = {
     dragging: false,
     editorOpen: false,
     failed: false,
     image: null,
-    preview: null,
+    preview: undefined,
     touched: false
   };
 
   componentDidMount() {
     const { autoFocus } = this.props;
+    const input = this.inputRef.current;
 
-    if (autoFocus) {
-      this.inputRef.current.focus();
+    if (autoFocus && input) {
+      input.focus();
     }
   }
 
-  handleFileSelected = ({ target: { files } }) => {
-    const image = files[0];
+  handleFileSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.target;
+    const image = files && files[0];
+
     this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
   };
 
-  handleImageEdited = image => {
+  handleImageEdited = (image: Blob) => {
     this.handleImageSelected({ editorOpen: false, failed: false, image });
   };
 
@@ -49,7 +68,7 @@ class ImageField extends Component {
     this.handleImageSelected({ editorOpen: false, failed: true, image: null });
   };
 
-  handleImageSelected = ({ editorOpen, failed, image }) => {
+  handleImageSelected = ({ editorOpen, failed, image }: { editorOpen: boolean, failed: boolean, image: ImageFieldValue }) => {
     const { name, onChange, onFormChange } = this.props;
 
     this.setState(state => {
@@ -61,12 +80,15 @@ class ImageField extends Component {
         editorOpen,
         failed,
         image,
-        preview: image && URL.createObjectURL(image),
+        preview: image ? URL.createObjectURL(image) : undefined,
         touched: true
       };
     });
 
-    onChange(image);
+    if (onChange) {
+      onChange(image);
+    }
+
     onFormChange(name, image);
   };
 
@@ -82,12 +104,12 @@ class ImageField extends Component {
     this.setState({ dragging: false });
   };
 
-  handleDragOver = event => {
+  handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     return false;
   };
 
-  handleDrop = event => {
+  handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
 
     const image = event.dataTransfer.files[0];

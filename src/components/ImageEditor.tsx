@@ -22,7 +22,7 @@ const cropperToImage = (cropper: Cropper) => {
 
 type ImageEditorProps = {
   aspectRatio?: number;
-  image: string;
+  image?: string;
   onEdit: (blob: Blob) => void;
   onFailure: () => void;
 };
