@@ -3,7 +3,7 @@ import * as React from "react";
 import classnames from "../../classnames";
 import { HTMLContainerProps } from "../../typings";
 
-type FormValue = undefined | boolean | string | number;
+type FormValue = undefined | null | boolean | number | string;
 type FormValues = { [key: string]: FormValue };
 
 type FormProps = HTMLContainerProps & {
