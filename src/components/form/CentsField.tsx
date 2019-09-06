@@ -11,14 +11,16 @@ const centsValidator = (value: string) => {
   return null;
 };
 
+type CentsFieldValue = number | null;
+
 type CentsFieldProps = React.HTMLAttributes<HTMLInputElement> & {
   autoFocus?: boolean;
   children: React.ReactNode;
   className?: string;
   name: string;
-  onChange?: (value: number | null) => {};
+  onChange?: (value: CentsFieldValue) => {};
   required?: boolean;
-  value?: number | null;
+  value?: CentsFieldValue;
 };
 
 type CentsFieldState = {
@@ -26,10 +28,6 @@ type CentsFieldState = {
 };
 
 class CentsField extends React.Component<CentsFieldProps & FormState, CentsFieldState> {
-  static defaultProps = {
-    values: {}
-  };
-
   private inputRef = React.createRef<HTMLInputElement>();
 
   state = { touched: false };
@@ -50,12 +48,13 @@ class CentsField extends React.Component<CentsFieldProps & FormState, CentsField
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, onChange, onFormChange } = this.props;
 
-    const value = event.target.value;
+    const { value } = event.target;
     const amount = typeof value === "number" ? Math.round(value * 100) : null;
 
     if (onChange) {
       onChange(amount);
     }
+
     onFormChange(name, amount);
   };
 
