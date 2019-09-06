@@ -11,9 +11,8 @@ expect.extend({
   }
 });
 
-ModalDialog.setAppElement(document.body);
-
 URL.createObjectURL = object => object;
 URL.revokeObjectURL = () => {};
 
 window.requestAnimationFrame = callback => callback();
+window.cancelAnimationFrame = () => {};

@@ -4,7 +4,7 @@ import classnames from "../../classnames";
 import Button from "../buttons/Button";
 import ModalDialog from "./ModalDialog";
 
-type ForwardedProps = "children" | "className" | "contentRef" | "entrance" | "width";
+type ForwardedProps = "appElement" | "children" | "className" | "contentRef" | "entrance" | "width";
 type ConfirmProps = Pick<React.ComponentProps<typeof ModalDialog>, ForwardedProps> & {
   accept?: string;
   danger?: boolean;

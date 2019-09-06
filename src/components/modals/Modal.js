@@ -59,7 +59,6 @@ class Modal extends Component {
 }
 
 Object.assign(Modal, {
-  setAppElement: ModalDialog.setAppElement,
   Heading: ModalDialog.Heading,
   Body: ModalDialog.Body,
   LoaderBody: ModalDialog.LoaderBody,
