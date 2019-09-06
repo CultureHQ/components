@@ -1,13 +1,24 @@
-import React, { Component, Fragment } from "react";
+import * as React from "react";
 
 import classnames from "../../../classnames";
 import Badge from "../../buttons/Badge";
 import SelectFieldCaret from "./SelectFieldCaret";
 
-const SelectFieldMultiValueBadge = ({ option, onDeselect }) => {
+type SelectValue = string;
+type SelectOption = {
+  label: string;
+  value: SelectValue;
+};
+
+type SelectFieldMultiValueBadgeProps = {
+  option: SelectOption;
+  onDeselect: (value: SelectValue) => void;
+};
+
+const SelectFieldMultiValueBadge = ({ option, onDeselect }: SelectFieldMultiValueBadgeProps) => {
   const { label, value } = option;
 
-  const onClick = event => {
+  const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     onDeselect(value);
   };
@@ -15,7 +26,21 @@ const SelectFieldMultiValueBadge = ({ option, onDeselect }) => {
   return <><Badge icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
 };
 
-class SelectFieldMultiValue extends Component {
+type SelectFieldMultiValueProps = {
+  display: string;
+  inputRef: React.RefObject<HTMLInputElement>;
+  name: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onClose: () => void;
+  onDeselect: (value: SelectValue) => void;
+  onOpen: () => void;
+  open: boolean;
+  options: SelectOption[];
+  placeholder: string;
+  value: SelectValue[];
+};
+
+class SelectFieldMultiValue extends React.Component<SelectFieldMultiValueProps, {}> {
   getCurrentOptions() {
     const { options, value } = this.props;
 
@@ -29,7 +54,7 @@ class SelectFieldMultiValue extends Component {
     ));
   }
 
-  handleKeyDown = event => {
+  handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     event.stopPropagation();
     const { display, onClose, onDeselect, onOpen, open, value } = this.props;
 
@@ -63,7 +88,7 @@ class SelectFieldMultiValue extends Component {
     return (
       <div role="button" tabIndex={0} onClick={onOpen} onKeyDown={this.handleKeyDown} className={className}>
         {currentOptions.map((option, index) => (
-          <Fragment key={option.value}>
+          <React.Fragment key={option.value}>
             <input
               aria-label={`${name} ${index}`}
               type="hidden"
@@ -72,7 +97,7 @@ class SelectFieldMultiValue extends Component {
               value={option.value}
             />
             <SelectFieldMultiValueBadge option={option} onDeselect={onDeselect} />
-          </Fragment>
+          </React.Fragment>
         ))}
         <input
           aria-label="Search"
