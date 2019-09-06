@@ -18,7 +18,7 @@ type CentsFieldProps = React.HTMLAttributes<HTMLInputElement> & {
   name: string;
   onChange?: (value: number | null) => {};
   required?: boolean;
-  value?: boolean;
+  value?: number | null;
 };
 
 type CentsFieldState = {

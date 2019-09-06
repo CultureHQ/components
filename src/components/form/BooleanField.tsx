@@ -9,7 +9,7 @@ type BooleanFieldProps = {
   className?: string;
   name: string;
   onChange?: (value: boolean) => {};
-  value?: boolean;
+  value?: boolean | null;
 };
 
 class BooleanField extends React.Component<BooleanFieldProps & FormState, {}> {
