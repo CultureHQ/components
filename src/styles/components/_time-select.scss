@@ -18,7 +18,7 @@
       outline: 0;
     }
 
-    &-act {
+    &[aria-current='true'] {
       background-color: $color-link-blue;
       color: $color-white;
 

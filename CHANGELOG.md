@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+
+- The `.chq-tsl--op-act` class over to `.chq-tsl--op[aria-current='true']` to be more consistent and more accessible.
+
 ### Removed
 
 - Remove `setAppElement` from static on `Modal` and `ModalDialog` in favor of the `appElement` prop on `Confirm`, `ConfirmDelete`, `Modal`, and `ModalDialog`. Defaults to `document.body`.
