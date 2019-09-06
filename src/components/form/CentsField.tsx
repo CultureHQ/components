@@ -1,33 +1,45 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { withForm } from "./Form";
+import { FormState, withForm } from "./Form";
 
-const centsValidator = value => {
-  if (value && parseFloat(value, 10) <= 0) {
+const centsValidator = (value: string) => {
+  if (value && parseFloat(value) <= 0) {
     return "Value must be greater than $0.00";
   }
   return null;
 };
 
-class CentsField extends Component {
+type CentsFieldProps = React.HTMLAttributes<HTMLInputElement> & {
+  autoFocus?: boolean;
+  children: React.ReactNode;
+  className?: string;
+  name: string;
+  onChange?: (value: number | null) => {};
+  required?: boolean;
+  value?: boolean;
+};
+
+type CentsFieldState = {
+  touched: boolean;
+};
+
+class CentsField extends React.Component<CentsFieldProps & FormState, CentsFieldState> {
   static defaultProps = {
-    autoFocus: false,
-    onChange: () => {},
-    onFormChange: () => {},
     values: {}
   };
 
-  inputRef = React.createRef();
+  private inputRef = React.createRef<HTMLInputElement>();
 
   state = { touched: false };
 
   componentDidMount() {
     const { autoFocus } = this.props;
+    const input = this.inputRef.current;
 
-    if (autoFocus) {
-      this.inputRef.current.focus();
+    if (autoFocus && input) {
+      input.focus();
     }
   }
 
@@ -35,11 +47,15 @@ class CentsField extends Component {
     this.setState({ touched: true });
   };
 
-  handleChange = ({ target: { value } }) => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, onChange, onFormChange } = this.props;
-    const amount = value ? Math.round(value * 100) : null;
 
-    onChange(amount);
+    const value = event.target.value;
+    const amount = typeof value === "number" ? Math.round(value * 100) : null;
+
+    if (onChange) {
+      onChange(amount);
+    }
     onFormChange(name, amount);
   };
 
@@ -66,7 +82,7 @@ class CentsField extends Component {
           name={name}
           min="0"
           step=".01"
-          value={Number.isFinite(normal) ? normal / 100 : ""}
+          value={typeof normal === "number" ? normal / 100 : ""}
           onBlur={this.handleBlur}
           onChange={this.handleChange}
         />
