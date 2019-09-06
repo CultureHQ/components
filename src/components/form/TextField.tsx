@@ -1,26 +1,37 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { withForm } from "./Form";
+import { FormState, withForm } from "./Form";
 
-class TextField extends Component {
-  static defaultProps = {
-    autoFocus: false,
-    onChange: () => {},
-    onFormChange: () => {},
-    values: {}
-  };
+type TextFieldValue = string | null;
 
-  textAreaRef = React.createRef();
+type TextFieldProps = React.HTMLAttributes<HTMLTextAreaElement> & {
+  autoFocus?: boolean;
+  children: React.ReactNode;
+  className?: string;
+  name: string;
+  onChange?: (value: TextFieldValue) => {};
+  required?: boolean;
+  validator?: (value: TextFieldValue) => string | null;
+  value?: TextFieldValue;
+};
+
+type TextFieldState = {
+  touched: boolean;
+};
+
+class TextField extends React.Component<TextFieldProps & FormState, TextFieldState> {
+  private textAreaRef = React.createRef<HTMLTextAreaElement>();
 
   state = { touched: false };
 
   componentDidMount() {
     const { autoFocus } = this.props;
+    const textArea = this.textAreaRef.current;
 
-    if (autoFocus) {
-      this.textAreaRef.current.focus();
+    if (autoFocus && textArea) {
+      textArea.focus();
     }
   }
 
@@ -28,10 +39,14 @@ class TextField extends Component {
     this.setState({ touched: true });
   };
 
-  handleChange = ({ target: { value } }) => {
+  handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, onChange, onFormChange } = this.props;
+    const { value } = event.target; 
 
-    onChange(value);
+    if (onChange) {
+      onChange(value);
+    }
+
     onFormChange(name, value);
   };
 
@@ -43,7 +58,7 @@ class TextField extends Component {
 
     const { touched } = this.state;
 
-    const normal = value || values[name];
+    const normal = value || (values[name] as TextFieldValue | undefined);
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>

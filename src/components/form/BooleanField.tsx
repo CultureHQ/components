@@ -13,10 +13,6 @@ type BooleanFieldProps = {
 };
 
 class BooleanField extends React.Component<BooleanFieldProps & FormState, {}> {
-  static defaultProps = {
-    values: {}
-  };
-
   componentDidMount() {
     const { name, value, values } = this.props;
     const normal = value || (values[name] as boolean);
@@ -33,9 +29,7 @@ class BooleanField extends React.Component<BooleanFieldProps & FormState, {}> {
       onChange(checked);
     }
 
-    if (onFormChange) {
-      onFormChange(name, checked);
-    }
+    onFormChange(name, checked);
   };
 
   render() {
