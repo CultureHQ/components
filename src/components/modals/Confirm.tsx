@@ -1,15 +1,25 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
 import Button from "../buttons/Button";
 import ModalDialog from "./ModalDialog";
 
-class Confirm extends Component {
-  static defaultProps = {
-    onOpen: () => {}
-  };
+type ForwardedProps = "children" | "className" | "contentRef" | "entrance" | "width";
+type ConfirmProps = Pick<React.ComponentProps<typeof ModalDialog>, ForwardedProps> & {
+  accept?: string;
+  danger?: boolean;
+  onAccept: () => void;
+  onOpen?: () => void;
+  startOpen?: boolean;
+  trigger: (onTrigger: () => void) => React.ReactNode;
+};
 
-  constructor(props) {
+type ConfirmState = {
+  open: boolean;
+};
+
+class Confirm extends React.Component<ConfirmProps, ConfirmState> {
+  constructor(props: ConfirmProps) {
     super(props);
 
     this.state = { open: props.startOpen || false };
@@ -18,7 +28,10 @@ class Confirm extends Component {
   handleOpen = () => {
     const { onOpen } = this.props;
 
-    onOpen();
+    if (onOpen) {
+      onOpen();
+    }
+
     this.setState({ open: true });
   };
 
@@ -68,7 +81,7 @@ class Confirm extends Component {
   }
 }
 
-export const ConfirmDelete = props => (
+export const ConfirmDelete = (props: ConfirmProps) => (
   <Confirm accept="Delete" danger {...props} />
 );
 
