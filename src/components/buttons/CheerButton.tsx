@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
 import Cheer from "../Cheer";
 
-const CheerButton = ({ cheered, className, name, onCheerToggle, small }) => {
-  const [toggling, setToggling] = useState(false);
-  const [touched, setTouched] = useState(false);
+type CheerButtonProps = {
+  cheered?: boolean;
+  className?: string;
+  name?: string;
+  onCheerToggle: (cheered: boolean) => Promise<any>;
+  small?: boolean;
+};
+
+const CheerButton = ({ cheered = false, className, name, onCheerToggle, small = false }: CheerButtonProps) => {
+  const [toggling, setToggling] = React.useState<boolean>(false);
+  const [touched, setTouched] = React.useState<boolean>(false);
 
   const onClick = () => {
     setToggling(true);
