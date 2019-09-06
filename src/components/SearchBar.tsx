@@ -1,38 +1,58 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import classnames from "../classnames";
 import Icon from "./Icon";
 
-class SearchBar extends Component {
-  static defaultProps = {
+type SearchBarProps = {
+  autoComplete?: string;
+  autoFocus?: boolean;
+  className?: string;
+  onSearch: (search: string) => void | Promise<any>;
+  onSearchChange?: (search: string) => void;
+  placeholder?: string;
+  throttle?: number;
+};
+
+type SearchBarState = {
+  search: string;
+  searching: boolean;
+};
+
+class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
+  static defaultProps: Partial<SearchBarProps> = {
     autoComplete: "on",
     autoFocus: false,
-    onSearchChange: () => {},
     placeholder: "",
     throttle: 300
   };
 
-  inputRef = React.createRef();
+  private componentIsMounted: boolean = false;
 
-  timeout = 0;
+  private inputRef = React.createRef<HTMLInputElement>();
+
+  private timeout: null | ReturnType<typeof window.setTimeout> = null;
 
   state = { search: "", searching: false };
 
   componentDidMount() {
     this.componentIsMounted = true;
-    const { autoFocus } = this.props;
 
-    if (autoFocus) {
-      this.inputRef.current.focus();
+    const { autoFocus } = this.props;
+    const input = this.inputRef.current;
+
+    if (input) {
+      input.focus();
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: SearchBarProps, prevState: SearchBarState) {
     const { onSearch, throttle } = this.props;
     const { search } = this.state;
 
     if (search !== prevState.search) {
-      clearTimeout(this.timeout);
+      if (this.timeout) {
+        window.clearTimeout(this.timeout);
+      }
 
       if (search) {
         const performSearch = () => (onSearch(search) || Promise.resolve()).then(() => {
@@ -54,13 +74,20 @@ class SearchBar extends Component {
 
   componentWillUnmount() {
     this.componentIsMounted = false;
-    clearTimeout(this.timeout);
+
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
   }
 
-  handleChange = ({ target: { value: search } }) => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { onSearchChange } = this.props;
+    const search = event.target.value;
 
-    onSearchChange(search);
+    if (onSearchChange) {
+      onSearchChange(search);
+    }
+
     this.setState({ search, searching: search.length > 0 });
   };
 
