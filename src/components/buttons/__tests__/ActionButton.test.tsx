@@ -1,8 +1,8 @@
-import React from "react";
+import * as React from "react";
 import { render, waitForDomChange } from "@testing-library/react";
 
 import ActionButton from "../ActionButton";
-import icons from "../../../icons.json";
+import * as icons from "../../../icons.json";
 
 test("has no violations", () => (
   expect(<ActionButton>This is a button.</ActionButton>).toHaveNoViolations()
@@ -25,6 +25,8 @@ test("displays a regular icon", async () => {
   const { container } = render(<ActionButton icon="edit">Button</ActionButton>);
   await waitForDomChange({ container });
 
-  const iconPath = container.querySelector("path").getAttribute("d");
-  expect(iconPath).toEqual(icons.edit.join(" "));
+  const iconPath = container.querySelector("path") as SVGElement;
+
+  expect(iconPath).not.toBe(null);
+  expect(iconPath.getAttribute("d")).toEqual(icons.edit.join(" "));
 });

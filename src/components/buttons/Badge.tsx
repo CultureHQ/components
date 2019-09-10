@@ -1,11 +1,12 @@
 import * as React from "react";
 
 import classnames from "../../classnames";
-import { ContainerProps } from "../../typings";
 
 import Icon, { IconName } from "../Icon";
 
-type BadgeProps = ContainerProps & React.HTMLAttributes<HTMLButtonElement> & {
+type BadgeProps = React.HTMLAttributes<HTMLButtonElement> & {
+  children?: React.ReactNode;
+  className?: string;
   icon?: IconName;
   primary?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
