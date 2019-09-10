@@ -1,11 +1,11 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { HTMLContainerProps } from "../typings";
+import { ContainerProps } from "../typings";
 
 import Spinner from "./Spinner";
 
-type LoaderProps = HTMLContainerProps & {
+type LoaderProps = ContainerProps & {
   loading: boolean;
 };
 

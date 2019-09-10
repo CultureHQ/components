@@ -1,9 +1,9 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { HTMLContainerProps } from "../typings";
+import { ContainerProps } from "../typings";
 
-type CheckmarkProps = HTMLContainerProps & {
+type CheckmarkProps = ContainerProps & {
   checked?: boolean;
   onClick?: (checked: boolean) => void;
 };

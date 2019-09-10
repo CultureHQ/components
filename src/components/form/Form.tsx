@@ -1,12 +1,12 @@
 import * as React from "react";
 
 import classnames from "../../classnames";
-import { HTMLContainerProps } from "../../typings";
+import { ContainerProps } from "../../typings";
 
 type FormValue = undefined | null | boolean | number | string | Blob | File;
 type FormValues = { [key: string]: FormValue };
 
-type FormProps = HTMLContainerProps & {
+type FormProps = ContainerProps & {
   initialValues?: FormValues;
   onSubmit: (values: FormValues) => void | Promise<any>;
 };

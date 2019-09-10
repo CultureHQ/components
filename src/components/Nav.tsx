@@ -2,7 +2,7 @@ import * as React from "react";
 import { useWindowEvent } from "@culturehq/hooks";
 
 import classnames from "../classnames";
-import { HTMLContainerProps } from "../typings";
+import { ContainerProps } from "../typings";
 
 type NavState = {
   displayed: boolean;
@@ -18,7 +18,7 @@ const updateState = (state: NavState) => {
   };
 };
 
-type NavProps = HTMLContainerProps & React.HTMLAttributes<HTMLElement>;
+type NavProps = ContainerProps & React.HTMLAttributes<HTMLElement>;
 
 const Nav = ({ children, className, ...props }: NavProps) => {
   const [state, setState] = React.useState<NavState>(() => ({
