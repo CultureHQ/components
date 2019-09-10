@@ -12,13 +12,13 @@ test("reads image and loads it", async () => {
     styles: { height: "200px" }
   }));
 
-  const { container, queryByRole } = render(<ImagePreview preview="culture.png" />);
+  const { container, getByRole, queryByRole } = render(<ImagePreview preview="culture.png" />);
   expect(queryByRole("img")).toBeFalsy();
 
   await waitForDomChange({ container });
 
   expect(queryByRole("img")).toBeTruthy();
-  expect(queryByRole("img").style).toHaveProperty("height", "200px");
+  expect(getByRole("img").style).toHaveProperty("height", "200px");
 });
 
 test("does not attempt to set state when unmounted while waiting", () => {

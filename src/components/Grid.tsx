@@ -3,12 +3,12 @@ import * as React from "react";
 import classnames from "../classnames";
 import { ContainerProps, OptionalContainerProps } from "../typings";
 
-type Size = "xs" | "sm" | "md" | "lg" | "xl";
-const sizes: Size[] = ["xs", "sm", "md", "lg", "xl"];
+export type GridSize = "xs" | "sm" | "md" | "lg" | "xl";
+const sizes: GridSize[] = ["xs", "sm", "md", "lg", "xl"];
 
-type SizeProps = Partial<Record<Size, number | false>>;
+type GridSizeProps = Partial<Record<GridSize, number | false>>;
 
-const getItemClassName = (className: undefined | string, sizeProps: SizeProps) => {
+const getItemClassName = (className: undefined | string, sizeProps: GridSizeProps) => {
   let classList = classnames("chq-grid--item", className);
 
   sizes.forEach(size => {
@@ -28,7 +28,7 @@ const Grid = ({ children, className }: ContainerProps) => (
   </div>
 );
 
-type GridItemProps = OptionalContainerProps & SizeProps;
+type GridItemProps = OptionalContainerProps & GridSizeProps;
 
 // Inner div necessary per https://github.com/philipwalton/flexbugs#flexbug-7
 const GridItem = ({ children, className, ...sizeProps }: GridItemProps) => (

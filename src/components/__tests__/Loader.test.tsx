@@ -16,7 +16,10 @@ test("passes on className", () => {
     </Loader>
   );
 
-  expect(container.firstChild.classList).toContain("loader");
+  const loaderElement = container.firstChild as HTMLElement;
+
+  expect(loaderElement).not.toBe(null);
+  expect(loaderElement.classList).toContain("loader");
 });
 
 test("renders a placeholder if loading and not yet spinning", () => {
@@ -32,7 +35,7 @@ test("renders a placeholder if loading and not yet spinning", () => {
 
 test("automatically renders content if loading is false", () => {
   const { queryByText } = render(
-    <Loader>
+    <Loader loading={false}>
       <Loaded />
     </Loader>
   );
@@ -53,7 +56,7 @@ test("does not render a spinner if the loading is completed", done => {
   }, 250);
 
   rerender(
-    <Loader>
+    <Loader loading={false}>
       <Loaded />
     </Loader>
   );
@@ -80,7 +83,7 @@ test("renders the content once it has loaded", () => {
   );
 
   rerender(
-    <Loader>
+    <Loader loading={false}>
       <Loaded />
     </Loader>
   );

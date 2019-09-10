@@ -1,21 +1,21 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { ContainerProps } from "../typings";
+import { OptionalContainerProps } from "../typings";
 
-const FeedItem = ({ children, className }: ContainerProps) => (
+const FeedItem = ({ children, className }: OptionalContainerProps) => (
   <div className={classnames("chq-fdi", className)}>
     {children}
   </div>
 );
 
-const FeedItemBody = ({ children, className }: ContainerProps) => (
+const FeedItemBody = ({ children, className }: OptionalContainerProps) => (
   <div className={classnames("chq-fdi--bd", className)}>
     {children}
   </div>
 );
 
-const FeedItemFooter = ({ children, className }: ContainerProps) => (
+const FeedItemFooter = ({ children, className }: OptionalContainerProps) => (
   <div className={classnames("chq-fdi--ft", className)}>
     {children}
   </div>

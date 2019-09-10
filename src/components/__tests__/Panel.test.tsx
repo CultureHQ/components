@@ -55,7 +55,7 @@ test("PanelBody passes on className", () => {
 
 test("PanelLoaderBody passes on className", () => {
   const { container } = render(
-    <Panel.LoaderBody className="panel-loader-body" />
+    <Panel.LoaderBody loading={false} className="panel-loader-body" />
   );
 
   expect(container.querySelector(".panel-loader-body")).toBeTruthy();

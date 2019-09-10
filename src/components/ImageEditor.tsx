@@ -23,8 +23,8 @@ const cropperToImage = (cropper: CropperType) => {
 type ImageEditorProps = {
   aspectRatio?: number;
   image: string | null;
-  onEdit: (blob: Blob) => void;
-  onFailure: () => void;
+  onEdit?: (blob: Blob) => void;
+  onFailure?: () => void;
 };
 
 class ImageEditor extends React.Component<ImageEditorProps, {}> {
@@ -93,7 +93,7 @@ class ImageEditor extends React.Component<ImageEditorProps, {}> {
   handleSave = () => {
     const { onEdit } = this.props;
 
-    if (this.cropper) {
+    if (onEdit && this.cropper) {
       onEdit(cropperToImage(this.cropper));
     }
   };
