@@ -1,13 +1,28 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { withForm } from "./Form";
+import { FormState, withForm } from "./Form";
 
-const buildFormField = (type, displayName) => {
-  class FormField extends Component {
+const buildFormField = (type: string, displayName: string) => {
+  type FormFieldProps = {
+    addon?: string;
+    autoFocus?: boolean;
+    children: React.ReactNode;
+    className?: string;
+    name: string;
+    onChange?: (value: string) => void;
+    required?: boolean;
+    validator?: (value: string) => string | null;
+    value?: string;
+  };
+
+  type FormFieldState = {
+    touched: boolean;
+  };
+
+  class FormField extends React.Component<FormFieldProps & FormState, FormFieldState> {
     static defaultProps = {
-      autoFocus: false,
       onChange: () => {},
       onFormChange: () => {},
       values: {}
@@ -15,15 +30,16 @@ const buildFormField = (type, displayName) => {
 
     static displayName = displayName;
 
-    inputRef = React.createRef();
+    private inputRef = React.createRef<HTMLInputElement>();
 
     state = { touched: false };
 
     componentDidMount() {
       const { autoFocus } = this.props;
+      const input = this.inputRef.current;
 
-      if (autoFocus) {
-        this.inputRef.current.focus();
+      if (autoFocus && input) {
+        input.focus();
       }
     }
 
@@ -31,10 +47,13 @@ const buildFormField = (type, displayName) => {
       this.setState({ touched: true });
     };
 
-    handleChange = ({ target: { value } }) => {
+    handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, onChange, onFormChange } = this.props;
+      const { value } = event.target;
 
-      onChange(value);
+      if (onChange) {
+        onChange(value);
+      }
       onFormChange(name, value);
     };
 
@@ -47,7 +66,7 @@ const buildFormField = (type, displayName) => {
 
       const { touched } = this.state;
 
-      const normal = value || values[name];
+      const normal = value || (values[name] as undefined | string);
 
       return (
         <label className={classnames("chq-ffd", className)} htmlFor={name}>
