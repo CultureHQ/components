@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { render, waitForDomChange } from "@testing-library/react";
 
 import ImagePreview from "../ImagePreview";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { act, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 import Hamburger from "../Hamburger";
 
@@ -31,7 +31,7 @@ test("functions as a controlled component", () => {
 
   expect(container.querySelector(".chq-ham-op")).toBeFalsy();
 
-  act(() => void fireEvent.click(getByLabelText("Menu Toggle")));
+  fireEvent.click(getByLabelText("Menu Toggle"));
 
   expect(container.querySelector(".chq-ham-op")).toBeTruthy();
 });

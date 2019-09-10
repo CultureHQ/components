@@ -6,7 +6,7 @@ import { ContainerProps } from "../typings";
 type Size = "xs" | "sm" | "md" | "lg" | "xl";
 const sizes: Size[] = ["xs", "sm", "md", "lg", "xl"];
 
-type SizeProps = Record<Size, undefined | number | false>;
+type SizeProps = Partial<Record<Size, number | false>>;
 
 const getItemClassName = (className: undefined | string, sizeProps: SizeProps) => {
   let classList = classnames("chq-grid--item", className);

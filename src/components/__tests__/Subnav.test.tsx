@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { act, fireEvent, render } from "@testing-library/react";
+import * as React from "react";
+import { fireEvent, render } from "@testing-library/react";
 
 import Subnav from "../Subnav";
 
 const Container = ({ children }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = React.useState(0);
 
   return (
     <Subnav activeIndex={activeIndex} onChange={setActiveIndex}>
@@ -57,7 +57,7 @@ test("additionally functions as a controlled component", () => {
   );
 
   const buttons = getAllByRole("button");
-  act(() => void fireEvent.click(buttons[1]));
+  fireEvent.click(buttons[1]);
 
   expect(buttons[1].getAttribute("aria-current")).toEqual("true");
 });
