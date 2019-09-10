@@ -1,28 +1,23 @@
 import * as React from "react";
 
 import Button from "../buttons/Button";
-import { FormState, withForm } from "./Form";
+import { useForm } from "./Form";
 
-type SubmitButtonProps = React.ComponentProps<typeof Button> & FormState & {
+type SubmitButtonProps = React.ComponentProps<typeof Button> & {
   children?: (submitting: boolean) => React.ReactNode;
+  disabled?: boolean;
 };
 
-const defaultChildren = (submitting: boolean) => (submitting ? "Submitting..." : "Submit");
+const message = (submitting: boolean) => (submitting ? "Submitting..." : "Submit");
 
-const SubmitButton = ({
-  children = defaultChildren,
-  disabled = false,
-  errors,
-  submitted,
-  submitting,
-  values,
-  onError,
-  onFormChange,
-  ...props
-}: SubmitButtonProps) => (
-  <Button {...props} disabled={disabled || submitting} type="submit">
-    {children(submitting)}
-  </Button>
-);
+const SubmitButton = ({ children = message, disabled = false, ...props }: SubmitButtonProps) => {
+  const { submitting } = useForm();
 
-export default withForm(SubmitButton);
+  return (
+    <Button {...props} disabled={disabled || submitting} type="submit">
+      {children(submitting)}
+    </Button>
+  );
+};
+
+export default SubmitButton;
