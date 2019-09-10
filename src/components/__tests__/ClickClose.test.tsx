@@ -1,10 +1,10 @@
-import React from "react";
-import { act, fireEvent, render } from "@testing-library/react";
+import * as React from "react";
+import { fireEvent, render } from "@testing-library/react";
 
 import ClickClose from "../ClickClose";
 
 test("has no violations", () => (
-  expect(<ClickClose>Test</ClickClose>).toHaveNoViolations()
+  expect(<ClickClose onClose={jest.fn()}>Test</ClickClose>).toHaveNoViolations()
 ));
 
 test("calls onClose when appropriate", () => {
@@ -16,15 +16,19 @@ test("calls onClose when appropriate", () => {
     </main>
   );
 
-  act(() => void fireEvent.click(getByText("Inside")));
+  fireEvent.click(getByText("Inside"));
   expect(onClose).not.toHaveBeenCalled();
 
-  act(() => void fireEvent.click(getByText("Outside")));
+  fireEvent.click(getByText("Outside"));
   expect(onClose).toHaveBeenCalledTimes(1);
 });
 
 test("passes on other props", () => {
-  const { queryByLabelText } = render(<ClickClose aria-label="Label" />);
+  const { queryByLabelText } = render(
+    <ClickClose aria-label="Label" onClose={jest.fn()}>
+      Test
+    </ClickClose>
+  );
 
   expect(queryByLabelText("Label")).toBeTruthy();
 });

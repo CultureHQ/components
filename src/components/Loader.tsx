@@ -1,11 +1,12 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { ContainerProps } from "../typings";
 
 import Spinner from "./Spinner";
 
-type LoaderProps = ContainerProps & {
+type LoaderProps = {
+  children?: React.ReactNode;
+  className?: string;
   loading: boolean;
 };
 
