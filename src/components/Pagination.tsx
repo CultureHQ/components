@@ -77,31 +77,33 @@ type PaginationProps = {
   totalPages: number;
 };
 
-const Pagination = ({ className, currentPage: current = 1, totalPages: total, onClick }: PaginationProps) => {
-  if (total < 2) {
+const Pagination = ({ className, currentPage = 1, totalPages, onClick }: PaginationProps) => {
+  if (totalPages < 2) {
     return null;
   }
 
   const innerWindow = (
-    [...Array(5)].map((empty, index) => index + current - 2)
-      .filter(page => page >= 1 && page <= total)
+    [...Array(5)].map((empty, index) => index + currentPage - 2)
+      .filter(page => page >= 1 && page <= totalPages)
   );
 
   return (
     <nav className={classnames("chq-pag", className)}>
-      <PrevPage currentPage={current} onClick={onClick} />
-      {current > 3 && <Page page={1} onClick={onClick} />}
-      {current > 4 && (
-        current === 5 ? <Page page={2} onClick={onClick} /> : <Spacer />
+      <PrevPage currentPage={currentPage} onClick={onClick} />
+      {currentPage > 3 && <Page page={1} onClick={onClick} />}
+      {currentPage > 4 && (
+        currentPage === 5 ? <Page page={2} onClick={onClick} /> : <Spacer />
       )}
       {innerWindow.map(page => (
-        <Page key={page} page={page} current={page === current} onClick={onClick} />
+        <Page key={page} page={page} current={page === currentPage} onClick={onClick} />
       ))}
-      {current < total - 3 && (
-        current === total - 4 ? <Page page={total - 1} onClick={onClick} /> : <Spacer />
+      {currentPage < totalPages - 3 && (
+        currentPage === totalPages - 4
+          ? <Page page={totalPages - 1} onClick={onClick} />
+          : <Spacer />
       )}
-      {current < total - 2 && <Page page={total} onClick={onClick} />}
-      <NextPage currentPage={current} totalPages={total} onClick={onClick} />
+      {currentPage < totalPages - 2 && <Page page={totalPages} onClick={onClick} />}
+      <NextPage currentPage={currentPage} totalPages={totalPages} onClick={onClick} />
     </nav>
   );
 };

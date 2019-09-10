@@ -4,7 +4,7 @@ import classnames from "../classnames";
 import { ContainerProps } from "../typings";
 
 type TagProps = ContainerProps & {
-  color: "blue" | "gray" | "red";
+  color?: "blue" | "gray" | "red";
 };
 
 const Tag = ({ children, className, color = "blue" }: TagProps) => (

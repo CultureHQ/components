@@ -1,6 +1,13 @@
 import * as React from "react";
 
-export type ContainerProps = {
-  children: React.ReactNode;
+type OptionalClassName = {
   className?: string;
+};
+
+export type ContainerProps = OptionalClassName & {
+  children: React.ReactNode;
+};
+
+export type OptionalContainerProps = OptionalClassName & {
+  children?: React.ReactNode;
 };

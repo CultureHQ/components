@@ -1,11 +1,10 @@
 import * as React from "react";
 
 import classnames from "../classnames";
+import { OptionalContainerProps } from "../typings";
 
-type CheckmarkProps = {
+type CheckmarkProps = OptionalContainerProps & {
   checked?: boolean;
-  children?: React.ReactNode;
-  className?: string;
   onClick?: (checked: boolean) => void;
 };
 

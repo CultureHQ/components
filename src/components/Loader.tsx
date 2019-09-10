@@ -1,12 +1,11 @@
 import * as React from "react";
 
 import classnames from "../classnames";
+import { OptionalContainerProps } from "../typings";
 
 import Spinner from "./Spinner";
 
-type LoaderProps = {
-  children?: React.ReactNode;
-  className?: string;
+type LoaderProps = OptionalContainerProps & {
   loading: boolean;
 };
 
@@ -15,7 +14,8 @@ type LoaderState = {
 };
 
 class Loader extends React.Component<LoaderProps, LoaderState> {
-  private componentIsMounted: boolean = false;
+  private componentIsMounted = false;
+
   private timeout: null | number = null;
 
   state = { spinning: false };

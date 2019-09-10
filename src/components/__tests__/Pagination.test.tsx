@@ -3,7 +3,7 @@ import { fireEvent, render } from "@testing-library/react";
 
 import Pagination from "../Pagination";
 
-const renderPagination = (currentPage, totalPages, props = {}) => (
+const renderPagination = (currentPage: number, totalPages: number, props = {}) => (
   render(
     <Pagination
       currentPage={currentPage}
@@ -78,7 +78,7 @@ test("adds spacers if the far enough away from the ends", () => {
 
 test("calls the onClick handler with the correct page number", () => {
   const clicked = [];
-  const onClick = page => clicked.push(page);
+  const onClick = (page: number) => clicked.push(page);
 
   const { getAllByRole } = renderPagination(10, 20, { onClick });
   const buttons = getAllByRole("button");

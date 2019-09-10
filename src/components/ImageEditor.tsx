@@ -1,11 +1,11 @@
 import * as React from "react";
-import Cropper from "cropperjs";
+import { default as CropperType } from "cropperjs";
 
 import ActionButton from "./buttons/ActionButton";
 import Button from "./buttons/Button";
 import Icon from "./Icon";
 
-const cropperToImage = (cropper: Cropper) => {
+const cropperToImage = (cropper: CropperType) => {
   const type = "image/jpeg";
   const canvas = cropper.getCroppedCanvas({ fillColor: "#ffffff" });
   const binary = window.atob(canvas.toDataURL(type).split(",")[1]);
@@ -28,9 +28,9 @@ type ImageEditorProps = {
 };
 
 class ImageEditor extends React.Component<ImageEditorProps, {}> {
-  private cropper: null | Cropper = null;
+  private cropper: null | CropperType = null;
 
-  private componentIsMounted: boolean = false;
+  private componentIsMounted = false;
 
   private imageRef = React.createRef<HTMLImageElement>();
 

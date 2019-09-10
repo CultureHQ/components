@@ -14,7 +14,7 @@ type IconState = {
 };
 
 class Icon extends React.PureComponent<IconProps, IconState> {
-  private componentIsMounted: boolean = false;
+  private componentIsMounted = false;
 
   state: IconState = { path: null };
 
