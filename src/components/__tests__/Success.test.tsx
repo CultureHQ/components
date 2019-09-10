@@ -15,7 +15,7 @@ test("has no violations", () => (
 ));
 
 test("passes on className", () => {
-  const { container } = render(<Success className="success" />);
+  const { container } = render(<Success className="success">Success!</Success>);
 
   expect(container.querySelector(".success")).toBeTruthy();
 });

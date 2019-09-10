@@ -3,10 +3,10 @@ import * as React from "react";
 import classnames from "../classnames";
 
 type SubnavItemProps = {
-  active: boolean;
+  active?: boolean;
   children: React.ReactNode;
   className?: string;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const SubnavItem = ({ active, children, className, onClick }: SubnavItemProps) => (

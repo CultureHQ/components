@@ -6,8 +6,8 @@ import ImageEditor from "../ImageEditor";
 // eslint-disable-next-line jest/no-mocks-import
 import mockImage from "./__mocks__/image";
 
-let angle;
-let zoom;
+let angle: number;
+let zoom: number;
 
 /* eslint-disable class-methods-use-this */
 jest.mock("cropperjs", () => class {
@@ -17,11 +17,11 @@ jest.mock("cropperjs", () => class {
     return { toDataURL: () => mockImage };
   }
 
-  rotate(delta) {
+  rotate(delta: number) {
     angle += delta;
   }
 
-  zoom(delta) {
+  zoom(delta: number) {
     zoom += delta;
   }
 });

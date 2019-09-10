@@ -15,7 +15,7 @@ test("renders without crashing", () => {
 });
 
 test("passes on className", () => {
-  const { container } = render(<Tag className="tag" />);
+  const { container } = render(<Tag className="tag">Tag!</Tag>);
 
   expect(container.querySelector(".tag")).toBeTruthy();
 });

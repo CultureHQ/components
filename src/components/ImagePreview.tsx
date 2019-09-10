@@ -13,7 +13,7 @@ type ImagePreviewState = {
 };
 
 class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState> {
-  private componentIsMounted: boolean = false;
+  private componentIsMounted = false;
 
   private containerRef = React.createRef<HTMLSpanElement>();
 

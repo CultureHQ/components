@@ -1,13 +1,11 @@
 import * as React from "react";
 
 import classnames from "../../classnames";
-import { ContainerProps } from "../../typings";
+import { OptionalContainerProps } from "../../typings";
 
 import Icon, { IconName } from "../Icon";
 
-type ActionButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
-  children?: React.ReactNode;
-  className?: string;
+type ActionButtonProps = React.HTMLAttributes<HTMLButtonElement> & OptionalContainerProps & {
   icon?: IconName;
 };
 

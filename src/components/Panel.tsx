@@ -1,11 +1,11 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { ContainerProps } from "../typings";
+import { OptionalContainerProps } from "../typings";
 
 import Loader from "./Loader";
 
-type PanelProps = ContainerProps & React.HTMLAttributes<HTMLDivElement> & {
+type PanelProps = OptionalContainerProps & React.HTMLAttributes<HTMLDivElement> & {
   limitWidth?: boolean;
 };
 
@@ -15,7 +15,7 @@ const Panel = ({ className, children, limitWidth = false, ...props }: PanelProps
   </div>
 );
 
-type PanelHeadingProps = ContainerProps & {
+type PanelHeadingProps = OptionalContainerProps & {
   primary?: boolean;
 };
 
@@ -26,11 +26,11 @@ const PanelHeading = ({ className, children, primary = false }: PanelHeadingProp
   </div>
 );
 
-const PanelBody = ({ className, children }: ContainerProps) => (
+const PanelBody = ({ className, children }: OptionalContainerProps) => (
   <div className={classnames("chq-pan--bd", className)}>{children}</div>
 );
 
-type PanelLoaderBodyProps = ContainerProps & {
+type PanelLoaderBodyProps = OptionalContainerProps & {
   loading: boolean;
 };
 
@@ -40,7 +40,7 @@ const PanelLoaderBody = ({ className, children, loading }: PanelLoaderBodyProps)
   </PanelBody>
 );
 
-const PanelFooter = ({ className, children }: ContainerProps) => (
+const PanelFooter = ({ className, children }: OptionalContainerProps) => (
   <div className={classnames("chq-pan--ft", className)}>{children}</div>
 );
 

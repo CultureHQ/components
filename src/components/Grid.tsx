@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { ContainerProps } from "../typings";
+import { ContainerProps, OptionalContainerProps } from "../typings";
 
 type Size = "xs" | "sm" | "md" | "lg" | "xl";
 const sizes: Size[] = ["xs", "sm", "md", "lg", "xl"];
@@ -28,7 +28,7 @@ const Grid = ({ children, className }: ContainerProps) => (
   </div>
 );
 
-type GridItemProps = ContainerProps & SizeProps;
+type GridItemProps = OptionalContainerProps & SizeProps;
 
 // Inner div necessary per https://github.com/philipwalton/flexbugs#flexbug-7
 const GridItem = ({ children, className, ...sizeProps }: GridItemProps) => (
