@@ -7,7 +7,7 @@
     "build:js": "rm -rf dist && yarn tsc && cp src/*.json dist",
     "build:css": "node-sass src/styles/app.scss > dist/main.css",
     "clean": "git ls-files -o | grep -v node_modules | xargs rm",
-    "compile": "tsc --project tsconfig.test.json",
+    "compile": "tsc --project test",
     "docs": "build-storybook -s ./stories/public -o ./docs",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "chq-scripts lint",
@@ -91,9 +91,9 @@
       "\\.s?css$": "identity-obj-proxy"
     },
     "setupFilesAfterEnv": [
-      "./setupTests.js"
+      "./test/setupTests.js"
     ],
-    "testRegex": ".test.js",
+    "testRegex": ".test.(j|t)sx?$",
     "testURL": "http://localhost"
   },
   "browserslist": [

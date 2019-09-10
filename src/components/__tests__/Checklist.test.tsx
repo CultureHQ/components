@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { render } from "@testing-library/react";
 
 import Checklist from "../Checklist";
@@ -15,14 +15,20 @@ test("has no violations", () => {
 });
 
 test("passes on className", () => {
-  const { container } = render(<Checklist className="checklist" />);
+  const { container } = render(
+    <Checklist className="checklist">
+      <Checklist.Item>checklist item</Checklist.Item>
+    </Checklist>
+  );
 
   expect(container.querySelector(".checklist")).toBeTruthy();
 });
 
 test("renders an item without crashing", () => {
   const text = "checklist item";
-  const { queryByText } = render(<Checklist.Item checked>{text}</Checklist.Item>);
+  const { queryByText } = render(
+    <Checklist.Item checked>{text}</Checklist.Item>
+  );
 
   expect(queryByText(text)).toBeTruthy();
 });
