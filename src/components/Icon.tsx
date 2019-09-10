@@ -10,7 +10,7 @@ type IconProps = {
 };
 
 const Icon = ({ className, icon }: IconProps) => {
-  const [d, setD] = React.useState<null | string>(null);
+  const [iconPath, setIconPath] = React.useState<null | string>(null);
 
   React.useEffect(
     () => {
@@ -18,11 +18,9 @@ const Icon = ({ className, icon }: IconProps) => {
 
       import("../icons.json")
         .then(icons => {
-          if (cancelled) {
-            return;
+          if (!cancelled) {
+            setIconPath(icons[icon].join(" "));
           }
-
-          setD(icons[icon].join(" "));
         })
         .catch(() => {
           // this catch is largely here because in the case that you're not in
@@ -34,7 +32,7 @@ const Icon = ({ className, icon }: IconProps) => {
         cancelled = true;
       };
     },
-    [icon, setD]
+    [icon, setIconPath]
   );
 
   return (
@@ -46,7 +44,7 @@ const Icon = ({ className, icon }: IconProps) => {
       viewBox="0 0 1024 1024"
       className={className}
     >
-      {d && <path d={d} />}
+      {iconPath && <path d={iconPath} />}
     </svg>
   );
 };
