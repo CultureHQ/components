@@ -4,30 +4,24 @@ import classnames from "../../classnames";
 import FormError from "./FormError";
 import { FormState, withForm } from "./Form";
 
-const buildFormField = (type: string, displayName: string) => {
-  type FormFieldProps = {
-    addon?: string;
-    autoFocus?: boolean;
-    children: React.ReactNode;
-    className?: string;
-    name: string;
-    onChange?: (value: string) => void;
-    required?: boolean;
-    validator?: (value: string) => string | null;
-    value?: string;
-  };
+type FormFieldProps = React.HTMLAttributes<HTMLInputElement> & {
+  addon?: string;
+  autoFocus?: boolean;
+  children: React.ReactNode;
+  className?: string;
+  name: string;
+  onChange?: (value: string) => void;
+  required?: boolean;
+  validator?: (value: string) => string | null;
+  value?: string;
+};
 
-  type FormFieldState = {
-    touched: boolean;
-  };
+type FormFieldState = {
+  touched: boolean;
+};
 
-  class FormField extends React.Component<FormFieldProps & FormState, FormFieldState> {
-    static defaultProps = {
-      onChange: () => {},
-      onFormChange: () => {},
-      values: {}
-    };
-
+const buildFormField = (type: string, displayName: string) => withForm(
+  class extends React.Component<FormFieldProps & FormState, FormFieldState> {
     static displayName = displayName;
 
     private inputRef = React.createRef<HTMLInputElement>();
@@ -96,9 +90,7 @@ const buildFormField = (type: string, displayName: string) => {
       );
     }
   }
-
-  return withForm(FormField);
-};
+);
 
 export const EmailField = buildFormField("email", "EmailField");
 export const NumberField = buildFormField("number", "NumberField");
