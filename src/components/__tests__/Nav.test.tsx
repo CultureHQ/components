@@ -3,6 +3,8 @@ import { fireEvent, render } from "@testing-library/react";
 
 import Nav from "../Nav";
 
+const setPageYOffset = (value: number) => Object.defineProperty(window, "pageYOffset", { value });
+
 test("has no violations", () => (
   expect(<Nav>This is a nav.</Nav>).toHaveNoViolations()
 ));
@@ -21,24 +23,24 @@ test("passes on className", () => {
 });
 
 test("hides the nav when the page is scrolled down", () => {
-  window.pageYOffset = 25;
+  setPageYOffset(25);
 
   const { container } = render(<Nav />);
   expect(container.firstChild.getAttribute("aria-hidden")).toEqual("false");
 
-  window.pageYOffset = 50;
+  setPageYOffset(50);
   fireEvent.scroll(window);
 
   expect(container.firstChild.getAttribute("aria-hidden")).toEqual("true");
 });
 
 test("shows the nav when the page is scrolled up", () => {
-  window.pageYOffset = 100;
+  setPageYOffset(100);
 
   const { container } = render(<Nav />);
   expect(container.firstChild.getAttribute("aria-hidden")).toEqual("false");
 
-  window.pageYOffset = 50;
+  setPageYOffset(50);
   fireEvent.scroll(window);
 
   expect(container.firstChild.getAttribute("aria-hidden")).toEqual("false");
