@@ -981,10 +981,34 @@
     eslint-plugin-react "^7.14.3"
     eslint-plugin-react-hooks "^2.0.1"
 
+<<<<<<< HEAD
 "@culturehq/scripts@^4.1.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@culturehq/scripts/-/scripts-4.1.1.tgz#f238cc91873e6c12ed69be03f1307b998ec070f2"
   integrity sha512-0w3F8jbCaTm+1Wl+s/bE3vmn7HlkO8xcYJRnW9/q23M/ByCySzR4In6p+XfmFCEBgiLwIVcWR3nEZTgUCKv7Xg==
+=======
+"@culturehq/hooks@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@culturehq/hooks/-/hooks-0.2.1.tgz#eb6a05c27529f8559742f70c1ba9d86735607088"
+  integrity sha512-ZDp2JuTVVd224fd/QELpbqJ41THvqOKMSi74FlXsnAqLeyYv9H8RHiNA+CiUpUeBqWmWEPCT/XXaQdqiaxj+3A==
+
+"@culturehq/scripts@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@culturehq/scripts/-/scripts-4.0.2.tgz#8cfe309f6fd10c9fe80519217550100a60e1af76"
+  integrity sha512-TJOcW1ZTUqAYvAwdNsTsuVlRFdBp2GceHQ4ZclvGkvp7aczzUCCReL4UASayGx/vBt4WgLW9YaAXAXD4YyPKgA==
+  dependencies:
+    "@babel/core" "^7.5.5"
+    "@culturehq/eslint-config" "^4.0.1"
+    babel-jest "^24.8.0"
+    eslint "^6.2.0"
+    jest "^24.8.0"
+    yargs-parser "^13.1.1"
+
+"@emotion/cache@^10.0.15":
+  version "10.0.15"
+  resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.15.tgz#b81767b48015aae2689c60373992145c67b8de02"
+  integrity sha512-8VthgeKhlGeTXSW1JN7I14AnAaiFPbOrqNqg3dPoGCZ3bnMjkrmRU0zrx0BtBw9esBaPaQgDB9y0tVgAGT2Mrg==
+>>>>>>> Convert over ClickClose
   dependencies:
     "@babel/core" "^7.6.0"
     "@culturehq/eslint-config" "^4.1.0"
