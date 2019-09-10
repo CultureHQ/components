@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import * as React from "react";
 import { act, fireEvent, render, wait } from "@testing-library/react";
 
 import CheerButton from "../CheerButton";
 
-const Container = ({ cheered: initialCheered = false, onCheerToggle: givenCheerToggle, small }) => {
-  const [cheered, setCheered] = useState(initialCheered);
+type ContainerProps = {
+  cheered?: boolean;
+  onCheerToggle?: (cheered: boolean) => void;
+  small?: boolean;
+};
 
-  const onCheerToggle = nextCheered => {
+const Container = ({
+  cheered: initialCheered = false,
+  onCheerToggle: givenCheerToggle = () => {},
+  small = false
+}: ContainerProps) => {
+  const [cheered, setCheered] = React.useState(initialCheered);
+
+  const onCheerToggle = (nextCheered: boolean) => {
     givenCheerToggle(nextCheered);
     setCheered(nextCheered);
     return Promise.resolve();
@@ -16,7 +26,7 @@ const Container = ({ cheered: initialCheered = false, onCheerToggle: givenCheerT
 };
 
 test("has no violations", () => (
-  expect(<CheerButton cheered />).toHaveNoViolations()
+  expect(<CheerButton cheered onCheerToggle={jest.fn()} />).toHaveNoViolations()
 ));
 
 test("renders a button and calls back", async () => {
@@ -32,7 +42,7 @@ test("renders a button and calls back", async () => {
 });
 
 test("renders a Cheer if it has been cheered", () => {
-  const { container } = render(<CheerButton cheered />);
+  const { container } = render(<CheerButton cheered onCheerToggle={jest.fn()} />);
 
   expect(container.querySelectorAll("svg")).toHaveLength(2);
 });
