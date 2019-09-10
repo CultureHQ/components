@@ -2,9 +2,7 @@ import React from "react";
 import { fireEvent, render, waitForElement } from "@testing-library/react";
 
 import ImageField from "../ImageField";
-
-// eslint-disable-next-line jest/no-mocks-import
-import mockImage from "../../__tests__/__mocks__/image";
+import mockImage from "../../../../test/image";
 
 jest.mock("cropperjs", () => class {
   destroy() {} // eslint-disable-line class-methods-use-this

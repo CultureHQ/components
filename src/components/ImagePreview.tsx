@@ -3,7 +3,7 @@ import * as React from "react";
 import readImage from "../utils/readImage";
 
 type ImagePreviewProps = {
-  image: Blob | File | null;
+  image: Blob | File | string | null;
   preview: Blob | File | string | null;
 };
 

@@ -3,10 +3,15 @@ import { fireEvent, render } from "@testing-library/react";
 
 import Pagination from "../Pagination";
 
+type PaginationOptions = {
+  className?: string;
+  onClick?: (page: number) => void;
+};
+
 const renderPagination = (
   currentPage: number,
   totalPages: number,
-  { className, onClick = jest.fn() }: { className?: string, onClick?: (page: number) => void } = {}
+  { className, onClick = jest.fn() }: PaginationOptions = {}
 ) => (
   render(
     <Pagination

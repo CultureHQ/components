@@ -1,11 +1,11 @@
 import * as React from "react";
-import { default as CropperType } from "cropperjs";
+import Cropper from "cropperjs";
 
 import ActionButton from "./buttons/ActionButton";
 import Button from "./buttons/Button";
 import Icon from "./Icon";
 
-const cropperToImage = (cropper: CropperType) => {
+const cropperToImage = (cropper: Cropper) => {
   const type = "image/jpeg";
   const canvas = cropper.getCroppedCanvas({ fillColor: "#ffffff" });
   const binary = window.atob(canvas.toDataURL(type).split(",")[1]);
@@ -28,7 +28,7 @@ type ImageEditorProps = {
 };
 
 class ImageEditor extends React.Component<ImageEditorProps, {}> {
-  private cropper: null | CropperType = null;
+  private cropper: null | Cropper = null;
 
   private componentIsMounted = false;
 
@@ -37,14 +37,15 @@ class ImageEditor extends React.Component<ImageEditorProps, {}> {
   componentDidMount() {
     this.componentIsMounted = true;
 
-    import("./cropper")
-      .then(({ default: Cropper }) => {
+    import("./Cropper")
+      .then(module => {
         const image = this.imageRef.current;
 
         if (this.componentIsMounted && image) {
           const { aspectRatio } = this.props;
+          const ImageCropper = module.default;
 
-          this.cropper = new Cropper(image, {
+          this.cropper = new ImageCropper(image, {
             aspectRatio,
             dragMode: "move",
             autoCropArea: 1,

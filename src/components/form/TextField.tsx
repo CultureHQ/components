@@ -41,7 +41,7 @@ class TextField extends React.Component<TextFieldProps & FormState, TextFieldSta
 
   handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, onChange, onFormChange } = this.props;
-    const { value } = event.target; 
+    const { value } = event.target;
 
     if (onChange) {
       onChange(value);
