@@ -2,13 +2,24 @@ import React, { Component } from "react";
 
 import classnames from "../classnames";
 
+const SubnavItem = ({ children, className, active, onClick }) => (
+  <button
+    type="button"
+    aria-current={active}
+    className={classnames("chq-snv--it", className)}
+    onClick={onClick}
+  >
+    {children}
+  </button>
+);
+
 class Subnav extends Component {
+  static Item = SubnavItem;
+
   constructor(props) {
     super(props);
 
-    const { activeIndex } = props;
-
-    this.state = { activeIndex: activeIndex || 0 };
+    this.state = { activeIndex: props.activeIndex || 0 };
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -42,18 +53,5 @@ class Subnav extends Component {
     );
   }
 }
-
-const SubnavItem = ({ children, className, active, onClick }) => (
-  <button
-    type="button"
-    aria-current={active}
-    className={classnames("chq-snv--it", className)}
-    onClick={onClick}
-  >
-    {children}
-  </button>
-);
-
-Subnav.Item = SubnavItem;
 
 export default Subnav;
