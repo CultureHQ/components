@@ -4,11 +4,16 @@ import { useWindowEvent } from "@culturehq/hooks";
 import classnames from "../classnames";
 import { HTMLContainerProps } from "../typings";
 
-const makeUpdate = current => {
+type NavState = {
+  displayed: boolean;
+  scroll: number;
+};
+
+const updateState = (state: NavState) => {
   const scroll = window.pageYOffset;
 
   return {
-    displayed: current.scroll === 0 || scroll <= 30 || current.scroll > scroll,
+    displayed: state.scroll === 0 || scroll <= 30 || state.scroll > scroll,
     scroll
   };
 };
@@ -16,14 +21,14 @@ const makeUpdate = current => {
 type NavProps = HTMLContainerProps & React.HTMLAttributes<HTMLElement>;
 
 const Nav = ({ children, className, ...props }: NavProps) => {
-  const [state, setState] = React.useState(() => ({
+  const [state, setState] = React.useState<NavState>(() => ({
     displayed: true,
     scroll: window.pageYOffset
   }));
 
   useWindowEvent(
     "scroll",
-    React.useCallback(() => setState(makeUpdate), [setState])
+    React.useCallback(() => setState(updateState), [setState])
   );
 
   return (
