@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import classnames from "../../classnames";
-import { HTMLContainerProps } from "../../typings";
+import { ContainerProps } from "../../typings";
 
 import PlainButton from "../buttons/PlainButton";
 import Icon from "../Icon";
@@ -21,7 +21,7 @@ const widths = {
   normal: "chq-mdl-wn"
 };
 
-type ModalDialogHeadingProps = HTMLContainerProps & {
+type ModalDialogHeadingProps = ContainerProps & {
   onClose?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
@@ -41,7 +41,7 @@ const modalStyle = {
   }
 };
 
-type ModalDialogProps = HTMLContainerProps & {
+type ModalDialogProps = ContainerProps & {
   appElement?: string | HTMLElement;
   contentRef?: (instance: HTMLDivElement) => void;
   entrance?: keyof typeof entrances;

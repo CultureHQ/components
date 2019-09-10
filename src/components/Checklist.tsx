@@ -1,11 +1,11 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { HTMLContainerProps } from "../typings";
+import { ContainerProps } from "../typings";
 
 import Checkmark from "./Checkmark";
 
-const Checklist = ({ children, className }: HTMLContainerProps) => (
+const Checklist = ({ children, className }: ContainerProps) => (
   <div className={classnames("chq-chl", className)}>
     {children}
   </div>

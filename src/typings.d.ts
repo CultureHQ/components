@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export type HTMLContainerProps = {
+export type ContainerProps = {
   children: React.ReactNode;
   className?: string;
 };

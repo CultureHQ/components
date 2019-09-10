@@ -1,9 +1,9 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { HTMLContainerProps } from "../typings";
+import { ContainerProps } from "../typings";
 
-type TagProps = HTMLContainerProps & {
+type TagProps = ContainerProps & {
   color: "blue" | "gray" | "red";
 };
 
