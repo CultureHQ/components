@@ -61,9 +61,9 @@ const makeActiveHash = (year: null | number, month: null | number, day: null | n
 };
 
 type CalendarProps = {
-  year: null | number;
-  month: null | number;
-  day: null | number;
+  year?: null | number;
+  month?: null | number;
+  day?: null | number;
   onChange: (year: number, month: number, day: number) => void;
 };
 
