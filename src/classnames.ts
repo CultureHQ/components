@@ -1,4 +1,4 @@
-type ClassName = undefined | null | string | { [key: string]: boolean };
+type ClassName = undefined | null | number | boolean | string | { [key: string]: boolean };
 
 const classnames = (...options: ClassName[]) => options.reduce(
   (classes, option) => {
