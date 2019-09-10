@@ -1,11 +1,13 @@
 import * as React from "react";
 
+import * as iconPaths from "../icons.json";
+
+export type IconName = keyof typeof iconPaths;
+
 type IconProps = {
   className?: string;
-  icon: string;
+  icon: IconName;
 };
-
-const isKeyOf = <T extends object>(object: T, key: keyof any): key is keyof T => key in object;
 
 const Icon = ({ className, icon }: IconProps) => {
   const [d, setD] = React.useState<null | string>(null);
@@ -20,11 +22,7 @@ const Icon = ({ className, icon }: IconProps) => {
             return;
           }
 
-          if (isKeyOf(icons, icon)) {
-            setD(icons[icon].join(" "));
-          } else {
-            throw new Error(`Invalid icon: ${icon}`);
-          }
+          setD(icons[icon].join(" "));
         })
         .catch(() => {
           // this catch is largely here because in the case that you're not in

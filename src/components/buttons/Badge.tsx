@@ -3,10 +3,10 @@ import * as React from "react";
 import classnames from "../../classnames";
 import { HTMLContainerProps } from "../../typings";
 
-import Icon from "../Icon";
+import Icon, { IconName } from "../Icon";
 
 type BadgeProps = HTMLContainerProps & React.HTMLProps<HTMLButtonElement> & {
-  icon?: string;
+  icon?: IconName;
   primary?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
