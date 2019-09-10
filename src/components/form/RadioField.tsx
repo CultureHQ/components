@@ -1,40 +1,58 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { withForm } from "./Form";
+import { FormState, withForm } from "./Form";
 
-class RadioField extends Component {
-  static defaultProps = {
-    onChange: () => {},
-    onFormChange: () => {},
-    options: [],
-    values: {}
-  };
+type RadioFieldValue = string | number;
+type RadioFieldOption = {
+  label: string;
+  value: RadioFieldValue;
+};
 
+type RadioFieldProps = React.HTMLAttributes<HTMLFieldSetElement> & {
+  children: React.ReactNode;
+  className?: string;
+  name: string;
+  onChange?: (value: RadioFieldValue) => void;
+  options: RadioFieldOption[];
+  required?: boolean;
+  validator: (value: RadioFieldValue) => string | null;
+  value?: RadioFieldValue;
+};
+
+type RadioFieldState = {
+  touched: boolean;
+};
+
+class RadioField extends React.Component<RadioFieldProps & FormState, RadioFieldState> {
   state = { touched: false };
 
   handleBlur = () => {
     this.setState({ touched: true });
   };
 
-  handleChange = ({ target: { value } }) => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, onChange, onFormChange } = this.props;
+    const { value } = event.target;
 
-    onChange(value);
+    if (onChange) {
+      onChange(value);
+    }
+
     onFormChange(name, value);
   };
 
   render() {
     const {
       children, className, errors, name, onChange, onError, onFormChange,
-      options, required, submitted, submitting, validator, value, values,
+      options = [], required, submitted, submitting, validator, value, values,
       ...props
     } = this.props;
 
     const { touched } = this.state;
 
-    const normal = value || values[name];
+    const normal = value || (values[name] as undefined | RadioFieldValue);
 
     return (
       <fieldset className={classnames("chq-ffd", className)} {...props}>
