@@ -20,7 +20,7 @@ export type FormState = {
   onFormChange: (name: string, value: FormValue) => void;
 };
 
-const { Provider, Consumer } = React.createContext<FormState>({
+const FormContext = React.createContext<FormState>({
   errors: {},
   submitted: false,
   submitting: false,
@@ -28,6 +28,8 @@ const { Provider, Consumer } = React.createContext<FormState>({
   onError: (name: string, error: string) => {},
   onFormChange: (name: string, value: FormValue) => {}
 });
+
+export const useForm = () => React.useContext(FormContext);
 
 /* eslint-disable react/no-unused-state */
 class Form extends React.Component<FormProps, FormState> {
@@ -100,18 +102,20 @@ class Form extends React.Component<FormProps, FormState> {
     const { children, className } = this.props;
 
     return (
-      <Provider value={this.state}>
+      <FormContext.Provider value={this.state}>
         <form className={classnames(className)} onSubmit={this.handleSubmit}>
           {children}
         </form>
-      </Provider>
+      </FormContext.Provider>
     );
   }
 }
 
 export const withForm = <P extends {}>(Child: React.ComponentType<P & FormState>) => {
   const Parent = (props: P) => (
-    <Consumer>{state => <Child {...state} {...props} />}</Consumer>
+    <FormContext.Consumer>
+      {state => <Child {...state} {...props} />}
+    </FormContext.Consumer>
   );
 
   const childName = Child.displayName || Child.name || "Component";
