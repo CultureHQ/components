@@ -10,7 +10,10 @@ test("has no violations", () => (
 test("handles autoFocus", () => {
   render(<SearchBar autoFocus />);
 
-  expect(document.activeElement.name).toEqual("search");
+  const searchBarElement = document.activeElement as HTMLInputElement;
+
+  expect(searchBarElement instanceof HTMLInputElement).toBe(true);
+  expect(searchBarElement.name).toEqual("search");
 });
 
 test("throttles search changes", () => {

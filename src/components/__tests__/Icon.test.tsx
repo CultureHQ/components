@@ -30,5 +30,7 @@ test("updates the icon when the prop changes", async () => {
   await waitForDomChange({ container });
 
   const path = container.querySelector("path");
-  expect(path.getAttribute("d")).toEqual(close.join(" "));
+
+  expect(path).not.toBe(null);
+  expect((path as SVGElement).getAttribute("d")).toEqual(close.join(" "));
 });

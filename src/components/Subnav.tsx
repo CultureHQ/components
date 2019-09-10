@@ -22,7 +22,7 @@ const SubnavItem = ({ active, children, className, onClick }: SubnavItemProps) =
 
 type SubnavProps = {
   activeIndex?: number;
-  children: (typeof SubnavItem)[];
+  children: React.ReactElement<SubnavItemProps>[];
   className?: string;
   onChange: (index: number) => void;
 };
@@ -57,16 +57,12 @@ class Subnav extends React.Component<SubnavProps, SubnavState> {
 
     return (
       <nav className={classnames(className, "chq-snv")}>
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement<SubnavItemProps>(child)) {
-            return child;
-          }
-
-          return React.cloneElement(child, {
+        {React.Children.map(children, (child, index) => (
+          React.cloneElement(child, {
             active: index === activeIndex,
             onClick: () => this.setState({ activeIndex: index })
-          });
-        })}
+          })
+        ))}
       </nav>
     );
   }

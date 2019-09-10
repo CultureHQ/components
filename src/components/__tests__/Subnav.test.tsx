@@ -3,7 +3,7 @@ import { fireEvent, render } from "@testing-library/react";
 
 import Subnav from "../Subnav";
 
-const Container = ({ children }) => {
+const Container = ({ children }: Pick<React.ComponentProps<typeof Subnav>, "children">) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   return (
@@ -15,7 +15,7 @@ const Container = ({ children }) => {
 
 test("has no violations", () => {
   const component = (
-    <Subnav>
+    <Subnav onChange={jest.fn()}>
       <Subnav.Item>One</Subnav.Item>
       <Subnav.Item>Two</Subnav.Item>
       <Subnav.Item>Three</Subnav.Item>
@@ -26,8 +26,8 @@ test("has no violations", () => {
 });
 
 test("renders without crashing", () => {
-  const clicks = [];
-  const onChange = index => clicks.push(index);
+  const clicks: number[] = [];
+  const onChange = (index: number) => clicks.push(index);
 
   const { getAllByRole } = render(
     <Subnav onChange={onChange}>

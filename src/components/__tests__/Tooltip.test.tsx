@@ -12,13 +12,13 @@ afterEach(() => {
 });
 
 test("has no violations", () => (
-  expect(<Tooltip tip="Tip">Inner content</Tooltip>).toHaveNoViolations()
+  expect(<Tooltip tip="Tip">Tooltip!</Tooltip>).toHaveNoViolations()
 ));
 
 test("resizes when the window resizes and dedups resize events", done => {
-  const { unmount } = render(<Tooltip tip="Tip" />);
+  const { unmount } = render(<Tooltip tip="Tip">Tooltip!</Tooltip>);
 
-  window.innerWidth = 200;
+  Object.defineProperty(window, "innerWidth", { value: 200 });
   window.dispatchEvent(new Event("resize"));
   window.dispatchEvent(new Event("resize"));
   window.dispatchEvent(new Event("resize"));
@@ -31,12 +31,12 @@ test("resizes when the window resizes and dedups resize events", done => {
 });
 
 test("recomputes offsets when the tip changes", () => {
-  const { rerender } = render(<Tooltip tip="Tip">Body</Tooltip>);
+  const { rerender } = render(<Tooltip tip="Tip">Tooltip!</Tooltip>);
   expect(window.requestAnimationFrame).toHaveBeenCalledTimes(1);
 
-  rerender(<Tooltip tip="Tip">Body</Tooltip>);
+  rerender(<Tooltip tip="Tip">Tooltip!</Tooltip>);
   expect(window.requestAnimationFrame).toHaveBeenCalledTimes(1);
 
-  rerender(<Tooltip tip="A different tip">Body</Tooltip>);
+  rerender(<Tooltip tip="A different tip">Tooltip!</Tooltip>);
   expect(window.requestAnimationFrame).toHaveBeenCalledTimes(2);
 });

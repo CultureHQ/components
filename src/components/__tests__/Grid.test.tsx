@@ -1,7 +1,7 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
 
-import Grid from "../Grid";
+import Grid, { GridSize } from "../Grid";
 
 test("has no violations", () => {
   const jsx = (
@@ -22,16 +22,19 @@ test("has no violations", () => {
 });
 
 test("creates main container", () => {
-  const { container } = render(<Grid className="grid" />);
+  const { container } = render(
+    <Grid className="grid">Grid!</Grid>
+  );
 
   expect(container.querySelector(".grid")).toBeTruthy();
 });
 
 test("applies classes", () => {
-  const sizes = { xs: 12, sm: 6, md: 4, lg: 3, xl: 2 };
+  const sizes: { [K in GridSize]: number } = { xs: 12, sm: 6, md: 4, lg: 3, xl: 2 };
   const { container } = render(<Grid><Grid.Item {...sizes} /></Grid>);
 
-  Object.keys(sizes).forEach(size => {
+  Object.keys(sizes).forEach(key => {
+    const size = key as GridSize;
     const className = `.chq-grid--item.chq-grid--${size}-${sizes[size]}`;
     expect(container.querySelector(className)).toBeTruthy();
   });

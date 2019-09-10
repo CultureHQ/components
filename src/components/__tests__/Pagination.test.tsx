@@ -3,24 +3,31 @@ import { fireEvent, render } from "@testing-library/react";
 
 import Pagination from "../Pagination";
 
-const renderPagination = (currentPage: number, totalPages: number, props = {}) => (
+const renderPagination = (
+  currentPage: number,
+  totalPages: number,
+  { className, onClick = jest.fn() }: { className?: string, onClick?: (page: number) => void } = {}
+) => (
   render(
     <Pagination
       currentPage={currentPage}
       totalPages={totalPages}
-      {...props}
+      className={className}
+      onClick={onClick}
     />
   )
 );
 
 test("has no violations", () => (
-  expect(<Pagination currentPage={1} totalPages={10} />).toHaveNoViolations()
+  expect(<Pagination currentPage={1} totalPages={10} onClick={jest.fn()} />).toHaveNoViolations()
 ));
 
 test("renders without crashing", () => {
   const { container } = renderPagination(1, 10);
+  const navElement = container.firstChild as HTMLElement;
 
-  expect(container.firstChild.nodeName).toEqual("NAV");
+  expect(navElement).not.toBe(null);
+  expect(navElement.nodeName).toEqual("NAV");
 });
 
 test("passes on className", () => {
@@ -77,7 +84,7 @@ test("adds spacers if the far enough away from the ends", () => {
 });
 
 test("calls the onClick handler with the correct page number", () => {
-  const clicked = [];
+  const clicked: number[] = [];
   const onClick = (page: number) => clicked.push(page);
 
   const { getAllByRole } = renderPagination(10, 20, { onClick });
