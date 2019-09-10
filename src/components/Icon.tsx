@@ -9,44 +9,65 @@ type IconProps = {
   icon: IconName;
 };
 
-const Icon = ({ className, icon }: IconProps) => {
-  const [iconPath, setIconPath] = React.useState<null | string>(null);
-
-  React.useEffect(
-    () => {
-      let cancelled = false;
-
-      import("../icons.json")
-        .then(icons => {
-          if (!cancelled) {
-            setIconPath(icons[icon].join(" "));
-          }
-        })
-        .catch(() => {
-          // this catch is largely here because in the case that you're not in
-          // an environment that supports dynamic import (like jest when you're
-          // not compiling vendored code) it will spam the console otherwise
-        });
-
-      return () => {
-        cancelled = true;
-      };
-    },
-    [icon, setIconPath]
-  );
-
-  return (
-    <svg
-      aria-hidden
-      role="presentation"
-      width="22px"
-      height="22px"
-      viewBox="0 0 1024 1024"
-      className={className}
-    >
-      {iconPath && <path d={iconPath} />}
-    </svg>
-  );
+type IconState = {
+  path: null | string;
 };
+
+class Icon extends React.PureComponent<IconProps, IconState> {
+  private componentIsMounted: boolean = false;
+
+  state: IconState = { path: null };
+
+  componentDidMount() {
+    this.componentIsMounted = true;
+    this.fetchPath();
+  }
+
+  componentDidUpdate(prevProps: IconProps) {
+    const { icon } = this.props;
+
+    if (icon !== prevProps.icon) {
+      this.fetchPath();
+    }
+  }
+
+  componentWillUnmount() {
+    this.componentIsMounted = false;
+  }
+
+  fetchPath() {
+    const { icon } = this.props;
+
+    import("../icons.json")
+      .then(icons => {
+        if (this.componentIsMounted) {
+          this.setState({ path: icons[icon].join(" ") });
+        }
+      })
+      .catch(() => {
+        // this catch is largely here because in the case that you're not in
+        // an environment that supports dynamic import (like jest when you're
+        // not compiling vendored code) it will spam the console otherwise
+      });
+  }
+
+  render() {
+    const { className } = this.props;
+    const { path } = this.state;
+
+    return (
+      <svg
+        aria-hidden
+        role="presentation"
+        width="22px"
+        height="22px"
+        viewBox="0 0 1024 1024"
+        className={className}
+      >
+        {path && <path d={path} />}
+      </svg>
+    );
+  }
+}
 
 export default Icon;
