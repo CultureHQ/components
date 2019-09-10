@@ -3,12 +3,12 @@ import * as React from "react";
 import classnames from "../../classnames";
 import { HTMLContainerProps } from "../../typings";
 
-import Icon from "../Icon";
+import Icon, { IconName } from "../Icon";
 
 type ActionButtonProps = React.HTMLProps<HTMLButtonElement> & {
   children?: React.ReactNode;
   className?: string;
-  icon?: string;
+  icon?: IconName;
 };
 
 const ActionButton = ({ children, className, icon, ...props }: ActionButtonProps) => (
