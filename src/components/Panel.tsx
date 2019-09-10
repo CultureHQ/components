@@ -5,7 +5,7 @@ import { HTMLContainerProps } from "../typings";
 
 import Loader from "./Loader";
 
-type PanelProps = HTMLContainerProps & React.HTMLProps<HTMLDivElement> & {
+type PanelProps = HTMLContainerProps & React.HTMLAttributes<HTMLDivElement> & {
   limitWidth?: boolean;
 };
 
