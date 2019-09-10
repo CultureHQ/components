@@ -49,7 +49,7 @@ class CentsField extends React.Component<CentsFieldProps & FormState, CentsField
     const { name, onChange, onFormChange } = this.props;
 
     const { value } = event.target;
-    const amount = typeof value === "number" ? Math.round(value * 100) : null;
+    const amount = value ? Math.round(parseFloat(value) * 100) : null;
 
     if (onChange) {
       onChange(amount);
