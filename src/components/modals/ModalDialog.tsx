@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactModal from "react-modal";
 
 import classnames from "../../classnames";
 import { HTMLContainerProps } from "../../typings";
@@ -7,6 +6,10 @@ import { HTMLContainerProps } from "../../typings";
 import PlainButton from "../buttons/PlainButton";
 import Icon from "../Icon";
 import Panel from "../Panel";
+
+// This shouldn't be necessary, but is due to
+// https://github.com/reactjs/react-modal/issues/497
+const ReactModal = require("react-modal");
 
 const entrances = {
   slideIn: "chq-mdl-si",
