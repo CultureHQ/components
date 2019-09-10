@@ -24,8 +24,7 @@ class DoorEffect extends React.PureComponent<DoorEffectProps, {}> {
       } else {
         door.classList.remove(`${className}-open`);
         window.requestAnimationFrame(() => door.classList.add(`${className}-closed`));
-
-        setTimeout(() => door.classList.remove(`${className}-closed`), duration);
+        window.setTimeout(() => door.classList.remove(`${className}-closed`), duration);
       }
     }
   }

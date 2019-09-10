@@ -30,7 +30,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
 
   private inputRef = React.createRef<HTMLInputElement>();
 
-  private timeout: null | ReturnType<typeof window.setTimeout> = null;
+  private timeout: null | number = null;
 
   state = { search: "", searching: false };
 
@@ -62,7 +62,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
         });
 
         if (throttle) {
-          this.timeout = setTimeout(performSearch, throttle);
+          this.timeout = window.setTimeout(performSearch, throttle);
         } else {
           performSearch();
         }

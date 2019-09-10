@@ -14,17 +14,10 @@ type LoaderState = {
 };
 
 class Loader extends React.Component<LoaderProps, LoaderState> {
-  private componentIsMounted: boolean;
-  private timeout: null | ReturnType<typeof setTimeout>;
+  private componentIsMounted: boolean = false;
+  private timeout: null | number = null;
 
-  constructor(props: LoaderProps) {
-    super(props);
-
-    this.componentIsMounted = false;
-    this.timeout = null;
-
-    this.state = { spinning: false };
-  }
+  state = { spinning: false };
 
   componentDidMount = () => {
     const { loading } = this.props;
@@ -32,7 +25,7 @@ class Loader extends React.Component<LoaderProps, LoaderState> {
     this.componentIsMounted = true;
 
     if (loading) {
-      this.timeout = setTimeout(this.handleSpinnerTriggered, 250);
+      this.timeout = window.setTimeout(this.handleSpinnerTriggered, 250);
     }
   };
 
