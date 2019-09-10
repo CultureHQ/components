@@ -44,7 +44,7 @@ const modalStyle = {
 
 type ModalDialogProps = ContainerProps & {
   appElement?: string | HTMLElement;
-  contentRef?: (instance: HTMLDivElement) => void;
+  contentRef?: React.Ref<HTMLDivElement>;
   entrance?: keyof typeof entrances;
   onClose?: (event: (React.MouseEvent | React.KeyboardEvent)) => void;
   width?: keyof typeof widths;

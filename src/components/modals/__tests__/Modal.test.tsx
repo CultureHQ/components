@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import Button from "../../buttons/Button";
@@ -23,7 +23,7 @@ test("opens a modal when the onTrigger function is called", () => {
 
 test("closes the modal the heading button is clicked", () => {
   const onClose = jest.fn();
-  const trigger = onTrigger => <Button onClick={onTrigger}>Open</Button>;
+  const trigger = (onTrigger: () => void) => <Button onClick={onTrigger}>Open</Button>;
 
   const { getByLabelText, queryByText } = render(
     <Modal startOpen trigger={trigger} onClose={onClose}>

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import Button from "../../buttons/Button";
@@ -7,7 +7,10 @@ import Confirm, { ConfirmDelete } from "../Confirm";
 test("opens a modal when the onTrigger function is called", () => {
   const message = "This is the body of the confirmation";
   const { getByText, queryByText } = render(
-    <Confirm trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}>
+    <Confirm
+      onAccept={jest.fn()}
+      trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
+    >
       {message}
     </Confirm>
   );
@@ -23,9 +26,12 @@ test("calls the onOpen callback if it is provided", () => {
   const onOpen = jest.fn();
   const { getByText } = render(
     <Confirm
+      onAccept={jest.fn()}
       trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
       onOpen={onOpen}
-    />
+    >
+      Are you sure?
+    </Confirm>
   );
 
   expect(onOpen).not.toHaveBeenCalled();
@@ -38,7 +44,9 @@ test("calls the onOpen callback if it is provided", () => {
 test("closes the modal the cancel button is clicked", () => {
   const message = "Are you sure?";
   const { getByText, queryByText } = render(
-    <Confirm startOpen trigger={() => {}}>{message}</Confirm>
+    <Confirm onAccept={jest.fn()} startOpen trigger={() => null}>
+      {message}
+    </Confirm>
   );
 
   expect(queryByText(message)).toBeTruthy();
@@ -53,7 +61,7 @@ test("calls the onAccept callback and closes when the confirmation is accepted",
   const onAccept = jest.fn();
 
   const { getByText, queryByText } = render(
-    <Confirm accept="Yes" danger onAccept={onAccept} startOpen trigger={() => {}}>
+    <Confirm accept="Yes" danger onAccept={onAccept} startOpen trigger={() => null}>
       {message}
     </Confirm>
   );
@@ -66,17 +74,26 @@ test("calls the onAccept callback and closes when the confirmation is accepted",
 });
 
 test("ConfirmDelete sets default values", () => {
-  const { queryByText } = render(<ConfirmDelete startOpen trigger={() => {}} />);
+  const { queryByText } = render(
+    <ConfirmDelete onAccept={jest.fn()} startOpen trigger={() => null}>
+      Are you sure?
+    </ConfirmDelete>
+  );
 
   expect(queryByText("Delete")).toBeTruthy();
 });
 
 test("passes on contentRef", () => {
-  const contentRef = element => {
-    contentRef.current = element;
+  let content: null | HTMLDivElement = null;
+  const contentRef = (element: HTMLDivElement) => {
+    content = element;
   };
 
-  render(<Confirm startOpen contentRef={contentRef} trigger={() => {}} />);
+  render(
+    <Confirm onAccept={jest.fn()} startOpen contentRef={contentRef} trigger={() => null}>
+      Are you sure?
+    </Confirm>
+  );
 
-  expect(contentRef.current).not.toBe(undefined);
+  expect(content).not.toBe(null);
 });
