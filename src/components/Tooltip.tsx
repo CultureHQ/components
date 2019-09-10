@@ -10,7 +10,7 @@ class Tooltip extends React.Component<TooltipProps, {}> {
 
   private frame: null | ReturnType<typeof window.requestAnimationFrame> = null;
 
-  private timeout: null | ReturnType<typeof window.setTimeout> = null;
+  private timeout: null | number = null;
 
   private tooltip = React.createRef<HTMLSpanElement>();
 
