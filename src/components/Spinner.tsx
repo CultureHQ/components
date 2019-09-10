@@ -3,7 +3,7 @@ import * as React from "react";
 import classnames from "../classnames";
 import Circles from "./Circles";
 
-type SpinnerProps = React.HTMLProps<HTMLDivElement> & {
+type SpinnerProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string;
 };
 

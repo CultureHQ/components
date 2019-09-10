@@ -3,7 +3,7 @@ import * as React from "react";
 import classnames from "../../classnames";
 import { HTMLContainerProps } from "../../typings";
 
-type PlainButtonProps = HTMLContainerProps & React.HTMLProps<HTMLButtonElement>;
+type PlainButtonProps = HTMLContainerProps & React.HTMLAttributes<HTMLButtonElement>;
 
 const PlainButton = React.forwardRef<HTMLButtonElement, PlainButtonProps>(
   ({ children, className, ...props }, ref) => (

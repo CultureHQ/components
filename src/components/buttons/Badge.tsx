@@ -5,7 +5,7 @@ import { HTMLContainerProps } from "../../typings";
 
 import Icon, { IconName } from "../Icon";
 
-type BadgeProps = HTMLContainerProps & React.HTMLProps<HTMLButtonElement> & {
+type BadgeProps = HTMLContainerProps & React.HTMLAttributes<HTMLButtonElement> & {
   icon?: IconName;
   primary?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;

@@ -5,7 +5,7 @@ import { HTMLContainerProps } from "../../typings";
 
 import Icon, { IconName } from "../Icon";
 
-type ActionButtonProps = React.HTMLProps<HTMLButtonElement> & {
+type ActionButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
   children?: React.ReactNode;
   className?: string;
   icon?: IconName;
