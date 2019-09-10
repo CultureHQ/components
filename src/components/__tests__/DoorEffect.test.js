@@ -24,9 +24,3 @@ test("adds and removes the -open and -closed classes", () => {
     }, 200);
   });
 });
-
-test("allows switching the tag type", () => {
-  const { container } = render(<DoorEffect className="test" tag="section" />);
-
-  expect(container.querySelector("section")).toBeTruthy();
-});
