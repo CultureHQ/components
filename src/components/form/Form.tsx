@@ -25,8 +25,8 @@ const FormContext = React.createContext<FormState>({
   submitted: false,
   submitting: false,
   values: {},
-  onError: (name: string, error: string) => {},
-  onFormChange: (name: string, value: FormValue) => {}
+  onError: () => {},
+  onFormChange: () => {}
 });
 
 export const useForm = () => React.useContext(FormContext);

@@ -2,15 +2,13 @@ import * as React from "react";
 import { fireEvent, render, waitForDomChange } from "@testing-library/react";
 
 import ImageEditor from "../ImageEditor";
-
-// eslint-disable-next-line jest/no-mocks-import
-import mockImage from "./__mocks__/image";
+import mockImage from "../../../test/image";
 
 let angle: number;
 let zoom: number;
 
-/* eslint-disable class-methods-use-this */
-jest.mock("cropperjs", () => class {
+
+jest.mock("cropperjs", () => class { /* eslint-disable class-methods-use-this */
   destroy() {}
 
   getCroppedCanvas() {
@@ -25,7 +23,6 @@ jest.mock("cropperjs", () => class {
     zoom += delta;
   }
 });
-/* eslint-enable class-methods-use-this */
 
 beforeEach(() => {
   angle = 0;

@@ -5,14 +5,24 @@ import ImagePreview from "../ImagePreview";
 
 /* eslint-disable no-import-assign */
 import * as readImage from "../../utils/readImage";
+import image from "../../../test/image";
+
+const resolved = {
+  src: "culturehq.png",
+  styles: {
+    left: "0px",
+    height: 200,
+    width: 200
+  }
+};
 
 test("reads image and loads it", async () => {
-  readImage.default = jest.fn(() => Promise.resolve({
-    src: "culturehq.png",
-    styles: { height: "200px" }
-  }));
+  jest.spyOn(readImage, "default").mockImplementation(() => Promise.resolve(resolved));
 
-  const { container, getByRole, queryByRole } = render(<ImagePreview preview="culture.png" />);
+  const { container, getByRole, queryByRole } = render(
+    <ImagePreview image={image} preview="culture.png" />
+  );
+
   expect(queryByRole("img")).toBeFalsy();
 
   await waitForDomChange({ container });
@@ -22,12 +32,12 @@ test("reads image and loads it", async () => {
 });
 
 test("does not attempt to set state when unmounted while waiting", () => {
-  readImage.default = jest.fn(() => new Promise(resolve => (
-    setTimeout(() => resolve({ src: "culturehq.png", styles: { height: "200px" } }), 200)
+  jest.spyOn(readImage, "default").mockImplementation(() => new Promise(resolve => (
+    setTimeout(() => resolve(resolved), 200)
   )));
 
   const { container, queryByRole, unmount } = render(
-    <ImagePreview preview="culture.png" />
+    <ImagePreview image={image} preview="culture.png" />
   );
 
   expect(queryByRole("img")).toBeFalsy();

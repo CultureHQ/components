@@ -3,9 +3,15 @@ import { render } from "@testing-library/react";
 
 import Table from "../Table";
 
-test("has no violations", () => (
-  expect(<Table>Table!</Table>).toHaveNoViolations()
-));
+test("has no violations", () => {
+  const table = (
+    <Table>
+      <tbody />
+    </Table>
+  );
+
+  return expect(table).toHaveNoViolations();
+});
 
 test("renders without crashing", () => {
   const { getByRole } = render(<Table>Table!</Table>);

@@ -15,8 +15,11 @@ type ModalState = {
 
 class Modal extends React.Component<ModalProps, ModalState> {
   static Heading = ModalDialog.Heading;
+
   static Body = ModalDialog.Body;
+
   static LoaderBody = ModalDialog.LoaderBody;
+
   static Footer = ModalDialog.Footer;
 
   constructor(props: ModalProps) {
@@ -59,6 +62,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
         {trigger(this.handleOpen)}
         {open && (
           <ModalDialog
+            appElement={appElement}
             className={className}
             contentRef={contentRef}
             entrance={entrance}

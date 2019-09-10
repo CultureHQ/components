@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import classnames from "../../classnames";
 import PlainButton from "../buttons/PlainButton";
 
 type TimeSelectOption = {
@@ -34,7 +33,13 @@ type TimeSelectButtonProps = {
   option: TimeSelectOption;
 };
 
-const TimeSelectButton = ({ currentOptionRef, hours, minutes, onChange, option }: TimeSelectButtonProps) => {
+const TimeSelectButton = ({
+  currentOptionRef,
+  hours,
+  minutes,
+  onChange,
+  option
+}: TimeSelectButtonProps) => {
   const current = hours === option.hours && minutes === option.minutes;
 
   return (

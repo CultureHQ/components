@@ -26,7 +26,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     throttle: 300
   };
 
-  private componentIsMounted: boolean = false;
+  private componentIsMounted = false;
 
   private inputRef = React.createRef<HTMLInputElement>();
 
@@ -40,7 +40,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     const { autoFocus } = this.props;
     const input = this.inputRef.current;
 
-    if (input) {
+    if (autoFocus && input) {
       input.focus();
     }
   }

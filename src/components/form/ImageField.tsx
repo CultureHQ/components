@@ -32,6 +32,12 @@ type ImageFieldState = {
   touched: boolean;
 };
 
+type ImageSelectedOptions = {
+  editorOpen: boolean;
+  failed: boolean;
+  image: ImageFieldValue;
+};
+
 class ImageField extends React.Component<ImageFieldProps & FormState, ImageFieldState> {
   inputRef = React.createRef<HTMLInputElement>();
 
@@ -68,7 +74,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     this.handleImageSelected({ editorOpen: false, failed: true, image: null });
   };
 
-  handleImageSelected = ({ editorOpen, failed, image }: { editorOpen: boolean, failed: boolean, image: ImageFieldValue }) => {
+  handleImageSelected = ({ editorOpen, failed, image }: ImageSelectedOptions) => {
     const { name, onChange, onFormChange } = this.props;
 
     this.setState(state => {
