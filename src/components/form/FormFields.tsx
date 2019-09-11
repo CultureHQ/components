@@ -4,7 +4,8 @@ import classnames from "../../classnames";
 import FormError from "./FormError";
 import { FormState, withForm } from "./Form";
 
-type FormFieldProps = React.HTMLAttributes<HTMLInputElement> & {
+type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
+type FormFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProps> & {
   addon?: string;
   autoFocus?: boolean;
   children: React.ReactNode;
