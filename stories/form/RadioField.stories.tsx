@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
@@ -16,13 +16,11 @@ const valueOptions = options.reduce(
   (accum, option) => ({ ...accum, [option.label]: option.value }), {}
 );
 
-const Container = ({ children, ...props }) => (
+const Container = (props: Omit<React.ComponentProps<typeof RadioField>, "options">) => (
   <Panel>
     <Panel.Body>
-      <Form>
-        <RadioField {...props} options={options}>
-          {children}
-        </RadioField>
+      <Form onSubmit={() => {}}>
+        <RadioField {...props} options={options} />
       </Form>
     </Panel.Body>
   </Panel>
@@ -46,7 +44,7 @@ storiesOf("Form/RadioField", module)
   .add("autoFocus", () => <Container name="radio" autoFocus>Radio</Container>)
   .add("required", () => <Container name="radio" required>Radio</Container>)
   .add("validator", () => {
-    const validator = value => {
+    const validator = (value: string | number) => {
       if (value !== "slytherin") {
         return null;
       }

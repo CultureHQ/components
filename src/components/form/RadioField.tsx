@@ -11,6 +11,7 @@ type RadioFieldOption = {
 };
 
 type RadioFieldProps = Omit<React.HTMLAttributes<HTMLFieldSetElement>, "className"> & {
+  autoFocus?: boolean;
   children: React.ReactNode;
   className?: string;
   name: string;
@@ -18,7 +19,7 @@ type RadioFieldProps = Omit<React.HTMLAttributes<HTMLFieldSetElement>, "classNam
   options: RadioFieldOption[];
   required?: boolean;
   validator?: (value: RadioFieldValue) => string | null;
-  value?: RadioFieldValue;
+  value?: RadioFieldValue | null;
 };
 
 type RadioFieldState = {
@@ -26,7 +27,18 @@ type RadioFieldState = {
 };
 
 class RadioField extends React.Component<RadioFieldProps & FormState, RadioFieldState> {
+  private inputRef = React.createRef<HTMLInputElement>();
+
   state = { touched: false };
+
+  componentDidMount() {
+    const { autoFocus } = this.props;
+    const input = this.inputRef.current;
+
+    if (autoFocus && input) {
+      input.focus();
+    }
+  }
 
   handleBlur = () => {
     this.setState({ touched: true });
@@ -45,9 +57,9 @@ class RadioField extends React.Component<RadioFieldProps & FormState, RadioField
 
   render() {
     const {
-      children, className, errors, name, onChange, onError, onFormChange,
-      options = [], required, submitted, submitting, validator, value, values,
-      ...props
+      autoFocus, children, className, errors, name, onChange, onError,
+      onFormChange, options, required, submitted, submitting, validator,
+      value, values, ...props
     } = this.props;
 
     const { touched } = this.state;
@@ -60,6 +72,7 @@ class RadioField extends React.Component<RadioFieldProps & FormState, RadioField
         {options.map((option, index) => (
           <label key={option.value} className="chq-ffd--radio" htmlFor={`${name}${index + 1}`}>
             <input
+              ref={this.inputRef}
               aria-label={name}
               type="radio"
               id={`${name}${index + 1}`}
