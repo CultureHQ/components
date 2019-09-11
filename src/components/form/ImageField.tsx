@@ -8,7 +8,7 @@ import ImagePreview from "../ImagePreview";
 import FormError from "./FormError";
 import { FormState, withForm } from "./Form";
 
-type ImageFieldValue = Blob | File | null;
+export type ImageFieldValue = Blob | File | string | null;
 
 type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
 type ImageFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProps> & {

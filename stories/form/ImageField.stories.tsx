@@ -1,15 +1,16 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, number, text } from "@storybook/addon-knobs";
 
 import { ImageField, Form, Panel } from "../../src/components";
+import { ImageFieldValue } from "../../src/components/form/ImageField";
 
-const Container = ({ children, ...props }) => (
+const Container = (props: React.ComponentProps<typeof ImageField>) => (
   <Panel>
     <Panel.Body>
-      <Form>
-        <ImageField {...props}>{children}</ImageField>
+      <Form onSubmit={() => {}}>
+        <ImageField {...props} />
       </Form>
     </Panel.Body>
   </Panel>
@@ -19,10 +20,10 @@ storiesOf("Form/ImageField", module)
   .add("default", () => {
     const children = text("children", "Image");
     const props = {
-      aspectRatio: number("aspectRatio", null),
+      aspectRatio: number("aspectRatio", 1),
       autoFocus: boolean("autoFocus", false),
       onChange: action("onChange"),
-      progress: number("progress", null),
+      progress: number("progress", 0),
       name: text("name", "image"),
       required: boolean("required", false),
       value: text("value", "culture.png")
@@ -36,8 +37,8 @@ storiesOf("Form/ImageField", module)
   .add("autoFocus", () => <Container name="image" autoFocus>Image</Container>)
   .add("required", () => <Container name="image" required>Image</Container>)
   .add("validator", () => {
-    const validator = value => {
-      if (value.type === "image/png") {
+    const validator = (value: ImageFieldValue) => {
+      if (value instanceof File && value.type === "image/png") {
         return null;
       }
       return "We only support pngs.";
