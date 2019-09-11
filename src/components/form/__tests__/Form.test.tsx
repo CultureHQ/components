@@ -59,7 +59,7 @@ test("allows calling submit manually", () => {
     </Form>
   );
 
-  const formElement = formRef.current as HTMLFormElement;
+  const formElement = formRef.current as Form;
   expect(formElement).not.toBe(null);
 
   formElement.submit();
