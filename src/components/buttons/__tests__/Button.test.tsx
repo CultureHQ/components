@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { render, waitForDomChange } from "@testing-library/react";
 
 import Button from "../Button";
@@ -7,9 +7,13 @@ import icons from "../../../icons.json";
 const editIconPath = icons.edit.join(" ");
 const loadingIconPath = icons["load-c"].join(" ");
 
-const getIconPath = async container => {
+const getIconPath = async (container: HTMLElement) => {
   await waitForDomChange({ container });
-  return container.querySelector("path").getAttribute("d");
+
+  const pathElement = container.querySelector("path") as SVGElement;
+  expect(pathElement).not.toBe(null);
+
+  return pathElement.getAttribute("d");
 };
 
 test("has no violations", () => (
@@ -48,4 +52,24 @@ test("loading overrides the regular icon", async () => {
   const iconPath = await getIconPath(container);
 
   expect(iconPath).toEqual(loadingIconPath);
+});
+
+type LinkProps = {
+  children: React.ReactNode;
+  className: string;
+  to: string;
+};
+
+const Link = ({ children, className, to }: LinkProps) => (
+  <a href={to} className={className}>{children}</a>
+);
+
+test("allows overriding the type", () => {
+  const to = "http://localhost/";
+  const { container } = render(<Button as={Link} inverted to={to} />);
+  const anchorElement = container.firstChild as HTMLAnchorElement;
+
+  expect(anchorElement).not.toBe(null);
+  expect(anchorElement.href).toEqual(to);
+  expect(container.querySelector(".chq-btn-iv")).toBeTruthy();
 });

@@ -1,22 +1,44 @@
-import React from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
 
-import Icon from "../Icon";
+import Icon, { IconName } from "../Icon";
 
-const ButtonIcon = ({ icon, loading }) => (
+type ButtonIconProps = {
+  icon?: IconName;
+  loading: boolean;
+};
+
+const ButtonIcon = ({ icon, loading }: ButtonIconProps) => (
   <>
-    <Icon icon={loading ? "load-c" : icon} />
+    <Icon icon={(loading ? "load-c" : icon) as IconName} />
     {" "}
   </>
+);
+
+type ButtonCommonProps = {
+  children?: React.ReactNode;
+  className?: string;
+  icon?: IconName;
+  fillParent?: boolean;
+  inverted?: boolean;
+  primary?: boolean;
+  small?: boolean;
+  loading?: boolean;
+  danger?: boolean;
+};
+
+type ButtonProps<P extends any = any> = ButtonCommonProps & (
+  ({ as: React.ComponentType<P> } & P)
+  | ({ as: undefined | "button" } & React.ButtonHTMLAttributes<HTMLButtonElement>)
 );
 
 const Button = ({
   as: Element = "button",
   children,
-  className = undefined,
+  className,
   type = "button",
-  icon = null,
+  icon,
   fillParent = false,
   inverted = false,
   primary = false,
@@ -24,7 +46,7 @@ const Button = ({
   loading = false,
   danger = false,
   ...props
-}) => {
+}: ButtonProps) => {
   const buttonProps = {
     ...props,
     className: classnames("chq-btn", className, {
