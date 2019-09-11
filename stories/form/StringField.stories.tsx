@@ -1,15 +1,15 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, text } from "@storybook/addon-knobs";
 
 import { StringField, Form, Panel } from "../../src/components";
 
-const Container = ({ children, ...props }) => (
+const Container = (props: React.ComponentProps<typeof StringField>) => (
   <Panel>
     <Panel.Body>
-      <Form>
-        <StringField {...props}>{children}</StringField>
+      <Form onSubmit={() => {}}>
+        <StringField {...props} />
       </Form>
     </Panel.Body>
   </Panel>
@@ -23,7 +23,7 @@ storiesOf("Form/StringField", module)
       onChange: action("onChange"),
       name: text("name", "string"),
       required: boolean("required", false),
-      value: text("value", undefined)
+      value: text("value", null)
     };
 
     return <Container {...props}>{children}</Container>;
@@ -31,7 +31,7 @@ storiesOf("Form/StringField", module)
   .add("autoFocus", () => <Container name="string" autoFocus>String</Container>)
   .add("required", () => <Container name="string" required>String</Container>)
   .add("validator", () => {
-    const validator = value => {
+    const validator = (value: string) => {
       if (value.length >= 6) {
         return null;
       }
