@@ -1,8 +1,9 @@
-import React from "react";
+import * as React from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import RadioField from "../RadioField";
 import Form from "../Form";
+import SubmitButton from "../SubmitButton";
 
 const testOptions = [
   { value: "gryffindor", label: "Gryffindor" },
@@ -14,13 +15,17 @@ const testOptions = [
 test("has no violations", () => (
   expect(
     <RadioField name="radio" options={testOptions}>
-      Radio
+      Radio!
     </RadioField>
   ).toHaveNoViolations()
 ));
 
 test("passes on className", () => {
-  const { container } = render(<RadioField name="radio" className="radio" />);
+  const { container } = render(
+    <RadioField name="radio" className="radio" options={testOptions}>
+      Radio!
+    </RadioField>
+  );
 
   expect(container.querySelector(".radio")).toBeTruthy();
 });
@@ -28,8 +33,10 @@ test("passes on className", () => {
 test("calls up to callbacks if they are provided", () => {
   const onChange = jest.fn();
   const { getAllByRole } = render(
-    <Form>
-      <RadioField name="radio" options={testOptions} onChange={onChange} />
+    <Form onSubmit={jest.fn()}>
+      <RadioField name="radio" options={testOptions} onChange={onChange}>
+        Radio!
+      </RadioField>
     </Form>
   );
 
@@ -41,7 +48,9 @@ test("calls up to callbacks if they are provided", () => {
 
 test("tracks touch status in component state", () => {
   const { getAllByRole, queryByText } = render(
-    <RadioField required name="radio" options={testOptions} />
+    <RadioField required name="radio" options={testOptions}>
+      Radio!
+    </RadioField>
   );
 
   const radios = getAllByRole("radio");
@@ -54,19 +63,17 @@ test("tracks touch status in component state", () => {
 });
 
 test("displays errors if submitted", () => {
-  const { queryByText, rerender } = render(
-    <Form>
-      <RadioField name="radio" options={testOptions} required />
+  const { queryByText, getByRole } = render(
+    <Form onSubmit={jest.fn()}>
+      <RadioField name="radio" options={testOptions} required>
+        Radio!
+      </RadioField>
     </Form>
   );
 
   expect(queryByText("Required")).toBeFalsy();
 
-  rerender(
-    <Form>
-      <RadioField name="radio" options={testOptions} required submitted />
-    </Form>
-  );
+  fireEvent.click(getByRole("button"));
 
   expect(queryByText("Required")).toBeTruthy();
 });

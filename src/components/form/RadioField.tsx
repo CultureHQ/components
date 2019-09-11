@@ -17,7 +17,7 @@ type RadioFieldProps = Omit<React.HTMLAttributes<HTMLFieldSetElement>, "classNam
   onChange?: (value: RadioFieldValue) => void;
   options: RadioFieldOption[];
   required?: boolean;
-  validator: (value: RadioFieldValue) => string | null;
+  validator?: (value: RadioFieldValue) => string | null;
   value?: RadioFieldValue;
 };
 
