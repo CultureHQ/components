@@ -6,7 +6,8 @@ import { FormState, withForm } from "./Form";
 
 type TextFieldValue = string | null;
 
-type TextFieldProps = React.HTMLAttributes<HTMLTextAreaElement> & {
+type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
+type TextFieldProps = Omit<React.HTMLAttributes<HTMLTextAreaElement>, HijackedProps> & {
   autoFocus?: boolean;
   children: React.ReactNode;
   className?: string;
