@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { optionsKnob, text } from "@storybook/addon-knobs";
@@ -10,7 +10,7 @@ storiesOf("Buttons/ActionButton", module)
   .add("default", () => {
     const children = text("children", "Default");
     const props = {
-      icon: optionsKnob("icon", iconOptions, null, { display: "select" }),
+      icon: optionsKnob("icon", iconOptions, undefined, { display: "select" }),
       onClick: action("onClick")
     };
 
