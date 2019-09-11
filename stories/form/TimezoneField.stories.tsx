@@ -1,15 +1,15 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, text } from "@storybook/addon-knobs";
 
 import { TimezoneField, Form, Panel } from "../../src/components";
 
-const Container = ({ children, ...props }) => (
+const Container = (props: React.ComponentProps<typeof TimezoneField>) => (
   <Panel>
     <Panel.Body>
-      <Form>
-        <TimezoneField {...props}>{children}</TimezoneField>
+      <Form onSubmit={() => {}}>
+        <TimezoneField {...props} />
       </Form>
     </Panel.Body>
   </Panel>
@@ -24,7 +24,7 @@ storiesOf("Form/TimezoneField", module)
       onOffsetChange: action("onOffsetChange"),
       name: text("name", "text"),
       required: boolean("required", false),
-      value: text("value", undefined)
+      value: text("value", null)
     };
 
     return <Container {...props}>{children}</Container>;
@@ -36,7 +36,7 @@ storiesOf("Form/TimezoneField", module)
     <Container name="timezone" required>Timezone</Container>
   ))
   .add("validator", () => {
-    const validator = value => {
+    const validator = (value: string) => {
       if (value !== "Pacific/Tahiti") {
         return null;
       }
