@@ -1,6 +1,7 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+
 
 import {
   BooleanField,
@@ -13,11 +14,12 @@ import {
   SubmitButton,
   TextField
 } from "../../src/components";
+import { FormValues } from "../../src/components/form/Form";
 
 storiesOf("Form/Form", module)
   .add("default", () => {
     const onSubmitAction = action("onSubmit");
-    const onSubmit = values => {
+    const onSubmit = (values: FormValues) => {
       onSubmitAction(values);
       return new Promise(resolve => setTimeout(resolve, 1000));
     };
