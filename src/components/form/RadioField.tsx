@@ -10,7 +10,7 @@ type RadioFieldOption = {
   value: RadioFieldValue;
 };
 
-type RadioFieldProps = React.HTMLAttributes<HTMLFieldSetElement> & {
+type RadioFieldProps = Omit<React.HTMLAttributes<HTMLFieldSetElement>, "className"> & {
   children: React.ReactNode;
   className?: string;
   name: string;

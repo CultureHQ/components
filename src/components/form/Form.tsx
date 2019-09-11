@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import classnames from "../../classnames";
 import { ContainerProps } from "../../typings";
 
 type FormValue = undefined | null | boolean | number | string | Blob | File;
@@ -103,7 +102,7 @@ class Form extends React.Component<FormProps, FormState> {
 
     return (
       <FormContext.Provider value={this.state}>
-        <form className={classnames(className)} onSubmit={this.handleSubmit}>
+        <form className={className} onSubmit={this.handleSubmit}>
           {children}
         </form>
       </FormContext.Provider>

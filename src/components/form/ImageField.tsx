@@ -10,7 +10,8 @@ import { FormState, withForm } from "./Form";
 
 type ImageFieldValue = Blob | File | null;
 
-type ImageFieldProps = React.HTMLAttributes<HTMLInputElement> & {
+type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
+type ImageFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProps> & {
   aspectRatio?: number;
   autoFocus?: boolean;
   children: React.ReactNode;

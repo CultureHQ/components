@@ -3,7 +3,7 @@ import * as React from "react";
 import Button from "../buttons/Button";
 import { useForm } from "./Form";
 
-type SubmitButtonProps = React.ComponentProps<typeof Button> & {
+type SubmitButtonProps = Omit<React.ComponentProps<typeof Button>, "disabled"> & {
   children?: (submitting: boolean) => React.ReactNode;
   disabled?: boolean;
 };
