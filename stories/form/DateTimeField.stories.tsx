@@ -1,24 +1,24 @@
-import React, { useCallback, useState } from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, date, text } from "@storybook/addon-knobs";
 
 import { DateTimeField, Form, Panel } from "../../src/components";
 
-const Container = ({ children, ...props }) => {
-  const [offset, setOffset] = useState(() => -new Date().getTimezoneOffset());
-  const onOffsetChange = useCallback(
-    ({ target: { value } }) => setOffset(value),
-    [setOffset]
-  );
+const Container = (props: Omit<React.ComponentProps<typeof DateTimeField>, "offset">) => {
+  const [offset, setOffset] = React.useState<number>(() => (
+    -new Date().getTimezoneOffset()
+  ));
+
+  const onOffsetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setOffset(parseInt(event.target.value, 10));
+  };
 
   return (
     <Panel>
       <Panel.Body>
-        <Form>
-          <DateTimeField {...props} offset={offset}>
-            {children}
-          </DateTimeField>
+        <Form onSubmit={() => {}}>
+          <DateTimeField {...props} offset={offset} />
         </Form>
       </Panel.Body>
       <Panel.Footer>
@@ -47,7 +47,7 @@ storiesOf("Form/DateTimeField", module)
       onChange: action("onChange"),
       name: text("name", "datetime"),
       required: boolean("required", false),
-      value: date("value", null)
+      value: date("value", undefined)
     };
 
     return <Container {...props}>{children}</Container>;
@@ -59,7 +59,7 @@ storiesOf("Form/DateTimeField", module)
     <Container name="datetime" required>DateTime</Container>
   ))
   .add("validator", () => {
-    const validator = value => {
+    const validator = (value: string) => {
       if (value >= "2019") {
         return null;
       }
