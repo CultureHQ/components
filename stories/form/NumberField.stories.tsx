@@ -1,15 +1,15 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, text } from "@storybook/addon-knobs";
 
 import { NumberField, Form, Panel } from "../../src/components";
 
-const Container = ({ children, ...props }) => (
+const Container = (props: React.ComponentProps<typeof NumberField>) => (
   <Panel>
     <Panel.Body>
-      <Form>
-        <NumberField {...props}>{children}</NumberField>
+      <Form onSubmit={() => {}}>
+        <NumberField {...props} />
       </Form>
     </Panel.Body>
   </Panel>
@@ -23,7 +23,7 @@ storiesOf("Form/NumberField", module)
       onChange: action("onChange"),
       name: text("name", "number"),
       required: boolean("required", false),
-      value: text("value", undefined)
+      value: text("value", null)
     };
 
     return <Container {...props}>{children}</Container>;
@@ -31,8 +31,10 @@ storiesOf("Form/NumberField", module)
   .add("autoFocus", () => <Container name="number" autoFocus>Number</Container>)
   .add("required", () => <Container name="number" required>Number</Container>)
   .add("validator", () => {
-    const validator = value => {
-      if (value >= 1 && value <= 10) {
+    const validator = (value: string) => {
+      const number = parseFloat(value);
+
+      if (number >= 1 && number <= 10) {
         return null;
       }
       return "Value must be between 1 and 10.";
