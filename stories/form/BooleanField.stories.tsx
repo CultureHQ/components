@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { optionsKnob, text } from "@storybook/addon-knobs";
@@ -9,12 +9,12 @@ const valueOptions = {
   null: "null",
   true: "true",
   false: "false"
-};
+} as const;
 
 storiesOf("Form/BooleanField", module)
   .add("default", () => {
     const children = text("children", "Boolean");
-    const value = optionsKnob("value", valueOptions, null, {
+    const value = optionsKnob("value", valueOptions, "null", {
       display: "inline-radio"
     });
 
@@ -25,7 +25,7 @@ storiesOf("Form/BooleanField", module)
     };
 
     return (
-      <Form>
+      <Form onSubmit={() => {}}>
         <BooleanField {...props}>{children}</BooleanField>
       </Form>
     );
