@@ -1,16 +1,22 @@
-import React, { useCallback, useState } from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { number, text } from "@storybook/addon-knobs";
 
 import { Panel, SearchBar } from "../src/components";
 
-const match = (search, options) => options.filter(option => (
+const match = (search: string, options: string[]) => options.filter(option => (
   option.toLowerCase().includes(search.toLowerCase())
 ));
 
-const Container = ({ haystack, placeholder, throttle }) => {
-  const [matches, setMatches] = useState([]);
-  const onSearch = useCallback(
+type ContainerProps = {
+  haystack: string[];
+  placeholder: string;
+  throttle: null | number;
+};
+
+const Container = ({ haystack, placeholder, throttle }: ContainerProps) => {
+  const [matches, setMatches] = React.useState<string[]>([]);
+  const onSearch = React.useCallback(
     search => setMatches(search ? match(search, haystack) : []),
     [haystack, setMatches]
   );

@@ -10,7 +10,7 @@ type SearchBarProps = {
   onSearch: (search: string) => void | Promise<any>;
   onSearchChange?: (search: string) => void;
   placeholder?: string;
-  throttle?: number;
+  throttle?: null | number;
 };
 
 type SearchBarState = {
