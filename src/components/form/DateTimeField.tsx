@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
-import locales from "../../locales";
+import locales from "../../locales.json";
 
 import Calendar from "../Calendar";
 import Button from "../buttons/Button";
@@ -10,15 +10,15 @@ import ModalDialog from "../modals/ModalDialog";
 
 import FormError from "./FormError";
 import TimeSelect from "./TimeSelect";
-import { withForm } from "./Form";
+import { FormFieldError, FormState, withForm } from "./Form";
 
-const padLeft = number => `0${number}`.slice(-2);
+const padLeft = (number: number) => `0${number}`.slice(-2);
 
-const getDateWithOffset = (value, offset) => (
+const getDateWithOffset = (value: Date | string, offset: number) => (
   new Date(+new Date(value) + offset * 60 * 1000)
 );
 
-const makeDateTime = (value, offset) => {
+const makeDateTime = (value: string | undefined, offset: number) => {
   if (!value) {
     return null;
   }
@@ -41,7 +41,7 @@ const makeDateTime = (value, offset) => {
   return components.join("");
 };
 
-const makeCalendarValue = (value, offset) => {
+const makeCalendarValue = (value: string | undefined, offset: number) => {
   const date = value ? new Date(value) : new Date();
   const offsetDate = new Date(+new Date(date) + offset * 60 * 1000);
 
@@ -52,7 +52,7 @@ const makeCalendarValue = (value, offset) => {
   };
 };
 
-const makeTimeSelectValue = (value, offset) => {
+const makeTimeSelectValue = (value: string | undefined, offset: number) => {
   if (!value) {
     return { hours: 12, minutes: 0 };
   }
@@ -64,20 +64,47 @@ const makeTimeSelectValue = (value, offset) => {
   return { hours, minutes };
 };
 
-class DateTimeField extends Component {
-  static defaultProps = {
-    offset: -new Date().getTimezoneOffset(),
-    onChange: () => {},
-    onFormChange: () => {},
-    values: {}
-  };
+type DateTimeFieldProps = {
+  autoFocus?: boolean;
+  children: React.ReactNode;
+  className?: string;
+  name: string;
+  offset?: number;
+  onChange?: (value: string) => void;
+  required?: boolean;
+  validator?: (value: string) => FormFieldError;
+  value?: string;
+};
+
+type DateTimeFieldState = {
+  open: boolean;
+  touched: boolean;
+};
+
+class DateTimeField extends React.Component<DateTimeFieldProps & FormState, DateTimeFieldState> {
+  private buttonRef = React.createRef<HTMLButtonElement>();
 
   state = { open: false, touched: false };
+
+  componentDidMount() {
+    const { autoFocus } = this.props;
+    const button = this.buttonRef.current;
+
+    if (autoFocus && button) {
+      button.focus();
+    }
+  }
+
+  getOffset = () => {
+    const { offset = -new Date().getTimezoneOffset() } = this.props;
+
+    return offset;
+  };
 
   getValue = () => {
     const { name, value, values } = this.props;
 
-    return value || values[name];
+    return value || (values[name] as undefined | string);
   };
 
   handleOpen = () => {
@@ -88,9 +115,8 @@ class DateTimeField extends Component {
     this.setState({ open: false, touched: true });
   };
 
-  handleDateChange = (year, month, day) => {
-    const { offset } = this.props;
-
+  handleDateChange = (year: number, month: number, day: number) => {
+    const offset = this.getOffset();
     const value = this.getValue();
 
     const date = getDateWithOffset(value ? new Date(value) : new Date(), offset);
@@ -120,9 +146,8 @@ class DateTimeField extends Component {
     );
   };
 
-  handleTimeChange = (hours, minutes) => {
-    const { offset } = this.props;
-
+  handleTimeChange = (hours: number, minutes: number) => {
+    const offset = this.getOffset();
     const value = this.getValue();
     const date = getDateWithOffset(value ? new Date(value) : new Date(), offset);
 
@@ -154,8 +179,7 @@ class DateTimeField extends Component {
   };
 
   handleSelect = () => {
-    const { offset } = this.props;
-
+    const offset = this.getOffset();
     const value = this.getValue();
     const date = value ? new Date(value) : new Date();
 
@@ -169,21 +193,22 @@ class DateTimeField extends Component {
     this.handleClose();
   };
 
-  propagateChange = (year, month, date, hours, minutes) => {
+  propagateChange = (year: number, month: number, date: number, hours: number, minutes: number) => {
     const { name, onChange, onFormChange } = this.props;
     const value = new Date(Date.UTC(year, month, date, hours, minutes, 0)).toISOString();
 
-    onChange(value);
+    if (onChange) {
+      onChange(value);
+    }
+
     onFormChange(name, value);
   };
 
   render() {
-    const {
-      children, className, onError, name, offset, required, submitted, validator
-    } = this.props;
-
+    const { children, className, onError, name, required, submitted, validator } = this.props;
     const { open, touched } = this.state;
 
+    const offset = this.getOffset();
     const value = this.getValue();
 
     return (
@@ -191,6 +216,7 @@ class DateTimeField extends Component {
         <label className={classnames("chq-ffd", className)} htmlFor={name}>
           <span className="chq-ffd--lb">{children}</span>
           <PlainButton
+            ref={this.buttonRef}
             aria-label="Open dialog"
             className="chq-ffd--ctrl chq-ffd--dt"
             onClick={this.handleOpen}

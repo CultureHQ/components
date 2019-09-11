@@ -46,11 +46,13 @@ storiesOf("Form/DateTimeField", module)
       autoFocus: boolean("autoFocus", false),
       onChange: action("onChange"),
       name: text("name", "datetime"),
-      required: boolean("required", false),
-      value: date("value", undefined)
+      required: boolean("required", false)
     };
 
-    return <Container {...props}>{children}</Container>;
+    const valueKnob = date("value", undefined);
+    const value = valueKnob ? new Date(valueKnob).toISOString() : undefined;
+
+    return <Container {...props} value={value}>{children}</Container>;
   })
   .add("autoFocus", () => (
     <Container name="datetime" autoFocus>DateTime</Container>
