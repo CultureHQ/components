@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, text } from "@storybook/addon-knobs";
@@ -31,6 +31,7 @@ storiesOf("Modals/Confirm", module)
   .add("danger", () => (
     <Confirm
       danger
+      onAccept={action("onAccept")}
       trigger={onTrigger => <Button danger onClick={onTrigger}>Delete</Button>}
     >
       Are you sure you would like to delete this resource?
