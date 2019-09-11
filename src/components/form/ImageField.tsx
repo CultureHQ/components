@@ -165,7 +165,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
             name={name}
             onChange={this.handleFileSelected}
           />
-          {progress && (
+          {typeof progress === "number" && (
             <div
               className="chq-ffd--im--prog"
               role="progressbar"
