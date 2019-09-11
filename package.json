@@ -59,6 +59,7 @@
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "@types/react-modal": "^3.8.3",
+    "@types/storybook__addon-knobs": "^5.0.3",
     "@types/storybook__react": "^4.0.2",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.5",
@@ -87,11 +88,14 @@
     "rules": {
       "import/no-extraneous-dependencies": "off",
       "@typescript-eslint/no-empty-function": "off",
-      "@typescript-eslint/no-unused-vars": ["error", {
-        "argsIgnorePattern": "^_",
-        "ignoreRestSiblings": true,
-        "varsIgnorePattern": "^_"
-      }]
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_",
+          "ignoreRestSiblings": true,
+          "varsIgnorePattern": "^_"
+        }
+      ]
     }
   },
   "jest": {

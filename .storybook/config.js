@@ -3,13 +3,10 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { withA11y } from "@storybook/addon-a11y";
 import { withInfo } from "@storybook/addon-info";
 
-import { ModalDialog } from "../src/components";
 import "../src/styles/app.scss";
 
 import theme from "./theme";
 import "./styles.css";
-
-ModalDialog.setAppElement(document.body);
 
 addDecorator(withKnobs);
 addDecorator(withA11y);
@@ -22,5 +19,5 @@ addParameters({
   }
 });
 
-const req = require.context("../stories", true, /\.stories\.js$/);
+const req = require.context("../stories", true, /\.stories\.(j|t)sx?$/);
 configure(() => req.keys().forEach(req), module);

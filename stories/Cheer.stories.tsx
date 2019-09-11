@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
 
@@ -16,7 +16,7 @@ storiesOf("Cheer", module)
     const props = {
       color: optionsKnob("color", colorOptions, "darkblue", {
         display: "inline-radio"
-      }),
+      }) as React.ComponentProps<typeof Cheer>["color"],
       name: text("name", null),
       pop: boolean("pop", false),
       small: boolean("small", false)

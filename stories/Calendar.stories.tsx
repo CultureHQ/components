@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 import { Calendar } from "../src/components";
 
-const Container = ({ onChange }) => {
-  const [value, setValue] = useState({ year: null, month: null, day: null });
-  const onCalendarChange = (year, month, day) => {
+type CalendarState = Pick<React.ComponentProps<typeof Calendar>, "year" | "month" | "day">;
+type ContainerProps = Pick<React.ComponentProps<typeof Calendar>, "onChange">;
+
+const Container = ({ onChange }: ContainerProps) => {
+  const [value, setValue] = React.useState<CalendarState>({ year: null, month: null, day: null });
+  const onCalendarChange = (year: number, month: number, day: number) => {
     setValue({ year, month, day });
     onChange(year, month, day);
   };
