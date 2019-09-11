@@ -8,7 +8,7 @@ type BooleanFieldProps = {
   children: React.ReactNode;
   className?: string;
   name: string;
-  onChange?: (value: boolean) => {};
+  onChange?: (value: boolean) => void;
   value?: boolean | null;
 };
 

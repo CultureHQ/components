@@ -19,7 +19,7 @@ type CentsFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProp
   children: React.ReactNode;
   className?: string;
   name: string;
-  onChange?: (value: CentsFieldValue) => {};
+  onChange?: (value: CentsFieldValue) => void;
   required?: boolean;
   value?: CentsFieldValue;
 };

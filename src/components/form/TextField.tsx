@@ -12,7 +12,7 @@ type TextFieldProps = Omit<React.HTMLAttributes<HTMLTextAreaElement>, HijackedPr
   children: React.ReactNode;
   className?: string;
   name: string;
-  onChange?: (value: TextFieldValue) => {};
+  onChange?: (value: TextFieldValue) => void;
   required?: boolean;
   validator?: (value: TextFieldValue) => string | null;
   value?: TextFieldValue;
