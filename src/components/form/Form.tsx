@@ -1,13 +1,10 @@
 import * as React from "react";
 
 import { ContainerProps } from "../../typings";
-
-import { FileFieldValue } from "./FileField";
-import { ImageFieldValue } from "./ImageField";
-import { RadioFieldValue } from "./RadioField";
+import { FormFieldError } from "./typings";
 
 export type FormValue = (
-  undefined | null | boolean | RadioFieldValue | ImageFieldValue | FileFieldValue
+  undefined | null | boolean | number | string | string[] | File | FileList | Blob
 );
 
 export type FormValues = { [key: string]: FormValue };
@@ -17,7 +14,6 @@ type FormProps = ContainerProps & {
   onSubmit: (values: FormValues) => void | Promise<any>;
 };
 
-export type FormFieldError = string | null;
 export type FormState = {
   errors: { [key: string]: FormFieldError };
   submitted: boolean;
