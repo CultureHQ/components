@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
@@ -19,11 +19,11 @@ const valueOptions = options.reduce(
   (accum, option) => ({ ...accum, [option.label]: option.value }), {}
 );
 
-const Container = ({ children, ...props }) => (
+const Container = (props: Omit<React.ComponentProps<typeof SelectField>, "options">) => (
   <Panel>
     <Panel.Body>
-      <Form>
-        <SelectField {...props} options={options}>{children}</SelectField>
+      <Form onSubmit={() => {}}>
+        <SelectField {...props} options={options} />
       </Form>
     </Panel.Body>
   </Panel>
@@ -55,7 +55,7 @@ storiesOf("Form/SelectField", module)
   ))
   .add("required", () => <Container name="select" required>Select</Container>)
   .add("validator", () => {
-    const validator = value => {
+    const validator = (value: string) => {
       if (value !== "goblet") {
         return null;
       }
