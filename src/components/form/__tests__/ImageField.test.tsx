@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { fireEvent, render, waitForElement } from "@testing-library/react";
 
 import ImageField from "../ImageField";
@@ -13,12 +13,14 @@ jest.mock("cropperjs", () => class {
 });
 
 test("has no violations", () => (
-  expect(<ImageField name="image" />).toHaveNoViolations()
+  expect(<ImageField name="image">Image!</ImageField>).toHaveNoViolations()
 ));
 
 test("calls up to callbacks if they are provided", () => {
   const onChange = jest.fn();
-  const { getByRole } = render(<ImageField name="image" onChange={onChange} />);
+  const { getByRole } = render(
+    <ImageField name="image" onChange={onChange}>Image!</ImageField>
+  );
 
   fireEvent.change(getByRole("textbox"), {
     target: { files: ["Some file"] }
@@ -30,7 +32,7 @@ test("calls up to callbacks if they are provided", () => {
 test("responds to edit callback", async () => {
   const onChange = jest.fn();
   const { container, getByAltText, getByRole, getByText } = render(
-    <ImageField name="image" onChange={onChange} />
+    <ImageField name="image" onChange={onChange}>Image!</ImageField>
   );
 
   fireEvent.change(getByRole("textbox"), { target: { files: [mockImage] } });
@@ -44,32 +46,42 @@ test("responds to edit callback", async () => {
 
 test("handles closing the modal", () => {
   const { getByRole, queryByLabelText } = render(
-    <ImageField name="image" />
+    <ImageField name="image">Image!</ImageField>
   );
 
   fireEvent.change(getByRole("textbox"), { target: { files: [mockImage] } });
   expect(queryByLabelText("Rotate left")).toBeTruthy();
 
-  fireEvent.click(document.querySelector(".ReactModal__Overlay"));
+  const overlay = document.querySelector(".ReactModal__Overlay") as HTMLElement;
+  expect(overlay).not.toBe(null);
+
+  fireEvent.click(overlay);
   expect(queryByLabelText("Rotate left")).toBeFalsy();
 });
 
 test("handles deselecting files", () => {
   const onChange = jest.fn();
-  const { getByRole } = render(<ImageField name="image" onChange={onChange} />);
+  const { getByRole } = render(
+    <ImageField name="image" onChange={onChange}>Image!</ImageField>
+  );
 
   fireEvent.change(getByRole("textbox"), { target: { files: [] } });
   expect(onChange).toHaveBeenLastCalledWith(null);
 });
 
 test("displays a progress bar if progress is reported", () => {
-  const { queryByRole } = render(<ImageField name="image" progress={5} />);
+  const { queryByRole } = render(
+    <ImageField name="image" progress={5}>Image!</ImageField>
+  );
 
   expect(queryByRole("progressbar")).toBeTruthy();
 });
 
 test("accepts autoFocus", () => {
-  render(<ImageField name="image" autoFocus />);
+  render(<ImageField name="image" autoFocus>Image!</ImageField>);
 
-  expect(document.activeElement.id).toEqual("image");
+  const imageElement = document.activeElement as HTMLImageElement;
+
+  expect(imageElement).not.toBe(null);
+  expect(imageElement.id).toEqual("image");
 });
