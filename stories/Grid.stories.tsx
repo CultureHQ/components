@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 
 import { Grid } from "../src/components";
+import { GridSize } from "../src/components/Grid";
 
-const breakpoints = [[1400, "xl"], [1200, "lg"], [992, "md"], [768, "sm"]];
+const breakpoints: { size: number; name: GridSize }[] = [
+  { size: 1400, name: "xl" },
+  { size: 1200, name: "lg" },
+  { size: 992, name: "md" },
+  { size: 768, name: "sm" }
+];
 
-const getSize = width => {
-  const matched = breakpoints.find(breakpoint => width >= breakpoint[0]);
-  return matched ? matched[1] : "xs";
+const getSize = (width: number): GridSize => {
+  const matched = breakpoints.find(breakpoint => width >= breakpoint.size);
+  return matched ? matched.name : "xs";
 };
 
 const smallSizes = { xs: 12, sm: 6, md: 4, lg: 3, xl: 2 };
@@ -20,16 +26,18 @@ const style = {
   fontSize: "40px",
   height: "100px",
   padding: "0.5em",
-  textAlign: "center"
+  textAlign: "center" as const
 };
 
 const Container = () => {
-  const [size, setSize] = useState(getSize(window.innerWidth));
+  const [size, setSize] = React.useState<GridSize>(getSize(window.innerWidth));
 
-  useEffect(() => {
-    const onResize = event => (
-      setSize(getSize(event.currentTarget.innerWidth))
-    );
+  React.useEffect(() => {
+    const onResize = (event: Event) => {
+      if (event.currentTarget instanceof Window) {
+        setSize(getSize(event.currentTarget.innerWidth));
+      }
+    };
 
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -52,7 +60,7 @@ const Container = () => {
         ))}
         <Grid.Item xs={false} md={1}>
           <div style={style}>
-            {({ md: 1, lg: 1, xl: 1 }[size])}
+            {({ xs: false, sm: false, md: 1, lg: 1, xl: 1 }[size])}
           </div>
         </Grid.Item>
         <Grid.Item xs={6} md={5}>

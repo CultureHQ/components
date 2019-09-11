@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { optionsKnob, text } from "@storybook/addon-knobs";
 
@@ -8,7 +8,7 @@ const colorOptions = {
   blue: "blue",
   gray: "gray",
   red: "red"
-};
+} as const;
 
 storiesOf("Tag", module)
   .add("default", () => {

@@ -9,7 +9,6 @@ import Panel from "../Panel";
 
 // This shouldn't be necessary, but is due to
 // https://github.com/reactjs/react-modal/issues/497
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const ReactModal = require("react-modal");
 
 const entrances = {

@@ -1,20 +1,21 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
 
 import { Thumbnail } from "../src/components";
-import image from "./public/culture.png";
+
+const image = require("./public/culture.png");
 
 const sizeOptions = {
   small: "small",
   medium: "medium",
   large: "large"
-};
+} as const;
 
 const asOptions = {
   div: "div",
   span: "span"
-};
+} as const;
 
 storiesOf("Thumbnail", module)
   .add("default", () => {
