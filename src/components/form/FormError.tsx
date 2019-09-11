@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { FormFieldError, FormValue } from "./Form";
+import { FormValue } from "./Form";
+import { FormFieldError } from "./typings";
 
 type FormErrorProps = {
   onError: (name: string, error: FormFieldError) => void;

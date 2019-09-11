@@ -10,7 +10,8 @@ import ModalDialog from "../modals/ModalDialog";
 
 import FormError from "./FormError";
 import TimeSelect from "./TimeSelect";
-import { FormFieldError, FormState, withForm } from "./Form";
+import { FormState, withForm } from "./Form";
+import { FormFieldError } from "./typings";
 
 const padLeft = (number: number) => `0${number}`.slice(-2);
 

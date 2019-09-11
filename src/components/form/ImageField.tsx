@@ -6,7 +6,8 @@ import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
 import ImagePreview from "../ImagePreview";
 import FormError from "./FormError";
-import { FormFieldError, FormState, withForm } from "./Form";
+import { FormState, withForm } from "./Form";
+import { FormFieldError } from "./typings";
 
 export type ImageFieldValue = Blob | File | string | null;
 

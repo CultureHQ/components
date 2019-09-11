@@ -2,7 +2,8 @@ import * as React from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { FormFieldError, FormState, withForm } from "./Form";
+import { FormState, withForm } from "./Form";
+import { FormFieldError } from "./typings";
 
 export type FileFieldValue = File | FileList | string[] | null;
 
