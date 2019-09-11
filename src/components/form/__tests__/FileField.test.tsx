@@ -1,23 +1,33 @@
-import React, { useState } from "react";
+import * as React from "react";
 import { fireEvent, render } from "@testing-library/react";
 
-import FileField from "../FileField";
+import FileField, { FileFieldValue } from "../FileField";
 
-const Container = props => {
-  const [value, setValue] = useState(null);
+type HijackedProps = "children" | "value" | "onChange";
+type ContainerProps = Omit<React.ComponentProps<typeof FileField>, HijackedProps>;
 
-  return <FileField {...props} value={value} onChange={setValue} />;
+const Container = (props: ContainerProps) => {
+  const [value, setValue] = React.useState<FileFieldValue>(null);
+
+  return <FileField {...props} value={value} onChange={setValue}>File!</FileField>;
 };
 
 test("passes on className", () => {
-  const { container } = render(<FileField name="name" className="file" />);
+  const { container } = render(
+    <FileField name="name" className="file">File!</FileField>
+  );
 
-  expect(container.firstChild.classList).toContain("file");
+  const inputElement = container.firstChild as HTMLElement;
+
+  expect(inputElement).not.toBe(null);
+  expect(inputElement.classList).toContain("file");
 });
 
 test("calls up to onChange if it is provided", () => {
   const onChange = jest.fn();
-  const { getByRole } = render(<FileField name="file" onChange={onChange} />);
+  const { getByRole } = render(
+    <FileField name="file" onChange={onChange}>File!</FileField>
+  );
 
   const file = { name: "foo" };
   fireEvent.change(getByRole("textbox"), { target: { files: [file] } });
@@ -26,7 +36,10 @@ test("calls up to onChange if it is provided", () => {
 });
 
 test("tracks touch status in component state", () => {
-  const { getByRole, queryByText } = render(<FileField name="name" required />);
+  const { getByRole, queryByText } = render(
+    <FileField name="name" required>File!</FileField>
+  );
+
   expect(queryByText("Required")).toBeFalsy();
 
   fireEvent.change(getByRole("textbox"), {
@@ -39,7 +52,7 @@ test("tracks touch status in component state", () => {
 test("works with multiple files", () => {
   const onChange = jest.fn();
   const { getByRole } = render(
-    <FileField multiple name="files" onChange={onChange} />
+    <FileField multiple name="files" onChange={onChange}>File!</FileField>
   );
 
   const files = [{ name: "foo" }, { name: "bar" }, { name: "baz" }];
@@ -52,7 +65,8 @@ test("displays an accurate summary", () => {
   const files = [{ name: "foo" }, { name: "bar" }, { name: "baz" }];
   const { container, getByRole } = render(<Container multiple name="files" />);
 
-  const summary = container.querySelector(".chq-ffd--fd");
+  const summary = container.querySelector(".chq-ffd--fd") as HTMLElement;
+  expect(summary).not.toBe(null);
 
   fireEvent.change(getByRole("textbox"), { target: { files } });
   expect(summary.textContent).toEqual("foo, bar, baz");
@@ -62,7 +76,10 @@ test("displays an accurate summary", () => {
 });
 
 test("accepts autoFocus", () => {
-  render(<FileField name="file" autoFocus />);
+  render(<FileField name="file" autoFocus>File!</FileField>);
 
-  expect(document.activeElement.id).toEqual("file");
+  const inputElement = document.activeElement as HTMLInputElement;
+
+  expect(inputElement).not.toBe(null);
+  expect(inputElement.id).toEqual("file");
 });

@@ -6,7 +6,8 @@ import { FormState, withForm } from "./Form";
 
 export type FileFieldValue = File | FileList | string[] | null;
 
-type FileFieldProps = React.HTMLAttributes<HTMLInputElement> & {
+type HijackedProps = "className" | "multiple" | "name" | "onChange" | "required" | "value";
+type FileFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProps> & {
   autoFocus?: boolean;
   children: React.ReactNode;
   className?: string;
