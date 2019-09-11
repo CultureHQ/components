@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import SubmitButton from "../SubmitButton";
@@ -6,7 +6,7 @@ import Form from "../Form";
 
 test("renders without crashing", () => {
   const onSubmit = () => new Promise(resolve => setTimeout(resolve, 1000));
-  const message = submitting => (submitting ? "Loading..." : "Load");
+  const message = (submitting: boolean) => (submitting ? "Loading..." : "Load");
 
   const { getByRole, queryByText } = render(
     <Form onSubmit={onSubmit}><SubmitButton>{message}</SubmitButton></Form>
