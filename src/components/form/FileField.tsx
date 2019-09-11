@@ -1,56 +1,72 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { withForm } from "./Form";
+import { FormState, withForm } from "./Form";
 
-class FileField extends Component {
-  static defaultProps = {
-    autoFocus: false,
-    multiple: false,
-    onChange: () => {},
-    onFormChange: () => {},
-    values: {}
-  };
+export type FileFieldValue = File | FileList | string[] | null;
 
-  inputRef = React.createRef();
+type FileFieldProps = React.HTMLAttributes<HTMLInputElement> & {
+  autoFocus?: boolean;
+  children: React.ReactNode;
+  className?: string;
+  multiple?: boolean;
+  name: string;
+  onChange?: (value: FileFieldValue) => void;
+  required?: boolean;
+  validator?: (value: FileFieldValue) => string | null;
+  value?: FileFieldValue
+};
+
+type FileFieldState = {
+  touched: boolean;
+};
+
+class FileField extends React.Component<FileFieldProps & FormState, FileFieldState> {
+  private inputRef = React.createRef<HTMLInputElement>();
 
   state = { touched: false };
 
   componentDidMount() {
     const { autoFocus } = this.props;
+    const input = this.inputRef.current;
 
-    if (autoFocus) {
-      this.inputRef.current.focus();
+    if (autoFocus && input) {
+      input.focus();
     }
   }
 
   getFileDisplay() {
     const { multiple, name, value, values } = this.props;
-    const normal = value || values[name];
+    const normal = value || (values[name] as undefined | FileFieldValue);
 
     if (!normal) {
       return "";
     }
 
     if (multiple) {
-      return Array.from(normal).map(file => file.name).join(", ");
+      return Array.from(normal as FileList).map(file => file.name).join(", ");
     }
 
-    return normal.name;
+    return (normal as File).name;
   }
 
-  handleChange = ({ target: { files } }) => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ touched: true });
 
     const { multiple, name, onChange, onFormChange } = this.props;
+
+    const { files } = event.target;
     let value = null;
 
-    if (files.length > 0) {
+    if (files && files.length > 0) {
       value = multiple ? files : files[0];
     }
 
-    onChange(value);
+    if (onChange) {
+      onChange(value);
+    }
+
     onFormChange(name, value);
   };
 

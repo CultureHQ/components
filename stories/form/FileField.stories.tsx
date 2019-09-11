@@ -1,15 +1,16 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, files, text } from "@storybook/addon-knobs";
 
 import { FileField, Form, Panel } from "../../src/components";
+import { FileFieldValue } from "../../src/components/form/FileField";
 
-const Container = ({ children, ...props }) => (
+const Container = (props: React.ComponentProps<typeof FileField>) => (
   <Panel>
     <Panel.Body>
-      <Form>
-        <FileField {...props}>{children}</FileField>
+      <Form onSubmit={() => {}}>
+        <FileField {...props} />
       </Form>
     </Panel.Body>
   </Panel>
@@ -24,7 +25,7 @@ storiesOf("Form/FileField", module)
       multiple: boolean("multiple", false),
       name: text("name", "file"),
       required: boolean("required", false),
-      value: files("value", "*", null)
+      value: files("value", "*", [])
     };
 
     return <Container {...props}>{children}</Container>;
@@ -33,11 +34,11 @@ storiesOf("Form/FileField", module)
   .add("multiple", () => <Container name="files" multiple>File</Container>)
   .add("required", () => <Container name="file" required>File</Container>)
   .add("validator", () => {
-    const validator = value => {
-      if (value >= 1 && value <= 10) {
+    const validator = (value: FileFieldValue) => {
+      if (value instanceof File && value.type === "image/png") {
         return null;
       }
-      return "Value must be between 1 and 10.";
+      return "We only support pngs.";
     };
 
     return (
