@@ -30,7 +30,7 @@ test("calls up to callbacks if they are provided", () => {
 
 test("tracks touch status in component state", () => {
   const { container, getByRole, queryByText } = render(
-    <TextField name="text" required>Text!</TextField>
+    <TextField name="text" required><span /></TextField>
   );
 
   expect(container.textContent).toEqual("");
@@ -44,12 +44,12 @@ test("tracks touch status in component state", () => {
 test("displays errors if submitted", () => {
   const { container, getByRole, queryByText } = render(
     <Form onSubmit={jest.fn()}>
-      <TextField name="text" required>Text!</TextField>
+      <TextField name="text" required><span /></TextField>
       <SubmitButton />
     </Form>
   );
 
-  expect(container.textContent).toEqual("");
+  expect(container.textContent).toEqual("Submit");
 
   fireEvent.click(getByRole("button"));
 

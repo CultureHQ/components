@@ -4,7 +4,7 @@ import SelectField from "./SelectField";
 import { StringField } from "./FormFields";
 import { FormState, withForm } from "./Form";
 
-import * as timezonesJSON from "../../timezones.json";
+import timezonesJSON from "../../timezones.json";
 
 type Timezones = typeof timezonesJSON;
 
@@ -26,7 +26,7 @@ class TimezoneField extends React.Component<TimezoneFieldProps & FormState, Time
     this.componentIsMounted = true;
 
     import("../../timezones.json")
-      .then(timezones => {
+      .then(({ default: timezones }) => {
         if (!this.componentIsMounted) {
           return;
         }
