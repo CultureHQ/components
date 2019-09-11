@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import DateTimeField from "../DateTimeField";
@@ -13,7 +13,7 @@ test("functions as expected", () => {
 
   const { getByLabelText, getByText } = render(
     <Form onSubmit={onSubmit} initialValues={initialValues}>
-      <DateTimeField name="datetime" />
+      <DateTimeField name="datetime">Date time!</DateTimeField>
       <SubmitButton />
     </Form>
   );
@@ -23,12 +23,14 @@ test("functions as expected", () => {
   fireEvent.click(getByText("01:00 PM"));
   fireEvent.click(getByText("Submit"));
 
-  const { datetime } = onSubmit.mock.calls[0][0];
-  expect(datetime).toEqual("2018-01-15T13:00:00.000Z");
+  expect(onSubmit).toHaveBeenCalledTimes(1);
+  expect(onSubmit).toHaveBeenCalledWith({ datetime: "2018-01-15T13:00:00.000Z" });
 });
 
 test("works without a value passed in", () => {
-  const { queryAllByRole } = render(<DateTimeField />);
+  const { queryAllByRole } = render(
+    <DateTimeField name="datetime">Date time!</DateTimeField>
+  );
 
   expect(queryAllByRole("button")).toHaveLength(1);
 });
@@ -36,7 +38,9 @@ test("works without a value passed in", () => {
 test("allows clicking on select before making a time selection", () => {
   const onChange = jest.fn();
   const { getByLabelText, getByText } = render(
-    <DateTimeField onChange={onChange} />
+    <DateTimeField name="datetime" onChange={onChange}>
+      Date time!
+    </DateTimeField>
   );
 
   fireEvent.click(getByLabelText("Open dialog"));
@@ -49,7 +53,9 @@ test("allows clicking on select before making a time selection", () => {
 test("works when clicking on a time before a date", () => {
   const onChange = jest.fn();
   const { getByLabelText, getByText } = render(
-    <DateTimeField onChange={onChange} />
+    <DateTimeField name="datetime" onChange={onChange}>
+      Date time!
+    </DateTimeField>
   );
 
   fireEvent.click(getByLabelText("Open dialog"));
