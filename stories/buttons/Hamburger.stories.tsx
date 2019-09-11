@@ -1,11 +1,11 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean } from "@storybook/addon-knobs";
 
 import { Hamburger } from "../../src/components";
 
-const Container = props => (
+const Container = (props: React.ComponentProps<typeof Hamburger>) => (
   <div style={{ backgroundColor: "#2c3e4f", display: "inline-block" }}>
     <Hamburger {...props} />
   </div>
@@ -20,4 +20,4 @@ storiesOf("Buttons/Hamburger", module)
 
     return <Container {...props} />;
   })
-  .add("open", () => <Container open />);
+  .add("open", () => <Container open onToggle={() => {}} />);
