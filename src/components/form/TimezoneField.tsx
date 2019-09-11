@@ -1,14 +1,24 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 import SelectField from "./SelectField";
 import { StringField } from "./FormFields";
-import { withForm } from "./Form";
+import { FormState, withForm } from "./Form";
 
-class TimezoneField extends Component {
-  static defaultProps = {
-    onChange: () => {},
-    onOffsetChange: () => {}
-  };
+import * as timezonesJSON from "../../timezones.json";
+
+type Timezones = typeof timezonesJSON;
+
+type TimezoneFieldProps = Omit<React.ComponentProps<typeof StringField>, "onChange"> & {
+  onChange?: (value: string) => void;
+  onOffsetChange?: (offset: number) => void;
+};
+
+type TimezoneFieldState = {
+  timezones: null | Timezones;
+};
+
+class TimezoneField extends React.Component<TimezoneFieldProps & FormState, TimezoneFieldState> {
+  private componentIsMounted = false;
 
   state = { timezones: null };
 
@@ -16,7 +26,7 @@ class TimezoneField extends Component {
     this.componentIsMounted = true;
 
     import("../../timezones.json")
-      .then(({ default: timezones }) => {
+      .then(timezones => {
         if (!this.componentIsMounted) {
           return;
         }
@@ -25,7 +35,7 @@ class TimezoneField extends Component {
         const normal = value || values[name];
 
         const match = timezones.find(timezone => timezone.value === normal);
-        if (match) {
+        if (match && onOffsetChange) {
           onOffsetChange(match.offset);
         }
 
@@ -41,15 +51,20 @@ class TimezoneField extends Component {
     this.componentIsMounted = false;
   }
 
-  handleChange = value => {
+  handleChange = (value: string) => {
     const { onChange, onOffsetChange } = this.props;
     const { timezones } = this.state;
 
-    onChange(value);
+    if (onChange) {
+      onChange(value);
+    }
 
     if (timezones) {
-      const match = timezones.find(timezone => timezone.value === value);
-      if (match) {
+      // This --v should not be necessary
+      const candidates = timezones as unknown as Timezones;
+      const match = candidates.find(timezone => timezone.value === value);
+
+      if (match && onOffsetChange) {
         onOffsetChange(match.offset);
       }
     }
