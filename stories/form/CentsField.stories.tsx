@@ -1,15 +1,15 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, number, text } from "@storybook/addon-knobs";
 
 import { CentsField, Form, Panel } from "../../src/components";
 
-const Container = ({ children, ...props }) => (
+const Container = (props: React.ComponentProps<typeof CentsField>) => (
   <Panel>
     <Panel.Body>
-      <Form>
-        <CentsField {...props}>{children}</CentsField>
+      <Form onSubmit={() => {}}>
+        <CentsField {...props} />
       </Form>
     </Panel.Body>
   </Panel>
@@ -23,7 +23,7 @@ storiesOf("Form/CentsField", module)
       onChange: action("onChange"),
       name: text("name", "cents"),
       required: boolean("required", false),
-      value: number("value", null)
+      value: number("value", 0)
     };
 
     return <Container {...props}>{children}</Container>;
