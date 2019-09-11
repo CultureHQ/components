@@ -2,9 +2,9 @@ import * as React from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { FormState, withForm } from "./Form";
+import { FormFieldError, FormState, withForm } from "./Form";
 
-type RadioFieldValue = string | number;
+export type RadioFieldValue = string | number;
 type RadioFieldOption = {
   label: string;
   value: RadioFieldValue;
@@ -18,7 +18,7 @@ type RadioFieldProps = Omit<React.HTMLAttributes<HTMLFieldSetElement>, "classNam
   onChange?: (value: RadioFieldValue) => void;
   options: RadioFieldOption[];
   required?: boolean;
-  validator?: (value: RadioFieldValue) => string | null;
+  validator?: (value: RadioFieldValue) => FormFieldError;
   value?: RadioFieldValue | null;
 };
 

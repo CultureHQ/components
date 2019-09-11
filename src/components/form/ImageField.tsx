@@ -6,7 +6,7 @@ import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
 import ImagePreview from "../ImagePreview";
 import FormError from "./FormError";
-import { FormState, withForm } from "./Form";
+import { FormFieldError, FormState, withForm } from "./Form";
 
 export type ImageFieldValue = Blob | File | string | null;
 
@@ -20,7 +20,7 @@ type ImageFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProp
   onChange?: (value: ImageFieldValue) => void;
   progress?: number;
   required?: boolean;
-  validator?: (value: ImageFieldValue) => string | null;
+  validator?: (value: ImageFieldValue) => FormFieldError;
   value?: ImageFieldValue;
 };
 

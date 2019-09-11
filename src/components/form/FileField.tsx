@@ -2,7 +2,7 @@ import * as React from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { FormState, withForm } from "./Form";
+import { FormFieldError, FormState, withForm } from "./Form";
 
 export type FileFieldValue = File | FileList | string[] | null;
 
@@ -15,8 +15,8 @@ type FileFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProps
   name: string;
   onChange?: (value: FileFieldValue) => void;
   required?: boolean;
-  validator?: (value: FileFieldValue) => string | null;
-  value?: FileFieldValue
+  validator?: (value: FileFieldValue) => FormFieldError;
+  value?: FileFieldValue;
 };
 
 type FileFieldState = {

@@ -1,20 +1,36 @@
-import React, { Component } from "react";
+import * as React from "react";
 
-class FormError extends Component {
+import { FormFieldError, FormValue } from "./Form";
+
+type FormErrorProps = {
+  onError: (name: string, error: FormFieldError) => void;
+  name: string;
+  required?: boolean;
+  submitted: boolean;
+  touched: boolean;
+  validator?: (value: any) => FormFieldError;
+  value?: FormValue;
+};
+
+type FormErrorState = {
+  error: string | null;
+};
+
+class FormError extends React.Component<FormErrorProps, FormErrorState> {
   state = { error: null };
 
   componentDidMount() {
     this.deriveError();
   }
 
-  componentDidUpdate(prevProps) {
-    const updateRequired = ["required", "validator", "value"].some(propName => {
-      const { [propName]: propValue } = this.props;
+  componentDidUpdate(prevProps: FormErrorProps) {
+    const { required, validator, value } = this.props;
 
-      return propValue !== prevProps[propName];
-    });
-
-    if (updateRequired) {
+    if (
+      required !== prevProps.required
+      || validator !== prevProps.validator
+      || value !== prevProps.value
+    ) {
       this.deriveError();
     }
   }

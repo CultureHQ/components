@@ -2,7 +2,14 @@ import * as React from "react";
 
 import { ContainerProps } from "../../typings";
 
-type FormValue = undefined | null | boolean | number | string | Blob | File | FileList;
+import { FileFieldValue } from "./FileField";
+import { ImageFieldValue } from "./ImageField";
+import { RadioFieldValue } from "./RadioField";
+
+export type FormValue = (
+  undefined | null | boolean | RadioFieldValue | ImageFieldValue | FileFieldValue
+);
+
 export type FormValues = { [key: string]: FormValue };
 
 type FormProps = ContainerProps & {
@@ -10,12 +17,13 @@ type FormProps = ContainerProps & {
   onSubmit: (values: FormValues) => void | Promise<any>;
 };
 
+export type FormFieldError = string | null;
 export type FormState = {
-  errors: { [key: string]: string };
+  errors: { [key: string]: FormFieldError };
   submitted: boolean;
   submitting: boolean;
   values: FormValues;
-  onError: (name: string, error: string) => void;
+  onError: (name: string, error: FormFieldError) => void;
   onFormChange: (name: string, value: FormValue) => void;
 };
 
@@ -56,7 +64,7 @@ class Form extends React.Component<FormProps, FormState> {
     this.componentIsMounted = false;
   }
 
-  handleError = (name: string, error: string) => {
+  handleError = (name: string, error: FormFieldError) => {
     this.setState(({ errors }) => ({
       errors: { ...errors, [name]: error }
     }));
