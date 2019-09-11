@@ -2,7 +2,7 @@ import * as React from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { FormState, withForm } from "./Form";
+import { FormFieldError, FormState, withForm } from "./Form";
 
 type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
 type FormFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProps> & {
@@ -13,7 +13,7 @@ type FormFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProps
   name: string;
   onChange?: (value: string) => void;
   required?: boolean;
-  validator?: (value: string) => string | null;
+  validator?: (value: string) => FormFieldError;
   value?: string;
 };
 

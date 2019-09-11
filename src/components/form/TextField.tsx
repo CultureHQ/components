@@ -2,7 +2,7 @@ import * as React from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { FormState, withForm } from "./Form";
+import { FormFieldError, FormState, withForm } from "./Form";
 
 type TextFieldValue = string | null;
 
@@ -14,7 +14,7 @@ type TextFieldProps = Omit<React.HTMLAttributes<HTMLTextAreaElement>, HijackedPr
   name: string;
   onChange?: (value: TextFieldValue) => void;
   required?: boolean;
-  validator?: (value: TextFieldValue) => string | null;
+  validator?: (value: TextFieldValue) => FormFieldError;
   value?: TextFieldValue;
 };
 
