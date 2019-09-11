@@ -68,6 +68,7 @@ test("displays errors if submitted", () => {
       <RadioField name="radio" options={testOptions} required>
         Radio!
       </RadioField>
+      <SubmitButton />
     </Form>
   );
 
