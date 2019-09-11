@@ -1,15 +1,15 @@
-import React from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, text } from "@storybook/addon-knobs";
 
 import { EmailField, Form, Panel } from "../../src/components";
 
-const Container = ({ children, ...props }) => (
+const Container = (props: React.ComponentProps<typeof EmailField>) => (
   <Panel>
     <Panel.Body>
-      <Form>
-        <EmailField {...props}>{children}</EmailField>
+      <Form onSubmit={() => {}}>
+        <EmailField {...props} />
       </Form>
     </Panel.Body>
   </Panel>
@@ -23,7 +23,7 @@ storiesOf("Form/EmailField", module)
       onChange: action("onChange"),
       name: text("name", "email"),
       required: boolean("required", false),
-      value: text("value", undefined)
+      value: text("value", null)
     };
 
     return <Container {...props}>{children}</Container>;
@@ -31,7 +31,7 @@ storiesOf("Form/EmailField", module)
   .add("autoFocus", () => <Container name="email" autoFocus>Email</Container>)
   .add("required", () => <Container name="email" required>Email</Container>)
   .add("validator", () => {
-    const validator = value => {
+    const validator = (value: string) => {
       if (value.match(/^[a.@]+$/)) {
         return null;
       }
