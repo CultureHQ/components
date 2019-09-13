@@ -7,10 +7,6 @@ import SelectFieldOptions from "./SelectFieldOptions";
 import fuzzyFilter from "./fuzzyFilter";
 
 class SelectFieldMulti extends React.Component {
-  inputRef = React.createRef();
-
-  selectRef = React.createRef();
-
   constructor(props) {
     super(props);
 
@@ -50,7 +46,8 @@ class SelectFieldMulti extends React.Component {
   }
 
   focus = () => {
-    const input = this.inputRef.current;
+    const { inputRef } = this.props;
+    const input = inputRef.current;
 
     if (input) {
       input.focus();
@@ -58,10 +55,10 @@ class SelectFieldMulti extends React.Component {
   };
 
   handleWindowClick = event => {
-    const { name, value, values } = this.props;
+    const { name, selectRef, value, values } = this.props;
     const { open } = this.state;
 
-    const select = this.selectRef.current;
+    const select = selectRef.current;
 
     if (open && select && event.target instanceof Element && !select.contains(event.target)) {
       this.selectValue(value || values[name], true);
@@ -145,8 +142,8 @@ class SelectFieldMulti extends React.Component {
   // we're following the rules for it but it can't figure that out
   render() {
     const {
-      creatable = false, name, onError, options, placeholder, required,
-      submitted, validator, value, values
+      creatable = false, inputRef, name, onError, options, placeholder,
+      required, selectRef, submitted, validator, value, values
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -155,10 +152,10 @@ class SelectFieldMulti extends React.Component {
 
     return (
       <>
-        <div ref={this.selectRef} className="chq-ffd--sl">
+        <div ref={selectRef} className="chq-ffd--sl">
           <SelectFieldMultiValue
             display={display}
-            inputRef={this.inputRef}
+            inputRef={inputRef}
             name={name}
             onChange={this.handleChange}
             onClose={this.handleClose}
