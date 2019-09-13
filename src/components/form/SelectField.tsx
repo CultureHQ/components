@@ -15,11 +15,25 @@ type SelectFieldProps = SelectFieldCommonProps & (
   | ({ multiple: true } & React.ComponentProps<typeof SelectFieldMulti>)
 );
 
-const SelectField = ({ children, className, multiple, ...props }: SelectFieldProps) => (
-  <label className={classnames("chq-ffd", className)} htmlFor={props.name}>
-    <span className="chq-ffd--lb">{children}</span>
-    {multiple ? <SelectFieldMulti {...props} /> : <SelectFieldSingle {...props} />}
-  </label>
-);
+const SelectField = ({
+  autoFocus = false,
+  children,
+  className,
+  creatable = false,
+  multiple = false,
+  name,
+  placeholder = "",
+  required = false,
+  ...props
+}: SelectFieldProps) => {
+  const passed = { ...props, autoFocus, creatable, name, placeholder, required };
+
+  return (
+    <label className={classnames("chq-ffd", className)} htmlFor={name}>
+      <span className="chq-ffd--lb">{children}</span>
+      {multiple ? <SelectFieldMulti {...passed} /> : <SelectFieldSingle {...passed} />}
+    </label>
+  );
+};
 
 export default withForm(SelectField);

@@ -1,29 +1,53 @@
-import React from "react";
+import * as React from "react";
 
 import classnames from "../../../classnames";
 import FormError from "../FormError";
+import { FormState } from "../Form";
+import { FormFieldError, SelectOption, SelectValue } from "../typings";
+
 import SelectFieldSingleValue from "./SelectFieldSingleValue";
 import SelectFieldOptions from "./SelectFieldOptions";
 import fuzzyFilter from "./fuzzyFilter";
 
-const getDisplay = props => {
-  const normal = props.value || props.values[props.name];
+type SelectFieldSingleProps = {
+  autoFocus: boolean;
+  creatable: boolean;
+  name: string;
+  onChange?: (value: null | SelectValue) => void;
+  options: SelectOption[];
+  placeholder: string;
+  required: boolean;
+  validator?: (value: null | SelectValue) => FormFieldError;
+  value?: null | SelectValue;
+};
+
+type SelectFieldSingleState = {
+  display: string;
+  filteredOptions: SelectOption[];
+  open: boolean;
+  touched: boolean;
+};
+
+const getDisplay = (props: SelectFieldSingleProps & FormState) => {
+  const normal = props.value || (props.values[props.name] as undefined | null | SelectValue);
   let display = "";
 
   if (normal !== undefined) {
-    display = props.options.find(({ value }) => value === normal);
-    display = display ? display.label : "";
+    const match = props.options.find(({ value }) => value === normal);
+    display = match ? match.label : "";
   }
 
   return display;
 };
 
-class SelectFieldSingle extends React.Component {
-  inputRef = React.createRef();
+class SelectFieldSingle extends React.Component<SelectFieldSingleProps & FormState, SelectFieldSingleState> {
+  private inputRef: React.RefObject<HTMLInputElement>;
 
-  selectRef = React.createRef();
+  private selectRef: React.RefObject<HTMLDivElement>;
 
-  constructor(props) {
+  private timeout: null | number;
+
+  constructor(props: SelectFieldSingleProps & FormState) {
     super(props);
 
     this.state = {
@@ -32,6 +56,10 @@ class SelectFieldSingle extends React.Component {
       open: false,
       touched: false
     };
+
+    this.inputRef = React.createRef<HTMLInputElement>();
+    this.selectRef = React.createRef<HTMLDivElement>();
+    this.timeout = null;
   }
 
   componentDidMount() {
@@ -44,7 +72,7 @@ class SelectFieldSingle extends React.Component {
     window.addEventListener("click", this.handleWindowClick);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: SelectFieldSingleProps & FormState) {
     const { options } = this.props;
     const { display } = this.state;
 
@@ -58,7 +86,11 @@ class SelectFieldSingle extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener("click", this.handleWindowClick);
-    clearTimeout(this.timeout);
+
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+      this.timeout = null;
+    }
   }
 
   focus = () => {
@@ -69,18 +101,31 @@ class SelectFieldSingle extends React.Component {
     }
   };
 
-  handleWindowClick = event => {
+  getValue = () => {
     const { name, value, values } = this.props;
-    const { open } = this.state;
 
+    if (value !== undefined) {
+      return value;
+    }
+
+    const passed = values[name] as undefined | null | SelectValue;
+    if (passed !== undefined) {
+      return passed;
+    }
+
+    return null;
+  };
+
+  handleWindowClick = (event: Event) => {
+    const { open } = this.state;
     const select = this.selectRef.current;
 
     if (open && select && event.target instanceof Element && !select.contains(event.target)) {
-      this.selectValue(value || values[name]);
+      this.selectValue(this.getValue());
     }
   };
 
-  handleSelect = selected => {
+  handleSelect = (selected: SelectValue) => {
     this.focus();
     this.selectValue(selected);
     this.propagateValue(selected);
@@ -92,15 +137,15 @@ class SelectFieldSingle extends React.Component {
     this.propagateValue(null);
   };
 
-  handleChange = event => {
-    const { multiple, name, options, value, values } = this.props;
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { options } = this.props;
     const { display } = this.state;
 
-    const normal = value || values[name];
-    const currentOption = (normal && options.find(option => option.value === normal)) || {};
+    const normal = this.getValue();
+    const currentOption = (normal !== null && options.find(option => option.value === normal));
 
     let nextDisplay = event.target.value;
-    nextDisplay = currentOption.label === display ? event.nativeEvent.data : nextDisplay;
+    nextDisplay = currentOption && currentOption.label === display ? (event.nativeEvent as any).data : nextDisplay;
 
     this.setState({
       display: nextDisplay || "",
@@ -117,7 +162,7 @@ class SelectFieldSingle extends React.Component {
     this.setState({ open: false, touched: true });
   };
 
-  propagateValue = value => {
+  propagateValue = (value: null | SelectValue) => {
     const { name, onChange, onFormChange } = this.props;
 
     if (onChange) {
@@ -127,7 +172,7 @@ class SelectFieldSingle extends React.Component {
     onFormChange(name, value);
   };
 
-  selectValue = nextValue => {
+  selectValue = (nextValue: null | SelectValue) => {
     const { options } = this.props;
 
     const match = options.find(({ value }) => value === nextValue);
@@ -136,9 +181,10 @@ class SelectFieldSingle extends React.Component {
     this.setState({ display, touched: true, open: false }, () => {
       if (this.timeout) {
         clearTimeout(this.timeout);
+        this.timeout = null;
       }
 
-      this.timeout = setTimeout(
+      this.timeout = window.setTimeout(
         () => {
           this.setState({ filteredOptions: options });
           this.timeout = null;
@@ -152,13 +198,13 @@ class SelectFieldSingle extends React.Component {
   // we're following the rules for it but it can't figure that out
   render() {
     const {
-      creatable = false, name, onError, options, placeholder, required,
-      submitted, validator, value, values
+      creatable, name, onError, options, placeholder, required, submitted,
+      validator, value, values
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
 
-    const normal = value || values[name];
+    const normal = this.getValue();
 
     return (
       <>
