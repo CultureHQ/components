@@ -26,7 +26,16 @@ const SelectField = ({
   required = false,
   ...props
 }: SelectFieldProps) => {
-  const passed = { ...props, autoFocus, creatable, name, placeholder, required };
+  const passed = {
+    ...props,
+    autoFocus,
+    creatable,
+    inputRef: React.createRef<HTMLInputElement>(),
+    name,
+    placeholder,
+    required,
+    selectRef: React.createRef<HTMLDivElement>()
+  };
 
   return (
     <label className={classnames("chq-ffd", className)} htmlFor={name}>
