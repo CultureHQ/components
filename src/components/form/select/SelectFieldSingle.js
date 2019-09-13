@@ -169,10 +169,8 @@ class SelectFieldSingle extends React.Component {
             name={name}
             onChange={this.handleChange}
             onClose={this.handleClose}
-            onDeselect={this.handleDeselect}
             onOpen={this.handleOpen}
             open={open}
-            options={options}
             placeholder={placeholder}
             value={normal}
           />
