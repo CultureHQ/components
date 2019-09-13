@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import SelectFieldCaret from "./SelectFieldCaret";
+import { SelectValue } from "../typings";
 
 type SelectFieldSingleValueProps = {
   display: string;
@@ -11,7 +12,7 @@ type SelectFieldSingleValueProps = {
   onOpen: () => void;
   open: boolean;
   placeholder: string;
-  value: string;
+  value: SelectValue;
 };
 
 class SelectFieldSingleValue extends React.Component<SelectFieldSingleValueProps, {}> {
