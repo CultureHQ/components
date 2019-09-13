@@ -3,12 +3,7 @@ import * as React from "react";
 import classnames from "../../../classnames";
 import Badge from "../../buttons/Badge";
 import SelectFieldCaret from "./SelectFieldCaret";
-
-type SelectValue = string;
-type SelectOption = {
-  label: string;
-  value: SelectValue;
-};
+import { SelectValue, SelectOption } from "../typings";
 
 type SelectFieldMultiValueBadgeProps = {
   option: SelectOption;
