@@ -53,7 +53,7 @@ test("has no violations", () => {
 
 test("passes on className", () => {
   const { container } = render(
-    <SelectField name="select" className="select-field" />
+    <SelectField name="select" className="select-field" options={[]} />
   );
 
   expect(container.firstChild.classList).toContain("select-field");
@@ -71,7 +71,7 @@ test("calls up to callbacks if they are provided", () => {
 });
 
 test("requests focus when autoFocus is given", () => {
-  render(<SelectField name="select" autoFocus />);
+  render(<SelectField name="select" autoFocus options={[]} />);
 
   expect(document.activeElement.className).toEqual("chq-ffd--ctrl");
 });
