@@ -22,5 +22,5 @@ export type SelectFieldPassedProps = {
   open: boolean;
   options: SelectOption[];
   placeholder: string;
-  value: SelectValue | SelectValue[];
+  value: null | SelectValue | SelectValue[];
 };

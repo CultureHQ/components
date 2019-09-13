@@ -4,7 +4,7 @@ import SelectFieldCaret from "./SelectFieldCaret";
 import { SelectFieldPassedProps, SelectValue } from "../typings";
 
 type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "display" | "inputRef" | "name" | "onChange" | "onClose" | "onOpen" | "open" | "placeholder"> & {
-  value: SelectValue;
+  value: null | SelectValue;
 };
 
 class SelectFieldSingleValue extends React.Component<SelectFieldSingleValueProps, {}> {

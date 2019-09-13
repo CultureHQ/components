@@ -21,7 +21,7 @@ const SelectFieldMultiValueBadge = ({ option, onDeselect }: SelectFieldMultiValu
 };
 
 type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "placeholder"> & {
-  value: SelectValue[];
+  value: null | SelectValue[];
 };
 
 class SelectFieldMultiValue extends React.Component<SelectFieldMultiValueProps, {}> {
