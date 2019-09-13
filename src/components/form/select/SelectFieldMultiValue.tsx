@@ -3,11 +3,10 @@ import * as React from "react";
 import classnames from "../../../classnames";
 import Badge from "../../buttons/Badge";
 import SelectFieldCaret from "./SelectFieldCaret";
-import { SelectValue, SelectOption } from "../typings";
+import { SelectFieldPassedProps, SelectValue, SelectOption } from "../typings";
 
-type SelectFieldMultiValueBadgeProps = {
+type SelectFieldMultiValueBadgeProps = Pick<SelectFieldPassedProps, "onDeselect"> & {
   option: SelectOption;
-  onDeselect: (value: SelectValue) => void;
 };
 
 const SelectFieldMultiValueBadge = ({ option, onDeselect }: SelectFieldMultiValueBadgeProps) => {
@@ -21,17 +20,7 @@ const SelectFieldMultiValueBadge = ({ option, onDeselect }: SelectFieldMultiValu
   return <><Badge icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
 };
 
-type SelectFieldMultiValueProps = {
-  display: string;
-  inputRef: React.RefObject<HTMLInputElement>;
-  name: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onClose: () => void;
-  onDeselect: (value: SelectValue) => void;
-  onOpen: () => void;
-  open: boolean;
-  options: SelectOption[];
-  placeholder: string;
+type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "placeholder"> & {
   value: SelectValue[];
 };
 

@@ -1,19 +1,30 @@
-import React from "react";
+import * as React from "react";
 
 import classnames from "../../../classnames";
 import PlainButton from "../../buttons/PlainButton";
 import DoorEffect from "../../DoorEffect";
+import { SelectFieldPassedProps, SelectOption, SelectValue } from "../typings";
 
-const isCreatingOption = ({ display, multiple, options, value }) => {
+type IsCreatingOptionOpts = Pick<SelectFieldPassedProps, "display" | "multiple" | "options" | "value">;
+
+const isCreatingOption = ({ display, multiple, options, value }: IsCreatingOptionOpts) => {
   const matchedLabel = options.some(option => option.label === display);
 
   if (!multiple) {
     return !matchedLabel && display !== value;
   }
-  return !matchedLabel && (!value || !value.some(item => item === display));
+
+  const multiValue = value as SelectValue[];
+  return !matchedLabel && (!multiValue || !multiValue.some(item => item === display));
 };
 
-const SelectFieldOption = ({ active, option, onDeselect, onSelect, tabIndex }) => {
+type SelectFieldOptionProps = Pick<SelectFieldPassedProps, "onDeselect" | "onSelect"> & {
+  active: boolean;
+  option: SelectOption;
+  tabIndex: number;
+};
+
+const SelectFieldOption = ({ active, option, onDeselect, onSelect, tabIndex }: SelectFieldOptionProps) => {
   const { label, value } = option;
 
   const className = classnames({ "chq-ffd--sl--opt-act": active });
@@ -26,9 +37,11 @@ const SelectFieldOption = ({ active, option, onDeselect, onSelect, tabIndex }) =
   );
 };
 
+type SelectFieldOptionsProps = Pick<SelectFieldPassedProps, "creatable" | "display" | "filteredOptions" | "multiple" | "onDeselect" | "onSelect" | "open" | "options" | "value">;
+
 const SelectFieldOptions = ({
   creatable, display, filteredOptions, multiple, onDeselect, onSelect, open, options, value
-}) => {
+}: SelectFieldOptionsProps) => {
   const createOption = creatable && isCreatingOption({ display, multiple, options, value });
 
   return (
@@ -36,17 +49,20 @@ const SelectFieldOptions = ({
       {createOption && (display.length > 0) && (
         <SelectFieldOption
           key={display}
-          option={{ label: `Create option: ${display}`, value: display }}
+          active={false}
+          onDeselect={onDeselect}
           onSelect={onSelect}
+          option={{ label: `Create option: ${display}`, value: display }}
+          tabIndex={open ? 0 : -1}
         />
       )}
       {filteredOptions.map(option => (
         <SelectFieldOption
           key={option.value}
-          option={option}
+          active={!!value && (multiple ? value.includes(option.value) : option.value === value)}
           onDeselect={onDeselect}
           onSelect={onSelect}
-          active={value && (multiple ? value.includes(option.value) : option.value === value)}
+          option={option}
           tabIndex={open ? 0 : -1}
         />
       ))}

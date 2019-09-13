@@ -1,17 +1,9 @@
 import * as React from "react";
 
 import SelectFieldCaret from "./SelectFieldCaret";
-import { SelectValue } from "../typings";
+import { SelectFieldPassedProps, SelectValue } from "../typings";
 
-type SelectFieldSingleValueProps = {
-  display: string;
-  inputRef: React.RefObject<HTMLInputElement>;
-  name: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onClose: () => void;
-  onOpen: () => void;
-  open: boolean;
-  placeholder: string;
+type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "display" | "inputRef" | "name" | "onChange" | "onClose" | "onOpen" | "open" | "placeholder"> & {
   value: SelectValue;
 };
 
