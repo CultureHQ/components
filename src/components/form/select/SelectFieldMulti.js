@@ -19,12 +19,6 @@ class SelectFieldMulti extends React.Component {
   }
 
   componentDidMount() {
-    const { autoFocus } = this.props;
-
-    if (autoFocus) {
-      this.focus();
-    }
-
     window.addEventListener("click", this.handleWindowClick);
   }
 
