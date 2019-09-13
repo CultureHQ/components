@@ -19,7 +19,10 @@ const valueOptions = options.reduce(
   (accum, option) => ({ ...accum, [option.label]: option.value }), {}
 );
 
-const Container = (props: Omit<React.ComponentProps<typeof SelectField>, "options">) => (
+type DroppedProps = "onChange" | "options";
+type ContainerProps = Omit<React.ComponentProps<typeof SelectField>, DroppedProps>;
+
+const Container = (props: ContainerProps) => (
   <Panel>
     <Panel.Body>
       <Form onSubmit={() => {}}>
@@ -35,12 +38,11 @@ storiesOf("Form/SelectField", module)
     const props = {
       autoFocus: boolean("autoFocus", false),
       creatable: boolean("creatable", false),
-      onChange: action("onChange"),
       multiple: boolean("multiple", false),
       name: text("name", "select"),
       placeholder: text("placeholder", null),
       required: boolean("required", false),
-      value: optionsKnob("value", valueOptions, [], {
+      value: optionsKnob("value", valueOptions, null, {
         display: "multi-select"
       })
     };
@@ -55,7 +57,7 @@ storiesOf("Form/SelectField", module)
   ))
   .add("required", () => <Container name="select" required>Select</Container>)
   .add("validator", () => {
-    const validator = (value: string) => {
+    const validator = (value: null | string) => {
       if (value !== "goblet") {
         return null;
       }

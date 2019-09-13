@@ -8,9 +8,10 @@ import timezonesJSON from "../../timezones.json";
 
 type Timezones = typeof timezonesJSON;
 
-type TimezoneFieldProps = Omit<React.ComponentProps<typeof StringField>, "onChange"> & {
-  onChange?: (value: string) => void;
+type TimezoneFieldProps = Omit<React.ComponentProps<typeof StringField>, "onChange" | "validator"> & {
+  onChange?: (value: null | string) => void;
   onOffsetChange?: (offset: number) => void;
+  validator?: (value: null | string) => null | string;
 };
 
 type TimezoneFieldState = {
@@ -51,7 +52,7 @@ class TimezoneField extends React.Component<TimezoneFieldProps & FormState, Time
     this.componentIsMounted = false;
   }
 
-  handleChange = (value: string) => {
+  handleChange = (value: null | string) => {
     const { onChange, onOffsetChange } = this.props;
     const { timezones } = this.state;
 
@@ -78,7 +79,8 @@ class TimezoneField extends React.Component<TimezoneFieldProps & FormState, Time
       return <StringField {...props} onChange={this.handleChange} />;
     }
 
-    return <SelectField {...props} onChange={this.handleChange} options={timezones} />;
+    const candidates = timezones as unknown as Timezones;
+    return <SelectField {...props} onChange={this.handleChange} options={candidates} />;
   }
 }
 
