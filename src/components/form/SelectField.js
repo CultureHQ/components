@@ -7,10 +7,6 @@ import SelectFieldMultiValue from "./select/SelectFieldMultiValue";
 import SelectFieldOptions from "./select/SelectFieldOptions";
 import { withForm } from "./Form";
 
-const appendValue = (value, selected) => (
-  value ? [...value.filter(item => item !== selected), selected] : [selected]
-);
-
 const fuzzyFilter = (options, matchable) => {
   if (!matchable) {
     return options;
@@ -29,7 +25,7 @@ const getDisplay = props => {
   const normal = props.value || props.values[props.name];
   let display = "";
 
-  if (!props.multiple && normal !== undefined) {
+  if (normal !== undefined) {
     display = props.options.find(({ value }) => value === normal);
     display = display ? display.label : "";
   }
@@ -95,19 +91,19 @@ class SelectFieldSingle extends React.Component {
     const select = this.selectRef.current;
 
     if (open && select && event.target instanceof Element && !select.contains(event.target)) {
-      this.selectValue(value || values[name], true);
+      this.selectValue(value || values[name]);
     }
   };
 
   handleSelect = selected => {
     this.focus();
-    this.selectValue(selected, true);
+    this.selectValue(selected);
     this.propagateValue(selected);
   };
 
   handleDeselect = () => {
     this.focus();
-    this.selectValue(null, true);
+    this.selectValue(null);
     this.propagateValue(null);
   };
 
@@ -146,14 +142,13 @@ class SelectFieldSingle extends React.Component {
     onFormChange(name, value);
   };
 
-  selectValue = (nextValue, shouldClose) => {
+  selectValue = nextValue => {
     const { options } = this.props;
-    const effects = shouldClose ? { open: false } : {};
 
     const match = options.find(({ value }) => value === nextValue);
     const display = match ? match.label : (nextValue || "");
 
-    this.setState({ display, touched: true, ...effects }, () => {
+    this.setState({ display, touched: true, open: false }, () => {
       if (this.timeout) {
         clearTimeout(this.timeout);
       }
@@ -172,8 +167,8 @@ class SelectFieldSingle extends React.Component {
   // we're following the rules for it but it can't figure that out
   render() {
     const {
-      children, className, creatable = false, name, onError, options,
-      placeholder, required, submitted, validator, value, values
+      creatable = false, name, onError, options, placeholder, required,
+      submitted, validator, value, values
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -181,8 +176,7 @@ class SelectFieldSingle extends React.Component {
     const normal = value || values[name];
 
     return (
-      <label className={classnames("chq-ffd", className)} htmlFor={name}>
-        <span className="chq-ffd--lb">{children}</span>
+      <>
         <div ref={this.selectRef} className="chq-ffd--sl">
           <SelectFieldSingleValue
             display={display}
@@ -218,7 +212,7 @@ class SelectFieldSingle extends React.Component {
           validator={validator}
           value={normal}
         />
-      </label>
+      </>
     );
   }
 }
@@ -232,7 +226,7 @@ class SelectFieldMulti extends React.Component {
     super(props);
 
     this.state = {
-      display: getDisplay(props),
+      display: "",
       filteredOptions: props.options,
       open: false,
       touched: false
@@ -255,7 +249,7 @@ class SelectFieldMulti extends React.Component {
 
     if (prevProps.options !== options) {
       this.setState({
-        display: getDisplay(this.props),
+        display: "",
         filteredOptions: fuzzyFilter(options, display)
       });
     }
@@ -289,7 +283,7 @@ class SelectFieldMulti extends React.Component {
     const { name, value, values } = this.props;
 
     const normal = value || values[name];
-    const nextValue = appendValue(normal, selected);
+    const nextValue = normal ? [...normal.filter(item => item !== selected), selected] : [selected]
 
     this.focus();
     this.selectValue(nextValue, false);
@@ -362,8 +356,8 @@ class SelectFieldMulti extends React.Component {
   // we're following the rules for it but it can't figure that out
   render() {
     const {
-      children, className, creatable = false, name, onError, options,
-      placeholder, required, submitted, validator, value, values
+      creatable = false, name, onError, options, placeholder, required,
+      submitted, validator, value, values
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -371,8 +365,7 @@ class SelectFieldMulti extends React.Component {
     const normal = value || values[name];
 
     return (
-      <label className={classnames("chq-ffd", className)} htmlFor={name}>
-        <span className="chq-ffd--lb">{children}</span>
+      <>
         <div ref={this.selectRef} className="chq-ffd--sl">
           <SelectFieldMultiValue
             display={display}
@@ -408,13 +401,20 @@ class SelectFieldMulti extends React.Component {
           validator={validator}
           value={normal}
         />
-      </label>
+      </>
     );
   }
 }
 
-const SelectField = ({ multiple = false, ...props }) => (
-  multiple ? <SelectFieldMulti {...props} /> : <SelectFieldSingle {...props} />
-);
+const SelectField = ({ children = null, className = null, multiple = false, ...props }) => {
+  const { name } = props;
+
+  return (
+    <label className={classnames("chq-ffd", className)} htmlFor={name}>
+      <span className="chq-ffd--lb">{children}</span>
+      {multiple ? <SelectFieldMulti {...props} /> : <SelectFieldSingle {...props} />}
+    </label>
+  );
+};
 
 export default withForm(SelectField);
