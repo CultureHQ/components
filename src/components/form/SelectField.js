@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import SelectFieldValue from "./select/SelectFieldValue";
+import SelectFieldSingleValue from "./select/SelectFieldSingleValue";
+import SelectFieldMultiValue from "./select/SelectFieldMultiValue";
 import SelectFieldOptions from "./select/SelectFieldOptions";
 import { withForm } from "./Form";
 
@@ -36,7 +37,7 @@ const getDisplay = props => {
   return display;
 };
 
-class SelectField extends Component {
+class SelectFieldSingle extends React.Component {
   inputRef = React.createRef();
 
   selectRef = React.createRef();
@@ -99,25 +100,15 @@ class SelectField extends Component {
   };
 
   handleSelect = selected => {
-    const { multiple, name, value, values } = this.props;
-
-    const normal = value || values[name];
-    const nextValue = multiple ? appendValue(normal, selected) : selected;
-
     this.focus();
-    this.selectValue(nextValue, !multiple);
-    this.propagateValue(nextValue);
+    this.selectValue(selected, true);
+    this.propagateValue(selected);
   };
 
-  handleDeselect = deselected => {
-    const { multiple, name, value, values } = this.props;
-
-    const normal = value || values[name];
-    const nextValue = multiple ? normal.filter(item => item !== deselected) : "";
-
+  handleDeselect = () => {
     this.focus();
-    this.selectValue(nextValue, !multiple);
-    this.propagateValue(nextValue);
+    this.selectValue(null, true);
+    this.propagateValue(null);
   };
 
   handleChange = event => {
@@ -125,12 +116,10 @@ class SelectField extends Component {
     const { display } = this.state;
 
     const normal = value || values[name];
-    let nextDisplay = event.target.value;
+    const currentOption = (normal && options.find(option => option.value === normal)) || {};
 
-    if (!multiple) {
-      const currentOption = (normal && options.find(option => option.value === normal)) || {};
-      nextDisplay = currentOption.label === display ? event.nativeEvent.data : nextDisplay;
-    }
+    let nextDisplay = event.target.value;
+    nextDisplay = currentOption.label === display ? event.nativeEvent.data : nextDisplay;
 
     this.setState({
       display: nextDisplay || "",
@@ -140,12 +129,6 @@ class SelectField extends Component {
   };
 
   handleOpen = () => {
-    const { multiple } = this.props;
-
-    if (multiple) {
-      this.focus();
-    }
-
     this.setState({ open: true });
   };
 
@@ -164,14 +147,11 @@ class SelectField extends Component {
   };
 
   selectValue = (nextValue, shouldClose) => {
-    const { multiple, options } = this.props;
+    const { options } = this.props;
     const effects = shouldClose ? { open: false } : {};
 
-    let display = "";
-    if (!multiple) {
-      display = options.find(({ value }) => value === nextValue);
-      display = display ? display.label : (nextValue || "");
-    }
+    const match = options.find(({ value }) => value === nextValue);
+    const display = match ? match.label : (nextValue || "");
 
     this.setState({ display, touched: true, ...effects }, () => {
       if (this.timeout) {
@@ -192,8 +172,8 @@ class SelectField extends Component {
   // we're following the rules for it but it can't figure that out
   render() {
     const {
-      children, className, creatable = false, multiple = false, name, onError,
-      options, placeholder, required, submitted, validator, value, values
+      children, className, creatable = false, name, onError, options,
+      placeholder, required, submitted, validator, value, values
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -204,10 +184,9 @@ class SelectField extends Component {
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
         <div ref={this.selectRef} className="chq-ffd--sl">
-          <SelectFieldValue
+          <SelectFieldSingleValue
             display={display}
             inputRef={this.inputRef}
-            multiple={multiple}
             name={name}
             onChange={this.handleChange}
             onClose={this.handleClose}
@@ -222,7 +201,7 @@ class SelectField extends Component {
             creatable={creatable}
             display={display}
             filteredOptions={filteredOptions}
-            multiple={multiple}
+            multiple={false}
             onDeselect={this.handleDeselect}
             onSelect={this.handleSelect}
             open={open}
@@ -243,5 +222,199 @@ class SelectField extends Component {
     );
   }
 }
+
+class SelectFieldMulti extends React.Component {
+  inputRef = React.createRef();
+
+  selectRef = React.createRef();
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      display: getDisplay(props),
+      filteredOptions: props.options,
+      open: false,
+      touched: false
+    };
+  }
+
+  componentDidMount() {
+    const { autoFocus } = this.props;
+
+    if (autoFocus) {
+      this.focus();
+    }
+
+    window.addEventListener("click", this.handleWindowClick);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { options } = this.props;
+    const { display } = this.state;
+
+    if (prevProps.options !== options) {
+      this.setState({
+        display: getDisplay(this.props),
+        filteredOptions: fuzzyFilter(options, display)
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("click", this.handleWindowClick);
+    clearTimeout(this.timeout);
+  }
+
+  focus = () => {
+    const input = this.inputRef.current;
+
+    if (input) {
+      input.focus();
+    }
+  };
+
+  handleWindowClick = event => {
+    const { name, value, values } = this.props;
+    const { open } = this.state;
+
+    const select = this.selectRef.current;
+
+    if (open && select && event.target instanceof Element && !select.contains(event.target)) {
+      this.selectValue(value || values[name], true);
+    }
+  };
+
+  handleSelect = selected => {
+    const { name, value, values } = this.props;
+
+    const normal = value || values[name];
+    const nextValue = appendValue(normal, selected);
+
+    this.focus();
+    this.selectValue(nextValue, false);
+    this.propagateValue(nextValue);
+  };
+
+  handleDeselect = deselected => {
+    const { name, value, values } = this.props;
+
+    const normal = value || values[name];
+    const nextValue = normal.filter(item => item !== deselected);
+
+    this.focus();
+    this.selectValue(nextValue, false);
+    this.propagateValue(nextValue);
+  };
+
+  handleChange = event => {
+    const { name, options, value, values } = this.props;
+    const { display } = this.state;
+
+    const nextDisplay = event.target.value;
+
+    this.setState({
+      display: nextDisplay || "",
+      filteredOptions: fuzzyFilter(options, nextDisplay),
+      open: true
+    });
+  };
+
+  handleOpen = () => {
+    this.focus();
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false, touched: true });
+  };
+
+  propagateValue = value => {
+    const { name, onChange, onFormChange } = this.props;
+
+    if (onChange) {
+      onChange(value);
+    }
+
+    onFormChange(name, value);
+  };
+
+  selectValue = (nextValue, shouldClose) => {
+    const { options } = this.props;
+    const effects = shouldClose ? { open: false } : {};
+
+    this.setState({ display: "", touched: true, ...effects }, () => {
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+      }
+
+      this.timeout = setTimeout(
+        () => {
+          this.setState({ filteredOptions: options });
+          this.timeout = null;
+        },
+        150
+      );
+    });
+  };
+
+  /* eslint-disable jsx-a11y/label-has-for */
+  // we're following the rules for it but it can't figure that out
+  render() {
+    const {
+      children, className, creatable = false, name, onError, options,
+      placeholder, required, submitted, validator, value, values
+    } = this.props;
+
+    const { display, filteredOptions, open, touched } = this.state;
+
+    const normal = value || values[name];
+
+    return (
+      <label className={classnames("chq-ffd", className)} htmlFor={name}>
+        <span className="chq-ffd--lb">{children}</span>
+        <div ref={this.selectRef} className="chq-ffd--sl">
+          <SelectFieldMultiValue
+            display={display}
+            inputRef={this.inputRef}
+            name={name}
+            onChange={this.handleChange}
+            onClose={this.handleClose}
+            onDeselect={this.handleDeselect}
+            onOpen={this.handleOpen}
+            open={open}
+            options={options}
+            placeholder={placeholder}
+            value={normal}
+          />
+          <SelectFieldOptions
+            creatable={creatable}
+            display={display}
+            filteredOptions={filteredOptions}
+            multiple
+            onDeselect={this.handleDeselect}
+            onSelect={this.handleSelect}
+            open={open}
+            options={options}
+            value={normal}
+          />
+        </div>
+        <FormError
+          name={name}
+          onError={onError}
+          required={required}
+          submitted={submitted}
+          touched={touched}
+          validator={validator}
+          value={normal}
+        />
+      </label>
+    );
+  }
+}
+
+const SelectField = ({ multiple = false, ...props }) => (
+  multiple ? <SelectFieldMulti {...props} /> : <SelectFieldSingle {...props} />
+);
 
 export default withForm(SelectField);
