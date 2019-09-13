@@ -36,7 +36,7 @@ storiesOf("Form/TimezoneField", module)
     <Container name="timezone" required>Timezone</Container>
   ))
   .add("validator", () => {
-    const validator = (value: string) => {
+    const validator = (value: null | string) => {
       if (value !== "Pacific/Tahiti") {
         return null;
       }

@@ -5,7 +5,7 @@ import SelectFieldSingle from "./select/SelectFieldSingle";
 import SelectFieldMulti from "./select/SelectFieldMulti";
 import useAutoFocus from "./select/useAutoFocus";
 import { useForm } from "./Form";
-import { SelectValue } from "./typings";
+import { FormFieldError, SelectOption, SelectValue } from "./typings";
 
 type SelectFieldCommonProps = {
   autoFocus?: boolean;
@@ -14,13 +14,27 @@ type SelectFieldCommonProps = {
   creatable?: boolean;
   multiple?: boolean;
   name: string;
+  options: SelectOption[];
   placeholder?: string;
   required?: boolean;
 };
 
+type SelectFieldSingleProps = {
+  multiple: false;
+  onChange?: (value: null | SelectValue) => void;
+  validator?: (value: null | SelectValue) => FormFieldError;
+  value?: null | SelectValue;
+};
+
+type SelectFieldMultiProps = {
+  multiple: true;
+  onChange?: (value: null | SelectValue[]) => void;
+  validator?: (value: null | SelectValue[]) => FormFieldError;
+  value?: null | SelectValue[];
+};
+
 type SelectFieldProps = SelectFieldCommonProps & (
-  ({ multiple?: false } & React.ComponentProps<typeof SelectFieldSingle>)
-  | ({ multiple: true } & React.ComponentProps<typeof SelectFieldMulti>)
+  SelectFieldSingleProps | Omit<SelectFieldSingleProps, "multiple"> | SelectFieldMultiProps
 );
 
 const SelectField = ({
@@ -30,22 +44,25 @@ const SelectField = ({
   creatable = false,
   multiple = false,
   name,
+  onChange,
+  options,
   placeholder = "",
   required = false,
-  ...props
+  validator,
+  value
 }: SelectFieldProps) => {
   const inputRef = React.createRef<HTMLInputElement>();
   const onFocus = useAutoFocus(autoFocus, inputRef);
 
   const context = useForm();
   const passed = {
-    ...props,
     ...context,
     autoFocus,
     creatable,
     inputRef,
     name,
     onFocus,
+    options,
     placeholder,
     required,
     selectRef: React.createRef<HTMLDivElement>()
@@ -54,7 +71,25 @@ const SelectField = ({
   return (
     <label className={classnames("chq-ffd", className)} htmlFor={name}>
       <span className="chq-ffd--lb">{children}</span>
-      {multiple ? <SelectFieldMulti {...passed} /> : <SelectFieldSingle {...passed} />}
+      {
+        multiple
+          ? (
+            <SelectFieldMulti
+              {...passed}
+              onChange={onChange as SelectFieldMultiProps["onChange"]}
+              validator={validator as SelectFieldMultiProps["validator"]}
+              value={value as SelectFieldMultiProps["value"]}
+            />
+          )
+          : (
+            <SelectFieldSingle
+              {...passed}
+              onChange={onChange as SelectFieldSingleProps["onChange"]}
+              validator={validator as SelectFieldSingleProps["validator"]}
+              value={value as SelectFieldSingleProps["value"]}
+            />
+          )
+      }
     </label>
   );
 };

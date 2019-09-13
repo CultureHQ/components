@@ -9,7 +9,7 @@ import SelectFieldSingleValue from "./SelectFieldSingleValue";
 import SelectFieldOptions from "./SelectFieldOptions";
 import fuzzyFilter from "./fuzzyFilter";
 
-type SelectFieldSingleProps = {
+type SelectFieldSingleProps = FormState & {
   creatable: boolean;
   inputRef: React.RefObject<HTMLInputElement>;
   name: string;
@@ -30,7 +30,7 @@ type SelectFieldSingleState = {
   touched: boolean;
 };
 
-const getDisplay = (props: SelectFieldSingleProps & FormState) => {
+const getDisplay = (props: SelectFieldSingleProps) => {
   const normal = props.value || (props.values[props.name] as undefined | null | SelectValue);
   let display = "";
 
@@ -42,10 +42,10 @@ const getDisplay = (props: SelectFieldSingleProps & FormState) => {
   return display;
 };
 
-class SelectFieldSingle extends React.Component<SelectFieldSingleProps & FormState, SelectFieldSingleState> {
+class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFieldSingleState> {
   private timeout: null | number;
 
-  constructor(props: SelectFieldSingleProps & FormState) {
+  constructor(props: SelectFieldSingleProps) {
     super(props);
 
     this.state = {
@@ -62,7 +62,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps & FormSta
     window.addEventListener("click", this.handleWindowClick);
   }
 
-  componentDidUpdate(prevProps: SelectFieldSingleProps & FormState) {
+  componentDidUpdate(prevProps: SelectFieldSingleProps) {
     const { options } = this.props;
     const { display } = this.state;
 

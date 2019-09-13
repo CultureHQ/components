@@ -1,13 +1,39 @@
-import React from "react";
+import * as React from "react";
 
 import classnames from "../../../classnames";
 import FormError from "../FormError";
+import { FormState } from "../Form";
+import { FormFieldError, SelectOption, SelectValue } from "../typings";
+
 import SelectFieldMultiValue from "./SelectFieldMultiValue";
 import SelectFieldOptions from "./SelectFieldOptions";
 import fuzzyFilter from "./fuzzyFilter";
 
-class SelectFieldMulti extends React.Component {
-  constructor(props) {
+type SelectFieldMultiProps = FormState & {
+  creatable: boolean;
+  inputRef: React.RefObject<HTMLInputElement>;
+  name: string;
+  onChange?: (value: null | SelectValue[]) => void;
+  onFocus: () => void;
+  options: SelectOption[];
+  placeholder: string;
+  required: boolean;
+  selectRef: React.RefObject<HTMLDivElement>;
+  validator?: (value: null | SelectValue[]) => FormFieldError;
+  value?: null | SelectValue[];
+};
+
+type SelectFieldMultiState = {
+  display: string;
+  filteredOptions: SelectOption[];
+  open: boolean;
+  touched: boolean;
+};
+
+class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFieldMultiState> {
+  private timeout: null | number;
+
+  constructor(props: SelectFieldMultiProps) {
     super(props);
 
     this.state = {
@@ -16,13 +42,15 @@ class SelectFieldMulti extends React.Component {
       open: false,
       touched: false
     };
+
+    this.timeout = null;
   }
 
   componentDidMount() {
     window.addEventListener("click", this.handleWindowClick);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: SelectFieldMultiProps) {
     const { options } = this.props;
     const { display } = this.state;
 
@@ -36,24 +64,43 @@ class SelectFieldMulti extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener("click", this.handleWindowClick);
-    clearTimeout(this.timeout);
+
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+      this.timeout = null;
+    }
   }
 
-  handleWindowClick = event => {
-    const { name, selectRef, value, values } = this.props;
+  getValue = () => {
+    const { name, value, values } = this.props;
+
+    if (value !== undefined) {
+      return value;
+    }
+
+    const passed = values[name] as undefined | null | SelectValue[];
+    if (passed !== undefined) {
+      return passed;
+    }
+
+    return null;
+  };
+
+  handleWindowClick = (event: Event) => {
+    const { selectRef } = this.props;
     const { open } = this.state;
 
     const select = selectRef.current;
 
     if (open && select && event.target instanceof Element && !select.contains(event.target)) {
-      this.selectValue(value || values[name], true);
+      this.selectValue(this.getValue(), true);
     }
   };
 
-  handleSelect = selected => {
-    const { name, onFocus, value, values } = this.props;
+  handleSelect = (selected: SelectValue) => {
+    const { onFocus } = this.props;
 
-    const normal = value || values[name];
+    const normal = this.getValue();
     const nextValue = normal ? [...normal.filter(item => item !== selected), selected] : [selected]
 
     onFocus();
@@ -61,19 +108,19 @@ class SelectFieldMulti extends React.Component {
     this.propagateValue(nextValue);
   };
 
-  handleDeselect = deselected => {
-    const { name, onFocus, value, values } = this.props;
+  handleDeselect = (deselected: SelectValue) => {
+    const { onFocus } = this.props;
 
-    const normal = value || values[name];
-    const nextValue = normal.filter(item => item !== deselected);
+    const normal = this.getValue();
+    const nextValue = normal ? normal.filter(item => item !== deselected) : null;
 
     onFocus();
     this.selectValue(nextValue, false);
     this.propagateValue(nextValue);
   };
 
-  handleChange = event => {
-    const { name, options, value, values } = this.props;
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { options } = this.props;
     const { display } = this.state;
 
     const nextDisplay = event.target.value;
@@ -96,7 +143,7 @@ class SelectFieldMulti extends React.Component {
     this.setState({ open: false, touched: true });
   };
 
-  propagateValue = value => {
+  propagateValue = (value: null | SelectValue[]) => {
     const { name, onChange, onFormChange } = this.props;
 
     if (onChange) {
@@ -106,36 +153,43 @@ class SelectFieldMulti extends React.Component {
     onFormChange(name, value);
   };
 
-  selectValue = (nextValue, shouldClose) => {
+  selectValue = (nextValue: null | SelectValue[], shouldClose: boolean) => {
     const { options } = this.props;
-    const effects = shouldClose ? { open: false } : {};
 
-    this.setState({ display: "", touched: true, ...effects }, () => {
-      if (this.timeout) {
-        clearTimeout(this.timeout);
-      }
-
-      this.timeout = setTimeout(
-        () => {
-          this.setState({ filteredOptions: options });
+    this.setState(
+      (prevState: SelectFieldMultiState) => ({
+        display: "",
+        touched: true,
+        open: shouldClose ? false : prevState.open
+      }),
+      () => {
+        if (this.timeout) {
+          clearTimeout(this.timeout);
           this.timeout = null;
-        },
-        150
-      );
-    });
+        }
+
+        this.timeout = window.setTimeout(
+          () => {
+            this.setState({ filteredOptions: options });
+            this.timeout = null;
+          },
+          150
+        );
+      }
+    );
   };
 
   /* eslint-disable jsx-a11y/label-has-for */
   // we're following the rules for it but it can't figure that out
   render() {
     const {
-      creatable = false, inputRef, name, onError, options, placeholder,
-      required, selectRef, submitted, validator, value, values
+      creatable, inputRef, name, onError, options, placeholder, required,
+      selectRef, submitted, validator, value, values
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
 
-    const normal = value || values[name];
+    const normal = this.getValue();
 
     return (
       <>
