@@ -10,7 +10,6 @@ import SelectFieldOptions from "./SelectFieldOptions";
 import fuzzyFilter from "./fuzzyFilter";
 
 type SelectFieldSingleProps = {
-  autoFocus: boolean;
   creatable: boolean;
   inputRef: React.RefObject<HTMLInputElement>;
   name: string;
@@ -59,12 +58,6 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps & FormSta
   }
 
   componentDidMount() {
-    const { autoFocus } = this.props;
-
-    if (autoFocus) {
-      this.focus();
-    }
-
     window.addEventListener("click", this.handleWindowClick);
   }
 

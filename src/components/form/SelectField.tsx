@@ -5,6 +5,19 @@ import SelectFieldSingle from "./select/SelectFieldSingle";
 import SelectFieldMulti from "./select/SelectFieldMulti";
 import { withForm } from "./Form";
 
+const useAutoFocus = <T extends HTMLElement>(autoFocus: boolean, elementRef: React.RefObject<T>) => (
+  React.useEffect(
+    () => {
+      const element = elementRef.current;
+
+      if (autoFocus && element) {
+        element.focus();
+      }
+    },
+    [autoFocus, elementRef]
+  )
+);
+
 type SelectFieldCommonProps = {
   children: React.ReactNode;
   className?: string;
@@ -26,11 +39,14 @@ const SelectField = ({
   required = false,
   ...props
 }: SelectFieldProps) => {
+  const inputRef = React.createRef<HTMLInputElement>();
+  useAutoFocus(autoFocus, inputRef);
+
   const passed = {
     ...props,
     autoFocus,
     creatable,
-    inputRef: React.createRef<HTMLInputElement>(),
+    inputRef,
     name,
     placeholder,
     required,
