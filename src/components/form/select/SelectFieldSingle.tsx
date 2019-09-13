@@ -14,6 +14,7 @@ type SelectFieldSingleProps = {
   inputRef: React.RefObject<HTMLInputElement>;
   name: string;
   onChange?: (value: null | SelectValue) => void;
+  onFocus: () => void;
   options: SelectOption[];
   placeholder: string;
   required: boolean;
@@ -82,15 +83,6 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps & FormSta
     }
   }
 
-  focus = () => {
-    const { inputRef } = this.props;
-    const input = inputRef.current;
-
-    if (input) {
-      input.focus();
-    }
-  };
-
   getValue = () => {
     const { name, value, values } = this.props;
 
@@ -117,13 +109,17 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps & FormSta
   };
 
   handleSelect = (selected: SelectValue) => {
-    this.focus();
+    const { onFocus } = this.props;
+
+    onFocus();
     this.selectValue(selected);
     this.propagateValue(selected);
   };
 
   handleDeselect = () => {
-    this.focus();
+    const { onFocus } = this.props;
+
+    onFocus();
     this.selectValue(null);
     this.propagateValue(null);
   };

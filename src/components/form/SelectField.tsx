@@ -48,6 +48,13 @@ const SelectField = ({
     creatable,
     inputRef,
     name,
+    onFocus: () => {
+      const input = inputRef.current;
+
+      if (input) {
+        input.focus();
+      }
+    },
     placeholder,
     required,
     selectRef: React.createRef<HTMLDivElement>()

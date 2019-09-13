@@ -39,15 +39,6 @@ class SelectFieldMulti extends React.Component {
     clearTimeout(this.timeout);
   }
 
-  focus = () => {
-    const { inputRef } = this.props;
-    const input = inputRef.current;
-
-    if (input) {
-      input.focus();
-    }
-  };
-
   handleWindowClick = event => {
     const { name, selectRef, value, values } = this.props;
     const { open } = this.state;
@@ -60,23 +51,23 @@ class SelectFieldMulti extends React.Component {
   };
 
   handleSelect = selected => {
-    const { name, value, values } = this.props;
+    const { name, onFocus, value, values } = this.props;
 
     const normal = value || values[name];
     const nextValue = normal ? [...normal.filter(item => item !== selected), selected] : [selected]
 
-    this.focus();
+    onFocus();
     this.selectValue(nextValue, false);
     this.propagateValue(nextValue);
   };
 
   handleDeselect = deselected => {
-    const { name, value, values } = this.props;
+    const { name, onFocus, value, values } = this.props;
 
     const normal = value || values[name];
     const nextValue = normal.filter(item => item !== deselected);
 
-    this.focus();
+    onFocus();
     this.selectValue(nextValue, false);
     this.propagateValue(nextValue);
   };
@@ -95,7 +86,9 @@ class SelectFieldMulti extends React.Component {
   };
 
   handleOpen = () => {
-    this.focus();
+    const { onFocus } = this.props;
+
+    onFocus();
     this.setState({ open: true });
   };
 
