@@ -3,35 +3,19 @@ import * as React from "react";
 import classnames from "../../classnames";
 import SelectFieldSingle from "./select/SelectFieldSingle";
 import SelectFieldMulti from "./select/SelectFieldMulti";
-import { withForm } from "./Form";
-
-const useAutoFocus = <T extends HTMLElement>(autoFocus: boolean, elementRef: React.RefObject<T>) => {
-  const onFocus = React.useCallback(
-    () => {
-      const element = elementRef.current;
-
-      if (element) {
-        element.focus();
-      }
-    },
-    [elementRef]
-  );
-
-  React.useEffect(
-    () => {
-      if (autoFocus) {
-        onFocus();
-      }
-    },
-    [autoFocus, onFocus]
-  );
-
-  return onFocus;
-};
+import useAutoFocus from "./select/useAutoFocus";
+import { useForm } from "./Form";
+import { SelectValue } from "./typings";
 
 type SelectFieldCommonProps = {
+  autoFocus?: boolean;
   children: React.ReactNode;
   className?: string;
+  creatable?: boolean;
+  multiple?: boolean;
+  name: string;
+  placeholder?: string;
+  required?: boolean;
 };
 
 type SelectFieldProps = SelectFieldCommonProps & (
@@ -53,8 +37,10 @@ const SelectField = ({
   const inputRef = React.createRef<HTMLInputElement>();
   const onFocus = useAutoFocus(autoFocus, inputRef);
 
+  const context = useForm();
   const passed = {
     ...props,
+    ...context,
     autoFocus,
     creatable,
     inputRef,
@@ -73,4 +59,4 @@ const SelectField = ({
   );
 };
 
-export default withForm(SelectField);
+export default SelectField;
