@@ -37,16 +37,6 @@ const getDisplay = props => {
 };
 
 class SelectField extends Component {
-  static defaultProps = {
-    autoFocus: false,
-    creatable: false,
-    multiple: false,
-    onChange: () => {},
-    onFormChange: () => {},
-    options: [],
-    values: {}
-  };
-
   inputRef = React.createRef();
 
   selectRef = React.createRef();
@@ -66,7 +56,7 @@ class SelectField extends Component {
     const { autoFocus } = this.props;
 
     if (autoFocus) {
-      this.inputRef.current.focus();
+      this.focus();
     }
 
     window.addEventListener("click", this.handleWindowClick);
@@ -89,11 +79,21 @@ class SelectField extends Component {
     clearTimeout(this.timeout);
   }
 
+  focus = () => {
+    const input = this.inputRef.current;
+
+    if (input) {
+      input.focus();
+    }
+  };
+
   handleWindowClick = event => {
     const { name, value, values } = this.props;
     const { open } = this.state;
 
-    if (open && !this.selectRef.current.contains(event.target)) {
+    const select = this.selectRef.current;
+
+    if (open && select && event.target instanceof Element && !select.contains(event.target)) {
       this.selectValue(value || values[name], true);
     }
   };
@@ -104,7 +104,7 @@ class SelectField extends Component {
     const normal = value || values[name];
     const nextValue = multiple ? appendValue(normal, selected) : selected;
 
-    this.inputRef.current.focus();
+    this.focus();
     this.selectValue(nextValue, !multiple);
     this.propagateValue(nextValue);
   };
@@ -115,7 +115,7 @@ class SelectField extends Component {
     const normal = value || values[name];
     const nextValue = multiple ? normal.filter(item => item !== deselected) : "";
 
-    this.inputRef.current.focus();
+    this.focus();
     this.selectValue(nextValue, !multiple);
     this.propagateValue(nextValue);
   };
@@ -143,7 +143,7 @@ class SelectField extends Component {
     const { multiple } = this.props;
 
     if (multiple) {
-      this.inputRef.current.focus();
+      this.focus();
     }
 
     this.setState({ open: true });
@@ -156,7 +156,10 @@ class SelectField extends Component {
   propagateValue = value => {
     const { name, onChange, onFormChange } = this.props;
 
-    onChange(value);
+    if (onChange) {
+      onChange(value);
+    }
+
     onFormChange(name, value);
   };
 
@@ -189,8 +192,8 @@ class SelectField extends Component {
   // we're following the rules for it but it can't figure that out
   render() {
     const {
-      children, className, creatable, multiple, name, onError, options,
-      placeholder, required, submitted, validator, value, values
+      children, className, creatable = false, multiple = false, name, onError,
+      options, placeholder, required, submitted, validator, value, values
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
