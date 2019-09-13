@@ -14,7 +14,7 @@ const isCreatingOption = ({ display, multiple, options, value }: IsCreatingOptio
     return !matchedLabel && display !== value;
   }
 
-  const multiValue = value as SelectValue[];
+  const multiValue = value as null | SelectValue[];
   return !matchedLabel && (!multiValue || !multiValue.some(item => item === display));
 };
 
