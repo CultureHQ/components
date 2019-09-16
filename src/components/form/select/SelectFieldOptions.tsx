@@ -24,7 +24,9 @@ type SelectFieldOptionProps = Pick<SelectFieldPassedProps, "onDeselect" | "onSel
   tabIndex: number;
 };
 
-const SelectFieldOption = ({ active, option, onDeselect, onSelect, tabIndex }: SelectFieldOptionProps) => {
+const SelectFieldOption = ({
+  active, option, onDeselect, onSelect, tabIndex
+}: SelectFieldOptionProps) => {
   const { label, value } = option;
 
   const className = classnames({ "chq-ffd--sl--opt-act": active });

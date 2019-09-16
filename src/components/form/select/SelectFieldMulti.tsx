@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import classnames from "../../../classnames";
 import FormError from "../FormError";
 import { FormState } from "../Form";
 import { FormFieldError, SelectOption, SelectValue } from "../typings";
@@ -101,7 +100,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     const { onFocus } = this.props;
 
     const normal = this.getValue();
-    const nextValue = normal ? [...normal.filter(item => item !== selected), selected] : [selected]
+    const nextValue = normal ? [...normal.filter(item => item !== selected), selected] : [selected];
 
     onFocus();
     this.selectValue(nextValue, false);
@@ -121,8 +120,6 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { options } = this.props;
-    const { display } = this.state;
-
     const nextDisplay = event.target.value;
 
     this.setState({
@@ -184,7 +181,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
   render() {
     const {
       creatable, inputRef, name, onError, options, placeholder, required,
-      selectRef, submitted, validator, value, values
+      selectRef, submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;

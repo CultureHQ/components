@@ -41,7 +41,7 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
+    "@babel/preset-typescript": "^7.6.0",
     "@culturehq/scripts": "^4.1.1",
     "@storybook/addon-a11y": "^5.2.0",
     "@storybook/addon-actions": "^5.2.0",
@@ -55,7 +55,7 @@
     "@storybook/theming": "^5.2.0",
     "@testing-library/react": "^9.1.1",
     "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.4",
+    "@types/node": "^12.7.5",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "@types/react-modal": "^3.8.3",
@@ -72,7 +72,7 @@
     "react-dom": "^16.9.0",
     "sass-lint": "^1.12.1",
     "sass-loader": "^8.0.0",
-    "typescript": "^3.6.2",
+    "typescript": "^3.6.3",
     "webpack": "^4.40.2"
   },
   "resolutions": {
@@ -86,17 +86,7 @@
       "@culturehq/eslint-config/typescript"
     ],
     "rules": {
-      "import/no-extraneous-dependencies": "off",
-      "@typescript-eslint/no-empty-function": "off",
-      "@typescript-eslint/no-var-requires": "off",
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        {
-          "argsIgnorePattern": "^_",
-          "ignoreRestSiblings": true,
-          "varsIgnorePattern": "^_"
-        }
-      ]
+      "import/no-extraneous-dependencies": "off"
     }
   },
   "jest": {
