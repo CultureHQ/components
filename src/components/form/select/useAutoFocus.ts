@@ -1,6 +1,9 @@
 import * as React from "react";
 
-const useAutoFocus = <T extends HTMLElement>(autoFocus: boolean, elementRef: React.RefObject<T>) => {
+const useAutoFocus = <T extends HTMLElement>(
+  autoFocus: boolean,
+  elementRef: React.RefObject<T>
+) => {
   const onFocus = React.useCallback(
     () => {
       const element = elementRef.current;

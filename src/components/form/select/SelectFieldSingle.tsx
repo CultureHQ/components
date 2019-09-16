@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import classnames from "../../../classnames";
 import FormError from "../FormError";
 import { FormState } from "../Form";
 import { FormFieldError, SelectOption, SelectValue } from "../typings";
@@ -132,7 +131,9 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     const currentOption = (normal !== null && options.find(option => option.value === normal));
 
     let nextDisplay = event.target.value;
-    nextDisplay = currentOption && currentOption.label === display ? (event.nativeEvent as any).data : nextDisplay;
+    nextDisplay = currentOption && currentOption.label === display
+      ? (event.nativeEvent as any).data
+      : nextDisplay;
 
     this.setState({
       display: nextDisplay || "",
@@ -186,7 +187,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   render() {
     const {
       creatable, inputRef, name, onError, options, placeholder, required,
-      selectRef, submitted, validator, value, values
+      selectRef, submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
