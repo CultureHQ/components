@@ -2,6 +2,8 @@ import React from "react";
 import { render, waitForDomChange } from "@testing-library/react";
 
 import ImagePreview from "../ImagePreview";
+
+/* eslint-disable no-import-assign */
 import * as readImage from "../../utils/readImage";
 
 test("reads image and loads it", async () => {
