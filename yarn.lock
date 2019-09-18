@@ -26,7 +26,7 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/core@7.5.5", "@babel/core@^7.0.0", "@babel/core@^7.1.0", "@babel/core@^7.1.6", "@babel/core@^7.4.5":
+"@babel/core@7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.5.5.tgz#17b2686ef0d6bc58f963dddd68ab669755582c30"
   integrity sha512-i4qoSr2KTtce0DmkuuQBV4AuQgGPUcPXMr9L5MyYAtk06z068lQ10a4O009fe5OB/DfNV+h+qqT7ddNV8UnRjg==
@@ -46,7 +46,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@7.6.0", "@babel/core@^7.6.0":
+"@babel/core@7.6.0", "@babel/core@^7.0.0", "@babel/core@^7.1.0", "@babel/core@^7.1.6", "@babel/core@^7.4.5", "@babel/core@^7.6.0":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.6.0.tgz#9b00f73554edd67bebc86df8303ef678be3d7b48"
   integrity sha512-FuRhDRtsd6IptKpHXAa+4WPZYY2ZzgowkbLBecEDDSje1X/apG7jQM33or3NdOmjXBKWGOg4JmSiRfUfuTtHXw==
@@ -775,7 +775,7 @@
     "@babel/helper-regex" "^7.4.4"
     regexpu-core "^4.5.4"
 
-"@babel/preset-env@7.5.5", "@babel/preset-env@^7.1.6", "@babel/preset-env@^7.4.5":
+"@babel/preset-env@7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.5.5.tgz#bc470b53acaa48df4b8db24a570d6da1fef53c9a"
   integrity sha512-GMZQka/+INwsMz1A5UEql8tG015h5j/qjptpKY2gJ7giy8ohzU710YciJB5rcKsWGWHiW3RUnHib0E5/m3Tp3A==
@@ -831,7 +831,7 @@
     js-levenshtein "^1.1.3"
     semver "^5.5.0"
 
-"@babel/preset-env@^7.6.0":
+"@babel/preset-env@^7.1.6", "@babel/preset-env@^7.4.5", "@babel/preset-env@^7.6.0":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.6.0.tgz#aae4141c506100bb2bfaa4ac2a5c12b395619e50"
   integrity sha512-1efzxFv/TcPsNXlRhMzRnkBFMeIqBBgzwmZwlFDw5Ubj0AGLeufxugirwZmkkX/ayi3owsSqoQ4fw8LkfK9SYg==
@@ -1580,13 +1580,13 @@
     core-js "^3.0.1"
 
 "@storybook/cli@^5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@storybook/cli/-/cli-5.2.0.tgz#9a22dd1308d2c528dfc27c5c543ab48c621d5b24"
-  integrity sha512-VWFrq7LS3HNoKW7/ojMQneUUe8LthblKcQoVxA64LlUDqWuP4TOmUfTFa6oS6LhvQxYjip9D3OvYZeE+4KnipQ==
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@storybook/cli/-/cli-5.2.1.tgz#1118d9e1bbe085e24c40e7cb17f386cc20d246e0"
+  integrity sha512-UkhJco40Apzvjx2TLncvP9sc8zwe4/5ez2F8CiMPfMSmwrWybfQgyj147KHFwNq0YEX9MP6QolaU5HJ/q5v5Wg==
   dependencies:
     "@babel/core" "^7.4.5"
     "@babel/preset-env" "^7.4.5"
-    "@storybook/codemod" "5.2.0"
+    "@storybook/codemod" "5.2.1"
     chalk "^2.4.1"
     commander "^2.19.0"
     core-js "^3.0.1"
@@ -1631,13 +1631,13 @@
   dependencies:
     core-js "^3.0.1"
 
-"@storybook/codemod@5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-5.2.0.tgz#3c0e5538e7f58f0f5062f6dbe7b322981a095d35"
-  integrity sha512-nNt2mjGVtyeUAn9OLOwxXTD9SsuZceW+w6T+9VyKP81ZD9TT4wKvPj6g8WJI5FObZMhlI0xI1WrGCM72ViFlvg==
+"@storybook/codemod@5.2.1":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-5.2.1.tgz#1895d40dda0821f67f967aefed2fb83fd2edd162"
+  integrity sha512-4zhiX//rBQoq29jNnErkQp79H5cmJAougWkoZSf7TpQgCdVhidn8Q2C468anb9dDiAB3L037hPsAadSHUFXFXQ==
   dependencies:
     "@mdx-js/mdx" "^1.0.0"
-    "@storybook/node-logger" "5.2.0"
+    "@storybook/node-logger" "5.2.1"
     core-js "^3.0.1"
     cross-spawn "^6.0.5"
     globby "^10.0.1"
@@ -1751,17 +1751,6 @@
     webpack "^4.33.0"
     webpack-dev-middleware "^3.7.0"
     webpack-hot-middleware "^2.25.0"
-
-"@storybook/node-logger@5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.2.0.tgz#68a39a271dd442563206a7f07249f66947094b2f"
-  integrity sha512-IuR6oa+oayEdqdl01Sh+Tsf+KV4wsfSHYa3OazYnMnmXJvBVwUP4RTywVapj+ylugltRVPlDEHQw0d1TFRbQrQ==
-  dependencies:
-    chalk "^2.4.2"
-    core-js "^3.0.1"
-    npmlog "^4.1.2"
-    pretty-hrtime "^1.0.3"
-    regenerator-runtime "^0.12.1"
 
 "@storybook/node-logger@5.2.1":
   version "5.2.1"
