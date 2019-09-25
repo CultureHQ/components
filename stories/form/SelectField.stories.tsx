@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
+import { boolean, text } from "@storybook/addon-knobs";
 
 import { Form, Panel, SelectField } from "../../src/components";
 
@@ -14,18 +14,11 @@ const options = [
   { label: "The Deathly Hallows", value: "hallows" }
 ];
 
-const valueOptions = options.reduce(
-  (accum, option) => ({ ...accum, [option.label]: option.value }), {}
-);
-
-type DroppedProps = "onChange" | "options";
-type ContainerProps = Omit<React.ComponentProps<typeof SelectField>, DroppedProps>;
-
-const Container = (props: ContainerProps) => (
+const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Panel>
     <Panel.Body>
       <Form onSubmit={() => {}}>
-        <SelectField {...props} options={options} />
+        {children}
       </Form>
     </Panel.Body>
   </Panel>
@@ -40,21 +33,40 @@ storiesOf("Form/SelectField", module)
       multiple: boolean("multiple", false),
       name: text("name", "select"),
       placeholder: text("placeholder", ""),
-      required: boolean("required", false),
-      value: optionsKnob("value", valueOptions, null, {
-        display: "multi-select"
-      })
+      required: boolean("required", false)
     };
 
-    return <Container {...props}>{children}</Container>;
+    return (
+      <Container>
+        <SelectField {...props} options={options}>{children}</SelectField>
+      </Container>
+    );
   })
-  .add("autoFocus", () => <Container name="select" autoFocus>Select</Container>)
-  .add("creatable", () => <Container name="select" creatable>Select</Container>)
-  .add("multiple", () => <Container name="select" multiple>Select</Container>)
-  .add("creatable + multiple", () => (
-    <Container name="select" creatable multiple>Select</Container>
+  .add("autoFocus", () => (
+    <Container>
+      <SelectField name="select" autoFocus options={options}>Select</SelectField>
+    </Container>
   ))
-  .add("required", () => <Container name="select" required>Select</Container>)
+  .add("creatable", () => (
+    <Container>
+      <SelectField name="select" creatable options={options}>Select</SelectField>
+    </Container>
+  ))
+  .add("multiple", () => (
+    <Container>
+      <SelectField name="select" multiple options={options}>Select</SelectField>
+    </Container>
+  ))
+  .add("creatable + multiple", () => (
+    <Container>
+      <SelectField name="select" creatable multiple options={options}>Select</SelectField>
+    </Container>
+  ))
+  .add("required", () => (
+    <Container>
+      <SelectField name="select" required options={options}>Select</SelectField>
+    </Container>
+  ))
   .add("validator", () => {
     const validator = (value: null | string) => {
       if (value !== "goblet") {
@@ -64,6 +76,10 @@ storiesOf("Form/SelectField", module)
     };
 
     return (
-      <Container name="select" required validator={validator}>Select</Container>
+      <Container>
+        <SelectField name="select" required validator={validator} options={options}>
+          Select
+        </SelectField>
+      </Container>
     );
   });
