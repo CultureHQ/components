@@ -4,17 +4,22 @@ import { render, waitForDomChange } from "@testing-library/react";
 import Icon from "../Icon";
 import { close } from "../../icons.json";
 
+// switch back to `getByRole` once
+// https://github.com/DefinitelyTyped/DefinitelyTyped/pull/38560 closes
+
 test("has no violations", () => (
   expect(<Icon icon="checkmark" />).toHaveNoViolations()
 ));
 
 test("renders without crashing", async () => {
-  const { container, getByRole } = render(<Icon icon="checkmark" />);
-  expect(getByRole("presentation", { hidden: true }).firstChild).toBeFalsy();
+  const { container } = render(<Icon icon="checkmark" />);
+  const svg = container.firstChild as SVGSVGElement;
+
+  expect(svg.firstChild).toBeFalsy();
 
   await waitForDomChange({ container });
 
-  expect(getByRole("presentation", { hidden: true }).firstChild).toBeTruthy();
+  expect(svg.firstChild).toBeTruthy();
 });
 
 test("passes on className", async () => {
