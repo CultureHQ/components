@@ -23,7 +23,7 @@ storiesOf("Form/PasswordField", module)
       onChange: action("onChange"),
       name: text("name", "password"),
       required: boolean("required", false),
-      value: text("value", null)
+      value: text("value", "")
     };
 
     return <Container {...props}>{children}</Container>;

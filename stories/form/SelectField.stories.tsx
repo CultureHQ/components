@@ -39,7 +39,7 @@ storiesOf("Form/SelectField", module)
       creatable: boolean("creatable", false),
       multiple: boolean("multiple", false),
       name: text("name", "select"),
-      placeholder: text("placeholder", null),
+      placeholder: text("placeholder", ""),
       required: boolean("required", false),
       value: optionsKnob("value", valueOptions, null, {
         display: "multi-select"

@@ -7,7 +7,7 @@ import { Checkmark } from "../src/components";
 
 storiesOf("Checkmark", module)
   .add("default", () => {
-    const children = text("children", null);
+    const children = text("children", "");
     const props = {
       checked: boolean("checked", false),
       onClick: action("onClick")

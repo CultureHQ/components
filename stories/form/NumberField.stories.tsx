@@ -23,7 +23,7 @@ storiesOf("Form/NumberField", module)
       onChange: action("onChange"),
       name: text("name", "number"),
       required: boolean("required", false),
-      value: text("value", null)
+      value: text("value", "")
     };
 
     return <Container {...props}>{children}</Container>;

@@ -13,7 +13,7 @@ storiesOf("Buttons/CheerButton", module)
 
     const props = {
       cheered: boolean("cheered", false),
-      name: text("name", null),
+      name: text("name", ""),
       onCheerToggle: (cheered: boolean) => {
         onCheerToggle(cheered);
         return new Promise(resolve => setTimeout(resolve, 1000));
