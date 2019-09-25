@@ -1,11 +1,11 @@
 {
   "name": "@culturehq/components",
-  "version": "16.0.0",
+  "version": "16.0.1",
   "description": "CultureHQ's component library",
   "main": "dist/components.js",
   "types": "dist/components.d.ts",
   "scripts": {
-    "build:js": "rm -rf dist && yarn tsc && cp src/*.json dist",
+    "build:js": "yarn tsc && cp src/*.json dist",
     "build:css": "node-sass src/styles/app.scss > dist/main.css",
     "clean": "git ls-files -o | grep -v node_modules | xargs rm",
     "compile": "tsc --project test",
