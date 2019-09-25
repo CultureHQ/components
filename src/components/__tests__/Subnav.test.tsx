@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import Subnav from "../Subnav";
@@ -6,7 +6,7 @@ import Subnav from "../Subnav";
 type ContainerProps = Pick<React.ComponentProps<typeof Subnav>, "children">;
 
 const Container: React.FC<ContainerProps> = ({ children }) => {
-  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <Subnav activeIndex={activeIndex} onChange={setActiveIndex}>

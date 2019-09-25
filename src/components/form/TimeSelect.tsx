@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useRef } from "react";
 
 import PlainButton from "../buttons/PlainButton";
 
@@ -61,10 +61,10 @@ type TimeSelectProps = {
 };
 
 const TimeSelect: React.FC<TimeSelectProps> = ({ hours, minutes, onChange }) => {
-  const currentOptionRef = React.useRef<HTMLButtonElement>(null);
-  const selectRef = React.useRef<HTMLDivElement>(null);
+  const currentOptionRef = useRef<HTMLButtonElement>(null);
+  const selectRef = useRef<HTMLDivElement>(null);
 
-  React.useEffect(
+  useEffect(
     () => {
       const currentOption = currentOptionRef.current;
       const select = selectRef.current;

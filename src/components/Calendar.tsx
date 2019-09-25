@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import classnames from "../classnames";
 import * as locales from "../locales.json";
@@ -68,12 +68,12 @@ type CalendarProps = {
 };
 
 const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = null, onChange }) => {
-  const [visible, setVisible] = React.useState<CalendarView>(() => ({
+  const [visible, setVisible] = useState<CalendarView>(() => ({
     year: year === null ? new Date().getFullYear() : year,
     month: month === null ? new Date().getMonth() : month
   }));
 
-  React.useEffect(
+  useEffect(
     () => {
       if (
         (year !== null)
@@ -100,7 +100,7 @@ const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = nu
   });
 
   const activeHash = makeActiveHash(year, month, day);
-  const values = React.useMemo(
+  const values = useMemo(
     () => [
       ...getPrevMonthFillValues(visible),
       ...getCurrentMonthValues(visible),

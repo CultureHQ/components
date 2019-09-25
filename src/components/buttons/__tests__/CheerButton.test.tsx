@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { act, fireEvent, render, wait } from "@testing-library/react";
 
 import CheerButton from "../CheerButton";
@@ -14,7 +14,7 @@ const Container: React.FC<ContainerProps> = ({
   onCheerToggle: givenCheerToggle = () => {},
   small = false
 }) => {
-  const [cheered, setCheered] = React.useState(initialCheered);
+  const [cheered, setCheered] = useState(initialCheered);
 
   const onCheerToggle = (nextCheered: boolean) => {
     givenCheerToggle(nextCheered);

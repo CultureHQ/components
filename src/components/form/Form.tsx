@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 
 import { FormFieldError } from "./typings";
 
@@ -33,7 +33,7 @@ const FormContext = React.createContext<FormState>({
   onFormChange: () => {}
 });
 
-export const useForm = () => React.useContext(FormContext);
+export const useForm = () => useContext(FormContext);
 
 /* eslint-disable react/no-unused-state */
 class Form extends React.Component<FormProps, FormState> {

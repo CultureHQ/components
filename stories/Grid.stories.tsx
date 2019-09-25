@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { storiesOf } from "@storybook/react";
 
 import { Grid } from "../src/components";
@@ -30,9 +30,9 @@ const style = {
 };
 
 const Container = () => {
-  const [size, setSize] = React.useState<GridSize>(getSize(window.innerWidth));
+  const [size, setSize] = useState<GridSize>(getSize(window.innerWidth));
 
-  React.useEffect(() => {
+  useEffect(() => {
     const onResize = (event: Event) => {
       if (event.currentTarget instanceof Window) {
         setSize(getSize(event.currentTarget.innerWidth));

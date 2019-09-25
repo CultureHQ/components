@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import Checkmark from "../Checkmark";
 import classnames from "../../classnames";

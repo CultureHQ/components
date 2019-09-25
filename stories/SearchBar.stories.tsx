@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useCallback, useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { number, text } from "@storybook/addon-knobs";
 
@@ -15,8 +15,8 @@ type ContainerProps = {
 };
 
 const Container: React.FC<ContainerProps> = ({ haystack, placeholder, throttle }) => {
-  const [matches, setMatches] = React.useState<string[]>([]);
-  const onSearch = React.useCallback(
+  const [matches, setMatches] = useState<string[]>([]);
+  const onSearch = useCallback(
     search => setMatches(search ? match(search, haystack) : []),
     [haystack, setMatches]
   );

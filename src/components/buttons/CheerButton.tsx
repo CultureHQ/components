@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 
 import classnames from "../../classnames";
 import Cheer from "../Cheer";
@@ -18,8 +18,8 @@ const CheerButton: React.FC<CheerButtonProps> = ({
   onCheerToggle,
   small = false
 }) => {
-  const [toggling, setToggling] = React.useState<boolean>(false);
-  const [touched, setTouched] = React.useState<boolean>(false);
+  const [toggling, setToggling] = useState<boolean>(false);
+  const [touched, setTouched] = useState<boolean>(false);
 
   const onClick = () => {
     setToggling(true);

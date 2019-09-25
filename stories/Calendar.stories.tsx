@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
@@ -8,7 +8,7 @@ type CalendarState = Pick<React.ComponentProps<typeof Calendar>, "year" | "month
 type ContainerProps = Pick<React.ComponentProps<typeof Calendar>, "onChange">;
 
 const Container: React.FC<ContainerProps> = ({ onChange }) => {
-  const [value, setValue] = React.useState<CalendarState>({ year: null, month: null, day: null });
+  const [value, setValue] = useState<CalendarState>({ year: null, month: null, day: null });
   const onCalendarChange = (year: number, month: number, day: number) => {
     setValue({ year, month, day });
     onChange(year, month, day);

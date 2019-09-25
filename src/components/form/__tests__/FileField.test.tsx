@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import FileField, { FileFieldValue } from "../FileField";
@@ -7,7 +7,7 @@ type HijackedProps = "children" | "value" | "onChange";
 type ContainerProps = Omit<React.ComponentProps<typeof FileField>, HijackedProps>;
 
 const Container = (props: ContainerProps) => {
-  const [value, setValue] = React.useState<FileFieldValue>(null);
+  const [value, setValue] = useState<FileFieldValue>(null);
 
   return <FileField {...props} value={value} onChange={setValue}>File!</FileField>;
 };
