@@ -9,11 +9,11 @@ type ContainerProps = {
   small?: boolean;
 };
 
-const Container = ({
+const Container: React.FC<ContainerProps> = ({
   cheered: initialCheered = false,
   onCheerToggle: givenCheerToggle = () => {},
   small = false
-}: ContainerProps) => {
+}) => {
   const [cheered, setCheered] = React.useState(initialCheered);
 
   const onCheerToggle = (nextCheered: boolean) => {

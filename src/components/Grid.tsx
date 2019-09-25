@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { ContainerProps, OptionalContainerProps } from "../typings";
 
 export type GridSize = "xs" | "sm" | "md" | "lg" | "xl";
 const sizes: GridSize[] = ["xs", "sm", "md", "lg", "xl"];
@@ -22,16 +21,24 @@ const getItemClassName = (className: undefined | string, sizeProps: GridSizeProp
   return classList;
 };
 
-const Grid = ({ children, className }: ContainerProps) => (
+type GridProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+const Grid = ({ children, className }: GridProps) => (
   <div className={classnames("chq-grid", className)}>
     {children}
   </div>
 );
 
-type GridItemProps = OptionalContainerProps & GridSizeProps;
+type GridItemProps = GridSizeProps & {
+  children?: React.ReactNode;
+  className?: string;
+};
 
 // Inner div necessary per https://github.com/philipwalton/flexbugs#flexbug-7
-const GridItem = ({ children, className, ...sizeProps }: GridItemProps) => (
+const GridItem: React.FC<GridItemProps> = ({ children, className, ...sizeProps }) => (
   <div className={getItemClassName(className, sizeProps)}>
     <div className="chq-grid--item--inner">
       {children}

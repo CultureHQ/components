@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { ContainerProps } from "../../typings";
 import { FormFieldError } from "./typings";
 
 export type FormValue = (
@@ -9,7 +8,9 @@ export type FormValue = (
 
 export type FormValues = { [key: string]: FormValue };
 
-type FormProps = ContainerProps & {
+type FormProps = {
+  children: React.ReactNode;
+  className?: string;
   initialValues?: FormValues;
   onSubmit: (values: FormValues) => void | Promise<any>;
 };

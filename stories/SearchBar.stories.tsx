@@ -14,7 +14,7 @@ type ContainerProps = {
   throttle: null | number;
 };
 
-const Container = ({ haystack, placeholder, throttle }: ContainerProps) => {
+const Container: React.FC<ContainerProps> = ({ haystack, placeholder, throttle }) => {
   const [matches, setMatches] = React.useState<string[]>([]);
   const onSearch = React.useCallback(
     search => setMatches(search ? match(search, haystack) : []),

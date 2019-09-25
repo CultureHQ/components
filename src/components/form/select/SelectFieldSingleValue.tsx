@@ -7,9 +7,17 @@ type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "display" | "inp
   value: null | SelectValue;
 };
 
-const SelectFieldSingleValue = ({
-  display, inputRef, name, onChange, onClose, onOpen, open, placeholder, value
-}: SelectFieldSingleValueProps) => {
+const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = ({
+  display,
+  inputRef,
+  name,
+  onChange,
+  onClose,
+  onOpen,
+  open,
+  placeholder,
+  value
+}) => {
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     switch (event.key) {
       case "Enter":

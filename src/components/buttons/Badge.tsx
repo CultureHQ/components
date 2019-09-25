@@ -12,7 +12,14 @@ type BadgeProps = React.HTMLAttributes<HTMLButtonElement> & {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const Badge = ({ children, className, icon, primary = false, onClick, ...props }: BadgeProps) => {
+const Badge: React.FC<BadgeProps> = ({
+  children,
+  className,
+  icon,
+  primary = false,
+  onClick,
+  ...props
+}) => {
   const classList = classnames("chq-bdg", className, { "chq-bdg-pr": primary });
 
   return (

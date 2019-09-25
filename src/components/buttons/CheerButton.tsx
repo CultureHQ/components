@@ -11,13 +11,13 @@ type CheerButtonProps = {
   small?: boolean;
 };
 
-const CheerButton = ({
+const CheerButton: React.FC<CheerButtonProps> = ({
   cheered = false,
   className,
   name,
   onCheerToggle,
   small = false
-}: CheerButtonProps) => {
+}) => {
   const [toggling, setToggling] = React.useState<boolean>(false);
   const [touched, setTouched] = React.useState<boolean>(false);
 

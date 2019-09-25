@@ -6,7 +6,7 @@ type ClickCloseProps = React.HTMLAttributes<HTMLDivElement> & {
   onClose: () => void;
 };
 
-const ClickClose = ({ children, onClose, ...props }: ClickCloseProps) => {
+const ClickClose: React.FC<ClickCloseProps> = ({ children, onClose, ...props }) => {
   const containerRef = useClickOutside<HTMLDivElement>(onClose);
 
   return (

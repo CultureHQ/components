@@ -1,21 +1,25 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { OptionalContainerProps } from "../typings";
 
-const FeedItem = ({ children, className }: OptionalContainerProps) => (
+type FeedItemProps = {
+  children?: React.ReactNode;
+  className?: string;
+};
+
+const FeedItem = ({ children, className }: FeedItemProps) => (
   <div className={classnames("chq-fdi", className)}>
     {children}
   </div>
 );
 
-const FeedItemBody = ({ children, className }: OptionalContainerProps) => (
+const FeedItemBody: React.FC<FeedItemProps> = ({ children, className }) => (
   <div className={classnames("chq-fdi--bd", className)}>
     {children}
   </div>
 );
 
-const FeedItemFooter = ({ children, className }: OptionalContainerProps) => (
+const FeedItemFooter: React.FC<FeedItemProps> = ({ children, className }) => (
   <div className={classnames("chq-fdi--ft", className)}>
     {children}
   </div>

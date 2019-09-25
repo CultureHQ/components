@@ -7,7 +7,7 @@ type SpinnerProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string;
 };
 
-const Spinner = ({ className, ...props }: SpinnerProps) => (
+const Spinner: React.FC<SpinnerProps> = ({ className, ...props }) => (
   <div className={classnames("chq-spn", className)} {...props}>
     <Circles />
   </div>

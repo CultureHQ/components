@@ -9,7 +9,10 @@ type SelectFieldMultiValueBadgeProps = Pick<SelectFieldPassedProps, "onDeselect"
   option: SelectOption;
 };
 
-const SelectFieldMultiValueBadge = ({ option, onDeselect }: SelectFieldMultiValueBadgeProps) => {
+const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
+  option,
+  onDeselect
+}) => {
   const { label, value } = option;
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {

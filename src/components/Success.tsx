@@ -1,9 +1,13 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { ContainerProps } from "../typings";
 
-const Success = ({ children, className }: ContainerProps) => (
+type SuccessProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+const Success: React.FC<SuccessProps> = ({ children, className }) => (
   <div className={classnames("chq-scs", className)}>
     <p>{children}</p>
   </div>

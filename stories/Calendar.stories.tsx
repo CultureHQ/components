@@ -7,7 +7,7 @@ import { Calendar } from "../src/components";
 type CalendarState = Pick<React.ComponentProps<typeof Calendar>, "year" | "month" | "day">;
 type ContainerProps = Pick<React.ComponentProps<typeof Calendar>, "onChange">;
 
-const Container = ({ onChange }: ContainerProps) => {
+const Container: React.FC<ContainerProps> = ({ onChange }) => {
   const [value, setValue] = React.useState<CalendarState>({ year: null, month: null, day: null });
   const onCalendarChange = (year: number, month: number, day: number) => {
     setValue({ year, month, day });

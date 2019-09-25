@@ -4,7 +4,7 @@ import { action } from "@storybook/addon-actions";
 
 import { ClickClose, PlainButton } from "../src/components";
 
-const Container = ({ onClose: onCloseAction }: { onClose: () => void }) => {
+const Container: React.FC<{ onClose: () => void }> = ({ onClose: onCloseAction }) => {
   const [open, setOpen] = React.useState(false);
   const onOpen = () => setOpen(true);
 

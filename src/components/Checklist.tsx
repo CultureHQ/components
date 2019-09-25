@@ -1,11 +1,15 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { ContainerProps } from "../typings";
 
 import Checkmark from "./Checkmark";
 
-const Checklist = ({ children, className }: ContainerProps) => (
+type ChecklistProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+const Checklist = ({ children, className }: ChecklistProps) => (
   <div className={classnames("chq-chl", className)}>
     {children}
   </div>

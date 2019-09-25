@@ -8,7 +8,7 @@ type HamburgerProps = {
   onToggle: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const Hamburger = ({ className, open = false, onToggle }: HamburgerProps) => (
+const Hamburger: React.FC<HamburgerProps> = ({ className, open = false, onToggle }) => (
   <button
     type="button"
     className={classnames("chq-ham", className, { "chq-ham-op": open })}

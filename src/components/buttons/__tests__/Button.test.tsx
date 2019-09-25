@@ -60,7 +60,7 @@ type LinkProps = {
   to: string;
 };
 
-const Link = ({ children, className, to }: LinkProps) => (
+const Link: React.FC<LinkProps> = ({ children, className, to }) => (
   <a href={to} className={className}>{children}</a>
 );
 

@@ -1,14 +1,15 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { OptionalContainerProps } from "../typings";
 
-type CheckmarkProps = OptionalContainerProps & {
+type CheckmarkProps = {
   checked?: boolean;
+  children?: React.ReactNode;
+  className?: string;
   onClick?: (checked: boolean) => void;
 };
 
-const Checkmark = ({ children, className, checked, onClick }: CheckmarkProps) => {
+const Checkmark: React.FC<CheckmarkProps> = ({ children, className, checked, onClick }) => {
   const onButtonClick = onClick ? () => onClick(!checked) : undefined;
 
   return (

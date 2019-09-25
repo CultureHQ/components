@@ -37,7 +37,7 @@ type SelectFieldProps = SelectFieldCommonProps & (
   SelectFieldSingleProps | Omit<SelectFieldSingleProps, "multiple"> | SelectFieldMultiProps
 );
 
-const SelectField = ({
+const SelectField: React.FC<SelectFieldProps> = ({
   autoFocus = false,
   children,
   className,
@@ -50,7 +50,7 @@ const SelectField = ({
   required = false,
   validator,
   value
-}: SelectFieldProps) => {
+}) => {
   const inputRef = React.createRef<HTMLInputElement>();
   const onFocus = useAutoFocus(autoFocus, inputRef);
 
