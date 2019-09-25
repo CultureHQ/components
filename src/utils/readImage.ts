@@ -15,7 +15,7 @@ export const ROTATIONS = [
   { transform: "translateX(-100%) rotate(270deg)", transformOrigin: "top right" }
 ];
 
-const getNonRotatedDimensions = (image, maxWidth, maxHeight) => {
+const getNonRotatedDimensions = (image: HTMLImageElement, maxWidth: number, maxHeight: number) => {
   let height = Math.min(image.height, maxHeight);
   let width = image.width * (height / image.height);
 
@@ -27,7 +27,7 @@ const getNonRotatedDimensions = (image, maxWidth, maxHeight) => {
   return { left: `calc(50% - ${width / 2}px)`, height, width };
 };
 
-const getRotatedDimensions = (image, maxWidth, maxHeight) => {
+const getRotatedDimensions = (image: HTMLImageElement, maxWidth: number, maxHeight: number) => {
   let height = Math.min(image.height, maxHeight) * (image.height / image.width);
   let width = image.width * (height / image.height);
 
@@ -39,27 +39,32 @@ const getRotatedDimensions = (image, maxWidth, maxHeight) => {
   return { left: `calc(50% - ${height / 2}px)`, height, width };
 };
 
-const isMobileSafari = userAgent => (
+const isMobileSafari = (userAgent: string) => (
   /iP(ad|od|hone)/i.test(userAgent)
   && /WebKit/i.test(userAgent)
   && !(/(CriOS|FxiOS|OPiOS|mercury)/i.test(userAgent))
 );
 
+type Readable = Blob | File | string | null;
+
 // In mobile safari EXIF data is read and images are automatically rotated, so
 // we should bail out and not attempt to read the EXIF data ourselves.
-const getNormalRotation = image => (
+const getNormalRotation = (image: Readable): Promise<number> => (
   isMobileSafari(navigator.userAgent) ? Promise.resolve(1) : getRotation(image)
 );
 
-const getImagePromise = image => new Promise((onload, onerror) => (
-  Object.assign(image, { onload, onerror })
-));
+const getImagePromise = (image: HTMLImageElement, preview: Readable): Promise<HTMLImageElement> => (
+  new Promise((onload, onerror) => (
+    Object.assign(image, { onload, onerror, src: preview })
+  ))
+);
 
-const readImage = (image, preview, maxWidth, maxHeight) => {
+const readImage = (image: Readable, preview: Readable, maxWidth: number, maxHeight: number) => {
   const imageObj = new Image();
-  const promises = [getNormalRotation(image), getImagePromise(imageObj)];
-
-  imageObj.src = preview;
+  const promises: [Promise<number>, Promise<HTMLImageElement>] = [
+    getNormalRotation(image),
+    getImagePromise(imageObj, preview)
+  ];
 
   return Promise.all(promises).then(responses => {
     const rotation = responses[0];

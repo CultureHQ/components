@@ -1,4 +1,6 @@
-const getRotation = file => new Promise((resolve, reject) => {
+type Readable = Blob | File | string | null;
+
+const getRotation = (file: Readable): Promise<number> => new Promise((resolve, reject) => {
   if (!(file instanceof File)) {
     resolve(1);
     return;
@@ -8,12 +10,16 @@ const getRotation = file => new Promise((resolve, reject) => {
 
   reader.onerror = reject;
   reader.onloadend = () => {
-    const scanner = new DataView(reader.result);
+    const { result } = reader;
+    if (!(result instanceof ArrayBuffer)) {
+      return resolve(1);
+    }
 
+    const scanner = new DataView(result);
     let idx = 0;
     let rotation = 1;
 
-    if (reader.result.length < 2 || scanner.getUint16(idx) !== 0xFFD8) {
+    if (result.byteLength < 2 || scanner.getUint16(idx) !== 0xFFD8) {
       return resolve(1);
     }
 
