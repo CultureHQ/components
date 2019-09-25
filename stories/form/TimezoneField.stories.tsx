@@ -24,7 +24,7 @@ storiesOf("Form/TimezoneField", module)
       onOffsetChange: action("onOffsetChange"),
       name: text("name", "text"),
       required: boolean("required", false),
-      value: text("value", null)
+      value: text("value", "")
     };
 
     return <Container {...props}>{children}</Container>;

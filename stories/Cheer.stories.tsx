@@ -17,7 +17,7 @@ storiesOf("Cheer", module)
       color: optionsKnob("color", colorOptions, "darkblue", {
         display: "inline-radio"
       }) as React.ComponentProps<typeof Cheer>["color"],
-      name: text("name", null),
+      name: text("name", ""),
       pop: boolean("pop", false),
       small: boolean("small", false)
     };

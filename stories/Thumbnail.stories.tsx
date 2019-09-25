@@ -28,7 +28,7 @@ storiesOf("Thumbnail", module)
         display: "inline-radio"
       }),
       square: boolean("square", false),
-      title: text("title", null)
+      title: text("title", "")
     };
 
     return <Thumbnail {...props} />;
