@@ -33,7 +33,7 @@ test("passes on onClick", () => {
 test("displays an icon if one is provided", () => {
   const { queryByRole } = render(<Badge icon="clipboard" />);
 
-  expect(queryByRole("presentation")).toBeTruthy();
+  expect(queryByRole("presentation", { hidden: true })).toBeTruthy();
 });
 
 test("passes along any other props", () => {
