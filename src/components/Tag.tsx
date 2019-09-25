@@ -1,13 +1,14 @@
 import * as React from "react";
 
 import classnames from "../classnames";
-import { ContainerProps } from "../typings";
 
-type TagProps = ContainerProps & {
+type TagProps = {
+  children: React.ReactNode;
+  className?: string;
   color?: "blue" | "gray" | "red";
 };
 
-const Tag = ({ children, className, color = "blue" }: TagProps) => (
+const Tag: React.FC<TagProps> = ({ children, className, color = "blue" }) => (
   <div
     className={
       classnames("chq-tag", className, {

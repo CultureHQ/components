@@ -10,7 +10,11 @@ type SubmitButtonProps = Omit<React.ComponentProps<typeof Button>, "disabled"> &
 
 const message = (submitting: boolean) => (submitting ? "Submitting..." : "Submit");
 
-const SubmitButton = ({ children = message, disabled = false, ...props }: SubmitButtonProps) => {
+const SubmitButton: React.FC<SubmitButtonProps> = ({
+  children = message,
+  disabled = false,
+  ...props
+}) => {
   const { submitting } = useForm();
 
   return (

@@ -33,13 +33,13 @@ type TimeSelectButtonProps = {
   option: TimeSelectOption;
 };
 
-const TimeSelectButton = ({
+const TimeSelectButton: React.FC<TimeSelectButtonProps> = ({
   currentOptionRef,
   hours,
   minutes,
   onChange,
   option
-}: TimeSelectButtonProps) => {
+}) => {
   const current = hours === option.hours && minutes === option.minutes;
 
   return (
@@ -60,7 +60,7 @@ type TimeSelectProps = {
   onChange: TimeSelectOnChange;
 };
 
-const TimeSelect = ({ hours, minutes, onChange }: TimeSelectProps) => {
+const TimeSelect: React.FC<TimeSelectProps> = ({ hours, minutes, onChange }) => {
   const currentOptionRef = React.useRef<HTMLButtonElement>(null);
   const selectRef = React.useRef<HTMLDivElement>(null);
 

@@ -2,7 +2,6 @@ import * as React from "react";
 import { useWindowEvent } from "@culturehq/hooks";
 
 import classnames from "../classnames";
-import { ContainerProps } from "../typings";
 
 type NavState = {
   displayed: boolean;
@@ -18,9 +17,12 @@ const updateState = (state: NavState) => {
   };
 };
 
-type NavProps = ContainerProps & React.HTMLAttributes<HTMLElement>;
+type NavProps = React.HTMLAttributes<HTMLElement> & {
+  children: React.ReactNode;
+  className?: string;
+};
 
-const Nav = ({ children, className, ...props }: NavProps) => {
+const Nav: React.FC<NavProps> = ({ children, className, ...props }) => {
   const [state, setState] = React.useState<NavState>(() => ({
     displayed: true,
     scroll: window.pageYOffset

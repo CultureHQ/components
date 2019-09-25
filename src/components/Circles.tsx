@@ -6,7 +6,7 @@ type CirclesProps = {
   className?: string;
 };
 
-const Circles = ({ className }: CirclesProps) => (
+const Circles: React.FC<CirclesProps> = ({ className }) => (
   <svg className={classnames("chq-cir", className)} viewBox="0 0 300 300">
     <circle
       className="chq-cir--sm"

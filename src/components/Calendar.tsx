@@ -67,7 +67,7 @@ type CalendarProps = {
   onChange: (year: number, month: number, day: number) => void;
 };
 
-const Calendar = ({ year = null, month = null, day = null, onChange }: CalendarProps) => {
+const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = null, onChange }) => {
   const [visible, setVisible] = React.useState<CalendarView>(() => ({
     year: year === null ? new Date().getFullYear() : year,
     month: month === null ? new Date().getMonth() : month

@@ -13,7 +13,7 @@ type PageLinkProps = {
   page: number;
 };
 
-const PageLink = ({ disabled, children, current, onClick, page }: PageLinkProps) => {
+const PageLink: React.FC<PageLinkProps> = ({ disabled, children, current, onClick, page }) => {
   const onButtonClick = () => {
     if (!current) {
       onClick(page);
@@ -35,7 +35,7 @@ const PageLink = ({ disabled, children, current, onClick, page }: PageLinkProps)
 
 type PageProps = Omit<PageLinkProps, "children">;
 
-const Page = ({ page, ...props }: PageProps) => (
+const Page: React.FC<PageProps> = ({ page, ...props }) => (
   <PageLink page={page} {...props}>{page}</PageLink>
 );
 
@@ -44,7 +44,7 @@ type PrevPageProps = {
   onClick: PageOnClick;
 };
 
-const PrevPage = ({ currentPage, onClick }: PrevPageProps) => (
+const PrevPage: React.FC<PrevPageProps> = ({ currentPage, onClick }) => (
   <PageLink
     disabled={currentPage === 1}
     page={currentPage - 1}
@@ -60,7 +60,7 @@ type NextPageProps = {
   totalPages: number;
 };
 
-const NextPage = ({ currentPage, totalPages, onClick }: NextPageProps) => (
+const NextPage: React.FC<NextPageProps> = ({ currentPage, totalPages, onClick }) => (
   <PageLink
     disabled={currentPage === totalPages}
     page={currentPage + 1}
@@ -77,7 +77,12 @@ type PaginationProps = {
   totalPages: number;
 };
 
-const Pagination = ({ className, currentPage = 1, totalPages, onClick }: PaginationProps) => {
+const Pagination: React.FC<PaginationProps> = ({
+  className,
+  currentPage = 1,
+  totalPages,
+  onClick
+}) => {
   if (totalPages < 2) {
     return null;
   }

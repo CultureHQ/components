@@ -24,9 +24,13 @@ type SelectFieldOptionProps = Pick<SelectFieldPassedProps, "onDeselect" | "onSel
   tabIndex: number;
 };
 
-const SelectFieldOption = ({
-  active, option, onDeselect, onSelect, tabIndex
-}: SelectFieldOptionProps) => {
+const SelectFieldOption: React.FC<SelectFieldOptionProps> = ({
+  active,
+  option,
+  onDeselect,
+  onSelect,
+  tabIndex
+}) => {
   const { label, value } = option;
 
   const className = classnames({ "chq-ffd--sl--opt-act": active });
@@ -41,9 +45,17 @@ const SelectFieldOption = ({
 
 type SelectFieldOptionsProps = Pick<SelectFieldPassedProps, "creatable" | "display" | "filteredOptions" | "multiple" | "onDeselect" | "onSelect" | "open" | "options" | "value">;
 
-const SelectFieldOptions = ({
-  creatable, display, filteredOptions, multiple, onDeselect, onSelect, open, options, value
-}: SelectFieldOptionsProps) => {
+const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = ({
+  creatable,
+  display,
+  filteredOptions,
+  multiple,
+  onDeselect,
+  onSelect,
+  open,
+  options,
+  value
+}) => {
   const createOption = creatable && isCreatingOption({ display, multiple, options, value });
 
   return (

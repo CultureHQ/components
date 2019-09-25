@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import classnames from "../../classnames";
-import { ContainerProps } from "../../typings";
 
 import PlainButton from "../buttons/PlainButton";
 import Icon from "../Icon";
@@ -21,11 +20,13 @@ const widths = {
   normal: "chq-mdl-wn"
 };
 
-type ModalDialogHeadingProps = ContainerProps & React.ComponentProps<typeof Panel.Heading> & {
+type ModalDialogHeadingProps = React.ComponentProps<typeof Panel.Heading> & {
+  children: React.ReactNode;
+  className?: string;
   onClose?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const ModalDialogHeading = ({ children, onClose, ...props }: ModalDialogHeadingProps) => (
+const ModalDialogHeading: React.FC<ModalDialogHeadingProps> = ({ children, onClose, ...props }) => (
   <Panel.Heading primary {...props}>
     {children}
     <PlainButton aria-label="Close" className="chq-mdl--cl" onClick={onClose}>
@@ -41,8 +42,10 @@ const modalStyle = {
   }
 };
 
-type ModalDialogProps = ContainerProps & {
+type ModalDialogProps = {
   appElement?: string | HTMLElement;
+  children: React.ReactNode;
+  className?: string;
   contentRef?: React.Ref<HTMLDivElement>;
   entrance?: keyof typeof entrances;
   onClose?: (event: (React.MouseEvent | React.KeyboardEvent)) => void;

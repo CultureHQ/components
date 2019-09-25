@@ -9,7 +9,7 @@ type ButtonIconProps = {
   loading: boolean;
 };
 
-const ButtonIcon = ({ icon, loading }: ButtonIconProps) => (
+const ButtonIcon: React.FC<ButtonIconProps> = ({ icon, loading }) => (
   <>
     <Icon icon={(loading ? "load-c" : icon) as IconName} />
     {" "}
@@ -33,7 +33,7 @@ type ButtonProps<P extends any = any> = ButtonCommonProps & (
   | ({ as: undefined | "button" } & React.ButtonHTMLAttributes<HTMLButtonElement>)
 );
 
-const Button = ({
+const Button: React.FC<ButtonProps> = ({
   as: Element = "button",
   children,
   className,
@@ -46,7 +46,7 @@ const Button = ({
   loading = false,
   danger = false,
   ...props
-}: ButtonProps) => {
+}) => {
   const buttonProps = {
     ...props,
     className: classnames("chq-btn", className, {

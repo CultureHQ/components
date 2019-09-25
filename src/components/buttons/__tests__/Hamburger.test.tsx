@@ -3,7 +3,7 @@ import { fireEvent, render } from "@testing-library/react";
 
 import Hamburger from "../Hamburger";
 
-const Container = ({ open: initialOpen = false }: { open?: boolean }) => {
+const Container: React.FC<{ open?: boolean }> = ({ open: initialOpen = false }) => {
   const [open, setOpen] = React.useState(initialOpen);
   const onToggle = () => setOpen(prevOpen => !prevOpen);
 

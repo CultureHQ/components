@@ -11,14 +11,14 @@ type ThumbnailProps = {
   title?: string;
 };
 
-const Thumbnail = ({
+const Thumbnail: React.FC<ThumbnailProps> = ({
   as: Element = "div",
   className,
   image,
   size = "small",
   square = false,
   title
-}: ThumbnailProps) => (
+}) => (
   <Element
     className={
       classnames("chq-tmb", className, {

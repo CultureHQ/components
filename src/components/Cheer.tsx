@@ -17,7 +17,12 @@ type CheerSVGProps = {
   small?: boolean;
 };
 
-const CheerSVG = ({ className, color = "darkblue", pop = false, small = false }: CheerSVGProps) => (
+const CheerSVG: React.FC<CheerSVGProps> = ({
+  className,
+  color = "darkblue",
+  pop = false,
+  small = false
+}) => (
   <svg
     className={
       classnames("chq-chr", className, `chq-chr-${colors[color]}`, {
@@ -48,7 +53,7 @@ type CheerProps = CheerSVGProps & {
   name?: string;
 };
 
-const Cheer = ({ name, ...props }: CheerProps) => {
+const Cheer: React.FC<CheerProps> = ({ name, ...props }) => {
   if (name) {
     return <Tooltip tip={name}><CheerSVG {...props} /></Tooltip>;
   }

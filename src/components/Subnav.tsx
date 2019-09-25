@@ -9,7 +9,7 @@ type SubnavItemProps = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const SubnavItem = ({ active, children, className, onClick }: SubnavItemProps) => (
+const SubnavItem: React.FC<SubnavItemProps> = ({ active, children, className, onClick }) => (
   <button
     type="button"
     aria-current={active}
