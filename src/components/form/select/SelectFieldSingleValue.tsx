@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import SelectFieldCaret from "./SelectFieldCaret";
 import { SelectFieldPassedProps, SelectValue } from "../typings";

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, date, text } from "@storybook/addon-knobs";
@@ -6,7 +6,7 @@ import { boolean, date, text } from "@storybook/addon-knobs";
 import { DateTimeField, Form, Panel } from "../../src/components";
 
 const Container = (props: Omit<React.ComponentProps<typeof DateTimeField>, "offset">) => {
-  const [offset, setOffset] = React.useState<number>(() => (
+  const [offset, setOffset] = useState<number>(() => (
     -new Date().getTimezoneOffset()
   ));
 

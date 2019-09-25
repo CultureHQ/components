@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useClickOutside } from "@culturehq/hooks";
 
 type ClickCloseProps = React.HTMLAttributes<HTMLDivElement> & {

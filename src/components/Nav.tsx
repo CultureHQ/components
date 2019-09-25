@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useCallback, useState } from "react";
 import { useWindowEvent } from "@culturehq/hooks";
 
 import classnames from "../classnames";
@@ -23,14 +23,14 @@ type NavProps = React.HTMLAttributes<HTMLElement> & {
 };
 
 const Nav: React.FC<NavProps> = ({ children, className, ...props }) => {
-  const [state, setState] = React.useState<NavState>(() => ({
+  const [state, setState] = useState<NavState>(() => ({
     displayed: true,
     scroll: window.pageYOffset
   }));
 
   useWindowEvent(
     "scroll",
-    React.useCallback(() => setState(updateState), [setState])
+    useCallback(() => setState(updateState), [setState])
   );
 
   return (

@@ -1,10 +1,10 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 
 import { Button, DoorEffect, Panel } from "../src/components";
 
 const Container = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <>

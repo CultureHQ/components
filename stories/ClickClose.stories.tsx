@@ -1,14 +1,14 @@
-import * as React from "react";
+import React, { useCallback, useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 import { ClickClose, PlainButton } from "../src/components";
 
 const Container: React.FC<{ onClose: () => void }> = ({ onClose: onCloseAction }) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const onOpen = () => setOpen(true);
 
-  const onClose = React.useCallback(
+  const onClose = useCallback(
     () => {
       if (open) {
         setOpen(false);
