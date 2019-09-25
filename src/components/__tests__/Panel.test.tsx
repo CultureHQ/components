@@ -38,7 +38,7 @@ test("Panel passes on className", () => {
 test("Panel passes on other props", () => {
   const { queryByRole } = render(<Panel role="presentation" />);
 
-  expect(queryByRole("presentation")).toBeTruthy();
+  expect(queryByRole("presentation", { hidden: true })).toBeTruthy();
 });
 
 test("PanelHeading passes on className", () => {

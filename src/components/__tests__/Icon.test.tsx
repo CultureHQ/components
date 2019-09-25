@@ -10,11 +10,11 @@ test("has no violations", () => (
 
 test("renders without crashing", async () => {
   const { container, getByRole } = render(<Icon icon="checkmark" />);
-  expect(getByRole("presentation").firstChild).toBeFalsy();
+  expect(getByRole("presentation", { hidden: true }).firstChild).toBeFalsy();
 
   await waitForDomChange({ container });
 
-  expect(getByRole("presentation").firstChild).toBeTruthy();
+  expect(getByRole("presentation", { hidden: true }).firstChild).toBeTruthy();
 });
 
 test("passes on className", async () => {
