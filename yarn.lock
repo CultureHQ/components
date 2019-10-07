@@ -1417,15 +1417,15 @@
     qs "^6.6.0"
 
 "@storybook/addon-storysource@^5.2.0":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-5.2.1.tgz#8b0edcac885be3d588a33d8557609831e5c2aa46"
-  integrity sha512-g8RDPdH8wfeXiGeXe2S04jy9VF4bnrRrkXoq6Xa4BuDT//6IzecrObHO+6KNHYR7qf1vdBNDu4Yc5xFjqPi9Sw==
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-5.2.3.tgz#10a94ce1a2ddb271786525f91812ff9c62d4372e"
+  integrity sha512-7t/oqRzD2QrGiqnUxU++jqgA8OVYByCFzeRHYcpoz84sd2vSy+110Me1OHj2ZHh1t+QOn8D0DJewe0QrycR56w==
   dependencies:
-    "@storybook/addons" "5.2.1"
-    "@storybook/components" "5.2.1"
-    "@storybook/router" "5.2.1"
-    "@storybook/source-loader" "5.2.1"
-    "@storybook/theming" "5.2.1"
+    "@storybook/addons" "5.2.3"
+    "@storybook/components" "5.2.3"
+    "@storybook/router" "5.2.3"
+    "@storybook/source-loader" "5.2.3"
+    "@storybook/theming" "5.2.3"
     core-js "^3.0.1"
     estraverse "^4.2.0"
     loader-utils "^1.2.3"
@@ -1841,13 +1841,13 @@
     memoizerific "^1.11.3"
     qs "^6.6.0"
 
-"@storybook/source-loader@5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-5.2.1.tgz#87b47899c47e301d890f4135f85301a24a3313aa"
-  integrity sha512-JbvcN9pLbT0mMq5fy/TXE8OcZGk/LVvpNhJtv0rOpREbm8Ia5Xk0tBF5IfGh7bWbHz8DndlgikaMx1mSTv6l9A==
+"@storybook/source-loader@5.2.3":
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-5.2.3.tgz#57f3fcd1ee8c3edd0870ca736e5e235cf8fdeb4c"
+  integrity sha512-4wKYslglYt/yC77zvRZ4OkmTVbnmnd98VMD99KP3Ap6IwkdxtGKIBTOOT36g6m0/1JaMFe+x7i+i9nbmK4hsDQ==
   dependencies:
-    "@storybook/addons" "5.2.1"
-    "@storybook/router" "5.2.1"
+    "@storybook/addons" "5.2.3"
+    "@storybook/router" "5.2.3"
     core-js "^3.0.1"
     estraverse "^4.2.0"
     global "^4.3.2"
