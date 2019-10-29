@@ -32,8 +32,6 @@ type SubnavState = {
 };
 
 class Subnav extends React.Component<SubnavProps, SubnavState> {
-  static Item = SubnavItem;
-
   constructor(props: SubnavProps) {
     super(props);
 
@@ -48,6 +46,8 @@ class Subnav extends React.Component<SubnavProps, SubnavState> {
       onChange(activeIndex);
     }
   }
+
+  static Item = SubnavItem;
 
   render() {
     const { children, className, activeIndex: givenIndex } = this.props;

@@ -14,14 +14,6 @@ type ModalState = {
 };
 
 class Modal extends React.Component<ModalProps, ModalState> {
-  static Heading = ModalDialog.Heading;
-
-  static Body = ModalDialog.Body;
-
-  static LoaderBody = ModalDialog.LoaderBody;
-
-  static Footer = ModalDialog.Footer;
-
   constructor(props: ModalProps) {
     super(props);
 
@@ -52,6 +44,14 @@ class Modal extends React.Component<ModalProps, ModalState> {
       onClose();
     }
   };
+
+  static Heading = ModalDialog.Heading;
+
+  static Body = ModalDialog.Body;
+
+  static LoaderBody = ModalDialog.LoaderBody;
+
+  static Footer = ModalDialog.Footer;
 
   render() {
     const { appElement, className, contentRef, entrance, trigger, width } = this.props;

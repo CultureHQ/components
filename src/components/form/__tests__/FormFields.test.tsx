@@ -12,6 +12,7 @@ const cases = [
   ["string", StringField]
 ];
 
+// eslint-disable-next-line jest/valid-describe
 describe.each(cases)("%s", (type, FormField) => {
   test("has no violations", () => (
     expect(<FormField name="field">Field!</FormField>).toHaveNoViolations()

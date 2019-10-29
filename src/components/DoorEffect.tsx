@@ -8,11 +8,11 @@ type DoorEffectProps = {
 };
 
 class DoorEffect extends React.PureComponent<DoorEffectProps, {}> {
+  doorRef = React.createRef<HTMLDivElement>();
+
   static defaultProps = {
     duration: 150
   };
-
-  doorRef = React.createRef<HTMLDivElement>();
 
   componentDidUpdate(prevProps: DoorEffectProps) {
     const { className, duration, open } = this.props;

@@ -24,9 +24,9 @@ type FormFieldState = {
 
 const buildFormField = (type: string, displayName: string) => withForm(
   class extends React.Component<FormFieldProps & FormState, FormFieldState> {
-    static displayName = displayName;
-
     private inputRef = React.createRef<HTMLInputElement>();
+
+    static displayName = displayName;
 
     state = { touched: false };
 

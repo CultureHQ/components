@@ -19,18 +19,18 @@ type SearchBarState = {
 };
 
 class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
+  private componentIsMounted = false;
+
+  private inputRef = React.createRef<HTMLInputElement>();
+
+  private timeout: null | number = null;
+
   static defaultProps: Partial<SearchBarProps> = {
     autoComplete: "on",
     autoFocus: false,
     placeholder: "",
     throttle: 300
   };
-
-  private componentIsMounted = false;
-
-  private inputRef = React.createRef<HTMLInputElement>();
-
-  private timeout: null | number = null;
 
   state = { search: "", searching: false };
 
