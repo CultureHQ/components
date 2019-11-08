@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [16.0.2] - 2019-11-08
+
+### Changed
+
+- Update the `timezones.json` file.
+
 ## [16.0.1] - 2019-09-25
 
 ### Changed
@@ -1058,7 +1064,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.0.1...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v16.0.2...HEAD
+[16.0.2]: https://github.com/CultureHQ/components/compare/v16.0.1...v16.0.2
 [16.0.1]: https://github.com/CultureHQ/components/compare/v16.0.0...v16.0.1
 [16.0.0]: https://github.com/CultureHQ/components/compare/v15.0.1...v16.0.0
 [15.0.1]: https://github.com/CultureHQ/components/compare/v15.0.0...v15.0.1

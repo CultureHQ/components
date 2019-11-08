@@ -20,6 +20,11 @@
     "offset": -600
   },
   {
+    "label": "(GMT-10:00) Hawaii-Aleutian Time",
+    "value": "America/Adak",
+    "offset": -600
+  },
+  {
     "label": "(GMT-10:00) Tahiti Time",
     "value": "Pacific/Tahiti",
     "offset": -600
@@ -30,43 +35,63 @@
     "offset": -510
   },
   {
+    "label": "(GMT-09:00) Alaska Time - Anchorage",
+    "value": "America/Anchorage",
+    "offset": -540
+  },
+  {
+    "label": "(GMT-09:00) Alaska Time - Juneau",
+    "value": "America/Juneau",
+    "offset": -540
+  },
+  {
+    "label": "(GMT-09:00) Alaska Time - Metlakatla",
+    "value": "America/Metlakatla",
+    "offset": -540
+  },
+  {
+    "label": "(GMT-09:00) Alaska Time - Nome",
+    "value": "America/Nome",
+    "offset": -540
+  },
+  {
+    "label": "(GMT-09:00) Alaska Time - Sitka",
+    "value": "America/Sitka",
+    "offset": -540
+  },
+  {
+    "label": "(GMT-09:00) Alaska Time - Yakutat",
+    "value": "America/Yakutat",
+    "offset": -540
+  },
+  {
     "label": "(GMT-09:00) Gambier Time",
     "value": "Pacific/Gambier",
     "offset": -540
   },
   {
-    "label": "(GMT-09:00) Hawaii-Aleutian Time (Adak)",
-    "value": "America/Adak",
-    "offset": -540
-  },
-  {
-    "label": "(GMT-08:00) Alaska Time - Anchorage",
-    "value": "America/Anchorage",
+    "label": "(GMT-08:00) Pacific Time - Dawson",
+    "value": "America/Dawson",
     "offset": -480
   },
   {
-    "label": "(GMT-08:00) Alaska Time - Juneau",
-    "value": "America/Juneau",
+    "label": "(GMT-08:00) Pacific Time - Los Angeles",
+    "value": "America/Los_Angeles",
     "offset": -480
   },
   {
-    "label": "(GMT-08:00) Alaska Time - Metlakatla",
-    "value": "America/Metlakatla",
+    "label": "(GMT-08:00) Pacific Time - Tijuana",
+    "value": "America/Tijuana",
     "offset": -480
   },
   {
-    "label": "(GMT-08:00) Alaska Time - Nome",
-    "value": "America/Nome",
+    "label": "(GMT-08:00) Pacific Time - Vancouver",
+    "value": "America/Vancouver",
     "offset": -480
   },
   {
-    "label": "(GMT-08:00) Alaska Time - Sitka",
-    "value": "America/Sitka",
-    "offset": -480
-  },
-  {
-    "label": "(GMT-08:00) Alaska Time - Yakutat",
-    "value": "America/Yakutat",
+    "label": "(GMT-08:00) Pacific Time - Whitehorse",
+    "value": "America/Whitehorse",
     "offset": -480
   },
   {
@@ -77,6 +102,16 @@
   {
     "label": "(GMT-07:00) Mexican Pacific Standard Time",
     "value": "America/Hermosillo",
+    "offset": -420
+  },
+  {
+    "label": "(GMT-07:00) Mexican Pacific Time - Chihuahua",
+    "value": "America/Chihuahua",
+    "offset": -420
+  },
+  {
+    "label": "(GMT-07:00) Mexican Pacific Time - Mazatlan",
+    "value": "America/Mazatlan",
     "offset": -420
   },
   {
@@ -100,28 +135,38 @@
     "offset": -420
   },
   {
-    "label": "(GMT-07:00) Pacific Time - Dawson",
-    "value": "America/Dawson",
+    "label": "(GMT-07:00) Mountain Time - Boise",
+    "value": "America/Boise",
     "offset": -420
   },
   {
-    "label": "(GMT-07:00) Pacific Time - Los Angeles",
-    "value": "America/Los_Angeles",
+    "label": "(GMT-07:00) Mountain Time - Cambridge Bay",
+    "value": "America/Cambridge_Bay",
     "offset": -420
   },
   {
-    "label": "(GMT-07:00) Pacific Time - Tijuana",
-    "value": "America/Tijuana",
+    "label": "(GMT-07:00) Mountain Time - Denver",
+    "value": "America/Denver",
     "offset": -420
   },
   {
-    "label": "(GMT-07:00) Pacific Time - Vancouver",
-    "value": "America/Vancouver",
+    "label": "(GMT-07:00) Mountain Time - Edmonton",
+    "value": "America/Edmonton",
     "offset": -420
   },
   {
-    "label": "(GMT-07:00) Pacific Time - Whitehorse",
-    "value": "America/Whitehorse",
+    "label": "(GMT-07:00) Mountain Time - Inuvik",
+    "value": "America/Inuvik",
+    "offset": -420
+  },
+  {
+    "label": "(GMT-07:00) Mountain Time - Ojinaga",
+    "value": "America/Ojinaga",
+    "offset": -420
+  },
+  {
+    "label": "(GMT-07:00) Mountain Time - Yellowknife",
+    "value": "America/Yellowknife",
     "offset": -420
   },
   {
@@ -165,58 +210,88 @@
     "offset": -360
   },
   {
-    "label": "(GMT-06:00) Easter Island Time",
-    "value": "Pacific/Easter",
+    "label": "(GMT-06:00) Central Time - Bahia Banderas",
+    "value": "America/Bahia_Banderas",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Beulah, North Dakota",
+    "value": "America/North_Dakota/Beulah",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Center, North Dakota",
+    "value": "America/North_Dakota/Center",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Chicago",
+    "value": "America/Chicago",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Knox, Indiana",
+    "value": "America/Indiana/Knox",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Matamoros",
+    "value": "America/Matamoros",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Menominee",
+    "value": "America/Menominee",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Merida",
+    "value": "America/Merida",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Mexico City",
+    "value": "America/Mexico_City",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Monterrey",
+    "value": "America/Monterrey",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - New Salem, North Dakota",
+    "value": "America/North_Dakota/New_Salem",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Rainy River",
+    "value": "America/Rainy_River",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Rankin Inlet",
+    "value": "America/Rankin_Inlet",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Resolute",
+    "value": "America/Resolute",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Tell City, Indiana",
+    "value": "America/Indiana/Tell_City",
+    "offset": -360
+  },
+  {
+    "label": "(GMT-06:00) Central Time - Winnipeg",
+    "value": "America/Winnipeg",
     "offset": -360
   },
   {
     "label": "(GMT-06:00) Galapagos Time",
     "value": "Pacific/Galapagos",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Mexican Pacific Time - Chihuahua",
-    "value": "America/Chihuahua",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Mexican Pacific Time - Mazatlan",
-    "value": "America/Mazatlan",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Mountain Time - Boise",
-    "value": "America/Boise",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Mountain Time - Cambridge Bay",
-    "value": "America/Cambridge_Bay",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Mountain Time - Denver",
-    "value": "America/Denver",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Mountain Time - Edmonton",
-    "value": "America/Edmonton",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Mountain Time - Inuvik",
-    "value": "America/Inuvik",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Mountain Time - Ojinaga",
-    "value": "America/Ojinaga",
-    "offset": -360
-  },
-  {
-    "label": "(GMT-06:00) Mountain Time - Yellowknife",
-    "value": "America/Yellowknife",
     "offset": -360
   },
   {
@@ -230,88 +305,18 @@
     "offset": -300
   },
   {
-    "label": "(GMT-05:00) Central Time - Bahia Banderas",
-    "value": "America/Bahia_Banderas",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Beulah, North Dakota",
-    "value": "America/North_Dakota/Beulah",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Center, North Dakota",
-    "value": "America/North_Dakota/Center",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Chicago",
-    "value": "America/Chicago",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Knox, Indiana",
-    "value": "America/Indiana/Knox",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Matamoros",
-    "value": "America/Matamoros",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Menominee",
-    "value": "America/Menominee",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Merida",
-    "value": "America/Merida",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Mexico City",
-    "value": "America/Mexico_City",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Monterrey",
-    "value": "America/Monterrey",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - New Salem, North Dakota",
-    "value": "America/North_Dakota/New_Salem",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Rainy River",
-    "value": "America/Rainy_River",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Rankin Inlet",
-    "value": "America/Rankin_Inlet",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Resolute",
-    "value": "America/Resolute",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Tell City, Indiana",
-    "value": "America/Indiana/Tell_City",
-    "offset": -300
-  },
-  {
-    "label": "(GMT-05:00) Central Time - Winnipeg",
-    "value": "America/Winnipeg",
-    "offset": -300
-  },
-  {
     "label": "(GMT-05:00) Colombia Standard Time",
     "value": "America/Bogota",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Cuba Time",
+    "value": "America/Havana",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Easter Island Time",
+    "value": "Pacific/Easter",
     "offset": -300
   },
   {
@@ -335,6 +340,96 @@
     "offset": -300
   },
   {
+    "label": "(GMT-05:00) Eastern Time - Detroit",
+    "value": "America/Detroit",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Grand Turk",
+    "value": "America/Grand_Turk",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Indianapolis",
+    "value": "America/Indiana/Indianapolis",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Iqaluit",
+    "value": "America/Iqaluit",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Louisville",
+    "value": "America/Kentucky/Louisville",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Marengo, Indiana",
+    "value": "America/Indiana/Marengo",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Monticello, Kentucky",
+    "value": "America/Kentucky/Monticello",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Nassau",
+    "value": "America/Nassau",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - New York",
+    "value": "America/New_York",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Nipigon",
+    "value": "America/Nipigon",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Pangnirtung",
+    "value": "America/Pangnirtung",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Petersburg, Indiana",
+    "value": "America/Indiana/Petersburg",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Port-au-Prince",
+    "value": "America/Port-au-Prince",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Thunder Bay",
+    "value": "America/Thunder_Bay",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Toronto",
+    "value": "America/Toronto",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Vevay, Indiana",
+    "value": "America/Indiana/Vevay",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Vincennes, Indiana",
+    "value": "America/Indiana/Vincennes",
+    "offset": -300
+  },
+  {
+    "label": "(GMT-05:00) Eastern Time - Winamac, Indiana",
+    "value": "America/Indiana/Winamac",
+    "offset": -300
+  },
+  {
     "label": "(GMT-05:00) Ecuador Time",
     "value": "America/Guayaquil",
     "offset": -300
@@ -350,6 +445,16 @@
     "offset": -240
   },
   {
+    "label": "(GMT-04:00) Amazon Standard Time - Campo Grande",
+    "value": "America/Campo_Grande",
+    "offset": -240
+  },
+  {
+    "label": "(GMT-04:00) Amazon Standard Time - Cuiaba",
+    "value": "America/Cuiaba",
+    "offset": -240
+  },
+  {
     "label": "(GMT-04:00) Amazon Standard Time - Manaus",
     "value": "America/Manaus",
     "offset": -240
@@ -357,16 +462,6 @@
   {
     "label": "(GMT-04:00) Amazon Standard Time - Porto Velho",
     "value": "America/Porto_Velho",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Amazon Time - Campo Grande",
-    "value": "America/Campo_Grande",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Amazon Time - Cuiaba",
-    "value": "America/Cuiaba",
     "offset": -240
   },
   {
@@ -405,108 +500,38 @@
     "offset": -240
   },
   {
+    "label": "(GMT-04:00) Atlantic Time - Bermuda",
+    "value": "Atlantic/Bermuda",
+    "offset": -240
+  },
+  {
+    "label": "(GMT-04:00) Atlantic Time - Glace Bay",
+    "value": "America/Glace_Bay",
+    "offset": -240
+  },
+  {
+    "label": "(GMT-04:00) Atlantic Time - Goose Bay",
+    "value": "America/Goose_Bay",
+    "offset": -240
+  },
+  {
+    "label": "(GMT-04:00) Atlantic Time - Halifax",
+    "value": "America/Halifax",
+    "offset": -240
+  },
+  {
+    "label": "(GMT-04:00) Atlantic Time - Moncton",
+    "value": "America/Moncton",
+    "offset": -240
+  },
+  {
+    "label": "(GMT-04:00) Atlantic Time - Thule",
+    "value": "America/Thule",
+    "offset": -240
+  },
+  {
     "label": "(GMT-04:00) Bolivia Time",
     "value": "America/La_Paz",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Chile Time",
-    "value": "America/Santiago",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Cuba Time",
-    "value": "America/Havana",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Detroit",
-    "value": "America/Detroit",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Grand Turk",
-    "value": "America/Grand_Turk",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Indianapolis",
-    "value": "America/Indiana/Indianapolis",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Iqaluit",
-    "value": "America/Iqaluit",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Louisville",
-    "value": "America/Kentucky/Louisville",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Marengo, Indiana",
-    "value": "America/Indiana/Marengo",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Monticello, Kentucky",
-    "value": "America/Kentucky/Monticello",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Nassau",
-    "value": "America/Nassau",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - New York",
-    "value": "America/New_York",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Nipigon",
-    "value": "America/Nipigon",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Pangnirtung",
-    "value": "America/Pangnirtung",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Petersburg, Indiana",
-    "value": "America/Indiana/Petersburg",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Port-au-Prince",
-    "value": "America/Port-au-Prince",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Thunder Bay",
-    "value": "America/Thunder_Bay",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Toronto",
-    "value": "America/Toronto",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Vevay, Indiana",
-    "value": "America/Indiana/Vevay",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Vincennes, Indiana",
-    "value": "America/Indiana/Vincennes",
-    "offset": -240
-  },
-  {
-    "label": "(GMT-04:00) Eastern Time - Winamac, Indiana",
-    "value": "America/Indiana/Winamac",
     "offset": -240
   },
   {
@@ -515,14 +540,14 @@
     "offset": -240
   },
   {
-    "label": "(GMT-04:00) Paraguay Time",
-    "value": "America/Asuncion",
-    "offset": -240
-  },
-  {
     "label": "(GMT-04:00) Venezuela Time",
     "value": "America/Caracas",
     "offset": -240
+  },
+  {
+    "label": "(GMT-03:30) Newfoundland Time",
+    "value": "America/St_Johns",
+    "offset": -150
   },
   {
     "label": "(GMT-03:00) Argentina Standard Time - Buenos Aires",
@@ -580,36 +605,6 @@
     "offset": -180
   },
   {
-    "label": "(GMT-03:00) Atlantic Time - Bermuda",
-    "value": "Atlantic/Bermuda",
-    "offset": -180
-  },
-  {
-    "label": "(GMT-03:00) Atlantic Time - Glace Bay",
-    "value": "America/Glace_Bay",
-    "offset": -180
-  },
-  {
-    "label": "(GMT-03:00) Atlantic Time - Goose Bay",
-    "value": "America/Goose_Bay",
-    "offset": -180
-  },
-  {
-    "label": "(GMT-03:00) Atlantic Time - Halifax",
-    "value": "America/Halifax",
-    "offset": -180
-  },
-  {
-    "label": "(GMT-03:00) Atlantic Time - Moncton",
-    "value": "America/Moncton",
-    "offset": -180
-  },
-  {
-    "label": "(GMT-03:00) Atlantic Time - Thule",
-    "value": "America/Thule",
-    "offset": -180
-  },
-  {
     "label": "(GMT-03:00) Brasilia Standard Time - Araguaina",
     "value": "America/Araguaina",
     "offset": -180
@@ -645,8 +640,13 @@
     "offset": -180
   },
   {
-    "label": "(GMT-03:00) Brasilia Time",
+    "label": "(GMT-03:00) Brasilia Standard Time - Sao Paulo",
     "value": "America/Sao_Paulo",
+    "offset": -180
+  },
+  {
+    "label": "(GMT-03:00) Chile Time",
+    "value": "America/Santiago",
     "offset": -180
   },
   {
@@ -665,6 +665,11 @@
     "offset": -180
   },
   {
+    "label": "(GMT-03:00) Paraguay Time",
+    "value": "America/Asuncion",
+    "offset": -180
+  },
+  {
     "label": "(GMT-03:00) Punta Arenas Time",
     "value": "America/Punta_Arenas",
     "offset": -180
@@ -672,6 +677,11 @@
   {
     "label": "(GMT-03:00) Rothera Time",
     "value": "Antarctica/Rothera",
+    "offset": -180
+  },
+  {
+    "label": "(GMT-03:00) St. Pierre & Miquelon Time",
+    "value": "America/Miquelon",
     "offset": -180
   },
   {
@@ -685,14 +695,14 @@
     "offset": -180
   },
   {
-    "label": "(GMT-03:00) Western Argentina Standard Time",
-    "value": "America/Argentina/San_Luis",
+    "label": "(GMT-03:00) West Greenland Time",
+    "value": "America/Godthab",
     "offset": -180
   },
   {
-    "label": "(GMT-02:30) Newfoundland Time",
-    "value": "America/St_Johns",
-    "offset": -90
+    "label": "(GMT-03:00) Western Argentina Standard Time",
+    "value": "America/Argentina/San_Luis",
+    "offset": -180
   },
   {
     "label": "(GMT-02:00) Fernando de Noronha Standard Time",
@@ -705,14 +715,9 @@
     "offset": -120
   },
   {
-    "label": "(GMT-02:00) St. Pierre & Miquelon Time",
-    "value": "America/Miquelon",
-    "offset": -120
-  },
-  {
-    "label": "(GMT-02:00) West Greenland Time",
-    "value": "America/Godthab",
-    "offset": -120
+    "label": "(GMT-01:00) Azores Time",
+    "value": "Atlantic/Azores",
+    "offset": -60
   },
   {
     "label": "(GMT-01:00) Cape Verde Standard Time",
@@ -720,18 +725,13 @@
     "offset": -60
   },
   {
-    "label": "(GMT+00:00) Azores Time",
-    "value": "Atlantic/Azores",
-    "offset": 0
+    "label": "(GMT-01:00) East Greenland Time",
+    "value": "America/Scoresbysund",
+    "offset": -60
   },
   {
     "label": "(GMT+00:00) Coordinated Universal Time",
     "value": "UTC",
-    "offset": 0
-  },
-  {
-    "label": "(GMT+00:00) East Greenland Time",
-    "value": "America/Scoresbysund",
     "offset": 0
   },
   {
@@ -775,13 +775,38 @@
     "offset": 0
   },
   {
-    "label": "(GMT+00:00) Morocco Time",
-    "value": "Africa/Casablanca",
+    "label": "(GMT+00:00) Ireland Time",
+    "value": "Europe/Dublin",
     "offset": 0
   },
   {
-    "label": "(GMT+00:00) Western Sahara Time",
-    "value": "Africa/El_Aaiun",
+    "label": "(GMT+00:00) Troll Time",
+    "value": "Antarctica/Troll",
+    "offset": 0
+  },
+  {
+    "label": "(GMT+00:00) United Kingdom Time",
+    "value": "Europe/London",
+    "offset": 0
+  },
+  {
+    "label": "(GMT+00:00) Western European Time - Canary",
+    "value": "Atlantic/Canary",
+    "offset": 0
+  },
+  {
+    "label": "(GMT+00:00) Western European Time - Faroe",
+    "value": "Atlantic/Faroe",
+    "offset": 0
+  },
+  {
+    "label": "(GMT+00:00) Western European Time - Lisbon",
+    "value": "Europe/Lisbon",
+    "offset": 0
+  },
+  {
+    "label": "(GMT+00:00) Western European Time - Madeira",
+    "value": "Atlantic/Madeira",
     "offset": 0
   },
   {
@@ -795,13 +820,118 @@
     "offset": 60
   },
   {
-    "label": "(GMT+01:00) Ireland Time",
-    "value": "Europe/Dublin",
+    "label": "(GMT+01:00) Central European Time - Amsterdam",
+    "value": "Europe/Amsterdam",
     "offset": 60
   },
   {
-    "label": "(GMT+01:00) United Kingdom Time",
-    "value": "Europe/London",
+    "label": "(GMT+01:00) Central European Time - Andorra",
+    "value": "Europe/Andorra",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Belgrade",
+    "value": "Europe/Belgrade",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Berlin",
+    "value": "Europe/Berlin",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Brussels",
+    "value": "Europe/Brussels",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Budapest",
+    "value": "Europe/Budapest",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Ceuta",
+    "value": "Africa/Ceuta",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Copenhagen",
+    "value": "Europe/Copenhagen",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Gibraltar",
+    "value": "Europe/Gibraltar",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Luxembourg",
+    "value": "Europe/Luxembourg",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Madrid",
+    "value": "Europe/Madrid",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Malta",
+    "value": "Europe/Malta",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Monaco",
+    "value": "Europe/Monaco",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Oslo",
+    "value": "Europe/Oslo",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Paris",
+    "value": "Europe/Paris",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Prague",
+    "value": "Europe/Prague",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Rome",
+    "value": "Europe/Rome",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Stockholm",
+    "value": "Europe/Stockholm",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Tirane",
+    "value": "Europe/Tirane",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Vienna",
+    "value": "Europe/Vienna",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Warsaw",
+    "value": "Europe/Warsaw",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Central European Time - Zurich",
+    "value": "Europe/Zurich",
+    "offset": 60
+  },
+  {
+    "label": "(GMT+01:00) Morocco Time",
+    "value": "Africa/Casablanca",
     "offset": 60
   },
   {
@@ -815,23 +945,8 @@
     "offset": 60
   },
   {
-    "label": "(GMT+01:00) Western European Time - Canary",
-    "value": "Atlantic/Canary",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Western European Time - Faroe",
-    "value": "Atlantic/Faroe",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Western European Time - Lisbon",
-    "value": "Europe/Lisbon",
-    "offset": 60
-  },
-  {
-    "label": "(GMT+01:00) Western European Time - Madeira",
-    "value": "Atlantic/Madeira",
+    "label": "(GMT+01:00) Western Sahara Time",
+    "value": "Africa/El_Aaiun",
     "offset": 60
   },
   {
@@ -850,116 +965,6 @@
     "offset": 120
   },
   {
-    "label": "(GMT+02:00) Central European Time - Amsterdam",
-    "value": "Europe/Amsterdam",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Andorra",
-    "value": "Europe/Andorra",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Belgrade",
-    "value": "Europe/Belgrade",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Berlin",
-    "value": "Europe/Berlin",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Brussels",
-    "value": "Europe/Brussels",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Budapest",
-    "value": "Europe/Budapest",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Ceuta",
-    "value": "Africa/Ceuta",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Copenhagen",
-    "value": "Europe/Copenhagen",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Gibraltar",
-    "value": "Europe/Gibraltar",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Luxembourg",
-    "value": "Europe/Luxembourg",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Madrid",
-    "value": "Europe/Madrid",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Malta",
-    "value": "Europe/Malta",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Monaco",
-    "value": "Europe/Monaco",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Oslo",
-    "value": "Europe/Oslo",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Paris",
-    "value": "Europe/Paris",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Prague",
-    "value": "Europe/Prague",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Rome",
-    "value": "Europe/Rome",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Stockholm",
-    "value": "Europe/Stockholm",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Tirane",
-    "value": "Europe/Tirane",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Vienna",
-    "value": "Europe/Vienna",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Warsaw",
-    "value": "Europe/Warsaw",
-    "offset": 120
-  },
-  {
-    "label": "(GMT+02:00) Central European Time - Zurich",
-    "value": "Europe/Zurich",
-    "offset": 120
-  },
-  {
     "label": "(GMT+02:00) Eastern European Standard Time - Cairo",
     "value": "Africa/Cairo",
     "offset": 120
@@ -975,13 +980,103 @@
     "offset": 120
   },
   {
-    "label": "(GMT+02:00) South Africa Standard Time",
-    "value": "Africa/Johannesburg",
+    "label": "(GMT+02:00) Eastern European Time - Amman",
+    "value": "Asia/Amman",
     "offset": 120
   },
   {
-    "label": "(GMT+02:00) Troll Time",
-    "value": "Antarctica/Troll",
+    "label": "(GMT+02:00) Eastern European Time - Athens",
+    "value": "Europe/Athens",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Beirut",
+    "value": "Asia/Beirut",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Bucharest",
+    "value": "Europe/Bucharest",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Chisinau",
+    "value": "Europe/Chisinau",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Damascus",
+    "value": "Asia/Damascus",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Gaza",
+    "value": "Asia/Gaza",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Hebron",
+    "value": "Asia/Hebron",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Helsinki",
+    "value": "Europe/Helsinki",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Kiev",
+    "value": "Europe/Kiev",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Nicosia",
+    "value": "Asia/Nicosia",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Riga",
+    "value": "Europe/Riga",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Sofia",
+    "value": "Europe/Sofia",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Tallinn",
+    "value": "Europe/Tallinn",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Uzhhorod",
+    "value": "Europe/Uzhgorod",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Vilnius",
+    "value": "Europe/Vilnius",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Eastern European Time - Zaporozhye",
+    "value": "Europe/Zaporozhye",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Famagusta Time",
+    "value": "Asia/Famagusta",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) Israel Time",
+    "value": "Asia/Jerusalem",
+    "offset": 120
+  },
+  {
+    "label": "(GMT+02:00) South Africa Standard Time",
+    "value": "Africa/Johannesburg",
     "offset": 120
   },
   {
@@ -1007,101 +1102,6 @@
   {
     "label": "(GMT+03:00) East Africa Time - Nairobi",
     "value": "Africa/Nairobi",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Amman",
-    "value": "Asia/Amman",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Athens",
-    "value": "Europe/Athens",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Beirut",
-    "value": "Asia/Beirut",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Bucharest",
-    "value": "Europe/Bucharest",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Chisinau",
-    "value": "Europe/Chisinau",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Damascus",
-    "value": "Asia/Damascus",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Gaza",
-    "value": "Asia/Gaza",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Hebron",
-    "value": "Asia/Hebron",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Helsinki",
-    "value": "Europe/Helsinki",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Kiev",
-    "value": "Europe/Kiev",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Nicosia",
-    "value": "Asia/Nicosia",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Riga",
-    "value": "Europe/Riga",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Sofia",
-    "value": "Europe/Sofia",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Tallinn",
-    "value": "Europe/Tallinn",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Uzhhorod",
-    "value": "Europe/Uzhgorod",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Vilnius",
-    "value": "Europe/Vilnius",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Eastern European Time - Zaporozhye",
-    "value": "Europe/Zaporozhye",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Famagusta Time",
-    "value": "Asia/Famagusta",
-    "offset": 180
-  },
-  {
-    "label": "(GMT+03:00) Israel Time",
-    "value": "Asia/Jerusalem",
     "offset": 180
   },
   {
@@ -1133,6 +1133,11 @@
     "label": "(GMT+03:00) Turkey Time",
     "value": "Europe/Istanbul",
     "offset": 180
+  },
+  {
+    "label": "(GMT+03:30) Iran Time",
+    "value": "Asia/Tehran",
+    "offset": 210
   },
   {
     "label": "(GMT+04:00) Armenia Standard Time",
@@ -1197,11 +1202,6 @@
   {
     "label": "(GMT+04:30) Afghanistan Time",
     "value": "Asia/Kabul",
-    "offset": 270
-  },
-  {
-    "label": "(GMT+04:30) Iran Time",
-    "value": "Asia/Tehran",
     "offset": 270
   },
   {
@@ -1535,16 +1535,6 @@
     "offset": 570
   },
   {
-    "label": "(GMT+09:30) Central Australia Time - Adelaide",
-    "value": "Australia/Adelaide",
-    "offset": 570
-  },
-  {
-    "label": "(GMT+09:30) Central Australia Time - Broken Hill",
-    "value": "Australia/Broken_Hill",
-    "offset": 570
-  },
-  {
     "label": "(GMT+10:00) Australian Eastern Standard Time - Brisbane",
     "value": "Australia/Brisbane",
     "offset": 600
@@ -1570,26 +1560,6 @@
     "offset": 600
   },
   {
-    "label": "(GMT+10:00) Eastern Australia Time - Currie",
-    "value": "Australia/Currie",
-    "offset": 600
-  },
-  {
-    "label": "(GMT+10:00) Eastern Australia Time - Hobart",
-    "value": "Australia/Hobart",
-    "offset": 600
-  },
-  {
-    "label": "(GMT+10:00) Eastern Australia Time - Melbourne",
-    "value": "Australia/Melbourne",
-    "offset": 600
-  },
-  {
-    "label": "(GMT+10:00) Eastern Australia Time - Sydney",
-    "value": "Australia/Sydney",
-    "offset": 600
-  },
-  {
     "label": "(GMT+10:00) Papua New Guinea Time",
     "value": "Pacific/Port_Moresby",
     "offset": 600
@@ -1605,8 +1575,13 @@
     "offset": 600
   },
   {
-    "label": "(GMT+10:30) Lord Howe Time",
-    "value": "Australia/Lord_Howe",
+    "label": "(GMT+10:30) Central Australia Time - Adelaide",
+    "value": "Australia/Adelaide",
+    "offset": 630
+  },
+  {
+    "label": "(GMT+10:30) Central Australia Time - Broken Hill",
+    "value": "Australia/Broken_Hill",
     "offset": 630
   },
   {
@@ -1615,8 +1590,33 @@
     "offset": 660
   },
   {
+    "label": "(GMT+11:00) Eastern Australia Time - Currie",
+    "value": "Australia/Currie",
+    "offset": 660
+  },
+  {
+    "label": "(GMT+11:00) Eastern Australia Time - Hobart",
+    "value": "Australia/Hobart",
+    "offset": 660
+  },
+  {
+    "label": "(GMT+11:00) Eastern Australia Time - Melbourne",
+    "value": "Australia/Melbourne",
+    "offset": 660
+  },
+  {
+    "label": "(GMT+11:00) Eastern Australia Time - Sydney",
+    "value": "Australia/Sydney",
+    "offset": 660
+  },
+  {
     "label": "(GMT+11:00) Kosrae Time",
     "value": "Pacific/Kosrae",
+    "offset": 660
+  },
+  {
+    "label": "(GMT+11:00) Lord Howe Time",
+    "value": "Australia/Lord_Howe",
     "offset": 660
   },
   {
@@ -1632,11 +1632,6 @@
   {
     "label": "(GMT+11:00) New Caledonia Standard Time",
     "value": "Pacific/Noumea",
-    "offset": 660
-  },
-  {
-    "label": "(GMT+11:00) Norfolk Island Time",
-    "value": "Pacific/Norfolk",
     "offset": 660
   },
   {
@@ -1695,8 +1690,8 @@
     "offset": 720
   },
   {
-    "label": "(GMT+12:00) New Zealand Time",
-    "value": "Pacific/Auckland",
+    "label": "(GMT+12:00) Norfolk Island Time",
+    "value": "Pacific/Norfolk",
     "offset": 720
   },
   {
@@ -1720,13 +1715,8 @@
     "offset": 720
   },
   {
-    "label": "(GMT+12:45) Chatham Time",
-    "value": "Pacific/Chatham",
-    "offset": 765
-  },
-  {
-    "label": "(GMT+13:00) Apia Time",
-    "value": "Pacific/Apia",
+    "label": "(GMT+13:00) New Zealand Time",
+    "value": "Pacific/Auckland",
     "offset": 780
   },
   {
@@ -1743,6 +1733,16 @@
     "label": "(GMT+13:00) Tonga Standard Time",
     "value": "Pacific/Tongatapu",
     "offset": 780
+  },
+  {
+    "label": "(GMT+13:45) Chatham Time",
+    "value": "Pacific/Chatham",
+    "offset": 825
+  },
+  {
+    "label": "(GMT+14:00) Apia Time",
+    "value": "Pacific/Apia",
+    "offset": 840
   },
   {
     "label": "(GMT+14:00) Line Islands Time",

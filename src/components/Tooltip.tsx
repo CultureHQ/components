@@ -65,9 +65,11 @@ class Tooltip extends React.Component<TooltipProps, {}> {
       triangle.style.left = `${tooltip.offsetLeft - 10 + triangleMiddle}px`;
     }
 
-    bubble.style.left = `${bubbleOffset}px`;
-    bubble.style.display = null;
-    bubble.style.visibility = null;
+    Object.assign(bubble.style, {
+      left: `${bubbleOffset}px`,
+      display: null,
+      visibility: null
+    });
 
     this.frame = null;
   };
