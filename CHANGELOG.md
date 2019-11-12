@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+
+- Changed all of the `React.HTMLAttributes<HTMLInputElement>` to `RReact.InputHTMLAttributes<HTMLInputElement>` to allow for the extra attributes that come with input elements. This impacts the TypeScript definitions for `CentsField`, `EmailField`, `FileField`, `ImageField`, `NumberField`, `PasswordField`, and `StringField`.
+
 ## [16.0.2] - 2019-11-08
 
 ### Changed

@@ -5,6 +5,7 @@ pull_request_rules:
       - label=dependencies
       - status-success=Test
       - status-success=Lint
+      - status-success=Compile
     actions:
       merge:
         strict: true

@@ -12,7 +12,7 @@ import { FormFieldError } from "./typings";
 export type ImageFieldValue = Blob | File | string | null;
 
 type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
-type ImageFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProps> & {
+type ImageFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, HijackedProps> & {
   aspectRatio?: number;
   autoFocus?: boolean;
   children: React.ReactNode;

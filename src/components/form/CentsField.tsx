@@ -14,7 +14,7 @@ const centsValidator = (value: string) => {
 type CentsFieldValue = number | null;
 
 type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
-type CentsFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProps> & {
+type CentsFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, HijackedProps> & {
   autoFocus?: boolean;
   children: React.ReactNode;
   className?: string;
