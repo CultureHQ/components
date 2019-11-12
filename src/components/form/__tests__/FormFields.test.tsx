@@ -76,4 +76,12 @@ describe.each(cases)("%s", (type, FormField) => {
     expect(inputElement).not.toBe(null);
     expect(getByRole("textbox").id).toEqual(inputElement.id);
   });
+
+  test("allows other form props", () => {
+    const { getByRole } = render(
+      <FormField name="name" readOnly>Read Only</FormField>
+    );
+
+    expect(getByRole("textbox").hasAttribute("readonly")).toBe(true);
+  });
 });

@@ -8,7 +8,7 @@ import { FormFieldError } from "./typings";
 export type FileFieldValue = File | FileList | string[] | null;
 
 type HijackedProps = "className" | "multiple" | "name" | "onChange" | "required" | "value";
-type FileFieldProps = Omit<React.HTMLAttributes<HTMLInputElement>, HijackedProps> & {
+type FileFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, HijackedProps> & {
   autoFocus?: boolean;
   children: React.ReactNode;
   className?: string;
