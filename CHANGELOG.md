@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [16.1.0] - 2019-11-12
+
 ### Changed
 
 - Changed all of the `React.HTMLAttributes<HTMLInputElement>` to `RReact.InputHTMLAttributes<HTMLInputElement>` to allow for the extra attributes that come with input elements. This impacts the TypeScript definitions for `CentsField`, `EmailField`, `FileField`, `ImageField`, `NumberField`, `PasswordField`, and `StringField`.
@@ -1068,7 +1070,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.0.2...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v16.1.0...HEAD
+[16.1.0]: https://github.com/CultureHQ/components/compare/v16.0.2...v16.1.0
 [16.0.2]: https://github.com/CultureHQ/components/compare/v16.0.1...v16.0.2
 [16.0.1]: https://github.com/CultureHQ/components/compare/v16.0.0...v16.0.1
 [16.0.0]: https://github.com/CultureHQ/components/compare/v15.0.1...v16.0.0
