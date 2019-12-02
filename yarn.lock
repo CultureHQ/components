@@ -65,7 +65,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@^7.0.0", "@babel/core@^7.1.0", "@babel/core@^7.1.6", "@babel/core@^7.4.5", "@babel/core@^7.6.0", "@babel/core@^7.7.0":
+"@babel/core@^7.0.0", "@babel/core@^7.1.0", "@babel/core@^7.1.6", "@babel/core@^7.4.5", "@babel/core@^7.6.0", "@babel/core@^7.7.0", "@babel/core@^7.7.2":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.7.4.tgz#37e864532200cb6b50ee9a4045f5f817840166ab"
   integrity sha512-+bYbx56j4nYBmpsWtnPUsKW3NdnYxbqyfrP2w9wILBuHzdfIKz9prieZK0DFPyIzkjYVUe4QkusGL07r5pXznQ==
@@ -1655,13 +1655,13 @@
     core-js "^3.0.1"
 
 "@storybook/cli@^5.2.6":
-  version "5.2.6"
-  resolved "https://registry.yarnpkg.com/@storybook/cli/-/cli-5.2.6.tgz#171a67c9d871b18011418be9512b65f3a6c7d055"
-  integrity sha512-xPg3UW11y3VnzDCarVfWD+d2RnjV+N1fvUv6HSIBgJ2Hu0IAd6dDUDpRtghCYk3Ts7boTdl9rTWG83i4lzWkAA==
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@storybook/cli/-/cli-5.2.8.tgz#304ce8680ed5ab9b63501feb0e55186d06dcc60a"
+  integrity sha512-oV7UrUYwfAtFiigXEI3lyDKLH0Xc8HJ3wAGuhsZQ9Bp7NFAh7ARVoTXProFk0SVRfuFy7f2PaCwoHT6/kqf6mg==
   dependencies:
-    "@babel/core" "^7.4.5"
-    "@babel/preset-env" "^7.4.5"
-    "@storybook/codemod" "5.2.6"
+    "@babel/core" "^7.7.2"
+    "@babel/preset-env" "^7.7.1"
+    "@storybook/codemod" "5.2.8"
     chalk "^2.4.1"
     commander "^2.19.0"
     core-js "^3.0.1"
@@ -1713,14 +1713,14 @@
   dependencies:
     core-js "^3.0.1"
 
-"@storybook/codemod@5.2.6":
-  version "5.2.6"
-  resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-5.2.6.tgz#2ae71bee88cf51f5ebc831af2fd87b404939624b"
-  integrity sha512-cLZJMNaTbj4rEcvlus6Fm3wImOkSfQI5U5rADUr0+5HHXuspiencUjstkgykV33QF8DdlxYlGGmSmQsY+VxnWw==
+"@storybook/codemod@5.2.8":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-5.2.8.tgz#eeb3bce176229af4f865c0ab72c9f189f0eab023"
+  integrity sha512-PsW21eMHaccT3y8qRKL7QTkaTYbnBTljiYle0Xy5CStTzsVG5haoayVD2kQPH69nftTURdIdkHr1rXPiyl+yvA==
   dependencies:
     "@mdx-js/mdx" "^1.0.0"
-    "@storybook/node-logger" "5.2.6"
-    "@storybook/router" "5.2.6"
+    "@storybook/node-logger" "5.2.8"
+    "@storybook/router" "5.2.8"
     core-js "^3.0.1"
     cross-spawn "^6.0.5"
     globby "^10.0.1"
@@ -1847,6 +1847,17 @@
   version "5.2.6"
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.2.6.tgz#e353aff14375bef9e922c217a0afb50f93e2ceb1"
   integrity sha512-Z3mn9CUSiG7kR2OBoz4lNeoeBS094h5d9wufZSp5S+M47L6KEXmTgNcuePKj+t8Z8KT/Ph8B63bjChseKp3DNw==
+  dependencies:
+    chalk "^2.4.2"
+    core-js "^3.0.1"
+    npmlog "^4.1.2"
+    pretty-hrtime "^1.0.3"
+    regenerator-runtime "^0.12.1"
+
+"@storybook/node-logger@5.2.8":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.2.8.tgz#4a3df21d731014d54b9ca53d5b9a72dd350bb075"
+  integrity sha512-3TK5mx6VWbfJO+WUrqwPhTbTQ4qESTnwJY/02xPzOhvuC6tIG1QOxzi+Rq6rFlwxTpUuWh6iyDYnGIqFFQywkA==
   dependencies:
     chalk "^2.4.2"
     core-js "^3.0.1"
