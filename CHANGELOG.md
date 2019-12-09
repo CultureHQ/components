@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [16.1.1] - 2019-12-09
+
 ### Changed
 
 - Fixed bug where the `value` prop (external to the form context) would change on the `SelectField` but the display wouldn't be updated to match.
@@ -1074,7 +1076,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.1.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v16.1.1...HEAD
+[16.1.1]: https://github.com/CultureHQ/components/compare/v16.1.0...v16.1.1
 [16.1.0]: https://github.com/CultureHQ/components/compare/v16.0.2...v16.1.0
 [16.0.2]: https://github.com/CultureHQ/components/compare/v16.0.1...v16.0.2
 [16.0.1]: https://github.com/CultureHQ/components/compare/v16.0.0...v16.0.1
