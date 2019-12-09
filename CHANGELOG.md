@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+
+- Fixed bug where the `value` prop (external to the form context) would change on the `SelectField` but the display wouldn't be updated to match.
+
 ## [16.1.0] - 2019-11-12
 
 ### Changed

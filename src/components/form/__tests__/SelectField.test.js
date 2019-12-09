@@ -93,6 +93,24 @@ test("closes the options when clicked outside the select field", () => {
   expect(container.querySelector(".chq-ffd--sl--opts-open")).toBeFalsy();
 });
 
+test("recalculate the display when the value changes", async () => {
+  const { getByLabelText, rerender } = render(
+    <SelectField name="select" options={OPTIONS} value="harry">
+      Select
+    </SelectField>
+  );
+
+  expect(getByLabelText("Value")).toHaveProperty("value", OPTIONS[0].label);
+
+  rerender(
+    <SelectField name="select" options={OPTIONS} value="hermione">
+      Select
+    </SelectField>
+  );
+
+  expect(getByLabelText("Value")).toHaveProperty("value", OPTIONS[1].label);
+});
+
 test("working with a single non-creatable field", () => {
   const { container, getAllByRole, getByLabelText, getByText, queryAllByRole } = render(
     <Container value="harry" />
