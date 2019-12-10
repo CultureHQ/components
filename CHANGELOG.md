@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [16.2.0] - 2019-12-10
+
+### Added
+
+- The `info` icon.
+
 ## [16.1.1] - 2019-12-09
 
 ### Changed
@@ -1076,7 +1082,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.1.1...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v16.2.0...HEAD
+[16.2.0]: https://github.com/CultureHQ/components/compare/v16.1.1...v16.2.0
 [16.1.1]: https://github.com/CultureHQ/components/compare/v16.1.0...v16.1.1
 [16.1.0]: https://github.com/CultureHQ/components/compare/v16.0.2...v16.1.0
 [16.0.2]: https://github.com/CultureHQ/components/compare/v16.0.1...v16.0.2
