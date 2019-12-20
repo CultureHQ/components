@@ -2,7 +2,7 @@ import React from "react";
 
 import classnames from "../../classnames";
 
-type PlainButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
+type PlainButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children?: React.ReactNode;
   className?: string;
 };
