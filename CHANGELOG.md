@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [16.2.1] - 2019-12-20
+
+### Changed
+
+- Update the TypeScript types for the `PlainButton` component to allow more props by changing it to accept everything in `React.ButtonHTMLAttributes<HTMLButtonElement>`.
+
 ## [16.2.0] - 2019-12-10
 
 ### Added
@@ -22,7 +28,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ### Changed
 
-- Changed all of the `React.HTMLAttributes<HTMLInputElement>` to `RReact.InputHTMLAttributes<HTMLInputElement>` to allow for the extra attributes that come with input elements. This impacts the TypeScript definitions for `CentsField`, `EmailField`, `FileField`, `ImageField`, `NumberField`, `PasswordField`, and `StringField`.
+- Changed all of the `React.HTMLAttributes<HTMLInputElement>` to `React.InputHTMLAttributes<HTMLInputElement>` to allow for the extra attributes that come with input elements. This impacts the TypeScript definitions for `CentsField`, `EmailField`, `FileField`, `ImageField`, `NumberField`, `PasswordField`, and `StringField`.
 
 ## [16.0.2] - 2019-11-08
 
@@ -1082,7 +1088,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.2.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v16.2.1...HEAD
+[16.2.1]: https://github.com/CultureHQ/components/compare/v16.2.0...v16.2.1
 [16.2.0]: https://github.com/CultureHQ/components/compare/v16.1.1...v16.2.0
 [16.1.1]: https://github.com/CultureHQ/components/compare/v16.1.0...v16.1.1
 [16.1.0]: https://github.com/CultureHQ/components/compare/v16.0.2...v16.1.0
