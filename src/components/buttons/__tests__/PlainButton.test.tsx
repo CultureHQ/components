@@ -19,3 +19,10 @@ test("passes on className", () => {
 
   expect(container.querySelector(".plain-button")).toBeTruthy();
 });
+
+test("passes on disabled and other button props", () => {
+  const { container } = render(<PlainButton disabled aria-label="button" />);
+
+  expect(container.querySelector("[disabled]")).toBeTruthy();
+  expect(container.querySelector("[aria-label=\"button\"]")).toBeTruthy();
+});
