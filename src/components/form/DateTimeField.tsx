@@ -65,10 +65,11 @@ const makeTimeSelectValue = (value: string | undefined, offset: number) => {
   return { hours, minutes };
 };
 
-type DateTimeFieldProps = {
+type DateTimeFieldProps = FormState & {
   autoFocus?: boolean;
   children: React.ReactNode;
   className?: string;
+  disabled?: boolean;
   name: string;
   offset?: number;
   onChange?: (value: string) => void;
@@ -82,7 +83,7 @@ type DateTimeFieldState = {
   touched: boolean;
 };
 
-class DateTimeField extends React.Component<DateTimeFieldProps & FormState, DateTimeFieldState> {
+class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldState> {
   private buttonRef = React.createRef<HTMLButtonElement>();
 
   state = { open: false, touched: false };
@@ -93,6 +94,14 @@ class DateTimeField extends React.Component<DateTimeFieldProps & FormState, Date
 
     if (autoFocus && button) {
       button.focus();
+    }
+  }
+
+  componentDidUpdate(prevProps: DateTimeFieldProps) {
+    const { disabled, name, onFieldDisabledChange } = this.props;
+
+    if (prevProps.disabled !== disabled) {
+      onFieldDisabledChange(name, disabled);
     }
   }
 
@@ -206,7 +215,10 @@ class DateTimeField extends React.Component<DateTimeFieldProps & FormState, Date
   };
 
   render() {
-    const { children, className, onError, name, required, submitted, validator } = this.props;
+    const {
+      children, className, disabled, onError, name, required, submitted, validator
+    } = this.props;
+
     const { open, touched } = this.state;
 
     const offset = this.getOffset();
@@ -218,6 +230,7 @@ class DateTimeField extends React.Component<DateTimeFieldProps & FormState, Date
           <span className="chq-ffd--lb">{children}</span>
           <PlainButton
             ref={this.buttonRef}
+            disabled={disabled}
             aria-label="Open dialog"
             className="chq-ffd--ctrl chq-ffd--dt"
             onClick={this.handleOpen}
