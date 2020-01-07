@@ -3,8 +3,8 @@ import React, { useRef, useState } from "react";
 import classnames from "../../classnames";
 import FormError from "./FormError";
 import { useForm } from "./Form";
-import useAutoFocus from "./select/useAutoFocus";
 import { FormFieldError } from "./typings";
+import useAutoFocus from "./useAutoFocus";
 
 export type FileFieldValue = File | FileList | string[] | null;
 

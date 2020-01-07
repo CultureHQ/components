@@ -58,7 +58,7 @@ class RadioField extends React.Component<RadioFieldProps & FormState, RadioField
 
   render() {
     const {
-      autoFocus, children, className, errors, name, onChange, onError,
+      autoFocus, children, className, disabled, errors, name, onChange, onError,
       onFormChange, options, required, submitted, submitting, validator,
       value, values, ...props
     } = this.props;

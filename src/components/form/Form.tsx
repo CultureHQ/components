@@ -16,20 +16,24 @@ type FormProps = {
 };
 
 export type FormState = {
+  disabled: { [K in keyof FormValues]?: boolean };
   errors: { [key: string]: FormFieldError };
   submitted: boolean;
   submitting: boolean;
   values: FormValues;
   onError: (name: string, error: FormFieldError) => void;
+  onFieldDisabledChange: (name: string, value: boolean | undefined) => void;
   onFormChange: (name: string, value: FormValue) => void;
 };
 
 const FormContext = React.createContext<FormState>({
+  disabled: {},
   errors: {},
   submitted: false,
   submitting: false,
   values: {},
   onError: () => {},
+  onFieldDisabledChange: () => {},
   onFormChange: () => {}
 });
 
@@ -44,11 +48,13 @@ class Form extends React.Component<FormProps, FormState> {
 
     this.componentIsMounted = false;
     this.state = {
+      disabled: {},
       errors: {},
       submitted: false,
       submitting: false,
       values: props.initialValues || {},
       onError: this.handleError,
+      onFieldDisabledChange: this.handleFieldDisabledChange,
       onFormChange: this.handleFormChange
     };
   }
@@ -73,6 +79,12 @@ class Form extends React.Component<FormProps, FormState> {
     }));
   };
 
+  handleFieldDisabledChange = (name: string, value: boolean | undefined) => {
+    this.setState(({ disabled }) => ({
+      disabled: { ...disabled, [name]: value }
+    }));
+  };
+
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     this.submit();
@@ -86,14 +98,23 @@ class Form extends React.Component<FormProps, FormState> {
 
   submit() {
     const { onSubmit } = this.props;
-    const { errors, values } = this.state;
+    const { disabled, errors, values } = this.state;
 
     this.setState({ submitted: true });
 
     if (Object.keys(errors).every(name => !errors[name])) {
       this.setState({ submitting: true });
 
-      const submitted = onSubmit(values);
+      const submitValues: FormValues = {};
+
+      Object.keys(values).forEach((name: keyof typeof values) => {
+        if (!disabled[name]) {
+          submitValues[name] = values[name];
+        }
+      });
+
+      const submitted = onSubmit(submitValues);
+
       if (submitted && submitted.then) {
         submitted.then(this.handleDoneSubmitting).catch(this.handleDoneSubmitting);
       } else {
