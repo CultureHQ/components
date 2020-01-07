@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { FormState, withForm } from "./Form";
+import { FormState, useForm } from "./Form";
+import useAutoFocus from "./select/useAutoFocus";
 
 const centsValidator = (value: string) => {
   if (value && parseFloat(value) <= 0) {
@@ -24,33 +25,20 @@ type CentsFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   value?: CentsFieldValue;
 };
 
-type CentsFieldState = {
-  touched: boolean;
-};
+const CentsField: React.FC<CentsFieldProps> = ({
+  autoFocus, children, className, name, onChange, required, value, ...props
+}) => {
+  const { errors, onError, onFormChange, submitted, submitting, values } = useForm();
 
-class CentsField extends React.Component<CentsFieldProps & FormState, CentsFieldState> {
-  private inputRef = React.createRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [touched, setTouched] = useState<boolean>(false);
 
-  state = { touched: false };
+  useAutoFocus(autoFocus || false, inputRef);
 
-  componentDidMount() {
-    const { autoFocus } = this.props;
-    const input = this.inputRef.current;
-
-    if (autoFocus && input) {
-      input.focus();
-    }
-  }
-
-  handleBlur = () => {
-    this.setState({ touched: true });
-  };
-
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, onChange, onFormChange } = this.props;
-
-    const { value } = event.target;
-    const amount = value ? Math.round(parseFloat(value) * 100) : null;
+  const onBlur = () => setTouched(true);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value: nextValue } = event.target;
+    const amount = nextValue ? Math.round(parseFloat(nextValue) * 100) : null;
 
     if (onChange) {
       onChange(amount);
@@ -59,45 +47,36 @@ class CentsField extends React.Component<CentsFieldProps & FormState, CentsField
     onFormChange(name, amount);
   };
 
-  render() {
-    const {
-      autoFocus, children, className, errors, name, onError, onFormChange,
-      required, submitted, submitting, value, values, ...props
-    } = this.props;
+  const normal = value || values[name];
 
-    const { touched } = this.state;
+  return (
+    <label className={classnames("chq-ffd", className)} htmlFor={name}>
+      <span className="chq-ffd--lb">{children}</span>
+      <span className="chq-ffd--ad">$</span>
+      <input
+        className="chq-ffd--ctrl"
+        ref={inputRef}
+        {...props}
+        type="number"
+        id={name}
+        name={name}
+        min="0"
+        step=".01"
+        value={typeof normal === "number" ? normal / 100 : ""}
+        onBlur={onBlur}
+        onChange={handleChange}
+      />
+      <FormError
+        name={name}
+        onError={onError}
+        required={required}
+        submitted={submitted}
+        touched={touched}
+        validator={centsValidator}
+        value={normal}
+      />
+    </label>
+  );
+};
 
-    const normal = value || values[name];
-
-    return (
-      <label className={classnames("chq-ffd", className)} htmlFor={name}>
-        <span className="chq-ffd--lb">{children}</span>
-        <span className="chq-ffd--ad">$</span>
-        <input
-          className="chq-ffd--ctrl"
-          ref={this.inputRef}
-          {...props}
-          type="number"
-          id={name}
-          name={name}
-          min="0"
-          step=".01"
-          value={typeof normal === "number" ? normal / 100 : ""}
-          onBlur={this.handleBlur}
-          onChange={this.handleChange}
-        />
-        <FormError
-          name={name}
-          onError={onError}
-          required={required}
-          submitted={submitted}
-          touched={touched}
-          validator={centsValidator}
-          value={normal}
-        />
-      </label>
-    );
-  }
-}
-
-export default withForm(CentsField);
+export default CentsField;
