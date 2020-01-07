@@ -54,6 +54,24 @@
     path {
       animation: chqCmkStroke .15s cubic-bezier(.65, 0, .45, 1) .4s forwards;
     }
+
+    &:disabled {
+      $light-green: lighten($color-primary-green, 10%);
+
+      svg {
+        animation: none;
+        box-shadow: inset 0 0 0 30px $light-green;
+      }
+
+      circle {
+        stroke: $light-green;
+      }
+    }
+  }
+
+  &:disabled {
+    color: $color-secondary-font;
+    cursor: not-allowed;
   }
 }
 

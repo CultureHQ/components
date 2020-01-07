@@ -6,10 +6,13 @@ type CheckmarkProps = {
   checked?: boolean;
   children?: React.ReactNode;
   className?: string;
+  disabled?: boolean;
   onClick?: (checked: boolean) => void;
 };
 
-const Checkmark: React.FC<CheckmarkProps> = ({ children, className, checked, onClick }) => {
+const Checkmark: React.FC<CheckmarkProps> = ({
+  children, className, checked, disabled, onClick
+}) => {
   const onButtonClick = onClick ? () => onClick(!checked) : undefined;
 
   return (
@@ -19,6 +22,7 @@ const Checkmark: React.FC<CheckmarkProps> = ({ children, className, checked, onC
         "chq-cmk-ck": checked || false,
         "chq-cmk-cl": !!onClick
       })}
+      disabled={disabled}
       onClick={onButtonClick}
       aria-label={children ? undefined : "Checkmark"}
     >

@@ -22,3 +22,12 @@ test("passes on onClick", () => {
   fireEvent.click(getByRole("button"));
   expect(onClick).toHaveBeenLastCalledWith(false);
 });
+
+test("passes on disabled", () => {
+  const onClick = jest.fn();
+
+  const { getByRole } = render(<Checkmark disabled onClick={onClick} />);
+
+  fireEvent.click(getByRole("button"));
+  expect(onClick).not.toHaveBeenCalled();
+});

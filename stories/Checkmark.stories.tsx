@@ -10,9 +10,12 @@ storiesOf("Checkmark", module)
     const children = text("children", "");
     const props = {
       checked: boolean("checked", false),
+      disabled: boolean("disabled", false),
       onClick: action("onClick")
     };
 
     return <Checkmark {...props}>{children}</Checkmark>;
   })
-  .add("checked", () => <Checkmark checked />);
+  .add("checked", () => <Checkmark checked />)
+  .add("disabled", () => <Checkmark disabled />)
+  .add("disabled + checked", () => <Checkmark checked disabled />);
