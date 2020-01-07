@@ -20,6 +20,7 @@ storiesOf("Form/CentsField", module)
     const children = text("children", "Cents");
     const props = {
       autoFocus: boolean("autoFocus", false),
+      disabled: boolean("disabled", false),
       onChange: action("onChange"),
       name: text("name", "cents"),
       required: boolean("required", false),

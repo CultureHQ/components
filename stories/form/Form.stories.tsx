@@ -4,6 +4,7 @@ import { action } from "@storybook/addon-actions";
 
 import {
   BooleanField,
+  CentsField,
   DateTimeField,
   EmailField,
   Form,
@@ -40,6 +41,7 @@ storiesOf("Form/Form", module)
         >
           Select
         </SelectField>
+        <CentsField name="cents" disabled={disabled}>Cents</CentsField>
         <TextField name="text" disabled={disabled}>Text</TextField>
         <DateTimeField name="datetime">DateTime</DateTimeField>
         <BooleanField name="boolean">Boolean</BooleanField>
