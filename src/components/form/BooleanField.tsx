@@ -3,21 +3,29 @@ import React, { useEffect } from "react";
 import Checkmark from "../Checkmark";
 import classnames from "../../classnames";
 import { useForm } from "./Form";
+import useDisabled from "./useDisabled";
 
 type BooleanFieldProps = {
   children: React.ReactNode;
   className?: string;
+  disabled?: boolean;
   name: string;
   onChange?: (value: boolean) => void;
   value?: boolean | null;
 };
 
 const BooleanField: React.FC<BooleanFieldProps> = ({
-  children, className, name, onChange, value
+  children, className, disabled, name, onChange, value
 }) => {
   const { onFormChange, values } = useForm();
 
-  const handleClick = (checked: boolean) => {
+  useDisabled(name, disabled);
+
+  const onClick = (checked: boolean) => {
+    if (disabled) {
+      return;
+    }
+
     if (onChange) {
       onChange(checked);
     }
@@ -30,7 +38,7 @@ const BooleanField: React.FC<BooleanFieldProps> = ({
       const normal = value || (values[name] as boolean);
 
       if (normal === undefined || normal === null) {
-        handleClick(false);
+        onClick(false);
       }
     },
     // Here we're going to explicitly ignore the rules of hooks because we only
@@ -44,7 +52,7 @@ const BooleanField: React.FC<BooleanFieldProps> = ({
 
   return (
     <div className={classnames("chq-ffd", className)}>
-      <Checkmark checked={normal} onClick={handleClick}>
+      <Checkmark checked={normal} disabled={disabled} onClick={onClick}>
         {children}
       </Checkmark>
     </div>

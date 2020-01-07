@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { optionsKnob, text } from "@storybook/addon-knobs";
+import { boolean, optionsKnob, text } from "@storybook/addon-knobs";
 
 import { BooleanField, Form } from "../../src/components";
 
@@ -19,6 +19,7 @@ storiesOf("Form/BooleanField", module)
     });
 
     const props = {
+      disabled: boolean("disabled", false),
       onChange: action("onChange"),
       name: text("name", "boolean"),
       value: { null: null, true: true, false: false }[value]
