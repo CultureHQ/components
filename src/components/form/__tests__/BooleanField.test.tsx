@@ -40,3 +40,13 @@ test("respects disabled", () => {
 
   expect(onChange).not.toHaveBeenCalled();
 });
+
+test("allows auto focus", () => {
+  const { getByRole } = render(
+    <BooleanField name="boolean" autoFocus>
+      Boolean!
+    </BooleanField>
+  );
+
+  expect(document.activeElement).toEqual(getByRole("button"));
+});

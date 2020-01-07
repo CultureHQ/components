@@ -9,6 +9,7 @@ storiesOf("Checkmark", module)
   .add("default", () => {
     const children = text("children", "");
     const props = {
+      autoFocus: boolean("autoFocus", false),
       checked: boolean("checked", false),
       disabled: boolean("disabled", false),
       onClick: action("onClick")
@@ -16,6 +17,7 @@ storiesOf("Checkmark", module)
 
     return <Checkmark {...props}>{children}</Checkmark>;
   })
+  .add("autoFocus", () => <Checkmark autoFocus />)
   .add("checked", () => <Checkmark checked />)
   .add("disabled", () => <Checkmark disabled />)
   .add("disabled + checked", () => <Checkmark checked disabled />);
