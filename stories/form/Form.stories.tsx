@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-
 
 import {
   BooleanField,
@@ -18,16 +17,19 @@ import { FormValues } from "../../src/components/form/Form";
 
 storiesOf("Form/Form", module)
   .add("default", () => {
+    const [disabled, setDisabled] = useState(false);
+
     const onSubmitAction = action("onSubmit");
     const onSubmit = (values: FormValues) => {
+      setDisabled(value => !value);
       onSubmitAction(values);
       return new Promise(resolve => setTimeout(resolve, 1000));
     };
 
     return (
       <Form onSubmit={onSubmit}>
-        <EmailField name="email">Email</EmailField>
-        <StringField name="string">String</StringField>
+        <EmailField name="email" disabled={disabled}>Email</EmailField>
+        <StringField name="string" disabled={disabled}>String</StringField>
         <SelectField
           name="select"
           options={[
@@ -38,7 +40,7 @@ storiesOf("Form/Form", module)
         >
           Select
         </SelectField>
-        <TextField name="text">Text</TextField>
+        <TextField name="text" disabled={disabled}>Text</TextField>
         <DateTimeField name="datetime">DateTime</DateTimeField>
         <BooleanField name="boolean">Boolean</BooleanField>
         <ImageField name="image">Image</ImageField>

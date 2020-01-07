@@ -3,8 +3,9 @@ import React, { useRef, useState } from "react";
 import classnames from "../../classnames";
 import FormError from "./FormError";
 import { useForm } from "./Form";
-import useAutoFocus from "./select/useAutoFocus";
 import { FormFieldError } from "./typings";
+import useAutoFocus from "./useAutoFocus";
+import useDisabled from "./useDisabled";
 
 type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
 type FormFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, HijackedProps> & {
@@ -25,7 +26,8 @@ type FormFieldState = {
 
 const makeFormField = (type: string) => {
   const FormField: React.FC<FormFieldProps> = ({
-    addon, autoFocus, children, className, name, onChange, required, validator, value, ...props
+    addon, autoFocus, children, className, disabled, name, onChange, required,
+    validator, value, ...props
   }) => {
     const { submitted, values, onError, onFormChange } = useForm();
 
@@ -33,6 +35,7 @@ const makeFormField = (type: string) => {
     const [touched, setTouched] = useState<boolean>(false);
 
     useAutoFocus(autoFocus || false, inputRef);
+    useDisabled(name, disabled);
 
     const onBlur = () => setTouched(true);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,6 +57,7 @@ const makeFormField = (type: string) => {
           className="chq-ffd--ctrl"
           ref={inputRef}
           {...props}
+          disabled={disabled}
           type={type}
           id={name}
           name={name}

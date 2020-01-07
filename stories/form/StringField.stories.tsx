@@ -29,6 +29,7 @@ storiesOf("Form/StringField", module)
     return <Container {...props}>{children}</Container>;
   })
   .add("autoFocus", () => <Container name="string" autoFocus>String</Container>)
+  .add("disabled", () => <Container name="string" disabled>String</Container>)
   .add("required", () => <Container name="string" required>String</Container>)
   .add("validator", () => {
     const validator = (value: string) => {

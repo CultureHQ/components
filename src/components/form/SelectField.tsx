@@ -3,9 +3,9 @@ import React from "react";
 import classnames from "../../classnames";
 import SelectFieldSingle from "./select/SelectFieldSingle";
 import SelectFieldMulti from "./select/SelectFieldMulti";
-import useAutoFocus from "./select/useAutoFocus";
 import { useForm } from "./Form";
 import { FormFieldError, SelectOption, SelectValue } from "./typings";
+import useAutoFocus from "./useAutoFocus";
 
 type SelectFieldCommonProps = {
   autoFocus?: boolean;

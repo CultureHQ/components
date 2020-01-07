@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import classnames from "../../classnames";
 import FormError from "./FormError";
 import { useForm } from "./Form";
-import useAutoFocus from "./select/useAutoFocus";
+import useAutoFocus from "./useAutoFocus";
 
 const centsValidator = (value: string) => {
   if (value && parseFloat(value) <= 0) {
