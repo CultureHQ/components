@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Support the `disabled` prop on the `Checkmark` component.
 - Support the `disabled` prop on the `BooleanField` component.
+- Support the `autoFocus` prop on the `Checkmark` component.
 
 ## [16.3.0] - 2020-01-07
 

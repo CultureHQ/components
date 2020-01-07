@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 
 const useAutoFocus = <T extends HTMLElement>(
-  autoFocus: boolean,
+  autoFocus: boolean | undefined,
   elementRef: React.RefObject<T>
 ) => {
   const onFocus = useCallback(

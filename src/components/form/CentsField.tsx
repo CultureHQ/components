@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
 
 import classnames from "../../classnames";
+import useAutoFocus from "../../utils/useAutoFocus";
+
 import FormError from "./FormError";
 import { useForm } from "./Form";
-import useAutoFocus from "./useAutoFocus";
 
 const centsValidator = (value: string) => {
   if (value && parseFloat(value) <= 0) {
@@ -33,7 +34,7 @@ const CentsField: React.FC<CentsFieldProps> = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [touched, setTouched] = useState<boolean>(false);
 
-  useAutoFocus(autoFocus || false, inputRef);
+  useAutoFocus(autoFocus, inputRef);
 
   const onBlur = () => setTouched(true);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

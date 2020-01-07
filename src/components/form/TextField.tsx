@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
 
 import classnames from "../../classnames";
+import useAutoFocus from "../../utils/useAutoFocus";
+
 import FormError from "./FormError";
 import { useForm } from "./Form";
 import { FormFieldError } from "./typings";
-import useAutoFocus from "./useAutoFocus";
 import useDisabled from "./useDisabled";
 
 type TextFieldValue = string | null;
@@ -33,7 +34,7 @@ const TextField: React.FC<TextFieldProps> = ({
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const [touched, setTouched] = useState<boolean>(false);
 
-  useAutoFocus(autoFocus || false, textAreaRef);
+  useAutoFocus(autoFocus, textAreaRef);
   useDisabled(name, disabled);
 
   const onBlur = () => setTouched(true);
