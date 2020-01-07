@@ -27,3 +27,16 @@ test("works with initial values", () => {
 
   fireEvent.click(getByRole("button"));
 });
+
+test("respects disabled", () => {
+  const onChange = jest.fn();
+  const { getByRole } = render(
+    <BooleanField name="boolean" disabled onChange={onChange}>
+      Boolean!
+    </BooleanField>
+  );
+
+  fireEvent.click(getByRole("button"));
+
+  expect(onChange).not.toHaveBeenCalled();
+});
