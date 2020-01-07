@@ -44,6 +44,7 @@ storiesOf("Form/DateTimeField", module)
     const children = text("children", "DateTime");
     const props = {
       autoFocus: boolean("autoFocus", false),
+      disabled: boolean("disabled", false),
       onChange: action("onChange"),
       name: text("name", "datetime"),
       required: boolean("required", false)
@@ -56,6 +57,9 @@ storiesOf("Form/DateTimeField", module)
   })
   .add("autoFocus", () => (
     <Container name="datetime" autoFocus>DateTime</Container>
+  ))
+  .add("disabled", () => (
+    <Container name="datetime" disabled>DateTime</Container>
   ))
   .add("required", () => (
     <Container name="datetime" required>DateTime</Container>

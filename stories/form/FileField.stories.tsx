@@ -21,6 +21,7 @@ storiesOf("Form/FileField", module)
     const children = text("children", "File");
     const props = {
       autoFocus: boolean("autoFocus", false),
+      disabled: boolean("disabled", false),
       onChange: action("onChange"),
       multiple: boolean("multiple", false),
       name: text("name", "file"),
@@ -31,6 +32,7 @@ storiesOf("Form/FileField", module)
     return <Container {...props}>{children}</Container>;
   })
   .add("autoFocus", () => <Container name="file" autoFocus>File</Container>)
+  .add("disabled", () => <Container name="file" disabled>File</Container>)
   .add("multiple", () => <Container name="files" multiple>File</Container>)
   .add("required", () => <Container name="file" required>File</Container>)
   .add("validator", () => {

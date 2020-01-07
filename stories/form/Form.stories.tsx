@@ -7,6 +7,7 @@ import {
   CentsField,
   DateTimeField,
   EmailField,
+  FileField,
   Form,
   ImageField,
   SelectField,
@@ -41,6 +42,7 @@ storiesOf("Form/Form", module)
         >
           Select
         </SelectField>
+        <FileField name="file" disabled={disabled}>File</FileField>
         <CentsField name="cents" disabled={disabled}>Cents</CentsField>
         <TextField name="text" disabled={disabled}>Text</TextField>
         <DateTimeField name="datetime" disabled={disabled}>DateTime</DateTimeField>
