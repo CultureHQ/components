@@ -70,6 +70,7 @@
     }
 
     &:disabled {
+      color: $color-secondary-font;
       cursor: not-allowed;
     }
   }

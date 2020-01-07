@@ -43,7 +43,7 @@ storiesOf("Form/Form", module)
         </SelectField>
         <CentsField name="cents" disabled={disabled}>Cents</CentsField>
         <TextField name="text" disabled={disabled}>Text</TextField>
-        <DateTimeField name="datetime">DateTime</DateTimeField>
+        <DateTimeField name="datetime" disabled={disabled}>DateTime</DateTimeField>
         <BooleanField name="boolean">Boolean</BooleanField>
         <ImageField name="image">Image</ImageField>
         <SubmitButton primary />
