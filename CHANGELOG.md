@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [16.3.0] - 2020-01-07
+
 ### Added
 
 - The `useForm` hook is now exported.
@@ -1096,7 +1098,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.2.1...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v16.3.0...HEAD
+[16.3.0]: https://github.com/CultureHQ/components/compare/v16.2.1...v16.3.0
 [16.2.1]: https://github.com/CultureHQ/components/compare/v16.2.0...v16.2.1
 [16.2.0]: https://github.com/CultureHQ/components/compare/v16.1.1...v16.2.0
 [16.1.1]: https://github.com/CultureHQ/components/compare/v16.1.0...v16.1.1
