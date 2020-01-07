@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
 
 import classnames from "../../classnames";
+import useAutoFocus from "../../utils/useAutoFocus";
+
 import FormError from "./FormError";
 import { useForm } from "./Form";
 import { FormFieldError } from "./typings";
-import useAutoFocus from "./useAutoFocus";
 
 export type FileFieldValue = File | FileList | string[] | null;
 
@@ -29,7 +30,7 @@ const FileField: React.FC<FileFieldProps> = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [touched, setTouched] = useState<boolean>(false);
 
-  useAutoFocus(autoFocus || false, inputRef);
+  useAutoFocus(autoFocus, inputRef);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTouched(true);
