@@ -31,3 +31,9 @@ test("passes on disabled", () => {
   fireEvent.click(getByRole("button"));
   expect(onClick).not.toHaveBeenCalled();
 });
+
+test("allows auto focus", () => {
+  const { getByRole } = render(<Checkmark autoFocus />);
+
+  expect(document.activeElement).toEqual(getByRole("button"));
+});

@@ -6,6 +6,7 @@ import { useForm } from "./Form";
 import useDisabled from "./useDisabled";
 
 type BooleanFieldProps = {
+  autoFocus?: boolean;
   children: React.ReactNode;
   className?: string;
   disabled?: boolean;
@@ -15,7 +16,7 @@ type BooleanFieldProps = {
 };
 
 const BooleanField: React.FC<BooleanFieldProps> = ({
-  children, className, disabled, name, onChange, value
+  autoFocus, children, className, disabled, name, onChange, value
 }) => {
   const { onFormChange, values } = useForm();
 
@@ -52,7 +53,7 @@ const BooleanField: React.FC<BooleanFieldProps> = ({
 
   return (
     <div className={classnames("chq-ffd", className)}>
-      <Checkmark checked={normal} disabled={disabled} onClick={onClick}>
+      <Checkmark autoFocus={autoFocus} checked={normal} disabled={disabled} onClick={onClick}>
         {children}
       </Checkmark>
     </div>

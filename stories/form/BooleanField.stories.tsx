@@ -19,6 +19,7 @@ storiesOf("Form/BooleanField", module)
     });
 
     const props = {
+      autoFocus: boolean("autoFocus", false),
       disabled: boolean("disabled", false),
       onChange: action("onChange"),
       name: text("name", "boolean"),
