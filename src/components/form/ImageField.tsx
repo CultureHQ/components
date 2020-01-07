@@ -127,8 +127,8 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
   render() {
     const {
       aspectRatio, autoFocus, children, className, disabled, errors, name,
-      onChange, onError, onFormChange, progress, required, submitted,
-      submitting, validator, value, values, ...props
+      onChange, onError, onFieldDisabledChange, onFormChange, progress,
+      required, submitted, submitting, validator, value, values, ...props
     } = this.props;
 
     const { dragging, editorOpen, failed, image, preview, touched } = this.state;

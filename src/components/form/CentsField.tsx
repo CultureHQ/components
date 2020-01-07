@@ -5,6 +5,7 @@ import useAutoFocus from "../../utils/useAutoFocus";
 
 import FormError from "./FormError";
 import { useForm } from "./Form";
+import useDisabled from "./useDisabled";
 
 const centsValidator = (value: string) => {
   if (value && parseFloat(value) <= 0) {
@@ -27,7 +28,8 @@ type CentsFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
 };
 
 const CentsField: React.FC<CentsFieldProps> = ({
-  autoFocus, children, className, name, onChange, required, value, ...props
+  autoFocus, children, className, disabled, name, onChange, required, value,
+  ...props
 }) => {
   const { onError, onFormChange, submitted, values } = useForm();
 
@@ -35,6 +37,7 @@ const CentsField: React.FC<CentsFieldProps> = ({
   const [touched, setTouched] = useState<boolean>(false);
 
   useAutoFocus(autoFocus, inputRef);
+  useDisabled(name, disabled);
 
   const onBlur = () => setTouched(true);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,6 +61,7 @@ const CentsField: React.FC<CentsFieldProps> = ({
         className="chq-ffd--ctrl"
         ref={inputRef}
         {...props}
+        disabled={disabled}
         type="number"
         id={name}
         name={name}
