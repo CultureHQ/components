@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { FormState, withForm } from "./Form";
+import { useForm } from "./Form";
+import useAutoFocus from "./select/useAutoFocus";
 import { FormFieldError } from "./typings";
 
 export type FileFieldValue = File | FileList | string[] | null;
@@ -20,100 +21,74 @@ type FileFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacked
   value?: FileFieldValue;
 };
 
-type FileFieldState = {
-  touched: boolean;
-};
+const FileField: React.FC<FileFieldProps> = ({
+  autoFocus, children, className, multiple, name, onChange, required, validator, value, ...props
+}) => {
+  const { onError, onFormChange, submitted, values } = useForm();
 
-class FileField extends React.Component<FileFieldProps & FormState, FileFieldState> {
-  private inputRef = React.createRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [touched, setTouched] = useState<boolean>(false);
 
-  state = { touched: false };
+  useAutoFocus(autoFocus || false, inputRef);
 
-  componentDidMount() {
-    const { autoFocus } = this.props;
-    const input = this.inputRef.current;
-
-    if (autoFocus && input) {
-      input.focus();
-    }
-  }
-
-  getFileDisplay() {
-    const { multiple, name, value, values } = this.props;
-    const normal = value || (values[name] as undefined | FileFieldValue);
-
-    if (!normal) {
-      return "";
-    }
-
-    if (multiple) {
-      return Array.from(normal as FileList).map(file => file.name).join(", ");
-    }
-
-    return (normal as File).name;
-  }
-
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ touched: true });
-
-    const { multiple, name, onChange, onFormChange } = this.props;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTouched(true);
 
     const { files } = event.target;
-    let value = null;
+    let nextValue = null;
 
     if (files && files.length > 0) {
-      value = multiple ? files : files[0];
+      nextValue = multiple ? files : files[0];
     }
 
     if (onChange) {
-      onChange(value);
+      onChange(nextValue);
     }
 
-    onFormChange(name, value);
+    onFormChange(name, nextValue);
   };
 
-  render() {
-    const {
-      autoFocus, children, className, errors, multiple, name, onError,
-      onFormChange, required, submitted, submitting, validator, value, values,
-      ...props
-    } = this.props;
+  const normal = value || (values[name] as undefined | FileFieldValue);
+  let fileDisplay: string;
 
-    const { touched } = this.state;
-
-    const normal = value || values[name];
-
-    return (
-      <label className={classnames("chq-ffd", className)} htmlFor={name}>
-        <span className="chq-ffd--lb">{children}</span>
-        <div className="chq-ffd--fi">
-          <input
-            className="chq-ffd--ctrl"
-            ref={this.inputRef}
-            {...props}
-            type="file"
-            multiple={multiple}
-            id={name}
-            name={name}
-            onChange={this.handleChange}
-          />
-          <div className="chq-ffd--di">
-            <div className="chq-ffd--ch">Choose file{multiple && "s"}...</div>
-            <div className="chq-ffd--fd">{this.getFileDisplay()}</div>
-          </div>
-        </div>
-        <FormError
-          name={name}
-          onError={onError}
-          required={required}
-          submitted={submitted}
-          touched={touched}
-          validator={validator}
-          value={normal}
-        />
-      </label>
-    );
+  if (!normal) {
+    fileDisplay = "";
+  } else if (multiple) {
+    fileDisplay = Array.from(normal as FileList).map(file => file.name).join(", ");
+  } else {
+    fileDisplay = (normal as File).name;
   }
-}
 
-export default withForm(FileField);
+  return (
+    <label className={classnames("chq-ffd", className)} htmlFor={name}>
+      <span className="chq-ffd--lb">{children}</span>
+      <div className="chq-ffd--fi">
+        <input
+          className="chq-ffd--ctrl"
+          ref={inputRef}
+          {...props}
+          type="file"
+          multiple={multiple}
+          id={name}
+          name={name}
+          onChange={handleChange}
+        />
+        <div className="chq-ffd--di">
+          <div className="chq-ffd--ch">Choose file{multiple && "s"}...</div>
+          <div className="chq-ffd--fd">{fileDisplay}</div>
+        </div>
+      </div>
+      <FormError
+        name={name}
+        onError={onError}
+        required={required}
+        submitted={submitted}
+        touched={touched}
+        validator={validator}
+        value={normal}
+      />
+    </label>
+  );
+};
+
+export default FileField;
