@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Support the `autoFocus` prop on the `BooleanField` component.
 - Support the `disabled` prop on the `CentsField` component.
 - Support the `disabled` prop on the `DateTimeField` component.
+- Support the `disabled` prop on the `FileField` component.
 
 ## [16.3.0] - 2020-01-07
 

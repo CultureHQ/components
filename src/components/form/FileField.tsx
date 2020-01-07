@@ -6,6 +6,7 @@ import useAutoFocus from "../../utils/useAutoFocus";
 import FormError from "./FormError";
 import { useForm } from "./Form";
 import { FormFieldError } from "./typings";
+import useDisabled from "./useDisabled";
 
 export type FileFieldValue = File | FileList | string[] | null;
 
@@ -23,7 +24,8 @@ type FileFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacked
 };
 
 const FileField: React.FC<FileFieldProps> = ({
-  autoFocus, children, className, multiple, name, onChange, required, validator, value, ...props
+  autoFocus, children, className, disabled, multiple, name, onChange, required,
+  validator, value, ...props
 }) => {
   const { onError, onFormChange, submitted, values } = useForm();
 
@@ -31,6 +33,7 @@ const FileField: React.FC<FileFieldProps> = ({
   const [touched, setTouched] = useState<boolean>(false);
 
   useAutoFocus(autoFocus, inputRef);
+  useDisabled(name, disabled);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTouched(true);
@@ -68,6 +71,7 @@ const FileField: React.FC<FileFieldProps> = ({
           className="chq-ffd--ctrl"
           ref={inputRef}
           {...props}
+          disabled={disabled}
           type="file"
           multiple={multiple}
           id={name}
