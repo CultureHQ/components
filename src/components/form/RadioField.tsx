@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
 import classnames from "../../classnames";
+import useAutoFocus from "../../utils/useAutoFocus";
+
 import FormError from "./FormError";
-import { FormState, withForm } from "./Form";
+import { useForm } from "./Form";
 import { FormFieldError } from "./typings";
 
 export type RadioFieldValue = string | number;
@@ -23,83 +25,62 @@ type RadioFieldProps = Omit<React.HTMLAttributes<HTMLFieldSetElement>, "classNam
   value?: RadioFieldValue | null;
 };
 
-type RadioFieldState = {
-  touched: boolean;
-};
+const RadioField: React.FC<RadioFieldProps> = ({
+  autoFocus, children, className, name, onChange, options, required, validator,
+  value, ...props
+}) => {
+  const { onError, onFormChange, submitted, values } = useForm();
 
-class RadioField extends React.Component<RadioFieldProps & FormState, RadioFieldState> {
-  private inputRef = React.createRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [touched, setTouched] = useState<boolean>(false);
 
-  state = { touched: false };
+  useAutoFocus(autoFocus, inputRef);
 
-  componentDidMount() {
-    const { autoFocus } = this.props;
-    const input = this.inputRef.current;
-
-    if (autoFocus && input) {
-      input.focus();
-    }
-  }
-
-  handleBlur = () => {
-    this.setState({ touched: true });
-  };
-
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, onChange, onFormChange } = this.props;
-    const { value } = event.target;
+  const onBlur = () => setTouched(true);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value: nextValue } = event.target;
 
     if (onChange) {
-      onChange(value);
+      onChange(nextValue);
     }
 
-    onFormChange(name, value);
+    onFormChange(name, nextValue);
   };
 
-  render() {
-    const {
-      autoFocus, children, className, disabled, errors, name, onChange, onError,
-      onFormChange, options, required, submitted, submitting, validator,
-      value, values, ...props
-    } = this.props;
+  const normal = value || (values[name] as undefined | RadioFieldValue);
 
-    const { touched } = this.state;
+  return (
+    <fieldset className={classnames("chq-ffd", className)} {...props}>
+      <legend className="chq-ffd--lb">{children}</legend>
+      {options.map((option, index) => (
+        <label key={option.value} className="chq-ffd--radio" htmlFor={`${name}${index + 1}`}>
+          <input
+            ref={inputRef}
+            aria-label={name}
+            type="radio"
+            id={`${name}${index + 1}`}
+            name={name}
+            value={option.value}
+            checked={option.value.toString() === normal}
+            onBlur={onBlur}
+            onChange={handleChange}
+          />
+          <em className="chq-ffd--radio-check" />
+          {" "}
+          {option.label}
+        </label>
+      ))}
+      <FormError
+        name={name}
+        onError={onError}
+        required={required}
+        submitted={submitted}
+        touched={touched}
+        validator={validator}
+        value={normal}
+      />
+    </fieldset>
+  );
+};
 
-    const normal = value || (values[name] as undefined | RadioFieldValue);
-
-    return (
-      <fieldset className={classnames("chq-ffd", className)} {...props}>
-        <legend className="chq-ffd--lb">{children}</legend>
-        {options.map((option, index) => (
-          <label key={option.value} className="chq-ffd--radio" htmlFor={`${name}${index + 1}`}>
-            <input
-              ref={this.inputRef}
-              aria-label={name}
-              type="radio"
-              id={`${name}${index + 1}`}
-              name={name}
-              value={option.value}
-              checked={option.value.toString() === normal}
-              onBlur={this.handleBlur}
-              onChange={this.handleChange}
-            />
-            <em className="chq-ffd--radio-check" />
-            {" "}
-            {option.label}
-          </label>
-        ))}
-        <FormError
-          name={name}
-          onError={onError}
-          required={required}
-          submitted={submitted}
-          touched={touched}
-          validator={validator}
-          value={normal}
-        />
-      </fieldset>
-    );
-  }
-}
-
-export default withForm(RadioField);
+export default RadioField;
