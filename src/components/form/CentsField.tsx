@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 
 import classnames from "../../classnames";
 import FormError from "./FormError";
-import { FormState, useForm } from "./Form";
+import { useForm } from "./Form";
 import useAutoFocus from "./select/useAutoFocus";
 
 const centsValidator = (value: string) => {
@@ -28,7 +28,7 @@ type CentsFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
 const CentsField: React.FC<CentsFieldProps> = ({
   autoFocus, children, className, name, onChange, required, value, ...props
 }) => {
-  const { errors, onError, onFormChange, submitted, submitting, values } = useForm();
+  const { onError, onFormChange, submitted, values } = useForm();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [touched, setTouched] = useState<boolean>(false);
