@@ -41,7 +41,7 @@ export { default as ModalDialog } from "./components/modals/ModalDialog";
 export { default as BooleanField } from "./components/form/BooleanField";
 export { default as CentsField } from "./components/form/CentsField";
 export { default as DateTimeField } from "./components/form/DateTimeField";
-export { default as Form, withForm } from "./components/form/Form";
+export { default as Form, withForm, useForm } from "./components/form/Form";
 export { EmailField, NumberField, PasswordField, StringField } from "./components/form/FormFields";
 export { default as FileField } from "./components/form/FileField";
 export { default as ImageField } from "./components/form/ImageField";
