@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+
+- When the `options` prop changes on a `SelectField` with `multiple` set to false, previously it was automatically performing the fuzzy filter on the options, which resulted in not all of the options being displayed. This is the correct behavior if the dropdown is open, but if it's closed we want to display all of the options.
+
 ## [16.2.1] - 2019-12-20
 
 ### Changed

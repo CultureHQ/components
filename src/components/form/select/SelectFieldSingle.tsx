@@ -66,10 +66,10 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     const { display } = this.state;
 
     if (prevProps.options !== options) {
-      this.setState({
+      this.setState(({ open }) => ({
         display: getDisplay(this.props),
-        filteredOptions: fuzzyFilter(options, display)
-      });
+        filteredOptions: open ? fuzzyFilter(options, display) : options
+      }));
     } else if (prevProps.value !== value && (!creatable || !display)) {
       this.setState({ display: getDisplay(this.props) });
     }
