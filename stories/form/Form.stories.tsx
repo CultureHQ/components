@@ -35,6 +35,7 @@ storiesOf("Form/Form", module)
         <StringField name="string" disabled={disabled}>String</StringField>
         <SelectField
           name="select"
+          disabled={disabled}
           options={[
             { value: "1", label: "One" },
             { value: "2", label: "Two" },

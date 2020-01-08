@@ -3,11 +3,12 @@ import React from "react";
 import SelectFieldCaret from "./SelectFieldCaret";
 import { SelectFieldPassedProps, SelectValue } from "../typings";
 
-type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "display" | "inputRef" | "name" | "onChange" | "onClose" | "onOpen" | "open" | "placeholder"> & {
+type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "disabled" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onOpen" | "open" | "placeholder"> & {
   value: null | SelectValue;
 };
 
 const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = ({
+  disabled,
   display,
   inputRef,
   name,
@@ -37,12 +38,20 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = ({
 
   return (
     <>
-      <input aria-label={name} type="hidden" id={name} name={name} value={value || ""} />
+      <input
+        aria-label={name}
+        type="hidden"
+        disabled={disabled}
+        id={name}
+        name={name}
+        value={value || ""}
+      />
       <input
         aria-label="Value"
         type="text"
         ref={inputRef}
         className="chq-ffd--ctrl"
+        disabled={disabled}
         onClick={onOpen}
         onChange={onChange}
         onKeyDown={onKeyDown}

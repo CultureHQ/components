@@ -52,9 +52,19 @@ storiesOf("Form/SelectField", module)
       <SelectField name="select" creatable options={options}>Select</SelectField>
     </Container>
   ))
+  .add("disabled", () => (
+    <Container>
+      <SelectField name="select" disabled options={options}>Select</SelectField>
+    </Container>
+  ))
   .add("multiple", () => (
     <Container>
       <SelectField name="select" multiple options={options}>Select</SelectField>
+    </Container>
+  ))
+  .add("multiple + disabled", () => (
+    <Container>
+      <SelectField name="select" multiple disabled options={options}>Select</SelectField>
     </Container>
   ))
   .add("creatable + multiple", () => (

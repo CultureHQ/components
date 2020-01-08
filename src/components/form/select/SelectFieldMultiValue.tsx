@@ -23,7 +23,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
   return <><Badge icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
 };
 
-type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "placeholder"> & {
+type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "disabled" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "placeholder"> & {
   value: null | SelectValue[];
 };
 
@@ -67,13 +67,22 @@ class SelectFieldMultiValue extends React.Component<SelectFieldMultiValueProps, 
   };
 
   render() {
-    const { display, inputRef, name, onChange, onDeselect, onOpen, open, placeholder } = this.props;
+    const {
+      disabled, display, inputRef, name, onChange, onDeselect, onOpen, open,
+      placeholder
+    } = this.props;
 
     const className = classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open });
     const currentOptions = this.getCurrentOptions();
 
     return (
-      <div role="button" tabIndex={0} onClick={onOpen} onKeyDown={this.handleKeyDown} className={className}>
+      <div
+        role="button"
+        tabIndex={disabled ? -1 : 0}
+        onClick={disabled ? undefined : onOpen}
+        onKeyDown={this.handleKeyDown}
+        className={className}
+      >
         {currentOptions.map((option, index) => (
           <React.Fragment key={option.value}>
             <input
@@ -90,6 +99,7 @@ class SelectFieldMultiValue extends React.Component<SelectFieldMultiValueProps, 
           aria-label="Search"
           type="text"
           className="chq-ffd--sl--match"
+          disabled={disabled}
           ref={inputRef}
           onChange={onChange}
           onKeyDown={this.handleKeyDown}

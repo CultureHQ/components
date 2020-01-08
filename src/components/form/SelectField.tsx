@@ -7,12 +7,14 @@ import SelectFieldSingle from "./select/SelectFieldSingle";
 import SelectFieldMulti from "./select/SelectFieldMulti";
 import { useForm } from "./Form";
 import { FormFieldError, SelectOption, SelectValue } from "./typings";
+import useDisabled from "./useDisabled";
 
 type SelectFieldCommonProps = {
   autoFocus?: boolean;
   children: React.ReactNode;
   className?: string;
   creatable?: boolean;
+  disabled?: boolean;
   multiple?: boolean;
   name: string;
   options: SelectOption[];
@@ -43,6 +45,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   children,
   className,
   creatable = false,
+  disabled,
   multiple = false,
   name,
   onChange,
@@ -55,11 +58,14 @@ const SelectField: React.FC<SelectFieldProps> = ({
   const inputRef = React.createRef<HTMLInputElement>();
   const onFocus = useAutoFocus(autoFocus, inputRef);
 
-  const context = useForm();
+  useDisabled(name, disabled);
+
+  const { disabled: formDisabled, ...context } = useForm();
   const passed = {
     ...context,
     autoFocus,
     creatable,
+    disabled,
     inputRef,
     name,
     onFocus,

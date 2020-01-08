@@ -9,6 +9,7 @@ export type SelectOption = {
 
 export type SelectFieldPassedProps = {
   creatable: boolean;
+  disabled: boolean | undefined;
   display: string;
   filteredOptions: SelectOption[];
   inputRef: React.RefObject<HTMLInputElement>;
