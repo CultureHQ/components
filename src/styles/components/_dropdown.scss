@@ -5,9 +5,9 @@
   display: inline-block;
   position: relative;
 
-  [aria-haspopup="listbox"] {
-    color: $color-primary-font;
+  [aria-haspopup='listbox'] {
     border-color: $border-color;
+    color: $color-primary-font;
     font-size: $font-size;
     padding-right: calc(1.5em + 6px);
     position: relative;
@@ -20,7 +20,7 @@
     }
   }
 
-  [role="listbox"] {
+  [role='listbox'] {
     background-color: $color-white;
     border: $border-color solid 1px;
     border-radius: 4px;
@@ -29,7 +29,7 @@
     list-style: none;
     padding: .5em 0;
 
-    &[aria-expanded="true"] {
+    &[aria-expanded='true'] {
       display: block;
       font-size: $font-size;
       font-weight: $font-weight-light;
@@ -38,7 +38,7 @@
     }
   }
 
-  [role="option"] {
+  [role='option'] {
     cursor: pointer;
     padding: .25em 1em .25em 3em;
     position: relative;
@@ -49,7 +49,7 @@
       outline: none;
     }
 
-    &[aria-selected="true"] {
+    &[aria-selected='true'] {
       color: $color-primary-green;
       font-weight: $font-weight-normal;
     }

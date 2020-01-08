@@ -2,11 +2,14 @@ import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } 
 import { useClickOutside } from "@culturehq/hooks";
 
 import classnames from "../classnames";
+import useId from "../utils/useId";
+
 import Button from "./buttons/Button";
 
 type DropdownValue = string;
 
 type DropdownState = {
+  buttonId: string;
   buttonRef: React.RefObject<HTMLButtonElement>;
   onChange: (value: DropdownValue) => void;
   onToggle: () => void;
@@ -15,6 +18,7 @@ type DropdownState = {
 };
 
 const DropdownContext = React.createContext<DropdownState>({
+  buttonId: "chq-0",
   buttonRef: React.createRef<HTMLButtonElement>(),
   onChange: () => {},
   onToggle: () => {},
@@ -32,12 +36,13 @@ const DropdownCheck: React.FC = () => (
 type DropdownButtonProps = React.ComponentProps<typeof Button>;
 
 const DropdownButton: React.FC<DropdownButtonProps> = ({ children, ...props }) => {
-  const { buttonRef, open, onToggle } = useContext(DropdownContext);
+  const { buttonId, buttonRef, open, onToggle } = useContext(DropdownContext);
 
   return (
     <Button
       {...props}
       aria-haspopup="listbox"
+      id={buttonId}
       inverted
       onClick={onToggle}
       ref={buttonRef}
@@ -56,10 +61,10 @@ type DropdownListBoxProps = React.HTMLAttributes<HTMLUListElement> & {
 };
 
 const DropdownListBox: React.FC<DropdownListBoxProps> = ({ children, ...props }) => {
-  const { open } = useContext(DropdownContext);
+  const { buttonId, open } = useContext(DropdownContext);
 
   return (
-    <ul {...props} aria-expanded={!!open} role="listbox">
+    <ul {...props} aria-expanded={!!open} aria-labelledby={buttonId} role="listbox">
       {children}
     </ul>
   );
@@ -105,11 +110,17 @@ type DropdownProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
   selected: DropdownValue | null;
 };
 
+// Disabling the following rule because the top-level div is just capturing all
+// keyboard events from the button or from the list elements, and it's better to
+// just keep it here are the top level. See:
+// https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md#case-the-event-handler-is-only-being-used-to-capture-bubbled-events
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 const Dropdown = ({ children, className, onChange, selected, ...props }: DropdownProps) => {
   const [open, setOpen] = useState<DropdownState["open"]>(null);
   const onClose = useCallback(() => setOpen(false), [setOpen]);
 
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonId = useId();
 
   useEffect(
     () => {
@@ -130,13 +141,14 @@ const Dropdown = ({ children, className, onChange, selected, ...props }: Dropdow
 
   const context = useMemo(
     () => ({
+      buttonId,
       buttonRef,
       onChange,
       onToggle: () => setOpen(value => !value),
       open,
       selected
     }),
-    [buttonRef, onChange, open, setOpen, selected]
+    [buttonId, buttonRef, onChange, open, setOpen, selected]
   );
 
   return (
