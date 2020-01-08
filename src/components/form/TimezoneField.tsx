@@ -4,7 +4,7 @@ import SelectField from "./SelectField";
 import { StringField } from "./FormFields";
 import { useForm } from "./Form";
 
-type Timezone = {
+export type Timezone = {
   label: string;
   value: string;
   offset: number;
