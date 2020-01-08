@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useClickOutside } from "@culturehq/hooks";
 
 import classnames from "../classnames";
@@ -7,13 +7,15 @@ import Button from "./buttons/Button";
 type DropdownValue = string;
 
 type DropdownState = {
+  buttonRef: React.RefObject<HTMLButtonElement>;
   onChange: (value: DropdownValue) => void;
   onToggle: () => void;
-  open: boolean;
+  open: boolean | null;
   selected: DropdownValue | null;
 };
 
 const DropdownContext = React.createContext<DropdownState>({
+  buttonRef: React.createRef<HTMLButtonElement>(),
   onChange: () => {},
   onToggle: () => {},
   open: false,
@@ -30,14 +32,20 @@ const DropdownCheck: React.FC = () => (
 type DropdownButtonProps = React.ComponentProps<typeof Button>;
 
 const DropdownButton: React.FC<DropdownButtonProps> = ({ children, ...props }) => {
-  const { open, onToggle } = useContext(DropdownContext);
+  const { buttonRef, open, onToggle } = useContext(DropdownContext);
 
   return (
-    <Button inverted {...props} aria-haspopup="listbox" onClick={onToggle}>
+    <Button
+      {...props}
+      aria-haspopup="listbox"
+      inverted
+      onClick={onToggle}
+      ref={buttonRef}
+    >
       {children}
       <span
         aria-hidden
-        className={classnames("chq-dd--caret", { "chq-dd--caret-ex": open })}
+        className={classnames("chq-dd--caret", { "chq-dd--caret-ex": !!open })}
       />
     </Button>
   );
@@ -51,7 +59,7 @@ const DropdownListBox: React.FC<DropdownListBoxProps> = ({ children, ...props })
   const { open } = useContext(DropdownContext);
 
   return (
-    <ul {...props} aria-expanded={open} role="listbox">
+    <ul {...props} aria-expanded={!!open} role="listbox">
       {children}
     </ul>
   );
@@ -98,9 +106,20 @@ type DropdownProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
 };
 
 const Dropdown = ({ children, className, onChange, selected, ...props }: DropdownProps) => {
-  const [open, setOpen] = useState<boolean>(false);
-
+  const [open, setOpen] = useState<DropdownState["open"]>(null);
   const onClose = useCallback(() => setOpen(false), [setOpen]);
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(
+    () => {
+      if (open === false && buttonRef.current) {
+        buttonRef.current.focus();
+      }
+    },
+    [buttonRef, open, setOpen]
+  );
+
   const containerRef = useClickOutside<HTMLDivElement>(onClose);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -111,12 +130,13 @@ const Dropdown = ({ children, className, onChange, selected, ...props }: Dropdow
 
   const context = useMemo(
     () => ({
+      buttonRef,
       onChange,
       onToggle: () => setOpen(value => !value),
       open,
       selected
     }),
-    [onChange, open, setOpen, selected]
+    [buttonRef, onChange, open, setOpen, selected]
   );
 
   return (

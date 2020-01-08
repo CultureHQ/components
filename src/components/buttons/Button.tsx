@@ -33,7 +33,7 @@ type ButtonProps<P extends any = any> = ButtonCommonProps & (
   | ({ as: undefined | "button" } & React.ButtonHTMLAttributes<HTMLButtonElement>)
 );
 
-const Button: React.FC<ButtonProps> = ({
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   as: Element = "button",
   children,
   className,
@@ -46,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
   loading = false,
   danger = false,
   ...props
-}) => {
+}, ref) => {
   const buttonProps = {
     ...props,
     className: classnames("chq-btn", className, {
@@ -64,11 +64,11 @@ const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <Element {...buttonProps}>
+    <Element {...buttonProps} ref={ref}>
       {(loading || icon) && <ButtonIcon icon={icon} loading={loading} />}
       {children}
     </Element>
   );
-};
+});
 
 export default Button;

@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { text } from "@storybook/addon-knobs";
 
 import { Dropdown } from "../src/components";
 
+const actionOnChange = action("onChange");
+
 const Container: React.FC = () => {
   const [value, setValue] = useState<string>("gryffindor");
 
+  const onChange = (nextValue: string) => {
+    actionOnChange(nextValue);
+    setValue(nextValue);
+  };
+
   return (
-    <Dropdown selected={value} onChange={setValue}>
+    <Dropdown selected={value} onChange={onChange}>
       <Dropdown.Button>
         House
       </Dropdown.Button>
