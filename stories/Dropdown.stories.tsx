@@ -5,7 +5,7 @@ import { text } from "@storybook/addon-knobs";
 import { Dropdown } from "../src/components";
 
 const Container: React.FC = () => {
-  const [value, setValue] = useState<string | null>(null);
+  const [value, setValue] = useState<string>("gryffindor");
 
   return (
     <Dropdown selected={value} onChange={setValue}>
