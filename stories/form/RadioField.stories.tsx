@@ -31,6 +31,7 @@ storiesOf("Form/RadioField", module)
     const children = text("children", "Radio");
     const props = {
       autoFocus: boolean("autoFocus", false),
+      disabled: boolean("disabled", false),
       onChange: action("onChange"),
       name: text("name", "radio"),
       required: boolean("required", false),
@@ -42,6 +43,7 @@ storiesOf("Form/RadioField", module)
     return <Container {...props}>{children}</Container>;
   })
   .add("autoFocus", () => <Container name="radio" autoFocus>Radio</Container>)
+  .add("disabled", () => <Container name="radio" disabled>Radio</Container>)
   .add("required", () => <Container name="radio" required>Radio</Container>)
   .add("validator", () => {
     const validator = (value: string | number) => {

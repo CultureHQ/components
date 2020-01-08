@@ -20,6 +20,7 @@ storiesOf("Form/StringField", module)
     const children = text("children", "String");
     const props = {
       autoFocus: boolean("autoFocus", false),
+      disabled: boolean("disabled", false),
       onChange: action("onChange"),
       name: text("name", "string"),
       required: boolean("required", false),

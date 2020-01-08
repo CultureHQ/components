@@ -6,6 +6,7 @@ import useAutoFocus from "../../utils/useAutoFocus";
 import FormError from "./FormError";
 import { useForm } from "./Form";
 import { FormFieldError } from "./typings";
+import useDisabled from "./useDisabled";
 
 export type RadioFieldValue = string | number;
 type RadioFieldOption = {
@@ -17,6 +18,7 @@ type RadioFieldProps = Omit<React.HTMLAttributes<HTMLFieldSetElement>, "classNam
   autoFocus?: boolean;
   children: React.ReactNode;
   className?: string;
+  disabled?: boolean;
   name: string;
   onChange?: (value: RadioFieldValue) => void;
   options: RadioFieldOption[];
@@ -26,8 +28,8 @@ type RadioFieldProps = Omit<React.HTMLAttributes<HTMLFieldSetElement>, "classNam
 };
 
 const RadioField: React.FC<RadioFieldProps> = ({
-  autoFocus, children, className, name, onChange, options, required, validator,
-  value, ...props
+  autoFocus, children, className, disabled, name, onChange, options, required,
+  validator, value, ...props
 }) => {
   const { onError, onFormChange, submitted, values } = useForm();
 
@@ -35,6 +37,7 @@ const RadioField: React.FC<RadioFieldProps> = ({
   const [touched, setTouched] = useState<boolean>(false);
 
   useAutoFocus(autoFocus, inputRef);
+  useDisabled(name, disabled);
 
   const onBlur = () => setTouched(true);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,6 +65,7 @@ const RadioField: React.FC<RadioFieldProps> = ({
             name={name}
             value={option.value}
             checked={option.value.toString() === normal}
+            disabled={disabled}
             onBlur={onBlur}
             onChange={handleChange}
           />
