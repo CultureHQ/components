@@ -4,14 +4,20 @@ import { useClickOutside } from "@culturehq/hooks";
 import classnames from "../classnames";
 import Button from "./buttons/Button";
 
+type DropdownValue = string;
+
 type DropdownState = {
-  open: boolean;
+  onChange: (value: DropdownValue) => void;
   onToggle: () => void;
+  open: boolean;
+  selected: DropdownValue | null;
 };
 
 const DropdownContext = React.createContext<DropdownState>({
+  onChange: () => {},
+  onToggle: () => {},
   open: false,
-  onToggle: () => {}
+  selected: null
 });
 
 const DropdownCheck: React.FC = () => (
@@ -53,12 +59,14 @@ const DropdownListBox: React.FC<DropdownListBoxProps> = ({ children, ...props })
 
 type DropdownOptionProps = React.HTMLAttributes<HTMLLIElement> & {
   children: React.ReactNode;
+  value: DropdownValue;
 };
 
-const DropdownOption: React.FC<DropdownOptionProps> = ({ children, ...props }) => {
-  const { open, onToggle } = useContext(DropdownContext);
+const DropdownOption: React.FC<DropdownOptionProps> = ({ children, value, ...props }) => {
+  const { open, onChange, onToggle, selected } = useContext(DropdownContext);
 
   const onClick = () => {
+    onChange(value);
     onToggle();
   };
 
@@ -71,22 +79,25 @@ const DropdownOption: React.FC<DropdownOptionProps> = ({ children, ...props }) =
   return (
     <li
       {...props}
+      aria-selected={value === selected}
       onClick={onClick}
       onKeyDown={onKeyDown}
       role="option"
       tabIndex={open ? 0 : -1}
     >
-      {props["aria-selected"] && <DropdownCheck />}
+      {value === selected && <DropdownCheck />}
       {children}
     </li>
   );
 };
 
-type DropdownProps = React.HTMLAttributes<HTMLDivElement> & {
+type DropdownProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
   children: React.ReactNode;
+  onChange: (value: DropdownValue) => void;
+  selected: DropdownValue | null;
 };
 
-const Dropdown = ({ children, className, ...props }: DropdownProps) => {
+const Dropdown = ({ children, className, onChange, selected, ...props }: DropdownProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const onClose = useCallback(() => setOpen(false), [setOpen]);
@@ -100,10 +111,12 @@ const Dropdown = ({ children, className, ...props }: DropdownProps) => {
 
   const context = useMemo(
     () => ({
+      onChange,
+      onToggle: () => setOpen(value => !value),
       open,
-      onToggle: () => setOpen(value => !value)
+      selected
     }),
-    [open, setOpen]
+    [onChange, open, setOpen, selected]
   );
 
   return (

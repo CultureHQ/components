@@ -4,17 +4,23 @@ import { text } from "@storybook/addon-knobs";
 
 import { Dropdown } from "../src/components";
 
-storiesOf("Dropdown", module)
-  .add("default", () => (
-    <Dropdown>
+const Container: React.FC = () => {
+  const [value, setValue] = useState<string | null>(null);
+
+  return (
+    <Dropdown selected={value} onChange={setValue}>
       <Dropdown.Button>
-        Segment By
+        House
       </Dropdown.Button>
       <Dropdown.ListBox>
-        <Dropdown.Option>Departments</Dropdown.Option>
-        <Dropdown.Option>Locations</Dropdown.Option>
-        <Dropdown.Option>Interests</Dropdown.Option>
-        <Dropdown.Option>Skills</Dropdown.Option>
+        <Dropdown.Option value="gryffindor">Gryffindor</Dropdown.Option>
+        <Dropdown.Option value="hufflepuff">Hufflepuff</Dropdown.Option>
+        <Dropdown.Option value="ravenclaw">Ravenclaw</Dropdown.Option>
+        <Dropdown.Option value="slytherin">Slytherin</Dropdown.Option>
       </Dropdown.ListBox>
     </Dropdown>
-  ));
+  );
+};
+
+storiesOf("Dropdown", module)
+  .add("default", () => <Container />);
