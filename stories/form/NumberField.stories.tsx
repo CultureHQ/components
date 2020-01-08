@@ -20,6 +20,7 @@ storiesOf("Form/NumberField", module)
     const children = text("children", "Number");
     const props = {
       autoFocus: boolean("autoFocus", false),
+      disabled: boolean("disabled", false),
       onChange: action("onChange"),
       name: text("name", "number"),
       required: boolean("required", false),
@@ -29,6 +30,7 @@ storiesOf("Form/NumberField", module)
     return <Container {...props}>{children}</Container>;
   })
   .add("autoFocus", () => <Container name="number" autoFocus>Number</Container>)
+  .add("disabled", () => <Container name="number" disabled>Number</Container>)
   .add("required", () => <Container name="number" required>Number</Container>)
   .add("validator", () => {
     const validator = (value: string) => {

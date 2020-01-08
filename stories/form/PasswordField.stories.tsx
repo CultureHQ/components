@@ -20,6 +20,7 @@ storiesOf("Form/PasswordField", module)
     const children = text("children", "Password");
     const props = {
       autoFocus: boolean("autoFocus", false),
+      disabled: boolean("disabled", false),
       onChange: action("onChange"),
       name: text("name", "password"),
       required: boolean("required", false),
@@ -30,6 +31,9 @@ storiesOf("Form/PasswordField", module)
   })
   .add("autoFocus", () => (
     <Container name="password" autoFocus>Password</Container>
+  ))
+  .add("disabled", () => (
+    <Container name="password" disabled>Password</Container>
   ))
   .add("required", () => (
     <Container name="password" required>Password</Container>

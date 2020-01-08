@@ -20,6 +20,7 @@ storiesOf("Form/EmailField", module)
     const children = text("children", "Email");
     const props = {
       autoFocus: boolean("autoFocus", false),
+      disabled: boolean("disabled", false),
       onChange: action("onChange"),
       name: text("name", "email"),
       required: boolean("required", false),
@@ -29,6 +30,7 @@ storiesOf("Form/EmailField", module)
     return <Container {...props}>{children}</Container>;
   })
   .add("autoFocus", () => <Container name="email" autoFocus>Email</Container>)
+  .add("disabled", () => <Container name="email" disabled>Email</Container>)
   .add("required", () => <Container name="email" required>Email</Container>)
   .add("validator", () => {
     const validator = (value: string) => {

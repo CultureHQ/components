@@ -10,6 +10,7 @@ import {
   FileField,
   Form,
   ImageField,
+  RadioField,
   SelectField,
   StringField,
   SubmitButton,
@@ -42,11 +43,22 @@ storiesOf("Form/Form", module)
         >
           Select
         </SelectField>
+        <RadioField
+          name="radio"
+          disabled={disabled}
+          options={[
+            { value: "1", label: "One" },
+            { value: "2", label: "Two" },
+            { value: "3", label: "Three" }
+          ]}
+        >
+          Radio
+        </RadioField>
         <FileField name="file" disabled={disabled}>File</FileField>
         <CentsField name="cents" disabled={disabled}>Cents</CentsField>
         <TextField name="text" disabled={disabled}>Text</TextField>
         <DateTimeField name="datetime" disabled={disabled}>DateTime</DateTimeField>
-        <BooleanField name="boolean">Boolean</BooleanField>
+        <BooleanField name="boolean" disabled={disabled}>Boolean</BooleanField>
         <ImageField name="image">Image</ImageField>
         <SubmitButton primary />
       </Form>
