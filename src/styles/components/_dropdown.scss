@@ -46,6 +46,11 @@
       background-color: $color-border;
       outline: none;
     }
+
+    &[aria-selected="true"] {
+      color: $color-primary-green;
+      font-weight: $font-weight-normal;
+    }
   }
 
   &--caret {
