@@ -7,6 +7,7 @@ export { default as Cheer } from "./components/Cheer";
 export { default as Circles } from "./components/Circles";
 export { default as ClickClose } from "./components/ClickClose";
 export { default as DoorEffect } from "./components/DoorEffect";
+export { default as Dropdown } from "./components/Dropdown";
 export { default as FeedItem } from "./components/FeedItem";
 export { default as Grid } from "./components/Grid";
 export { default as Loader } from "./components/Loader";
