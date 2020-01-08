@@ -64,7 +64,6 @@ const DropdownOption: React.FC<DropdownOptionProps> = ({ children, ...props }) =
   return (
     <li
       {...props}
-      aria-selected={false}
       onClick={onClick}
       onKeyDown={onKeyDown}
       role="option"
