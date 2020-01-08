@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import SelectField from "./SelectField";
 import { StringField } from "./FormFields";
-import { FormState, withForm } from "./Form";
+import { useForm } from "./Form";
 
-import timezonesJSON from "../../timezones.json";
-
-type Timezones = typeof timezonesJSON;
+type Timezone = {
+  label: string;
+  value: string;
+  offset: number;
+};
 
 type TimezoneFieldProps = Omit<React.ComponentProps<typeof StringField>, "onChange" | "validator"> & {
   onChange?: (value: null | string) => void;
@@ -14,56 +16,64 @@ type TimezoneFieldProps = Omit<React.ComponentProps<typeof StringField>, "onChan
   validator?: (value: null | string) => null | string;
 };
 
-type TimezoneFieldState = {
-  timezones: null | Timezones;
+const useTimezones = () => {
+  const [timezones, setTimezones] = useState<Timezone[] | null>(null);
+
+  useEffect(
+    () => {
+      let cancelled = false;
+
+      import("../../timezones.json")
+        .then(({ default: timezonesJson }) => {
+          if (!cancelled) {
+            setTimezones(timezonesJson);
+          }
+        }).catch(() => {
+          // this catch is here because in the case that you're not in an
+          // environment that supports dynamic import (like jest when you're not
+          // compiling vendored code) it will spam the console otherwise
+        });
+
+      return () => {
+        cancelled = true;
+      };
+    },
+    [setTimezones]
+  );
+
+  return timezones;
 };
 
-class TimezoneField extends React.Component<TimezoneFieldProps & FormState, TimezoneFieldState> {
-  private componentIsMounted = false;
+const TimezoneField: React.FC<TimezoneFieldProps> = ({ onChange, onOffsetChange, ...props }) => {
+  const { values } = useForm();
+  const timezones = useTimezones();
 
-  state = { timezones: null };
-
-  componentDidMount() {
-    this.componentIsMounted = true;
-
-    import("../../timezones.json")
-      .then(({ default: timezones }) => {
-        if (!this.componentIsMounted) {
-          return;
-        }
-
-        const { name, onOffsetChange, value, values } = this.props;
+  useEffect(
+    () => {
+      if (timezones && onOffsetChange) {
+        const { name, value } = props;
         const normal = value || values[name];
 
         const match = timezones.find(timezone => timezone.value === normal);
-        if (match && onOffsetChange) {
+        if (match) {
           onOffsetChange(match.offset);
         }
+      }
+    },
+    // Here we're going to explicitly ignore the rules of hooks because we only
+    // want this to fire when the timezones are fetched mounts and not in
+    // relation to its component props.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [timezones]
+  );
 
-        this.setState({ timezones });
-      }).catch(() => {
-        // this catch is largely here because in the case that you're not in an
-        // environment that supports dynamic import (like jest when you're not
-        // compiling vendored code) it will spam the console otherwise
-      });
-  }
-
-  componentWillUnmount() {
-    this.componentIsMounted = false;
-  }
-
-  handleChange = (value: null | string) => {
-    const { onChange, onOffsetChange } = this.props;
-    const { timezones } = this.state;
-
+  const handleChange = (nextValue: null | string) => {
     if (onChange) {
-      onChange(value);
+      onChange(nextValue);
     }
 
     if (timezones) {
-      // This --v should not be necessary
-      const candidates = timezones as unknown as Timezones;
-      const match = candidates.find(timezone => timezone.value === value);
+      const match = timezones.find(timezone => timezone.value === nextValue);
 
       if (match && onOffsetChange) {
         onOffsetChange(match.offset);
@@ -71,17 +81,12 @@ class TimezoneField extends React.Component<TimezoneFieldProps & FormState, Time
     }
   };
 
-  render() {
-    const { onOffsetChange, ...props } = this.props;
-    const { timezones } = this.state;
-
-    if (!timezones) {
-      return <StringField {...props} onChange={this.handleChange} />;
-    }
-
-    const candidates = timezones as unknown as Timezones;
-    return <SelectField {...props} onChange={this.handleChange} options={candidates} />;
+  if (!timezones) {
+    return <StringField {...props} onChange={handleChange} />;
   }
-}
 
-export default withForm(TimezoneField);
+  // const candidates = timezones as unknown as Timezones;
+  return <SelectField {...props} onChange={handleChange} options={timezones} />;
+};
+
+export default TimezoneField;
