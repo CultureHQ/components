@@ -14,6 +14,13 @@ const DropdownContext = React.createContext<DropdownState>({
   onToggle: () => {}
 });
 
+const DropdownCheck: React.FC = () => (
+  <svg aria-hidden data-chq-dropdown-check viewBox="0 0 16 16">
+    <circle r="7" cx="8" cy="8" />
+    <path d="M 5 9 l 2 2 l 4 -5" />
+  </svg>
+);
+
 type DropdownButtonProps = React.ComponentProps<typeof Button>;
 
 const DropdownButton: React.FC<DropdownButtonProps> = ({ children, ...props }) => {
@@ -69,6 +76,7 @@ const DropdownOption: React.FC<DropdownOptionProps> = ({ children, ...props }) =
       role="option"
       tabIndex={open ? 0 : -1}
     >
+      {props["aria-selected"] && <DropdownCheck />}
       {children}
     </li>
   );

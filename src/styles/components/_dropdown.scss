@@ -39,7 +39,9 @@
   }
 
   [role="option"] {
+    cursor: pointer;
     padding: .25em 1em .25em 3em;
+    position: relative;
 
     &:hover,
     &:focus {
@@ -50,6 +52,19 @@
     &[aria-selected="true"] {
       color: $color-primary-green;
       font-weight: $font-weight-normal;
+    }
+
+    [data-chq-dropdown-check] {
+      height: 1.3em;
+      left: 1em;
+      position: absolute;
+      width: 1.3em;
+
+      circle,
+      path {
+        fill: none;
+        stroke: $color-primary-green;
+      }
     }
   }
 
