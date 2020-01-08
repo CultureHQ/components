@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Support the `disabled` prop on the `FileField` component.
 - Support the `disabled` prop on the `RadioField` component.
 - Support the `disabled` prop on the `TextField` component.
+- Support the `disabled` prop on the `SelectField` component.
 
 ## [16.3.0] - 2020-01-07
 

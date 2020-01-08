@@ -8,8 +8,9 @@ import SelectFieldSingleValue from "./SelectFieldSingleValue";
 import SelectFieldOptions from "./SelectFieldOptions";
 import fuzzyFilter from "./fuzzyFilter";
 
-type SelectFieldSingleProps = FormState & {
+type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
   creatable: boolean;
+  disabled?: boolean;
   inputRef: React.RefObject<HTMLInputElement>;
   name: string;
   onChange?: (value: null | SelectValue) => void;
@@ -188,8 +189,8 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   // we're following the rules for it but it can't figure that out
   render() {
     const {
-      creatable, inputRef, name, onError, options, placeholder, required,
-      selectRef, submitted, validator
+      creatable, disabled, inputRef, name, onError, options, placeholder,
+      required, selectRef, submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -200,6 +201,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
       <>
         <div ref={selectRef} className="chq-ffd--sl">
           <SelectFieldSingleValue
+            disabled={disabled}
             display={display}
             inputRef={inputRef}
             name={name}
