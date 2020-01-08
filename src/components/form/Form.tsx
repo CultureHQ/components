@@ -16,7 +16,7 @@ type FormProps = {
 };
 
 export type FormState = {
-  disabled: { [K in keyof FormValues]?: boolean };
+  disabledStates: { [K in keyof FormValues]?: boolean };
   errors: { [key: string]: FormFieldError };
   submitted: boolean;
   submitting: boolean;
@@ -27,7 +27,7 @@ export type FormState = {
 };
 
 const FormContext = React.createContext<FormState>({
-  disabled: {},
+  disabledStates: {},
   errors: {},
   submitted: false,
   submitting: false,
@@ -48,7 +48,7 @@ class Form extends React.Component<FormProps, FormState> {
 
     this.componentIsMounted = false;
     this.state = {
-      disabled: {},
+      disabledStates: {},
       errors: {},
       submitted: false,
       submitting: false,
@@ -80,8 +80,8 @@ class Form extends React.Component<FormProps, FormState> {
   };
 
   handleFieldDisabledChange = (name: string, value: boolean | undefined) => {
-    this.setState(({ disabled }) => ({
-      disabled: { ...disabled, [name]: value }
+    this.setState(({ disabledStates }) => ({
+      disabledStates: { ...disabledStates, [name]: value }
     }));
   };
 
@@ -98,7 +98,7 @@ class Form extends React.Component<FormProps, FormState> {
 
   submit() {
     const { onSubmit } = this.props;
-    const { disabled, errors, values } = this.state;
+    const { disabledStates, errors, values } = this.state;
 
     this.setState({ submitted: true });
 
@@ -108,7 +108,7 @@ class Form extends React.Component<FormProps, FormState> {
       const submitValues: FormValues = {};
 
       Object.keys(values).forEach((name: keyof typeof values) => {
-        if (!disabled[name]) {
+        if (!disabledStates[name]) {
           submitValues[name] = values[name];
         }
       });

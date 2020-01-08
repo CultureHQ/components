@@ -60,7 +60,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
 
   useDisabled(name, disabled);
 
-  const { disabled: formDisabled, ...context } = useForm();
+  const context = useForm();
   const passed = {
     ...context,
     autoFocus,
