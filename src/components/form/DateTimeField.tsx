@@ -216,7 +216,8 @@ class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldSta
 
   render() {
     const {
-      children, className, disabled, onError, name, required, submitted, validator
+      children, className, disabled, onError, name, required, submitted,
+      validator
     } = this.props;
 
     const { open, touched } = this.state;

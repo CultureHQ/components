@@ -30,17 +30,6 @@ test("displays the value using cents", () => {
   expect(getByRole("textbox")).toHaveProperty("value", "1.23");
 });
 
-test("validates that the value cannot be <= 0", () => {
-  const onError = jest.fn();
-  render(
-    <CentsField name="cents" value={-5} onError={onError}>
-      Cents!
-    </CentsField>
-  );
-
-  expect(onError).toHaveBeenCalledTimes(1);
-});
-
 test("handles cases where the value is empty", () => {
   const onChange = jest.fn();
   const { getByRole } = render(
