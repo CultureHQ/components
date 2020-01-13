@@ -2061,7 +2061,7 @@
     prop-types "^15.7.2"
     regenerator-runtime "^0.12.1"
 
-"@storybook/theming@5.2.8", "@storybook/theming@^5.2.6":
+"@storybook/theming@5.2.8":
   version "5.2.8"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.2.8.tgz#a4c9e0e9a5789c1aa71e4fcb7a8ee86efe3dadcf"
   integrity sha512-rGb66GkXb0jNJMH8UQ3Ru4FL+m1x0+UdxM8a8HSE/qb1GMv2qOwjVETfAL6nVL9u6ZmrtbhHoero4f6xDwZdRg==
@@ -2079,7 +2079,7 @@
     prop-types "^15.7.2"
     resolve-from "^5.0.0"
 
-"@storybook/theming@5.3.1":
+"@storybook/theming@5.3.1", "@storybook/theming@^5.2.6":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.3.1.tgz#26ab6fa785b3c63e433b025fa9d0d28f1199b27a"
   integrity sha512-eh2QTn1BJ+1U6t3idIXMT/gdlXhqWgyxWxLvjNlLnIGWyOJ9v/G7Ycu7R9RN5BHn237I842iq9gkxdA6r9CCxA==
