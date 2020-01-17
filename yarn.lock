@@ -1625,15 +1625,15 @@
     ts-dedent "^1.1.0"
 
 "@storybook/addon-storysource@^5.3.3":
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-5.3.3.tgz#3a40fc2c79064078a450ee4374ae89b3eb835566"
-  integrity sha512-9IcbrNZtbiTYvl46K/1R2plDToNLYKfzAuC6b1yy6LJJELpOIXU0984TAeCkxsQ+eTeCYyMbByG0s3trKn0QhQ==
+  version "5.3.6"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-5.3.6.tgz#052864f2e3be24d5a3a17d27e366f93c0b18c168"
+  integrity sha512-w+qg1hoVJQQ+YX/B5CmTSR/BFVst2W9zKzFQVsIijATNk/w/fCoG3l/yAZrX9TVEbUgAzqfFYSsmfx1B2kU1PA==
   dependencies:
-    "@storybook/addons" "5.3.3"
-    "@storybook/components" "5.3.3"
-    "@storybook/router" "5.3.3"
-    "@storybook/source-loader" "5.3.3"
-    "@storybook/theming" "5.3.3"
+    "@storybook/addons" "5.3.6"
+    "@storybook/components" "5.3.6"
+    "@storybook/router" "5.3.6"
+    "@storybook/source-loader" "5.3.6"
+    "@storybook/theming" "5.3.6"
     core-js "^3.0.1"
     estraverse "^4.2.0"
     loader-utils "^1.2.3"
@@ -2081,13 +2081,13 @@
     qs "^6.6.0"
     util-deprecate "^1.0.2"
 
-"@storybook/source-loader@5.3.3":
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-5.3.3.tgz#d7ea88f804d3593d7b5f45b71a886461b3fa7c1c"
-  integrity sha512-XnwGhtV9nkZT1owGQzX6jUcz/jxNDXWPtnNwUq31RYqL+W6nWrA7K6k8dzpXfTTX5bG2stykONY9q9yIhsp86g==
+"@storybook/source-loader@5.3.6":
+  version "5.3.6"
+  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-5.3.6.tgz#33021dfa97a393a4c50a41fbefdd1164e558ea00"
+  integrity sha512-CCN+/zPw+bqCraB2OU/OTY5dlpigd3xT02ccPoKziqlhIKncgM73j4kgQR3TuxYA7vhvW2y+4uIkN50GbiU6zg==
   dependencies:
-    "@storybook/addons" "5.3.3"
-    "@storybook/client-logger" "5.3.3"
+    "@storybook/addons" "5.3.6"
+    "@storybook/client-logger" "5.3.6"
     "@storybook/csf" "0.0.1"
     core-js "^3.0.1"
     estraverse "^4.2.0"
