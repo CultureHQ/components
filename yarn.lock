@@ -3250,12 +3250,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.0.tgz#24390e6ad61386b0a747265754d2a17219de862c"
   integrity sha512-Uvq6hVe90D0B2WEnUqtdgY1bATGz3mw33nH9Y+dmA+w5DHvUmBgkr5rM/KCHpCsiFNRUfokW/szpPPgMK2hm4A==
 
-axe-core@3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.3.1.tgz#3d1fa78cca8ead1b78c350581501e4e37b97b826"
-  integrity sha512-gw1T0JptHPF4AdLLqE8yQq3Z7YvsYkpFmFWd84r6hnq/QoKRr8icYHFumhE7wYl5TVIHgVlchMyJsAYh0CfwCQ==
-
-axe-core@^3.3.2:
+axe-core@3.4.1, axe-core@^3.3.2:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.4.1.tgz#e42623918bb85b5ef674633852cb9029db0309c5"
   integrity sha512-+EhIdwR0hF6aeMx46gFDUy6qyCfsL0DmBrV3Z+LxYbsOd8e1zBaPHa3f9Rbjsz2dEwSBkLw6TwML/CAIIAqRpw==
@@ -7879,11 +7874,11 @@ java-properties@^0.2.9:
   integrity sha512-CpKJh9VRNhS+XqZtg1UMejETGEiqwCGDC/uwPEEQwc2nfdbSm73SIE29TplG2gLYuBOOTNDqxzG6A9NtEPLt0w==
 
 jest-axe@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/jest-axe/-/jest-axe-3.2.0.tgz#0f7a0132565289432936421cf38b7b8504690835"
-  integrity sha512-QSQwSwG72/cpmhJU0fBsaUUvu9mb2uAqhccGQVG6JbIV8sK+aIXh8hYl7vxraMF/I6soQod1aqSdD/j7LjpVFQ==
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/jest-axe/-/jest-axe-3.3.0.tgz#ae37c25e26dfdadb9caf6122798a11d681015c03"
+  integrity sha512-wGCwX8/R6Orp7rY3G9SLOhoS5jvxyViac0HBVlRxq6diufypinxvKDgZZJRjgeZ7x6v8l1sZ55EDgsTCBsBbxQ==
   dependencies:
-    axe-core "3.3.1"
+    axe-core "3.4.1"
     chalk "2.4.2"
     jest-matcher-utils "24.8.0"
     lodash.merge "4.6.2"
