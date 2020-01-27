@@ -117,3 +117,13 @@ test("disallows submitting if validation fails", () => {
 
   expect(onSubmit.mock.calls[0]).toEqual([{ value: "Pass" }]);
 });
+
+test("allows passing through other props", () => {
+  const { container } = render(
+    <Form onSubmit={jest.fn()} id="test-form">
+      <StringField name="value">Value</StringField>
+    </Form>
+  );
+
+  expect(container.querySelector("#test-form")).toBeTruthy();
+});

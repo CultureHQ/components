@@ -8,7 +8,7 @@ export type FormValue = (
 
 export type FormValues = { [key: string]: FormValue };
 
-type FormProps = {
+type FormProps = Omit<React.HTMLAttributes<HTMLFormElement>, "onSubmit"> & {
   children: React.ReactNode;
   className?: string;
   initialValues?: FormValues;
@@ -124,11 +124,11 @@ class Form extends React.Component<FormProps, FormState> {
   }
 
   render() {
-    const { children, className } = this.props;
+    const { children, className, initialValues, onSubmit, ...props } = this.props;
 
     return (
       <FormContext.Provider value={this.state}>
-        <form className={className} onSubmit={this.handleSubmit}>
+        <form {...props} className={className} onSubmit={this.handleSubmit}>
           {children}
         </form>
       </FormContext.Provider>

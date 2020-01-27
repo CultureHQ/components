@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [16.5.0] - 2020-01-27
+
+### Added
+
+- Allow passing additional HTML attributes through to the `Form` component.
+
 ## [16.4.0] - 2020-01-08
 
 ### Added
@@ -1119,7 +1125,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.4.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v16.5.0...HEAD
+[16.5.0]: https://github.com/CultureHQ/components/compare/v16.4.0...v16.5.0
 [16.4.0]: https://github.com/CultureHQ/components/compare/v16.3.0...v16.4.0
 [16.3.0]: https://github.com/CultureHQ/components/compare/v16.2.1...v16.3.0
 [16.2.1]: https://github.com/CultureHQ/components/compare/v16.2.0...v16.2.1
