@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [16.6.0] - 2020-01-31
+
+### Added
+
+- The `analytics`, `analytics-ol`, `calendar-star`, `clock`, `coin`, `coin-ol`, `copy`, `envelope`, `gear-wrench`, `invitation`, `megaphone`, `megaphone-ol`, `target`, and `user` icons.
+
 ## [16.5.0] - 2020-01-27
 
 ### Added
@@ -1125,7 +1131,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.5.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v16.6.0...HEAD
+[16.6.0]: https://github.com/CultureHQ/components/compare/v16.5.0...v16.6.0
 [16.5.0]: https://github.com/CultureHQ/components/compare/v16.4.0...v16.5.0
 [16.4.0]: https://github.com/CultureHQ/components/compare/v16.3.0...v16.4.0
 [16.3.0]: https://github.com/CultureHQ/components/compare/v16.2.1...v16.3.0
