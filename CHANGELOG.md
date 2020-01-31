@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [16.7.0] - 2020-01-31
+
+### Added
+
+- The `arrow-up` and `arrow-down` icons.
+
 ## [16.6.0] - 2020-01-31
 
 ### Added
@@ -1131,7 +1137,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.6.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v16.7.0...HEAD
+[16.7.0]: https://github.com/CultureHQ/components/compare/v16.6.0...v16.7.0
 [16.6.0]: https://github.com/CultureHQ/components/compare/v16.5.0...v16.6.0
 [16.5.0]: https://github.com/CultureHQ/components/compare/v16.4.0...v16.5.0
 [16.4.0]: https://github.com/CultureHQ/components/compare/v16.3.0...v16.4.0
