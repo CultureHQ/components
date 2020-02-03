@@ -1471,14 +1471,14 @@
     uuid "^3.3.2"
 
 "@storybook/addon-info@^5.3.8":
-  version "5.3.9"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-info/-/addon-info-5.3.9.tgz#626950c69fdbfe9a22b0c4f4f2ae9531f9431c67"
-  integrity sha512-KX4zlDdbgp2JAw7MvdX5GmuT0ybLpS32k1Ej9PFo2vVv2BgTdliHuFdcjF3Ywr+fZYhD8KIxTMUSpEXgIlsxAw==
+  version "5.3.10"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-info/-/addon-info-5.3.10.tgz#1aa34882223641f73da921561a3a7434cc9b4e93"
+  integrity sha512-QvVP+4ZCNcf512VSzNOMs06nz1lB6b3j3GV8c+gYj6Q3A5wSi6XRvZbMdfdhGqCEzgoj2G2B/xVnubr3AyC43g==
   dependencies:
-    "@storybook/addons" "5.3.9"
-    "@storybook/client-logger" "5.3.9"
-    "@storybook/components" "5.3.9"
-    "@storybook/theming" "5.3.9"
+    "@storybook/addons" "5.3.10"
+    "@storybook/client-logger" "5.3.10"
+    "@storybook/components" "5.3.10"
+    "@storybook/theming" "5.3.10"
     core-js "^3.0.1"
     global "^4.3.2"
     marksy "^8.0.0"
@@ -2019,7 +2019,7 @@
     prop-types "^15.7.2"
     regenerator-runtime "^0.13.3"
 
-"@storybook/theming@5.3.10":
+"@storybook/theming@5.3.10", "@storybook/theming@^5.2.6":
   version "5.3.10"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.3.10.tgz#6f53df9684d998ce3dfdb22babfaeb667b7f250d"
   integrity sha512-5/RQQS6u7BuJ8ufiqohAZ6EBLi6PwvJ3KcLMU21Dces/i0/e/HukXzUJVS0DVOno4bROkf98fYIv+MetpvIX+g==
@@ -2037,7 +2037,7 @@
     resolve-from "^5.0.0"
     ts-dedent "^1.1.0"
 
-"@storybook/theming@5.3.9", "@storybook/theming@^5.2.6":
+"@storybook/theming@5.3.9":
   version "5.3.9"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.3.9.tgz#caaeea398f9e630394298ccfe8f36a185a289e4f"
   integrity sha512-1vG+H1D5j2vcMv54eEKixAoa4UlTuS/dxMZubJfcZYY1PDNtnvQM6B1CE/4EU+qsIYPFQiGFXB4b6gjCFYIFpQ==
