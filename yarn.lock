@@ -1492,16 +1492,16 @@
     util-deprecate "^1.0.2"
 
 "@storybook/addon-knobs@^5.3.8":
-  version "5.3.9"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-knobs/-/addon-knobs-5.3.9.tgz#b51be01731dd31ad1b883276acdbeabedc0b7095"
-  integrity sha512-blMiksvApq4lGiZM1A8FpwnIOXC0PsBXja0LkWQDDHN+snREzjZV85XLrYdz688RhN/7MTXZXMgsvRMSug/r3g==
+  version "5.3.10"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-knobs/-/addon-knobs-5.3.10.tgz#3dbb6046f2e625a9f6ef22e1b5660c9976f4f842"
+  integrity sha512-0mroTdXQItWOotswyo2e+P+Xmt4O+AyuVegRE3K5/2w/WMf2ku/YdRzH0uPgYS+y8PD0j3vDcTXt1UFnzjv8eg==
   dependencies:
-    "@storybook/addons" "5.3.9"
-    "@storybook/api" "5.3.9"
-    "@storybook/client-api" "5.3.9"
-    "@storybook/components" "5.3.9"
-    "@storybook/core-events" "5.3.9"
-    "@storybook/theming" "5.3.9"
+    "@storybook/addons" "5.3.10"
+    "@storybook/api" "5.3.10"
+    "@storybook/client-api" "5.3.10"
+    "@storybook/components" "5.3.10"
+    "@storybook/core-events" "5.3.10"
+    "@storybook/theming" "5.3.10"
     "@types/react-color" "^3.0.1"
     copy-to-clipboard "^3.0.8"
     core-js "^3.0.1"
@@ -2019,7 +2019,7 @@
     prop-types "^15.7.2"
     regenerator-runtime "^0.13.3"
 
-"@storybook/theming@5.3.10":
+"@storybook/theming@5.3.10", "@storybook/theming@^5.2.6":
   version "5.3.10"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.3.10.tgz#6f53df9684d998ce3dfdb22babfaeb667b7f250d"
   integrity sha512-5/RQQS6u7BuJ8ufiqohAZ6EBLi6PwvJ3KcLMU21Dces/i0/e/HukXzUJVS0DVOno4bROkf98fYIv+MetpvIX+g==
@@ -2037,7 +2037,7 @@
     resolve-from "^5.0.0"
     ts-dedent "^1.1.0"
 
-"@storybook/theming@5.3.9", "@storybook/theming@^5.2.6":
+"@storybook/theming@5.3.9":
   version "5.3.9"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.3.9.tgz#caaeea398f9e630394298ccfe8f36a185a289e4f"
   integrity sha512-1vG+H1D5j2vcMv54eEKixAoa4UlTuS/dxMZubJfcZYY1PDNtnvQM6B1CE/4EU+qsIYPFQiGFXB4b6gjCFYIFpQ==
