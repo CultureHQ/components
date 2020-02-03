@@ -1532,15 +1532,15 @@
     ts-dedent "^1.1.0"
 
 "@storybook/addon-storysource@^5.3.8":
-  version "5.3.9"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-5.3.9.tgz#cc564a5377870fbf6f52a064266d425c65bbb375"
-  integrity sha512-ilipax+C0OTkeE2sYxEA1ZSSl89s12wAP6zq66RQmpD95DvvJswetpU+40dWukw0+9WQ5prW0wR25AlbIVIxLQ==
+  version "5.3.10"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-5.3.10.tgz#6781572d283abc81b9b7140c71b10195f64fa5e6"
+  integrity sha512-00jU7W7jMRrCaM/I6w6jPSXSJwU/WT4FYUuK/h+cl3CM8FOruzpmxtFzY1ZO3ZlI4Ka1KLm+NHI5eHZnsMVqJg==
   dependencies:
-    "@storybook/addons" "5.3.9"
-    "@storybook/components" "5.3.9"
-    "@storybook/router" "5.3.9"
-    "@storybook/source-loader" "5.3.9"
-    "@storybook/theming" "5.3.9"
+    "@storybook/addons" "5.3.10"
+    "@storybook/components" "5.3.10"
+    "@storybook/router" "5.3.10"
+    "@storybook/source-loader" "5.3.10"
+    "@storybook/theming" "5.3.10"
     core-js "^3.0.1"
     estraverse "^4.2.0"
     loader-utils "^1.2.3"
@@ -2003,13 +2003,13 @@
     qs "^6.6.0"
     util-deprecate "^1.0.2"
 
-"@storybook/source-loader@5.3.9":
-  version "5.3.9"
-  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-5.3.9.tgz#6820476c5fb08c0950dcde033f88b9496df38f67"
-  integrity sha512-ol3SxzpLYb4x3RJS9J/xzCOzK/ZnUs9LIMmpYl4sWsZQECCTTbN96P36BBH0Z6CrB38IJsDHAarseBAMqVov7A==
+"@storybook/source-loader@5.3.10":
+  version "5.3.10"
+  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-5.3.10.tgz#2700a52529b6a1bd6694d2eaa7fa6f6e29a510b7"
+  integrity sha512-4YdJnJKECknJ+tj3mpQgqripw5O1tRwRJL+uaOSz4Zrh/z2+ivEM8mWfxPSCbgHRvKfBA6fscKdZbyzeirenmw==
   dependencies:
-    "@storybook/addons" "5.3.9"
-    "@storybook/client-logger" "5.3.9"
+    "@storybook/addons" "5.3.10"
+    "@storybook/client-logger" "5.3.10"
     "@storybook/csf" "0.0.1"
     core-js "^3.0.1"
     estraverse "^4.2.0"
