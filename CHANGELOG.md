@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [16.7.2] - 2020-02-04
+
+### Changed
+
+- Properly flip the `megaphone` icons this time.
+
 ## [16.7.1] - 2020-02-04
 
 ### Changed
@@ -1143,7 +1149,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.7.1...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v16.7.2...HEAD
+[16.7.2]: https://github.com/CultureHQ/components/compare/v16.7.1...v16.7.2
 [16.7.1]: https://github.com/CultureHQ/components/compare/v16.7.0...v16.7.1
 [16.7.0]: https://github.com/CultureHQ/components/compare/v16.6.0...v16.7.0
 [16.6.0]: https://github.com/CultureHQ/components/compare/v16.5.0...v16.6.0
