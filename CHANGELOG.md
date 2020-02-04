@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [16.7.1] - 2020-02-04
+
+### Changed
+
+- Flipped the `megaphone` and `megaphone-ol` icons because they didn't make sense.
+
 ## [16.7.0] - 2020-01-31
 
 ### Added
@@ -1137,7 +1143,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.7.0...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v16.7.1...HEAD
+[16.7.1]: https://github.com/CultureHQ/components/compare/v16.7.0...v16.7.1
 [16.7.0]: https://github.com/CultureHQ/components/compare/v16.6.0...v16.7.0
 [16.6.0]: https://github.com/CultureHQ/components/compare/v16.5.0...v16.6.0
 [16.5.0]: https://github.com/CultureHQ/components/compare/v16.4.0...v16.5.0
