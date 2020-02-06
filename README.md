@@ -1,6 +1,6 @@
 # @culturehq/components
 
-[![Build Status](https://github.com/CultureHQ/components/workflows/Push/badge.svg)](https://github.com/CultureHQ/components/actions)
+[![Build Status](https://github.com/CultureHQ/components/workflows/Main/badge.svg)](https://github.com/CultureHQ/components/actions)
 [![Package Version](https://img.shields.io/npm/v/@culturehq/components.svg)](https://www.npmjs.com/package/@culturehq/components)
 
 CultureHQ's component library.
