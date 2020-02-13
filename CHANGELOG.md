@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.0] - 2020-02-13
+
+### Changed
+
+- Permanently affix the `Nav` component to the top of the page.
+
 ## [16.7.2] - 2020-02-04
 
 ### Changed
@@ -1149,7 +1155,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v16.7.2...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v17.0.0...HEAD
+[17.0.0]: https://github.com/CultureHQ/components/compare/v16.7.2...v17.0.0
 [16.7.2]: https://github.com/CultureHQ/components/compare/v16.7.1...v16.7.2
 [16.7.1]: https://github.com/CultureHQ/components/compare/v16.7.0...v16.7.1
 [16.7.0]: https://github.com/CultureHQ/components/compare/v16.6.0...v16.7.0
