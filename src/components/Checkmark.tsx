@@ -3,17 +3,16 @@ import React, { useRef } from "react";
 import classnames from "../classnames";
 import useAutoFocus from "../utils/useAutoFocus";
 
-type CheckmarkProps = {
+type CheckmarkProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick"> & {
   autoFocus?: boolean;
   checked?: boolean;
   children?: React.ReactNode;
   className?: string;
-  disabled?: boolean;
   onClick?: (checked: boolean) => void;
 };
 
 const Checkmark: React.FC<CheckmarkProps> = ({
-  autoFocus, children, className, checked, disabled, onClick
+  autoFocus, children, className, checked, onClick, ...props
 }) => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const onButtonClick = onClick ? () => onClick(!checked) : undefined;
@@ -23,12 +22,12 @@ const Checkmark: React.FC<CheckmarkProps> = ({
   return (
     <button
       ref={buttonRef}
+      {...props}
       type="button"
       className={classnames("chq-cmk", className, {
         "chq-cmk-ck": checked || false,
         "chq-cmk-cl": !!onClick
       })}
-      disabled={disabled}
       onClick={onButtonClick}
       aria-label={children ? undefined : "Checkmark"}
     >
