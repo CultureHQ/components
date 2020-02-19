@@ -24,7 +24,7 @@ type SelectFieldOptionProps = Pick<SelectFieldPassedProps, "onDeselect" | "onSel
   tabIndex: number;
 };
 
-const SelectFieldOption: React.FC<SelectFieldOptionProps> = ({
+const SelectFieldOption: React.FC<SelectFieldOptionProps> = React.memo(({
   active,
   option,
   onDeselect,
@@ -41,11 +41,11 @@ const SelectFieldOption: React.FC<SelectFieldOptionProps> = ({
       {label}
     </PlainButton>
   );
-};
+});
 
 type SelectFieldOptionsProps = Pick<SelectFieldPassedProps, "creatable" | "display" | "filteredOptions" | "multiple" | "onDeselect" | "onSelect" | "open" | "options" | "value">;
 
-const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = ({
+const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
   creatable,
   display,
   filteredOptions,
@@ -85,6 +85,6 @@ const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = ({
       )}
     </DoorEffect>
   );
-};
+});
 
 export default SelectFieldOptions;

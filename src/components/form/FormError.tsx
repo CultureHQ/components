@@ -17,7 +17,7 @@ type FormErrorState = {
   error: string | null;
 };
 
-class FormError extends React.Component<FormErrorProps, FormErrorState> {
+class FormError extends React.PureComponent<FormErrorProps, FormErrorState> {
   state = { error: null };
 
   componentDidMount() {

@@ -7,7 +7,7 @@ type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "disabled" | "di
   value: null | SelectValue;
 };
 
-const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = ({
+const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo(({
   disabled,
   display,
   inputRef,
@@ -61,6 +61,6 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = ({
       <SelectFieldCaret open={open} />
     </>
   );
-};
+});
 
 export default SelectFieldSingleValue;
