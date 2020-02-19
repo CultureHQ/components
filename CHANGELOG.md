@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.2] - 2020-02-19
+
 ### Changed
 
 - Improve perform on the `Form` component when large select fields are part of the children.
@@ -1165,7 +1167,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v17.0.1...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v17.0.2...HEAD
+[17.0.2]: https://github.com/CultureHQ/components/compare/v17.0.1...v17.0.2
 [17.0.1]: https://github.com/CultureHQ/components/compare/v17.0.0...v17.0.1
 [17.0.0]: https://github.com/CultureHQ/components/compare/v16.7.2...v17.0.0
 [16.7.2]: https://github.com/CultureHQ/components/compare/v16.7.1...v16.7.2
