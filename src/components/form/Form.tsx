@@ -39,6 +39,16 @@ const FormContext = React.createContext<FormState>({
 
 export const useForm = () => useContext(FormContext);
 
+type FormComponentProps = Omit<FormProps, "initialValues" | "onSubmit"> & {
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+};
+
+const FormComponent: React.FC<FormComponentProps> = React.memo(({ children, ...props }) => (
+  <form {...props}>
+    {children}
+  </form>
+));
+
 /* eslint-disable react/no-unused-state */
 class Form extends React.Component<FormProps, FormState> {
   private componentIsMounted: boolean;
@@ -124,13 +134,13 @@ class Form extends React.Component<FormProps, FormState> {
   }
 
   render() {
-    const { children, className, initialValues, onSubmit, ...props } = this.props;
+    const { children, initialValues, onSubmit, ...props } = this.props;
 
     return (
       <FormContext.Provider value={this.state}>
-        <form {...props} className={className} onSubmit={this.handleSubmit}>
+        <FormComponent {...props} onSubmit={this.handleSubmit}>
           {children}
-        </form>
+        </FormComponent>
       </FormContext.Provider>
     );
   }

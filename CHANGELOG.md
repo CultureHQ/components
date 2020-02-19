@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+
+- Improve perform on the `Form` component when large select fields are part of the children.
+
 ## [17.0.1] - 2020-02-18
 
 ### Changed

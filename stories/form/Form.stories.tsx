@@ -14,7 +14,8 @@ import {
   SelectField,
   StringField,
   SubmitButton,
-  TextField
+  TextField,
+  TimezoneField
 } from "../../src/components";
 import { FormValues } from "../../src/components/form/Form";
 
@@ -57,6 +58,7 @@ storiesOf("Form/Form", module)
         <DateTimeField name="datetime">DateTime</DateTimeField>
         <BooleanField name="boolean">Boolean</BooleanField>
         <ImageField name="image">Image</ImageField>
+        <TimezoneField name="timezone">Timezone</TimezoneField>
         <SubmitButton primary />
       </Form>
     );
