@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+
+- Support for displaying the checkmark correctly if the value in a `SelectFieldSingle` is explicitly `false`.
+- Change the active class on select field options from using CSS to the `aria-current` attribute.
+
 ## [17.0.2] - 2020-02-19
 
 ### Changed

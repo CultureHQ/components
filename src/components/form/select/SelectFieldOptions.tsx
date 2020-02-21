@@ -1,6 +1,5 @@
 import React from "react";
 
-import classnames from "../../../classnames";
 import PlainButton from "../../buttons/PlainButton";
 import DoorEffect from "../../DoorEffect";
 import { SelectFieldPassedProps, SelectOption, SelectValue } from "../typings";
@@ -19,29 +18,40 @@ const isCreatingOption = ({ display, multiple, options, value }: IsCreatingOptio
 };
 
 type SelectFieldOptionProps = Pick<SelectFieldPassedProps, "onDeselect" | "onSelect"> & {
-  active: boolean;
+  current: boolean;
   option: SelectOption;
   tabIndex: number;
 };
 
 const SelectFieldOption: React.FC<SelectFieldOptionProps> = React.memo(({
-  active,
+  current,
   option,
   onDeselect,
   onSelect,
   tabIndex
 }) => {
   const { label, value } = option;
-
-  const className = classnames({ "chq-ffd--sl--opt-act": active });
-  const onClick = () => (active ? onDeselect : onSelect)(value);
+  const onClick = () => (current ? onDeselect : onSelect)(value);
 
   return (
-    <PlainButton className={className} onClick={onClick} tabIndex={tabIndex}>
+    <PlainButton aria-current={current} onClick={onClick} tabIndex={tabIndex}>
       {label}
     </PlainButton>
   );
 });
+
+type MakeCurrentMatcherOpts = Pick<SelectFieldPassedProps, "multiple" | "value">;
+type CurrentMatcher = (option: SelectOption) => boolean;
+
+const makeCurrentMatcher = ({ multiple, value }: MakeCurrentMatcherOpts): CurrentMatcher => {
+  if (value === undefined || value === null) {
+    return () => false;
+  }
+  if (multiple) {
+    return (option: SelectOption) => value.includes(option.value);
+  }
+  return (option: SelectOption) => value === option.value;
+};
 
 type SelectFieldOptionsProps = Pick<SelectFieldPassedProps, "creatable" | "display" | "filteredOptions" | "multiple" | "onDeselect" | "onSelect" | "open" | "options" | "value">;
 
@@ -57,13 +67,14 @@ const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
   value
 }) => {
   const createOption = creatable && isCreatingOption({ display, multiple, options, value });
+  const currentMatcher = makeCurrentMatcher({ multiple, value });
 
   return (
     <DoorEffect className="chq-ffd--sl--opts" open={open}>
       {createOption && (display.length > 0) && (
         <SelectFieldOption
           key={display}
-          active={false}
+          current={false}
           onDeselect={onDeselect}
           onSelect={onSelect}
           option={{ label: `Create option: ${display}`, value: display }}
@@ -73,7 +84,7 @@ const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
       {filteredOptions.map(option => (
         <SelectFieldOption
           key={option.value}
-          active={!!value && (multiple ? value.includes(option.value) : option.value === value)}
+          current={currentMatcher(option)}
           onDeselect={onDeselect}
           onSelect={onSelect}
           option={option}
