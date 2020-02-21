@@ -92,7 +92,7 @@
         background-color: $color-background;
       }
 
-      &.chq-ffd--sl--opt-act {
+      &[aria-current='true'] {
         &::before {
           content: '\2713';
           left: .7em;
