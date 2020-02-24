@@ -146,7 +146,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   };
 
   handleOpen = () => {
-    this.setState({ open: true });
+    this.setState({ open: true, display: "" });
   };
 
   handleClose = () => {
