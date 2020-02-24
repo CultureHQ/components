@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.4] - 2020-02-24
+
 ### Changed
 
 - When opening up a select field with `multiple=false`, automatically clear the input.
@@ -1178,7 +1180,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v17.0.3...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v17.0.4...HEAD
+[17.0.4]: https://github.com/CultureHQ/components/compare/v17.0.3...v17.0.4
 [17.0.3]: https://github.com/CultureHQ/components/compare/v17.0.2...v17.0.3
 [17.0.2]: https://github.com/CultureHQ/components/compare/v17.0.1...v17.0.2
 [17.0.1]: https://github.com/CultureHQ/components/compare/v17.0.0...v17.0.1
