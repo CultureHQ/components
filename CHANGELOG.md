@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Changed
+
+- When opening up a select field with `multiple=false`, automatically clear the input.
+
 ## [17.0.3] - 2020-02-21
 
 ### Changed
