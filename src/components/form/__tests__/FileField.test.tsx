@@ -25,24 +25,24 @@ test("passes on className", () => {
 
 test("calls up to onChange if it is provided", () => {
   const onChange = jest.fn();
-  const { getByRole } = render(
+  const { getByLabelText } = render(
     <FileField name="file" onChange={onChange}>File!</FileField>
   );
 
   const file = { name: "foo" };
-  fireEvent.change(getByRole("textbox"), { target: { files: [file] } });
+  fireEvent.change(getByLabelText(/File!/), { target: { files: [file] } });
 
   expect(onChange).toHaveBeenCalledWith(file);
 });
 
 test("tracks touch status in component state", () => {
-  const { getByRole, queryByText } = render(
+  const { getByLabelText, queryByText } = render(
     <FileField name="name" required>File!</FileField>
   );
 
   expect(queryByText("Required")).toBeFalsy();
 
-  fireEvent.change(getByRole("textbox"), {
+  fireEvent.change(getByLabelText(/File!/), {
     target: { files: [{ foo: "bar" }] }
   });
 
@@ -51,27 +51,27 @@ test("tracks touch status in component state", () => {
 
 test("works with multiple files", () => {
   const onChange = jest.fn();
-  const { getByRole } = render(
+  const { getByLabelText } = render(
     <FileField multiple name="files" onChange={onChange}>File!</FileField>
   );
 
   const files = [{ name: "foo" }, { name: "bar" }, { name: "baz" }];
-  fireEvent.change(getByRole("textbox"), { target: { files } });
+  fireEvent.change(getByLabelText(/File!/), { target: { files } });
 
   expect(onChange).toHaveBeenCalledWith(files);
 });
 
 test("displays an accurate summary", () => {
   const files = [{ name: "foo" }, { name: "bar" }, { name: "baz" }];
-  const { container, getByRole } = render(<Container multiple name="files" />);
+  const { container, getByLabelText } = render(<Container multiple name="files" />);
 
   const summary = container.querySelector(".chq-ffd--fd") as HTMLElement;
   expect(summary).not.toBe(null);
 
-  fireEvent.change(getByRole("textbox"), { target: { files } });
+  fireEvent.change(getByLabelText(/File!/), { target: { files } });
   expect(summary.textContent).toEqual("foo, bar, baz");
 
-  fireEvent.change(getByRole("textbox"), { target: { files: [] } });
+  fireEvent.change(getByLabelText(/File!/), { target: { files: [] } });
   expect(summary.textContent).toEqual("");
 });
 

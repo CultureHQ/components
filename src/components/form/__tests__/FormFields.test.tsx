@@ -28,25 +28,23 @@ describe.each(cases)("%s", (type, FormField) => {
 
   test("calls up to callbacks if they are provided", () => {
     const onChange = jest.fn();
-    const { getByRole } = render(
+    const { getByLabelText } = render(
       <Form onSubmit={jest.fn()}>
         <FormField name="name" onChange={onChange}>Field!</FormField>
       </Form>
     );
 
-    fireEvent.change(getByRole("textbox"), { target: { value: "123" } });
+    fireEvent.change(getByLabelText(/Field!/), { target: { value: "123" } });
 
     expect(onChange).toHaveBeenCalledWith("123");
   });
 
   test("tracks touch status in component state", () => {
-    const { container, getByRole, queryByText } = render(
-      <FormField name="name" required><span /></FormField>
+    const { getByLabelText, queryByText } = render(
+      <FormField name="name" required>Field!!</FormField>
     );
 
-    expect(container.textContent).toEqual("");
-
-    fireEvent.blur(getByRole("textbox"));
+    fireEvent.blur(getByLabelText(/Field!/));
 
     expect(queryByText("Required")).toBeTruthy();
   });
@@ -67,21 +65,21 @@ describe.each(cases)("%s", (type, FormField) => {
   });
 
   test("requests focus when autoFocus is given", () => {
-    const { getByRole } = render(
+    const { getByLabelText } = render(
       <FormField name="name" autoFocus>Field!</FormField>
     );
 
     const inputElement = document.activeElement as HTMLElement;
 
     expect(inputElement).not.toBe(null);
-    expect(getByRole("textbox").id).toEqual(inputElement.id);
+    expect(getByLabelText(/Field!/).id).toEqual(inputElement.id);
   });
 
   test("allows other form props", () => {
-    const { getByRole } = render(
+    const { getByLabelText } = render(
       <FormField name="name" readOnly>Read Only</FormField>
     );
 
-    expect(getByRole("textbox").hasAttribute("readonly")).toBe(true);
+    expect(getByLabelText("Read Only").hasAttribute("readonly")).toBe(true);
   });
 });

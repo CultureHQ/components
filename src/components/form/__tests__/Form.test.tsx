@@ -22,6 +22,7 @@ test("gathers values as they change and submits them", () => {
   const onSubmit = jest.fn();
   const { getByLabelText, getByRole } = render(
     <Form
+      role="form"
       onSubmit={onSubmit}
       initialValues={{ email: "kevin@culturehq.com" }}
     >
@@ -85,17 +86,15 @@ test("does not attempt to setState once the component is unmounted", () => {
 });
 
 test("passes down initialValues", () => {
-  const { getAllByRole } = render(
+  const { getByRole } = render(
     <Form initialValues={{ cents: 523, name: "Kevin" }} onSubmit={jest.fn()}>
       <CentsField name="cents">Cents</CentsField>
       <StringField name="name">Name</StringField>
     </Form>
   );
 
-  const [centsInput, nameInput] = getAllByRole("textbox");
-
-  expect(centsInput).toHaveProperty("value", "5.23");
-  expect(nameInput).toHaveProperty("value", "Kevin");
+  expect(getByRole("spinbutton")).toHaveProperty("value", "5.23");
+  expect(getByRole("textbox")).toHaveProperty("value", "Kevin");
 });
 
 test("disallows submitting if validation fails", () => {

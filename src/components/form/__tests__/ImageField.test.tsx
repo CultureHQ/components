@@ -18,11 +18,11 @@ test("has no violations", () => (
 
 test("calls up to callbacks if they are provided", () => {
   const onChange = jest.fn();
-  const { getByRole } = render(
+  const { getByLabelText } = render(
     <ImageField name="image" onChange={onChange}>Image!</ImageField>
   );
 
-  fireEvent.change(getByRole("textbox"), {
+  fireEvent.change(getByLabelText(/Image!/), {
     target: { files: ["Some file"] }
   });
 
@@ -31,11 +31,11 @@ test("calls up to callbacks if they are provided", () => {
 
 test("responds to edit callback", async () => {
   const onChange = jest.fn();
-  const { container, getByAltText, getByRole, getByText } = render(
+  const { container, getByAltText, getByLabelText, getByText } = render(
     <ImageField name="image" onChange={onChange}>Image!</ImageField>
   );
 
-  fireEvent.change(getByRole("textbox"), { target: { files: [mockImage] } });
+  fireEvent.change(getByLabelText(/Image!/), { target: { files: [mockImage] } });
   await waitForElement(() => getByAltText(/Preview/), { container });
 
   fireEvent.click(getByText("Save"));
@@ -45,11 +45,11 @@ test("responds to edit callback", async () => {
 });
 
 test("handles closing the modal", () => {
-  const { getByRole, queryByLabelText } = render(
+  const { getByLabelText, queryByLabelText } = render(
     <ImageField name="image">Image!</ImageField>
   );
 
-  fireEvent.change(getByRole("textbox"), { target: { files: [mockImage] } });
+  fireEvent.change(getByLabelText(/Image!/), { target: { files: [mockImage] } });
   expect(queryByLabelText("Rotate left")).toBeTruthy();
 
   const overlay = document.querySelector(".ReactModal__Overlay") as HTMLElement;
@@ -61,11 +61,11 @@ test("handles closing the modal", () => {
 
 test("handles deselecting files", () => {
   const onChange = jest.fn();
-  const { getByRole } = render(
+  const { getByLabelText } = render(
     <ImageField name="image" onChange={onChange}>Image!</ImageField>
   );
 
-  fireEvent.change(getByRole("textbox"), { target: { files: [] } });
+  fireEvent.change(getByLabelText(/Image!/), { target: { files: [] } });
   expect(onChange).toHaveBeenLastCalledWith(null);
 });
 

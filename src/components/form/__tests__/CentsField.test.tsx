@@ -15,7 +15,7 @@ test("calls up to callbacks if they are provided", () => {
     </CentsField>
   );
 
-  fireEvent.change(getByRole("textbox"), { target: { value: 1.23 } });
+  fireEvent.change(getByRole("spinbutton"), { target: { value: 1.23 } });
 
   expect(onChange).toHaveBeenCalledWith(123);
 });
@@ -27,7 +27,7 @@ test("displays the value using cents", () => {
     </CentsField>
   );
 
-  expect(getByRole("textbox")).toHaveProperty("value", "1.23");
+  expect(getByRole("spinbutton")).toHaveProperty("value", "1.23");
 });
 
 test("handles cases where the value is empty", () => {
@@ -38,7 +38,7 @@ test("handles cases where the value is empty", () => {
     </CentsField>
   );
 
-  fireEvent.change(getByRole("textbox"), { target: { value: "" } });
+  fireEvent.change(getByRole("spinbutton"), { target: { value: "" } });
 
   expect(onChange).toHaveBeenLastCalledWith(null);
 });
@@ -46,7 +46,7 @@ test("handles cases where the value is empty", () => {
 test("functions without an onChange", () => {
   const { getByRole } = render(<CentsField name="cents">Cents!</CentsField>);
 
-  fireEvent.change(getByRole("textbox"), { target: { value: "" } });
+  fireEvent.change(getByRole("spinbutton"), { target: { value: "" } });
 });
 
 test("tracks touch status in component state", () => {
@@ -58,7 +58,7 @@ test("tracks touch status in component state", () => {
 
   expect(queryByText("Required")).toBeFalsy();
 
-  fireEvent.blur(getByRole("textbox"));
+  fireEvent.blur(getByRole("spinbutton"));
 
   expect(queryByText("Required")).toBeTruthy();
 });
@@ -73,5 +73,5 @@ test("requests focus when autoFocus is given", () => {
   const inputElement = document.activeElement as HTMLElement;
 
   expect(inputElement).not.toBe(null);
-  expect(getByRole("textbox").id).toEqual(inputElement.id);
+  expect(getByRole("spinbutton").id).toEqual(inputElement.id);
 });
