@@ -1434,16 +1434,16 @@
     type-detect "4.0.8"
 
 "@storybook/addon-a11y@^5.3.8":
-  version "5.3.14"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-5.3.14.tgz#e08575caf4694c10ceef49fcc886e642c1fb176a"
-  integrity sha512-/+Z9Xn6+2Ko2WJRcSN7Zkr0N83mlQDcomHJfpu6bn+fpzE8jeOWMjC4OX1VfD5TUhK1flFDF97Sf2gM8s6KtDg==
+  version "5.3.17"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-5.3.17.tgz#b84534a5a0c91bc273917f3b8d34b068e9d250a5"
+  integrity sha512-r4GI++IIjxa3UW5BmsVdU24MK2cyiNIzdcgWsTTCA2lSnb3AzPy7Yi1FaAClAjQmBbJSRIJkkyoZZle3btTAPg==
   dependencies:
-    "@storybook/addons" "5.3.14"
-    "@storybook/api" "5.3.14"
-    "@storybook/client-logger" "5.3.14"
-    "@storybook/components" "5.3.14"
-    "@storybook/core-events" "5.3.14"
-    "@storybook/theming" "5.3.14"
+    "@storybook/addons" "5.3.17"
+    "@storybook/api" "5.3.17"
+    "@storybook/client-logger" "5.3.17"
+    "@storybook/components" "5.3.17"
+    "@storybook/core-events" "5.3.17"
+    "@storybook/theming" "5.3.17"
     axe-core "^3.3.2"
     core-js "^3.0.1"
     global "^4.3.2"
@@ -3209,12 +3209,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.1.tgz#7e33d8f7d449b3f673cd72deb9abdc552dbe528e"
   integrity sha512-wMHVg2EOHaMRxbzgFJ9gtjOOCrI80OHLG14rxi28XwOW8ux6IiEbRCGGGqCtdAIg4FQCbW20k9RsT4y3gJlFug==
 
-axe-core@^3.3.2:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.4.1.tgz#e42623918bb85b5ef674633852cb9029db0309c5"
-  integrity sha512-+EhIdwR0hF6aeMx46gFDUy6qyCfsL0DmBrV3Z+LxYbsOd8e1zBaPHa3f9Rbjsz2dEwSBkLw6TwML/CAIIAqRpw==
-
-axe-core@^3.5.1:
+axe-core@^3.3.2, axe-core@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.5.1.tgz#d8d5aaef73f003e8b766ea28bb078343f3622201"
   integrity sha512-mwpDgPwWB+5kMHyLjlxh4w25ClJfqSxi+c6LQ4ix349TdCUctMwJNPTkhPD1qP9SYIjFgjeVpVZWCvK9oBGwCg==
