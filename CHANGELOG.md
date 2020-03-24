@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.6] - 2020-03-24
+
+### Changed
+
+- Update to the latest timezones.
+
 ## [17.0.5] - 2020-03-02
 
 ### Changed
@@ -1186,7 +1192,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Initial checkin.
 - The `Warning` component.
 
-[unreleased]: https://github.com/CultureHQ/components/compare/v17.0.5...HEAD
+[unreleased]: https://github.com/CultureHQ/components/compare/v17.0.6...HEAD
+[17.0.6]: https://github.com/CultureHQ/components/compare/v17.0.5...v17.0.6
 [17.0.5]: https://github.com/CultureHQ/components/compare/v17.0.4...v17.0.5
 [17.0.4]: https://github.com/CultureHQ/components/compare/v17.0.3...v17.0.4
 [17.0.3]: https://github.com/CultureHQ/components/compare/v17.0.2...v17.0.3
