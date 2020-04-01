@@ -1695,14 +1695,14 @@
     uuid "^3.3.2"
 
 "@storybook/addon-info@^5.3.8":
-  version "5.3.17"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-info/-/addon-info-5.3.17.tgz#39704362d5d9688ac3d9dce96b63b868103ec32c"
-  integrity sha512-64+Prf+7t0MlrEmJplRwKNjXcZDqNFx+yNJ0kiWfR+Ueyq58kv5gawtImZnj2dRZNOR776GPVj30BlvaxK4jsA==
+  version "5.3.18"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-info/-/addon-info-5.3.18.tgz#2b02c43eeb79770781eea82104c32a4f12a72da0"
+  integrity sha512-6j+XlBrgHl1ZaFRSFdMYVeQTDWWs1Xhz2jflrLCLY4Y99+pLFBUigzp2EByfIVF9tiDfPwNcFcPo5UvQ+kTwOg==
   dependencies:
-    "@storybook/addons" "5.3.17"
-    "@storybook/client-logger" "5.3.17"
-    "@storybook/components" "5.3.17"
-    "@storybook/theming" "5.3.17"
+    "@storybook/addons" "5.3.18"
+    "@storybook/client-logger" "5.3.18"
+    "@storybook/components" "5.3.18"
+    "@storybook/theming" "5.3.18"
     core-js "^3.0.1"
     global "^4.3.2"
     marksy "^8.0.0"
@@ -1985,6 +1985,33 @@
     simplebar-react "^1.0.0-alpha.6"
     ts-dedent "^1.1.0"
 
+"@storybook/components@5.3.18":
+  version "5.3.18"
+  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-5.3.18.tgz#528f6ab1660981e948993a04b407a6fad7751589"
+  integrity sha512-LIN4aVCCDY7klOwtuqQhfYz4tHaMADhXEzZpij+3r8N68Inck6IJ1oo9A9umXQPsTioQi8e6FLobH1im90j/2A==
+  dependencies:
+    "@storybook/client-logger" "5.3.18"
+    "@storybook/theming" "5.3.18"
+    "@types/react-syntax-highlighter" "11.0.4"
+    "@types/react-textarea-autosize" "^4.3.3"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    lodash "^4.17.15"
+    markdown-to-jsx "^6.9.1"
+    memoizerific "^1.11.3"
+    polished "^3.3.1"
+    popper.js "^1.14.7"
+    prop-types "^15.7.2"
+    react "^16.8.3"
+    react-dom "^16.8.3"
+    react-focus-lock "^2.1.0"
+    react-helmet-async "^1.0.2"
+    react-popper-tooltip "^2.8.3"
+    react-syntax-highlighter "^11.0.2"
+    react-textarea-autosize "^7.1.0"
+    simplebar-react "^1.0.0-alpha.6"
+    ts-dedent "^1.1.0"
+
 "@storybook/core-events@5.3.17":
   version "5.3.17"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-5.3.17.tgz#698ce0a36c29fe8fa04608f56ccca53aa1d31638"
@@ -2170,7 +2197,7 @@
     prop-types "^15.7.2"
     regenerator-runtime "^0.13.3"
 
-"@storybook/theming@5.3.17", "@storybook/theming@^5.2.6":
+"@storybook/theming@5.3.17":
   version "5.3.17"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.3.17.tgz#cf6278c4857229c7167faf04d5b2206bc5ee04e1"
   integrity sha512-4JeOZnDDHtb4LOt5sXe/s1Jhbb2UPsr8zL9NWmKJmTsgnyTvBipNHOmFYDUsIacB5K4GXSqm+cZ7Z4AkUgWCDw==
@@ -2188,7 +2215,7 @@
     resolve-from "^5.0.0"
     ts-dedent "^1.1.0"
 
-"@storybook/theming@5.3.18":
+"@storybook/theming@5.3.18", "@storybook/theming@^5.2.6":
   version "5.3.18"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.3.18.tgz#35e78de79d9cf8f1248af0dd1c7fa60555761312"
   integrity sha512-lfFTeLoYwLMKg96N3gn0umghMdAHgJBGuk2OM8Ll84yWtdl9RGnzfiI1Fl7Cr5k95dCF7drLJlJCao1VxUkFSA==
