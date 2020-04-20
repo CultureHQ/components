@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.8] - 2020-04-20
+
+### Changed
+
+- Update the Modal state.
+
 ## [17.0.7] - 2020-04-20
 
 ### Changed
@@ -1199,6 +1205,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - The `Warning` component.
 
 [unreleased]: https://github.com/CultureHQ/components/compare/v17.0.7...HEAD
+[17.0.8]: https://github.com/CultureHQ/components/compare/v17.0.7...v17.0.8
 [17.0.7]: https://github.com/CultureHQ/components/compare/v17.0.6...v17.0.7
 [17.0.6]: https://github.com/CultureHQ/components/compare/v17.0.5...v17.0.6
 [17.0.5]: https://github.com/CultureHQ/components/compare/v17.0.4...v17.0.5
