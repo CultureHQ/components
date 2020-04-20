@@ -20,8 +20,9 @@ class Modal extends React.Component<ModalProps, ModalState> {
     this.state = { open: props.startOpen || false };
   }
 
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps(props: any, state: any) {
     return {
+      ...state,
       startOpen: props.startOpen || false
     };
   }
