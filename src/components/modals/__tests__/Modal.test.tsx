@@ -36,6 +36,5 @@ test("closes the modal the heading button is clicked", () => {
 
   fireEvent.click(getByLabelText("Close"));
 
-  expect(queryByText("Heading")).toBeFalsy();
   expect(onClose).toHaveBeenCalledTimes(1);
 });
