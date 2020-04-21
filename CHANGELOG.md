@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.14] - 2020-04-21
+
+### Changed
+
+- Fixing bug with state value in Modal, making a Fully uncontrolled component with a key. Ref: https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key
+
 ## [17.0.13] - 2020-04-21
 
 ### Changed
