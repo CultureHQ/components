@@ -11,19 +11,24 @@ type ModalProps = Pick<React.ComponentProps<typeof ModalDialog>, ForwardedProps>
 
 type ModalState = {
   open: boolean;
+  // this is a validation to close the modal when the props has been changed
+  initialStatus: boolean;
 };
 
 class Modal extends React.Component<ModalProps, ModalState> {
   constructor(props: ModalProps) {
     super(props);
 
-    this.state = { open: props.startOpen || false };
+    this.state = {
+      open: props.startOpen || false,
+      initialStatus: true
+    };
   }
 
   static getDerivedStateFromProps(props: any, state: any) {
     return {
       ...state,
-      open: props.startOpen || state.open
+      open: (props.startOpen && state.initialStatus) || state.open
     };
   }
 
@@ -45,7 +50,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
   handleClose = () => {
     const { onClose } = this.props;
 
-    this.setState({ open: false });
+    this.setState({ open: false, initialStatus: false });
 
     if (onClose) {
       onClose();

@@ -24,7 +24,7 @@ test("opens a modal when the onTrigger function is called", () => {
 test("closes the modal the heading button is clicked", () => {
   const onClose = jest.fn();
 
-  const { getByLabelText } = render(
+  const { getByLabelText, queryByText } = render(
     <Modal
       trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
       onClose={onClose}
@@ -36,5 +36,6 @@ test("closes the modal the heading button is clicked", () => {
 
   fireEvent.click(getByLabelText("Close"));
 
+  expect(queryByText("Heading")).toBeFalsy();
   expect(onClose).toHaveBeenCalledTimes(1);
 });
