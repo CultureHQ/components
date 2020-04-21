@@ -12,6 +12,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Fixing bug with state value in Modal.
 
+## [17.0.11] - 2020-04-21
+
+### Changed
+
+- Fixing bug with state value in Modal.
+
 ## [17.0.10] - 2020-04-20
 
 ### Changed
