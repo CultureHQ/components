@@ -44,7 +44,7 @@ type FormComponentProps = Omit<FormProps, "initialValues" | "onSubmit"> & {
 };
 
 const FormComponent: React.FC<FormComponentProps> = React.memo(({ children, ...props }) => (
-  <form {...props}>
+  <form {...props} aria-label="form">
     {children}
   </form>
 ));

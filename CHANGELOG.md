@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.10] - 2020-04-20
+
+### Changed
+
+- Adding aria-label to forms to allow the getByRole for Unit testing.
+
 ## [17.0.8] - 2020-04-20
 
 ### Changed
