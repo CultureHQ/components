@@ -9,7 +9,11 @@ type ChecklistProps = {
   className?: string;
 };
 
-const Checklist = ({ children, className }: ChecklistProps) => (
+type ChecklistComponent = React.FC<ChecklistProps> & {
+  Item: typeof Checkmark
+};
+
+const Checklist: ChecklistComponent = ({ children, className }) => (
   <div className={classnames("chq-chl", className)}>
     {children}
   </div>

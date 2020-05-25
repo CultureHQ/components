@@ -1,6 +1,6 @@
 type ClassName = undefined | null | number | boolean | string | { [key: string]: boolean };
 
-const classnames = (...options: ClassName[]) => options.reduce(
+const classnames = (...options: ClassName[]): string => options.reduce(
   (classes, option) => {
     if (!option) {
       return classes;

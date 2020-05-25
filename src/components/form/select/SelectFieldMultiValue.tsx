@@ -27,8 +27,10 @@ type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "disabled" | "dis
   value: null | SelectValue[];
 };
 
-class SelectFieldMultiValue extends React.Component<SelectFieldMultiValueProps, {}> {
-  getCurrentOptions() {
+class SelectFieldMultiValue extends React.Component<
+  SelectFieldMultiValueProps, Record<string, unknown>
+> {
+  getCurrentOptions(): SelectOption[] {
     const { options, value } = this.props;
 
     if (!value) {
@@ -41,7 +43,7 @@ class SelectFieldMultiValue extends React.Component<SelectFieldMultiValueProps, 
     ));
   }
 
-  handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     event.stopPropagation();
     const { display, onClose, onDeselect, onOpen, open, value } = this.props;
 
@@ -66,7 +68,7 @@ class SelectFieldMultiValue extends React.Component<SelectFieldMultiValueProps, 
     }
   };
 
-  render() {
+  render(): React.ReactElement {
     const {
       disabled, display, inputRef, name, onChange, onDeselect, onOpen, open,
       placeholder

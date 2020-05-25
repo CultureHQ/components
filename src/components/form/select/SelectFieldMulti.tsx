@@ -46,11 +46,11 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     this.timeout = null;
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     window.addEventListener("click", this.handleWindowClick);
   }
 
-  componentDidUpdate(prevProps: SelectFieldMultiProps) {
+  componentDidUpdate(prevProps: SelectFieldMultiProps): void {
     const { options } = this.props;
     const { display } = this.state;
 
@@ -62,7 +62,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     window.removeEventListener("click", this.handleWindowClick);
 
     if (this.timeout) {
@@ -71,7 +71,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     }
   }
 
-  getValue = () => {
+  getValue = (): null | SelectValue[] => {
     const { name, value, values } = this.props;
 
     if (value !== undefined) {
@@ -86,40 +86,42 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     return null;
   };
 
-  handleWindowClick = (event: Event) => {
+  handleWindowClick = (event: Event): void => {
     const { selectRef } = this.props;
     const { open } = this.state;
 
     const select = selectRef.current;
 
     if (open && select && event.target instanceof Element && !select.contains(event.target)) {
-      this.selectValue(this.getValue(), true);
+      this.selectValue(this.getValue() as (null | SelectValue[]), true);
     }
   };
 
-  handleSelect = (selected: SelectValue) => {
+  handleSelect = (selected: SelectValue): void => {
     const { onFocus } = this.props;
 
     const normal = this.getValue();
-    const nextValue = normal ? [...normal.filter(item => item !== selected), selected] : [selected];
+    const nextValue = normal
+      ? [...(normal as SelectValue[]).filter(item => item !== selected), selected]
+      : [selected];
 
     onFocus();
     this.selectValue(nextValue, false);
     this.propagateValue(nextValue);
   };
 
-  handleDeselect = (deselected: SelectValue) => {
+  handleDeselect = (deselected: SelectValue): void => {
     const { onFocus } = this.props;
 
     const normal = this.getValue();
-    const nextValue = normal ? normal.filter(item => item !== deselected) : null;
+    const nextValue = normal ? (normal as SelectValue[]).filter(item => item !== deselected) : null;
 
     onFocus();
     this.selectValue(nextValue, false);
     this.propagateValue(nextValue);
   };
 
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { options } = this.props;
     const nextDisplay = event.target.value;
 
@@ -130,18 +132,18 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     });
   };
 
-  handleOpen = () => {
+  handleOpen = (): void => {
     const { onFocus } = this.props;
 
     onFocus();
     this.setState({ open: true });
   };
 
-  handleClose = () => {
+  handleClose = (): void => {
     this.setState({ open: false, touched: true });
   };
 
-  propagateValue = (value: null | SelectValue[]) => {
+  propagateValue = (value: null | SelectValue[]): void => {
     const { name, onChange, onFormChange } = this.props;
 
     if (onChange) {
@@ -151,7 +153,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     onFormChange(name, value);
   };
 
-  selectValue = (nextValue: null | SelectValue[], shouldClose: boolean) => {
+  selectValue = (nextValue: null | SelectValue[], shouldClose: boolean): void => {
     const { options } = this.props;
 
     this.setState(
@@ -179,7 +181,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
 
   /* eslint-disable jsx-a11y/label-has-for */
   // we're following the rules for it but it can't figure that out
-  render() {
+  render(): React.ReactElement {
     const {
       creatable, disabled, inputRef, name, onError, options, placeholder,
       required, selectRef, submitted, validator

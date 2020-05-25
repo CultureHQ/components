@@ -27,14 +27,14 @@ type ImageEditorProps = {
   onFailure?: () => void;
 };
 
-class ImageEditor extends React.Component<ImageEditorProps, {}> {
+class ImageEditor extends React.Component<ImageEditorProps, Record<string, unknown>> {
   private cropper: null | Cropper = null;
 
   private componentIsMounted = false;
 
   private imageRef = React.createRef<HTMLImageElement>();
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.componentIsMounted = true;
 
     import("./Cropper")
@@ -59,7 +59,7 @@ class ImageEditor extends React.Component<ImageEditorProps, {}> {
       });
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     this.componentIsMounted = false;
 
     if (this.cropper) {
@@ -67,31 +67,31 @@ class ImageEditor extends React.Component<ImageEditorProps, {}> {
     }
   }
 
-  handleRotateLeft = () => {
+  handleRotateLeft = (): void => {
     if (this.cropper) {
       this.cropper.rotate(-45);
     }
   };
 
-  handleRotateRight = () => {
+  handleRotateRight = (): void => {
     if (this.cropper) {
       this.cropper.rotate(45);
     }
   };
 
-  handleZoomIn = () => {
+  handleZoomIn = (): void => {
     if (this.cropper) {
       this.cropper.zoom(0.2);
     }
   };
 
-  handleZoomOut = () => {
+  handleZoomOut = (): void => {
     if (this.cropper) {
       this.cropper.zoom(-0.2);
     }
   };
 
-  handleSave = () => {
+  handleSave = (): void => {
     const { onEdit } = this.props;
 
     if (onEdit && this.cropper) {
@@ -99,7 +99,7 @@ class ImageEditor extends React.Component<ImageEditorProps, {}> {
     }
   };
 
-  render() {
+  render(): React.ReactElement {
     const { image, onFailure } = this.props;
 
     return (

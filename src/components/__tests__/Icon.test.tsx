@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitForDomChange } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import Icon from "../Icon";
 import { close } from "../../icons.json";
@@ -17,7 +17,7 @@ test("renders without crashing", async () => {
 
   expect(svg.firstChild).toBeFalsy();
 
-  await waitForDomChange({ container });
+  await waitFor(() => svg.firstChild);
 
   expect(svg.firstChild).toBeTruthy();
 });
@@ -32,7 +32,7 @@ test("updates the icon when the prop changes", async () => {
   const { container, rerender } = render(<Icon icon="checkmark" />);
 
   rerender(<Icon icon="close" />);
-  await waitForDomChange({ container });
+  await waitFor(() => container.querySelector("path"));
 
   const path = container.querySelector("path");
 

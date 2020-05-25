@@ -7,14 +7,14 @@ type DoorEffectProps = {
   open: boolean;
 };
 
-class DoorEffect extends React.PureComponent<DoorEffectProps, {}> {
+class DoorEffect extends React.PureComponent<DoorEffectProps, Record<string, unknown>> {
   doorRef = React.createRef<HTMLDivElement>();
 
   static defaultProps = {
     duration: 150
   };
 
-  componentDidUpdate(prevProps: DoorEffectProps) {
+  componentDidUpdate(prevProps: DoorEffectProps): void {
     const { className, duration, open } = this.props;
     const door = this.doorRef.current;
 
@@ -29,7 +29,7 @@ class DoorEffect extends React.PureComponent<DoorEffectProps, {}> {
     }
   }
 
-  render() {
+  render(): React.ReactNode {
     const { children, className } = this.props;
 
     return (

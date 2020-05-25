@@ -19,7 +19,7 @@ class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState>
 
   state = { src: null, styles: {} };
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.componentIsMounted = true;
 
     const { preview } = this.props;
@@ -29,7 +29,7 @@ class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState>
     }
   }
 
-  componentDidUpdate(prevProps: ImagePreviewProps) {
+  componentDidUpdate(prevProps: ImagePreviewProps): void {
     const { preview } = this.props;
 
     if (preview && (preview !== prevProps.preview)) {
@@ -37,11 +37,11 @@ class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState>
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     this.componentIsMounted = false;
   }
 
-  enqueueLoad() {
+  enqueueLoad(): void {
     const { image, preview } = this.props;
     const container = this.containerRef.current;
 
@@ -56,7 +56,7 @@ class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState>
     }
   }
 
-  render() {
+  render(): React.ReactElement {
     const { src, styles } = this.state;
 
     return (

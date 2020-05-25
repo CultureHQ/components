@@ -38,7 +38,7 @@ class Subnav extends React.Component<SubnavProps, SubnavState> {
     this.state = { activeIndex: props.activeIndex || 0 };
   }
 
-  componentDidUpdate(prevProps: SubnavProps, prevState: SubnavState) {
+  componentDidUpdate(prevProps: SubnavProps, prevState: SubnavState): void {
     const { onChange } = this.props;
     const { activeIndex } = this.state;
 
@@ -49,7 +49,7 @@ class Subnav extends React.Component<SubnavProps, SubnavState> {
 
   static Item = SubnavItem;
 
-  render() {
+  render(): React.ReactElement {
     const { children, className, activeIndex: givenIndex } = this.props;
     const { activeIndex: currentIndex } = this.state;
 

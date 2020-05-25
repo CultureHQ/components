@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitForDomChange } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import ActionButton from "../ActionButton";
 import * as icons from "../../../icons.json";
@@ -23,7 +23,7 @@ test("passes on extra props", () => {
 
 test("displays a regular icon", async () => {
   const { container } = render(<ActionButton icon="edit">Button</ActionButton>);
-  await waitForDomChange({ container });
+  await waitFor(() => container.querySelector("path"));
 
   const iconPath = container.querySelector("path") as SVGElement;
 

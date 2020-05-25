@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, waitForElement } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 import ImageField from "../ImageField";
 import mockImage from "../../../../test/image";
@@ -31,12 +31,12 @@ test("calls up to callbacks if they are provided", () => {
 
 test("responds to edit callback", async () => {
   const onChange = jest.fn();
-  const { container, getByAltText, getByLabelText, getByText } = render(
+  const { findByAltText, getByLabelText, getByText } = render(
     <ImageField name="image" onChange={onChange}>Image!</ImageField>
   );
 
   fireEvent.change(getByLabelText(/Image!/), { target: { files: [mockImage] } });
-  await waitForElement(() => getByAltText(/Preview/), { container });
+  await findByAltText(/Preview/);
 
   fireEvent.click(getByText("Save"));
 

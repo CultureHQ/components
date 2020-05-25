@@ -58,11 +58,11 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     this.timeout = null;
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     window.addEventListener("click", this.handleWindowClick);
   }
 
-  componentDidUpdate(prevProps: SelectFieldSingleProps) {
+  componentDidUpdate(prevProps: SelectFieldSingleProps): void {
     const { creatable, options, value } = this.props;
     const { display } = this.state;
 
@@ -76,7 +76,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     window.removeEventListener("click", this.handleWindowClick);
 
     if (this.timeout) {
@@ -85,7 +85,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     }
   }
 
-  getValue = () => {
+  getValue = (): null | SelectValue => {
     const { name, value, values } = this.props;
 
     if (value !== undefined) {
@@ -100,7 +100,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     return null;
   };
 
-  handleWindowClick = (event: Event) => {
+  handleWindowClick = (event: Event): void => {
     const { selectRef } = this.props;
     const { open } = this.state;
     const select = selectRef.current;
@@ -110,7 +110,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     }
   };
 
-  handleSelect = (selected: SelectValue) => {
+  handleSelect = (selected: SelectValue): void => {
     const { onFocus } = this.props;
 
     onFocus();
@@ -118,7 +118,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     this.propagateValue(selected);
   };
 
-  handleDeselect = () => {
+  handleDeselect = (): void => {
     const { onFocus } = this.props;
 
     onFocus();
@@ -126,7 +126,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     this.propagateValue(null);
   };
 
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { options } = this.props;
     const { display } = this.state;
 
@@ -145,15 +145,15 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     });
   };
 
-  handleOpen = () => {
+  handleOpen = (): void => {
     this.setState({ open: true, display: "" });
   };
 
-  handleClose = () => {
+  handleClose = (): void => {
     this.setState({ open: false, touched: true });
   };
 
-  propagateValue = (value: null | SelectValue) => {
+  propagateValue = (value: null | SelectValue): void => {
     const { name, onChange, onFormChange } = this.props;
 
     if (onChange) {
@@ -163,7 +163,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     onFormChange(name, value);
   };
 
-  selectValue = (nextValue: null | SelectValue) => {
+  selectValue = (nextValue: null | SelectValue): void => {
     const { options } = this.props;
 
     const match = options.find(({ value }) => value === nextValue);
@@ -187,7 +187,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
 
   /* eslint-disable jsx-a11y/label-has-for */
   // we're following the rules for it but it can't figure that out
-  render() {
+  render(): React.ReactElement {
     const {
       creatable, disabled, inputRef, name, onError, options, placeholder,
       required, selectRef, submitted, validator

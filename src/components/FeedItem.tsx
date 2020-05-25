@@ -7,12 +7,6 @@ type FeedItemProps = {
   className?: string;
 };
 
-const FeedItem = ({ children, className }: FeedItemProps) => (
-  <div className={classnames("chq-fdi", className)}>
-    {children}
-  </div>
-);
-
 const FeedItemBody: React.FC<FeedItemProps> = ({ children, className }) => (
   <div className={classnames("chq-fdi--bd", className)}>
     {children}
@@ -21,6 +15,17 @@ const FeedItemBody: React.FC<FeedItemProps> = ({ children, className }) => (
 
 const FeedItemFooter: React.FC<FeedItemProps> = ({ children, className }) => (
   <div className={classnames("chq-fdi--ft", className)}>
+    {children}
+  </div>
+);
+
+type FeedItemComponent = React.FC<FeedItemProps> & {
+  Body: typeof FeedItemBody;
+  Footer: typeof FeedItemFooter;
+};
+
+const FeedItem: FeedItemComponent = ({ children, className }) => (
+  <div className={classnames("chq-fdi", className)}>
     {children}
   </div>
 );

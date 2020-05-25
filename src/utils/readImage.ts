@@ -59,7 +59,14 @@ const getImagePromise = (image: HTMLImageElement, preview: Readable): Promise<HT
   ))
 );
 
-const readImage = (image: Readable, preview: Readable, maxWidth: number, maxHeight: number) => {
+type ReadImage = {
+  src: string;
+  styles: { [key: string]: undefined | string | number };
+};
+
+const readImage = (
+  image: Readable, preview: Readable, maxWidth: number, maxHeight: number
+): Promise<ReadImage> => {
   const imageObj = new Image();
   const promises: [Promise<number>, Promise<HTMLImageElement>] = [
     getNormalRotation(image),

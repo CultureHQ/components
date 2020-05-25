@@ -21,17 +21,6 @@ const getItemClassName = (className: undefined | string, sizeProps: GridSizeProp
   return classList;
 };
 
-type GridProps = {
-  children: React.ReactNode;
-  className?: string;
-};
-
-const Grid = ({ children, className }: GridProps) => (
-  <div className={classnames("chq-grid", className)}>
-    {children}
-  </div>
-);
-
 type GridItemProps = GridSizeProps & {
   children?: React.ReactNode;
   className?: string;
@@ -43,6 +32,21 @@ const GridItem: React.FC<GridItemProps> = ({ children, className, ...sizeProps }
     <div className="chq-grid--item--inner">
       {children}
     </div>
+  </div>
+);
+
+type GridProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+type GridComponent = React.FC<GridProps> & {
+  Item: typeof GridItem;
+};
+
+const Grid: GridComponent = ({ children, className }) => (
+  <div className={classnames("chq-grid", className)}>
+    {children}
   </div>
 );
 

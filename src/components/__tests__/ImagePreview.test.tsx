@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitForDomChange } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import ImagePreview from "../ImagePreview";
 
@@ -19,30 +19,27 @@ const resolved = {
 test("reads image and loads it", async () => {
   jest.spyOn(readImage, "default").mockImplementation(() => Promise.resolve(resolved));
 
-  const { container, getByRole, queryByRole } = render(
+  const { findByRole, getByRole, queryByRole } = render(
     <ImagePreview image={image} preview="culture.png" />
   );
 
   expect(queryByRole("img")).toBeFalsy();
+  await findByRole("img");
 
-  await waitForDomChange({ container });
-
-  expect(queryByRole("img")).toBeTruthy();
   expect(getByRole("img").style).toHaveProperty("height", "200px");
 });
 
-test("does not attempt to set state when unmounted while waiting", () => {
+test("does not attempt to set state when unmounted while waiting", async () => {
   jest.spyOn(readImage, "default").mockImplementation(() => new Promise(resolve => (
     setTimeout(() => resolve(resolved), 200)
   )));
 
-  const { container, queryByRole, unmount } = render(
+  const { findByRole, queryByRole, unmount } = render(
     <ImagePreview image={image} preview="culture.png" />
   );
 
   expect(queryByRole("img")).toBeFalsy();
+  await findByRole("img");
 
-  return waitForDomChange({ container }).then(() => {
-    unmount();
-  });
+  unmount();
 });

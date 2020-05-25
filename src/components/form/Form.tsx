@@ -37,7 +37,7 @@ const FormContext = React.createContext<FormState>({
   onFormChange: () => {}
 });
 
-export const useForm = () => useContext(FormContext);
+export const useForm = (): FormState => useContext(FormContext);
 
 type FormComponentProps = Omit<FormProps, "initialValues" | "onSubmit"> & {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -69,44 +69,44 @@ class Form extends React.Component<FormProps, FormState> {
     };
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.componentIsMounted = true;
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     this.componentIsMounted = false;
   }
 
-  handleError = (name: string, error: FormFieldError) => {
+  handleError = (name: string, error: FormFieldError): void => {
     this.setState(({ errors }) => ({
       errors: { ...errors, [name]: error }
     }));
   };
 
-  handleFormChange = (name: string, value: FormValue) => {
+  handleFormChange = (name: string, value: FormValue): void => {
     this.setState(({ values }) => ({
       values: { ...values, [name]: value }
     }));
   };
 
-  handleFieldDisabledChange = (name: string, value: boolean | undefined) => {
+  handleFieldDisabledChange = (name: string, value: boolean | undefined): void => {
     this.setState(({ disabledStates }) => ({
       disabledStates: { ...disabledStates, [name]: value }
     }));
   };
 
-  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     this.submit();
   };
 
-  handleDoneSubmitting = () => {
+  handleDoneSubmitting = (): void => {
     if (this.componentIsMounted) {
       this.setState({ submitting: false });
     }
   };
 
-  submit() {
+  submit(): void {
     const { onSubmit } = this.props;
     const { disabledStates, errors, values } = this.state;
 
@@ -133,7 +133,7 @@ class Form extends React.Component<FormProps, FormState> {
     }
   }
 
-  render() {
+  render(): React.ReactElement {
     const { children, initialValues, onSubmit, ...props } = this.props;
 
     return (
@@ -146,7 +146,9 @@ class Form extends React.Component<FormProps, FormState> {
   }
 }
 
-export const withForm = <P extends {}>(Child: React.ComponentType<P & FormState>) => {
+export const withForm = <P extends Record<string, unknown>>(
+  Child: React.ComponentType<P & FormState>
+): React.FC<P> => {
   const Parent = (props: P) => (
     <FormContext.Consumer>
       {state => <Child {...state} {...props} />}

@@ -20,11 +20,11 @@ type FormErrorState = {
 class FormError extends React.PureComponent<FormErrorProps, FormErrorState> {
   state = { error: null };
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.deriveError();
   }
 
-  componentDidUpdate(prevProps: FormErrorProps) {
+  componentDidUpdate(prevProps: FormErrorProps): void {
     const { required, validator, value } = this.props;
 
     if (
@@ -36,7 +36,7 @@ class FormError extends React.PureComponent<FormErrorProps, FormErrorState> {
     }
   }
 
-  deriveError() {
+  deriveError(): void {
     const { name, onError, required, validator, value } = this.props;
 
     let error = null;
@@ -54,7 +54,7 @@ class FormError extends React.PureComponent<FormErrorProps, FormErrorState> {
     }
   }
 
-  render() {
+  render(): React.ReactNode {
     const { submitted, touched } = this.props;
     const { error } = this.state;
 

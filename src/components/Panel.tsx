@@ -46,7 +46,14 @@ type PanelProps = React.HTMLAttributes<HTMLDivElement> & Container & {
   limitWidth?: boolean;
 };
 
-const Panel = ({ className, children, limitWidth = false, ...props }: PanelProps) => (
+type PanelComponent = React.FC<PanelProps> & {
+  Heading: typeof PanelHeading;
+  Body: typeof PanelBody;
+  LoaderBody: typeof PanelLoaderBody;
+  Footer: typeof PanelFooter;
+};
+
+const Panel: PanelComponent = ({ className, children, limitWidth = false, ...props }) => (
   <div {...props} className={classnames("chq-pan", className, { "chq-pan-lim": limitWidth })}>
     {children}
   </div>
