@@ -3,7 +3,7 @@ import React from "react";
 import SelectFieldCaret from "./SelectFieldCaret";
 import { SelectFieldPassedProps, SelectValue } from "../typings";
 
-type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "disabled" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onOpen" | "open" | "placeholder"> & {
+type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "disabled" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onOpen" | "open" | "onSelected" | "placeholder"> & {
   value: null | SelectValue;
 };
 
@@ -16,6 +16,7 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
   onClose,
   onOpen,
   open,
+  onSelected,
   placeholder,
   value
 }) => {
@@ -55,6 +56,7 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
         onClick={onOpen}
         onChange={onChange}
         onKeyDown={onKeyDown}
+        onFocus={onSelected}
         placeholder={placeholder}
         value={display}
       />

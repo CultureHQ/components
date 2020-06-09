@@ -15,6 +15,7 @@ type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
   name: string;
   onChange?: (value: null | SelectValue) => void;
   onFocus: () => void;
+  onSelected?: () => void;
   options: SelectOption[];
   placeholder: string;
   required: boolean;
@@ -190,7 +191,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   render() {
     const {
       creatable, disabled, inputRef, name, onError, options, placeholder,
-      required, selectRef, submitted, validator
+      onSelected, required, selectRef, submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -208,6 +209,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
             onChange={this.handleChange}
             onClose={this.handleClose}
             onOpen={this.handleOpen}
+            onSelected={onSelected}
             open={open}
             placeholder={placeholder}
             value={normal}

@@ -28,6 +28,10 @@ storiesOf("Form/Form", module)
       return new Promise(resolve => setTimeout(resolve, 1000));
     };
 
+    const onSelected = () => {
+      console.log("I'm selected");
+    };
+
     return (
       <Form onSubmit={onSubmit}>
         <EmailField name="email">Email</EmailField>
@@ -39,6 +43,7 @@ storiesOf("Form/Form", module)
             { value: "2", label: "Two" },
             { value: "3", label: "Three" }
           ]}
+          onSelected={onSelected}
         >
           Select
         </SelectField>
