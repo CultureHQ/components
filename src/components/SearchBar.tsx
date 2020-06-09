@@ -34,7 +34,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
 
   state = { search: "", searching: false };
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.componentIsMounted = true;
 
     const { autoFocus } = this.props;
@@ -45,7 +45,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     }
   }
 
-  componentDidUpdate(prevProps: SearchBarProps, prevState: SearchBarState) {
+  componentDidUpdate(prevProps: SearchBarProps, prevState: SearchBarState): void {
     const { onSearch, throttle } = this.props;
     const { search } = this.state;
 
@@ -72,7 +72,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     this.componentIsMounted = false;
 
     if (this.timeout) {
@@ -80,7 +80,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     }
   }
 
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { onSearchChange } = this.props;
     const search = event.target.value;
 
@@ -91,7 +91,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     this.setState({ search, searching: search.length > 0 });
   };
 
-  render() {
+  render(): React.ReactElement {
     const { className, autoComplete, placeholder } = this.props;
     const { search, searching } = this.state;
 

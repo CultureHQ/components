@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { act, fireEvent, render, wait } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 
 import CheerButton from "../CheerButton";
 
@@ -35,7 +35,7 @@ test("renders a button and calls back", async () => {
 
   await act(() => {
     fireEvent.click(getByRole("button"));
-    return wait(() => expect(onCheerToggle).toHaveBeenCalledTimes(1));
+    return waitFor(() => expect(onCheerToggle).toHaveBeenCalledTimes(1));
   });
 
   expect(onCheerToggle).toHaveBeenLastCalledWith(true);
@@ -55,7 +55,7 @@ test("pops in the Cheer if it was not initially cheered", async () => {
 
   await act(() => {
     fireEvent.click(getByRole("button"));
-    return wait(() => expect(onCheerToggle).toHaveBeenCalledTimes(1));
+    return waitFor(() => expect(onCheerToggle).toHaveBeenCalledTimes(1));
   });
 
   const cheers = container.querySelectorAll("svg");

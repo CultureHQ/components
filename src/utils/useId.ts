@@ -13,7 +13,7 @@ const generateId = () => {
   return `chq-${currentId}`;
 };
 
-const useId = () => {
+const useId = (): string => {
   const [id, _setId] = useState(generateId);
   return id;
 };

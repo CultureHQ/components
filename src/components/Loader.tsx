@@ -21,7 +21,7 @@ class Loader extends React.Component<LoaderProps, LoaderState> {
 
   state = { spinning: false };
 
-  componentDidMount = () => {
+  componentDidMount(): void {
     const { loading } = this.props;
 
     this.componentIsMounted = true;
@@ -29,18 +29,18 @@ class Loader extends React.Component<LoaderProps, LoaderState> {
     if (loading) {
       this.timeout = window.setTimeout(this.handleSpinnerTriggered, 250);
     }
-  };
+  }
 
-  componentWillUnmount = () => {
+  componentWillUnmount(): void {
     this.componentIsMounted = false;
 
     if (this.timeout) {
       clearTimeout(this.timeout);
       this.timeout = null;
     }
-  };
+  }
 
-  handleSpinnerTriggered = () => {
+  handleSpinnerTriggered = (): void => {
     const { loading } = this.props;
 
     if (this.componentIsMounted && loading) {
@@ -50,7 +50,7 @@ class Loader extends React.Component<LoaderProps, LoaderState> {
     this.timeout = null;
   };
 
-  render() {
+  render(): React.ReactElement {
     const { children, className, loading } = this.props;
     const { spinning } = this.state;
 

@@ -110,12 +110,18 @@ type DropdownProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> & {
   selected: DropdownValue | null;
 };
 
+type DropdownComponent = React.FC<DropdownProps> & {
+  Button: typeof DropdownButton;
+  ListBox: typeof DropdownListBox;
+  Option: typeof DropdownOption;
+};
+
 // Disabling the following rule because the top-level div is just capturing all
 // keyboard events from the button or from the list elements, and it's better to
 // just keep it here are the top level. See:
 // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md#case-the-event-handler-is-only-being-used-to-capture-bubbled-events
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-const Dropdown = ({ children, className, onChange, selected, ...props }: DropdownProps) => {
+const Dropdown: DropdownComponent = ({ children, className, onChange, selected, ...props }) => {
   const [open, setOpen] = useState<DropdownState["open"]>(null);
   const onClose = useCallback(() => setOpen(false), [setOpen]);
 

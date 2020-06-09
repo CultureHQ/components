@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitForDomChange } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import Button from "../Button";
 import icons from "../../../icons.json";
@@ -8,7 +8,7 @@ const editIconPath = icons.edit.join(" ");
 const loadingIconPath = icons["load-c"].join(" ");
 
 const getIconPath = async (container: HTMLElement) => {
-  await waitForDomChange({ container });
+  await waitFor(() => container.querySelector("path"));
 
   const pathElement = container.querySelector("path") as SVGElement;
   expect(pathElement).not.toBe(null);

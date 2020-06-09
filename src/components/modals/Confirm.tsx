@@ -25,7 +25,7 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
     this.state = { open: props.startOpen || false };
   }
 
-  handleOpen = () => {
+  handleOpen = (): void => {
     const { onOpen } = this.props;
 
     if (onOpen) {
@@ -35,18 +35,18 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
     this.setState({ open: true });
   };
 
-  handleClose = () => {
+  handleClose = (): void => {
     this.setState({ open: false });
   };
 
-  handleAccept = () => {
+  handleAccept = (): void => {
     const { onAccept } = this.props;
 
     this.setState({ open: false });
     onAccept();
   };
 
-  render() {
+  render(): React.ReactElement {
     const { accept = "Yes", appElement, children, className, contentRef, danger, entrance, trigger, width } = this.props;
     const { open } = this.state;
 
@@ -82,7 +82,7 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
   }
 }
 
-export const ConfirmDelete = (props: ConfirmProps) => (
+export const ConfirmDelete: React.FC<ConfirmProps> = props => (
   <Confirm accept="Delete" danger {...props} />
 );
 

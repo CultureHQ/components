@@ -18,12 +18,12 @@ class Icon extends React.PureComponent<IconProps, IconState> {
 
   state: IconState = { path: null };
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.componentIsMounted = true;
     this.fetchPath();
   }
 
-  componentDidUpdate(prevProps: IconProps) {
+  componentDidUpdate(prevProps: IconProps): void {
     const { icon } = this.props;
 
     if (icon !== prevProps.icon) {
@@ -31,11 +31,11 @@ class Icon extends React.PureComponent<IconProps, IconState> {
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     this.componentIsMounted = false;
   }
 
-  fetchPath() {
+  fetchPath(): void {
     const { icon } = this.props;
     console.log(icon);
 
@@ -52,7 +52,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       });
   }
 
-  render() {
+  render(): React.ReactElement {
     const { className } = this.props;
     const { path } = this.state;
 

@@ -20,7 +20,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
     this.state = { open: props.startOpen || false };
   }
 
-  getChildren() {
+  getChildren(): React.ReactNode {
     const { children } = this.props;
 
     return React.Children.map(children, child => {
@@ -31,11 +31,11 @@ class Modal extends React.Component<ModalProps, ModalState> {
     });
   }
 
-  handleOpen = () => {
+  handleOpen = (): void => {
     this.setState({ open: true });
   };
 
-  handleClose = () => {
+  handleClose = (): void => {
     const { onClose } = this.props;
 
     this.setState({ open: false });
@@ -53,7 +53,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
 
   static Footer = ModalDialog.Footer;
 
-  render() {
+  render(): React.ReactElement {
     const { appElement, className, contentRef, entrance, trigger, width } = this.props;
     const { open } = this.state;
 

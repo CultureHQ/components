@@ -52,7 +52,14 @@ type ModalDialogProps = {
   width?: keyof typeof widths;
 };
 
-const ModalDialog = ({
+type ModalDialogComponent = React.FC<ModalDialogProps> & {
+  Heading: typeof ModalDialogHeading;
+  Body: typeof Panel.Body;
+  LoaderBody: typeof Panel.LoaderBody;
+  Footer: typeof Panel.Footer;
+};
+
+const ModalDialog: ModalDialogComponent = ({
   appElement = document.body,
   children,
   className,
@@ -60,7 +67,7 @@ const ModalDialog = ({
   entrance = "slideIn",
   onClose,
   width = "normal"
-}: ModalDialogProps) => (
+}) => (
   <ReactModal
     appElement={appElement}
     className={classnames("chq-mdl", className, entrances[entrance], widths[width])}
