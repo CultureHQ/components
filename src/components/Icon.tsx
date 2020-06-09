@@ -37,7 +37,6 @@ class Icon extends React.PureComponent<IconProps, IconState> {
 
   fetchPath(): void {
     const { icon } = this.props;
-    console.log(icon);
 
     import("../icons.json")
       .then(icons => {
