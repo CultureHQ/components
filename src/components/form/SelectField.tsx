@@ -17,6 +17,7 @@ type SelectFieldCommonProps = {
   disabled?: boolean;
   multiple?: boolean;
   name: string;
+  onSelected?: () => void;
   options: SelectOption[];
   placeholder?: string;
   required?: boolean;
@@ -49,6 +50,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   multiple = false,
   name,
   onChange,
+  onSelected,
   options,
   placeholder = "",
   required = false,
@@ -70,6 +72,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     name,
     onFocus,
     options,
+    onSelected,
     placeholder,
     required,
     selectRef: React.createRef<HTMLDivElement>()

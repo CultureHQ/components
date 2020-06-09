@@ -15,6 +15,7 @@ type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
   name: string;
   onChange?: (value: null | SelectValue[]) => void;
   onFocus: () => void;
+  onSelected?: () => void;
   options: SelectOption[];
   placeholder: string;
   required: boolean;
@@ -184,7 +185,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
   render(): React.ReactElement {
     const {
       creatable, disabled, inputRef, name, onError, options, placeholder,
-      required, selectRef, submitted, validator
+      onSelected, required, selectRef, submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -202,6 +203,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
             onChange={this.handleChange}
             onClose={this.handleClose}
             onDeselect={this.handleDeselect}
+            onSelected={onSelected}
             onOpen={this.handleOpen}
             open={open}
             options={options}

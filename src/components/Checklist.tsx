@@ -10,7 +10,7 @@ type ChecklistProps = {
 };
 
 type ChecklistComponent = React.FC<ChecklistProps> & {
-  Item: typeof Checkmark
+  Item: typeof Checkmark;
 };
 
 const Checklist: ChecklistComponent = ({ children, className }) => (

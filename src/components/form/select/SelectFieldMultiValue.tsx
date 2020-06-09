@@ -23,7 +23,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
   return <><Badge icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
 };
 
-type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "disabled" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "placeholder"> & {
+type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "disabled" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "placeholder"> & {
   value: null | SelectValue[];
 };
 
@@ -70,7 +70,7 @@ class SelectFieldMultiValue extends React.Component<
 
   render(): React.ReactElement {
     const {
-      disabled, display, inputRef, name, onChange, onDeselect, onOpen, open,
+      disabled, display, inputRef, name, onChange, onDeselect, onOpen, open, onSelected,
       placeholder
     } = this.props;
 
@@ -105,6 +105,7 @@ class SelectFieldMultiValue extends React.Component<
           ref={inputRef}
           onChange={onChange}
           onKeyDown={this.handleKeyDown}
+          onFocus={onSelected}
           value={display}
         />
         {placeholder && !display && <span className="chq-ffd--sl--place">{placeholder}</span>}

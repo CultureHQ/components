@@ -19,6 +19,7 @@ export type SelectFieldPassedProps = {
   onClose: () => void;
   onDeselect: (value: SelectValue) => void;
   onOpen: () => void;
+  onSelected: (() => void) | undefined;
   onSelect: (value: SelectValue) => void;
   open: boolean;
   options: SelectOption[];
