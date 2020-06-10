@@ -9,13 +9,17 @@ import SelectFieldOptions from "./SelectFieldOptions";
 import fuzzyFilter from "./fuzzyFilter";
 
 type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
+  allowEmpty?: boolean;
   creatable: boolean;
   disabled?: boolean;
+  imageIconPath?: string;
   inputRef: React.RefObject<HTMLInputElement>;
   name: string;
+  fixedValue: boolean;
   onChange?: (value: null | SelectValue[]) => void;
   onFocus: () => void;
   onSelected?: () => void;
+  onUnselected?: () => void;
   options: SelectOption[];
   placeholder: string;
   required: boolean;
@@ -184,12 +188,12 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
   // we're following the rules for it but it can't figure that out
   render(): React.ReactElement {
     const {
-      creatable, disabled, inputRef, name, onError, options, placeholder,
-      onSelected, required, selectRef, submitted, validator
+      allowEmpty, creatable, disabled, imageIconPath, inputRef, name, onError,
+      options, placeholder, onSelected, onUnselected, required, selectRef,
+      submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
-
     const normal = this.getValue();
 
     return (
@@ -198,12 +202,14 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
           <SelectFieldMultiValue
             disabled={disabled}
             display={display}
+            imageIconPath={imageIconPath}
             inputRef={inputRef}
             name={name}
             onChange={this.handleChange}
             onClose={this.handleClose}
             onDeselect={this.handleDeselect}
             onSelected={onSelected}
+            onUnselected={onUnselected}
             onOpen={this.handleOpen}
             open={open}
             options={options}
@@ -211,6 +217,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
             value={normal}
           />
           <SelectFieldOptions
+            allowEmpty={allowEmpty}
             creatable={creatable}
             display={display}
             filteredOptions={filteredOptions}

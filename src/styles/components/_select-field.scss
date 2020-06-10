@@ -56,6 +56,20 @@
     }
   }
 
+  &--with-icon {
+    position: relative;
+
+    .chq-ffd--ctrl {
+      padding-left: 45px;
+    }
+  }
+
+  &--icon {
+    max-width: 30px;
+    padding: 5px;
+    position: absolute;
+  }
+
   &--opts {
     background-color: $color-white;
     border: $color-box-shadow solid 1px;
@@ -105,6 +119,11 @@
       margin: 0;
       padding: 3px 30px;
     }
+  }
+
+  .chq-ffd--ctrl--fixed-value {
+    color: transparent;
+    text-shadow: 0 0 0 $color-primary-font;
   }
 }
 

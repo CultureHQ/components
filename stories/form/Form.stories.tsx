@@ -34,11 +34,9 @@ storiesOf("Form/Form", module)
         <StringField name="string">String</StringField>
         <SelectField
           name="select"
-          options={[
-            { value: "1", label: "One" },
-            { value: "2", label: "Two" },
-            { value: "3", label: "Three" }
-          ]}
+          options={[]}
+          allowEmpty
+          value="Testing ghete"
         >
           Select
         </SelectField>

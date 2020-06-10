@@ -3,6 +3,9 @@ import { storiesOf } from "@storybook/react";
 import { boolean, text } from "@storybook/addon-knobs";
 
 import { Form, Panel, SelectField } from "../../src/components";
+import { IconName } from "../../src/components/Icon";
+
+const emptyOptions: { label: string; value: string }[] = [];
 
 const options = [
   { label: "The Sorcerer's Stone", value: "sorcerer" },
@@ -12,6 +15,16 @@ const options = [
   { label: "The Order of the Phoenix", value: "order" },
   { label: "The Half-Blood Prince", value: "prince" },
   { label: "The Deathly Hallows", value: "hallows" }
+];
+
+const optionsWithIcons = [
+  { label: "The Sorcerer's Stone", value: "sorcerer", icon: "loc-ol" as IconName },
+  { label: "The Chamber of Secrets", value: "chamber", icon: "loc-ol" as IconName },
+  { label: "The Prisoner of Azkaban", value: "prisoner", icon: "loc-ol" as IconName },
+  { label: "The Goblet of Fire", value: "goblet", icon: "loc-ol" as IconName },
+  { label: "The Order of the Phoenix", value: "order", icon: "loc-ol" as IconName },
+  { label: "The Half-Blood Prince", value: "prince", icon: "loc-ol" as IconName },
+  { label: "The Deathly Hallows", value: "hallows", icon: "loc-ol" as IconName }
 ];
 
 const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -75,6 +88,21 @@ storiesOf("Form/SelectField", module)
   .add("required", () => (
     <Container>
       <SelectField name="select" required options={options}>Select</SelectField>
+    </Container>
+  ))
+  .add("selected option with icon", () => (
+    <Container>
+      <SelectField name="select" multiple options={optionsWithIcons}>Select</SelectField>
+    </Container>
+  ))
+  .add("input with image icon", () => (
+    <Container>
+      <SelectField name="select" options={options} imageIconPath="CultureHQ-logo.png">Select</SelectField>
+    </Container>
+  ))
+  .add("input fixed", () => (
+    <Container>
+      <SelectField name="select" options={emptyOptions} allowEmpty fixedValue value="Fixed value here">Select</SelectField>
     </Container>
   ))
   .add("validator", () => {

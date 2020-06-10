@@ -4,6 +4,7 @@ import classnames from "../../../classnames";
 import Badge from "../../buttons/Badge";
 import SelectFieldCaret from "./SelectFieldCaret";
 import { SelectFieldPassedProps, SelectValue, SelectOption } from "../typings";
+import Icon from "../../Icon";
 
 type SelectFieldMultiValueBadgeProps = Pick<SelectFieldPassedProps, "onDeselect"> & {
   option: SelectOption;
@@ -13,17 +14,29 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
   option,
   onDeselect
 }) => {
-  const { label, value } = option;
+  const { label, value, icon } = option;
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     onDeselect(value);
   };
 
+  if (icon) {
+    return (
+      <>
+        <Badge icon="close" onClick={onClick}>
+          {label}
+          {" "}
+          <Icon icon={icon} className="option-icon" />
+        </Badge>
+      </>
+    );
+  }
+
   return <><Badge icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
 };
 
-type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "disabled" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "placeholder"> & {
+type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "disabled" | "imageIconPath" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "onUnselected" | "placeholder"> & {
   value: null | SelectValue[];
 };
 
@@ -70,8 +83,8 @@ class SelectFieldMultiValue extends React.Component<
 
   render(): React.ReactElement {
     const {
-      disabled, display, inputRef, name, onChange, onDeselect, onOpen, open, onSelected,
-      placeholder
+      disabled, display, imageIconPath, inputRef, name, onChange, onDeselect, onOpen, open,
+      onSelected, onUnselected, placeholder
     } = this.props;
 
     const className = classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open });
@@ -97,6 +110,9 @@ class SelectFieldMultiValue extends React.Component<
             <SelectFieldMultiValueBadge option={option} onDeselect={onDeselect} />
           </React.Fragment>
         ))}
+        {imageIconPath && (
+          <img className="chq-ffd--sl--icon" src={imageIconPath} alt="Input icon" />
+        )}
         <input
           aria-label="Search"
           type="text"
@@ -106,6 +122,7 @@ class SelectFieldMultiValue extends React.Component<
           onChange={onChange}
           onKeyDown={this.handleKeyDown}
           onFocus={onSelected}
+          onBlur={onUnselected}
           value={display}
         />
         {placeholder && !display && <span className="chq-ffd--sl--place">{placeholder}</span>}

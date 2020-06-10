@@ -53,9 +53,10 @@ const makeCurrentMatcher = ({ multiple, value }: MakeCurrentMatcherOpts): Curren
   return (option: SelectOption) => value === option.value;
 };
 
-type SelectFieldOptionsProps = Pick<SelectFieldPassedProps, "creatable" | "display" | "filteredOptions" | "multiple" | "onDeselect" | "onSelect" | "open" | "options" | "value">;
+type SelectFieldOptionsProps = Pick<SelectFieldPassedProps, "allowEmpty" | "creatable" | "display" | "filteredOptions" | "multiple" | "onDeselect" | "onSelect" | "open" | "options" | "value">;
 
 const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
+  allowEmpty,
   creatable,
   display,
   filteredOptions,
@@ -70,31 +71,35 @@ const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
   const currentMatcher = makeCurrentMatcher({ multiple, value });
 
   return (
-    <DoorEffect className="chq-ffd--sl--opts" open={open}>
-      {createOption && (display.length > 0) && (
-        <SelectFieldOption
-          key={display}
-          current={false}
-          onDeselect={onDeselect}
-          onSelect={onSelect}
-          option={{ label: `Create option: ${display}`, value: display }}
-          tabIndex={open ? 0 : -1}
-        />
+    <div>
+      {!allowEmpty && (
+        <DoorEffect className="chq-ffd--sl--opts" open={open}>
+          {createOption && (display.length > 0) && (
+            <SelectFieldOption
+              key={display}
+              current={false}
+              onDeselect={onDeselect}
+              onSelect={onSelect}
+              option={{ label: `Create option: ${display}`, value: display }}
+              tabIndex={open ? 0 : -1}
+            />
+          )}
+          {filteredOptions.map(option => (
+            <SelectFieldOption
+              key={option.value}
+              current={currentMatcher(option)}
+              onDeselect={onDeselect}
+              onSelect={onSelect}
+              option={option}
+              tabIndex={open ? 0 : -1}
+            />
+          ))}
+          {!createOption && (filteredOptions.length === 0) && (
+            <p>No results found.</p>
+          )}
+        </DoorEffect>
       )}
-      {filteredOptions.map(option => (
-        <SelectFieldOption
-          key={option.value}
-          current={currentMatcher(option)}
-          onDeselect={onDeselect}
-          onSelect={onSelect}
-          option={option}
-          tabIndex={open ? 0 : -1}
-        />
-      ))}
-      {!createOption && (filteredOptions.length === 0) && (
-        <p>No results found.</p>
-      )}
-    </DoorEffect>
+    </div>
   );
 });
 

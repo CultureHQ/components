@@ -9,13 +9,17 @@ import SelectFieldOptions from "./SelectFieldOptions";
 import fuzzyFilter from "./fuzzyFilter";
 
 type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
+  allowEmpty?: boolean;
   creatable: boolean;
   disabled?: boolean;
+  imageIconPath?: string;
   inputRef: React.RefObject<HTMLInputElement>;
   name: string;
+  fixedValue: boolean;
   onChange?: (value: null | SelectValue) => void;
   onFocus: () => void;
   onSelected?: () => void;
+  onUnselected?: () => void;
   options: SelectOption[];
   placeholder: string;
   required: boolean;
@@ -36,6 +40,10 @@ const getDisplay = (props: SelectFieldSingleProps) => {
   let display = "";
 
   if (normal !== undefined) {
+    if (props.allowEmpty) {
+      return `${normal}`;
+    }
+
     const match = props.options.find(({ value }) => value === normal);
     display = match ? match.label : "";
   }
@@ -128,7 +136,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   };
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { options } = this.props;
+    const { options, fixedValue } = this.props;
     const { display } = this.state;
 
     const normal = this.getValue();
@@ -139,15 +147,22 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
       ? (event.nativeEvent as any).data
       : nextDisplay;
 
-    this.setState({
-      display: nextDisplay || "",
-      filteredOptions: fuzzyFilter(options, nextDisplay),
-      open: true
-    });
+    if (!fixedValue) {
+      this.setState({
+        display: nextDisplay || "",
+        filteredOptions: fuzzyFilter(options, nextDisplay),
+        open: true
+      });
+    }
   };
 
   handleOpen = (): void => {
-    this.setState({ open: true, display: "" });
+    this.setState({ open: true });
+    const { fixedValue } = this.props;
+
+    if (!fixedValue) {
+      this.setState({ display: "" });
+    }
   };
 
   handleClose = (): void => {
@@ -190,31 +205,37 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   // we're following the rules for it but it can't figure that out
   render(): React.ReactElement {
     const {
-      creatable, disabled, inputRef, name, onError, options, placeholder,
-      onSelected, required, selectRef, submitted, validator
+      allowEmpty, creatable, disabled, fixedValue, imageIconPath, inputRef,
+      name, onError, options, placeholder, onSelected, onUnselected, required,
+      selectRef, submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
 
     const normal = this.getValue();
+    const classes = imageIconPath ? "chq-ffd--sl chq-ffd--sl--with-icon" : "chq-ffd--sl";
 
     return (
       <>
-        <div ref={selectRef} className="chq-ffd--sl">
+        <div ref={selectRef} className={classes}>
           <SelectFieldSingleValue
             disabled={disabled}
             display={display}
+            fixedValue={fixedValue}
+            imageIconPath={imageIconPath}
             inputRef={inputRef}
             name={name}
             onChange={this.handleChange}
             onClose={this.handleClose}
             onOpen={this.handleOpen}
             onSelected={onSelected}
+            onUnselected={onUnselected}
             open={open}
             placeholder={placeholder}
             value={normal}
           />
           <SelectFieldOptions
+            allowEmpty={allowEmpty}
             creatable={creatable}
             display={display}
             filteredOptions={filteredOptions}

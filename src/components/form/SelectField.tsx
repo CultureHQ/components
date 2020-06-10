@@ -17,10 +17,14 @@ type SelectFieldCommonProps = {
   disabled?: boolean;
   multiple?: boolean;
   name: string;
+  fixedValue?: boolean;
+  imageIconPath?: string;
   onSelected?: () => void;
+  onUnselected?: () => void;
   options: SelectOption[];
   placeholder?: string;
   required?: boolean;
+  allowEmpty?: boolean;
 };
 
 type SelectFieldSingleProps = {
@@ -42,15 +46,19 @@ type SelectFieldProps = SelectFieldCommonProps & (
 );
 
 const SelectField: React.FC<SelectFieldProps> = ({
+  allowEmpty,
   autoFocus = false,
   children,
   className,
   creatable = false,
   disabled,
+  imageIconPath,
   multiple = false,
   name,
+  fixedValue = false,
   onChange,
   onSelected,
+  onUnselected,
   options,
   placeholder = "",
   required = false,
@@ -65,14 +73,18 @@ const SelectField: React.FC<SelectFieldProps> = ({
   const context = useForm();
   const passed = {
     ...context,
+    allowEmpty,
     autoFocus,
     creatable,
     disabled,
+    imageIconPath,
     inputRef,
     name,
+    fixedValue,
     onFocus,
     options,
     onSelected,
+    onUnselected,
     placeholder,
     required,
     selectRef: React.createRef<HTMLDivElement>()

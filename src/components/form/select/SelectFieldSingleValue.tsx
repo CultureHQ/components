@@ -3,13 +3,15 @@ import React from "react";
 import SelectFieldCaret from "./SelectFieldCaret";
 import { SelectFieldPassedProps, SelectValue } from "../typings";
 
-type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "disabled" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onOpen" | "open" | "onSelected" | "placeholder"> & {
+type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "disabled" | "display" | "fixedValue" | "imageIconPath" | "inputRef" | "name" | "onChange" | "onClose" | "onOpen" | "open" | "onSelected" | "onUnselected" | "placeholder"> & {
   value: null | SelectValue;
 };
 
 const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo(({
   disabled,
   display,
+  fixedValue,
+  imageIconPath,
   inputRef,
   name,
   onChange,
@@ -17,6 +19,7 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
   onOpen,
   open,
   onSelected,
+  onUnselected,
   placeholder,
   value
 }) => {
@@ -36,9 +39,13 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
         break;
     }
   };
+  const classes = fixedValue ? "chq-ffd--ctrl chq-ffd--ctrl--fixed-value" : "chq-ffd--ctrl";
 
   return (
     <>
+      {imageIconPath && (
+        <img className="chq-ffd--sl--icon" src={imageIconPath} alt="Input icon" />
+      )}
       <input
         aria-label={name}
         type="hidden"
@@ -51,12 +58,13 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
         aria-label="Value"
         type="text"
         ref={inputRef}
-        className="chq-ffd--ctrl"
+        className={classes}
         disabled={disabled}
         onClick={onOpen}
         onChange={onChange}
         onKeyDown={onKeyDown}
         onFocus={onSelected}
+        onBlur={onUnselected}
         placeholder={placeholder}
         value={display}
       />

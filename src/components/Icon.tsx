@@ -6,6 +6,7 @@ export type IconName = keyof typeof iconPaths;
 
 type IconProps = {
   className?: string;
+  viewBox?: string;
   icon: IconName;
 };
 
@@ -52,8 +53,18 @@ class Icon extends React.PureComponent<IconProps, IconState> {
   }
 
   render(): React.ReactElement {
-    const { className } = this.props;
+    const { className, icon } = this.props;
     const { path } = this.state;
+
+    let viewBox = "1024";
+    switch (icon) {
+      case "ios-people":
+      case "ios-people-outline":
+        viewBox = "512";
+        break;
+      default:
+        break;
+    }
 
     return (
       <svg
@@ -61,7 +72,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         role="presentation"
         width="22px"
         height="22px"
-        viewBox="0 0 1024 1024"
+        viewBox={`0 0 ${viewBox} ${viewBox}`}
         className={className}
       >
         {path && <path d={path} />}
