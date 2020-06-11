@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import classnames from "../../classnames";
 import useAutoFocus from "../../utils/useAutoFocus";
@@ -8,10 +8,12 @@ import SelectFieldMulti from "./select/SelectFieldMulti";
 import { useForm } from "./Form";
 import { FormFieldError, SelectOption, SelectValue } from "./typings";
 import useDisabled from "./useDisabled";
+import DoorEffect from "../DoorEffect";
 
 type SelectFieldCommonProps = {
   autoFocus?: boolean;
   children: React.ReactNode;
+  childIsLabel?: boolean;
   className?: string;
   creatable?: boolean;
   disabled?: boolean;
@@ -19,6 +21,7 @@ type SelectFieldCommonProps = {
   name: string;
   fixedValue?: boolean;
   imageIconPath?: string;
+  onCloseAction?: () => void;
   onSelected?: () => void;
   onUnselected?: () => void;
   options: SelectOption[];
@@ -49,6 +52,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   allowEmpty,
   autoFocus = false,
   children,
+  childIsLabel = true,
   className,
   creatable = false,
   disabled,
@@ -57,7 +61,6 @@ const SelectField: React.FC<SelectFieldProps> = ({
   name,
   fixedValue = false,
   onChange,
-  onSelected,
   onUnselected,
   options,
   placeholder = "",
@@ -65,10 +68,19 @@ const SelectField: React.FC<SelectFieldProps> = ({
   validator,
   value
 }) => {
+  const [openShareWith, setOpenShareWith] = useState<boolean>(false);
   const inputRef = React.createRef<HTMLInputElement>();
   const onFocus = useAutoFocus(autoFocus, inputRef);
 
   useDisabled(name, disabled);
+
+  const onSelected = () => {
+    setOpenShareWith(true);
+  };
+
+  const onCloseAction = () => {
+    setOpenShareWith(false);
+  };
 
   const context = useForm();
   const passed = {
@@ -81,6 +93,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     inputRef,
     name,
     fixedValue,
+    onCloseAction,
     onFocus,
     options,
     onSelected,
@@ -92,24 +105,40 @@ const SelectField: React.FC<SelectFieldProps> = ({
 
   return (
     <label className={classnames("chq-ffd", className)} htmlFor={name}>
-      <span className="chq-ffd--lb">{children}</span>
+      { childIsLabel && (<span className="chq-ffd--lb">{children}</span>) }
       {
         multiple
           ? (
-            <SelectFieldMulti
-              {...passed}
-              onChange={onChange as SelectFieldMultiProps["onChange"]}
-              validator={validator as SelectFieldMultiProps["validator"]}
-              value={value as SelectFieldMultiProps["value"]}
-            />
+            <div>
+              <SelectFieldMulti
+                {...passed}
+                onChange={onChange as SelectFieldMultiProps["onChange"]}
+                validator={validator as SelectFieldMultiProps["validator"]}
+                value={value as SelectFieldMultiProps["value"]}
+              >
+                { !childIsLabel && (
+                  <DoorEffect className="chq-ffd--sl--opts" open={openShareWith}>
+                    <div className="chq-ffd--lb">{children}</div>
+                  </DoorEffect>
+                )}
+              </SelectFieldMulti>
+            </div>
           )
           : (
-            <SelectFieldSingle
-              {...passed}
-              onChange={onChange as SelectFieldSingleProps["onChange"]}
-              validator={validator as SelectFieldSingleProps["validator"]}
-              value={value as SelectFieldSingleProps["value"]}
-            />
+            <div>
+              <SelectFieldSingle
+                {...passed}
+                onChange={onChange as SelectFieldSingleProps["onChange"]}
+                validator={validator as SelectFieldSingleProps["validator"]}
+                value={value as SelectFieldSingleProps["value"]}
+              >
+                { !childIsLabel && (
+                  <DoorEffect className="chq-ffd--sl--opts" open={openShareWith}>
+                    <div className="chq-ffd--lb">{children}</div>
+                  </DoorEffect>
+                )}
+              </SelectFieldSingle>
+            </div>
           )
       }
     </label>

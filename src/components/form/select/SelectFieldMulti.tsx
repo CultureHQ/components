@@ -16,6 +16,7 @@ type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
   inputRef: React.RefObject<HTMLInputElement>;
   name: string;
   fixedValue: boolean;
+  onCloseAction?: () => void;
   onChange?: (value: null | SelectValue[]) => void;
   onFocus: () => void;
   onSelected?: () => void;
@@ -92,13 +93,15 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
   };
 
   handleWindowClick = (event: Event): void => {
-    const { selectRef } = this.props;
+    const { onCloseAction, selectRef } = this.props;
     const { open } = this.state;
-
     const select = selectRef.current;
 
     if (open && select && event.target instanceof Element && !select.contains(event.target)) {
       this.selectValue(this.getValue() as (null | SelectValue[]), true);
+      if (onCloseAction) {
+        onCloseAction();
+      }
     }
   };
 

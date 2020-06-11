@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
@@ -34,9 +34,11 @@ storiesOf("Form/Form", module)
         <StringField name="string">String</StringField>
         <SelectField
           name="select"
-          options={[]}
-          allowEmpty
-          value="Testing ghete"
+          options={[
+            { value: "1", label: "One" },
+            { value: "2", label: "Two" },
+            { value: "3", label: "Three" }
+          ]}
         >
           Select
         </SelectField>

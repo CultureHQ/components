@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.17] - 2020-06-11
+
+### Changed
+
+- Adding more options to SelectField component to allow a children with more items
+
 ## [17.0.16] - 2020-06-10
 
 ### Changed
