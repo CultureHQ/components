@@ -14,20 +14,20 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
   option,
   onDeselect
 }) => {
-  const { label, value, icon, category } = option;
+  const { label, value, category, categoryIcon } = option;
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     onDeselect(value, category || "");
   };
 
-  if (icon) {
+  if (categoryIcon) {
     return (
       <>
         <Badge icon="close" onClick={onClick}>
           {label}
           {" "}
-          <Icon icon={icon} className="option-icon" />
+          <Icon icon={categoryIcon} className="category-icon" />
         </Badge>
       </>
     );

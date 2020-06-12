@@ -18,13 +18,13 @@ const options = [
 ];
 
 const selectedOptionsWithIcons = [
-  { label: "The Sorcerer's Stone", value: "sorcerer", icon: "loc-ol" as IconName },
-  { label: "The Chamber of Secrets", value: "chamber", icon: "loc-ol" as IconName },
-  { label: "The Prisoner of Azkaban", value: "prisoner", icon: "loc-ol" as IconName },
-  { label: "The Goblet of Fire", value: "goblet", icon: "loc-ol" as IconName },
-  { label: "The Order of the Phoenix", value: "order", icon: "loc-ol" as IconName },
-  { label: "The Half-Blood Prince", value: "prince", icon: "loc-ol" as IconName },
-  { label: "The Deathly Hallows", value: "hallows", icon: "loc-ol" as IconName }
+  { label: "The Sorcerer's Stone", value: "sorcerer", icon: "heart" as IconName, categoryIcon: "heart-ol" as IconName },
+  { label: "The Chamber of Secrets", value: "chamber", icon: "heart" as IconName, categoryIcon: "heart-ol" as IconName },
+  { label: "The Prisoner of Azkaban", value: "prisoner", icon: "heart" as IconName, categoryIcon: "heart-ol" as IconName },
+  { label: "The Goblet of Fire", value: "goblet", icon: "ios-people" as IconName, categoryIcon: "ios-people-outline" as IconName },
+  { label: "The Order of the Phoenix", value: "order", icon: "ios-people" as IconName, categoryIcon: "ios-people-outline" as IconName },
+  { label: "The Half-Blood Prince", value: "prince", icon: "ios-people" as IconName, categoryIcon: "ios-people-outline" as IconName },
+  { label: "The Deathly Hallows", value: "hallows", icon: "ios-people" as IconName, categoryIcon: "ios-people-outline" as IconName }
 ];
 
 const optionsWithIcons = [

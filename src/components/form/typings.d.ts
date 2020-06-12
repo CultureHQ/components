@@ -11,7 +11,7 @@ export type SelectOption = {
   value: SelectValue;
   icon?: IconName;
   category?: string;
-  categoryIcon?: string;
+  categoryIcon?: IconName;
 };
 
 export type SelectFieldPassedProps = {
