@@ -67,7 +67,7 @@ const TimezoneField: React.FC<TimezoneFieldProps> = ({ onChange, onOffsetChange,
     [timezones]
   );
 
-  const handleChange = (nextValue: null | string) => {
+  const handleChange = (nextValue: any) => {
     if (onChange) {
       onChange(nextValue);
     }

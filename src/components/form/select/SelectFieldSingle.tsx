@@ -210,7 +210,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   // we're following the rules for it but it can't figure that out
   render(): React.ReactElement {
     const {
-      allowEmpty, children, creatable, disabled, fixedValue, imageIconPath, 
+      allowEmpty, children, creatable, disabled, fixedValue, imageIconPath,
       inputRef, name, onError, options, placeholder, onSelected, onUnselected, required,
       selectRef, submitted, validator
     } = this.props;

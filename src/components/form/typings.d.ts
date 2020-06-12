@@ -2,9 +2,9 @@ import { IconName } from "../Icon";
 
 export type FormFieldError = string | null;
 
-// export type SelectValueWitCategory = { value: string; category: string };
+export type SelectValueWithCategory = { value: string; category: string };
 
-export type SelectValue = string; // | SelectValueWitCategory;
+export type SelectValue = string;
 
 export type SelectOption = {
   label: string;
@@ -27,11 +27,11 @@ export type SelectFieldPassedProps = {
   name: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClose: () => void;
-  onDeselect: (value: SelectValue) => void;
+  onDeselect: (value: SelectValue, category: string) => void;
   onOpen: () => void;
   onSelected: (() => void) | undefined;
   onUnselected: (() => void) | undefined;
-  onSelect: (value: SelectValue) => void;
+  onSelect: (value: SelectValue, category: string) => void;
   open: boolean;
   options: SelectOption[];
   placeholder: string;

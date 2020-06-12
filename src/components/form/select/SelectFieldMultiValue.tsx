@@ -3,7 +3,7 @@ import React from "react";
 import classnames from "../../../classnames";
 import Badge from "../../buttons/Badge";
 import SelectFieldCaret from "./SelectFieldCaret";
-import { SelectFieldPassedProps, SelectValue, SelectOption } from "../typings";
+import { SelectFieldPassedProps, SelectOption } from "../typings";
 import Icon from "../../Icon";
 
 type SelectFieldMultiValueBadgeProps = Pick<SelectFieldPassedProps, "onDeselect"> & {
@@ -14,11 +14,11 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
   option,
   onDeselect
 }) => {
-  const { label, value, icon } = option;
+  const { label, value, icon, category } = option;
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    onDeselect(value);
+    onDeselect(value, category || "");
   };
 
   if (icon) {
@@ -37,7 +37,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
 };
 
 type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "disabled" | "imageIconPath" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "onUnselected" | "placeholder"> & {
-  value: null | SelectValue[];
+  value: any;
 };
 
 class SelectFieldMultiValue extends React.Component<
@@ -50,10 +50,15 @@ class SelectFieldMultiValue extends React.Component<
       return [];
     }
 
-    return value.map(item => (
-      options.find(option => (option.value as string) === item) // given option
-      || { label: item, value: item } // created option
-    ));
+    return value.map((item: any) => {
+      if (typeof item === "string") {
+        return options.find(option => (option.value as string) === item) // given option
+        || { label: item, value: item }; // created option
+      }
+
+      return options.find(option => (option.value as string) === item.value) // given option
+        || { label: item, value: item }; // created option
+    });
   }
 
   handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -63,7 +68,7 @@ class SelectFieldMultiValue extends React.Component<
     switch (event.key) {
       case "Backspace":
         if (!display && value) {
-          onDeselect(value[value.length - 1]);
+          onDeselect(value[value.length - 1], "");
         }
         break;
       case "Enter":
@@ -98,18 +103,36 @@ class SelectFieldMultiValue extends React.Component<
         onKeyDown={this.handleKeyDown}
         className={className}
       >
-        {currentOptions.map((option, index) => (
-          <React.Fragment key={option.value as string}>
-            <input
-              aria-label={`${name} ${index}`}
-              type="hidden"
-              id={`${name}[${index}]`}
-              name={`${name}[]`}
-              value={option.value as string}
-            />
-            <SelectFieldMultiValueBadge option={option} onDeselect={onDeselect} />
-          </React.Fragment>
-        ))}
+        {currentOptions.map((option, index) => {
+          if (typeof option.value === "string") {
+            return (
+              <React.Fragment key={option.value as string}>
+                <input
+                  aria-label={`${name} ${index}`}
+                  type="hidden"
+                  id={`${name}[${index}]`}
+                  name={`${name}[]`}
+                  value={option.value as string}
+                />
+                <SelectFieldMultiValueBadge option={option} onDeselect={onDeselect} />
+              </React.Fragment>
+            );
+          }
+
+          const { value } = option.value;
+          return (
+            <React.Fragment key={value as string}>
+              <input
+                aria-label={`${name} ${index}`}
+                type="hidden"
+                id={`${name}[${index}]`}
+                name={`${name}[]`}
+                value={value}
+              />
+              <SelectFieldMultiValueBadge option={option} onDeselect={onDeselect} />
+            </React.Fragment>
+          );
+        })}
         {imageIconPath && (
           <img className="chq-ffd--sl--icon" src={imageIconPath} alt="Input icon" />
         )}

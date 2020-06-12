@@ -2,7 +2,7 @@ import React from "react";
 
 import FormError from "../FormError";
 import { FormState } from "../Form";
-import { FormFieldError, SelectOption, SelectValue } from "../typings";
+import { FormFieldError, SelectOption, SelectValue, SelectValueWithCategory } from "../typings";
 
 import SelectFieldMultiValue from "./SelectFieldMultiValue";
 import SelectFieldOptions from "./SelectFieldOptions";
@@ -17,7 +17,7 @@ type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
   name: string;
   fixedValue: boolean;
   onCloseAction?: () => void;
-  onChange?: (value: null | SelectValue[]) => void;
+  onChange?: (value: null | SelectValue[] | SelectValueWithCategory[]) => void;
   onFocus: () => void;
   onSelected?: () => void;
   onUnselected?: () => void;
@@ -105,25 +105,40 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     }
   };
 
-  handleSelect = (selected: SelectValue): void => {
+  handleSelect = (selected: SelectValue, category = ""): void => {
     const { onFocus } = this.props;
 
     const normal = this.getValue();
-    const nextValue = normal
-      ? [...(normal as SelectValue[]).filter(item => item !== selected), selected]
-      : [selected];
 
-    console.log(nextValue);
+    let nextValue: any[] = [];
+    if (category.length > 0) {
+      nextValue = normal
+        ? [...(normal as SelectValue[]).filter(item => item !== selected),
+          { value: selected, category }]
+        : [{ value: selected, category }];
+    } else {
+      nextValue = normal
+        ? [...(normal as SelectValue[]).filter(item => item !== selected), selected]
+        : [selected];
+    }
+
     onFocus();
     this.selectValue(nextValue, false);
     this.propagateValue(nextValue);
   };
 
-  handleDeselect = (deselected: SelectValue): void => {
+  handleDeselect = (deselected: SelectValue, category = ""): void => {
     const { onFocus } = this.props;
-
     const normal = this.getValue();
-    const nextValue = normal ? (normal as SelectValue[]).filter(item => item !== deselected) : null;
+
+    let nextValue: any = null;
+    if (category.length > 0) {
+      nextValue = normal
+        ? (normal as SelectValue[]).filter((item: any) => (item.value !== deselected))
+        : null;
+    } else {
+      nextValue = normal ? (normal as SelectValue[]).filter(item => item !== deselected) : null;
+    }
 
     onFocus();
     this.selectValue(nextValue, false);
@@ -152,7 +167,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     this.setState({ open: false, touched: true });
   };
 
-  propagateValue = (value: null | SelectValue[]): void => {
+  propagateValue = (value: null | SelectValue[] | SelectValueWithCategory[]): void => {
     const { name, onChange, onFormChange } = this.props;
 
     if (onChange) {
@@ -162,7 +177,8 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     onFormChange(name, value);
   };
 
-  selectValue = (nextValue: null | SelectValue[], shouldClose: boolean): void => {
+  selectValue = (nextValue: null | SelectValue[] | SelectValueWithCategory[],
+    shouldClose: boolean): void => {
     const { options } = this.props;
 
     this.setState(

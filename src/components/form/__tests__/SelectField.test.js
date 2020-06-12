@@ -135,7 +135,7 @@ test("working with a single non-creatable field", () => {
   expect(getByLabelText("Value")).toHaveProperty("value", "");
 
   fireEvent.click(getAllByRole("button")[1]);
-  expect(getByLabelText("select")).toHaveProperty("value", OPTIONS[1].value);
+  expect(getByLabelText("select")).toHaveProperty("value", OPTIONS[1].label);
   expect(getByLabelText("Value")).toHaveProperty("value", OPTIONS[1].label);
 
   twice(() => {

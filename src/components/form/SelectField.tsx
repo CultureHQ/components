@@ -6,7 +6,7 @@ import useAutoFocus from "../../utils/useAutoFocus";
 import SelectFieldSingle from "./select/SelectFieldSingle";
 import SelectFieldMulti from "./select/SelectFieldMulti";
 import { useForm } from "./Form";
-import { FormFieldError, SelectOption, SelectValue } from "./typings";
+import { FormFieldError, SelectOption, SelectValue, SelectValueWithCategory } from "./typings";
 import useDisabled from "./useDisabled";
 import DoorEffect from "../DoorEffect";
 
@@ -32,14 +32,14 @@ type SelectFieldCommonProps = {
 
 type SelectFieldSingleProps = {
   multiple: false;
-  onChange?: (value: null | SelectValue) => void;
+  onChange?: (value: null | SelectValue | SelectValueWithCategory) => void;
   validator?: (value: null | SelectValue) => FormFieldError;
   value?: null | SelectValue;
 };
 
 type SelectFieldMultiProps = {
   multiple: true;
-  onChange?: (value: null | SelectValue[]) => void;
+  onChange?: (value: null | SelectValue[] | SelectValueWithCategory[]) => void;
   validator?: (value: null | SelectValue[]) => FormFieldError;
   value?: null | SelectValue[];
 };
@@ -71,8 +71,6 @@ const SelectField: React.FC<SelectFieldProps> = ({
   const [openShareWith, setOpenShareWith] = useState<boolean>(false);
   const inputRef = React.createRef<HTMLInputElement>();
   const onFocus = useAutoFocus(autoFocus, inputRef);
-  const resultWithCategory = Object.prototype.hasOwnProperty.call(options[0], "category");
-  console.log(resultWithCategory)
 
   useDisabled(name, disabled);
 
@@ -101,7 +99,6 @@ const SelectField: React.FC<SelectFieldProps> = ({
     onSelected,
     onUnselected,
     placeholder,
-    resultWithCategory,
     required,
     selectRef: React.createRef<HTMLDivElement>()
   };

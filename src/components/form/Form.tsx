@@ -3,7 +3,8 @@ import React, { useContext } from "react";
 import { FormFieldError } from "./typings";
 
 export type FormValue = (
-  undefined | null | boolean | number | string | string[] | File | FileList | Blob
+  undefined | null | boolean | number | string | string[] | {value: string; category: string}[]
+  | File | FileList | Blob
 );
 
 export type FormValues = { [key: string]: FormValue };

@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.18] - 2020-06-12
+
+### Changed
+
+- Adding more options to SelectField component to allow options with icons and retrieve the selected options as an array of ids or as an array of objects,
+depending if they have a category for example
+
 ## [17.0.17] - 2020-06-11
 
 ### Changed

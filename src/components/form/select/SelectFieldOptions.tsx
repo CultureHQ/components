@@ -32,7 +32,7 @@ const SelectFieldOption: React.FC<SelectFieldOptionProps> = React.memo(({
   tabIndex
 }) => {
   const { label, value, icon, category } = option;
-  const onClick = () => (current ? onDeselect : onSelect)(value);
+  const onClick = () => (current ? onDeselect : onSelect)(value, category || "");
 
   return (
     <PlainButton aria-current={current} onClick={onClick} tabIndex={tabIndex}>
@@ -51,7 +51,14 @@ const makeCurrentMatcher = ({ multiple, value }: MakeCurrentMatcherOpts): Curren
     return () => false;
   }
   if (multiple) {
-    return (option: SelectOption) => (value as SelectValue[]).includes(option.value);
+    if (typeof value[0] === "string") {
+      return (option: SelectOption) => (value as SelectValue[]).includes(option.value);
+    }
+
+    return (option: SelectOption) => {
+      const result = (value as Array<any>).filter(item => item.value === option.value);
+      return result.length > 0;
+    };
   }
   return (option: SelectOption) => value === option.value;
 };

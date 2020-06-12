@@ -28,10 +28,6 @@ storiesOf("Form/Form", module)
       return new Promise(resolve => setTimeout(resolve, 1000));
     };
 
-    const onSelectedGroupsChange = (value: any) => {
-      console.log(value);
-    };
-
     return (
       <Form onSubmit={onSubmit}>
         <EmailField name="email">Email</EmailField>
@@ -39,12 +35,10 @@ storiesOf("Form/Form", module)
         <SelectField
           name="select"
           options={[
-            { value: "1", label: "One", category: "Interest" },
-            { value: "2", label: "Two", category: "Interest" },
-            { value: "3", label: "Three", category: "Interest" }
+            { value: "1", label: "One" },
+            { value: "2", label: "Two" },
+            { value: "3", label: "Three" }
           ]}
-          onChange={onSelectedGroupsChange}
-          multiple
         >
           Select
         </SelectField>
