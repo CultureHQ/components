@@ -51,7 +51,7 @@ class SelectFieldMultiValue extends React.Component<
     }
 
     return value.map(item => (
-      options.find(option => option.value === item) // given option
+      options.find(option => (option.value as string) === item) // given option
       || { label: item, value: item } // created option
     ));
   }
@@ -99,13 +99,13 @@ class SelectFieldMultiValue extends React.Component<
         className={className}
       >
         {currentOptions.map((option, index) => (
-          <React.Fragment key={option.value}>
+          <React.Fragment key={option.value as string}>
             <input
               aria-label={`${name} ${index}`}
               type="hidden"
               id={`${name}[${index}]`}
               name={`${name}[]`}
-              value={option.value}
+              value={option.value as string}
             />
             <SelectFieldMultiValueBadge option={option} onDeselect={onDeselect} />
           </React.Fragment>

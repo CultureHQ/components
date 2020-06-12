@@ -71,6 +71,8 @@ const SelectField: React.FC<SelectFieldProps> = ({
   const [openShareWith, setOpenShareWith] = useState<boolean>(false);
   const inputRef = React.createRef<HTMLInputElement>();
   const onFocus = useAutoFocus(autoFocus, inputRef);
+  const resultWithCategory = Object.prototype.hasOwnProperty.call(options[0], "category");
+  console.log(resultWithCategory)
 
   useDisabled(name, disabled);
 
@@ -99,6 +101,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     onSelected,
     onUnselected,
     placeholder,
+    resultWithCategory,
     required,
     selectRef: React.createRef<HTMLDivElement>()
   };

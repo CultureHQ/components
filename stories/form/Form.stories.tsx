@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
@@ -28,6 +28,10 @@ storiesOf("Form/Form", module)
       return new Promise(resolve => setTimeout(resolve, 1000));
     };
 
+    const onSelectedGroupsChange = (value: any) => {
+      console.log(value);
+    };
+
     return (
       <Form onSubmit={onSubmit}>
         <EmailField name="email">Email</EmailField>
@@ -35,10 +39,12 @@ storiesOf("Form/Form", module)
         <SelectField
           name="select"
           options={[
-            { value: "1", label: "One" },
-            { value: "2", label: "Two" },
-            { value: "3", label: "Three" }
+            { value: "1", label: "One", category: "Interest" },
+            { value: "2", label: "Two", category: "Interest" },
+            { value: "3", label: "Three", category: "Interest" }
           ]}
+          onChange={onSelectedGroupsChange}
+          multiple
         >
           Select
         </SelectField>

@@ -119,6 +119,30 @@
       margin: 0;
       padding: 3px 30px;
     }
+
+    .chq-pbn {
+      align-items: center;
+      display: flex;
+    }
+
+    .option-icon {
+      background-color: $color-link-blue;
+      border-radius: 20px;
+      color: $color-white;
+      margin: 4px 5px 4px 0;
+      height: 14px;
+      padding: 4px;
+      width: 14px;
+
+      path {
+        fill: $color-white;
+      }
+    }
+
+    .option-category {
+      color: $color-primary-light-font;
+      margin-left: 5px;
+    }
   }
 
   .chq-ffd--ctrl--fixed-value {

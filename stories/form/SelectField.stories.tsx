@@ -17,7 +17,7 @@ const options = [
   { label: "The Deathly Hallows", value: "hallows" }
 ];
 
-const optionsWithIcons = [
+const selectedOptionsWithIcons = [
   { label: "The Sorcerer's Stone", value: "sorcerer", icon: "loc-ol" as IconName },
   { label: "The Chamber of Secrets", value: "chamber", icon: "loc-ol" as IconName },
   { label: "The Prisoner of Azkaban", value: "prisoner", icon: "loc-ol" as IconName },
@@ -25,6 +25,12 @@ const optionsWithIcons = [
   { label: "The Order of the Phoenix", value: "order", icon: "loc-ol" as IconName },
   { label: "The Half-Blood Prince", value: "prince", icon: "loc-ol" as IconName },
   { label: "The Deathly Hallows", value: "hallows", icon: "loc-ol" as IconName }
+];
+
+const optionsWithIcons = [
+  { value: "1", label: "One", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName },
+  { value: "2", label: "Two", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName },
+  { value: "3", label: "Three", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName }
 ];
 
 const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -91,6 +97,11 @@ storiesOf("Form/SelectField", module)
     </Container>
   ))
   .add("selected option with icon", () => (
+    <Container>
+      <SelectField name="select" multiple options={selectedOptionsWithIcons}>Select</SelectField>
+    </Container>
+  ))
+  .add("options with icon", () => (
     <Container>
       <SelectField name="select" multiple options={optionsWithIcons}>Select</SelectField>
     </Container>

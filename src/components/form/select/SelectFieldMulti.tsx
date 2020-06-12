@@ -113,6 +113,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
       ? [...(normal as SelectValue[]).filter(item => item !== selected), selected]
       : [selected];
 
+    console.log(nextValue);
     onFocus();
     this.selectValue(nextValue, false);
     this.propagateValue(nextValue);

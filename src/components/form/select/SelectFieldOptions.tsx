@@ -3,6 +3,7 @@ import React from "react";
 import PlainButton from "../../buttons/PlainButton";
 import DoorEffect from "../../DoorEffect";
 import { SelectFieldPassedProps, SelectOption, SelectValue } from "../typings";
+import Icon from "../../Icon";
 
 type IsCreatingOptionOpts = Pick<SelectFieldPassedProps, "display" | "multiple" | "options" | "value">;
 
@@ -30,12 +31,14 @@ const SelectFieldOption: React.FC<SelectFieldOptionProps> = React.memo(({
   onSelect,
   tabIndex
 }) => {
-  const { label, value } = option;
+  const { label, value, icon, category } = option;
   const onClick = () => (current ? onDeselect : onSelect)(value);
 
   return (
     <PlainButton aria-current={current} onClick={onClick} tabIndex={tabIndex}>
+      {icon && <><Icon className="option-icon" icon={icon} />{" "}</>}
       {label}
+      {category && <span className="option-category">{" "}({category})</span>}
     </PlainButton>
   );
 });
@@ -48,7 +51,7 @@ const makeCurrentMatcher = ({ multiple, value }: MakeCurrentMatcherOpts): Curren
     return () => false;
   }
   if (multiple) {
-    return (option: SelectOption) => value.includes(option.value);
+    return (option: SelectOption) => (value as SelectValue[]).includes(option.value);
   }
   return (option: SelectOption) => value === option.value;
 };
@@ -86,7 +89,7 @@ const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
           )}
           {filteredOptions.map(option => (
             <SelectFieldOption
-              key={option.value}
+              key={option.value as string}
               current={currentMatcher(option)}
               onDeselect={onDeselect}
               onSelect={onSelect}
