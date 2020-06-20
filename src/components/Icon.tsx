@@ -60,6 +60,8 @@ class Icon extends React.PureComponent<IconProps, IconState> {
     switch (icon) {
       case "ios-people":
       case "ios-people-outline":
+      case "hammer-filled":
+      case "hammer":
         viewBox = "512";
         break;
       default:

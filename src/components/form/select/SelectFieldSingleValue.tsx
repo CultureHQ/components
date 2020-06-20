@@ -20,7 +20,8 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
   open,
   onSelected,
   onUnselected,
-  placeholder
+  placeholder,
+  value
 }) => {
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     switch (event.key) {
@@ -51,7 +52,7 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
         disabled={disabled}
         id={name}
         name={name}
-        value={display || ""}
+        value={value || ""}
       />
       <input
         aria-label="Value"
