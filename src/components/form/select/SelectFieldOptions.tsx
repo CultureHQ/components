@@ -51,7 +51,7 @@ const makeCurrentMatcher = ({ multiple, value }: MakeCurrentMatcherOpts): Curren
     return () => false;
   }
   if (multiple) {
-    if (typeof value[0] === "string") {
+    if (typeof value[0] === "string" || typeof value[0] === "number") {
       return (option: SelectOption) => (value as SelectValue[]).includes(option.value);
     }
 
