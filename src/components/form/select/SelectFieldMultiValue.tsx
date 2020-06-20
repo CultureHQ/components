@@ -51,7 +51,7 @@ class SelectFieldMultiValue extends React.Component<
     }
 
     return value.map((item: any) => {
-      if (typeof item === "string") {
+      if (typeof item === "string" || typeof item === "number") {
         return options.find(option => (option.value as string) === item) // given option
         || { label: item, value: item }; // created option
       }
@@ -104,7 +104,7 @@ class SelectFieldMultiValue extends React.Component<
         className={className}
       >
         {currentOptions.map((option, index) => {
-          if (typeof option.value === "string") {
+          if (typeof option.value === "string" || typeof option.value === "number") {
             return (
               <React.Fragment key={option.value as string}>
                 <input

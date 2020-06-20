@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.21] - 2020-06-19
+
+### Changed
+
+- Hotfix in select field with number indexes
+
 ## [17.0.20] - 2020-06-19
 
 ### Changed
