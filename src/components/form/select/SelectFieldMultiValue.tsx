@@ -33,7 +33,10 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
     );
   }
 
-  return <><Badge icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
+  if (typeof label === "string") {
+    return <><Badge icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
+  }
+  return <><Badge icon="close" /></>;
 };
 
 type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "disabled" | "imageIconPath" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "onUnselected" | "placeholder"> & {

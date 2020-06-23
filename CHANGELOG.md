@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.25] - 2020-06-23
+
+### Changed
+
+- Fix with race condition with options of the SelectField
+
 ## [17.0.24] - 2020-06-23
 
 ### Changed
