@@ -41,7 +41,7 @@ type SelectFieldMultiProps = {
   multiple: true;
   onChange?: (value: null | SelectValue[] | SelectValueWithCategory[]) => void;
   validator?: (value: null | SelectValue[]) => FormFieldError;
-  value?: null | SelectValue[];
+  value?: null | SelectValue[] | any[];
 };
 
 type SelectFieldProps = SelectFieldCommonProps & (

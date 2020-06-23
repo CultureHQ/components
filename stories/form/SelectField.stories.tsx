@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, text } from "@storybook/addon-knobs";
 
@@ -101,11 +101,22 @@ storiesOf("Form/SelectField", module)
       <SelectField name="select" multiple options={selectedOptionsWithIcons}>Select</SelectField>
     </Container>
   ))
-  .add("options with icon", () => (
-    <Container>
-      <SelectField name="select" multiple options={optionsWithIcons}>Select</SelectField>
-    </Container>
-  ))
+  .add("options with icon", () => {
+    const [selectedValues, setSelectedValues] = useState<Array<any>>([
+      { value: "1", category: "Interest" },
+      { value: "2", category: "Interest" }
+    ]);
+
+    const onChange = (value: any) => {
+      setSelectedValues(value);
+    };
+
+    return (
+      <Container>
+        <SelectField name="select" multiple options={optionsWithIcons} value={selectedValues} onChange={onChange}>Select</SelectField>
+      </Container>
+    );
+  })
   .add("input with image icon", () => (
     <Container>
       <SelectField name="select" options={options} imageIconPath="CultureHQ-logo.png">Select</SelectField>

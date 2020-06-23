@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.24] - 2020-06-23
+
+### Changed
+
+- Allowing objects as value in the select fields
+
 ## [17.0.23] - 2020-06-22
 
 ### Changed

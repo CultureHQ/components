@@ -32,7 +32,9 @@ const SelectFieldOption: React.FC<SelectFieldOptionProps> = React.memo(({
   tabIndex
 }) => {
   const { label, value, icon, category } = option;
-  const onClick = () => (current ? onDeselect : onSelect)(value, category || "");
+  const onClick = () => (
+    current ? onDeselect : onSelect)(value, category || ""
+  );
 
   return (
     <PlainButton aria-current={current} onClick={onClick} tabIndex={tabIndex}>

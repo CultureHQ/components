@@ -26,7 +26,7 @@ type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
   required: boolean;
   selectRef: React.RefObject<HTMLDivElement>;
   validator?: (value: null | SelectValue[]) => FormFieldError;
-  value?: null | SelectValue[];
+  value?: null | SelectValue[] | any[];
 };
 
 type SelectFieldMultiState = {
