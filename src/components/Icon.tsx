@@ -64,6 +64,9 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "hammer":
         viewBox = "512";
         break;
+      case "clock-filled":
+        viewBox = "16";
+        break;
       default:
         break;
     }

@@ -61,6 +61,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   name,
   fixedValue = false,
   onChange,
+  onSelected: onSelectedField,
   onUnselected,
   options,
   placeholder = "",
@@ -76,6 +77,9 @@ const SelectField: React.FC<SelectFieldProps> = ({
 
   const onSelected = () => {
     setOpenShareWith(true);
+    if (onSelectedField) {
+      onSelectedField();
+    }
   };
 
   const onCloseAction = () => {

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.23] - 2020-06-22
+
+### Changed
+
+- Fixing select field on select event and adding new icon
+
 ## [17.0.22] - 2020-06-20
 
 ### Changed
