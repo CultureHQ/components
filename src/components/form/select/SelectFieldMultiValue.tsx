@@ -59,7 +59,8 @@ class SelectFieldMultiValue extends React.Component<
         || { label: item, value: item }; // created option
       }
 
-      return options.find(option => (option.value as string) === item.value) // given option
+      return options.find(option => (option.value as string) === item.value
+        && option.category === item.category) // given option
         || { label: item, value: item }; // created option
     });
   }
@@ -107,30 +108,15 @@ class SelectFieldMultiValue extends React.Component<
         className={className}
       >
         {currentOptions.map((option, index) => {
-          if (typeof option.value === "string" || typeof option.value === "number") {
-            return (
-              <React.Fragment key={option.value as string}>
-                <input
-                  aria-label={`${name} ${index}`}
-                  type="hidden"
-                  id={`${name}[${index}]`}
-                  name={`${name}[]`}
-                  value={option.value as string}
-                />
-                <SelectFieldMultiValueBadge option={option} onDeselect={onDeselect} />
-              </React.Fragment>
-            );
-          }
-
-          const { value } = option.value;
+          const { value, category } = option;
           return (
-            <React.Fragment key={value as string}>
+            <React.Fragment key={category ? `${category}-${value}` : value}>
               <input
                 aria-label={`${name} ${index}`}
                 type="hidden"
                 id={`${name}[${index}]`}
                 name={`${name}[]`}
-                value={value}
+                value={option.value as string}
               />
               <SelectFieldMultiValueBadge option={option} onDeselect={onDeselect} />
             </React.Fragment>

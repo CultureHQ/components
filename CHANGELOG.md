@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.27] - 2020-07-01
+
+### Changed
+
+- Fixing bug with same ids for different categories
+
 ## [17.0.26] - 2020-06-26
 
 ### Changed

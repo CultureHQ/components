@@ -58,7 +58,8 @@ const makeCurrentMatcher = ({ multiple, value }: MakeCurrentMatcherOpts): Curren
     }
 
     return (option: SelectOption) => {
-      const result = (value as Array<any>).filter(item => item.value === option.value);
+      const result = (value as Array<any>).filter(item => item.value === option.value
+        && option.category === item.category);
       return result.length > 0;
     };
   }
@@ -98,7 +99,7 @@ const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
           )}
           {filteredOptions.map(option => (
             <SelectFieldOption
-              key={option.value as string}
+              key={`${option.category}-${option.value}` as string}
               current={currentMatcher(option)}
               onDeselect={onDeselect}
               onSelect={onSelect}
