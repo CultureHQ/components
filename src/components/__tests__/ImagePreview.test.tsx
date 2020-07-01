@@ -30,9 +30,9 @@ test("reads image and loads it", async () => {
 });
 
 test("does not attempt to set state when unmounted while waiting", async () => {
-  jest.spyOn(readImage, "default").mockImplementation(() => new Promise(resolve => (
-    setTimeout(() => resolve(resolved), 200)
-  )));
+  jest.spyOn(readImage, "default").mockImplementation(() => new Promise(resolve => {
+    setTimeout(() => resolve(resolved), 200);
+  }));
 
   const { findByRole, queryByRole, unmount } = render(
     <ImagePreview image={image} preview="culture.png" />

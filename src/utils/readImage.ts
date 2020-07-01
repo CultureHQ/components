@@ -54,9 +54,9 @@ const getNormalRotation = (image: Readable): Promise<number> => (
 );
 
 const getImagePromise = (image: HTMLImageElement, preview: Readable): Promise<HTMLImageElement> => (
-  new Promise((onload, onerror) => (
-    Object.assign(image, { onload, onerror, src: preview })
-  ))
+  new Promise((onload, onerror) => {
+    Object.assign(image, { onload, onerror, src: preview });
+  })
 );
 
 type ReadImage = {
