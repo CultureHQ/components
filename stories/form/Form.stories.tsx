@@ -25,7 +25,9 @@ storiesOf("Form/Form", module)
   .add("default", () => {
     const onSubmit = (values: FormValues) => {
       onSubmitAction(values);
-      return new Promise(resolve => setTimeout(resolve, 1000));
+      return new Promise(resolve => {
+        setTimeout(resolve, 1000);
+      });
     };
 
     return (

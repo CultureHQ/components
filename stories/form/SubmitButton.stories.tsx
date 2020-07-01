@@ -19,7 +19,9 @@ storiesOf("Form/SubmitButton", module)
     const onSubmitAction = action("onSubmit");
     const onSubmit = () => {
       onSubmitAction();
-      return new Promise(resolve => setTimeout(resolve, 1000));
+      return new Promise(resolve => {
+        setTimeout(resolve, 1000);
+      });
     };
 
     return (

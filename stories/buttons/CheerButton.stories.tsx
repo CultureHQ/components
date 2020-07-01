@@ -16,7 +16,10 @@ storiesOf("Buttons/CheerButton", module)
       name: text("name", ""),
       onCheerToggle: (cheered: boolean) => {
         onCheerToggle(cheered);
-        return new Promise(resolve => setTimeout(resolve, 1000));
+
+        return new Promise(resolve => {
+          setTimeout(resolve, 1000);
+        });
       },
       small: boolean("small", false)
     };
