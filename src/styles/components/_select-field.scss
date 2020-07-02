@@ -148,6 +148,10 @@
   .chq-ffd--ctrl--fixed-value {
     color: transparent;
     text-shadow: 0 0 0 $color-primary-font;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.28] - 2020-07-02
+
+### Changed
+
+- Allow close select field when user click inside the input if you have a container as a child
+
 ## [17.0.27] - 2020-07-01
 
 ### Changed

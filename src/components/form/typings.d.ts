@@ -16,6 +16,7 @@ export type SelectOption = {
 
 export type SelectFieldPassedProps = {
   allowEmpty: boolean | undefined;
+  childIsLabel: boolean;
   creatable: boolean;
   disabled: boolean | undefined;
   display: string;
@@ -27,6 +28,7 @@ export type SelectFieldPassedProps = {
   name: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClose: () => void;
+  onCloseAction?: () => void;
   onDeselect: (value: SelectValue, category: string) => void;
   onOpen: () => void;
   onSelected: (() => void) | undefined;

@@ -119,6 +119,21 @@ storiesOf("Form/SelectField", module)
       <SelectField name="select" options={emptyOptions} allowEmpty fixedValue value="Fixed value here">Select</SelectField>
     </Container>
   ))
+  .add("Container Children", () => (
+    <SelectField
+      childIsLabel={false}
+      name="allOptions"
+      options={options}
+      placeholder="Share with..."
+      allowEmpty
+      fixedValue
+      imageIconPath="CultureHQ-logo.png"
+      value="Fixed value"
+      onChange={() => {}}
+    >
+      <div style={{ backgroundColor: "red", height: "40px", width: "40px" }} />
+    </SelectField>
+  ))
   .add("validator", () => {
     const validator = (value: null | string) => {
       if (value !== "goblet") {

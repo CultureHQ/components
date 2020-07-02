@@ -11,6 +11,7 @@ import fuzzyFilter from "./fuzzyFilter";
 type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
   allowEmpty?: boolean;
   children: React.ReactNode;
+  childIsLabel: boolean;
   creatable: boolean;
   disabled?: boolean;
   imageIconPath?: string;
@@ -162,6 +163,11 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   };
 
   handleOpen = (): void => {
+    const { onSelected } = this.props;
+    if (onSelected) {
+      onSelected();
+    }
+
     this.setState({ open: true });
     const { fixedValue } = this.props;
 
@@ -210,9 +216,9 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   // we're following the rules for it but it can't figure that out
   render(): React.ReactElement {
     const {
-      allowEmpty, children, creatable, disabled, fixedValue, imageIconPath,
-      inputRef, name, onError, options, placeholder, onSelected, onUnselected, required,
-      selectRef, submitted, validator
+      allowEmpty, children, childIsLabel, creatable, disabled, fixedValue, imageIconPath,
+      inputRef, name, onError, options, placeholder, onCloseAction, onSelected, onUnselected,
+      required, selectRef, submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -224,6 +230,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
       <>
         <div ref={selectRef} className={classes}>
           <SelectFieldSingleValue
+            childIsLabel={childIsLabel}
             disabled={disabled}
             display={display}
             fixedValue={fixedValue}
@@ -232,6 +239,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
             name={name}
             onChange={this.handleChange}
             onClose={this.handleClose}
+            onCloseAction={onCloseAction}
             onOpen={this.handleOpen}
             onSelected={onSelected}
             onUnselected={onUnselected}

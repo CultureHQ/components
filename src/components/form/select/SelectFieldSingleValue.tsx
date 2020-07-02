@@ -3,11 +3,12 @@ import React from "react";
 import SelectFieldCaret from "./SelectFieldCaret";
 import { SelectFieldPassedProps, SelectValue } from "../typings";
 
-type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "disabled" | "display" | "fixedValue" | "imageIconPath" | "inputRef" | "name" | "onChange" | "onClose" | "onOpen" | "open" | "onSelected" | "onUnselected" | "placeholder"> & {
+type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "childIsLabel" | "disabled" | "display" | "fixedValue" | "imageIconPath" | "inputRef" | "name" | "onChange" | "onClose" | "onCloseAction" | "onOpen" | "open" | "onSelected" | "onUnselected" | "placeholder"> & {
   value: null | SelectValue;
 };
 
 const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo(({
+  childIsLabel,
   disabled,
   display,
   fixedValue,
@@ -16,6 +17,7 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
   name,
   onChange,
   onClose,
+  onCloseAction,
   onOpen,
   open,
   onSelected,
@@ -39,6 +41,16 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
         break;
     }
   };
+
+  const onClick = () => {
+    if (!childIsLabel && onCloseAction && open) {
+      onClose();
+      onCloseAction();
+      return;
+    }
+    onOpen();
+  };
+
   const classes = fixedValue ? "chq-ffd--ctrl chq-ffd--ctrl--fixed-value" : "chq-ffd--ctrl";
 
   return (
@@ -60,7 +72,7 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
         ref={inputRef}
         className={classes}
         disabled={disabled}
-        onClick={onOpen}
+        onClick={onClick}
         onChange={onChange}
         onKeyDown={onKeyDown}
         onFocus={onSelected}

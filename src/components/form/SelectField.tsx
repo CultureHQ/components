@@ -91,6 +91,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     ...context,
     allowEmpty,
     autoFocus,
+    childIsLabel,
     creatable,
     disabled,
     imageIconPath,
