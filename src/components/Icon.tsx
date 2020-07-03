@@ -61,6 +61,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "diamond":
       case "hammer-filled":
       case "hammer":
+      case "info-thinner":
       case "ios-people":
       case "ios-people-outline":
         viewBox = "512";

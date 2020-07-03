@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.0.29] - 2020-07-03
+
+### Changed
+
+- Adding new info icon, and allowing a search in the select fields with `#` at the beggining
+
 ## [17.0.28] - 2020-07-02
 
 ### Changed

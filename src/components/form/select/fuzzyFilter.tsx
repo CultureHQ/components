@@ -13,7 +13,7 @@ const fuzzyFilter = (options: SelectOption[], matchable: string): SelectOption[]
 
   return options.filter(
     ({ label }) => makeSegments(label).some(segment => (
-      terms.some(term => segment.startsWith(term))
+      terms.some(term => segment.startsWith(term) || segment.startsWith(`#${term}`))
     ))
   );
 };
