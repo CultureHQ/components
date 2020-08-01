@@ -15,6 +15,8 @@ type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
 type ImageFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, HijackedProps> & {
   aspectRatio?: number;
   autoFocus?: boolean;
+  backgroundImage?: string;
+  buttonLabel?: string;
   children: React.ReactNode;
   className?: string;
   name: string;
@@ -126,14 +128,15 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
 
   render() {
     const {
-      aspectRatio, autoFocus, children, className, disabledStates, errors, name,
-      onChange, onError, onFieldDisabledChange, onFormChange, progress,
-      required, submitted, submitting, validator, value, values, ...props
+      aspectRatio, autoFocus, backgroundImage, buttonLabel, children, className,
+      disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
+      onFormChange, progress, required, submitted, submitting, validator, value, values, ...props
     } = this.props;
 
     const { dragging, editorOpen, failed, image, preview, touched } = this.state;
 
     const normal = value || (values[name] as ImageFieldValue | undefined) || null;
+    const bgImage = backgroundImage ? `url(${backgroundImage})` : "none";
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -144,9 +147,12 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
           onDragLeave={this.handleDragLeave}
           onDragOver={this.handleDragOver}
           onDrop={this.handleDrop}
+          style={{ backgroundImage: bgImage, backgroundPosition: "center", backgroundSize: "cover" }}
         >
-          <ImagePreview image={image} preview={preview || normal} />
-          {!normal && (
+          {!backgroundImage && (
+            <ImagePreview image={image} preview={preview || normal} />
+          )}
+          {(!normal || backgroundImage) && (
             <div className="chq-ffd--im--ph">
               <Icon icon="images" />
             </div>
@@ -154,7 +160,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
           <div className="chq-ffd--im--bt">
             <Icon icon="ios-cloud-upload-outline" />
             {" "}
-            Upload an image
+            {buttonLabel || "Upload an image"}
           </div>
           <input
             accept="image/*"
