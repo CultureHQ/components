@@ -19,6 +19,7 @@
 
   &--ph {
     margin-top: 30px;
+    position: relative;
 
     svg {
       height: 80px;
@@ -42,6 +43,30 @@
 
     svg {
       vertical-align: bottom;
+    }
+
+    path {
+      fill: $color-white;
+    }
+  }
+
+  &--bt-bg {
+    align-items: center;
+    background-color: $image-upload;
+    border-radius: 4px;
+    color: $color-white;
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;
+    padding: 8px 26px;
+    position: relative;
+    transition: background-color .3s;
+    width: fit-content;
+
+    svg {
+      height: 40px;
+      margin-bottom: 10px;
+      width: 40px;
     }
 
     path {

@@ -15,7 +15,7 @@ type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
 type ImageFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, HijackedProps> & {
   aspectRatio?: number;
   autoFocus?: boolean;
-  backgroundImage?: string;
+  imageAsBackground?: boolean;
   buttonLabel?: string;
   children: React.ReactNode;
   className?: string;
@@ -128,7 +128,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
 
   render() {
     const {
-      aspectRatio, autoFocus, backgroundImage, buttonLabel, children, className,
+      aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
       onFormChange, progress, required, submitted, submitting, validator, value, values, ...props
     } = this.props;
@@ -136,7 +136,6 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     const { dragging, editorOpen, failed, image, preview, touched } = this.state;
 
     const normal = value || (values[name] as ImageFieldValue | undefined) || null;
-    const bgImage = backgroundImage ? `url(${backgroundImage})` : "none";
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -147,21 +146,32 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
           onDragLeave={this.handleDragLeave}
           onDragOver={this.handleDragOver}
           onDrop={this.handleDrop}
-          style={{ backgroundImage: bgImage, backgroundPosition: "center", backgroundSize: "cover" }}
+          style={imageAsBackground ? { overflow: "hidden" } : {}}
         >
-          {!backgroundImage && (
-            <ImagePreview image={image} preview={preview || normal} />
-          )}
-          {(!normal || backgroundImage) && (
-            <div className="chq-ffd--im--ph">
+          <ImagePreview
+            image={image}
+            imageAsBackground={imageAsBackground}
+            preview={preview || normal}
+          />
+          {imageAsBackground ? (
+            <div className="chq-ffd--im--bt-bg">
               <Icon icon="images" />
+              <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload an image"}</span>
             </div>
+          ) : (
+            <>
+              {!normal && (
+                <div className="chq-ffd--im--ph">
+                  <Icon icon="images" />
+                </div>
+              )}
+              <div className="chq-ffd--im--bt">
+                <Icon icon="ios-cloud-upload-outline" />
+                {" "}
+                {buttonLabel || "Upload an image"}
+              </div>
+            </>
           )}
-          <div className="chq-ffd--im--bt">
-            <Icon icon="ios-cloud-upload-outline" />
-            {" "}
-            {buttonLabel || "Upload an image"}
-          </div>
           <input
             accept="image/*"
             ref={this.inputRef}

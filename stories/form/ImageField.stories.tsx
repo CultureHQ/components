@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, number, text } from "@storybook/addon-knobs";
@@ -36,7 +36,15 @@ storiesOf("Form/ImageField", module)
   ))
   .add("autoFocus", () => <Container name="image" autoFocus>Image</Container>)
   .add("required", () => <Container name="image" required>Image</Container>)
-  .add("backgroundImage", () => <Container backgroundImage="https://images.unsplash.com/photo-1525546822429-a214a6739ee7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" name="image" required value="https://images.unsplash.com/photo-1525546822429-a214a6739ee7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" buttonLabel="Upload your own image">Image</Container>)
+  .add("backgroundImage", () => {
+    const [selectedImage, setSelectedImage] = useState("https://images.unsplash.com/photo-1525546822429-a214a6739ee7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80");
+    const onChange = (image: any) => {
+      setSelectedImage(image);
+    };
+    return (
+      <Container imageAsBackground onChange={onChange} name="image" required value={selectedImage} buttonLabel="Upload your own image">Image</Container>
+    );
+  })
   .add("validator", () => {
     const validator = (value: ImageFieldValue) => {
       if (value instanceof File && value.type === "image/png") {

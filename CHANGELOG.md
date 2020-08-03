@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.1.1] - 2020-08-03
+
+### Changed
+
+- Adding new options to image field
+
 ## [17.1.0] - 2020-07-31
 
 ### Changed

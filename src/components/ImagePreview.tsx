@@ -4,6 +4,7 @@ import readImage from "../utils/readImage";
 
 type ImagePreviewProps = {
   image: Blob | File | string | null;
+  imageAsBackground?: boolean;
   preview: Blob | File | string | null;
 };
 
@@ -42,7 +43,8 @@ class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState>
   }
 
   enqueueLoad(): void {
-    const { image, preview } = this.props;
+    const { image, imageAsBackground, preview } = this.props;
+
     const container = this.containerRef.current;
 
     if (container && container.parentNode instanceof HTMLElement) {
@@ -50,7 +52,11 @@ class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState>
 
       readImage(image, preview, clientWidth, clientHeight).then(({ src, styles }) => {
         if (this.componentIsMounted) {
-          this.setState({ src, styles });
+          if (imageAsBackground) {
+            this.setState({ src, styles: { ...styles, left: 0, width: "100%", height: "auto", margin: "0 auto" } });
+          } else {
+            this.setState({ src, styles });
+          }
         }
       });
     }
@@ -58,9 +64,10 @@ class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState>
 
   render(): React.ReactElement {
     const { src, styles } = this.state;
+    const { imageAsBackground } = this.props;
 
     return (
-      <span ref={this.containerRef}>
+      <span ref={this.containerRef} style={imageAsBackground ? { alignItems: "center", display: "flex", justifyContent: "center" } : {}}>
         {src && <img className="chq-ipv" src={src || undefined} alt="Preview" style={styles} />}
       </span>
     );
