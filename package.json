@@ -44,7 +44,7 @@
     "@babel/preset-react": "^7.10.1",
     "@babel/preset-typescript": "^7.10.1",
     "@culturehq/scripts": "^6.0.1",
-    "@storybook/addon-a11y": "^5.3.19",
+    "@storybook/addon-a11y": "^6.0.2",
     "@storybook/addon-actions": "^6.0.2",
     "@storybook/addon-info": "^5.3.19",
     "@storybook/addon-knobs": "^6.0.2",
