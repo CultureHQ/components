@@ -1655,18 +1655,18 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@storybook/addon-a11y@^6.0.2":
-  version "6.0.7"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-6.0.7.tgz#cac5efa3c70d43bef46e00299877833c1baa349c"
-  integrity sha512-UfC8nhSk162xMLeLbF2nbAcoaqFRGHOSJHRNOLJi5+lY4trOuapkRSFZCAaRgqFDnLUwG/nGSe/VdhA1LP5UeA==
+  version "6.0.12"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-6.0.12.tgz#01eb1704d87e4edabeac37be7d7543e4f7e823f0"
+  integrity sha512-vbzGW+BuzKjsJxTAG41x5RnLxBR+sWpvb2fTTzFugK8zV140KJtbhUQXLBFmJ8/9boIvyKR7+KS8UvF8p1Fp8Q==
   dependencies:
-    "@storybook/addons" "6.0.7"
-    "@storybook/api" "6.0.7"
-    "@storybook/channels" "6.0.7"
-    "@storybook/client-api" "6.0.7"
-    "@storybook/client-logger" "6.0.7"
-    "@storybook/components" "6.0.7"
-    "@storybook/core-events" "6.0.7"
-    "@storybook/theming" "6.0.7"
+    "@storybook/addons" "6.0.12"
+    "@storybook/api" "6.0.12"
+    "@storybook/channels" "6.0.12"
+    "@storybook/client-api" "6.0.12"
+    "@storybook/client-logger" "6.0.12"
+    "@storybook/components" "6.0.12"
+    "@storybook/core-events" "6.0.12"
+    "@storybook/theming" "6.0.12"
     axe-core "^3.5.2"
     core-js "^3.0.1"
     global "^4.3.2"
@@ -2445,7 +2445,7 @@
     resolve-from "^5.0.0"
     ts-dedent "^1.1.0"
 
-"@storybook/theming@6.0.12":
+"@storybook/theming@6.0.12", "@storybook/theming@^6.0.2":
   version "6.0.12"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-6.0.12.tgz#83b2099e7a7a5bd3acadb8e4106234ede62197c7"
   integrity sha512-hmF6EIbm2A7G84+JR36UQWteElSwSNfGLzccAlUMiZIhdMG0SuCtyHe6FmckAWC226Mv+MW14fr+a4+OuRpM4g==
@@ -2463,7 +2463,7 @@
     resolve-from "^5.0.0"
     ts-dedent "^1.1.1"
 
-"@storybook/theming@6.0.7", "@storybook/theming@^6.0.2":
+"@storybook/theming@6.0.7":
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-6.0.7.tgz#ce4cfbe691efea3812c11b57a5c8ca6472a7c602"
   integrity sha512-nvNwYd9LM6NfhA0LtOUgNvUZUz8NC/8+nbL5PYCiBdUt+4vI8D8On7Xgsn3us+9iuPRQXgDKNhr2nxmol/DwUg==
