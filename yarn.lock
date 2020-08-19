@@ -1746,15 +1746,15 @@
     react-select "^3.0.8"
 
 "@storybook/addon-links@^6.0.2":
-  version "6.0.12"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-6.0.12.tgz#1d87aa3c3b167681831f329c80426bdd5d176d62"
-  integrity sha512-qc5fkfwP8BWEhXp0eA0VnK8UB9OyVve0itx109st6Y1q8JT7ruDrI2E1V/b5AjUEQDFTRA7yekInKnes2zLefA==
+  version "6.0.13"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-6.0.13.tgz#c91ab596784d5d7f58861fe594346a6551ec102a"
+  integrity sha512-xnXI8/zOiSBH5+yWmwXQldw4dlUCV794iMnzVFJyKSGvTZ3Ut8VqYp3dVU17TgMndpDXWowbTsN4Rslzsgyclg==
   dependencies:
-    "@storybook/addons" "6.0.12"
-    "@storybook/client-logger" "6.0.12"
-    "@storybook/core-events" "6.0.12"
+    "@storybook/addons" "6.0.13"
+    "@storybook/client-logger" "6.0.13"
+    "@storybook/core-events" "6.0.13"
     "@storybook/csf" "0.0.1"
-    "@storybook/router" "6.0.12"
+    "@storybook/router" "6.0.13"
     "@types/qs" "^6.9.0"
     core-js "^3.0.1"
     global "^4.3.2"
@@ -1810,6 +1810,21 @@
     global "^4.3.2"
     regenerator-runtime "^0.13.3"
 
+"@storybook/addons@6.0.13", "@storybook/addons@^6.0.2":
+  version "6.0.13"
+  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-6.0.13.tgz#2343f45bd0cc17da92948c063dd8c67939d10d1a"
+  integrity sha512-0flK0xe1LxNa3ZVOpFJoTG7PPU0ri+Gb9qHxcGwRMJt/qVQVcuF7BL+CC1R5gg2fa8Z0A867X4quLPfUOJvCmQ==
+  dependencies:
+    "@storybook/api" "6.0.13"
+    "@storybook/channels" "6.0.13"
+    "@storybook/client-logger" "6.0.13"
+    "@storybook/core-events" "6.0.13"
+    "@storybook/router" "6.0.13"
+    "@storybook/theming" "6.0.13"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    regenerator-runtime "^0.13.3"
+
 "@storybook/addons@6.0.7":
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-6.0.7.tgz#a03c578c341b10d04043cc2b5dc371dbb77fe6b3"
@@ -1821,21 +1836,6 @@
     "@storybook/core-events" "6.0.7"
     "@storybook/router" "6.0.7"
     "@storybook/theming" "6.0.7"
-    core-js "^3.0.1"
-    global "^4.3.2"
-    regenerator-runtime "^0.13.3"
-
-"@storybook/addons@^6.0.2":
-  version "6.0.13"
-  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-6.0.13.tgz#2343f45bd0cc17da92948c063dd8c67939d10d1a"
-  integrity sha512-0flK0xe1LxNa3ZVOpFJoTG7PPU0ri+Gb9qHxcGwRMJt/qVQVcuF7BL+CC1R5gg2fa8Z0A867X4quLPfUOJvCmQ==
-  dependencies:
-    "@storybook/api" "6.0.13"
-    "@storybook/channels" "6.0.13"
-    "@storybook/client-logger" "6.0.13"
-    "@storybook/core-events" "6.0.13"
-    "@storybook/router" "6.0.13"
-    "@storybook/theming" "6.0.13"
     core-js "^3.0.1"
     global "^4.3.2"
     regenerator-runtime "^0.13.3"
