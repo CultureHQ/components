@@ -82,6 +82,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         width="22px"
         height="22px"
         viewBox={`0 0 ${viewBox} ${viewBox}`}
+        style={icon === "quote" ? { transform: "scaleX(-1)" } : {}}
         className={className}
       >
         {path && <path d={path} />}
