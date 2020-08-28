@@ -23,14 +23,20 @@ const widths = {
 type ModalDialogHeadingProps = React.ComponentProps<typeof Panel.Heading> & {
   children: React.ReactNode;
   className?: string;
+  bigCloseIcon?: boolean
   onClose?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const ModalDialogHeading: React.FC<ModalDialogHeadingProps> = ({ children, onClose, ...props }) => (
+const ModalDialogHeading: React.FC<ModalDialogHeadingProps> = ({
+  children,
+  bigCloseIcon,
+  onClose,
+  ...props
+}) => (
   <Panel.Heading primary {...props}>
     {children}
     <PlainButton aria-label="Close" className="chq-mdl--cl" onClick={onClose}>
-      <Icon icon="ios-close-empty" />
+      <Icon icon={bigCloseIcon ? "close" : "ios-close-empty"} />
     </PlainButton>
   </Panel.Heading>
 );
