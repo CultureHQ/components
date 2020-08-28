@@ -71,7 +71,7 @@
     "react-docgen-typescript-loader": "^3.2.1",
     "react-dom": "^16.9.0",
     "sass-lint": "^1.12.1",
-    "sass-loader": "^9.0.1",
+    "sass-loader": "^10.0.1",
     "typescript": "^3.7.2",
     "webpack": "^4.40.2"
   },
