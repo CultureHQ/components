@@ -48,7 +48,7 @@ const getDisplay = (props: SelectFieldSingleProps) => {
     }
 
     const match = props.options.find(({ value }) => value === normal);
-    display = match ? match.label : "";
+    display = match ? match.label : normal as string;
   }
 
   return display;

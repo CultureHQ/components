@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.1.5] - 2020-08-27
+
+### Changed
+
+- Fixing problem with creatable select field and the get display value
+
 ## [17.1.4] - 2020-08-26
 
 ### Changed
