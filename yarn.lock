@@ -1904,13 +1904,13 @@
     util-deprecate "^1.0.2"
 
 "@storybook/cli@^5.3.19":
-  version "5.3.20"
-  resolved "https://registry.yarnpkg.com/@storybook/cli/-/cli-5.3.20.tgz#fdf67b8f13c4ec1fc7d05a8d0e7a770b30557ef0"
-  integrity sha512-tEt5CLgkbjOjiezXeXs7yDq7g3XnjWvMvjCrASxqxQ69FhteRHt2shi5PxxCnh4P4BWfRoFC7KyCziWXY09ZIg==
+  version "5.3.21"
+  resolved "https://registry.yarnpkg.com/@storybook/cli/-/cli-5.3.21.tgz#60f9168bd661ca18c6b2ff1492b4e945211e300b"
+  integrity sha512-pf480UbS1OXs9/QojqqvuZE+16X5yv62ownx4d0FH4yfgfJjB0weqaL5GOAf23QACE0BnxLJM3n6DbiEfi1prA==
   dependencies:
     "@babel/core" "^7.4.5"
     "@babel/preset-env" "^7.4.5"
-    "@storybook/codemod" "5.3.20"
+    "@storybook/codemod" "5.3.21"
     chalk "^3.0.0"
     commander "^4.0.1"
     core-js "^3.0.1"
@@ -2021,14 +2021,14 @@
     core-js "^3.0.1"
     global "^4.3.2"
 
-"@storybook/codemod@5.3.20":
-  version "5.3.20"
-  resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-5.3.20.tgz#3430918218d0415601b3045eb161c9b92150d0be"
-  integrity sha512-RpL9NjXDGoJV/UmFLc4r/mzRwW9499HEcfEB6Y7khncNJ6Ayu5id5vtwRmR7rxczw9LQzCD1S11JWu71ka3NBA==
+"@storybook/codemod@5.3.21":
+  version "5.3.21"
+  resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-5.3.21.tgz#6633c785cd53bd1a05c44f9a17049a5e4c960fa8"
+  integrity sha512-Jpb3+bFKUaJVZ7aHq3wI3pxdG4KTiA7qScT4JXthCgOYdwunVaKB6USDHom/bnH8woFGgEAGZh8aqwI4BVcJqg==
   dependencies:
     "@mdx-js/mdx" "^1.5.1"
     "@storybook/csf" "0.0.1"
-    "@storybook/node-logger" "5.3.20"
+    "@storybook/node-logger" "5.3.21"
     core-js "^3.0.1"
     cross-spawn "^7.0.0"
     globby "^11.0.0"
@@ -2253,10 +2253,10 @@
   dependencies:
     lodash "^4.17.15"
 
-"@storybook/node-logger@5.3.20":
-  version "5.3.20"
-  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.3.20.tgz#620b11a65334d66d5681c54cde230c3307518c4e"
-  integrity sha512-omWHUmNgkIdAc89VUUkgk70nxzIfyofyaqPTgCZxSxFXYgQ8Htsr6f+Fd8lBYWX+9XwXvXkvNsSOpKE02xeATg==
+"@storybook/node-logger@5.3.21":
+  version "5.3.21"
+  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.3.21.tgz#f11d45042bd57dc69e9037d8f374d9fd0aad8071"
+  integrity sha512-8xibncy873JXePCK5MC0qem1MKtWI1Lc4hv6rwURSwYpZtkO7yElay3XAFGUSfz8qFJkoDBmMTxBR3fp4Dln7g==
   dependencies:
     "@types/npmlog" "^4.1.2"
     chalk "^3.0.0"
