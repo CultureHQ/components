@@ -6,13 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.1.7] - 2020-08-31
+
+### Changed
+
+- Handle focus state in buttons to have a good accessibility standard
+
 ## [17.1.6] - 2020-08-28
 
 ### Changed
 
 - Adding another icon option to the close modal icon
-
-## [Unreleased]
 
 ## [17.1.5] - 2020-08-27
 

@@ -39,6 +39,15 @@
     }
   }
 
+  &:focus {
+    background-color: $color-background;
+    outline: $color-outline auto 1px;
+
+    svg {
+      fill: $color-link-blue;
+    }
+  }
+
   &:disabled {
     cursor: not-allowed;
   }
