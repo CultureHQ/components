@@ -18,6 +18,7 @@ export type SelectFieldPassedProps = {
   allowEmpty: boolean | undefined;
   childIsLabel: boolean;
   creatable: boolean;
+  creatableLabel: string;
   disabled: boolean | undefined;
   display: string;
   filteredOptions: SelectOption[];

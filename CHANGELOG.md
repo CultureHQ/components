@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.1.8] - 2020-09-02
+
+### Changed
+
+- A new option in the creatable select field to personalize the label
+
 ## [17.1.7] - 2020-08-31
 
 ### Changed

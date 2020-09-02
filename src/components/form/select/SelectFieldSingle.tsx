@@ -13,6 +13,7 @@ type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
   children: React.ReactNode;
   childIsLabel: boolean;
   creatable: boolean;
+  creatableLabel: string;
   disabled?: boolean;
   imageIconPath?: string;
   inputRef: React.RefObject<HTMLInputElement>;
@@ -216,9 +217,9 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   // we're following the rules for it but it can't figure that out
   render(): React.ReactElement {
     const {
-      allowEmpty, children, childIsLabel, creatable, disabled, fixedValue, imageIconPath,
-      inputRef, name, onError, options, placeholder, onCloseAction, onSelected, onUnselected,
-      required, selectRef, submitted, validator
+      allowEmpty, children, childIsLabel, creatable, creatableLabel, disabled, fixedValue,
+      imageIconPath, inputRef, name, onError, options, placeholder, onCloseAction, onSelected,
+      onUnselected, required, selectRef, submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -251,6 +252,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
           <SelectFieldOptions
             allowEmpty={allowEmpty}
             creatable={creatable}
+            creatableLabel={creatableLabel}
             display={display}
             filteredOptions={filteredOptions}
             multiple={false}

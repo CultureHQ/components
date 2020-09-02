@@ -66,11 +66,12 @@ const makeCurrentMatcher = ({ multiple, value }: MakeCurrentMatcherOpts): Curren
   return (option: SelectOption) => value === option.value;
 };
 
-type SelectFieldOptionsProps = Pick<SelectFieldPassedProps, "allowEmpty" | "creatable" | "display" | "filteredOptions" | "multiple" | "onDeselect" | "onSelect" | "open" | "options" | "value">;
+type SelectFieldOptionsProps = Pick<SelectFieldPassedProps, "allowEmpty" | "creatable" | "creatableLabel" | "display" | "filteredOptions" | "multiple" | "onDeselect" | "onSelect" | "open" | "options" | "value">;
 
 const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
   allowEmpty,
   creatable,
+  creatableLabel,
   display,
   filteredOptions,
   multiple,
@@ -93,7 +94,7 @@ const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
               current={false}
               onDeselect={onDeselect}
               onSelect={onSelect}
-              option={{ label: `Create option: ${display}`, value: display }}
+              option={{ label: `${creatableLabel.length > 0 ? creatableLabel : "Create option"}: ${display}`, value: display }}
               tabIndex={open ? 0 : -1}
             />
           )}
