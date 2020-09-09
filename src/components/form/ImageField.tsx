@@ -139,7 +139,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
 
     return (
       <div className={classnames(imageAsBackground && "chq-ffd--bg-img-container")}>
-        {imageAsBackground && (<div className="chq-ffd--bg-img--img" style={{ backgroundImage: `url("${preview || value}")` }} />)}
+        {imageAsBackground && !editorOpen && (<div className="chq-ffd--bg-img--img" style={{ backgroundImage: `url("${preview || value}")` }} />)}
         <label className={classnames("chq-ffd", className, imageAsBackground && "chq-ffd--bg-img")} htmlFor={name}>
           <span className="chq-ffd--lb">{children}</span>
           <div
@@ -153,6 +153,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
             }}
           >
             <ImagePreview
+              editorOpen={editorOpen}
               image={image}
               imageAsBackground={imageAsBackground}
               preview={preview || normal}

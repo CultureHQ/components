@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.1.10] - 2020-09-09
+
+### Changed
+
+- Do not show image until the user presses the save button in the editor
+
 ## [17.1.9] - 2020-09-09
 
 ### Changed
