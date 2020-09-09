@@ -9,7 +9,7 @@ import { ImageFieldValue } from "../../src/components/form/ImageField";
 const Container = (props: React.ComponentProps<typeof ImageField>) => (
   <Panel>
     <Panel.Body>
-      <Form onSubmit={() => {}}>
+      <Form onSubmit={() => {}} style={{ height: "600px" }}>
         <ImageField {...props} />
       </Form>
     </Panel.Body>
@@ -42,7 +42,7 @@ storiesOf("Form/ImageField", module)
       setSelectedImage(image);
     };
     return (
-      <Container imageAsBackground onChange={onChange} name="image" required value={selectedImage} buttonLabel="Upload your own image">Image</Container>
+      <Container imageAsBackground onChange={onChange} name="image" required value={selectedImage} buttonLabel="Upload your own image"><></></Container>
     );
   })
   .add("validator", () => {

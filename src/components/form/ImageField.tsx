@@ -138,86 +138,91 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     const normal = value || (values[name] as ImageFieldValue | undefined) || null;
 
     return (
-      <label className={classnames("chq-ffd", className)} htmlFor={name}>
-        <span className="chq-ffd--lb">{children}</span>
-        <div
-          className={classnames("chq-ffd--im", { "chq-ffd--im-drag": dragging })}
-          onDragEnter={this.handleDragEnter}
-          onDragLeave={this.handleDragLeave}
-          onDragOver={this.handleDragOver}
-          onDrop={this.handleDrop}
-          style={imageAsBackground ? { overflow: "hidden" } : {}}
-        >
-          <ImagePreview
-            image={image}
-            imageAsBackground={imageAsBackground}
-            preview={preview || normal}
-          />
-          {imageAsBackground ? (
-            <div className="chq-ffd--im--bt-bg">
-              <Icon icon="images" />
-              <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload an image"}</span>
-            </div>
-          ) : (
-            <>
-              {!normal && (
-                <div className="chq-ffd--im--ph">
-                  <Icon icon="images" />
-                </div>
-              )}
-              <div className="chq-ffd--im--bt">
-                <Icon icon="ios-cloud-upload-outline" />
-                {" "}
-                {buttonLabel || "Upload an image"}
+      <div className={classnames(imageAsBackground && "chq-ffd--bg-img-container")}>
+        {imageAsBackground && (<div className="chq-ffd--bg-img--img" style={{ backgroundImage: `url("${preview || value}")` }} />)}
+        <label className={classnames("chq-ffd", className, imageAsBackground && "chq-ffd--bg-img")} htmlFor={name}>
+          <span className="chq-ffd--lb">{children}</span>
+          <div
+            className={classnames("chq-ffd--im", { "chq-ffd--im-drag": dragging })}
+            onDragEnter={this.handleDragEnter}
+            onDragLeave={this.handleDragLeave}
+            onDragOver={this.handleDragOver}
+            onDrop={this.handleDrop}
+            style={{
+              overflow: imageAsBackground ? "hidden" : "initial"
+            }}
+          >
+            <ImagePreview
+              image={image}
+              imageAsBackground={imageAsBackground}
+              preview={preview || normal}
+            />
+            {imageAsBackground ? (
+              <div className="chq-ffd--im--bt-bg">
+                <Icon icon="images" />
+                <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload an image"}</span>
               </div>
-            </>
+            ) : (
+              <>
+                {!normal && (
+                  <div className="chq-ffd--im--ph">
+                    <Icon icon="images" />
+                  </div>
+                )}
+                <div className="chq-ffd--im--bt">
+                  <Icon icon="ios-cloud-upload-outline" />
+                  {" "}
+                  {buttonLabel || "Upload an image"}
+                </div>
+              </>
+            )}
+            <input
+              accept="image/*"
+              ref={this.inputRef}
+              {...props}
+              type="file"
+              id={name}
+              name={name}
+              onChange={this.handleFileSelected}
+            />
+            {typeof progress === "number" && (
+              <div
+                className="chq-ffd--im--prog"
+                role="progressbar"
+                aria-valuemin={0}
+                aria-valuenow={progress}
+                aria-valuemax={100}
+              >
+                <div style={{ width: `${progress}%` }} />
+              </div>
+            )}
+          </div>
+          {failed && (
+            <p className="chq-ffd--rq">Not a valid image.</p>
           )}
-          <input
-            accept="image/*"
-            ref={this.inputRef}
-            {...props}
-            type="file"
-            id={name}
+          {editorOpen && (
+            <ModalDialog onClose={this.handleClose}>
+              <ModalDialog.Body>
+                <ImageEditor
+                  aspectRatio={aspectRatio}
+                  image={preview}
+                  onEdit={this.handleImageEdited}
+                  onFailure={this.handleImageFailure}
+                />
+              </ModalDialog.Body>
+            </ModalDialog>
+          )}
+          <FormError
             name={name}
-            onChange={this.handleFileSelected}
+            onError={onError}
+            required={required}
+            submitted={submitted}
+            touched={touched}
+            validator={validator}
+            value={normal}
           />
-          {typeof progress === "number" && (
-            <div
-              className="chq-ffd--im--prog"
-              role="progressbar"
-              aria-valuemin={0}
-              aria-valuenow={progress}
-              aria-valuemax={100}
-            >
-              <div style={{ width: `${progress}%` }} />
-            </div>
-          )}
-        </div>
-        {failed && (
-          <p className="chq-ffd--rq">Not a valid image.</p>
-        )}
-        {editorOpen && (
-          <ModalDialog onClose={this.handleClose}>
-            <ModalDialog.Body>
-              <ImageEditor
-                aspectRatio={aspectRatio}
-                image={preview}
-                onEdit={this.handleImageEdited}
-                onFailure={this.handleImageFailure}
-              />
-            </ModalDialog.Body>
-          </ModalDialog>
-        )}
-        <FormError
-          name={name}
-          onError={onError}
-          required={required}
-          submitted={submitted}
-          touched={touched}
-          validator={validator}
-          value={normal}
-        />
-      </label>
+        </label>
+      </div>
     );
   }
 }
