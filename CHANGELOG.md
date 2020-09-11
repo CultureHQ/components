@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.1.11] - 2020-09-10
+
+### Changed
+
+- Select Image selector will use the default behavior when you close the cropper modal
+
+## [Unreleased]
+
 ## [17.1.10] - 2020-09-09
 
 ### Changed

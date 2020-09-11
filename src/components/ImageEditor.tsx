@@ -62,6 +62,8 @@ class ImageEditor extends React.Component<ImageEditorProps, Record<string, unkno
   componentWillUnmount(): void {
     this.componentIsMounted = false;
 
+    this.handleSave();
+
     if (this.cropper) {
       this.cropper.destroy();
     }

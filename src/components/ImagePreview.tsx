@@ -54,7 +54,7 @@ class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState>
       readImage(image, preview, clientWidth, clientHeight).then(({ src, styles }) => {
         if (this.componentIsMounted) {
           if (imageAsBackground) {
-            this.setState({ src, styles: { ...styles, left: 0, width: "100%", height: "auto", margin: "0 auto" } });
+            this.setState({ src, styles: { ...styles, width: "auto", height: "auto", margin: "0 auto", maxWidth: "100%", maxHeight: "100%" } });
           } else {
             this.setState({ src, styles });
           }
