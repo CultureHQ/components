@@ -40,7 +40,7 @@ test("responds to edit callback", async () => {
 
   fireEvent.click(getByText("Save"));
 
-  expect(onChange).toHaveBeenCalledTimes(2);
+  expect(onChange).toHaveBeenCalledTimes(3);
   expect(onChange.mock.calls[1][0] instanceof Blob).toBe(true);
 });
 
