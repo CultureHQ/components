@@ -58,14 +58,20 @@ class Icon extends React.PureComponent<IconProps, IconState> {
 
     let viewBox = "1024";
     switch (icon) {
+      case "book":
+      case "book-filled":
       case "diamond":
       case "expand":
       case "global":
       case "hammer-filled":
       case "hammer":
+      case "home":
+      case "home-outlined":
       case "info-thinner":
       case "ios-people":
       case "ios-people-outline":
+      case "mortarboard":
+      case "mortarboard-filled":
         viewBox = "512";
         break;
       case "clock-filled":
