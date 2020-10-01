@@ -62,16 +62,22 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "book-filled":
       case "diamond":
       case "expand":
+      case "facebook":
       case "global":
       case "hammer-filled":
       case "hammer":
       case "home":
       case "home-outlined":
       case "info-thinner":
+      case "instagram":
       case "ios-people":
       case "ios-people-outline":
+      case "linkedin":
       case "mortarboard":
       case "mortarboard-filled":
+      case "snapchat":
+      case "tiktok":
+      case "twitter":
         viewBox = "512";
         break;
       case "clock-filled":
