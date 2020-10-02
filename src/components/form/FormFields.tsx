@@ -28,7 +28,7 @@ type FormFieldState = {
 const makeFormField = (type: string) => {
   const FormField: React.FC<FormFieldProps> = ({
     addon, autoFocus, children, className, disabled, name, onChange, required,
-    validator, value, ...props
+    validator, value, max, ...props
   }) => {
     const { submitted, values, onError, onFormChange } = useForm();
 
@@ -41,6 +41,9 @@ const makeFormField = (type: string) => {
     const onBlur = () => setTouched(true);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value: nextValue } = event.target;
+      if (max && nextValue?.length > max) {
+        return;
+      }
 
       if (onChange) {
         onChange(nextValue);
@@ -55,7 +58,7 @@ const makeFormField = (type: string) => {
         <span className="chq-ffd--lb">{children}</span>
         {addon && <span className="chq-ffd--ad">{addon}</span>}
         <input
-          className="chq-ffd--ctrl"
+          className={`chq-ffd--ctrl ${max && "chq-ffd--ctrl--with-validation"}`}
           ref={inputRef}
           {...props}
           disabled={disabled}
@@ -66,6 +69,7 @@ const makeFormField = (type: string) => {
           onBlur={onBlur}
           onChange={handleChange}
         />
+        {max && (<span className="chq-ffd--ctrl--validation">{normal?.length || 0}/{max}</span>)}
         <FormError
           name={name}
           onError={onError}

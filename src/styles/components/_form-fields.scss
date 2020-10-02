@@ -53,6 +53,17 @@
     transition: border-bottom .3s;
     width: 100%;
 
+    &--validation {
+      bottom: 10px;
+      color: $color-primary-light-font;
+      position: absolute;
+      right: 12px;
+    }
+
+    &--with-validation {
+      padding-right: 70px;
+    }
+
     &-text {
       min-height: 6em;
       resize: vertical;

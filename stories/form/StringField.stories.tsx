@@ -43,4 +43,5 @@ storiesOf("Form/StringField", module)
     return (
       <Container name="string" required validator={validator}>String</Container>
     );
-  });
+  })
+  .add("max number of chars", () => <Container name="string" required max="80">String</Container>);
