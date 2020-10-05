@@ -72,10 +72,12 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "instagram":
       case "ios-people":
       case "ios-people-outline":
+      case "ios-star-outline":
       case "linkedin":
       case "mortarboard":
       case "mortarboard-filled":
       case "snapchat":
+      case "star":
       case "tiktok":
       case "twitter":
         viewBox = "512";

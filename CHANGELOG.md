@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.2.0] - 2020-10-05
+
+### Added
+
+- Adding new star icons
+
+## [17.1.15] - 2020-10-02
+
+### Added
+
+- Adding validation to form field to have a max value of characters
+
 ## [17.1.14] - 2020-10-01
 
 ### Added
