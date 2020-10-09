@@ -60,6 +60,8 @@ class Icon extends React.PureComponent<IconProps, IconState> {
     switch (icon) {
       case "book":
       case "book-filled":
+      case "checklist":
+      case "clipboard":
       case "diamond":
       case "expand":
       case "facebook":

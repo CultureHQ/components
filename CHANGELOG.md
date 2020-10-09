@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.3.0] - 2020-10-09
+
+### Added
+
+- Adding new survey icons
+
 ## [17.2.0] - 2020-10-05
 
 ### Added
