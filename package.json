@@ -73,7 +73,7 @@
     "sass-lint": "^1.12.1",
     "sass-loader": "^10.0.1",
     "typescript": "^3.7.2",
-    "webpack": "^4.40.2"
+    "webpack": "^5.0.0"
   },
   "resolutions": {
     "@types/react": "^16.9.3",
