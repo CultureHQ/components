@@ -63,7 +63,7 @@
     "@types/react-modal": "^3.10.3",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.5",
-    "css-loader": "^4.0.0",
+    "css-loader": "^5.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest-axe": "^4.0.0",
     "node-sass": "^4.12.0",
