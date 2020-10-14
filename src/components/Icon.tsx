@@ -63,6 +63,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "checklist":
       case "clipboard":
       case "diamond":
+      case "edit-outlined":
       case "expand":
       case "facebook":
       case "global":
@@ -83,6 +84,8 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "snapchat":
       case "star":
       case "tiktok":
+      case "trash-a":
+      case "trash-a-outlined":
       case "twitter":
         viewBox = "512";
         break;
