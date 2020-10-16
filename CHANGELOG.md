@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.6.0] - 2020-10-16
+
+### Added
+
+- Adding new prop to allow a select field to keep the value even the fields is creatable and you do not want to force the user to click the in the create option value
+
 ## [17.5.0] - 2020-10-13
 
 ### Added
