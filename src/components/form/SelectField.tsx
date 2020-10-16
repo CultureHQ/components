@@ -17,6 +17,7 @@ type SelectFieldCommonProps = {
   className?: string;
   creatable?: boolean;
   creatableLabel?: string;
+  createClickNeeded?: boolean;
   disabled?: boolean;
   multiple?: boolean;
   name: string;
@@ -57,6 +58,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   className,
   creatable = false,
   creatableLabel = "",
+  createClickNeeded = true,
   disabled,
   imageIconPath,
   multiple = false,
@@ -96,6 +98,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     childIsLabel,
     creatable,
     creatableLabel,
+    createClickNeeded,
     disabled,
     imageIconPath,
     inputRef,

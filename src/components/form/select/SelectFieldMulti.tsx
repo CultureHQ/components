@@ -12,6 +12,7 @@ type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
   allowEmpty?: boolean;
   creatable: boolean;
   creatableLabel: string;
+  createClickNeeded: boolean;
   disabled?: boolean;
   imageIconPath?: string;
   inputRef: React.RefObject<HTMLInputElement>;
@@ -94,12 +95,25 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
   };
 
   handleWindowClick = (event: Event): void => {
-    const { onCloseAction, selectRef } = this.props;
-    const { open } = this.state;
+    const { createClickNeeded, onCloseAction, selectRef, onFocus } = this.props;
+    const { display, open } = this.state;
     const select = selectRef.current;
+    const normal = this.getValue();
 
     if (open && select && event.target instanceof Element && !select.contains(event.target)) {
-      this.selectValue(this.getValue() as (null | SelectValue[]), true);
+      if (createClickNeeded) {
+        this.selectValue(this.getValue() as (null | SelectValue[]), true);
+      } else if (display && display.length > 0) {
+        let nextValue: any[] = [];
+        nextValue = normal
+          ? [...(normal as SelectValue[]).filter(item => item !== display), display]
+          : [display];
+
+        onFocus();
+        this.selectValue(nextValue, false);
+        this.propagateValue(nextValue);
+      }
+
       if (onCloseAction) {
         onCloseAction();
       }

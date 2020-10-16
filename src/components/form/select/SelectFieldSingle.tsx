@@ -14,6 +14,7 @@ type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
   childIsLabel: boolean;
   creatable: boolean;
   creatableLabel: string;
+  createClickNeeded: boolean;
   disabled?: boolean;
   imageIconPath?: string;
   inputRef: React.RefObject<HTMLInputElement>;
@@ -114,12 +115,17 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   };
 
   handleWindowClick = (event: Event): void => {
-    const { onCloseAction, selectRef } = this.props;
-    const { open } = this.state;
+    const { createClickNeeded, onCloseAction, selectRef } = this.props;
+    const { open, display } = this.state;
     const select = selectRef.current;
 
     if (open && select && event.target instanceof Element && !select.contains(event.target)) {
-      this.selectValue(this.getValue());
+      if (createClickNeeded) {
+        this.selectValue(this.getValue());
+      } else {
+        this.selectValue(display);
+        this.propagateValue(display);
+      }
       if (onCloseAction) {
         onCloseAction();
       }

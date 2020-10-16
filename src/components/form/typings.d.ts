@@ -19,6 +19,7 @@ export type SelectFieldPassedProps = {
   childIsLabel: boolean;
   creatable: boolean;
   creatableLabel: string;
+  createClickNeeded: boolean;
   disabled: boolean | undefined;
   display: string;
   filteredOptions: SelectOption[];

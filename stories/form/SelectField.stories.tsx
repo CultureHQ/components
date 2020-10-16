@@ -63,6 +63,11 @@ storiesOf("Form/SelectField", module)
       <SelectField name="select" creatable options={options}>Select</SelectField>
     </Container>
   ))
+  .add("creatable + not click in create option", () => (
+    <Container>
+      <SelectField name="select" creatable createClickNeeded={false} options={options}>Select</SelectField>
+    </Container>
+  ))
   .add("disabled", () => (
     <Container>
       <SelectField name="select" disabled options={options}>Select</SelectField>
@@ -81,6 +86,11 @@ storiesOf("Form/SelectField", module)
   .add("creatable + multiple", () => (
     <Container>
       <SelectField name="select" creatable multiple options={options}>Select</SelectField>
+    </Container>
+  ))
+  .add("creatable + multiple + not click in create option", () => (
+    <Container>
+      <SelectField name="select" creatable multiple createClickNeeded={false} options={options}>Select</SelectField>
     </Container>
   ))
   .add("creatable + multiple + label", () => (
