@@ -115,26 +115,17 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   };
 
   handleWindowClick = (event: Event): void => {
-    const { onCloseAction, selectRef } = this.props;
-    const { open } = this.state;
+    const { createClickNeeded, onCloseAction, selectRef } = this.props;
+    const { open, display } = this.state;
     const select = selectRef.current;
 
     if (open && select && event.target instanceof Element && !select.contains(event.target)) {
-      const { options } = this.props;
-      const { display } = this.state;
-      const normal = this.getValue();
-      const currentOption = (normal !== null && options.find(option => option.value === normal));
-
-      let nextDisplay = event.target.value;
-      nextDisplay = currentOption && currentOption.label === display
-        ? (event.nativeEvent as any).data
-        : nextDisplay;
-
-      console.log("Next display", nextDisplay);
-
-      console.log("window click");
-      console.log(this.getValue());
-      this.selectValue(this.getValue());
+      if (createClickNeeded) {
+        this.selectValue(this.getValue());
+      } else {
+        this.selectValue(display);
+        this.propagateValue(display);
+      }
       if (onCloseAction) {
         onCloseAction();
       }
