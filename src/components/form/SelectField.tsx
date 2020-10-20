@@ -15,6 +15,7 @@ type SelectFieldCommonProps = {
   children: React.ReactNode;
   childIsLabel?: boolean;
   className?: string;
+  clearValueOnOpen?: boolean;
   creatable?: boolean;
   creatableLabel?: string;
   createClickNeeded?: boolean;
@@ -56,6 +57,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   children,
   childIsLabel = true,
   className,
+  clearValueOnOpen = true,
   creatable = false,
   creatableLabel = "",
   createClickNeeded = true,
@@ -96,6 +98,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     allowEmpty,
     autoFocus,
     childIsLabel,
+    clearValueOnOpen,
     creatable,
     creatableLabel,
     createClickNeeded,

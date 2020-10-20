@@ -12,6 +12,7 @@ type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
   allowEmpty?: boolean;
   children: React.ReactNode;
   childIsLabel: boolean;
+  clearValueOnOpen: boolean;
   creatable: boolean;
   creatableLabel: string;
   createClickNeeded: boolean;
@@ -176,9 +177,9 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     }
 
     this.setState({ open: true });
-    const { fixedValue } = this.props;
+    const { clearValueOnOpen, fixedValue } = this.props;
 
-    if (!fixedValue) {
+    if (!fixedValue && clearValueOnOpen) {
       this.setState({ display: "" });
     }
   };

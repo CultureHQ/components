@@ -68,6 +68,11 @@ storiesOf("Form/SelectField", module)
       <SelectField name="select" creatable createClickNeeded={false} options={options}>Select</SelectField>
     </Container>
   ))
+  .add("creatable + not click in create option + no clear value on open", () => (
+    <Container>
+      <SelectField name="select" creatable clearValueOnOpen={false} createClickNeeded={false} options={options}>Select</SelectField>
+    </Container>
+  ))
   .add("disabled", () => (
     <Container>
       <SelectField name="select" disabled options={options}>Select</SelectField>

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.7.0] - 2020-10-20
+
+### Added
+
+- Adding new prop to do not clear the select single field when you select it
+
 ## [17.6.0] - 2020-10-16
 
 ### Added
