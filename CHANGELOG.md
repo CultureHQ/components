@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.8.0] - 2020-10-26
+
+### Added
+
+- Adding cleaning of select single field when you have selected a previously loaded option
+
 ## [17.7.0] - 2020-10-20
 
 ### Added

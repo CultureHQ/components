@@ -170,6 +170,17 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     }
   };
 
+  isAnOption = (props: SelectFieldSingleProps): boolean => {
+    const normal = props.value || (props.values[props.name] as undefined | null | SelectValue);
+
+    if (normal !== undefined) {
+      const match = props.options.find(({ value }) => value === normal);
+      return !!match;
+    }
+
+    return false;
+  };
+
   handleOpen = (): void => {
     const { onSelected } = this.props;
     if (onSelected) {
@@ -179,7 +190,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     this.setState({ open: true });
     const { clearValueOnOpen, fixedValue } = this.props;
 
-    if (!fixedValue && clearValueOnOpen) {
+    if ((!fixedValue && clearValueOnOpen) || this.isAnOption(this.props)) {
       this.setState({ display: "" });
     }
   };
