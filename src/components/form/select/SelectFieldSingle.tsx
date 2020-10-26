@@ -43,6 +43,8 @@ type SelectFieldSingleState = {
 
 const getDisplay = (props: SelectFieldSingleProps) => {
   const normal = props.value || (props.values[props.name] as undefined | null | SelectValue);
+  const { clearValueOnOpen } = props;
+
   let display = "";
 
   if (normal !== undefined) {
@@ -51,7 +53,12 @@ const getDisplay = (props: SelectFieldSingleProps) => {
     }
 
     const match = props.options.find(({ value }) => value === normal);
-    display = match ? match.label : normal as string;
+    if (match) {
+      // This is because on the first load, I want to clean the value if you have a selected option
+      display = clearValueOnOpen ? match.label : "";
+    } else {
+      display = normal as string;
+    }
   }
 
   return display;
@@ -121,7 +128,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     const select = selectRef.current;
 
     if (open && select && event.target instanceof Element && !select.contains(event.target)) {
-      if (createClickNeeded) {
+      if (createClickNeeded || display === "") {
         this.selectValue(this.getValue());
       } else {
         this.selectValue(display);

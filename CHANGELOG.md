@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.9.1] - 2020-10-26
+
+### Changed
+
+- On the first load, clean the input value if you have an option selected
+
 ## [17.9.0] - 2020-10-26
 
 ### Added
