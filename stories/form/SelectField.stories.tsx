@@ -76,7 +76,7 @@ storiesOf("Form/SelectField", module)
   .add("creatable + not click in create option + no clear value on open + test", () => (
     <Container>
       <Form onSubmit={() => {}} initialValues={{ question: "sorcerer" }} className="form">
-        <SelectField name="question" creatable clearValueOnOpen={false} createClickNeeded={false} options={options}>Select</SelectField>
+        <SelectField name="question" creatable clearValueOnOpen={false} createClickNeeded={false} options={options} autoFocus>Select</SelectField>
       </Form>
     </Container>
   ))

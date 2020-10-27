@@ -158,6 +158,19 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     this.propagateValue(null);
   };
 
+  handleUnselected = (): void => {
+    const { createClickNeeded, onUnselected } = this.props;
+    if (!createClickNeeded) {
+      const value = this.getValue();
+      this.selectValue(value);
+      this.propagateValue(value);
+    }
+
+    if (onUnselected) {
+      onUnselected();
+    }
+  };
+
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { options, fixedValue } = this.props;
     const { display } = this.state;
@@ -246,7 +259,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     const {
       allowEmpty, children, childIsLabel, creatable, creatableLabel, disabled, fixedValue,
       imageIconPath, inputRef, name, onError, options, placeholder, onCloseAction, onSelected,
-      onUnselected, required, selectRef, submitted, validator
+      required, selectRef, submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -270,7 +283,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
             onCloseAction={onCloseAction}
             onOpen={this.handleOpen}
             onSelected={onSelected}
-            onUnselected={onUnselected}
+            onUnselected={this.handleUnselected}
             open={open}
             placeholder={placeholder}
             value={normal}

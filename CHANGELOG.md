@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.9.3] - 2020-10-26
+
+### Changed
+
+- Propagate the value when a user unselect the select field options
+
 ## [17.9.2] - 2020-10-26
 
 ### Changed
