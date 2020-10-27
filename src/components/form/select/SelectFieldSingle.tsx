@@ -129,7 +129,9 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
 
     if (open && select && event.target instanceof Element && !select.contains(event.target)) {
       if (createClickNeeded || display === "") {
-        this.selectValue(this.getValue());
+        const value = this.getValue();
+        this.selectValue(value);
+        this.propagateValue(value);
       } else {
         this.selectValue(display);
         this.propagateValue(display);
