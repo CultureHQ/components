@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.9.4] - 2020-10-26
+
+### Changed
+
+- First load is keeping previously selected value
+
 ## [17.9.3] - 2020-10-26
 
 ### Changed

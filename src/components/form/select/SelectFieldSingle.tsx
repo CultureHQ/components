@@ -39,6 +39,7 @@ type SelectFieldSingleState = {
   filteredOptions: SelectOption[];
   open: boolean;
   touched: boolean;
+  firstLoad: boolean;
 };
 
 const getDisplay = (props: SelectFieldSingleProps) => {
@@ -74,7 +75,8 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
       display: getDisplay(props),
       filteredOptions: props.options,
       open: false,
-      touched: false
+      touched: false,
+      firstLoad: true
     };
 
     this.timeout = null;
@@ -160,8 +162,11 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
 
   handleUnselected = (): void => {
     const { createClickNeeded, onUnselected } = this.props;
-    if (!createClickNeeded) {
+    const { display, firstLoad } = this.state;
+
+    if (!createClickNeeded && display === "" && firstLoad) {
       const value = this.getValue();
+      this.setState({ firstLoad: false });
       this.selectValue(value);
       this.propagateValue(value);
     }
