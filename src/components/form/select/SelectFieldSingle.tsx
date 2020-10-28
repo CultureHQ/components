@@ -161,10 +161,12 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   };
 
   handleUnselected = (): void => {
-    const { createClickNeeded, onUnselected } = this.props;
+    const { createClickNeeded, onUnselected, value: val, values, name, options } = this.props;
     const { display, firstLoad } = this.state;
+    const normal = val || (values[name] as undefined | null | SelectValue);
+    const match = options.find(({ value }) => value === normal);
 
-    if (!createClickNeeded && display === "" && firstLoad) {
+    if (!createClickNeeded && display === "" && (firstLoad || !match)) {
       const value = this.getValue();
       this.setState({ firstLoad: false });
       this.selectValue(value);
