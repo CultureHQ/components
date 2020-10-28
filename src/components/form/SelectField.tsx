@@ -24,6 +24,7 @@ type SelectFieldCommonProps = {
   name: string;
   fixedValue?: boolean;
   imageIconPath?: string;
+  isDestroyable?: boolean;
   onCloseAction?: () => void;
   onSelected?: () => void;
   onUnselected?: () => void;
@@ -63,6 +64,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   createClickNeeded = true,
   disabled,
   imageIconPath,
+  isDestroyable = false,
   multiple = false,
   name,
   fixedValue = false,
@@ -105,6 +107,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     disabled,
     imageIconPath,
     inputRef,
+    isDestroyable,
     name,
     fixedValue,
     onCloseAction,

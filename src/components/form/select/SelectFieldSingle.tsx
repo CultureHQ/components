@@ -19,6 +19,7 @@ type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
   disabled?: boolean;
   imageIconPath?: string;
   inputRef: React.RefObject<HTMLInputElement>;
+  isDestroyable: boolean;
   name: string;
   fixedValue: boolean;
   onCloseAction?: () => void;
@@ -39,7 +40,6 @@ type SelectFieldSingleState = {
   filteredOptions: SelectOption[];
   open: boolean;
   touched: boolean;
-  firstLoad: boolean;
 };
 
 const getDisplay = (props: SelectFieldSingleProps) => {
@@ -75,8 +75,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
       display: getDisplay(props),
       filteredOptions: props.options,
       open: false,
-      touched: false,
-      firstLoad: true
+      touched: false
     };
 
     this.timeout = null;
@@ -125,7 +124,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   };
 
   handleWindowClick = (event: Event): void => {
-    const { createClickNeeded, onCloseAction, selectRef } = this.props;
+    const { createClickNeeded, onCloseAction, selectRef, isDestroyable } = this.props;
     const { open, display } = this.state;
     const select = selectRef.current;
 
@@ -141,6 +140,8 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
       if (onCloseAction) {
         onCloseAction();
       }
+    } else if (isDestroyable && !open) {
+      this.setState({ open: true });
     }
   };
 
@@ -158,24 +159,6 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     onFocus();
     this.selectValue(null);
     this.propagateValue(null);
-  };
-
-  handleUnselected = (): void => {
-    const { createClickNeeded, onUnselected, value: val, values, name, options } = this.props;
-    const { display, firstLoad } = this.state;
-    const normal = val || (values[name] as undefined | null | SelectValue);
-    const match = options.find(({ value }) => value === normal);
-
-    if (!createClickNeeded && display === "" && (firstLoad || !match)) {
-      const value = this.getValue();
-      this.setState({ firstLoad: false });
-      this.selectValue(value);
-      this.propagateValue(value);
-    }
-
-    if (onUnselected) {
-      onUnselected();
-    }
   };
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -219,7 +202,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     this.setState({ open: true });
     const { clearValueOnOpen, fixedValue } = this.props;
 
-    if ((!fixedValue && clearValueOnOpen) || this.isAnOption(this.props)) {
+    if (!fixedValue && clearValueOnOpen) {
       this.setState({ display: "" });
     }
   };
@@ -266,7 +249,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     const {
       allowEmpty, children, childIsLabel, creatable, creatableLabel, disabled, fixedValue,
       imageIconPath, inputRef, name, onError, options, placeholder, onCloseAction, onSelected,
-      required, selectRef, submitted, validator
+      onUnselected, required, selectRef, submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -290,7 +273,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
             onCloseAction={onCloseAction}
             onOpen={this.handleOpen}
             onSelected={onSelected}
-            onUnselected={this.handleUnselected}
+            onUnselected={onUnselected}
             open={open}
             placeholder={placeholder}
             value={normal}

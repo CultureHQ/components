@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, text } from "@storybook/addon-knobs";
@@ -73,13 +75,31 @@ storiesOf("Form/SelectField", module)
       <SelectField name="select" creatable clearValueOnOpen={false} createClickNeeded={false} options={options}>Select</SelectField>
     </Container>
   ))
-  .add("creatable + not click in create option + no clear value on open + test", () => (
-    <Container>
-      <Form onSubmit={() => {}} initialValues={{ question: "sorcerer" }} className="form">
-        <SelectField name="question" creatable clearValueOnOpen={false} createClickNeeded={false} options={options} autoFocus>Select</SelectField>
-      </Form>
-    </Container>
-  ))
+  .add("creatable + not click in create option + no clear value on open + test", () => {
+    const [question, setQuestion] = useState(undefined);
+
+    const handleOnSelectQuestion = (questionId: any) => {
+      setQuestion(questionId);
+    };
+
+    const handleChangeStoryQuestion = () => {
+      setQuestion(undefined);
+    };
+
+    return (
+      <Container>
+        <Form onSubmit={() => {}} initialValues={{ question: "sorcerer" }} className="form">
+          {question ? (
+            <div onClick={handleChangeStoryQuestion}>
+              <h3>{question}</h3>
+            </div>
+          ) : (
+            <SelectField name="question" creatable clearValueOnOpen={false} createClickNeeded={false} options={options} onChange={handleOnSelectQuestion} autoFocus isDestroyable>Select</SelectField>
+          )}
+        </Form>
+      </Container>
+    );
+  })
   .add("disabled", () => (
     <Container>
       <SelectField name="select" disabled options={options}>Select</SelectField>
