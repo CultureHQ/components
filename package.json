@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/components",
-  "version": "17.10.0",
+  "version": "17.11.0",
   "description": "CultureHQ's component library",
   "main": "dist/components.js",
   "types": "dist/components.d.ts",
