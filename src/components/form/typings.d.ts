@@ -15,6 +15,7 @@ export type SelectOption = {
 };
 
 export type SelectFieldPassedProps = {
+  ariaLabel: string | undefined;
   allowEmpty: boolean | undefined;
   childIsLabel: boolean;
   creatable: boolean;

@@ -13,8 +13,8 @@ storiesOf("Checklist", module)
 
     return (
       <Checklist>
-        <Checklist.Item checked={checked.first}>First</Checklist.Item>
-        <Checklist.Item checked={checked.second}>Second</Checklist.Item>
+        <Checklist.Item checked={checked.first} label="First">First</Checklist.Item>
+        <Checklist.Item checked={checked.second} label="Second">Second</Checklist.Item>
       </Checklist>
     );
   });

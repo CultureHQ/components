@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/components",
-  "version": "17.12.0",
+  "version": "17.13.0",
   "description": "CultureHQ's component library",
   "main": "dist/components.js",
   "types": "dist/components.d.ts",
@@ -34,7 +34,8 @@
   "dependencies": {
     "@culturehq/hooks": "^0.2.1",
     "cropperjs": "^1.5.7",
-    "react-modal": "^3.8.2"
+    "react-modal": "^3.8.2",
+    "style-loader": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.3",

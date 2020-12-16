@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.13.0] - 2020-12-15
+
+### Added
+
+- Adding accesibility stuff to components.
+
 ## [17.12.0] - 2020-11-12
 
 ### Changed

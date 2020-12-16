@@ -9,15 +9,36 @@ type CheckmarkProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onCli
   children?: React.ReactNode;
   className?: string;
   onClick?: (checked: boolean) => void;
+  label?: string;
 };
 
 const Checkmark: React.FC<CheckmarkProps> = ({
-  autoFocus, children, className, checked, onClick, ...props
+  autoFocus, children, className, checked, onClick, label, ...props
 }) => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const onButtonClick = onClick ? () => onClick(!checked) : undefined;
 
   useAutoFocus(autoFocus, buttonRef);
+
+  if (label) {
+    return (
+      <span
+        ref={buttonRef}
+        {...props}
+        className={classnames("chq-cmk", className, {
+          "chq-cmk-ck": checked || false,
+          "chq-cmk-cl": !!onClick
+        })}
+        aria-label={`${label} is ${checked ? "" : "not "}fulfilled`}
+      >
+        <svg viewBox="0 0 52 52">
+          <circle cx="26" cy="26" r="25" fill="none" />
+          <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+        </svg>
+        {label}
+      </span>
+    );
+  }
 
   return (
     <button

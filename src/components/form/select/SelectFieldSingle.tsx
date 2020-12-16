@@ -10,6 +10,7 @@ import fuzzyFilter from "./fuzzyFilter";
 
 type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
   allowEmpty?: boolean;
+  ariaLabel?: string;
   children: React.ReactNode;
   childIsLabel: boolean;
   clearValueOnOpen: boolean;
@@ -247,9 +248,9 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   // we're following the rules for it but it can't figure that out
   render(): React.ReactElement {
     const {
-      allowEmpty, children, childIsLabel, creatable, creatableLabel, disabled, fixedValue,
-      imageIconPath, inputRef, name, onError, options, placeholder, onCloseAction, onSelected,
-      onUnselected, required, selectRef, submitted, validator
+      allowEmpty, ariaLabel, children, childIsLabel, creatable, creatableLabel, disabled,
+      fixedValue, imageIconPath, inputRef, name, onError, options, placeholder, onCloseAction,
+      onSelected, onUnselected, required, selectRef, submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -261,6 +262,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
       <>
         <div ref={selectRef} className={classes}>
           <SelectFieldSingleValue
+            ariaLabel={ariaLabel}
             childIsLabel={childIsLabel}
             disabled={disabled}
             display={display}

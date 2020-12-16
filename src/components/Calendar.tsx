@@ -109,6 +109,10 @@ const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = nu
     [visible]
   );
 
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
   return (
     <div className="chq-cal">
       <div className="chq-cal--head">
@@ -150,9 +154,12 @@ const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = nu
           });
 
           return (
-            <PlainButton key={valueHash} className={className} onClick={onClick}>
-              {value.day}
-            </PlainButton>
+            <>
+              <div id={`${value.month}-${value.day}-${value.year}`} style={{ display: "none" }}>{monthNames[value.month]} {value.day}, {value.year}</div>
+              <PlainButton key={valueHash} className={className} onClick={onClick} aria-labelledby={`${value.month}-${value.day}-${value.year}`}>
+                {value.day}
+              </PlainButton>
+            </>
           );
         })}
       </div>

@@ -11,6 +11,7 @@ import useDisabled from "./useDisabled";
 import DoorEffect from "../DoorEffect";
 
 type SelectFieldCommonProps = {
+  ariaLabel?: string;
   autoFocus?: boolean;
   children: React.ReactNode;
   childIsLabel?: boolean;
@@ -54,6 +55,7 @@ type SelectFieldProps = SelectFieldCommonProps & (
 
 const SelectField: React.FC<SelectFieldProps> = ({
   allowEmpty,
+  ariaLabel,
   autoFocus = false,
   children,
   childIsLabel = true,
@@ -98,6 +100,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   const passed = {
     ...context,
     allowEmpty,
+    ariaLabel,
     autoFocus,
     childIsLabel,
     clearValueOnOpen,

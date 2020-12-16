@@ -3,11 +3,12 @@ import React from "react";
 import SelectFieldCaret from "./SelectFieldCaret";
 import { SelectFieldPassedProps, SelectValue } from "../typings";
 
-type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "childIsLabel" | "disabled" | "display" | "fixedValue" | "imageIconPath" | "inputRef" | "name" | "onChange" | "onClose" | "onCloseAction" | "onOpen" | "open" | "onSelected" | "onUnselected" | "placeholder"> & {
+type SelectFieldSingleValueProps = Pick<SelectFieldPassedProps, "ariaLabel" | "childIsLabel" | "disabled" | "display" | "fixedValue" | "imageIconPath" | "inputRef" | "name" | "onChange" | "onClose" | "onCloseAction" | "onOpen" | "open" | "onSelected" | "onUnselected" | "placeholder"> & {
   value: null | SelectValue;
 };
 
 const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo(({
+  ariaLabel,
   childIsLabel,
   disabled,
   display,
@@ -59,7 +60,7 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
         <img className="chq-ffd--sl--icon" src={imageIconPath} alt="Input icon" />
       )}
       <input
-        aria-label={name}
+        aria-label={ariaLabel || name}
         type="hidden"
         disabled={disabled}
         id={name}
@@ -67,7 +68,7 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
         value={value || ""}
       />
       <input
-        aria-label="Value"
+        aria-label={ariaLabel || name}
         type="text"
         ref={inputRef}
         className={classes}

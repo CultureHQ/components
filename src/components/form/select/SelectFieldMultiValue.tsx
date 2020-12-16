@@ -39,7 +39,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
   return <><Badge icon="close" /></>;
 };
 
-type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "disabled" | "imageIconPath" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "onUnselected" | "placeholder"> & {
+type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "ariaLabel" | "disabled" | "imageIconPath" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "onUnselected" | "placeholder"> & {
   value: any;
 };
 
@@ -92,8 +92,8 @@ class SelectFieldMultiValue extends React.Component<
 
   render(): React.ReactElement {
     const {
-      disabled, display, imageIconPath, inputRef, name, onChange, onDeselect, onOpen, open,
-      onSelected, onUnselected, placeholder
+      ariaLabel, disabled, display, imageIconPath, inputRef, name, onChange, onDeselect, onOpen,
+      open, onSelected, onUnselected, placeholder
     } = this.props;
 
     const className = classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open });
@@ -126,7 +126,7 @@ class SelectFieldMultiValue extends React.Component<
           <img className="chq-ffd--sl--icon" src={imageIconPath} alt="Input icon" />
         )}
         <input
-          aria-label="Search"
+          aria-label={ariaLabel || "Search"}
           type="text"
           className="chq-ffd--sl--match"
           disabled={disabled}

@@ -107,7 +107,7 @@ storiesOf("Form/SelectField", module)
   ))
   .add("multiple", () => (
     <Container>
-      <SelectField name="select" multiple options={options}>Select</SelectField>
+      <SelectField name="select" multiple options={options} ariaLabel="Aria value">Select</SelectField>
     </Container>
   ))
   .add("multiple + disabled", () => (
@@ -158,7 +158,7 @@ storiesOf("Form/SelectField", module)
   })
   .add("input with image icon", () => (
     <Container>
-      <SelectField name="select" options={options} imageIconPath="CultureHQ-logo.png">Select</SelectField>
+      <SelectField name="select" options={options} imageIconPath="CultureHQ-logo.png" ariaLabel="Slack field">Select</SelectField>
     </Container>
   ))
   .add("input fixed", () => (

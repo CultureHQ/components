@@ -232,7 +232,7 @@ class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldSta
           <PlainButton
             ref={this.buttonRef}
             disabled={disabled}
-            aria-label="Open dialog"
+            aria-label="Open calendar"
             className="chq-ffd--ctrl chq-ffd--dt"
             onClick={this.handleOpen}
           >
