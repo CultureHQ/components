@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.14.0] - 2020-12-16
+
+### Added
+
+- Adding new slack icon.
+
 ## [17.13.0] - 2020-12-15
 
 ### Added
