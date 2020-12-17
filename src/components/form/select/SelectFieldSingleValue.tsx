@@ -60,7 +60,7 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
         <img className="chq-ffd--sl--icon" src={imageIconPath} alt="Input icon" />
       )}
       <input
-        aria-label={ariaLabel || name}
+        aria-label={name}
         type="hidden"
         disabled={disabled}
         id={name}
@@ -68,7 +68,7 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
         value={value || ""}
       />
       <input
-        aria-label={ariaLabel || name}
+        aria-label={ariaLabel || "Value"}
         type="text"
         ref={inputRef}
         className={classes}

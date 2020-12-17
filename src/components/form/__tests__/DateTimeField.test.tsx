@@ -18,7 +18,7 @@ test("functions as expected", () => {
     </Form>
   );
 
-  fireEvent.click(getByLabelText("Open dialog"));
+  fireEvent.click(getByLabelText("Open calendar"));
   fireEvent.click(getByText("15"));
   fireEvent.click(getByText("01:00 PM"));
   fireEvent.click(getByText("Submit"));
@@ -43,7 +43,7 @@ test("allows clicking on select before making a time selection", () => {
     </DateTimeField>
   );
 
-  fireEvent.click(getByLabelText("Open dialog"));
+  fireEvent.click(getByLabelText("Open calendar"));
   fireEvent.click(getByText("15"));
   fireEvent.click(getByText("Select"));
 
@@ -58,7 +58,7 @@ test("works when clicking on a time before a date", () => {
     </DateTimeField>
   );
 
-  fireEvent.click(getByLabelText("Open dialog"));
+  fireEvent.click(getByLabelText("Open calendar"));
   fireEvent.click(getByText("01:00 PM"));
 
   expect(onChange.mock.calls[0][0].endsWith("T13:00:00.000Z")).toBe(true);
