@@ -22,11 +22,20 @@ const Badge: React.FC<BadgeProps> = ({
 }) => {
   const classList = classnames("chq-bdg", className, { "chq-bdg-pr": primary });
 
+  if (onClick) {
+    return (
+      <button {...props} type="button" className={classList} onClick={onClick}>
+        {icon && <><Icon icon={icon} />{" "}</>}
+        {children}
+      </button>
+    );
+  }
+
   return (
-    <button {...props} type="button" className={classList} onClick={onClick}>
+    <span {...props} className={classList}>
       {icon && <><Icon icon={icon} />{" "}</>}
       {children}
-    </button>
+    </span>
   );
 };
 
