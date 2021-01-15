@@ -88,13 +88,13 @@ const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
     <div>
       {!allowEmpty && (
         <DoorEffect className="chq-ffd--sl--opts" open={open}>
-          {createOption && (display.length > 0) && (
+          {createOption && (display?.length > 0) && (
             <SelectFieldOption
               key={display}
               current={false}
               onDeselect={onDeselect}
               onSelect={onSelect}
-              option={{ label: `${creatableLabel.length > 0 ? creatableLabel : "Create option"}: ${display}`, value: display }}
+              option={{ label: `${creatableLabel?.length > 0 ? creatableLabel : "Create option"}: ${display}`, value: display }}
               tabIndex={open ? 0 : -1}
             />
           )}
@@ -108,7 +108,7 @@ const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
               tabIndex={open ? 0 : -1}
             />
           ))}
-          {!createOption && (filteredOptions.length === 0) && (
+          {!createOption && (filteredOptions?.length === 0) && (
             <p>No results found.</p>
           )}
         </DoorEffect>
