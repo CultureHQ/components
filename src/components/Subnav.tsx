@@ -11,8 +11,10 @@ type SubnavItemProps = {
 
 const SubnavItem: React.FC<SubnavItemProps> = ({ active, children, className, onClick }) => (
   <button
+    role="tab"
     type="button"
     aria-current={active}
+    aria-selected={active}
     className={classnames("chq-snv--it", className)}
     onClick={onClick}
   >
@@ -22,6 +24,7 @@ const SubnavItem: React.FC<SubnavItemProps> = ({ active, children, className, on
 
 type SubnavProps = {
   activeIndex?: number;
+  ariaLabel?: string;
   children: React.ReactElement<SubnavItemProps>[];
   className?: string;
   onChange: (index: number) => void;
@@ -50,20 +53,20 @@ class Subnav extends React.Component<SubnavProps, SubnavState> {
   static Item = SubnavItem;
 
   render(): React.ReactElement {
-    const { children, className, activeIndex: givenIndex } = this.props;
+    const { children, className, activeIndex: givenIndex, ariaLabel } = this.props;
     const { activeIndex: currentIndex } = this.state;
 
     const activeIndex = typeof givenIndex === "number" ? givenIndex : currentIndex;
 
     return (
-      <nav className={classnames(className, "chq-snv")}>
+      <div role="tablist" aria-label={ariaLabel} className={classnames(className, "chq-snv")}>
         {React.Children.map(children, (child, index) => (
           React.cloneElement(child, {
             active: index === activeIndex,
             onClick: () => this.setState({ activeIndex: index })
           })
         ))}
-      </nav>
+      </div>
     );
   }
 }

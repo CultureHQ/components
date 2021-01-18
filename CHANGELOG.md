@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.14.4] - 2021-01-18
+
+### Added
+
+- Adding accesibility options to subnav component.
 ## [17.14.3] - 2021-01-15
 
 ### Added

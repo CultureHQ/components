@@ -40,7 +40,7 @@ test("renders without crashing", () => {
   );
 
   const pattern = [2, 0, 1];
-  const buttons = getAllByRole("button");
+  const buttons = getAllByRole("tab");
 
   pattern.forEach(index => {
     fireEvent.click(buttons[index]);
@@ -58,7 +58,7 @@ test("additionally functions as a controlled component", () => {
     </Container>
   );
 
-  const buttons = getAllByRole("button");
+  const buttons = getAllByRole("tab");
   fireEvent.click(buttons[1]);
 
   expect(buttons[1].getAttribute("aria-current")).toEqual("true");
