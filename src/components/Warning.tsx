@@ -5,11 +5,12 @@ import classnames from "../classnames";
 type WarningProps = {
   children: React.ReactNode;
   className?: string;
+  role?: string;
 };
 
-const Warning: React.FC<WarningProps> = ({ children, className }) => (
+const Warning: React.FC<WarningProps> = ({ children, className, role }) => (
   <div className={classnames("chq-wrn", className)}>
-    <p>{children}</p>
+    <p role={role || undefined}>{children}</p>
   </div>
 );
 
