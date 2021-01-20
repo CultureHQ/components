@@ -25,6 +25,7 @@ type ModalDialogHeadingProps = React.ComponentProps<typeof Panel.Heading> & {
   className?: string;
   bigCloseIcon?: boolean
   onClose?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  titleId?: string;
 };
 
 const ModalDialogHeading: React.FC<ModalDialogHeadingProps> = ({
@@ -54,6 +55,8 @@ type ModalDialogProps = {
   className?: string;
   contentRef?: React.Ref<HTMLDivElement>;
   entrance?: keyof typeof entrances;
+  ariaLabelledBy?: string;
+  ariaDescribedby?: string;
   onClose?: (event: (React.MouseEvent | React.KeyboardEvent)) => void;
   width?: keyof typeof widths;
 };
@@ -71,10 +74,17 @@ const ModalDialog: ModalDialogComponent = ({
   className,
   contentRef,
   entrance = "slideIn",
+  ariaLabelledBy,
+  ariaDescribedby,
   onClose,
   width = "normal"
 }) => (
   <ReactModal
+    aria={{
+      labelledby: ariaLabelledBy,
+      describedby: ariaDescribedby,
+      modal: true
+    }}
     appElement={appElement}
     className={classnames("chq-mdl", className, entrances[entrance], widths[width])}
     contentRef={contentRef}

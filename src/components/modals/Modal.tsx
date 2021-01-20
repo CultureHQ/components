@@ -4,6 +4,8 @@ import ModalDialog from "./ModalDialog";
 
 type ForwardedProps = "appElement" | "className" | "contentRef" | "entrance" | "width";
 type ModalProps = Pick<React.ComponentProps<typeof ModalDialog>, ForwardedProps> & {
+  ariaLabelledBy?: string;
+  ariaDescribedby?: string;
   onClose?: () => void;
   startOpen?: boolean;
   trigger: (onTrigger: () => void) => React.ReactNode;
@@ -54,7 +56,16 @@ class Modal extends React.Component<ModalProps, ModalState> {
   static Footer = ModalDialog.Footer;
 
   render(): React.ReactElement {
-    const { appElement, className, contentRef, entrance, trigger, width } = this.props;
+    const {
+      appElement,
+      ariaLabelledBy,
+      ariaDescribedby,
+      className,
+      contentRef,
+      entrance,
+      trigger,
+      width
+    } = this.props;
     const { open } = this.state;
 
     return (
@@ -62,6 +73,8 @@ class Modal extends React.Component<ModalProps, ModalState> {
         {trigger(this.handleOpen)}
         {open && (
           <ModalDialog
+            ariaLabelledBy={ariaLabelledBy}
+            ariaDescribedby={ariaDescribedby}
             appElement={appElement}
             className={className}
             contentRef={contentRef}

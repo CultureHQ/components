@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.14.6] - 2021-01-20
+
+### Added
+
+- Adding accesibility props to dialog.
+
 ## [17.14.5] - 2021-01-18
 
 ### Added

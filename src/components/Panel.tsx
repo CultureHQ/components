@@ -11,11 +11,17 @@ type Container = {
 
 type PanelHeadingProps = Container & {
   primary?: boolean;
+  titleId?: string;
 };
 
-const PanelHeading: React.FC<PanelHeadingProps> = ({ className, children, primary = false }) => (
+const PanelHeading: React.FC<PanelHeadingProps> = ({
+  className,
+  children,
+  primary = false,
+  titleId
+}) => (
   <div className={classnames("chq-pan--hd", className, { "chq-pan--hd-pr": primary })}>
-    <h2>{children}</h2>
+    <h2 id={titleId}>{children}</h2>
     <hr />
   </div>
 );

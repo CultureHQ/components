@@ -37,6 +37,8 @@ storiesOf("Modals/Modal", module)
 
       const primary = boolean("primary", false);
       const props = {
+        ariaLabelledBy: "modal-title",
+        ariaDescribedby: "modal-title",
         entrance: optionsKnob("entrance", entranceOptions, "slideIn", {
           display: "inline-radio"
         }),
@@ -52,7 +54,7 @@ storiesOf("Modals/Modal", module)
           {...props}
           trigger={onTrigger => <Button onClick={onTrigger}>Open</Button>}
         >
-          <Modal.Heading primary={primary}>{texts.heading}</Modal.Heading>
+          <Modal.Heading titleId="modal-title" primary={primary}>{texts.heading}</Modal.Heading>
           <Modal.Body>{texts.body}</Modal.Body>
         </Modal>
       );
