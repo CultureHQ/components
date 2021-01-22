@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.14.7] - 2021-01-21
+
+### Changed
+
+- Fixing select options without category aria-label.
+
 ## [17.14.6] - 2021-01-20
 
 ### Added

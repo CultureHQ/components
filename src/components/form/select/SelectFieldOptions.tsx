@@ -37,7 +37,7 @@ const SelectFieldOption: React.FC<SelectFieldOptionProps> = React.memo(({
   );
 
   return (
-    <PlainButton aria-current={current} aria-label={`${current ? "Unselect" : "Select"} ${label}${category && ` - ${category}`}`} onClick={onClick} tabIndex={tabIndex}>
+    <PlainButton aria-current={current} aria-label={`${current ? "Unselect" : "Select"} ${label}${category ? ` - ${category}` : ""}`} onClick={onClick} tabIndex={tabIndex}>
       {icon && <><Icon className="option-icon" icon={icon} />{" "}</>}
       {label}
       {category && <span className="option-category">{" "}({category})</span>}
