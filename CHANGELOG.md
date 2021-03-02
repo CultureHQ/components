@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.16.1] - 2021-03-02
+
+### Added
+
+- Updating action to selected options in mutiple select field be there just for some options.
+
 ## [17.16.0] - 2021-03-01
 
 ### Added

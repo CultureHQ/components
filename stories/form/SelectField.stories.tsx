@@ -27,6 +27,14 @@ const optionsWithIcons = [
   { value: "3", label: "Three", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName }
 ];
 
+const actionButtonCallback = (_value?: any, _category?: any) => {};
+
+const optionsWithCallback = [
+  { value: "1", label: "One", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback },
+  { value: "2", label: "Two", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName },
+  { value: "3", label: "Three", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback }
+];
+
 const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Panel>
     <Panel.Body>
@@ -130,14 +138,11 @@ storiesOf("Form/SelectField", module)
       <SelectField name="select" creatable creatableLabel="Create an interest" multiple options={options}>Select</SelectField>
     </Container>
   ))
-  .add("creatable + multiple + label + action button", () => {
-    const actionButtonCallback = (_value?: any, _category?: any) => { };
-    return (
-      <Container>
-        <SelectField name="select" creatable creatableLabel="Create an interest" multiple options={options} actionButtonCallback={actionButtonCallback}>Select</SelectField>
-      </Container>
-    );
-  })
+  .add("creatable + multiple + label + action button", () => (
+    <Container>
+      <SelectField name="select" creatable creatableLabel="Create an interest" multiple options={optionsWithCallback}>Select</SelectField>
+    </Container>
+  ))
   .add("required", () => (
     <Container>
       <SelectField name="select" required options={options}>Select</SelectField>

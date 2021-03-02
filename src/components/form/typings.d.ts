@@ -12,6 +12,7 @@ export type SelectOption = {
   icon?: IconName;
   category?: string;
   categoryIcon?: IconName;
+  actionButtonCallback?: any;
 };
 
 export type SelectFieldPassedProps = {
@@ -42,5 +43,4 @@ export type SelectFieldPassedProps = {
   placeholder: string;
   resultWithCategory: boolean;
   value: null | SelectValue | SelectValue[];
-  actionButtonCallback?: any;
 };

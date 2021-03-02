@@ -36,7 +36,6 @@ type SelectFieldCommonProps = {
 };
 
 type SelectFieldSingleProps = {
-  actionButtonCallback? : null;
   multiple: false;
   onChange?: (value: null | SelectValue | SelectValueWithCategory) => void;
   validator?: (value: null | SelectValue) => FormFieldError;
@@ -44,7 +43,6 @@ type SelectFieldSingleProps = {
 };
 
 type SelectFieldMultiProps = {
-  actionButtonCallback? : null | any;
   multiple: true;
   onChange?: (value: null | SelectValue[] | SelectValueWithCategory[]) => void;
   validator?: (value: null | SelectValue[]) => FormFieldError;
@@ -56,7 +54,6 @@ type SelectFieldProps = SelectFieldCommonProps & (
 );
 
 const SelectField: React.FC<SelectFieldProps> = ({
-  actionButtonCallback,
   allowEmpty,
   ariaLabel,
   autoFocus = false,
@@ -102,7 +99,6 @@ const SelectField: React.FC<SelectFieldProps> = ({
   const context = useForm();
   const passed = {
     ...context,
-    actionButtonCallback,
     allowEmpty,
     ariaLabel,
     autoFocus,

@@ -9,7 +9,6 @@ import SelectFieldOptions from "./SelectFieldOptions";
 import fuzzyFilter from "./fuzzyFilter";
 
 type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
-  actionButtonCallback?: any;
   allowEmpty?: boolean;
   ariaLabel?: string;
   creatable: boolean;
@@ -227,7 +226,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     const {
       allowEmpty, ariaLabel, creatable, creatableLabel, disabled, imageIconPath, inputRef, name,
       onError, options, placeholder, onSelected, onUnselected, required, selectRef,
-      submitted, validator, actionButtonCallback
+      submitted, validator
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -253,7 +252,6 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
             options={options}
             placeholder={placeholder}
             value={normal}
-            actionButtonCallback={actionButtonCallback}
           />
           <SelectFieldOptions
             allowEmpty={allowEmpty}

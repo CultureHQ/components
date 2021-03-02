@@ -9,15 +9,13 @@ import PlainButton from "../../buttons/PlainButton";
 
 type SelectFieldMultiValueBadgeProps = Pick<SelectFieldPassedProps, "onDeselect"> & {
   option: SelectOption;
-  actionButtonCallback?: any;
 };
 
 const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
   option,
-  onDeselect,
-  actionButtonCallback
+  onDeselect
 }) => {
-  const { label, value, category, categoryIcon } = option;
+  const { label, value, category, categoryIcon, actionButtonCallback } = option;
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -58,7 +56,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
   return <><Badge icon="close" /></>;
 };
 
-type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "ariaLabel" | "disabled" | "imageIconPath" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "onUnselected" | "placeholder" | "actionButtonCallback"> & {
+type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "ariaLabel" | "disabled" | "imageIconPath" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "onUnselected" | "placeholder"> & {
   value: any;
 };
 
@@ -111,7 +109,7 @@ class SelectFieldMultiValue extends React.Component<
 
   render(): React.ReactElement {
     const {
-      actionButtonCallback, ariaLabel, disabled, display, imageIconPath, inputRef, name, onChange,
+      ariaLabel, disabled, display, imageIconPath, inputRef, name, onChange,
       onDeselect, onOpen, open, onSelected, onUnselected, placeholder
     } = this.props;
 
@@ -140,7 +138,6 @@ class SelectFieldMultiValue extends React.Component<
               <SelectFieldMultiValueBadge
                 option={option}
                 onDeselect={onDeselect}
-                actionButtonCallback={actionButtonCallback}
               />
             </React.Fragment>
           );
