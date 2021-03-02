@@ -42,4 +42,5 @@ export type SelectFieldPassedProps = {
   placeholder: string;
   resultWithCategory: boolean;
   value: null | SelectValue | SelectValue[];
+  actionButtonCallback?: any;
 };

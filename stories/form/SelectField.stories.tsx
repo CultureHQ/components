@@ -130,6 +130,14 @@ storiesOf("Form/SelectField", module)
       <SelectField name="select" creatable creatableLabel="Create an interest" multiple options={options}>Select</SelectField>
     </Container>
   ))
+  .add("creatable + multiple + label + action button", () => {
+    const actionButtonCallback = (_value?: any, _category?: any) => { };
+    return (
+      <Container>
+        <SelectField name="select" creatable creatableLabel="Create an interest" multiple options={options} actionButtonCallback={actionButtonCallback}>Select</SelectField>
+      </Container>
+    );
+  })
   .add("required", () => (
     <Container>
       <SelectField name="select" required options={options}>Select</SelectField>
