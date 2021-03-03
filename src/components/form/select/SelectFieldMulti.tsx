@@ -30,6 +30,7 @@ type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
   selectRef: React.RefObject<HTMLDivElement>;
   validator?: (value: null | SelectValue[]) => FormFieldError;
   value?: null | SelectValue[] | any[];
+  removePlacholder: boolean;
 };
 
 type SelectFieldMultiState = {
@@ -226,7 +227,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     const {
       allowEmpty, ariaLabel, creatable, creatableLabel, disabled, imageIconPath, inputRef, name,
       onError, options, placeholder, onSelected, onUnselected, required, selectRef,
-      submitted, validator
+      submitted, validator, removePlacholder
     } = this.props;
 
     const { display, filteredOptions, open, touched } = this.state;
@@ -252,6 +253,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
             options={options}
             placeholder={placeholder}
             value={normal}
+            removePlacholder={removePlacholder}
           />
           <SelectFieldOptions
             allowEmpty={allowEmpty}

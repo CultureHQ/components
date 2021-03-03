@@ -32,7 +32,10 @@ const actionButtonCallback = (_value?: any, _category?: any, _label?: any) => {}
 const optionsWithCallback = [
   { value: "1", label: "One", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback },
   { value: "2", label: "Two", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName },
-  { value: "3", label: "Three", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback }
+  { value: "3", label: "Three", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback },
+  { value: "4", label: "Four", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback },
+  { value: "5", label: "Five", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName },
+  { value: "6", label: "Six", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback }
 ];
 
 const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -140,7 +143,12 @@ storiesOf("Form/SelectField", module)
   ))
   .add("creatable + multiple + label + action button", () => (
     <Container>
-      <SelectField name="select" creatable creatableLabel="Create an interest" multiple options={optionsWithCallback}>Select</SelectField>
+      <SelectField name="select" creatable creatableLabel="Create an interest" multiple options={optionsWithCallback} autoFocus placeholder="This is the placeholder">Select</SelectField>
+    </Container>
+  ))
+  .add("creatable + multiple + label + remove placeholder after tow selected options", () => (
+    <Container>
+      <SelectField name="select" creatable creatableLabel="Create an interest" multiple options={optionsWithCallback} autoFocus placeholder="This is the placeholder" removePlacholder>Select</SelectField>
     </Container>
   ))
   .add("required", () => (

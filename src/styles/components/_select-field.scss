@@ -18,8 +18,14 @@
     }
   }
 
-  .option-action {
+  .option-group {
+    align-items: center;
+    display: flex;
     margin-top: 5px;
+
+    .chq-bdg {
+      margin-top: 0;
+    }
   }
 
   .chq-bdg {

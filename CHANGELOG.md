@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.16.3] - 2021-03-03
+
+### Added
+
+- Adding new prop to remove placeholder option when you have selected more than 2 tags, also putting action calbback and tag in one single container
+
 ## [17.16.2] - 2021-03-02
 
 ### Added

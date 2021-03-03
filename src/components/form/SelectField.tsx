@@ -33,10 +33,11 @@ type SelectFieldCommonProps = {
   placeholder?: string;
   required?: boolean;
   allowEmpty?: boolean;
+  removePlacholder?: boolean
 };
 
 type SelectFieldSingleProps = {
-  multiple: false;
+  multiple: boolean;
   onChange?: (value: null | SelectValue | SelectValueWithCategory) => void;
   validator?: (value: null | SelectValue) => FormFieldError;
   value?: null | SelectValue;
@@ -77,7 +78,8 @@ const SelectField: React.FC<SelectFieldProps> = ({
   placeholder = "",
   required = false,
   validator,
-  value
+  value,
+  removePlacholder = false
 }) => {
   const [openShareWith, setOpenShareWith] = useState<boolean>(false);
   const inputRef = React.createRef<HTMLInputElement>();
@@ -119,6 +121,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     onSelected,
     onUnselected,
     placeholder,
+    removePlacholder,
     required,
     selectRef: React.createRef<HTMLDivElement>()
   };

@@ -23,6 +23,22 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
   };
 
   if (categoryIcon) {
+    if (actionButtonCallback) {
+      return (
+        <div className="option-group">
+          <Badge icon="close" onClick={onClick}>
+            {label}
+            {" "}
+            <Icon icon={categoryIcon} className="category-icon" />
+          </Badge>
+          <PlainButton className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
+            <Icon icon="plus" />
+          </PlainButton>
+          {" "}
+        </div>
+      );
+    }
+
     return (
       <>
         <Badge icon="close" onClick={onClick}>
@@ -30,33 +46,31 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
           {" "}
           <Icon icon={categoryIcon} className="category-icon" />
         </Badge>
-        {actionButtonCallback && (
-          <PlainButton className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
-            <Icon icon="plus" />
-          </PlainButton>
-        )}
         {" "}
       </>
     );
   }
 
   if (typeof label === "string") {
-    return (
-      <>
-        <Badge icon="close" onClick={onClick}>{label}</Badge>
-        {actionButtonCallback && (
+    if (actionButtonCallback) {
+      return (
+        <div className="option-group">
+          <Badge icon="close" onClick={onClick}>{label}</Badge>
           <PlainButton className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
             <Icon icon="plus" />
           </PlainButton>
-        )}
-        {" "}
-      </>
-    );
+          {" "}
+        </div>
+      );
+    }
+
+    return <><Badge icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
   }
+
   return <><Badge icon="close" /></>;
 };
 
-type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "ariaLabel" | "disabled" | "imageIconPath" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "onUnselected" | "placeholder"> & {
+type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "ariaLabel" | "disabled" | "imageIconPath" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "onUnselected" | "placeholder" | "removePlacholder"> & {
   value: any;
 };
 
@@ -110,7 +124,7 @@ class SelectFieldMultiValue extends React.Component<
   render(): React.ReactElement {
     const {
       ariaLabel, disabled, display, imageIconPath, inputRef, name, onChange,
-      onDeselect, onOpen, open, onSelected, onUnselected, placeholder
+      onDeselect, onOpen, open, onSelected, onUnselected, placeholder, removePlacholder
     } = this.props;
 
     const className = classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open });
@@ -157,7 +171,7 @@ class SelectFieldMultiValue extends React.Component<
           onBlur={onUnselected}
           value={display}
         />
-        {placeholder && !display && <span className="chq-ffd--sl--place">{placeholder}</span>}
+        {placeholder && !display && !(removePlacholder && currentOptions.length >= 2) && <span className="chq-ffd--sl--place">{placeholder}</span>}
         <SelectFieldCaret open={open} />
       </div>
     );
