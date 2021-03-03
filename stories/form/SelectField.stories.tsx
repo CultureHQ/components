@@ -27,7 +27,7 @@ const optionsWithIcons = [
   { value: "3", label: "Three", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName }
 ];
 
-const actionButtonCallback = (_value?: any, _category?: any) => {};
+const actionButtonCallback = (_value?: any, _category?: any, _label?: any) => {};
 
 const optionsWithCallback = [
   { value: "1", label: "One", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback },

@@ -31,7 +31,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
           <Icon icon={categoryIcon} className="category-icon" />
         </Badge>
         {actionButtonCallback && (
-          <PlainButton className="option-action" onClick={() => { actionButtonCallback(value, category); }}>
+          <PlainButton className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
             <Icon icon="plus" />
           </PlainButton>
         )}
@@ -45,7 +45,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
       <>
         <Badge icon="close" onClick={onClick}>{label}</Badge>
         {actionButtonCallback && (
-          <PlainButton className="option-action" onClick={() => { actionButtonCallback(value, category); }}>
+          <PlainButton className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
             <Icon icon="plus" />
           </PlainButton>
         )}
