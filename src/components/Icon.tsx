@@ -80,6 +80,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "linkedin":
       case "mortarboard":
       case "mortarboard-filled":
+      case "post":
       case "rocket":
       case "share":
       case "share-outlined":
