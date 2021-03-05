@@ -30,12 +30,12 @@ const optionsWithIcons = [
 const actionButtonCallback = (_value?: any, _category?: any, _label?: any) => {};
 
 const optionsWithCallback = [
-  { value: "1", label: "One", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback },
+  { value: "1", label: "One", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback, actionAriaLabel: "Aria action" },
   { value: "2", label: "Two", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName },
-  { value: "3", label: "Three", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback },
-  { value: "4", label: "Four", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback },
+  { value: "3", label: "Three", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback, actionAriaLabel: "Aria action" },
+  { value: "4", label: "Four", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback, actionAriaLabel: "Aria action" },
   { value: "5", label: "Five", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName },
-  { value: "6", label: "Six", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback }
+  { value: "6", label: "Six", icon: "heart" as IconName, category: "Interest", categoryIcon: "heart-ol" as IconName, actionButtonCallback, actionAriaLabel: "Aria action" }
 ];
 
 const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => (

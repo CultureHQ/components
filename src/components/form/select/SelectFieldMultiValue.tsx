@@ -15,7 +15,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
   option,
   onDeselect
 }) => {
-  const { label, value, category, categoryIcon, actionButtonCallback } = option;
+  const { label, value, category, categoryIcon, actionButtonCallback, actionAriaLabel } = option;
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -26,12 +26,12 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
     if (actionButtonCallback) {
       return (
         <div className="option-group">
-          <Badge icon="close" onClick={onClick}>
+          <Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>
             {label}
             {" "}
             <Icon icon={categoryIcon} className="category-icon" />
           </Badge>
-          <PlainButton className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
+          <PlainButton aria-label={actionAriaLabel} className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
             <Icon icon="plus" />
           </PlainButton>
           {" "}
@@ -41,7 +41,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
 
     return (
       <>
-        <Badge icon="close" onClick={onClick}>
+        <Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>
           {label}
           {" "}
           <Icon icon={categoryIcon} className="category-icon" />
@@ -55,8 +55,8 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
     if (actionButtonCallback) {
       return (
         <div className="option-group">
-          <Badge icon="close" onClick={onClick}>{label}</Badge>
-          <PlainButton className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
+          <Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>{label}</Badge>
+          <PlainButton aria-label={actionAriaLabel} className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
             <Icon icon="plus" />
           </PlainButton>
           {" "}
@@ -64,7 +64,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
       );
     }
 
-    return <><Badge icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
+    return <><Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
   }
 
   return <><Badge icon="close" /></>;

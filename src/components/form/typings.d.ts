@@ -13,6 +13,7 @@ export type SelectOption = {
   category?: string;
   categoryIcon?: IconName;
   actionButtonCallback?: any;
+  actionAriaLabel?: string;
 };
 
 export type SelectFieldPassedProps = {

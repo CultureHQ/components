@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.17.1] - 2021-03-04
+
+### Added
+
+- Adding accesibility to new actio button
+
 ## [17.17.0] - 2021-03-03
 
 ### Added
