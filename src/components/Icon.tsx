@@ -55,6 +55,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
   render(): React.ReactElement {
     const { className, icon } = this.props;
     const { path } = this.state;
+    const transform = icon === "user-filled" ? 40 : 0;
 
     let viewBox = "1024";
     switch (icon) {
@@ -115,7 +116,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         style={icon === "quote" ? { transform: "scaleX(-1)" } : {}}
         className={className}
       >
-        {path && <path d={path} />}
+        {path && <path transform={`translate(${transform} 0)`} d={path} />}
       </svg>
     );
   }

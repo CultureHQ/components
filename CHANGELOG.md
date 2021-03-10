@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.18.1] - 2021-03-10
+
+### Added
+
+- Adding transform to icon to center it
+
 ## [17.18.0] - 2021-03-10
 
 ### Added
