@@ -77,6 +77,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "ios-people":
       case "ios-people-outline":
       case "ios-star-outline":
+      case "link-wider":
       case "linkedin":
       case "mortarboard":
       case "mortarboard-filled":
@@ -94,6 +95,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "trash-a":
       case "trash-a-outlined":
       case "twitter":
+      case "user-filled":
         viewBox = "512";
         break;
       case "clock-filled":
