@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.20.0] - 2021-03-15
+
+### Added
+
+- Updating and adding a new gem icon
+
 ## [17.19.0] - 2021-03-13
 
 ### Added

@@ -64,6 +64,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "checklist":
       case "clipboard":
       case "diamond":
+      case "diamond-filled":
       case "edit-outlined":
       case "expand":
       case "facebook":
@@ -104,6 +105,31 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         break;
       default:
         break;
+    }
+
+    if (icon === "diamond-filled") {
+      return (
+        <svg
+          aria-hidden
+          role="presentation"
+          width="22px"
+          height="22px"
+          viewBox={`0 0 ${viewBox} ${viewBox}`}
+          x="0px"
+          y="0px"
+          xmlSpace="preserve"
+          className={className}
+        >
+          <g><g><polygon points="376.822,153.145 281.402,455.309 512,153.145" /></g></g>
+          <g><g><polygon points="74.336,46.263 1.082,134.168 125.614,134.168" /></g></g>
+          <g><g><polygon points="437.664,46.263 386.386,134.168 510.918,134.168" /></g></g>
+          <g><g><polygon points="135.178,153.145 0,153.145 230.598,455.309" /></g></g>
+          <g><g><polygon points="278.906,39.279 367.874,128.247 419.768,39.279" /></g></g>
+          <g><g><polygon points="92.232,39.279 144.126,128.247 233.094,39.279" /></g></g>
+          <g><g><polygon points="155.076,153.145 256,472.721 356.924,153.145" /></g></g>
+          <g><g><polygon points="256,43.208 165.04,134.168 346.96,134.168" /></g></g>
+        </svg>
+      );
     }
 
     return (
