@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.21.0] - 2021-04-06
+
+### Added
+
+- Adding a new variant of the tooltip, to be at the bottom on the parent
+
 ## [17.20.0] - 2021-03-15
 
 ### Added

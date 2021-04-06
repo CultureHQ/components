@@ -14,6 +14,15 @@ storiesOf("Tooltip", module)
       </Tooltip>
     );
   })
+  .add("bottom tooltip", () => {
+    const tip = text("tip", "This is a tooltip!");
+
+    return (
+      <Tooltip tip={tip} bottom>
+        <Button primary disabled>Some action</Button>
+      </Tooltip>
+    );
+  })
   .add("link", () => {
     const tip = text("tip", "This is a tooltip!");
 

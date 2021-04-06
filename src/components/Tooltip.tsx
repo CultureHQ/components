@@ -3,6 +3,7 @@ import React from "react";
 type TooltipProps = {
   children: React.ReactNode;
   tip: string;
+  bottom?: boolean;
 };
 
 class Tooltip extends React.Component<TooltipProps, Record<string, unknown>> {
@@ -43,6 +44,7 @@ class Tooltip extends React.Component<TooltipProps, Record<string, unknown>> {
   }
 
   computeOffsets = (): void => {
+    const { bottom } = this.props;
     const bubble = this.bubble.current;
     const tooltip = this.tooltip.current;
     const triangle = this.triangle.current;
@@ -63,6 +65,13 @@ class Tooltip extends React.Component<TooltipProps, Record<string, unknown>> {
 
       const triangleMiddle = (tooltip.offsetWidth - triangle.offsetWidth) / 2;
       triangle.style.left = `${tooltip.offsetLeft - 10 + triangleMiddle}px`;
+    }
+
+    if (bottom) {
+      Object.assign(bubble.style, {
+        top: `calc(100% + ${tooltip.offsetHeight}px)`
+      });
+      triangle.style.top = "-6px";
     }
 
     Object.assign(bubble.style, {
