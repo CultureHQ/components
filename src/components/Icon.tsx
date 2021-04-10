@@ -85,6 +85,8 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "mortarboard-filled":
       case "post":
       case "rocket":
+      case "send":
+      case "send-filled":
       case "share":
       case "share-outlined":
       case "slack":
@@ -128,6 +130,28 @@ class Icon extends React.PureComponent<IconProps, IconState> {
           <g><g><polygon points="92.232,39.279 144.126,128.247 233.094,39.279" /></g></g>
           <g><g><polygon points="155.076,153.145 256,472.721 356.924,153.145" /></g></g>
           <g><g><polygon points="256,43.208 165.04,134.168 346.96,134.168" /></g></g>
+        </svg>
+      );
+    }
+
+    if (icon === "send-filled") {
+      return (
+        <svg
+          aria-hidden
+          role="presentation"
+          width="22px"
+          height="22px"
+          viewBox={`0 0 ${viewBox} ${viewBox}`}
+          x="0px"
+          y="0px"
+          xmlSpace="preserve"
+          className={className}
+        >
+          <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g id="send-(6)" transform="translate(317.000000, 196.000000) scale(1, -1) rotate(45.000000) translate(-317.000000, -196.000000) translate(61.000000, -25.000000)" fill="#000000" fill-rule="nonzero">
+              <path d="M481.508,175.336 L68.414,3.926 C51.011,-3.296 31.35,-0.119 17.105,12.213 C2.86,24.547 -3.098,43.551 1.558,61.808 L38.327,206 L509.651626,206 C509.651626,206 512,211.385257 512,221 C512,230.614743 509.651626,236.002 509.651626,236.002 L38.327,236.002 L1.558,380.193 C-3.098,398.451 2.859,417.455 17.105,429.788 C31.379,442.145 51.042,445.283 68.415,438.075 L481.509,266.666 C500.317,258.862 512,241.363 512,221 C512,200.637 500.317,183.139 481.508,175.336 Z" id="Path" />
+            </g>
+          </g>
         </svg>
       );
     }

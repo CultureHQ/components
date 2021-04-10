@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.22.0] - 2021-04-09
+
+### Added
+
+- Adding new icon
+
 ## [17.21.0] - 2021-04-06
 
 ### Added
