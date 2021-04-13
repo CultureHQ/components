@@ -76,6 +76,8 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "info-thinner":
       case "image-outlined":
       case "instagram":
+      case "ios-flag":
+      case "ios-flag-outline":
       case "ios-people":
       case "ios-people-outline":
       case "ios-star-outline":
@@ -83,6 +85,8 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "linkedin":
       case "mortarboard":
       case "mortarboard-filled":
+      case "pin":
+      case "pin-outline":
       case "post":
       case "rocket":
       case "send":
