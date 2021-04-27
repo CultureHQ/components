@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.28.0] - 2021-04-27
+
+### Changed
+
+- Adding new icons and new icon prop to change the color
+
 ## [17.27.0] - 2021-04-21
 
 ### Changed
