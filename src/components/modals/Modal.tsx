@@ -9,6 +9,8 @@ type ModalProps = Pick<React.ComponentProps<typeof ModalDialog>, ForwardedProps>
   onClose?: () => void;
   startOpen?: boolean;
   trigger: (onTrigger: () => void) => React.ReactNode;
+  style?: any,
+  bodyOpenClassName?: string;
 };
 
 type ModalState = {
@@ -60,9 +62,11 @@ class Modal extends React.Component<ModalProps, ModalState> {
       appElement,
       ariaLabelledBy,
       ariaDescribedby,
+      bodyOpenClassName,
       className,
       contentRef,
       entrance,
+      style,
       trigger,
       width
     } = this.props;
@@ -76,10 +80,12 @@ class Modal extends React.Component<ModalProps, ModalState> {
             ariaLabelledBy={ariaLabelledBy}
             ariaDescribedby={ariaDescribedby}
             appElement={appElement}
+            bodyOpenClassName={bodyOpenClassName}
             className={className}
             contentRef={contentRef}
             entrance={entrance}
             onClose={this.handleClose}
+            style={style}
             width={width}
           >
             {this.getChildren()}

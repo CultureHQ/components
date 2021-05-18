@@ -46,7 +46,15 @@ storiesOf("Modals/Modal", module)
         startOpen: boolean("startOpen", false),
         width: optionsKnob("width", widthOptions, "normal", {
           display: "inline-radio"
-        })
+        }),
+        bodyOpenClassName: "new-class",
+        style: {
+          overlay: {
+            bottom: "initial",
+            minHeight: "100vh",
+            position: "absolute"
+          }
+        }
       };
 
       return (

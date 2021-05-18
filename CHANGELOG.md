@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [17.30.0] - 2021-05-18
+
+### Changed
+
+- Adding new props to change dialog props
+
 ## [17.29.0] - 2021-05-14
 
 ### Changed
