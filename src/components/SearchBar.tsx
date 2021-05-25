@@ -107,7 +107,6 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
   render(): React.ReactElement {
     const { className, autoComplete, placeholder, clearOptionEnabled } = this.props;
     const { search, searching } = this.state;
-    console.log(clearOptionEnabled && search.length > 0);
 
     return (
       <div className={classnames("chq-sbar", className)}>

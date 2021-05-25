@@ -24,8 +24,6 @@ const Container: React.FC<ContainerProps> = (
     [haystack, setMatches]
   );
 
-  console.log(clearOptionEnabled);
-
   return (
     <Panel>
       <Panel.Body>
