@@ -9,6 +9,7 @@ type IconProps = {
   viewBox?: string;
   icon: IconName;
   color?: string;
+  onClick?: any;
 };
 
 type IconState = {
@@ -54,7 +55,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
   }
 
   render(): React.ReactElement {
-    const { className, color, icon } = this.props;
+    const { className, color, icon, onClick } = this.props;
     const { path } = this.state;
     const transform = icon === "user-filled" ? 40 : 0;
 
@@ -339,6 +340,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         viewBox={`0 0 ${viewBox} ${viewBox}`}
         style={icon === "quote" ? { transform: "scaleX(-1)" } : {}}
         className={className}
+        onClick={() => { if (onClick) { onClick(); } }}
       >
         {path && <path fill={color} transform={`translate(${transform} 0)`} d={path} />}
       </svg>

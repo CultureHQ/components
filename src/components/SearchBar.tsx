@@ -11,6 +11,7 @@ type SearchBarProps = {
   onSearchChange?: (search: string) => void;
   placeholder?: string;
   throttle?: null | number;
+  clearOptionEnabled?: null | boolean;
 };
 
 type SearchBarState = {
@@ -29,7 +30,8 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     autoComplete: "on",
     autoFocus: false,
     placeholder: "",
-    throttle: 300
+    throttle: 300,
+    clearOptionEnabled: false
   };
 
   state = { search: "", searching: false };
@@ -91,9 +93,21 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     this.setState({ search, searching: search.length > 0 });
   };
 
+  handleClear = (_: React.ChangeEvent<HTMLInputElement>): void => {
+    const { onSearchChange } = this.props;
+    const search = "";
+
+    if (onSearchChange) {
+      onSearchChange(search);
+    }
+
+    this.setState({ search, searching: search.length > 0 });
+  };
+
   render(): React.ReactElement {
-    const { className, autoComplete, placeholder } = this.props;
+    const { className, autoComplete, placeholder, clearOptionEnabled } = this.props;
     const { search, searching } = this.state;
+    console.log(clearOptionEnabled && search.length > 0);
 
     return (
       <div className={classnames("chq-sbar", className)}>
@@ -109,6 +123,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
           placeholder={placeholder}
         />
         {searching && <Icon className="chq-sbar--spn" icon="load-c" />}
+        {!searching && clearOptionEnabled && search.length > 0 && <Icon className="chq-sbar--close" icon="close" onClick={this.handleClear} />}
       </div>
     );
   }

@@ -12,19 +12,29 @@ type ContainerProps = {
   haystack: string[];
   placeholder: string;
   throttle: null | number;
+  clearOptionEnabled: null | boolean;
 };
 
-const Container: React.FC<ContainerProps> = ({ haystack, placeholder, throttle }) => {
+const Container: React.FC<ContainerProps> = (
+  { haystack, placeholder, throttle, clearOptionEnabled }
+) => {
   const [matches, setMatches] = useState<string[]>([]);
   const onSearch = useCallback(
     search => setMatches(search ? match(search, haystack) : []),
     [haystack, setMatches]
   );
 
+  console.log(clearOptionEnabled);
+
   return (
     <Panel>
       <Panel.Body>
-        <SearchBar onSearch={onSearch} placeholder={placeholder} throttle={throttle} />
+        <SearchBar
+          onSearch={onSearch}
+          placeholder={placeholder}
+          throttle={throttle}
+          clearOptionEnabled={clearOptionEnabled}
+        />
         <ul>
           {matches.map(name => (
             <li key={name}>{name}</li>
@@ -42,7 +52,8 @@ storiesOf("SearchBar", module)
         "Harry", "Hermione", "Ron", "Ginny", "Fred", "George", "Neville", "Luna"
       ],
       placeholder: text("placeholder", "Search students..."),
-      throttle: number("throttle", 300)
+      throttle: number("throttle", 300),
+      clearOptionEnabled: true
     };
 
     return <Container {...props} />;
@@ -52,5 +63,6 @@ storiesOf("SearchBar", module)
       haystack={["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]}
       placeholder="Search houses..."
       throttle={null}
+      clearOptionEnabled={false}
     />
   ));
