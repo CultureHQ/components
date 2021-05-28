@@ -87,6 +87,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "ios-people":
       case "ios-people-outline":
       case "ios-plus":
+      case "ios-plus-outline":
       case "ios-star-outline":
       case "link-wider":
       case "linkedin":
