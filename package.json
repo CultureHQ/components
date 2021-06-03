@@ -66,7 +66,7 @@
     "babel-loader": "^8.0.5",
     "css-loader": "^5.0.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest-axe": "^4.0.0",
+    "jest-axe": "^5.0.1",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
     "react-docgen-typescript-loader": "^3.2.1",
