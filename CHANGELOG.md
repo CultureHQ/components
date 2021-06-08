@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.0.1] - 2021-06-08
+
+### Changed
+
+- Adding some styling to media file
+
 ## [18.0.0] - 2021-06-08
 
 ### Added
