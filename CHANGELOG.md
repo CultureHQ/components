@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.0.0] - 2021-06-08
+
+### Added
+
+- Adding new component, to allow videos in media file
+
 ## [17.32.0] - 2021-05-28
 
 ### Changed
