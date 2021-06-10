@@ -8,7 +8,7 @@ const ffmpeg = createFFmpeg({ log: false });
 
 type ImageEditorProps = {
   video: any;
-  onEdit?: (thumbUrl: string) => void;
+  onEdit?: (thumb: Blob) => void;
 };
 
 
@@ -16,7 +16,7 @@ const VideoEditor = ({
   video, onEdit = undefined
 }: ImageEditorProps):React.ReactElement => {
   useEffect(() => {
-    const getThumbAndGif = async () => {
+    const getThumb = async () => {
       // Write the file to memory
       ffmpeg.FS("writeFile", "video.mp4", await fetchFile(video));
 
@@ -25,15 +25,14 @@ const VideoEditor = ({
 
       // Read the result
       const thumb = ffmpeg.FS("readFile", "thumbnail.png");
+      const blobThumb = new Blob([thumb.buffer], { type: "image/png" });
 
-      // Create a URL
-      const thumbUrl = URL.createObjectURL(new Blob([thumb.buffer], { type: "image/png" }));
-      return thumbUrl;
+      return blobThumb;
     };
 
     const handleSave = async () => {
       if (onEdit) {
-        onEdit(await getThumbAndGif());
+        onEdit(await getThumb());
       }
     };
     const load = async () => {
