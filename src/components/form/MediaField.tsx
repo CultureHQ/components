@@ -23,7 +23,8 @@ type MediaFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   children: React.ReactNode;
   className?: string;
   name: string;
-  onChange?: (value: MediaFieldValue, thumbUrl: UrlValue, gifUrl: UrlValue) => void;
+  onChange?: (value: MediaFieldValue, thumbUrl: UrlValue,
+    gifUrl: UrlValue, duration: any) => void;
   progress?: number;
   required?: boolean;
   validator?: (value: MediaFieldValue) => FormFieldError;
@@ -40,6 +41,7 @@ type MediaFieldState = {
   touched: boolean;
   video: MediaFieldValue;
   thumbUrl: string | null;
+  videoLenght: any;
 };
 
 type ImageSelectedOptions = {
@@ -60,7 +62,8 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     preview: null,
     touched: false,
     video: null,
-    thumbUrl: null
+    thumbUrl: null,
+    videoLenght: null
   };
 
   componentDidMount() {
@@ -100,12 +103,13 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
   handleVideoSelected = (
     video: MediaFieldValue, thumbUrl: string | null, gifUrl: string | null, videoEditorOpen: boolean
   ) => {
+    const { videoLenght } = this.state;
     const { name, onChange, onFormChange } = this.props;
 
     this.setState({ video, image: null, preview: null, videoEditorOpen, thumbUrl });
 
     if (onChange) {
-      onChange(video, thumbUrl, gifUrl);
+      onChange(video, thumbUrl, gifUrl, videoLenght);
     }
 
     onFormChange(name, video);
@@ -130,7 +134,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     });
 
     if (onChange) {
-      onChange(image, null, null);
+      onChange(image, null, null, null);
     }
 
     onFormChange(name, image);
@@ -168,7 +172,8 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     } = this.props;
 
     const {
-      dragging, editorOpen, videoEditorOpen, failed, image, preview, touched, video, thumbUrl
+      dragging, editorOpen, videoEditorOpen,
+      failed, image, preview, touched, video, thumbUrl
     } = this.state;
 
     const normal: any = value || (values[name] as MediaFieldValue | undefined) || null;
@@ -188,7 +193,19 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
               overflow: imageAsBackground ? "hidden" : "initial"
             }}
           >
-            {video && <video className="chq-ffd--video" controls src={URL.createObjectURL(video)} />}
+            {video && (
+              <video
+                className="chq-ffd--video"
+                controls
+                src={URL.createObjectURL(video)}
+                onLoadedMetadata={e => {
+                  const target = e.target as HTMLVideoElement;
+                  if (onChange) {
+                    onChange(video, thumbUrl, null, target.duration);
+                  }
+                }}
+              />
+            )}
             {(image || preview || (normal && !normal?.type?.startsWith("video/"))) && (
               <ImagePreview
                 editorOpen={editorOpen}

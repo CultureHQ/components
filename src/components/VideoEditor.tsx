@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import Loader from "./Loader";
 
-const ffmpeg = createFFmpeg({ log: true });
+const ffmpeg = createFFmpeg({ log: false });
 
 type ImageEditorProps = {
   video: any;

@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.2.0] - 2021-06-10
+
+### Added
+
+- Getting duration from selected video
+
+## [18.1.0] - 2021-06-10
+
+### Added
+
+- Getting thumbnail from video 00:00
+
 ## [18.0.3] - 2021-06-08
 
 ### Changed
