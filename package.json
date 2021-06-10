@@ -1,6 +1,6 @@
 {
   "name": "@culturehq/components",
-  "version": "18.0.3",
+  "version": "18.1.0",
   "description": "CultureHQ's component library",
   "main": "dist/components.js",
   "types": "dist/components.d.ts",
@@ -89,7 +89,8 @@
       "@culturehq/eslint-config/typescript"
     ],
     "rules": {
-      "import/no-extraneous-dependencies": "off"
+      "import/no-extraneous-dependencies": "off",
+      "no-use-before-define": "off"
     }
   },
   "jest": {

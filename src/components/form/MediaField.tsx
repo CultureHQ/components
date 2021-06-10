@@ -39,6 +39,7 @@ type MediaFieldState = {
   preview: string | null;
   touched: boolean;
   video: MediaFieldValue;
+  thumbUrl: string | null;
 };
 
 type ImageSelectedOptions = {
@@ -58,7 +59,8 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     image: null,
     preview: null,
     touched: false,
-    video: null
+    video: null,
+    thumbUrl: null
   };
 
   componentDidMount() {
@@ -74,7 +76,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     const { files } = event.target;
     const media = files && files[0];
     if (media?.type?.startsWith("video/")) {
-      this.handleVideoSelected(media, null, null);
+      this.handleVideoSelected(media, null, null, true);
       return;
     }
 
@@ -89,22 +91,18 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     this.handleImageSelected({ editorOpen: false, failed: true, image: null });
   };
 
-  handleVideoEdited = ({ thumbUrl, gifUrl }: {thumbUrl: string, gifUrl: string}) => {
+  handleVideoEdited = (thumbUrl: string) => {
     const { video } = this.state;
     this.setState({ videoEditorOpen: false });
-    this.handleVideoSelected(video, thumbUrl, gifUrl);
-  };
-
-  handleVideoFailure = () => {
-    this.handleVideoSelected(null, null, null);
+    this.handleVideoSelected(video, thumbUrl, null, false);
   };
 
   handleVideoSelected = (
-    video: MediaFieldValue, thumbUrl: string | null, gifUrl: string | null
+    video: MediaFieldValue, thumbUrl: string | null, gifUrl: string | null, videoEditorOpen: boolean
   ) => {
     const { name, onChange, onFormChange } = this.props;
 
-    this.setState({ video, image: null, preview: null, videoEditorOpen: !!video });
+    this.setState({ video, image: null, preview: null, videoEditorOpen, thumbUrl });
 
     if (onChange) {
       onChange(video, thumbUrl, gifUrl);
@@ -170,14 +168,14 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     } = this.props;
 
     const {
-      dragging, editorOpen, videoEditorOpen, failed, image, preview, touched, video
+      dragging, editorOpen, videoEditorOpen, failed, image, preview, touched, video, thumbUrl
     } = this.state;
 
     const normal: any = value || (values[name] as MediaFieldValue | undefined) || null;
 
     return (
       <div className={classnames(imageAsBackground && "chq-ffd--bg-img-container")}>
-        {imageAsBackground && !editorOpen && (<div className="chq-ffd--bg-img--img" style={{ backgroundImage: `url("${preview || value}")` }} />)}
+        {imageAsBackground && !editorOpen && (<div className="chq-ffd--bg-img--img" style={video ? { backgroundImage: `url("${thumbUrl}")` } : { backgroundImage: `url("${preview || value}")` }} />)}
         <label className={classnames("chq-ffd", className, imageAsBackground && "chq-ffd--bg-img")} htmlFor={name}>
           <span className="chq-ffd--lb">{children}</span>
           <div
@@ -255,15 +253,10 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
             </ModalDialog>
           )}
           {videoEditorOpen && (
-            <ModalDialog onClose={this.handleClose}>
-              <ModalDialog.Body>
-                <VideoEditor
-                  video={video}
-                  onEdit={this.handleVideoEdited}
-                  onFailure={this.handleVideoFailure}
-                />
-              </ModalDialog.Body>
-            </ModalDialog>
+            <VideoEditor
+              video={video}
+              onEdit={this.handleVideoEdited}
+            />
           )}
           <FormError
             name={name}

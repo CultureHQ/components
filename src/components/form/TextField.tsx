@@ -22,10 +22,6 @@ type TextFieldProps = Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, Hi
   value?: TextFieldValue;
 };
 
-type TextFieldState = {
-  touched: boolean;
-};
-
 const TextField: React.FC<TextFieldProps> = ({
   autoFocus, children, className, disabled, name, onChange, required, validator, value, ...props
 }) => {

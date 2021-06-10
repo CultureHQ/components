@@ -126,6 +126,14 @@
     overflow: hidden;
     position: relative;
     width: 100%;
+
+    .chq-ldr {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 
   &--img {
