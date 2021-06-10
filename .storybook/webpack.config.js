@@ -26,7 +26,7 @@ module.exports = async ({ config, mode }) => {
   config.module.rules.push({
     test: /\.stories\.jsx?$/,
     use: [
-      { loader: require.resolve("@storybook/addon-storysource/loader") }
+      { loader: require.resolve("@storybook/source-loader") }
     ],
     enforce: "pre",
   });
