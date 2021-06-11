@@ -25,6 +25,7 @@ type MediaFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   name: string;
   onChange?: (value: MediaFieldValue, thumb: MediaFieldValue,
     gifUrl: MediaFieldValue, duration: any) => void;
+  onProcessing?: (value: boolean) => void;
   progress?: number;
   required?: boolean;
   validator?: (value: MediaFieldValue) => FormFieldError;
@@ -170,7 +171,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
       onFormChange, progress, required, submitted, submitting, validator, value,
-      videoThumb, values, ...props
+      videoThumb, values, onProcessing, ...props
     } = this.props;
 
     const {
@@ -276,6 +277,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
             <VideoEditor
               video={video}
               onEdit={this.handleVideoEdited}
+              onProcessing={onProcessing}
             />
           )}
           <FormError

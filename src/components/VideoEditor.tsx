@@ -9,11 +9,12 @@ const ffmpeg = createFFmpeg({ log: false });
 type ImageEditorProps = {
   video: any;
   onEdit?: (thumb: Blob) => void;
+  onProcessing?: (value: boolean) => void;
 };
 
 
 const VideoEditor = ({
-  video, onEdit = undefined
+  video, onEdit, onProcessing
 }: ImageEditorProps):React.ReactElement => {
   useEffect(() => {
     const getThumb = async () => {
@@ -32,7 +33,14 @@ const VideoEditor = ({
 
     const handleSave = async () => {
       if (onEdit) {
-        onEdit(await getThumb());
+        if (onProcessing) {
+          onProcessing(true);
+        }
+        const result = await getThumb();
+        if (onProcessing) {
+          onProcessing(false);
+        }
+        onEdit(result);
       }
     };
     const load = async () => {
@@ -43,7 +51,7 @@ const VideoEditor = ({
     };
 
     load();
-  }, [video, onEdit]);
+  }, [video, onEdit, onProcessing]);
 
   return <Loader loading />;
 };

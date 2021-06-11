@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.3.2] - 2021-06-11
+
+### Changed
+
+- Adding callback to know that the video is processing
+
 ## [18.3.1] - 2021-06-11
 
 ### Changed

@@ -50,8 +50,9 @@ storiesOf("Form/MediaField", module)
     const onChange = (media: any, _thumbUrl: any, _gifUrl: any, _duration: any) => {
       setSelectedVideo(media);
     };
+    const onProcessing = (_: boolean) => {};
     return (
-      <Container videoThumb="http://localhost:3001/287fd1d9-2e1a-4ef6-a19d-d18198a2763d" imageAsBackground onChange={onChange} name="image" required value={selectedVideo} buttonLabel="Upload your own media"><></></Container>
+      <Container videoThumb="http://localhost:3001/287fd1d9-2e1a-4ef6-a19d-d18198a2763d" imageAsBackground onChange={onChange} onProcessing={onProcessing} name="image" required value={selectedVideo} buttonLabel="Upload your own media"><></></Container>
     );
   })
   .add("validator", () => {
