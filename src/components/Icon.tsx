@@ -133,6 +133,9 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "clock-filled":
         viewBox = "16";
         break;
+      case "play-no-border":
+        viewBox = "264";
+        break;
       case "art-palette":
       case "art-palette-filled":
         viewBox = "326";

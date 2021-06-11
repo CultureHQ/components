@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.3.0] - 2021-06-11
+
+### Added
+
+- New play icon with no border
+
 ## [18.2.1] - 2021-06-10
 
 ### Changed
