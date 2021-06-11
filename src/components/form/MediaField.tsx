@@ -29,6 +29,7 @@ type MediaFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   required?: boolean;
   validator?: (value: MediaFieldValue) => FormFieldError;
   value?: MediaFieldValue;
+  videoThumb?: MediaFieldValue;
 };
 
 type MediaFieldState = {
@@ -168,7 +169,8 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     const {
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
-      onFormChange, progress, required, submitted, submitting, validator, value, values, ...props
+      onFormChange, progress, required, submitted, submitting, validator, value,
+      videoThumb, values, ...props
     } = this.props;
 
     const {
@@ -180,7 +182,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
 
     return (
       <div className={classnames(imageAsBackground && "chq-ffd--bg-img-container")}>
-        {imageAsBackground && !editorOpen && (<div className="chq-ffd--bg-img--img" style={video && thumb ? { backgroundImage: `url("${URL.createObjectURL(thumb)}")` } : { backgroundImage: `url("${preview || value}")` }} />)}
+        {imageAsBackground && !editorOpen && (<div className="chq-ffd--bg-img--img" style={video && thumb ? { backgroundImage: `url("${URL.createObjectURL(thumb)}")` } : { backgroundImage: `url("${videoThumb || (preview || value)}")` }} />)}
         <label className={classnames("chq-ffd", className, imageAsBackground && "chq-ffd--bg-img")} htmlFor={name}>
           <span className="chq-ffd--lb">{children}</span>
           <div
@@ -193,11 +195,12 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
               overflow: imageAsBackground ? "hidden" : "initial"
             }}
           >
-            {video && (
+            {(video || videoThumb) && (
               <video
                 className="chq-ffd--video"
                 controls
-                src={URL.createObjectURL(video)}
+                src={(videoThumb && !video) ? value as string : URL.createObjectURL(video)}
+                poster={thumb ? URL.createObjectURL(thumb) : videoThumb as string}
                 onLoadedMetadata={e => {
                   const target = e.target as HTMLVideoElement;
                   if (onChange) {

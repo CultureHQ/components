@@ -42,7 +42,16 @@ storiesOf("Form/MediaField", module)
       setSelectedImage(media);
     };
     return (
-      <Container imageAsBackground onChange={onChange} name="image" required value={selectedImage} buttonLabel="Upload your own image"><></></Container>
+      <Container imageAsBackground onChange={onChange} name="image" required value={selectedImage} buttonLabel="Upload your own media"><></></Container>
+    );
+  })
+  .add("backgroundVideo", () => {
+    const [selectedVideo, setSelectedVideo] = useState("http://localhost:3001/38e345e1-0aa2-4cd6-9540-5ea5de345b24");
+    const onChange = (media: any, _thumbUrl: any, _gifUrl: any, _duration: any) => {
+      setSelectedVideo(media);
+    };
+    return (
+      <Container videoThumb="http://localhost:3001/287fd1d9-2e1a-4ef6-a19d-d18198a2763d" imageAsBackground onChange={onChange} name="image" required value={selectedVideo} buttonLabel="Upload your own media"><></></Container>
     );
   })
   .add("validator", () => {
