@@ -196,7 +196,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
               overflow: imageAsBackground ? "hidden" : "initial"
             }}
           >
-            {(video || videoThumb) && (
+            {((video || videoThumb) && !image) && (
               <video
                 className="chq-ffd--video"
                 controls
@@ -210,7 +210,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
                 }}
               />
             )}
-            {(image || preview || (normal && !normal?.type?.startsWith("video/"))) && (
+            {(image || preview || (normal && !video)) && (
               <ImagePreview
                 editorOpen={editorOpen}
                 image={image}

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.3.3] - 2021-06-16
+
+### Changed
+
+- Validating types to show the right values
+
 ## [18.3.2] - 2021-06-11
 
 ### Changed

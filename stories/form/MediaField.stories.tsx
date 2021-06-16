@@ -46,13 +46,39 @@ storiesOf("Form/MediaField", module)
     );
   })
   .add("backgroundVideo", () => {
-    const [selectedVideo, setSelectedVideo] = useState("http://localhost:3001/38e345e1-0aa2-4cd6-9540-5ea5de345b24");
-    const onChange = (media: any, _thumbUrl: any, _gifUrl: any, _duration: any) => {
-      setSelectedVideo(media);
+    const [selectedVideo, setSelectedVideo]: [any, any] = useState("http://localhost:3001/38e345e1-0aa2-4cd6-9540-5ea5de345b24");
+    const [thum, setThumb] = useState("http://localhost:3001/287fd1d9-2e1a-4ef6-a19d-d18198a2763d");
+    const onChange = (media: any, thumbUrl: any, _gifUrl: any, _duration: any) => {
+      if (media) {
+        if (media.type.startsWith("video/")) {
+          setThumb(thumbUrl);
+        }
+        setSelectedVideo(media);
+      }
     };
+
+    const getSelectedMedia = () => {
+      if (selectedVideo?.type?.startsWith("video/")) {
+        return URL.createObjectURL(selectedVideo);
+      }
+
+      return selectedVideo;
+    };
+
     const onProcessing = (_: boolean) => {};
     return (
-      <Container videoThumb="http://localhost:3001/287fd1d9-2e1a-4ef6-a19d-d18198a2763d" imageAsBackground onChange={onChange} onProcessing={onProcessing} name="image" required value={selectedVideo} buttonLabel="Upload your own media"><></></Container>
+      <Container
+        videoThumb={thum && (typeof thum === "string" ? thum : URL.createObjectURL(thum))}
+        imageAsBackground
+        onChange={onChange}
+        onProcessing={onProcessing}
+        name="image"
+        required
+        value={getSelectedMedia()}
+        buttonLabel="Upload your own media"
+      >
+        <></>
+      </Container>
     );
   })
   .add("validator", () => {
