@@ -77,6 +77,14 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     }
   }
 
+  componentDidUpdate(prevProps: any) {
+    const { videoThumb } = this.props;
+    if (videoThumb !== prevProps.videoThumb) {
+      this.setState({ video: null });
+      this.setState({ thumb: null });
+    }
+  }
+
   handleFileSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
     const media = files && files[0];
@@ -166,6 +174,17 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
   };
 
+  getThumbnail = (): string => {
+    const { preview, video, thumb } = this.state;
+    const { value, videoThumb } = this.props;
+
+    if (videoThumb) {
+      return videoThumb as string;
+    }
+
+    return (video && thumb) ? URL.createObjectURL(thumb) : (preview || value) as string;
+  };
+
   render() {
     const {
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
@@ -183,7 +202,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
 
     return (
       <div className={classnames(imageAsBackground && "chq-ffd--bg-img-container")}>
-        {imageAsBackground && !editorOpen && (<div className="chq-ffd--bg-img--img" style={video && thumb ? { backgroundImage: `url("${URL.createObjectURL(thumb)}")` } : { backgroundImage: `url("${videoThumb || (preview || value)}")` }} />)}
+        {imageAsBackground && !editorOpen && (<div className="chq-ffd--bg-img--img" style={{ backgroundImage: `url("${this.getThumbnail()}")` }} />)}
         <label className={classnames("chq-ffd", className, imageAsBackground && "chq-ffd--bg-img")} htmlFor={name}>
           <span className="chq-ffd--lb">{children}</span>
           <div
@@ -200,14 +219,14 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
               <video
                 className="chq-ffd--video"
                 controls
-                src={(videoThumb && !video) ? value as string : URL.createObjectURL(video)}
-                poster={thumb ? URL.createObjectURL(thumb) : videoThumb as string}
+                poster={this.getThumbnail()}
                 onLoadedMetadata={e => {
                   const target = e.target as HTMLVideoElement;
                   if (onChange) {
                     onChange(video, thumb, null, target.duration);
                   }
                 }}
+                src={(videoThumb && !video) ? value as string : URL.createObjectURL(video)}
               />
             )}
             {(image || preview || (normal && !video)) && (

@@ -46,12 +46,17 @@ storiesOf("Form/MediaField", module)
     );
   })
   .add("backgroundVideo", () => {
-    const [selectedVideo, setSelectedVideo]: [any, any] = useState("http://localhost:3001/38e345e1-0aa2-4cd6-9540-5ea5de345b24");
-    const [thum, setThumb] = useState("http://localhost:3001/287fd1d9-2e1a-4ef6-a19d-d18198a2763d");
+    const [selectedVideo, setSelectedVideo]: [any, any] = useState("https://images.unsplash.com/photo-1525546822429-a214a6739ee7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80");// "http://localhost:3001/38e345e1-0aa2-4cd6-9540-5ea5de345b24");
+    const [thum, setThumb] = useState();// "http://localhost:3001/287fd1d9-2e1a-4ef6-a19d-d18198a2763d");
+    const [selectedThumbnailUrl, setSelectedThumbnailUrl]: [any, any] = useState();// "http://localhost:3001/287fd1d9-2e1a-4ef6-a19d-d18198a2763d");
+    // const [progress, setProgress] = useState(0);
     const onChange = (media: any, thumbUrl: any, _gifUrl: any, _duration: any) => {
       if (media) {
         if (media.type.startsWith("video/")) {
-          setThumb(thumbUrl);
+          if (thumbUrl) {
+            setThumb(thumbUrl);
+            setSelectedThumbnailUrl(URL.createObjectURL(thumbUrl));
+          }
         }
         setSelectedVideo(media);
       }
@@ -66,9 +71,28 @@ storiesOf("Form/MediaField", module)
     };
 
     const onProcessing = (_: boolean) => {};
+    /*
+    const onTimeout = () => {
+      console.log("increase");
+      setProgress(progress + 1);
+    };
+
+    setTimeout(onTimeout, 50);
+    console.log(thum && (typeof thum === "string" ? thum : URL.createObjectURL(thum)));
+    console.log(getSelectedMedia());
+    */
+    /*
+    if (thum) {
+      const onTimeout = () => {
+        setProgress(progress + 1);
+      };
+
+      setTimeout(onTimeout, 50);
+    }
+    */
     return (
       <Container
-        videoThumb={thum && (typeof thum === "string" ? thum : URL.createObjectURL(thum))}
+        videoThumb={selectedThumbnailUrl}
         imageAsBackground
         onChange={onChange}
         onProcessing={onProcessing}
