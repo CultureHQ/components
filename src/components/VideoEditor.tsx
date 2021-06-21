@@ -4,7 +4,10 @@ import React, { useEffect } from "react";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import Loader from "./Loader";
 
-const ffmpeg = createFFmpeg({ log: false });
+const ffmpeg = createFFmpeg({
+  corePath: "https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js",
+  log: false
+});
 
 type ImageEditorProps = {
   video: any;

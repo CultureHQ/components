@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.3.5] - 2021-06-21
+
+### Changed
+
+- Using ffmpeg-core full path
+
 ## [18.3.4] - 2021-06-17
 
 ### Changed
