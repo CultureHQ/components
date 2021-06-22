@@ -31,6 +31,7 @@ type MediaFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   validator?: (value: MediaFieldValue) => FormFieldError;
   value?: MediaFieldValue;
   videoThumb?: MediaFieldValue;
+  showControls?: boolean;
 };
 
 type MediaFieldState = {
@@ -190,7 +191,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
       onFormChange, progress, required, submitted, submitting, validator, value,
-      videoThumb, values, onProcessing, ...props
+      videoThumb, values, onProcessing, showControls = true, ...props
     } = this.props;
 
     const {
@@ -218,7 +219,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
             {((video || videoThumb) && !image) && (
               <video
                 className="chq-ffd--video"
-                controls
+                controls={showControls}
                 poster={this.getThumbnail()}
                 onLoadedMetadata={e => {
                   const target = e.target as HTMLVideoElement;
