@@ -59,6 +59,11 @@ class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState>
             this.setState({ src, styles });
           }
         }
+      }).catch(_error => {
+        this.setState({
+          src: "https://images.unsplash.com/photo-1605827170202-169d05c841d5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1490&q=80",
+          styles: { width: "auto", height: "auto", margin: "0 auto", maxWidth: "100%", maxHeight: "100%" }
+        });
       });
     }
   }
