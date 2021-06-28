@@ -1819,17 +1819,17 @@
     ts-dedent "^2.0.0"
 
 "@storybook/addon-storysource@^6.2.9":
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-6.3.0.tgz#b523abd4592ce494366109eedb2c04501029bbf2"
-  integrity sha512-Vk0oswJ0hWYqjypHox+HRj/iovyc42w6B88ZL1yjdH45+bQYjMnxE2yqY4kGVSZKQMkZidjWGKtgD8Y8xP4TXA==
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-6.3.1.tgz#2726fdbdbf1caecf3651deddbc3e81d29709fd8e"
+  integrity sha512-lfymHV+NqKdq27V1MtE3SyUzMDqhJSLsEY6PTo36+nq9KjhNv32j9BgDG14iYX3TfSzpKXc0YV5BuREJvPzR6g==
   dependencies:
-    "@storybook/addons" "6.3.0"
-    "@storybook/api" "6.3.0"
-    "@storybook/client-logger" "6.3.0"
-    "@storybook/components" "6.3.0"
-    "@storybook/router" "6.3.0"
-    "@storybook/source-loader" "6.3.0"
-    "@storybook/theming" "6.3.0"
+    "@storybook/addons" "6.3.1"
+    "@storybook/api" "6.3.1"
+    "@storybook/client-logger" "6.3.1"
+    "@storybook/components" "6.3.1"
+    "@storybook/router" "6.3.1"
+    "@storybook/source-loader" "6.3.1"
+    "@storybook/theming" "6.3.1"
     core-js "^3.8.2"
     estraverse "^5.2.0"
     loader-utils "^2.0.0"
@@ -2771,23 +2771,7 @@
     core-js "^3.6.5"
     find-up "^4.1.0"
 
-"@storybook/source-loader@6.3.0":
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-6.3.0.tgz#d1bbbb9c350c89f1207233d209694dcac5350e76"
-  integrity sha512-5LpqY5uu35Fg01D7Zu0xAT7ow6tcuHz+fkIxsGAJhzWovbV5NYl/BP8WSPv7TH+WjYve+RI2Xp6a9JFrgi9gpQ==
-  dependencies:
-    "@storybook/addons" "6.3.0"
-    "@storybook/client-logger" "6.3.0"
-    "@storybook/csf" "0.0.1"
-    core-js "^3.8.2"
-    estraverse "^5.2.0"
-    global "^4.4.0"
-    loader-utils "^2.0.0"
-    lodash "^4.17.20"
-    prettier "~2.2.1"
-    regenerator-runtime "^0.13.7"
-
-"@storybook/source-loader@^6.2.9":
+"@storybook/source-loader@6.3.1", "@storybook/source-loader@^6.2.9":
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-6.3.1.tgz#e3626c13913a498623ee157a7113b65973e2b79a"
   integrity sha512-eYB8UoUV235B/Fq2Ydg7sZ1/nntDQxB3UihmDEHfXo2qhwVt2qokR74MbTQdMIA+iDXHTFNMHicMj49Wb4FpAw==
