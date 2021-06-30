@@ -230,7 +230,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
                 src={(videoThumb && !video) ? value as string : URL.createObjectURL(video)}
               />
             )}
-            {(image || preview || (normal && !video)) && (
+            {(image || preview || (normal && !video && !videoThumb)) && (
               <ImagePreview
                 editorOpen={editorOpen}
                 image={image}
