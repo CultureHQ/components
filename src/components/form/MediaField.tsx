@@ -258,7 +258,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
               </>
             )}
             <input
-              accept="image/*,video/*"
+              accept=".heic,image/*,video/*"
               ref={this.inputRef}
               {...props}
               type="file"

@@ -182,7 +182,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
               </>
             )}
             <input
-              accept=".heic,image/*"
+              accept="image/*"
               ref={this.inputRef}
               {...props}
               type="file"
