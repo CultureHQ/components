@@ -67,11 +67,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     const { files } = event.target;
     const image = files && files[0];
 
-    if (image?.type === "image/heic") {
-      this.handleImageSelected({ editorOpen: false, failed: false, image: image || null });
-    } else {
-      this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
-    }
+    this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
   };
 
   handleImageEdited = (image: Blob) => {

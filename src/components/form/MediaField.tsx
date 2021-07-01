@@ -94,7 +94,11 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
       return;
     }
 
-    this.handleImageSelected({ editorOpen: !!media, failed: false, image: media || null });
+    if (media?.type === "image/heic") {
+      this.handleImageSelected({ editorOpen: false, failed: false, image: media || null });
+    } else {
+      this.handleImageSelected({ editorOpen: !!media, failed: false, image: media || null });
+    }
   };
 
   handleImageEdited = (image: Blob) => {
