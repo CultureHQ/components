@@ -2143,14 +2143,14 @@
     qs "^6.10.0"
     telejson "^5.3.2"
 
-"@storybook/channel-postmessage@6.3.3":
-  version "6.3.3"
-  resolved "https://registry.yarnpkg.com/@storybook/channel-postmessage/-/channel-postmessage-6.3.3.tgz#b25b4837be276da2cfaa2a0c488b6c25c27c5fad"
-  integrity sha512-IGDUMpq+nLTeVottYPwXyaeto/Li5VBpU6jZaiGMMaggwxAeLxjKyovv/cnKBQr/HXNO8xWl+SZfptonrS9abw==
+"@storybook/channel-postmessage@6.3.4":
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/@storybook/channel-postmessage/-/channel-postmessage-6.3.4.tgz#1a0000aefc9494d5585a1d2c7bdb75f540965f70"
+  integrity sha512-UIHNrMD9ZaT249nkKXibqRjKEoqfeFJk5HKW2W17/Z/imVcKG9THBnRJ7cb+r7LqS8Yoh+Q87ycRqcPVLRJ/Xw==
   dependencies:
-    "@storybook/channels" "6.3.3"
-    "@storybook/client-logger" "6.3.3"
-    "@storybook/core-events" "6.3.3"
+    "@storybook/channels" "6.3.4"
+    "@storybook/client-logger" "6.3.4"
+    "@storybook/core-events" "6.3.4"
     core-js "^3.8.2"
     global "^4.4.0"
     qs "^6.10.0"
@@ -2286,16 +2286,16 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/client-api@6.3.3":
-  version "6.3.3"
-  resolved "https://registry.yarnpkg.com/@storybook/client-api/-/client-api-6.3.3.tgz#449c8971a06ea6ae4d6aef3c7ed08db52d74ac83"
-  integrity sha512-oKku+viz+fgxdLCBEYT31yM9khyLvrmicnQHA33MyMXUzhEwFlKO5aXHD4TF5ZeaGxZ8M1NSLAIz53O8QpPizg==
+"@storybook/client-api@6.3.4":
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/@storybook/client-api/-/client-api-6.3.4.tgz#7dd6dda0126012ed37fa885642973cc75366b5a8"
+  integrity sha512-lOrfz8ic3+nHZzqIdNH2I7Q3Wp0kS/Ic0PD/3QKvI2f6iVIapIjjWW1xAuor80Dl7rMhOn8zxgXta+7G7Pn2yQ==
   dependencies:
-    "@storybook/addons" "6.3.3"
-    "@storybook/channel-postmessage" "6.3.3"
-    "@storybook/channels" "6.3.3"
-    "@storybook/client-logger" "6.3.3"
-    "@storybook/core-events" "6.3.3"
+    "@storybook/addons" "6.3.4"
+    "@storybook/channel-postmessage" "6.3.4"
+    "@storybook/channels" "6.3.4"
+    "@storybook/client-logger" "6.3.4"
+    "@storybook/core-events" "6.3.4"
     "@storybook/csf" "0.0.1"
     "@types/qs" "^6.9.5"
     "@types/webpack-env" "^1.16.0"
@@ -2478,15 +2478,15 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/components@6.3.3":
-  version "6.3.3"
-  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-6.3.3.tgz#eba4fabf76e84fb70e00a82ebf4ba16c4b2ff984"
-  integrity sha512-45XDLRTXdG2bfEILwMkENdknkyVLQrqchcVh7qm+wtZEXhbtIGoTxlXYPUST+xB6MF5AXZ0c8UTm2YMgV3v3FQ==
+"@storybook/components@6.3.4":
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-6.3.4.tgz#c872ec267edf315eaada505be8595c70eb6db09b"
+  integrity sha512-0hBKTkkQbW+daaA6nRedkviPr2bEzy1kwq0H5eaLKI1zYeXN3U5Z8fVhO137PPqH5LmLietrmTPkqiljUBk9ug==
   dependencies:
     "@popperjs/core" "^2.6.0"
-    "@storybook/client-logger" "6.3.3"
+    "@storybook/client-logger" "6.3.4"
     "@storybook/csf" "0.0.1"
-    "@storybook/theming" "6.3.3"
+    "@storybook/theming" "6.3.4"
     "@types/color-convert" "^2.0.0"
     "@types/overlayscrollbars" "^1.12.0"
     "@types/react-syntax-highlighter" "11.0.5"
@@ -3165,10 +3165,10 @@
     "@types/estree" "*"
     "@types/json-schema" "*"
 
-"@types/estree@*", "@types/estree@^0.0.49":
-  version "0.0.49"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.49.tgz#3facb98ebcd4114a4ecef74e0de2175b56fd4464"
-  integrity sha512-K1AFuMe8a+pXmfHTtnwBvqoEylNKVeaiKYkjmcEAdytMQVJ/i9Fu7sc13GxgXdO49gkE7Hy8SyJonUZUn+eVaw==
+"@types/estree@*", "@types/estree@^0.0.50":
+  version "0.0.50"
+  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.50.tgz#1e0caa9364d3fccd2931c3ed96fdbeaa5d4cca83"
+  integrity sha512-C6N5s2ZFtuZRj54k2/zyRhNDjJwwcViAM3Nbm8zjBpbqAdZ00mr0CFxvSKeO8Y/e03WVFLpQMdHYVfUd6SB+Hw==
 
 "@types/glob-base@^0.3.0":
   version "0.3.0"
@@ -15551,12 +15551,12 @@ webpack@4:
     webpack-sources "^1.4.1"
 
 webpack@^5.0.0:
-  version "5.43.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.43.0.tgz#36a122d6e9bac3836273857f56ed7801d40c9145"
-  integrity sha512-ex3nB9uxNI0azzb0r3xGwi+LS5Gw1RCRSKk0kg3kq9MYdIPmLS6UI3oEtG7esBaB51t9I+5H+vHmL3htaxqMSw==
+  version "5.44.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.44.0.tgz#97b13a02bd79fb71ac6301ce697920660fa214a1"
+  integrity sha512-I1S1w4QLoKmH19pX6YhYN0NiSXaWY8Ou00oA+aMcr9IUGeF5azns+IKBkfoAAG9Bu5zOIzZt/mN35OffBya8AQ==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
-    "@types/estree" "^0.0.49"
+    "@types/estree" "^0.0.50"
     "@webassemblyjs/ast" "1.11.1"
     "@webassemblyjs/wasm-edit" "1.11.1"
     "@webassemblyjs/wasm-parser" "1.11.1"
