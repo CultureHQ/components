@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.4.4] - 2021-07-15
+
+### Changed
+
+- Removing heic images
+
 ## [18.4.3] - 2021-06-30
 
 ### Changed
