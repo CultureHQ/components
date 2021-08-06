@@ -96,7 +96,11 @@ const ModalDialog: ModalDialogComponent = ({
     onRequestClose={onClose}
     isOpen
     style={
-      style ? { ...modalStyle, overlay: { ...modalStyle.overlay, ...style.overlay } } : modalStyle
+      style ? {
+        ...modalStyle,
+        overlay: { ...modalStyle.overlay, ...style.overlay },
+        content: style.content
+      } : modalStyle
     }
   >
     {children}
