@@ -335,6 +335,34 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       );
     }
 
+    if (icon === "code") {
+      return (
+        <svg
+          aria-hidden
+          role="presentation"
+          width="22px"
+          height="22px"
+          viewBox="0 0 788 788"
+          x="0px"
+          y="0px"
+          xmlSpace="preserve"
+          className={className}
+        >
+          <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g id="Group-3" transform="translate(0.000000, -4.000000)" fill="#000000">
+              <g id="arrow-point-to-right" transform="translate(530.000000, 94.000000)" fillRule="nonzero">
+                <path d="M248.441,248.292 L54.154,442.573 C41.795,454.938 21.757,454.938 9.404,442.573 C-2.95,430.219 -2.95,410.182 9.404,397.829 L181.318,225.92 L9.409,54.017 C-2.945,41.658 -2.945,21.623 9.409,9.269 C21.763,-3.09 41.8,-3.09 54.159,9.269 L248.446,203.553 C254.623,209.733 257.708,217.824 257.708,225.919 C257.708,234.018 254.617,242.115 248.441,248.292 Z" />
+              </g>
+              <g id="arrow-point-to-right" transform="translate(129.000000, 320.000000) scale(-1, 1) translate(-129.000000, -320.000000) translate(0.000000, 94.000000)" fillRule="nonzero">
+                <path d="M248.441,248.292 L54.154,442.573 C41.795,454.938 21.757,454.938 9.404,442.573 C-2.95,430.219 -2.95,410.182 9.404,397.829 L181.318,225.92 L9.409,54.017 C-2.945,41.658 -2.945,21.623 9.409,9.269 C21.763,-3.09 41.8,-3.09 54.159,9.269 L248.446,203.553 C254.623,209.733 257.708,217.824 257.708,225.919 C257.708,234.018 254.617,242.115 248.441,248.292 Z" />
+              </g>
+              <rect id="Rectangle" transform="translate(394.000000, 320.500000) rotate(8.000000) translate(-394.000000, -320.500000)" x="362" y="2" width="64" height="637" rx="32" />
+            </g>
+          </g>
+        </svg>
+      );
+    }
+
     return (
       <svg
         aria-hidden
