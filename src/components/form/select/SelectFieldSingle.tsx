@@ -10,6 +10,7 @@ import fuzzyFilter from "./fuzzyFilter";
 
 type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
   allowEmpty?: boolean;
+  allWordsMatch?: boolean;
   ariaLabel?: string;
   children: React.ReactNode;
   childIsLabel: boolean;
@@ -87,13 +88,13 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   }
 
   componentDidUpdate(prevProps: SelectFieldSingleProps): void {
-    const { creatable, options, value } = this.props;
+    const { allWordsMatch, creatable, options, value } = this.props;
     const { display } = this.state;
 
     if (prevProps.options !== options) {
       this.setState(({ open }) => ({
         display: getDisplay(this.props),
-        filteredOptions: open ? fuzzyFilter(options, display) : options
+        filteredOptions: open ? fuzzyFilter(options, display, allWordsMatch) : options
       }));
     } else if (prevProps.value !== value && (!creatable || !display)) {
       this.setState({ display: getDisplay(this.props) });
@@ -163,7 +164,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   };
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { options, fixedValue } = this.props;
+    const { allWordsMatch, options, fixedValue } = this.props;
     const { display } = this.state;
 
     const normal = this.getValue();
@@ -177,7 +178,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     if (!fixedValue) {
       this.setState({
         display: nextDisplay || "",
-        filteredOptions: fuzzyFilter(options, nextDisplay),
+        filteredOptions: fuzzyFilter(options, nextDisplay, allWordsMatch),
         open: true
       });
     }

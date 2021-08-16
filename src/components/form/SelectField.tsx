@@ -11,6 +11,7 @@ import useDisabled from "./useDisabled";
 import DoorEffect from "../DoorEffect";
 
 type SelectFieldCommonProps = {
+  allWordsMatch?: boolean;
   ariaLabel?: string;
   autoFocus?: boolean;
   children: React.ReactNode;
@@ -55,6 +56,7 @@ type SelectFieldProps = SelectFieldCommonProps & (
 );
 
 const SelectField: React.FC<SelectFieldProps> = ({
+  allWordsMatch = false,
   allowEmpty,
   ariaLabel,
   autoFocus = false,
@@ -101,6 +103,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   const context = useForm();
   const passed = {
     ...context,
+    allWordsMatch,
     allowEmpty,
     ariaLabel,
     autoFocus,
