@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.9.0] - 2021-09-17
+
+### Changed
+
+- Trim selected value in select fields if the value is too long
+
 ## [18.8.0] - 2021-08-16
 
 ### Changed
