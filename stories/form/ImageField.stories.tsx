@@ -45,6 +45,7 @@ storiesOf("Form/ImageField", module)
       <Container imageAsBackground onChange={onChange} name="image" required value={selectedImage} buttonLabel="Upload your own image"><></></Container>
     );
   })
+  .add("asButton", () => <Container name="image" asButtonView><></></Container>)
   .add("validator", () => {
     const validator = (value: ImageFieldValue) => {
       if (value instanceof File && value.type === "image/png") {

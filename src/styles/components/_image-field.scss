@@ -7,6 +7,10 @@
   position: relative;
   text-align: center;
 
+  &-btn {
+    min-height: 100%;
+  }
+
   &-drag,
   &:focus,
   &:hover {

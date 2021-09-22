@@ -46,9 +46,9 @@ storiesOf("Form/MediaField", module)
     );
   })
   .add("backgroundVideo", () => {
-    const [selectedVideo, setSelectedVideo]: [any, any] = useState("https://images.unsplash.com/photo-1525546822429-a214a6739ee7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80");// "http://localhost:3001/38e345e1-0aa2-4cd6-9540-5ea5de345b24");
+    const [selectedVideo, setSelectedVideo]: [any, any] = useState("http://localhost:3001/ada4708e-38ec-49d3-a790-e55dad7c4267");
     const [_thumb, setThumb] = useState();// "http://localhost:3001/287fd1d9-2e1a-4ef6-a19d-d18198a2763d");
-    const [selectedThumbnailUrl, setSelectedThumbnailUrl]: [any, any] = useState();// "http://localhost:3001/287fd1d9-2e1a-4ef6-a19d-d18198a2763d");
+    const [selectedThumbnailUrl, setSelectedThumbnailUrl]: [any, any] = useState("http://localhost:3001/31d1cfac-974d-400f-a476-43e69895e9b5");// "http://localhost:3001/287fd1d9-2e1a-4ef6-a19d-d18198a2763d");
     // const [progress, setProgress] = useState(0);
     const onChange = (media: any, thumbUrl: any, _gifUrl: any, _duration: any) => {
       if (media) {
@@ -105,6 +105,12 @@ storiesOf("Form/MediaField", module)
         <></>
       </Container>
     );
+  })
+  .add("asButton", () => {
+    const onChange = (media: any, thumbUrl: any, _gifUrl: any, _duration: any) => {
+      console.log(media, thumbUrl, _duration);
+    };
+    return <Container name="image" asButtonView onChange={onChange}><></></Container>;
   })
   .add("validator", () => {
     const validator = (value: MediaFieldValue) => {

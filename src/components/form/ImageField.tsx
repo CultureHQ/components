@@ -25,6 +25,7 @@ type ImageFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   required?: boolean;
   validator?: (value: ImageFieldValue) => FormFieldError;
   value?: ImageFieldValue;
+  asButtonView?: boolean
 };
 
 type ImageFieldState = {
@@ -129,13 +130,67 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
   render() {
     const {
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
-      disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
+      disabledStates, errors, name, onChange, onError, onFieldDisabledChange, asButtonView,
       onFormChange, progress, required, submitted, submitting, validator, value, values, ...props
     } = this.props;
 
     const { dragging, editorOpen, failed, image, preview, touched } = this.state;
 
     const normal = value || (values[name] as ImageFieldValue | undefined) || null;
+
+    if (asButtonView) {
+      return (
+        <label className={classnames("chq-ffd", className, imageAsBackground && "chq-ffd--bg-img")} htmlFor={name}>
+          <div
+            className="chq-ffd--im chq-ffd--im-btn"
+            onDragEnter={this.handleDragEnter}
+            onDragLeave={this.handleDragLeave}
+            onDragOver={this.handleDragOver}
+            onDrop={this.handleDrop}
+          >
+            <div className="chq-btn">
+              <Icon icon="images" />
+              <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload an image"}</span>
+              <input
+                accept="image/*"
+                ref={this.inputRef}
+                {...props}
+                type="file"
+                id={name}
+                name={name}
+                onChange={this.handleFileSelected}
+              />
+            </div>
+            {typeof progress === "number" && (
+              <div
+                className="chq-ffd--im--prog"
+                role="progressbar"
+                aria-valuemin={0}
+                aria-valuenow={progress}
+                aria-valuemax={100}
+              >
+                <div style={{ width: `${progress}%` }} />
+              </div>
+            )}
+          </div>
+          {failed && (
+            <p className="chq-ffd--rq">Not a valid image.</p>
+          )}
+          {editorOpen && (
+            <ModalDialog onClose={this.handleClose}>
+              <ModalDialog.Body>
+                <ImageEditor
+                  aspectRatio={aspectRatio}
+                  image={preview}
+                  onEdit={this.handleImageEdited}
+                  onFailure={this.handleImageFailure}
+                />
+              </ModalDialog.Body>
+            </ModalDialog>
+          )}
+        </label>
+      );
+    }
 
     return (
       <div className={classnames(imageAsBackground && "chq-ffd--bg-img-container")}>
