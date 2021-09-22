@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.10.1] - 2021-09-22
+
+### Changed
+
+- Merging changes
+
 ## [18.10.0] - 2021-09-22
 
 ### Changed
