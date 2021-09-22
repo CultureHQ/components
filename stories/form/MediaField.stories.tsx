@@ -90,8 +90,6 @@ storiesOf("Form/MediaField", module)
       setTimeout(onTimeout, 50);
     }
     */
-    console.log(getSelectedMedia());
-    console.log(selectedThumbnailUrl);
     return (
       <Container
         videoThumb={selectedThumbnailUrl}
@@ -107,6 +105,12 @@ storiesOf("Form/MediaField", module)
         <></>
       </Container>
     );
+  })
+  .add("asButton", () => {
+    const onChange = (media: any, thumbUrl: any, _gifUrl: any, _duration: any) => {
+      console.log(media, thumbUrl, _duration);
+    };
+    return <Container name="image" asButtonView onChange={onChange}><></></Container>;
   })
   .add("validator", () => {
     const validator = (value: MediaFieldValue) => {

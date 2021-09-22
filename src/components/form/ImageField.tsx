@@ -8,7 +8,6 @@ import ImagePreview from "../ImagePreview";
 import FormError from "./FormError";
 import { FormState, withForm } from "./Form";
 import { FormFieldError } from "./typings";
-import Button from "../buttons/Button";
 
 export type ImageFieldValue = Blob | File | string | null;
 
@@ -143,7 +142,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
       return (
         <label className={classnames("chq-ffd", className, imageAsBackground && "chq-ffd--bg-img")} htmlFor={name}>
           <div
-            className="chq-ffd--im"
+            className="chq-ffd--im chq-ffd--im-btn"
             onDragEnter={this.handleDragEnter}
             onDragLeave={this.handleDragLeave}
             onDragOver={this.handleDragOver}

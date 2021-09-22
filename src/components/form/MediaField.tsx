@@ -32,6 +32,7 @@ type MediaFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   value?: MediaFieldValue;
   videoThumb?: MediaFieldValue;
   showControls?: boolean;
+  asButtonView?: boolean
 };
 
 type MediaFieldState = {
@@ -195,7 +196,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
       onFormChange, progress, required, submitted, submitting, validator, value,
-      videoThumb, values, onProcessing, showControls = true, ...props
+      videoThumb, values, onProcessing, showControls = true, asButtonView, ...props
     } = this.props;
 
     const {
@@ -204,6 +205,67 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     } = this.state;
 
     const normal: any = value || (values[name] as MediaFieldValue | undefined) || null;
+
+    if (asButtonView) {
+      return (
+        <label className={classnames("chq-ffd", className, imageAsBackground && "chq-ffd--bg-img")} htmlFor={name}>
+          <div
+            className="chq-ffd--im chq-ffd--im-btn"
+            onDragEnter={this.handleDragEnter}
+            onDragLeave={this.handleDragLeave}
+            onDragOver={this.handleDragOver}
+            onDrop={this.handleDrop}
+          >
+            <div className="chq-btn">
+              <Icon icon="images" />
+              <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload media"}</span>
+              <input
+                accept="image/*,video/*"
+                ref={this.inputRef}
+                {...props}
+                type="file"
+                id={name}
+                name={name}
+                onChange={this.handleFileSelected}
+              />
+            </div>
+            {typeof progress === "number" && (
+              <div
+                className="chq-ffd--im--prog"
+                role="progressbar"
+                aria-valuemin={0}
+                aria-valuenow={progress}
+                aria-valuemax={100}
+              >
+                <div style={{ width: `${progress}%` }} />
+              </div>
+            )}
+          </div>
+          {failed && (
+            <p className="chq-ffd--rq">Not a valid image.</p>
+          )}
+          {editorOpen && (
+            <ModalDialog onClose={this.handleClose}>
+              <ModalDialog.Body>
+                <ImageEditor
+                  aspectRatio={aspectRatio}
+                  image={preview}
+                  onEdit={this.handleImageEdited}
+                  onFailure={this.handleImageFailure}
+                />
+              </ModalDialog.Body>
+            </ModalDialog>
+          )}
+          {videoEditorOpen && (
+            <VideoEditor
+              video={video}
+              onEdit={this.handleVideoEdited}
+              onProcessing={onProcessing}
+            />
+          )}
+        </label>
+      );
+    }
 
     return (
       <div className={classnames(imageAsBackground && "chq-ffd--bg-img-container")}>
