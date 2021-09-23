@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.12.1] - 2021-09-23
+
+### Changed
+
+- Exporting video editor and adding a prop to return the loader or not
+
 ## [18.12.0] - 2021-09-23
 
 ### Added

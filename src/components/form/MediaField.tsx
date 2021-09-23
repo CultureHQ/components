@@ -261,6 +261,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
               video={video}
               onEdit={this.handleVideoEdited}
               onProcessing={onProcessing}
+              asButtonView={asButtonView}
             />
           )}
         </label>

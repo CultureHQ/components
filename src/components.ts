@@ -26,6 +26,7 @@ export { default as Table } from "./components/Table";
 export { default as Tag } from "./components/Tag";
 export { default as Thumbnail } from "./components/Thumbnail";
 export { default as Tooltip } from "./components/Tooltip";
+export { default as VideoEditor } from "./components/VideoEditor";
 export { default as Warning } from "./components/Warning";
 
 export { default as ActionButton } from "./components/buttons/ActionButton";

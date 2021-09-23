@@ -107,8 +107,7 @@ storiesOf("Form/MediaField", module)
     );
   })
   .add("asButton", () => {
-    const onChange = (media: any, thumbUrl: any, _gifUrl: any, _duration: any) => {
-      console.log(media, thumbUrl, _duration);
+    const onChange = (_media: any, _thumbUrl: any, _gifUrl: any, _duration: any) => {
     };
     return <Container name="image" asButtonView onChange={onChange}><></></Container>;
   })
