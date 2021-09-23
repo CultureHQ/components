@@ -153,6 +153,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         viewBox = "410";
         break;
       case "video-camera":
+      case "video-camera-filled":
         viewBox = "480";
         break;
       case "page-filled":
