@@ -65,6 +65,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "book-filled":
       case "calendar-date":
       case "calendar-date-filled":
+      case "cancel":
       case "checklist":
       case "clipboard":
       case "diamond":
@@ -93,6 +94,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "linkedin":
       case "medal":
       case "medal-filled":
+      case "microphone":
       case "mortarboard":
       case "mortarboard-filled":
       case "open-book":
@@ -133,6 +135,9 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "clock-filled":
         viewBox = "16";
         break;
+      case "account":
+        viewBox = "32";
+        break;
       case "play-no-border":
         viewBox = "264";
         break;
@@ -142,13 +147,43 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         break;
       case "building":
       case "building-filled":
-        viewBox = "468";
+        viewBox = "410";
+        break;
+      case "checkmark-filled":
+        viewBox = "410";
+        break;
+      case "video-camera":
+        viewBox = "480";
         break;
       case "page-filled":
         viewBox = "640";
         break;
       default:
         break;
+    }
+
+    if (icon === "account") {
+      return (
+        <svg
+          aria-hidden
+          role="presentation"
+          width="22px"
+          height="22px"
+          viewBox={`0 0 ${viewBox} ${viewBox}`}
+          x="0px"
+          y="0px"
+          xmlSpace="preserve"
+          className={className}
+        >
+          <g>
+            <path d="m16 17a6 6 0 1 1 6-6 6 6 0 0 1 -6 6zm0-10a4 4 0 1 0 4 4 4 4 0 0 0 -4-4z" />
+            <path d="m16 31a15 15 0 0 1 -11.59-5.49l-.52-.64.52-.63a15 15 0 0 1 23.18 0l.52.63-.52.64a15 15 0 0 1 -11.59 5.49zm-9.49-6.12a13 13 0 0 0 19 0 13 13 0 0 0 -19 0z" />
+            <path d="m16 31a15 15 0 1 1 11.59-5.49 15 15 0 0 1 -11.59 5.49zm0-28a13 13 0 1 0 13 13 13 13 0 0 0 -13-13z" />
+            <path d="m5.18 24.88s10.07 11.25 20.32 1.12l1.32-1.12s-8.56-8.88-17.25-3.55z" />
+            <circle cx="16" cy="11" r="5" />
+          </g>
+        </svg>
+      );
     }
 
     if (icon === "diamond-filled") {
