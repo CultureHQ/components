@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.12.2] - 2021-09-23
+
+### Changed
+
+- Adding style to select field with image
+
 ## [18.12.1] - 2021-09-23
 
 ### Changed

@@ -80,6 +80,7 @@ const SelectFieldSingleValue: React.FC<SelectFieldSingleValueProps> = React.memo
         onBlur={onUnselected}
         placeholder={placeholder}
         value={display}
+        style={imageIconPath ? { paddingLeft: "40px" } : {}}
       />
       <SelectFieldCaret open={open} />
     </>
