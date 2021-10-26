@@ -138,6 +138,9 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "account":
         viewBox = "32";
         break;
+      case "drag":
+        viewBox = "64";
+        break;
       case "play-no-border":
         viewBox = "264";
         break;

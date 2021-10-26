@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.13.0] - 2021-10-25
+
+### Added
+
+- Adding new drag icon
+
 ## [18.12.2] - 2021-09-23
 
 ### Changed
