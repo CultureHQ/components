@@ -135,6 +135,11 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "clock-filled":
         viewBox = "16";
         break;
+      case "linkedin-comment":
+      case "linkedin-share":
+      case "linkedin-thumbsup":
+        viewBox = "24";
+        break;
       case "account":
         viewBox = "32";
         break;
