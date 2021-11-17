@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.16.0] - 2021-11-17
+
+### Added
+
+- Validation creatable select field no case sensitive
+
 ## [18.15.0] - 2021-11-10
 
 ### Added

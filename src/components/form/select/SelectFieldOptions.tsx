@@ -8,13 +8,14 @@ import Icon from "../../Icon";
 type IsCreatingOptionOpts = Pick<SelectFieldPassedProps, "display" | "multiple" | "options" | "value">;
 
 const isCreatingOption = ({ display, multiple, options, value }: IsCreatingOptionOpts) => {
-  const matchedLabel = options.some(option => option.label === display);
+  const matchedLabel = options.some(option => option.label.toLowerCase() === display.toLowerCase());
 
   if (!multiple) {
     return !matchedLabel && display !== value;
   }
 
   const multiValue = value as null | SelectValue[];
+
   return !matchedLabel && (!multiValue || !multiValue.some(item => item === display));
 };
 
