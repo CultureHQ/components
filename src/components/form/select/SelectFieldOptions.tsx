@@ -8,7 +8,9 @@ import Icon from "../../Icon";
 type IsCreatingOptionOpts = Pick<SelectFieldPassedProps, "display" | "multiple" | "options" | "value">;
 
 const isCreatingOption = ({ display, multiple, options, value }: IsCreatingOptionOpts) => {
-  const matchedLabel = options.some(option => option.label.toLowerCase() === display.toLowerCase());
+  const matchedLabel = options.some(
+    option => option.label.toLowerCase() === display?.toLowerCase()
+  );
 
   if (!multiple) {
     return !matchedLabel && display !== value;

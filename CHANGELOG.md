@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.16.1] - 2021-11-22
+
+### Changed
+
+- Validation in select field when display is null
+
 ## [18.16.0] - 2021-11-17
 
 ### Added
