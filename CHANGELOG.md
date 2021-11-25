@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.18.0] - 2021-11-25
+
+### Changed
+
+- Adding new prop to confirm dialog
+
 ## [18.17.0] - 2021-11-25
 
 ### Changed

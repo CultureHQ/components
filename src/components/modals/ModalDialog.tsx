@@ -53,6 +53,7 @@ type ModalDialogProps = {
   appElement?: string | HTMLElement;
   bodyOpenClassName?: string;
   children: React.ReactNode;
+  disclaimer?: React.ReactNode;
   className?: string;
   contentRef?: React.Ref<HTMLDivElement>;
   entrance?: keyof typeof entrances;
