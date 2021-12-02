@@ -64,33 +64,20 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
             onClose={this.handleClose}
             width={width}
           >
-            <ModalDialog.Body>{children}</ModalDialog.Body>
-            {disclaimer ? (
-              <ModalDialog.Footer className="chq-pan--ft--vertical">
-                <div className="chq-pan--ft--vertical-btn">
-                  <div>
-                    <Button inverted onClick={this.handleClose}>Cancel</Button>
-                  </div>
-                  <div>
-                    <Button autoFocus primary danger={danger} onClick={this.handleAccept}>
-                      {accept}
-                    </Button>
-                  </div>
-                </div>
-                {disclaimer}
-              </ModalDialog.Footer>
-            ) : (
-              <ModalDialog.Footer>
-                <div>
-                  <Button inverted onClick={this.handleClose}>Cancel</Button>
-                </div>
-                <div>
-                  <Button autoFocus primary danger={danger} onClick={this.handleAccept}>
-                    {accept}
-                  </Button>
-                </div>
-              </ModalDialog.Footer>
-            )}
+            <ModalDialog.Body>
+              {children}
+              {disclaimer && (<div className="chq-cnf-disclaimer">{disclaimer}</div>)}
+            </ModalDialog.Body>
+            <ModalDialog.Footer>
+              <div>
+                <Button inverted onClick={this.handleClose}>Cancel</Button>
+              </div>
+              <div>
+                <Button autoFocus primary danger={danger} onClick={this.handleAccept}>
+                  {accept}
+                </Button>
+              </div>
+            </ModalDialog.Footer>
           </ModalDialog>
         )}
       </>
