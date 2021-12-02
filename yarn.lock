@@ -2915,13 +2915,29 @@
     core-js "^3.6.5"
     find-up "^4.1.0"
 
-"@storybook/source-loader@6.4.3", "@storybook/source-loader@^6.2.9":
+"@storybook/source-loader@6.4.3":
   version "6.4.3"
   resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-6.4.3.tgz#8b89afd2a5529639e0ed35d357632cff1ac0aeca"
   integrity sha512-BsYsZOVUYveD6oRN+Fae22ZFC2AYGoIrQj7loZPb3AWih8X4/3Jb70eoXB2yBzE+lVjQodTad/TDAmMR2OBVrg==
   dependencies:
     "@storybook/addons" "6.4.3"
     "@storybook/client-logger" "6.4.3"
+    "@storybook/csf" "0.0.2--canary.87bc651.0"
+    core-js "^3.8.2"
+    estraverse "^5.2.0"
+    global "^4.4.0"
+    loader-utils "^2.0.0"
+    lodash "^4.17.20"
+    prettier "^2.2.1"
+    regenerator-runtime "^0.13.7"
+
+"@storybook/source-loader@^6.2.9":
+  version "6.4.4"
+  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-6.4.4.tgz#3ddc06f6b851e73a017d25118d29fc28c0cdaedf"
+  integrity sha512-r4Orjieass7ngOI1UwUTg4kYqrBpABuh5W5Dn0EQhFXtKt0GeCqMiL4vETMLwfq4RLBg5G6gSSoizjuMntaQcA==
+  dependencies:
+    "@storybook/addons" "6.4.4"
+    "@storybook/client-logger" "6.4.4"
     "@storybook/csf" "0.0.2--canary.87bc651.0"
     core-js "^3.8.2"
     estraverse "^5.2.0"
