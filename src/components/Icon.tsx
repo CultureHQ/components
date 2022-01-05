@@ -76,6 +76,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "file":
       case "file-filled":
       case "global":
+      case "global-filled":
       case "hammer-filled":
       case "hammer":
       case "home":
@@ -142,6 +143,8 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         viewBox = "24";
         break;
       case "account":
+      case "diagram":
+      case "diagram-filled":
         viewBox = "32";
         break;
       case "drag":
@@ -161,6 +164,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "checkmark-filled":
         viewBox = "410";
         break;
+      case "global-outline":
       case "video-camera":
       case "video-camera-filled":
         viewBox = "480";
