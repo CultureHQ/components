@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useContext, useMemo, useRef, useState } from "react";
 import { useClickOutside } from "@culturehq/hooks";
 
 import classnames from "../classnames";
@@ -127,16 +127,6 @@ const Dropdown: DropdownComponent = ({ children, className, onChange, selected, 
 
   const buttonRef = useRef<HTMLButtonElement>(null);
   const buttonId = useId();
-
-  useEffect(
-    () => {
-      if (open === false && buttonRef.current) {
-        buttonRef.current.focus();
-      }
-    },
-    [buttonRef, open, setOpen]
-  );
-
   const containerRef = useClickOutside<HTMLDivElement>(onClose);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
