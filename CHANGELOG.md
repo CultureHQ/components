@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.19.1] - 2022-01-06
+
+### Changed
+
+- Fixing problem with Dropdown because of the focus
+
 ## [18.19.0] - 2022-01-04
 
 ### Added
