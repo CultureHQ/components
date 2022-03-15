@@ -4,7 +4,9 @@ const makeSegments = (value: string) => (
   value.toLowerCase().split(" ").filter(Boolean)
 );
 
-const fuzzyFilter = (options: SelectOption[], matchable: string): SelectOption[] => {
+const fuzzyFilter = (
+  options: SelectOption[], matchable: string, allMatch = false
+): SelectOption[] => {
   if (!matchable) {
     return options;
   }
@@ -12,9 +14,14 @@ const fuzzyFilter = (options: SelectOption[], matchable: string): SelectOption[]
   const terms = makeSegments(matchable);
 
   return options.filter(
-    ({ label }) => makeSegments(label).some(segment => (
-      terms.some(term => segment.startsWith(term) || segment.startsWith(`#${term}`))
-    ))
+    ({ label }) => {
+      if (allMatch) {
+        return terms.every(term => (label.toLowerCase().includes(term)));
+      }
+      return makeSegments(label).some(segment => (
+        terms.some(term => segment.startsWith(term) || segment.startsWith(`#${term}`))
+      ));
+    }
   );
 };
 
