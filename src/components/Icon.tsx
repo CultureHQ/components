@@ -65,6 +65,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "book-filled":
       case "calendar-date":
       case "calendar-date-filled":
+      case "cancel":
       case "checklist":
       case "clipboard":
       case "diamond":
@@ -75,6 +76,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "file":
       case "file-filled":
       case "global":
+      case "global-filled":
       case "hammer-filled":
       case "hammer":
       case "home":
@@ -93,6 +95,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "linkedin":
       case "medal":
       case "medal-filled":
+      case "microphone":
       case "mortarboard":
       case "mortarboard-filled":
       case "open-book":
@@ -133,6 +136,20 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "clock-filled":
         viewBox = "16";
         break;
+      case "linkedin-filled":
+      case "linkedin-comment":
+      case "linkedin-share":
+      case "linkedin-thumbsup":
+        viewBox = "24";
+        break;
+      case "account":
+      case "diagram":
+      case "diagram-filled":
+        viewBox = "32";
+        break;
+      case "drag":
+        viewBox = "64";
+        break;
       case "play-no-border":
         viewBox = "264";
         break;
@@ -142,13 +159,45 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         break;
       case "building":
       case "building-filled":
-        viewBox = "468";
+        viewBox = "410";
+        break;
+      case "checkmark-filled":
+        viewBox = "410";
+        break;
+      case "global-outline":
+      case "video-camera":
+      case "video-camera-filled":
+        viewBox = "480";
         break;
       case "page-filled":
         viewBox = "640";
         break;
       default:
         break;
+    }
+
+    if (icon === "account") {
+      return (
+        <svg
+          aria-hidden
+          role="presentation"
+          width="22px"
+          height="22px"
+          viewBox={`0 0 ${viewBox} ${viewBox}`}
+          x="0px"
+          y="0px"
+          xmlSpace="preserve"
+          className={className}
+        >
+          <g>
+            <path d="m16 17a6 6 0 1 1 6-6 6 6 0 0 1 -6 6zm0-10a4 4 0 1 0 4 4 4 4 0 0 0 -4-4z" />
+            <path d="m16 31a15 15 0 0 1 -11.59-5.49l-.52-.64.52-.63a15 15 0 0 1 23.18 0l.52.63-.52.64a15 15 0 0 1 -11.59 5.49zm-9.49-6.12a13 13 0 0 0 19 0 13 13 0 0 0 -19 0z" />
+            <path d="m16 31a15 15 0 1 1 11.59-5.49 15 15 0 0 1 -11.59 5.49zm0-28a13 13 0 1 0 13 13 13 13 0 0 0 -13-13z" />
+            <path d="m5.18 24.88s10.07 11.25 20.32 1.12l1.32-1.12s-8.56-8.88-17.25-3.55z" />
+            <circle cx="16" cy="11" r="5" />
+          </g>
+        </svg>
+      );
     }
 
     if (icon === "diamond-filled") {
@@ -331,6 +380,55 @@ class Icon extends React.PureComponent<IconProps, IconState> {
           <circle fill={color} cx="136" cy="76" r="15" />
           <circle fill={color} cx="196" cy="76" r="15" />
           <path fill={color} d="m346 91h90c8.284 0 15-6.716 15-15s-6.716-15-15-15h-90c-8.284 0-15 6.716-15 15s6.716 15 15 15z" />
+        </svg>
+      );
+    }
+
+    if (icon === "code") {
+      return (
+        <svg
+          aria-hidden
+          role="presentation"
+          width="22px"
+          height="22px"
+          viewBox="0 0 788 788"
+          x="0px"
+          y="0px"
+          xmlSpace="preserve"
+          className={className}
+        >
+          <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g id="Group-3" transform="translate(0.000000, -4.000000)" fill="#000000">
+              <g id="arrow-point-to-right" transform="translate(530.000000, 94.000000)" fillRule="nonzero">
+                <path d="M248.441,248.292 L54.154,442.573 C41.795,454.938 21.757,454.938 9.404,442.573 C-2.95,430.219 -2.95,410.182 9.404,397.829 L181.318,225.92 L9.409,54.017 C-2.945,41.658 -2.945,21.623 9.409,9.269 C21.763,-3.09 41.8,-3.09 54.159,9.269 L248.446,203.553 C254.623,209.733 257.708,217.824 257.708,225.919 C257.708,234.018 254.617,242.115 248.441,248.292 Z" />
+              </g>
+              <g id="arrow-point-to-right" transform="translate(129.000000, 320.000000) scale(-1, 1) translate(-129.000000, -320.000000) translate(0.000000, 94.000000)" fillRule="nonzero">
+                <path d="M248.441,248.292 L54.154,442.573 C41.795,454.938 21.757,454.938 9.404,442.573 C-2.95,430.219 -2.95,410.182 9.404,397.829 L181.318,225.92 L9.409,54.017 C-2.945,41.658 -2.945,21.623 9.409,9.269 C21.763,-3.09 41.8,-3.09 54.159,9.269 L248.446,203.553 C254.623,209.733 257.708,217.824 257.708,225.919 C257.708,234.018 254.617,242.115 248.441,248.292 Z" />
+              </g>
+              <rect id="Rectangle" transform="translate(394.000000, 320.500000) rotate(8.000000) translate(-394.000000, -320.500000)" x="362" y="2" width="64" height="637" rx="32" />
+            </g>
+          </g>
+        </svg>
+      );
+    }
+
+    if (icon === "folder") {
+      return (
+        <svg
+          aria-hidden
+          role="presentation"
+          width="22px"
+          height="22px"
+          viewBox="0 0 696 564"
+          x="0px"
+          y="0px"
+          xmlSpace="preserve"
+          className={className}
+        >
+          <g id="share-database" fillRule="nonzero">
+            <path d="M696,102.545521 L696,487.090975 C696,529.566693 662.613234,564.000066 621.428571,564.000066 L74.5714286,564.000066 C33.3867658,564.000066 0,529.566693 0,487.090975 L0,76.909157 C0,34.433439 33.3867658,2.11870831e-13 74.5714286,2.11870831e-13 L267.462857,2.11870831e-13 C288.717136,-0.0286478044 308.973344,9.29778018 323.142857,25.6364297 L621.428571,25.6364297 C662.613234,25.6364297 696,60.0698026 696,102.545521 Z M618.445714,76.9090909 L348,76.9090909 L353.468571,88.4454545 C357.720772,97.1490973 366.390386,102.61328 375.84,102.545455 L618.445714,102.545455 C626.925561,102.61479 635.331818,104.175349 643.302857,107.16 L643.302857,102.545455 C643.302857,88.3868819 632.173935,76.9090909 618.445714,76.9090909 Z M646.285714,205.091533 L646.285714,179.45517 C646.285714,165.296597 635.156792,153.818806 621.428571,153.818806 L378.822857,153.818806 C350.508051,153.876196 324.604393,137.389937 311.957143,111.262442 L289.834286,65.3733515 C285.582085,56.6697087 276.912471,51.2055262 267.462857,51.2727273 L74.5714286,51.2727273 C60.8432076,51.2727273 49.7142857,62.7511424 49.7142857,76.9097151 L49.7142857,487.091533 C49.7142857,501.250106 60.8432076,512.727897 74.5714286,512.727897 L621.428571,512.727897 C635.156792,512.727897 646.285714,501.250106 646.285714,487.091533 L646.285714,205.091533 Z" id="Shape" />
+          </g>
+          <path d="M456.614194,276.418211 C461.341153,280.771872 464,286.69826 464,292.880666 C464,299.063072 461.341153,304.98946 456.614194,309.34312 C451.925838,313.732629 445.543849,316.201665 438.886161,316.201665 C432.228472,316.201665 425.846483,313.732629 421.158127,309.34312 L388.948039,279.200598 L388.948039,408.813444 C388.948039,421.619025 377.76901,432 363.978978,432 C350.188947,432 339.009917,421.619025 339.009917,408.813444 L339.009917,279.200598 L306.799829,309.34312 C300.466213,315.224589 291.234766,317.521564 282.582885,315.368797 C273.931005,313.21603 267.173117,306.940578 264.854852,298.906342 C262.536588,290.872107 265.010147,282.29968 271.343763,276.418211 L346.250945,206.858544 C350.939301,202.469036 357.321289,200 363.978978,200 C370.636667,200 377.018656,202.469036 381.707011,206.858544 L456.614194,276.418211 Z" id="Path" transform="translate(364.000000, 316.000000) rotate(90.000000) translate(-364.000000, -316.000000) " />
         </svg>
       );
     }
