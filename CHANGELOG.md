@@ -6,6 +6,216 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.19.1] - 2022-01-06
+
+### Changed
+
+- Fixing problem with Dropdown because of the focus
+
+## [18.19.0] - 2022-01-04
+
+### Added
+
+- Adding new icons
+
+## [18.18.1] - 2021-11-25
+
+### Changed
+
+- Changing styles in confirm dialog disclaimer
+
+## [18.18.0] - 2021-11-25
+
+### Changed
+
+- Adding new prop to confirm dialog
+
+## [18.17.0] - 2021-11-25
+
+### Changed
+
+- Adding new folder icon
+
+## [18.16.1] - 2021-11-22
+
+### Changed
+
+- Validation in select field when display is null
+
+## [18.16.0] - 2021-11-17
+
+### Added
+
+- Validation creatable select field no case sensitive
+
+## [18.15.0] - 2021-11-10
+
+### Added
+
+- Adding new linkedin icon
+
+## [18.14.0] - 2021-11-09
+
+### Added
+
+- Adding new linkedin icons
+
+## [18.13.0] - 2021-10-25
+
+### Added
+
+- Adding new drag icon
+
+## [18.12.2] - 2021-09-23
+
+### Changed
+
+- Adding style to select field with image
+
+## [18.12.1] - 2021-09-23
+
+### Changed
+
+- Exporting video editor and adding a prop to return the loader or not
+
+## [18.12.0] - 2021-09-23
+
+### Added
+
+- Adding new recorded icon
+
+## [18.11.0] - 2021-09-22
+
+### Added
+
+- Adding new recorded icons
+
+## [18.10.1] - 2021-09-22
+
+### Changed
+
+- Merging changes
+
+## [18.10.0] - 2021-09-22
+
+### Changed
+
+- Adding media and image field as button
+
+## [18.9.0] - 2021-09-17
+
+### Changed
+
+- Trim selected value in select fields if the value is too long
+
+## [18.8.0] - 2021-08-16
+
+### Changed
+
+- Adding new prop to SerachField to search by an exact match of a phrase
+
+## [18.7.0] - 2021-08-12
+
+### Changed
+
+- Adding code icon
+
+## [18.6.0] - 2021-08-05
+
+### Changed
+
+- Adding inline styles to react modal
+
+## [18.4.4] - 2021-07-15
+
+### Changed
+
+- Removing heic images
+
+## [18.4.3] - 2021-06-30
+
+### Changed
+
+- Testing heic images
+
+## [18.4.2] - 2021-06-30
+
+### Changed
+
+- Testing heic images
+
+## [18.4.1] - 2021-06-30
+
+### Changed
+
+- Fixing Image Preview render when video is selected
+
+## [18.4.0] - 2021-06-28
+
+### Changed
+
+- Allowing heic images in image input field
+
+## [18.3.6] - 2021-06-22
+
+### Changed
+
+- Allowing hide video controls
+
+## [18.3.5] - 2021-06-21
+
+### Changed
+
+- Using ffmpeg-core full path
+
+## [18.3.4] - 2021-06-17
+
+### Changed
+
+- Always have the same video url to do not blink when the parent state is updated
+
+## [18.3.3] - 2021-06-16
+
+### Changed
+
+- Validating types to show the right values
+
+## [18.3.2] - 2021-06-11
+
+### Changed
+
+- Adding callback to know that the video is processing
+
+## [18.3.1] - 2021-06-11
+
+### Changed
+
+- Adding video preview when it is loaded
+
+## [18.3.0] - 2021-06-11
+
+### Added
+
+- New play icon with no border
+
+## [18.2.1] - 2021-06-10
+
+### Changed
+
+- Return thumbnail as file and not as url
+
+## [18.2.0] - 2021-06-10
+
+### Added
+
+- Getting duration from selected video
+
+## [18.1.0] - 2021-06-10
+
+### Added
+
+- Getting thumbnail from video 00:00
+
 ## [18.0.3] - 2021-06-08
 
 ### Changed

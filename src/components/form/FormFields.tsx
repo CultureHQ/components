@@ -21,10 +21,6 @@ type FormFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacked
   value?: string;
 };
 
-type FormFieldState = {
-  touched: boolean;
-};
-
 const makeFormField = (type: string) => {
   const FormField: React.FC<FormFieldProps> = ({
     addon, autoFocus, children, className, disabled, name, onChange, required,
