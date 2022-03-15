@@ -13,11 +13,11 @@ type ImageEditorProps = {
   video: any;
   onEdit?: (thumb: Blob) => void;
   onProcessing?: (value: boolean) => void;
+  asButtonView?: boolean;
 };
 
-
 const VideoEditor = ({
-  video, onEdit, onProcessing
+  video, onEdit, onProcessing, asButtonView
 }: ImageEditorProps):React.ReactElement => {
   useEffect(() => {
     const getThumb = async () => {
@@ -55,6 +55,10 @@ const VideoEditor = ({
 
     load();
   }, [video, onEdit, onProcessing]);
+
+  if (asButtonView) {
+    return <></>;
+  }
 
   return <Loader loading />;
 };

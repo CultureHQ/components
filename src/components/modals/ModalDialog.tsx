@@ -53,6 +53,7 @@ type ModalDialogProps = {
   appElement?: string | HTMLElement;
   bodyOpenClassName?: string;
   children: React.ReactNode;
+  disclaimer?: React.ReactNode;
   className?: string;
   contentRef?: React.Ref<HTMLDivElement>;
   entrance?: keyof typeof entrances;
@@ -96,7 +97,11 @@ const ModalDialog: ModalDialogComponent = ({
     onRequestClose={onClose}
     isOpen
     style={
-      style ? { ...modalStyle, overlay: { ...modalStyle.overlay, ...style.overlay } } : modalStyle
+      style ? {
+        ...modalStyle,
+        overlay: { ...modalStyle.overlay, ...style.overlay },
+        content: style.content
+      } : modalStyle
     }
   >
     {children}

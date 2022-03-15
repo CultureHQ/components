@@ -4,7 +4,7 @@ import classnames from "../../classnames";
 import Button from "../buttons/Button";
 import ModalDialog from "./ModalDialog";
 
-type ForwardedProps = "appElement" | "children" | "className" | "contentRef" | "entrance" | "width";
+type ForwardedProps = "appElement" | "children" | "className" | "contentRef" | "disclaimer" | "entrance" | "width";
 type ConfirmProps = Pick<React.ComponentProps<typeof ModalDialog>, ForwardedProps> & {
   accept?: string;
   danger?: boolean;
@@ -47,7 +47,7 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
   };
 
   render(): React.ReactElement {
-    const { accept = "Yes", appElement, children, className, contentRef, danger, entrance, trigger, width } = this.props;
+    const { accept = "Yes", appElement, children, className, contentRef, danger, disclaimer, entrance, trigger, width } = this.props;
     const { open } = this.state;
 
     const classList = classnames("chq-cnf", className);
@@ -64,7 +64,10 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
             onClose={this.handleClose}
             width={width}
           >
-            <ModalDialog.Body>{children}</ModalDialog.Body>
+            <ModalDialog.Body>
+              {children}
+              {disclaimer && (<div className="chq-cnf-disclaimer">{disclaimer}</div>)}
+            </ModalDialog.Body>
             <ModalDialog.Footer>
               <div>
                 <Button inverted onClick={this.handleClose}>Cancel</Button>

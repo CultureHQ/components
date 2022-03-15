@@ -10,6 +10,7 @@ import fuzzyFilter from "./fuzzyFilter";
 
 type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
   allowEmpty?: boolean;
+  allWordsMatch?: boolean;
   ariaLabel?: string;
   creatable: boolean;
   creatableLabel: string;
@@ -61,13 +62,13 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
   }
 
   componentDidUpdate(prevProps: SelectFieldMultiProps): void {
-    const { options } = this.props;
+    const { allWordsMatch, options } = this.props;
     const { display } = this.state;
 
     if (prevProps.options !== options) {
       this.setState({
         display: "",
-        filteredOptions: fuzzyFilter(options, display)
+        filteredOptions: fuzzyFilter(options, display, allWordsMatch)
       });
     }
   }
@@ -163,12 +164,12 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
   };
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { options } = this.props;
+    const { allWordsMatch, options } = this.props;
     const nextDisplay = event.target.value;
 
     this.setState({
       display: nextDisplay || "",
-      filteredOptions: fuzzyFilter(options, nextDisplay),
+      filteredOptions: fuzzyFilter(options, nextDisplay, allWordsMatch),
       open: true
     });
   };
