@@ -88,6 +88,17 @@ class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldSta
 
   state = { open: false, touched: false };
 
+  static defaultProps = {
+    autoFocus: undefined,
+    className: undefined,
+    disabled: undefined,
+    offset: undefined,
+    onChange: undefined,
+    required: undefined,
+    validator: undefined,
+    value: undefined
+  };
+
   componentDidMount() {
     const { autoFocus } = this.props;
     const button = this.buttonRef.current;

@@ -43,4 +43,8 @@ const Circles: React.FC<CirclesProps> = ({ className }) => (
   </svg>
 );
 
+Circles.defaultProps = {
+  className: undefined
+};
+
 export default Circles;

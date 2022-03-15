@@ -7,7 +7,6 @@ import Loader from "./Loader";
 type Container = {
   children?: React.ReactNode;
   className?: string;
-  style?: any;
 };
 
 type PanelHeadingProps = Container & {
@@ -27,14 +26,30 @@ const PanelHeading: React.FC<PanelHeadingProps> = ({
   </div>
 );
 
-type PanelBodyProps = Container;
+PanelHeading.defaultProps = {
+  children: undefined,
+  className: undefined,
+  primary: undefined,
+  titleId: undefined
+};
+
+type PanelBodyProps = Container & {
+  style?: any;
+};
 
 const PanelBody: React.FC<PanelBodyProps> = ({ className, children, style }) => (
   <div className={classnames("chq-pan--bd", className)} style={style}>{children}</div>
 );
 
+PanelBody.defaultProps = {
+  children: undefined,
+  className: undefined,
+  style: undefined
+};
+
 type PanelLoaderBodyProps = Container & {
   loading: boolean;
+  style?: any;
 };
 
 const PanelLoaderBody: React.FC<PanelLoaderBodyProps> = ({
@@ -45,11 +60,22 @@ const PanelLoaderBody: React.FC<PanelLoaderBodyProps> = ({
   </PanelBody>
 );
 
+PanelLoaderBody.defaultProps = {
+  children: undefined,
+  className: undefined,
+  style: undefined
+};
+
 type PanelFooterProps = Container;
 
 const PanelFooter: React.FC<PanelFooterProps> = ({ className, children }) => (
   <div className={classnames("chq-pan--ft", className)}>{children}</div>
 );
+
+PanelFooter.defaultProps = {
+  children: undefined,
+  className: undefined
+};
 
 type PanelProps = React.HTMLAttributes<HTMLDivElement> & Container & {
   limitWidth?: boolean;
@@ -67,6 +93,12 @@ const Panel: PanelComponent = ({ className, children, limitWidth = false, ...pro
     {children}
   </div>
 );
+
+Panel.defaultProps = {
+  children: undefined,
+  className: undefined,
+  limitWidth: undefined
+};
 
 Panel.Heading = PanelHeading;
 Panel.Body = PanelBody;

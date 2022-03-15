@@ -54,6 +54,11 @@ const FormComponent: React.FC<FormComponentProps> = React.memo(({ children, ...p
 class Form extends React.Component<FormProps, FormState> {
   private componentIsMounted: boolean;
 
+  static defaultProps = {
+    className: undefined,
+    initialValues: undefined
+  };
+
   constructor(props: FormProps) {
     super(props);
 

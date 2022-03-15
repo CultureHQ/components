@@ -13,4 +13,8 @@ const Nav: React.FC<NavProps> = ({ children, className, ...props }) => (
   </nav>
 );
 
+Nav.defaultProps = {
+  className: undefined
+};
+
 export default Nav;

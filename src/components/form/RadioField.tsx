@@ -88,4 +88,14 @@ const RadioField: React.FC<RadioFieldProps> = ({
   );
 };
 
+RadioField.defaultProps = {
+  autoFocus: undefined,
+  className: undefined,
+  disabled: undefined,
+  onChange: undefined,
+  required: undefined,
+  validator: undefined,
+  value: undefined
+};
+
 export default RadioField;

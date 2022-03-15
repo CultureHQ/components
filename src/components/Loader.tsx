@@ -19,6 +19,11 @@ class Loader extends React.Component<LoaderProps, LoaderState> {
 
   private timeout: null | number = null;
 
+  static defaultProps = {
+    children: undefined,
+    className: undefined
+  };
+
   state = { spinning: false };
 
   componentDidMount(): void {

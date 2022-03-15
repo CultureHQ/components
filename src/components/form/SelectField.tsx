@@ -171,4 +171,28 @@ const SelectField: React.FC<SelectFieldProps> = ({
   );
 };
 
+SelectField.defaultProps = {
+  allWordsMatch: undefined,
+  ariaLabel: undefined,
+  autoFocus: undefined,
+  childIsLabel: undefined,
+  className: undefined,
+  clearValueOnOpen: undefined,
+  creatable: undefined,
+  creatableLabel: undefined,
+  createClickNeeded: undefined,
+  disabled: undefined,
+  multiple: undefined,
+  fixedValue: undefined,
+  imageIconPath: undefined,
+  isDestroyable: undefined,
+  onCloseAction: undefined,
+  onSelected: undefined,
+  onUnselected: undefined,
+  placeholder: undefined,
+  required: undefined,
+  allowEmpty: undefined,
+  removePlacholder: undefined
+};
+
 export default SelectField;

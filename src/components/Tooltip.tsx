@@ -17,6 +17,10 @@ class Tooltip extends React.Component<TooltipProps, Record<string, unknown>> {
 
   private triangle = React.createRef<HTMLSpanElement>();
 
+  static defaultProps = {
+    bottom: undefined
+  };
+
   componentDidMount(): void {
     this.requestComputeOffsets();
 

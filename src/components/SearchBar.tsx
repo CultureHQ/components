@@ -29,9 +29,11 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
   static defaultProps: Partial<SearchBarProps> = {
     autoComplete: "on",
     autoFocus: false,
+    className: undefined,
     placeholder: "",
     throttle: 300,
-    clearOptionEnabled: false
+    clearOptionEnabled: false,
+    onSearchChange: undefined
   };
 
   state = { search: "", searching: false };

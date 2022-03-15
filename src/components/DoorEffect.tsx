@@ -11,6 +11,7 @@ class DoorEffect extends React.PureComponent<DoorEffectProps, Record<string, unk
   doorRef = React.createRef<HTMLDivElement>();
 
   static defaultProps = {
+    className: undefined,
     duration: 150
   };
 

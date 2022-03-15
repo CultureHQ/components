@@ -21,4 +21,9 @@ const Tag: React.FC<TagProps> = ({ children, className, color = "blue" }) => (
   </div>
 );
 
+Tag.defaultProps = {
+  className: undefined,
+  color: undefined
+};
+
 export default Tag;

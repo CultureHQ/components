@@ -33,6 +33,11 @@ const PageLink: React.FC<PageLinkProps> = ({ disabled, children, current, onClic
   );
 };
 
+PageLink.defaultProps = {
+  disabled: undefined,
+  current: undefined
+};
+
 type PageProps = Omit<PageLinkProps, "children">;
 
 const Page: React.FC<PageProps> = ({ page, ...props }) => (
@@ -111,6 +116,10 @@ const Pagination: React.FC<PaginationProps> = ({
       <NextPage currentPage={currentPage} totalPages={totalPages} onClick={onClick} />
     </nav>
   );
+};
+
+Pagination.defaultProps = {
+  className: undefined
 };
 
 export default Pagination;

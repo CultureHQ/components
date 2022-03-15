@@ -61,4 +61,13 @@ const Checkmark: React.FC<CheckmarkProps> = ({
   );
 };
 
+Checkmark.defaultProps = {
+  autoFocus: undefined,
+  checked: undefined,
+  children: undefined,
+  className: undefined,
+  onClick: undefined,
+  label: undefined
+};
+
 export default Checkmark;

@@ -96,4 +96,14 @@ const FileField: React.FC<FileFieldProps> = ({
   );
 };
 
+FileField.defaultProps = {
+  autoFocus: undefined,
+  className: undefined,
+  multiple: undefined,
+  onChange: undefined,
+  required: undefined,
+  validator: undefined,
+  value: undefined
+};
+
 export default FileField;

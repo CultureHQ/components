@@ -19,7 +19,6 @@ type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
   imageIconPath?: string;
   inputRef: React.RefObject<HTMLInputElement>;
   name: string;
-  fixedValue: boolean;
   onCloseAction?: () => void;
   onChange?: (value: null | SelectValue[] | SelectValueWithCategory[]) => void;
   onFocus: () => void;
@@ -43,6 +42,20 @@ type SelectFieldMultiState = {
 
 class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFieldMultiState> {
   private timeout: null | number;
+
+  static defaultProps = {
+    allowEmpty: undefined,
+    allWordsMatch: undefined,
+    ariaLabel: undefined,
+    disabled: undefined,
+    imageIconPath: undefined,
+    onCloseAction: undefined,
+    onChange: undefined,
+    onSelected: undefined,
+    onUnselected: undefined,
+    validator: undefined,
+    value: null
+  };
 
   constructor(props: SelectFieldMultiProps) {
     super(props);

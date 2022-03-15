@@ -60,4 +60,12 @@ const BooleanField: React.FC<BooleanFieldProps> = ({
   );
 };
 
+BooleanField.defaultProps = {
+  autoFocus: undefined,
+  className: undefined,
+  disabled: undefined,
+  onChange: undefined,
+  value: undefined
+};
+
 export default BooleanField;

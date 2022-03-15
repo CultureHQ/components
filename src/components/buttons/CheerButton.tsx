@@ -48,4 +48,11 @@ const CheerButton: React.FC<CheerButtonProps> = ({
   );
 };
 
+CheerButton.defaultProps = {
+  cheered: undefined,
+  className: undefined,
+  name: undefined,
+  small: undefined
+};
+
 export default CheerButton;

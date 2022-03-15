@@ -39,4 +39,12 @@ const Badge: React.FC<BadgeProps> = ({
   );
 };
 
+Badge.defaultProps = {
+  children: undefined,
+  className: undefined,
+  icon: undefined,
+  primary: undefined,
+  onClick: undefined
+};
+
 export default Badge;

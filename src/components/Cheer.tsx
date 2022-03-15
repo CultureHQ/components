@@ -49,6 +49,13 @@ const CheerSVG: React.FC<CheerSVGProps> = ({
   </svg>
 );
 
+CheerSVG.defaultProps = {
+  className: undefined,
+  color: undefined,
+  pop: undefined,
+  small: undefined
+};
+
 type CheerProps = CheerSVGProps & {
   name?: string;
 };
@@ -59,6 +66,14 @@ const Cheer: React.FC<CheerProps> = ({ name, ...props }) => {
   }
 
   return <CheerSVG {...props} />;
+};
+
+Cheer.defaultProps = {
+  className: undefined,
+  color: undefined,
+  pop: undefined,
+  small: undefined,
+  name: undefined
 };
 
 export default Cheer;

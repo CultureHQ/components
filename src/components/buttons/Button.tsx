@@ -16,6 +16,10 @@ const ButtonIcon: React.FC<ButtonIconProps> = ({ icon, loading }) => (
   </>
 );
 
+ButtonIcon.defaultProps = {
+  icon: undefined
+};
+
 type ButtonCommonProps = {
   children?: React.ReactNode;
   className?: string;
@@ -70,5 +74,17 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     </Element>
   );
 });
+
+Button.defaultProps = {
+  children: undefined,
+  className: undefined,
+  icon: undefined,
+  fillParent: undefined,
+  inverted: undefined,
+  primary: undefined,
+  small: undefined,
+  loading: undefined,
+  danger: undefined
+};
 
 export default Button;

@@ -13,4 +13,8 @@ const Success: React.FC<SuccessProps> = ({ children, className }) => (
   </div>
 );
 
+Success.defaultProps = {
+  className: undefined
+};
+
 export default Success;

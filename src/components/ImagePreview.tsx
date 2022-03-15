@@ -19,6 +19,11 @@ class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState>
 
   private containerRef = React.createRef<HTMLSpanElement>();
 
+  static defaultProps = {
+    editorOpen: undefined,
+    imageAsBackground: undefined
+  };
+
   state = { src: null, styles: {} };
 
   componentDidMount(): void {

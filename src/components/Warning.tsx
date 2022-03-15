@@ -14,4 +14,9 @@ const Warning: React.FC<WarningProps> = ({ children, className, role }) => (
   </div>
 );
 
+Warning.defaultProps = {
+  className: undefined,
+  role: undefined
+};
+
 export default Warning;

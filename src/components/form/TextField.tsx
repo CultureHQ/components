@@ -72,4 +72,13 @@ const TextField: React.FC<TextFieldProps> = ({
   );
 };
 
+TextField.defaultProps = {
+  autoFocus: undefined,
+  className: undefined,
+  onChange: undefined,
+  required: undefined,
+  validator: undefined,
+  value: undefined
+};
+
 export default TextField;

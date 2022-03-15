@@ -24,4 +24,9 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
   );
 };
 
+SubmitButton.defaultProps = {
+  children: undefined,
+  disabled: undefined
+};
+
 export default SubmitButton;

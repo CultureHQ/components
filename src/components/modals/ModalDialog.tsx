@@ -42,6 +42,13 @@ const ModalDialogHeading: React.FC<ModalDialogHeadingProps> = ({
   </Panel.Heading>
 );
 
+ModalDialogHeading.defaultProps = {
+  className: undefined,
+  bigCloseIcon: undefined,
+  onClose: undefined,
+  titleId: undefined
+};
+
 const modalStyle = {
   overlay: {
     backgroundColor: "rgba(0, 0, 0, .3)",

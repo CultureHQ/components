@@ -84,4 +84,12 @@ const CentsField: React.FC<CentsFieldProps> = ({
   );
 };
 
+CentsField.defaultProps = {
+  autoFocus: undefined,
+  className: undefined,
+  onChange: undefined,
+  required: undefined,
+  value: undefined
+};
+
 export default CentsField;

@@ -13,4 +13,8 @@ const Spinner: React.FC<SpinnerProps> = ({ className, ...props }) => (
   </div>
 );
 
+Spinner.defaultProps = {
+  className: undefined
+};
+
 export default Spinner;

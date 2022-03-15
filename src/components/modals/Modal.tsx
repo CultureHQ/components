@@ -18,6 +18,15 @@ type ModalState = {
 };
 
 class Modal extends React.Component<ModalProps, ModalState> {
+  static defaultProps = {
+    ariaLabelledBy: undefined,
+    ariaDescribedby: undefined,
+    onClose: undefined,
+    startOpen: undefined,
+    style: undefined,
+    bodyOpenClassName: undefined
+  };
+
   constructor(props: ModalProps) {
     super(props);
 

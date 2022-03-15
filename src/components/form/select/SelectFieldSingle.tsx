@@ -70,6 +70,20 @@ const getDisplay = (props: SelectFieldSingleProps) => {
 class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFieldSingleState> {
   private timeout: null | number;
 
+  static defaultProps = {
+    allowEmpty: undefined,
+    allWordsMatch: undefined,
+    ariaLabel: undefined,
+    disabled: undefined,
+    imageIconPath: undefined,
+    onCloseAction: undefined,
+    onChange: undefined,
+    onSelected: undefined,
+    onUnselected: undefined,
+    validator: undefined,
+    value: null
+  };
+
   constructor(props: SelectFieldSingleProps) {
     super(props);
 

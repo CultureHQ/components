@@ -15,6 +15,11 @@ const PlainButton = React.forwardRef<HTMLButtonElement, PlainButtonProps>(
   )
 );
 
+PlainButton.defaultProps = {
+  children: undefined,
+  className: undefined
+};
+
 PlainButton.displayName = "PlainButton";
 
 export default PlainButton;

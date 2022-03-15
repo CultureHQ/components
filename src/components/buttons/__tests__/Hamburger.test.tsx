@@ -10,6 +10,10 @@ const Container: React.FC<{ open?: boolean }> = ({ open: initialOpen = false }) 
   return <Hamburger open={open} onToggle={onToggle} />;
 };
 
+Container.defaultProps = {
+  open: undefined
+};
+
 test("has no violations", () => (
   expect(<Hamburger onToggle={jest.fn()} />).toHaveNoViolations()
 ));

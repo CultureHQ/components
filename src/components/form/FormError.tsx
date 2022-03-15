@@ -20,6 +20,12 @@ type FormErrorState = {
 class FormError extends React.PureComponent<FormErrorProps, FormErrorState> {
   state = { error: null };
 
+  static defaultProps = {
+    required: undefined,
+    validator: undefined,
+    value: undefined
+  };
+
   componentDidMount(): void {
     this.deriveError();
   }

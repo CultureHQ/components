@@ -17,4 +17,10 @@ const ActionButton: React.FC<ActionButtonProps> = ({ children, className, icon, 
   </button>
 );
 
+ActionButton.defaultProps = {
+  children: undefined,
+  className: undefined,
+  icon: undefined
+};
+
 export default ActionButton;

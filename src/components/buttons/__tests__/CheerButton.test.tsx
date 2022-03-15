@@ -25,6 +25,12 @@ const Container: React.FC<ContainerProps> = ({
   return <CheerButton cheered={cheered} small={small} onCheerToggle={onCheerToggle} />;
 };
 
+Container.defaultProps = {
+  cheered: undefined,
+  onCheerToggle: undefined,
+  small: undefined
+};
+
 test("has no violations", () => (
   expect(<CheerButton cheered onCheerToggle={jest.fn()} />).toHaveNoViolations()
 ));

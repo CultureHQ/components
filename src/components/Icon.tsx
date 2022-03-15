@@ -6,7 +6,6 @@ export type IconName = keyof typeof iconPaths;
 
 type IconProps = {
   className?: string;
-  viewBox?: string;
   icon: IconName;
   color?: string;
   onClick?: any;
@@ -18,6 +17,12 @@ type IconState = {
 
 class Icon extends React.PureComponent<IconProps, IconState> {
   private componentIsMounted = false;
+
+  static defaultProps = {
+    className: undefined,
+    color: undefined,
+    onClick: undefined
+  };
 
   state: IconState = { path: null };
 

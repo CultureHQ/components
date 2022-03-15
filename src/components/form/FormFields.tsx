@@ -79,6 +79,16 @@ const makeFormField = (type: string) => {
     );
   };
 
+  FormField.defaultProps = {
+    addon: undefined,
+    autoFocus: undefined,
+    className: undefined,
+    onChange: undefined,
+    required: undefined,
+    validator: undefined,
+    value: undefined
+  };
+
   return FormField;
 };
 

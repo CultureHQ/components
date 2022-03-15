@@ -32,4 +32,12 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   />
 );
 
+Thumbnail.defaultProps = {
+  as: undefined,
+  className: undefined,
+  size: undefined,
+  square: undefined,
+  title: undefined
+};
+
 export default Thumbnail;

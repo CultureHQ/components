@@ -89,4 +89,10 @@ const TimezoneField: React.FC<TimezoneFieldProps> = ({ onChange, onOffsetChange,
   return <SelectField {...props} onChange={handleChange} options={timezones} />;
 };
 
+TimezoneField.defaultProps = {
+  onChange: undefined,
+  onOffsetChange: undefined,
+  validator: undefined
+};
+
 export default TimezoneField;

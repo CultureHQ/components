@@ -13,4 +13,8 @@ const Info: React.FC<InfoProps> = ({ children, className }) => (
   </div>
 );
 
+Info.defaultProps = {
+  className: undefined
+};
+
 export default Info;

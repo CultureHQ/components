@@ -11,4 +11,8 @@ const Table: React.FC<TableProps> = ({ children, className }) => (
   <table className={classnames("chq-tbl", className)}>{children}</table>
 );
 
+Table.defaultProps = {
+  className: undefined
+};
+
 export default Table;

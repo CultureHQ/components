@@ -22,6 +22,12 @@ const SubnavItem: React.FC<SubnavItemProps> = ({ active, children, className, on
   </button>
 );
 
+SubnavItem.defaultProps = {
+  active: undefined,
+  className: undefined,
+  onClick: undefined
+};
+
 type SubnavProps = {
   activeIndex?: number;
   ariaLabel?: string;
@@ -35,6 +41,12 @@ type SubnavState = {
 };
 
 class Subnav extends React.Component<SubnavProps, SubnavState> {
+  static defaultProps = {
+    activeIndex: undefined,
+    ariaLabel: undefined,
+    className: undefined
+  };
+
   constructor(props: SubnavProps) {
     super(props);
 

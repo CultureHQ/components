@@ -19,6 +19,13 @@ type ConfirmState = {
 };
 
 class Confirm extends React.Component<ConfirmProps, ConfirmState> {
+  static defaultProps = {
+    accept: "Yes",
+    danger: undefined,
+    onOpen: undefined,
+    startOpen: undefined
+  };
+
   constructor(props: ConfirmProps) {
     super(props);
 
@@ -47,7 +54,7 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
   };
 
   render(): React.ReactElement {
-    const { accept = "Yes", appElement, children, className, contentRef, danger, disclaimer, entrance, trigger, width } = this.props;
+    const { accept, appElement, children, className, contentRef, danger, disclaimer, entrance, trigger, width } = this.props;
     const { open } = this.state;
 
     const classList = classnames("chq-cnf", className);
@@ -86,7 +93,14 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
 }
 
 export const ConfirmDelete: React.FC<ConfirmProps> = props => (
-  <Confirm accept="Delete" danger {...props} />
+  <Confirm accept={props.accept} danger {...props} />
 );
+
+ConfirmDelete.defaultProps = {
+  accept: "Delete",
+  danger: undefined,
+  onOpen: undefined,
+  startOpen: undefined
+};
 
 export default Confirm;

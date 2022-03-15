@@ -21,4 +21,9 @@ const Hamburger: React.FC<HamburgerProps> = ({ className, open = false, onToggle
   </button>
 );
 
+Hamburger.defaultProps = {
+  className: undefined,
+  open: undefined
+};
+
 export default Hamburger;

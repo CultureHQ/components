@@ -167,4 +167,10 @@ const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = nu
   );
 };
 
+Calendar.defaultProps = {
+  year: null,
+  month: null,
+  day: null
+};
+
 export default Calendar;

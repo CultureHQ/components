@@ -35,6 +35,11 @@ const GridItem: React.FC<GridItemProps> = ({ children, className, ...sizeProps }
   </div>
 );
 
+GridItem.defaultProps = {
+  children: undefined,
+  className: undefined
+};
+
 type GridProps = {
   children: React.ReactNode;
   className?: string;

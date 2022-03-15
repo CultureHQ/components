@@ -34,6 +34,12 @@ class ImageEditor extends React.Component<ImageEditorProps, Record<string, unkno
 
   private imageRef = React.createRef<HTMLImageElement>();
 
+  static defaultProps = {
+    aspectRatio: undefined,
+    onEdit: undefined,
+    onFailure: undefined
+  };
+
   componentDidMount(): void {
     this.componentIsMounted = true;
 
