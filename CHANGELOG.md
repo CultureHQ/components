@@ -6,6 +6,132 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.19.1] - 2022-01-06
+
+### Changed
+
+- Fixing problem with Dropdown because of the focus
+
+## [18.19.0] - 2022-01-04
+
+### Added
+
+- Adding new icons
+
+## [18.18.1] - 2021-11-25
+
+### Changed
+
+- Changing styles in confirm dialog disclaimer
+
+## [18.18.0] - 2021-11-25
+
+### Changed
+
+- Adding new prop to confirm dialog
+
+## [18.17.0] - 2021-11-25
+
+### Changed
+
+- Adding new folder icon
+
+## [18.16.1] - 2021-11-22
+
+### Changed
+
+- Validation in select field when display is null
+
+## [18.16.0] - 2021-11-17
+
+### Added
+
+- Validation creatable select field no case sensitive
+
+## [18.15.0] - 2021-11-10
+
+### Added
+
+- Adding new linkedin icon
+
+## [18.14.0] - 2021-11-09
+
+### Added
+
+- Adding new linkedin icons
+
+## [18.13.0] - 2021-10-25
+
+### Added
+
+- Adding new drag icon
+
+## [18.12.2] - 2021-09-23
+
+### Changed
+
+- Adding style to select field with image
+
+## [18.12.1] - 2021-09-23
+
+### Changed
+
+- Exporting video editor and adding a prop to return the loader or not
+
+## [18.12.0] - 2021-09-23
+
+### Added
+
+- Adding new recorded icon
+
+## [18.11.0] - 2021-09-22
+
+### Added
+
+- Adding new recorded icons
+
+## [18.10.1] - 2021-09-22
+
+### Changed
+
+- Merging changes
+
+## [18.10.0] - 2021-09-22
+
+### Changed
+
+- Adding media and image field as button
+
+## [18.9.0] - 2021-09-17
+
+### Changed
+
+- Trim selected value in select fields if the value is too long
+
+## [18.8.0] - 2021-08-16
+
+### Changed
+
+- Adding new prop to SerachField to search by an exact match of a phrase
+
+## [18.7.0] - 2021-08-12
+
+### Changed
+
+- Adding code icon
+
+## [18.6.0] - 2021-08-05
+
+### Changed
+
+- Adding inline styles to react modal
+
+## [18.4.4] - 2021-07-15
+
+### Changed
+
+- Removing heic images
+
 ## [18.4.3] - 2021-06-30
 
 ### Changed

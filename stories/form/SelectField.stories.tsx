@@ -66,6 +66,11 @@ storiesOf("Form/SelectField", module)
       </Container>
     );
   })
+  .add("searchMatchAll", () => (
+    <Container>
+      <SelectField name="select" options={options} allWordsMatch>Select</SelectField>
+    </Container>
+  ))
   .add("autoFocus", () => (
     <Container>
       <SelectField name="select" autoFocus options={options}>Select</SelectField>
