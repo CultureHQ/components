@@ -7,6 +7,7 @@ import Loader from "./Loader";
 type Container = {
   children?: React.ReactNode;
   className?: string;
+  style?: any;
 };
 
 type PanelHeadingProps = Container & {
@@ -28,16 +29,18 @@ const PanelHeading: React.FC<PanelHeadingProps> = ({
 
 type PanelBodyProps = Container;
 
-const PanelBody: React.FC<PanelBodyProps> = ({ className, children }) => (
-  <div className={classnames("chq-pan--bd", className)}>{children}</div>
+const PanelBody: React.FC<PanelBodyProps> = ({ className, children, style }) => (
+  <div className={classnames("chq-pan--bd", className)} style={style}>{children}</div>
 );
 
 type PanelLoaderBodyProps = Container & {
   loading: boolean;
 };
 
-const PanelLoaderBody: React.FC<PanelLoaderBodyProps> = ({ className, children, loading }) => (
-  <PanelBody className={className}>
+const PanelLoaderBody: React.FC<PanelLoaderBodyProps> = ({
+  className, children, loading, style
+}) => (
+  <PanelBody className={className} style={style}>
     <Loader loading={loading}>{children}</Loader>
   </PanelBody>
 );

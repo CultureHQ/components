@@ -15,6 +15,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
   option,
   onDeselect
 }) => {
+  const MAX_LENGHT = 40;
   const { label, value, category, categoryIcon, actionButtonCallback, actionAriaLabel } = option;
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -27,7 +28,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
       return (
         <div className="option-group">
           <Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>
-            {label}
+            {label.length > MAX_LENGHT ? `${label.substring(0, MAX_LENGHT)}...` : label}
             {" "}
             <Icon icon={categoryIcon} className="category-icon" />
           </Badge>
@@ -42,7 +43,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
     return (
       <>
         <Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>
-          {label}
+          {label.length > MAX_LENGHT ? `${label.substring(0, MAX_LENGHT)}...` : label}
           {" "}
           <Icon icon={categoryIcon} className="category-icon" />
         </Badge>
@@ -64,7 +65,14 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
       );
     }
 
-    return <><Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>{label}</Badge>{" "}</>;
+    return (
+      <>
+        <Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>
+          {label.length > MAX_LENGHT ? `${label.substring(0, MAX_LENGHT)}...` : label}
+        </Badge>
+        {" "}
+      </>
+    );
   }
 
   return <><Badge icon="close" /></>;

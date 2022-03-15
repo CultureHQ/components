@@ -51,7 +51,9 @@ const modalStyle = {
 
 type ModalDialogProps = {
   appElement?: string | HTMLElement;
+  bodyOpenClassName?: string;
   children: React.ReactNode;
+  disclaimer?: React.ReactNode;
   className?: string;
   contentRef?: React.Ref<HTMLDivElement>;
   entrance?: keyof typeof entrances;
@@ -59,6 +61,7 @@ type ModalDialogProps = {
   ariaDescribedby?: string;
   onClose?: (event: (React.MouseEvent | React.KeyboardEvent)) => void;
   width?: keyof typeof widths;
+  style?: any;
 };
 
 type ModalDialogComponent = React.FC<ModalDialogProps> & {
@@ -70,6 +73,7 @@ type ModalDialogComponent = React.FC<ModalDialogProps> & {
 
 const ModalDialog: ModalDialogComponent = ({
   appElement = document.body,
+  bodyOpenClassName,
   children,
   className,
   contentRef,
@@ -77,6 +81,7 @@ const ModalDialog: ModalDialogComponent = ({
   ariaLabelledBy,
   ariaDescribedby,
   onClose,
+  style = undefined,
   width = "normal"
 }) => (
   <ReactModal
@@ -86,11 +91,18 @@ const ModalDialog: ModalDialogComponent = ({
       modal: true
     }}
     appElement={appElement}
+    bodyOpenClassName={bodyOpenClassName || ""}
     className={classnames("chq-mdl", className, entrances[entrance], widths[width])}
     contentRef={contentRef}
     onRequestClose={onClose}
     isOpen
-    style={modalStyle}
+    style={
+      style ? {
+        ...modalStyle,
+        overlay: { ...modalStyle.overlay, ...style.overlay },
+        content: style.content
+      } : modalStyle
+    }
   >
     {children}
   </ReactModal>

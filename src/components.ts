@@ -26,6 +26,7 @@ export { default as Table } from "./components/Table";
 export { default as Tag } from "./components/Tag";
 export { default as Thumbnail } from "./components/Thumbnail";
 export { default as Tooltip } from "./components/Tooltip";
+export { default as VideoEditor } from "./components/VideoEditor";
 export { default as Warning } from "./components/Warning";
 
 export { default as ActionButton } from "./components/buttons/ActionButton";
@@ -46,6 +47,7 @@ export { default as Form, withForm, useForm } from "./components/form/Form";
 export { EmailField, NumberField, PasswordField, StringField } from "./components/form/FormFields";
 export { default as FileField } from "./components/form/FileField";
 export { default as ImageField } from "./components/form/ImageField";
+export { default as MediaField } from "./components/form/MediaField";
 export { default as RadioField } from "./components/form/RadioField";
 export { default as SelectField } from "./components/form/SelectField";
 export { default as SubmitButton } from "./components/form/SubmitButton";

@@ -15,5 +15,18 @@
     .chq-btn-iv {
       margin-top: 3px;
     }
+
+    &--vertical {
+      flex-direction: column;
+
+      &-btn {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+  }
+
+  &-disclaimer {
+    margin-top: 15px;
   }
 }
