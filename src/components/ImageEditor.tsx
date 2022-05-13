@@ -6,8 +6,8 @@ import Button from "./buttons/Button";
 import Icon from "./Icon";
 
 const cropperToImage = (cropper: Cropper) => {
-  const type = "image/jpeg";
-  const canvas = cropper.getCroppedCanvas({ fillColor: "#ffffff" });
+  const type = "image/png";
+  const canvas = cropper.getCroppedCanvas();
   const binary = window.atob(canvas.toDataURL(type).split(",")[1]);
 
   const { length } = binary;

@@ -1,10 +1,11 @@
+@use "sass:math";
 $spacing: 8px;
 
 @mixin grid-size($size) {
   @for $col from 1 through 12 {
     &--#{$size}-#{$col} {
       display: block;
-      flex-basis: floor($col / 12 * 1000000%) / 10000;
+      flex-basis: math.div(floor(math.div($col, 12) * 1000000%), 10000);
     }
   }
 
