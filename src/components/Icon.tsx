@@ -61,6 +61,9 @@ class Icon extends React.PureComponent<IconProps, IconState> {
 
     let viewBox = "1024";
     switch (icon) {
+      case "page-filled":
+        viewBox = "640";
+        break;
       case "book":
       case "book-filled":
       case "calendar-date":
@@ -70,11 +73,13 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "clipboard":
       case "diamond":
       case "diamond-filled":
+      case "download":
       case "edit-outlined":
       case "expand":
       case "facebook":
       case "file":
       case "file-filled":
+      case "fullscreen":
       case "global":
       case "global-filled":
       case "hammer-filled":
@@ -83,6 +88,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "home-outlined":
       case "info-thinner":
       case "image-outlined":
+      case "info-v2":
       case "instagram":
       case "ios-flag":
       case "ios-flag-outline":
@@ -98,6 +104,8 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "microphone":
       case "mortarboard":
       case "mortarboard-filled":
+      case "musical-note":
+      case "musical-note-filled":
       case "open-book":
       case "open-book-filled":
       case "page":
@@ -110,6 +118,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "preview":
       case "preview-filled":
       case "rocket":
+      case "scissors":
       case "send":
       case "send-filled":
       case "share":
@@ -133,44 +142,56 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "web-development-filled":
         viewBox = "512";
         break;
-      case "clock-filled":
-        viewBox = "16";
-        break;
-      case "linkedin-filled":
-      case "linkedin-comment":
-      case "linkedin-share":
-      case "linkedin-thumbsup":
-        viewBox = "24";
-        break;
-      case "account":
-      case "diagram":
-      case "diagram-filled":
-        viewBox = "32";
-        break;
-      case "drag":
-        viewBox = "64";
-        break;
-      case "play-no-border":
-        viewBox = "264";
-        break;
-      case "art-palette":
-      case "art-palette-filled":
-        viewBox = "326";
-        break;
-      case "building":
-      case "building-filled":
-        viewBox = "410";
-        break;
-      case "checkmark-filled":
-        viewBox = "410";
+      case "linkedin-thumbsup-outlined":
+        viewBox = "490";
         break;
       case "global-outline":
       case "video-camera":
       case "video-camera-filled":
         viewBox = "480";
         break;
-      case "page-filled":
-        viewBox = "640";
+      case "building":
+      case "building-filled":
+      case "checkmark-filled":
+        viewBox = "410";
+        break;
+      case "art-palette":
+      case "art-palette-filled":
+        viewBox = "326";
+        break;
+      case "play-no-border":
+        viewBox = "264";
+        break;
+      case "eye-outlined":
+        viewBox = "128";
+        break;
+      case "speaker-muted":
+        viewBox = "124";
+        break;
+      case "speaker":
+        viewBox = "115";
+        break;
+      case "drag":
+        viewBox = "64";
+        break;
+      case "account":
+      case "diagram":
+      case "diagram-filled":
+        viewBox = "32";
+        break;
+      case "social-comment":
+        viewBox = "28";
+        break;
+      case "linkedin-filled":
+      case "linkedin-comment":
+      case "linkedin-share":
+      case "linkedin-thumbsup":
+      case "info-v2-filled":
+      case "pause-no-bg":
+        viewBox = "24";
+        break;
+      case "clock-filled":
+        viewBox = "16";
         break;
       default:
         break;
