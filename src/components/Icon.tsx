@@ -98,6 +98,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "ios-plus-outline":
       case "ios-star-outline":
       case "link-wider":
+      case "link-wider-filled":
       case "linkedin":
       case "medal":
       case "medal-filled":
@@ -150,6 +151,12 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "video-camera-filled":
         viewBox = "480";
         break;
+      case "video-camera-filled-complete":
+        viewBox = "468";
+        break;
+      case "upload-image":
+        viewBox = "446";
+        break;
       case "building":
       case "building-filled":
       case "checkmark-filled":
@@ -177,6 +184,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "account":
       case "diagram":
       case "diagram-filled":
+      case "upload-video":
         viewBox = "32";
         break;
       case "social-comment":
