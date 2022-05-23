@@ -149,7 +149,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
             onDrop={this.handleDrop}
           >
             <div className="chq-btn">
-              <Icon icon="images" />
+              <Icon icon="upload-image" />
               <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload an image"}</span>
               <input
                 accept="image/*"

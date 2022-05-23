@@ -217,7 +217,7 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
             onDrop={this.handleDrop}
           >
             <div className="chq-btn">
-              <Icon icon="images" />
+              <Icon icon="upload-video" />
               <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload video"}</span>
               <input
                 accept="video/*"
