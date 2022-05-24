@@ -139,6 +139,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "trash-a-outlined":
       case "twitter":
       case "user-filled":
+      case "video-marketing":
       case "web-development":
       case "web-development-filled":
         viewBox = "512";
