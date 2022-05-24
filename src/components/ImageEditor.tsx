@@ -6,9 +6,12 @@ import Button from "./buttons/Button";
 import Icon from "./Icon";
 
 const cropperToImage = (cropper: Cropper) => {
-  const type = "image/jpeg";
-  const canvas = cropper.getCroppedCanvas({ fillColor: "#ffffff" });
-  const binary = window.atob(canvas.toDataURL(type).split(",")[1]);
+  const type = "image/png";
+  const canvas = cropper.getCroppedCanvas({
+    imageSmoothingEnabled: true,
+    imageSmoothingQuality: "high"
+  });
+  const binary = window.atob(canvas.toDataURL(type, 1).split(",")[1]);
 
   const { length } = binary;
   const byteArray = new Uint8Array(length);

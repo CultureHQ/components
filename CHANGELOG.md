@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.22.1] - 2022-05-24
+
+### Added
+
+- Improve the cropper image quality
+
 ## [18.22.0] - 2022-05-23
 
 ### Added
