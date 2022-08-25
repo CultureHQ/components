@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [18.24.1] - 2022-08-25
+
+### Added
+
+- Convert videos to use the codec h264, compatible with all the browsers
+
 ## [18.24.0] - 2022-06-02
 
 ### Added

@@ -110,10 +110,9 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
     this.handleImageSelected({ editorOpen: false, failed: true, image: null });
   };
 
-  handleVideoEdited = (thumb: Blob) => {
-    const { video } = this.state;
-    this.setState({ videoEditorOpen: false });
-    this.handleVideoSelected(video, thumb, null, false);
+  handleVideoEdited = (output: Blob, thumb: Blob) => {
+    this.setState({ video: output, videoEditorOpen: false });
+    this.handleVideoSelected(output, thumb, null, false);
   };
 
   handleVideoSelected = (
