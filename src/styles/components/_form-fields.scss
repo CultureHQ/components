@@ -96,6 +96,15 @@
     & + .chq-ffd--ctrl {
       padding-left: 25px;
     }
+
+    svg {
+      @include square(16px);
+      margin-top: 5px;
+
+      path {
+        fill: $color-secondary-font;
+      }
+    }
   }
 
   &--radio {

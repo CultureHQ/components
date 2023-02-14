@@ -111,6 +111,11 @@ storiesOf("Form/MediaField", module)
     };
     return <Container name="image" asButtonView onChange={onChange}><></></Container>;
   })
+  .add("asButtonWithCustomIcon", () => {
+    const onChange = (_media: any, _thumbUrl: any, _gifUrl: any, _duration: any) => {
+    };
+    return <Container name="image" asButtonView icon="ios-plus" onChange={onChange}><></></Container>;
+  })
   .add("validator", () => {
     const validator = (value: MediaFieldValue) => {
       if (value instanceof File && value.type === "image/png") {

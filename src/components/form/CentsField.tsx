@@ -6,6 +6,7 @@ import useAutoFocus from "../../utils/useAutoFocus";
 import FormError from "./FormError";
 import { useForm } from "./Form";
 import useDisabled from "./useDisabled";
+import Icon, { IconName } from "../Icon";
 
 const centsValidator = (value: string) => {
   if (value && parseFloat(value) <= 0) {
@@ -25,10 +26,11 @@ type CentsFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   onChange?: (value: CentsFieldValue) => void;
   required?: boolean;
   value?: CentsFieldValue;
+  icon?: IconName;
 };
 
 const CentsField: React.FC<CentsFieldProps> = ({
-  autoFocus, children, className, disabled, name, onChange, required, value,
+  autoFocus, children, className, disabled, name, onChange, required, value, icon,
   ...props
 }) => {
   const { onError, onFormChange, submitted, values } = useForm();
@@ -56,7 +58,13 @@ const CentsField: React.FC<CentsFieldProps> = ({
   return (
     <label className={classnames("chq-ffd", className)} htmlFor={name}>
       <span className="chq-ffd--lb">{children}</span>
-      <span className="chq-ffd--ad">$</span>
+      <span className="chq-ffd--ad">
+        {icon ? (
+          <Icon icon={icon} />
+        ) : (
+          <>$</>
+        )}
+      </span>
       <input
         className="chq-ffd--ctrl"
         ref={inputRef}

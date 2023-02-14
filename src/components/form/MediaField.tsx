@@ -2,7 +2,7 @@
 import React from "react";
 
 import classnames from "../../classnames";
-import Icon from "../Icon";
+import Icon, { IconName } from "../Icon";
 import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
 import ImagePreview from "../ImagePreview";
@@ -32,7 +32,8 @@ type MediaFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   value?: MediaFieldValue;
   videoThumb?: MediaFieldValue;
   showControls?: boolean;
-  asButtonView?: boolean
+  asButtonView?: boolean;
+  icon?: IconName;
 };
 
 type MediaFieldState = {
@@ -195,7 +196,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
       onFormChange, progress, required, submitted, submitting, validator, value,
-      videoThumb, values, onProcessing, showControls = true, asButtonView, ...props
+      videoThumb, values, onProcessing, showControls = true, asButtonView, icon, ...props
     } = this.props;
 
     const {
@@ -216,7 +217,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
             onDrop={this.handleDrop}
           >
             <div className="chq-btn">
-              <Icon icon="images" />
+              <Icon icon={icon || "images"} />
               <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload media"}</span>
               <input
                 accept="image/*,video/*"
@@ -306,18 +307,18 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
             )}
             {imageAsBackground ? (
               <div className="chq-ffd--im--bt-bg">
-                <Icon icon="images" />
+                <Icon icon={icon || "images"} />
                 <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload a media file"}</span>
               </div>
             ) : (
               <>
                 {!normal && (
                   <div className="chq-ffd--im--ph">
-                    <Icon icon="images" />
+                    <Icon icon={icon || "images"} />
                   </div>
                 )}
                 <div className="chq-ffd--im--bt">
-                  <Icon icon="ios-cloud-upload-outline" />
+                  <Icon icon={icon || "ios-cloud-upload-outline"} />
                   {" "}
                   {buttonLabel || "Upload a media file"}
                 </div>

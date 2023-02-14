@@ -30,5 +30,6 @@ storiesOf("Form/CentsField", module)
     return <Container {...props}>{children}</Container>;
   })
   .add("autoFocus", () => <Container name="cents" autoFocus>Cents</Container>)
+  .add("withIcon", () => <Container name="cents" icon="clock" value={1}>Cents</Container>)
   .add("disabled", () => <Container name="cents" disabled>Cents</Container>)
   .add("required", () => <Container name="cents" required>Cents</Container>);

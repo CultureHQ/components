@@ -74,6 +74,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "diamond":
       case "diamond-filled":
       case "download":
+      case "download-media":
       case "edit-outlined":
       case "expand":
       case "facebook":
@@ -124,6 +125,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "send-filled":
       case "share":
       case "share-outlined":
+      case "share-social":
       case "slack":
       case "snapchat":
       case "star":
@@ -158,6 +160,9 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         break;
       case "video-camera-filled-complete":
         viewBox = "468";
+        break;
+      case "nested-element":
+        viewBox = "464";
         break;
       case "upload-image":
         viewBox = "446";
@@ -203,8 +208,14 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "pause-no-bg":
         viewBox = "24";
         break;
+      case "translate":
+        viewBox = "20";
+        break;
       case "clock-filled":
         viewBox = "16";
+        break;
+      case "playback-grabber":
+        viewBox = "14";
         break;
       default:
         break;

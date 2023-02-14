@@ -48,6 +48,7 @@ export { EmailField, NumberField, PasswordField, StringField } from "./component
 export { default as FileField } from "./components/form/FileField";
 export { default as ImageField } from "./components/form/ImageField";
 export { default as MediaField } from "./components/form/MediaField";
+export { default as MillisecondsField } from "./components/form/MillisecondsField";
 export { default as VideoField } from "./components/form/VideoField";
 export { default as RadioField } from "./components/form/RadioField";
 export { default as SelectField } from "./components/form/SelectField";
