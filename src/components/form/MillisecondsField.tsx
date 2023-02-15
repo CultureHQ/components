@@ -44,7 +44,7 @@ const MillisecondsField: React.FC<MillisecondsFieldProps> = ({
   const onBlur = () => setTouched(true);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value: nextValue } = event.target;
-    const amount = nextValue ? Math.round(parseFloat(nextValue) * 1000) : null;
+    const amount = nextValue ? Math.round(parseFloat(nextValue) * 100) : null;
 
     if (onChange) {
       onChange(amount);
@@ -70,8 +70,8 @@ const MillisecondsField: React.FC<MillisecondsFieldProps> = ({
         id={name}
         name={name}
         min="0"
-        step=".001"
-        value={typeof normal === "number" ? normal / 1000 : ""}
+        step=".01"
+        value={typeof normal === "number" ? normal / 100 : ""}
         onBlur={onBlur}
         onChange={handleChange}
       />
