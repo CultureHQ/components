@@ -28,6 +28,7 @@ storiesOf("Form/TextField", module)
 
     return <Container {...props}>{children}</Container>;
   })
+  .add("default with border", () => <Container name="text" className="chq-ffd-border">Text</Container>)
   .add("autoFocus", () => <Container name="text" autoFocus>Text</Container>)
   .add("required", () => <Container name="text" required>Text</Container>)
   .add("validator", () => {

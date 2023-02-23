@@ -66,6 +66,11 @@ storiesOf("Form/SelectField", module)
       </Container>
     );
   })
+  .add("default with border", () => (
+    <Container>
+      <SelectField name="select" className="chq-ffd-border" options={options}>Select</SelectField>
+    </Container>
+  ))
   .add("searchMatchAll", () => (
     <Container>
       <SelectField name="select" options={options} allWordsMatch>Select</SelectField>

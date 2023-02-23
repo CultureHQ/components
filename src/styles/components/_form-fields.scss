@@ -146,3 +146,15 @@
     }
   }
 }
+
+.chq-ffd-border {
+  .chq-ffd--ctrl {
+    border: 2px solid $color-border;
+    border-radius: 4px;
+
+    &-fc,
+    &:focus {
+      border: 2px solid $color-primary-green;
+    }
+  }
+}
