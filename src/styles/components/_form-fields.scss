@@ -148,13 +148,29 @@
 }
 
 .chq-ffd-border {
-  .chq-ffd--ctrl {
-    border: 2px solid $color-border;
-    border-radius: 4px;
+  .chq-ffd {
+    &--ad {
+      svg {
+        margin-left: 10px;
+        margin-top: 6px;
+      }
+    }
 
-    &-fc,
-    &:focus {
-      border: 2px solid $color-primary-green;
+    &--ctrl {
+      border: 2px solid $color-border;
+      border-radius: $size-border-radius;
+      padding-left: 40px;
+
+      &-fc,
+      &:focus {
+        border: 2px solid $color-primary-green;
+      }
+
+      &::-webkit-outer-spin-button, // sass-lint:disable-block no-vendor-prefixes
+      &::-webkit-inner-spin-button { // sass-lint:disable-block no-vendor-prefixes
+        cursor: pointer;
+        opacity: 1;
+      }
     }
   }
 }

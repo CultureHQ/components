@@ -23,7 +23,7 @@
   [role='listbox'] {
     background-color: $color-white;
     border: $border-color solid 1px;
-    border-radius: 4px;
+    border-radius: $size-border-radius;
     box-shadow: 0 2px 3px $color-box-shadow;
     display: none;
     list-style: none;
