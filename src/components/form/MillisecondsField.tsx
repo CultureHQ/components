@@ -62,7 +62,7 @@ const MillisecondsField: React.FC<MillisecondsFieldProps> = ({
         <Icon icon={icon || "clock"} />
       </span>
       <input
-        className="chq-ffd--ctrl"
+        className="chq-ffd--ctrl chq-ffd--ctrl-seconds"
         ref={inputRef}
         {...props}
         disabled={disabled}

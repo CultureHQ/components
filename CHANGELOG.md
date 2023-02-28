@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.0.6] - 2023-02-28
+
+### Changed
+
+- Fixing padding of inputs with border
+
 ## [19.0.5] - 2023-02-28
 
 ### Changed
