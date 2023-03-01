@@ -61,6 +61,9 @@ class Icon extends React.PureComponent<IconProps, IconState> {
 
     let viewBox = "1024";
     switch (icon) {
+      case "text":
+        viewBox = "977.7";
+        break;
       case "page-filled":
         viewBox = "640";
         break;
@@ -144,6 +147,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "video-marketing":
       case "web-development":
       case "web-development-filled":
+      case "zoom":
         viewBox = "512";
         break;
       case "linkedin-thumbsup-outlined":
@@ -187,6 +191,11 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         break;
       case "speaker":
         viewBox = "115";
+        break;
+      case "text-align-center":
+      case "text-align-left":
+      case "text-align-right":
+        viewBox = "72";
         break;
       case "drag":
         viewBox = "64";
