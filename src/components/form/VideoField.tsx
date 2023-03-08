@@ -2,7 +2,7 @@
 import React from "react";
 
 import classnames from "../../classnames";
-import Icon from "../Icon";
+import Icon, { IconName } from "../Icon";
 import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
 import ImagePreview from "../ImagePreview";
@@ -32,7 +32,9 @@ type VideoFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   value?: VideoFieldValue;
   videoThumb?: VideoFieldValue;
   showControls?: boolean;
-  asButtonView?: boolean
+  asButtonView?: boolean;
+  icon?: IconName;
+  notReturnMetadata?: boolean;
 };
 
 type VideoFieldState = {
@@ -88,26 +90,13 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
   }
 
   handleFileSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { notReturnMetadata } = this.props;
     const { files } = event.target;
     const media = files && files[0];
     if (media?.type?.startsWith("video/")) {
-      this.handleVideoSelected(media, null, null, true);
+      this.handleVideoSelected(media, null, null, !notReturnMetadata);
       return;
     }
-
-    if (media?.type === "image/heic") {
-      this.handleImageSelected({ editorOpen: false, failed: false, image: media || null });
-    } else {
-      this.handleImageSelected({ editorOpen: !!media, failed: false, image: media || null });
-    }
-  };
-
-  handleImageEdited = (image: Blob) => {
-    this.handleImageSelected({ editorOpen: false, failed: false, image });
-  };
-
-  handleImageFailure = () => {
-    this.handleImageSelected({ editorOpen: false, failed: true, image: null });
   };
 
   handleVideoEdited = (output: Blob, thumb: Blob) => {
@@ -124,35 +113,11 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
     this.setState({ video, image: null, preview: null, videoEditorOpen, thumb });
 
     if (onChange) {
+      console.log("here");
       onChange(video, thumb, gifUrl, videoLenght);
     }
 
     onFormChange(name, video);
-  };
-
-  handleImageSelected = ({ editorOpen, failed, image }: ImageSelectedOptions) => {
-    const { name, onChange, onFormChange } = this.props;
-
-    this.setState(state => {
-      if (state.preview) {
-        URL.revokeObjectURL(state.preview);
-      }
-
-      return {
-        editorOpen,
-        failed,
-        image,
-        preview: image ? URL.createObjectURL(image) : null,
-        touched: true,
-        video: null
-      };
-    });
-
-    if (onChange) {
-      onChange(image, null, null, null);
-    }
-
-    onFormChange(name, image);
   };
 
   handleClose = () => {
@@ -172,13 +137,6 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
     return false;
   };
 
-  handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-
-    const image = event.dataTransfer.files[0];
-    this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
-  };
-
   getThumbnail = (): string => {
     const { preview, video, thumb } = this.state;
     const { value, videoThumb } = this.props;
@@ -195,7 +153,7 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
       onFormChange, progress, required, submitted, submitting, validator, value,
-      videoThumb, values, onProcessing, showControls = true, asButtonView, ...props
+      videoThumb, values, onProcessing, showControls = true, asButtonView, icon, notReturnMetadata, ...props
     } = this.props;
 
     const {
@@ -213,10 +171,9 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
             onDragEnter={this.handleDragEnter}
             onDragLeave={this.handleDragLeave}
             onDragOver={this.handleDragOver}
-            onDrop={this.handleDrop}
           >
             <div className="chq-btn">
-              <Icon icon="upload-video" />
+              <Icon icon={icon || "upload-video"} />
               <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload video"}</span>
               <input
                 accept="video/*"
@@ -243,18 +200,6 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
           {failed && (
             <p className="chq-ffd--rq">Not a valid image.</p>
           )}
-          {editorOpen && (
-            <ModalDialog onClose={this.handleClose}>
-              <ModalDialog.Body>
-                <ImageEditor
-                  aspectRatio={aspectRatio}
-                  image={preview}
-                  onEdit={this.handleImageEdited}
-                  onFailure={this.handleImageFailure}
-                />
-              </ModalDialog.Body>
-            </ModalDialog>
-          )}
           {videoEditorOpen && (
             <VideoEditor
               video={video}
@@ -277,12 +222,11 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
             onDragEnter={this.handleDragEnter}
             onDragLeave={this.handleDragLeave}
             onDragOver={this.handleDragOver}
-            onDrop={this.handleDrop}
             style={{
               overflow: imageAsBackground ? "hidden" : "initial"
             }}
           >
-            {((video || videoThumb) && !image) && (
+            {((video || videoThumb) && !image) && !notReturnMetadata && (
               <video
                 className="chq-ffd--video"
                 controls={showControls}
@@ -306,18 +250,18 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
             )}
             {imageAsBackground ? (
               <div className="chq-ffd--im--bt-bg">
-                <Icon icon="images" />
+                <Icon icon={icon || "images"} />
                 <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload a video file"}</span>
               </div>
             ) : (
               <>
                 {!normal && (
                   <div className="chq-ffd--im--ph">
-                    <Icon icon="images" />
+                    <Icon icon={icon || "images"} />
                   </div>
                 )}
                 <div className="chq-ffd--im--bt">
-                  <Icon icon="ios-cloud-upload-outline" />
+                  <Icon icon={icon || "ios-cloud-upload-outline"} />
                   {" "}
                   {buttonLabel || "Upload a video file"}
                 </div>
@@ -346,18 +290,6 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
           </div>
           {failed && (
             <p className="chq-ffd--rq">Not a valid image.</p>
-          )}
-          {editorOpen && (
-            <ModalDialog onClose={this.handleClose}>
-              <ModalDialog.Body>
-                <ImageEditor
-                  aspectRatio={aspectRatio}
-                  image={preview}
-                  onEdit={this.handleImageEdited}
-                  onFailure={this.handleImageFailure}
-                />
-              </ModalDialog.Body>
-            </ModalDialog>
           )}
           {videoEditorOpen && (
             <VideoEditor

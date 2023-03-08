@@ -34,6 +34,7 @@ type MediaFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   showControls?: boolean;
   asButtonView?: boolean;
   icon?: IconName;
+  notReturnMetadata?: boolean;
 };
 
 type MediaFieldState = {
@@ -89,10 +90,11 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
   }
 
   handleFileSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { notReturnMetadata } = this.props;
     const { files } = event.target;
     const media = files && files[0];
     if (media?.type?.startsWith("video/")) {
-      this.handleVideoSelected(media, null, null, true);
+      this.handleVideoSelected(media, null, null, !notReturnMetadata);
       return;
     }
 
@@ -196,7 +198,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
       onFormChange, progress, required, submitted, submitting, validator, value,
-      videoThumb, values, onProcessing, showControls = true, asButtonView, icon, ...props
+      videoThumb, values, onProcessing, showControls = true, asButtonView, icon, notReturnMetadata, ...props
     } = this.props;
 
     const {
@@ -283,7 +285,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
               overflow: imageAsBackground ? "hidden" : "initial"
             }}
           >
-            {((video || videoThumb) && !image) && (
+            {((video || videoThumb) && !image) && !notReturnMetadata && (
               <video
                 className="chq-ffd--video"
                 controls={showControls}

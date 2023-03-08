@@ -1,7 +1,7 @@
 import React from "react";
 
 import classnames from "../../classnames";
-import Icon from "../Icon";
+import Icon, { IconName } from "../Icon";
 import ModalDialog from "../modals/ModalDialog";
 import ImageEditor from "../ImageEditor";
 import ImagePreview from "../ImagePreview";
@@ -25,7 +25,8 @@ type ImageFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   required?: boolean;
   validator?: (value: ImageFieldValue) => FormFieldError;
   value?: ImageFieldValue;
-  asButtonView?: boolean
+  asButtonView?: boolean;
+  icon?: IconName;
 };
 
 type ImageFieldState = {
@@ -131,7 +132,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     const {
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange, asButtonView,
-      onFormChange, progress, required, submitted, submitting, validator, value, values, ...props
+      onFormChange, progress, required, submitted, submitting, validator, value, values, icon, ...props
     } = this.props;
 
     const { dragging, editorOpen, failed, image, preview, touched } = this.state;
@@ -149,7 +150,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
             onDrop={this.handleDrop}
           >
             <div className="chq-btn">
-              <Icon icon="upload-image" />
+              <Icon icon={icon || "upload-image"} />
               <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload an image"}</span>
               <input
                 accept="image/*"
@@ -215,18 +216,18 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
             />
             {imageAsBackground ? (
               <div className="chq-ffd--im--bt-bg">
-                <Icon icon="images" />
+                <Icon icon={icon || "images"} />
                 <span className="chq-ffd--im--bt-bg--text">{buttonLabel || "Upload an image"}</span>
               </div>
             ) : (
               <>
                 {!normal && (
                   <div className="chq-ffd--im--ph">
-                    <Icon icon="images" />
+                    <Icon icon={icon || "images"} />
                   </div>
                 )}
                 <div className="chq-ffd--im--bt">
-                  <Icon icon="ios-cloud-upload-outline" />
+                  <Icon icon={icon || "ios-cloud-upload-outline"} />
                   {" "}
                   {buttonLabel || "Upload an image"}
                 </div>

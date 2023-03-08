@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.2.0] - 2023-03-08
+
+### Added
+
+- New variantes of video field and media field
+
 ## [19.1.0] - 2023-03-01
 
 ### Added
