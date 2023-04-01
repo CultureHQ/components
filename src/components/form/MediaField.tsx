@@ -24,7 +24,7 @@ type MediaFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   className?: string;
   name: string;
   onChange?: (value: MediaFieldValue, thumb: MediaFieldValue,
-    gifUrl: MediaFieldValue, duration: any) => void;
+    gifUrl: MediaFieldValue, duration: any, finalVersion: boolean) => void;
   onProcessing?: (value: boolean) => void;
   progress?: number;
   required?: boolean;
@@ -111,7 +111,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     const processedFile = new File(
       [image], originalImageCopy?.name || Math.random().toString(36).substring(2)
     );
-    this.handleImageSelected({ editorOpen: false, failed: false, image: processedFile });
+    this.handleImageSelected({ editorOpen: false, failed: false, image: processedFile }, true);
   };
 
   handleImageFailure = () => {
@@ -132,13 +132,15 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     this.setState({ video, image: null, preview: null, videoEditorOpen, thumb });
 
     if (onChange) {
-      onChange(video, thumb, gifUrl, videoLenght);
+      onChange(video, thumb, gifUrl, videoLenght, true);
     }
 
     onFormChange(name, video);
   };
 
-  handleImageSelected = ({ editorOpen, failed, image }: ImageSelectedOptions) => {
+  handleImageSelected = (
+    { editorOpen, failed, image }: ImageSelectedOptions, finalVersion = false
+  ) => {
     const { name, onChange, onFormChange } = this.props;
 
     this.setState(state => {
@@ -157,7 +159,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     });
 
     if (onChange) {
-      onChange(image, null, null, null);
+      onChange(image, null, null, null, finalVersion);
     }
 
     onFormChange(name, image);
@@ -299,7 +301,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
                 onLoadedMetadata={e => {
                   const target = e.target as HTMLVideoElement;
                   if (onChange) {
-                    onChange(video, thumb, null, target.duration);
+                    onChange(video, thumb, null, target.duration, false);
                   }
                 }}
                 src={(videoThumb && !video) ? value as string : URL.createObjectURL(video)}

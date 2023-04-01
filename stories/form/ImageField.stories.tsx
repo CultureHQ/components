@@ -38,7 +38,7 @@ storiesOf("Form/ImageField", module)
   .add("required", () => <Container name="image" required>Image</Container>)
   .add("backgroundImage", () => {
     const [selectedImage, setSelectedImage] = useState("https://images.unsplash.com/photo-1525546822429-a214a6739ee7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80");
-    const onChange = (image: any) => {
+    const onChange = (image: any, _finalVersion = false) => {
       setSelectedImage(image);
     };
     return (

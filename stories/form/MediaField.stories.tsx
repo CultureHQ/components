@@ -38,7 +38,9 @@ storiesOf("Form/MediaField", module)
   .add("required", () => <Container name="image" required>Image</Container>)
   .add("backgroundImage", () => {
     const [selectedImage, setSelectedImage] = useState("https://images.unsplash.com/photo-1525546822429-a214a6739ee7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80");
-    const onChange = (media: any, _thumbUrl: any, _gifUrl: any, _duration: any) => {
+    const onChange = (
+      media: any, _thumbUrl: any, _gifUrl: any, _duration: any, _finalVersion = false
+    ) => {
       setSelectedImage(media);
     };
     return (

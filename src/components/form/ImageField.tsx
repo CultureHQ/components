@@ -20,7 +20,7 @@ type ImageFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   children: React.ReactNode;
   className?: string;
   name: string;
-  onChange?: (value: ImageFieldValue) => void;
+  onChange?: (value: ImageFieldValue, finalVersion: boolean) => void;
   progress?: number;
   required?: boolean;
   validator?: (value: ImageFieldValue) => FormFieldError;
@@ -76,16 +76,22 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     const { image: originalImage } = this.state;
     const originalImageCopy = originalImage as File | null;
     const processedFile = new File(
-      [image], originalImageCopy?.name || Math.random().toString(36).substring(2)
+      [image],
+      originalImageCopy?.name || Math.random().toString(36).substring(2),
+      { type: image.type }
     );
-    this.handleImageSelected({ editorOpen: false, failed: false, image: processedFile });
+    this.handleImageSelected(
+      { editorOpen: false, failed: false, image: processedFile }, true
+    );
   };
 
   handleImageFailure = () => {
     this.handleImageSelected({ editorOpen: false, failed: true, image: null });
   };
 
-  handleImageSelected = ({ editorOpen, failed, image }: ImageSelectedOptions) => {
+  handleImageSelected = (
+    { editorOpen, failed, image }: ImageSelectedOptions, finalVersion = false
+  ) => {
     const { name, onChange, onFormChange } = this.props;
 
     this.setState(state => {
@@ -103,7 +109,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     });
 
     if (onChange) {
-      onChange(image);
+      onChange(image, finalVersion);
     }
 
     onFormChange(name, image);
