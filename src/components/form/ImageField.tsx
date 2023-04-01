@@ -73,7 +73,12 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
   };
 
   handleImageEdited = (image: Blob) => {
-    this.handleImageSelected({ editorOpen: false, failed: false, image });
+    const { image: originalImage } = this.state;
+    const originalImageCopy = originalImage as File | null;
+    const processedFile = new File(
+      [image], originalImageCopy?.name || Math.random().toString(36).substring(2)
+    );
+    this.handleImageSelected({ editorOpen: false, failed: false, image: processedFile });
   };
 
   handleImageFailure = () => {
@@ -132,7 +137,8 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     const {
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange, asButtonView,
-      onFormChange, progress, required, submitted, submitting, validator, value, values, icon, ...props
+      onFormChange, progress, required, submitted, submitting, validator, value, values,
+      icon, ...props
     } = this.props;
 
     const { dragging, editorOpen, failed, image, preview, touched } = this.state;

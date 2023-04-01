@@ -106,7 +106,12 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
   };
 
   handleImageEdited = (image: Blob) => {
-    this.handleImageSelected({ editorOpen: false, failed: false, image });
+    const { image: originalImage } = this.state;
+    const originalImageCopy = originalImage as File | null;
+    const processedFile = new File(
+      [image], originalImageCopy?.name || Math.random().toString(36).substring(2)
+    );
+    this.handleImageSelected({ editorOpen: false, failed: false, image: processedFile });
   };
 
   handleImageFailure = () => {
@@ -198,7 +203,8 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
       onFormChange, progress, required, submitted, submitting, validator, value,
-      videoThumb, values, onProcessing, showControls = true, asButtonView, icon, notReturnMetadata, ...props
+      videoThumb, values, onProcessing, showControls = true, asButtonView, icon,
+      notReturnMetadata, ...props
     } = this.props;
 
     const {

@@ -110,7 +110,6 @@ storiesOf("Form/VideoField", module)
     const [thumbnail] = useState("https://images.unsplash.com/photo-1525546822429-a214a6739ee7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80");
     const [value, setSelectedValue] = useState();
     const onChange = (media: any, _thumbUrl: any, _gifUrl: any, _duration: any) => {
-      console.log(media);
       setSelectedValue(media);
     };
     return (

@@ -3,8 +3,6 @@ import React from "react";
 
 import classnames from "../../classnames";
 import Icon, { IconName } from "../Icon";
-import ModalDialog from "../modals/ModalDialog";
-import ImageEditor from "../ImageEditor";
 import ImagePreview from "../ImagePreview";
 import FormError from "./FormError";
 import VideoEditor from "../VideoEditor";
@@ -50,12 +48,6 @@ type VideoFieldState = {
   videoLenght: any;
 };
 
-type ImageSelectedOptions = {
-  editorOpen: boolean;
-  failed: boolean;
-  image: VideoFieldValue;
-};
-
 class VideoField extends React.Component<VideoFieldProps & FormState, VideoFieldState> {
   inputRef = React.createRef<HTMLInputElement>();
 
@@ -95,7 +87,6 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
     const media = files && files[0];
     if (media?.type?.startsWith("video/")) {
       this.handleVideoSelected(media, null, null, !notReturnMetadata);
-      return;
     }
   };
 
@@ -113,7 +104,6 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
     this.setState({ video, image: null, preview: null, videoEditorOpen, thumb });
 
     if (onChange) {
-      console.log("here");
       onChange(video, thumb, gifUrl, videoLenght);
     }
 
@@ -153,7 +143,8 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
       onFormChange, progress, required, submitted, submitting, validator, value,
-      videoThumb, values, onProcessing, showControls = true, asButtonView, icon, notReturnMetadata, ...props
+      videoThumb, values, onProcessing, showControls = true, asButtonView, icon,
+      notReturnMetadata, ...props
     } = this.props;
 
     const {
