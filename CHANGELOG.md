@@ -10,6 +10,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ### Changed
 
+- Return just the thumbnail for uploaded videos
+
+## [19.3.2] - 2023-04-05
+
+### Changed
+
 - Return final version flag when video needs the thumbnail
 
 ## [19.3.1] - 2023-03-31

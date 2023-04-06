@@ -26,15 +26,16 @@ const VideoEditor = ({
 
       // Run the FFMpeg command
       await ffmpeg.run("-i", "video.mp4", "-ss", "00:00:00.000", "-vframes", "1", "thumbnail.png");
-      await ffmpeg.run("-i", "video.mp4", "-vcodec", "libx264", "output.mp4");
+      // await ffmpeg.run("-i", "video.mp4", "-vcodec", "libx264", "output.mp4");
 
       // Read the result
-      const output = ffmpeg.FS("readFile", "output.mp4");
+      // const output = ffmpeg.FS("readFile", "output.mp4");
       const thumb = ffmpeg.FS("readFile", "thumbnail.png");
-      const blobOutput = new Blob([output.buffer], { type: "video/mp4" });
+      // const blobOutput = new Blob([output.buffer], { type: "video/mp4" });
       const blobThumb = new Blob([thumb.buffer], { type: "image/png" });
 
-      return { blobOutput, blobThumb };
+      // return { blobOutput, blobThumb };
+      return { blobThumb };
     };
 
     const handleSave = async () => {
@@ -42,11 +43,11 @@ const VideoEditor = ({
         if (onProcessing) {
           onProcessing(true);
         }
-        const { blobOutput, blobThumb } = await processVideo();
+        const { blobThumb } = await processVideo();
         if (onProcessing) {
           onProcessing(false);
         }
-        onEdit(blobOutput, blobThumb);
+        onEdit(video, blobThumb);
       }
     };
     const load = async () => {
