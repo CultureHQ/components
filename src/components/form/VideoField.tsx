@@ -104,7 +104,7 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
     this.setState({ video, image: null, preview: null, videoEditorOpen, thumb });
 
     if (onChange) {
-      onChange(video, thumb, gifUrl, videoLenght, true);
+      onChange(video, thumb, gifUrl, videoLenght, !videoEditorOpen);
     }
 
     onFormChange(name, video);

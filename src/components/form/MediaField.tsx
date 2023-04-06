@@ -132,7 +132,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     this.setState({ video, image: null, preview: null, videoEditorOpen, thumb });
 
     if (onChange) {
-      onChange(video, thumb, gifUrl, videoLenght, true);
+      onChange(video, thumb, gifUrl, videoLenght, !videoEditorOpen);
     }
 
     onFormChange(name, video);
