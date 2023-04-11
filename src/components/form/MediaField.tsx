@@ -109,7 +109,9 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     const { image: originalImage } = this.state;
     const originalImageCopy = originalImage as File | null;
     const processedFile = new File(
-      [image], originalImageCopy?.name || Math.random().toString(36).substring(2)
+      [image],
+      originalImageCopy?.name || Math.random().toString(36).substring(2),
+      { type: image.type }
     );
     this.handleImageSelected({ editorOpen: false, failed: false, image: processedFile }, true);
   };
@@ -159,6 +161,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     });
 
     if (onChange) {
+      console.log(image);
       onChange(image, null, null, null, finalVersion);
     }
 
