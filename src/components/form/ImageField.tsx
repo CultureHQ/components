@@ -109,7 +109,6 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     });
 
     if (onChange) {
-      console.log(image);
       onChange(image, finalVersion);
     }
 

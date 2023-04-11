@@ -161,7 +161,6 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     });
 
     if (onChange) {
-      console.log(image);
       onChange(image, null, null, null, finalVersion);
     }
 
