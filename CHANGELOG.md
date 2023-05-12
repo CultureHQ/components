@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.3.6] - 2023-05-12
+
+### Changed
+
+- Cropped image will return just one time to the parent
+
 ## [19.3.5] - 2023-04-11
 
 ### Changed

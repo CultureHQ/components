@@ -72,17 +72,21 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
   };
 
-  handleImageEdited = (image: Blob) => {
-    const { image: originalImage } = this.state;
-    const originalImageCopy = originalImage as File | null;
-    const processedFile = new File(
-      [image],
-      originalImageCopy?.name || Math.random().toString(36).substring(2),
-      { type: image.type }
-    );
-    this.handleImageSelected(
-      { editorOpen: false, failed: false, image: processedFile }, true
-    );
+  handleImageEdited = (image: Blob, closeModal = false) => {
+    if (closeModal) {
+      this.setState({ editorOpen: false });
+    } else {
+      const { image: originalImage } = this.state;
+      const originalImageCopy = originalImage as File | null;
+      const processedFile = new File(
+        [image],
+        originalImageCopy?.name || Math.random().toString(36).substring(2),
+        { type: image.type }
+      );
+      this.handleImageSelected(
+        { editorOpen: false, failed: false, image: processedFile }, true
+      );
+    }
   };
 
   handleImageFailure = () => {

@@ -105,15 +105,19 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     }
   };
 
-  handleImageEdited = (image: Blob) => {
-    const { image: originalImage } = this.state;
-    const originalImageCopy = originalImage as File | null;
-    const processedFile = new File(
-      [image],
-      originalImageCopy?.name || Math.random().toString(36).substring(2),
-      { type: image.type }
-    );
-    this.handleImageSelected({ editorOpen: false, failed: false, image: processedFile }, true);
+  handleImageEdited = (image: Blob, closeModal = false) => {
+    if (closeModal) {
+      this.setState({ editorOpen: false });
+    } else {
+      const { image: originalImage } = this.state;
+      const originalImageCopy = originalImage as File | null;
+      const processedFile = new File(
+        [image],
+        originalImageCopy?.name || Math.random().toString(36).substring(2),
+        { type: image.type }
+      );
+      this.handleImageSelected({ editorOpen: false, failed: false, image: processedFile }, true);
+    }
   };
 
   handleImageFailure = () => {

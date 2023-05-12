@@ -26,7 +26,7 @@ const cropperToImage = (cropper: Cropper) => {
 type ImageEditorProps = {
   aspectRatio?: number;
   image: string | null;
-  onEdit?: (blob: Blob) => void;
+  onEdit?: (blob: Blob, closeModal: boolean) => void;
   onFailure?: () => void;
 };
 
@@ -65,6 +65,8 @@ class ImageEditor extends React.Component<ImageEditorProps, Record<string, unkno
   componentWillUnmount(): void {
     this.componentIsMounted = false;
 
+    // We have this here to ensure the image will be cropped even if the user
+    // closes the modal.
     this.handleSave();
 
     if (this.cropper) {
@@ -96,11 +98,11 @@ class ImageEditor extends React.Component<ImageEditorProps, Record<string, unkno
     }
   };
 
-  handleSave = (): void => {
+  handleSave = (closeModal = false): void => {
     const { onEdit } = this.props;
 
     if (onEdit && this.cropper) {
-      onEdit(cropperToImage(this.cropper));
+      onEdit(cropperToImage(this.cropper), closeModal);
     }
   };
 
@@ -130,7 +132,7 @@ class ImageEditor extends React.Component<ImageEditorProps, Record<string, unkno
             icon="ios-minus-outline"
             onClick={this.handleZoomOut}
           />
-          <Button primary onClick={this.handleSave}>
+          <Button primary onClick={() => this.handleSave(true)}>
             <Icon icon="ios-camera-outline" /> Save
           </Button>
         </div>
