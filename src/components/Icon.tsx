@@ -201,6 +201,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         viewBox = "64";
         break;
       case "account":
+      case "crop":
       case "diagram":
       case "diagram-filled":
       case "upload-video":

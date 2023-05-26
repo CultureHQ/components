@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.4.0] - 2023-05-26
+
+### Added
+
+- New crop icon
+
 ## [19.3.6] - 2023-05-12
 
 ### Changed
