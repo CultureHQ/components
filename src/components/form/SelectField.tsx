@@ -30,6 +30,7 @@ type SelectFieldCommonProps = {
   onCloseAction?: () => void;
   onSelected?: () => void;
   onUnselected?: () => void;
+  onTextChanged?: (value: string) => void;
   options: SelectOption[];
   placeholder?: string;
   required?: boolean;
@@ -74,6 +75,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   name,
   fixedValue = false,
   onChange,
+  onTextChanged,
   onSelected: onSelectedField,
   onUnselected,
   options,
@@ -119,6 +121,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     name,
     fixedValue,
     onCloseAction,
+    onTextChanged,
     onFocus,
     options,
     onSelected,

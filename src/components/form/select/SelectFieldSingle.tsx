@@ -26,6 +26,7 @@ type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
   fixedValue: boolean;
   onCloseAction?: () => void;
   onChange?: (value: null | SelectValue) => void;
+  onTextChanged?: (value: string) => void;
   onFocus: () => void;
   onSelected?: () => void;
   onUnselected?: () => void;
@@ -164,7 +165,7 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
   };
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { allWordsMatch, options, fixedValue } = this.props;
+    const { allWordsMatch, options, fixedValue, onTextChanged } = this.props;
     const { display } = this.state;
 
     const normal = this.getValue();
@@ -174,6 +175,10 @@ class SelectFieldSingle extends React.Component<SelectFieldSingleProps, SelectFi
     nextDisplay = currentOption && currentOption.label === display
       ? (event.nativeEvent as any).data
       : nextDisplay;
+
+    if (onTextChanged) {
+      onTextChanged(nextDisplay);
+    }
 
     if (!fixedValue) {
       this.setState({

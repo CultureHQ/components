@@ -22,6 +22,7 @@ type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
   fixedValue: boolean;
   onCloseAction?: () => void;
   onChange?: (value: null | SelectValue[] | SelectValueWithCategory[]) => void;
+  onTextChanged?: (value: string) => void;
   onFocus: () => void;
   onSelected?: () => void;
   onUnselected?: () => void;
@@ -164,8 +165,12 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
   };
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { allWordsMatch, options } = this.props;
+    const { allWordsMatch, onTextChanged, options } = this.props;
     const nextDisplay = event.target.value;
+
+    if (onTextChanged) {
+      onTextChanged(nextDisplay);
+    }
 
     this.setState({
       display: nextDisplay || "",
