@@ -126,11 +126,29 @@ storiesOf("Form/SelectField", module)
       <SelectField name="select" disabled options={options}>Select</SelectField>
     </Container>
   ))
-  .add("multiple", () => (
-    <Container>
-      <SelectField name="select" multiple options={options} ariaLabel="Aria value">Select</SelectField>
-    </Container>
-  ))
+  .add("multiple", () => {
+    const [selectOptions, setSelectOptions] = useState(options);
+    const [display, setDisplay] = useState("");
+    let timeout: NodeJS.Timeout;
+
+    const performSearch = async (query: string) => {
+      setDisplay(query);
+      setSelectOptions([...selectOptions, { label: query, value: `${Date.now()}` }]);
+    };
+
+    const onTextChanged = (value: string) => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+      timeout = setTimeout(() => performSearch(value), 1000);
+    };
+
+    return (
+      <Container>
+        <SelectField name="select" initialDisplay={display} onTextChanged={onTextChanged} multiple options={selectOptions} ariaLabel="Aria value">Select</SelectField>
+      </Container>
+    );
+  })
   .add("multiple + disabled", () => (
     <Container>
       <SelectField name="select" multiple disabled options={options}>Select</SelectField>

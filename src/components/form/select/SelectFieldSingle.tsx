@@ -20,6 +20,7 @@ type SelectFieldSingleProps = Omit<FormState, "disabled"> & {
   createClickNeeded: boolean;
   disabled?: boolean;
   imageIconPath?: string;
+  initialDisplay?: string;
   inputRef: React.RefObject<HTMLInputElement>;
   isDestroyable: boolean;
   name: string;
@@ -49,7 +50,7 @@ const getDisplay = (props: SelectFieldSingleProps) => {
   const normal = props.value || (props.values[props.name] as undefined | null | SelectValue);
   const { clearValueOnOpen } = props;
 
-  let display = "";
+  let display = props.initialDisplay || "";
 
   if (normal !== undefined) {
     if (props.allowEmpty) {

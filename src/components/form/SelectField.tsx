@@ -22,6 +22,7 @@ type SelectFieldCommonProps = {
   creatableLabel?: string;
   createClickNeeded?: boolean;
   disabled?: boolean;
+  initialDisplay?: string;
   multiple?: boolean;
   name: string;
   fixedValue?: boolean;
@@ -71,6 +72,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   disabled,
   imageIconPath,
   isDestroyable = false,
+  initialDisplay,
   multiple = false,
   name,
   fixedValue = false,
@@ -116,6 +118,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     createClickNeeded,
     disabled,
     imageIconPath,
+    initialDisplay,
     inputRef,
     isDestroyable,
     name,

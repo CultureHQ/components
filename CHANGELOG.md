@@ -6,11 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.5.1] - 2023-06-12
+
+### Added
+
+- Initial display prop for SelectField (if you want to do something else with that)
+
 ## [19.5.0] - 2023-06-12
 
 ### Added
 
-- Callback with text change in select field (if you want to do soemthing else with that)
+- Callback with text change in select field (if you want to do something else with that)
 
 ## [19.4.0] - 2023-05-26
 

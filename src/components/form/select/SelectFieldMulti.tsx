@@ -17,6 +17,7 @@ type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
   createClickNeeded: boolean;
   disabled?: boolean;
   imageIconPath?: string;
+  initialDisplay?: string;
   inputRef: React.RefObject<HTMLInputElement>;
   name: string;
   fixedValue: boolean;
@@ -63,12 +64,12 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
   }
 
   componentDidUpdate(prevProps: SelectFieldMultiProps): void {
-    const { allWordsMatch, options } = this.props;
+    const { allWordsMatch, initialDisplay, options } = this.props;
     const { display } = this.state;
 
     if (prevProps.options !== options) {
       this.setState({
-        display: "",
+        display: initialDisplay || "",
         filteredOptions: fuzzyFilter(options, display, allWordsMatch)
       });
     }
