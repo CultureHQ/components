@@ -39,6 +39,11 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
     this.setState({ open: false });
   };
 
+  handleCloseFromButton = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    event.stopPropagation();
+    this.handleClose();
+  };
+
   handleAccept = (event: React.MouseEvent<HTMLButtonElement>): void => {
     const { onAccept } = this.props;
 
@@ -70,7 +75,7 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
             </ModalDialog.Body>
             <ModalDialog.Footer>
               <div>
-                <Button inverted onClick={this.handleClose}>Cancel</Button>
+                <Button inverted onClick={this.handleCloseFromButton}>Cancel</Button>
               </div>
               <div>
                 <Button autoFocus primary danger={danger} onClick={this.handleAccept}>
