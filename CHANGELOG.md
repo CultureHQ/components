@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.6.0] - 2023-07-07
+
+### Added
+
+- Added event in the Confirm modal callback when the user presses the Accept button
+
 ## [19.5.1] - 2023-06-12
 
 ### Added

@@ -8,7 +8,7 @@ type ForwardedProps = "appElement" | "children" | "className" | "contentRef" | "
 type ConfirmProps = Pick<React.ComponentProps<typeof ModalDialog>, ForwardedProps> & {
   accept?: string;
   danger?: boolean;
-  onAccept: () => void;
+  onAccept: (event?: React.MouseEvent<HTMLButtonElement>) => void;
   onOpen?: () => void;
   startOpen?: boolean;
   trigger: (onTrigger: () => void) => React.ReactNode;
@@ -39,11 +39,11 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
     this.setState({ open: false });
   };
 
-  handleAccept = (): void => {
+  handleAccept = (event: React.MouseEvent<HTMLButtonElement>): void => {
     const { onAccept } = this.props;
 
     this.setState({ open: false });
-    onAccept();
+    onAccept(event);
   };
 
   render(): React.ReactElement {
