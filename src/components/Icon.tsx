@@ -192,6 +192,9 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "speaker":
         viewBox = "115";
         break;
+      case "paste-text":
+        viewBox = "95";
+        break;
       case "text-align-center":
       case "text-align-left":
       case "text-align-right":
