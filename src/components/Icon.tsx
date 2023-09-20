@@ -150,6 +150,9 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "zoom":
         viewBox = "512";
         break;
+      case "zoom-out":
+        viewBox = "500";
+        break;
       case "linkedin-thumbsup-outlined":
         viewBox = "490";
         break;
