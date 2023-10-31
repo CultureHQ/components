@@ -30,8 +30,15 @@ type ImageEditorProps = {
   onFailure?: () => void;
 };
 
-class ImageEditor extends React.Component<ImageEditorProps, Record<string, unknown>> {
+type ImageEditorState = {
+  saveText: string;
+};
+
+class ImageEditor extends React.Component<ImageEditorProps, ImageEditorState,
+Record<string, unknown>> {
   private cropper: null | Cropper = null;
+
+  private buttonSaveRef = React.createRef<HTMLButtonElement>();
 
   private componentIsMounted = false;
 
@@ -39,7 +46,6 @@ class ImageEditor extends React.Component<ImageEditorProps, Record<string, unkno
 
   componentDidMount(): void {
     this.componentIsMounted = true;
-
     import("./Cropper")
       .then(module => {
         const image = this.imageRef.current;
@@ -73,6 +79,21 @@ class ImageEditor extends React.Component<ImageEditorProps, Record<string, unkno
       this.cropper.destroy();
     }
   }
+
+  editSaveText =(): void => {
+    const { onEdit } = this.props;
+    const saveButtonRef = this.buttonSaveRef.current;
+
+    if (saveButtonRef) {
+      saveButtonRef.innerText = "Saving...";
+      saveButtonRef.disabled = true;
+      setTimeout(() => {
+        if (onEdit && this.cropper) {
+          onEdit(cropperToImage(this.cropper), true);
+        }
+      }, 50);
+    }
+  };
 
   handleRotateLeft = (): void => {
     if (this.cropper) {
@@ -132,7 +153,11 @@ class ImageEditor extends React.Component<ImageEditorProps, Record<string, unkno
             icon="ios-minus-outline"
             onClick={this.handleZoomOut}
           />
-          <Button primary onClick={() => this.handleSave(true)}>
+          <Button
+            ref={this.buttonSaveRef}
+            primary
+            onClick={this.editSaveText}
+          >
             <Icon icon="ios-camera-outline" /> Save
           </Button>
         </div>
