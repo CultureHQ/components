@@ -111,6 +111,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "mortarboard-filled":
       case "musical-note":
       case "musical-note-filled":
+      case "new":
       case "open-book":
       case "open-book-filled":
       case "page":
@@ -204,6 +205,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         viewBox = "72";
         break;
       case "drag":
+      case "fire":
         viewBox = "64";
         break;
       case "account":
