@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.12.0] - 2023-02-05
+
+### Added
+
+- Added new min prop to milliseconds component
+
 ## [19.11.0] - 2023-11-16
 
 ### Added
