@@ -27,10 +27,11 @@ type MillisecondsFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 
   required?: boolean;
   value?: MillisecondsFieldValue;
   icon?: IconName;
+  min?: number;
 };
 
 const MillisecondsField: React.FC<MillisecondsFieldProps> = ({
-  autoFocus, children, className, disabled, name, onChange, required, value, icon,
+  autoFocus, children, className, disabled, name, onChange, required, value, icon, min,
   ...props
 }) => {
   const { onError, onFormChange, submitted, values } = useForm();
@@ -38,22 +39,23 @@ const MillisecondsField: React.FC<MillisecondsFieldProps> = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [touched, setTouched] = useState<boolean>(false);
 
+  const normal = typeof value === "number" ? value : values[name];
+  const calculatedValue = typeof normal === "number" ? normal / 100 : "";
+
+  const checkMin = (input: number | string) => !min || input === "" || Number(input) >= min;
+
   useAutoFocus(autoFocus, inputRef);
   useDisabled(name, disabled);
 
-  const onBlur = () => setTouched(true);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value: nextValue } = event.target;
+  const onBlur = () => {
+    if (!checkMin(calculatedValue)) handleChange(`${min}`);
+    setTouched(true);
+  };
+  const handleChange = (nextValue: string) => {
     const amount = nextValue ? Math.round(parseFloat(nextValue) * 100) : null;
-
-    if (onChange) {
-      onChange(amount);
-    }
-
+    if (onChange && checkMin(nextValue)) onChange(amount);
     onFormChange(name, amount);
   };
-
-  const normal = typeof value === "number" ? value : values[name];
 
   return (
     <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -69,11 +71,11 @@ const MillisecondsField: React.FC<MillisecondsFieldProps> = ({
         type="number"
         id={name}
         name={name}
-        min="0"
+        min={min}
         step=".01"
-        value={typeof normal === "number" ? normal / 100 : ""}
+        value={calculatedValue}
         onBlur={onBlur}
-        onChange={handleChange}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e.target.value)}
       />
       <FormError
         name={name}
