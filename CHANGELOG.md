@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.12.1] - 2023-02-06
+
+### Changed
+
+- Update min validation on change in milliseconds component
+
 ## [19.12.0] - 2023-02-05
 
 ### Added

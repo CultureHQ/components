@@ -51,9 +51,10 @@ const MillisecondsField: React.FC<MillisecondsFieldProps> = ({
     if (!checkMin(calculatedValue)) handleChange(`${min}`);
     setTouched(true);
   };
+
   const handleChange = (nextValue: string) => {
     const amount = nextValue ? Math.round(parseFloat(nextValue) * 100) : null;
-    if (onChange && checkMin(nextValue)) onChange(amount);
+    if (onChange) onChange(amount);
     onFormChange(name, amount);
   };
 
