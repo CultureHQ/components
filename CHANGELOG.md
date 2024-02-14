@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.13.1] - 2023-02-06
+
+### Changed
+
+- Update modal behavior to now allow scroll in the background
+
 ## [19.12.1] - 2023-02-06
 
 ### Changed
@@ -570,6 +576,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 
 - Adding new action to selected options in mutiple select field.
+
 ## [17.15.0] - 2021-02-26
 
 ### Added
@@ -895,7 +902,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Changed
 
 - Adding more options to SelectField component to allow options with icons and retrieve the selected options as an array of ids or as an array of objects,
-depending if they have a category for example
+  depending if they have a category for example
 
 ## [17.0.17] - 2020-06-11
 
