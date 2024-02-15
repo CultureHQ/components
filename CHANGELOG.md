@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.13.2] - 2023-02-06
+
+### Changed
+
+- Fix modal behavior to not allow scroll in the background
+
 ## [19.13.1] - 2023-02-06
 
 ### Changed
