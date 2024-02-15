@@ -24,7 +24,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
     this.state = { open: props.startOpen || false };
   }
 
-  componentDidMount(): void {
+  componentDidUpdate(): void {
     const { open } = this.state;
     const { onClose } = this.props;
 
@@ -34,13 +34,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
       document.body.style.overflow = "unset";
       if (onClose) onClose();
     }
-  }
-
-  componentWillUnmount(): void {
-    const { onClose } = this.props;
-
-    document.body.style.overflow = "unset";
-    if (onClose) onClose();
   }
 
   getChildren(): React.ReactNode {
