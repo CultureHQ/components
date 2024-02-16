@@ -27,6 +27,7 @@ type ImageFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   value?: ImageFieldValue;
   asButtonView?: boolean;
   icon?: IconName;
+  registerModal?: (isOpen: boolean) => void;
 };
 
 type ImageFieldState = {
@@ -148,7 +149,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange, asButtonView,
       onFormChange, progress, required, submitted, submitting, validator, value, values,
-      icon, ...props
+      icon, registerModal, ...props
     } = this.props;
 
     const { dragging, editorOpen, failed, image, preview, touched } = this.state;
@@ -194,7 +195,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
             <p className="chq-ffd--rq">Not a valid image.</p>
           )}
           {editorOpen && (
-            <ModalDialog onClose={this.handleClose}>
+            <ModalDialog onClose={this.handleClose} registerModal={registerModal}>
               <ModalDialog.Body>
                 <ImageEditor
                   aspectRatio={aspectRatio}
@@ -274,7 +275,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
             <p className="chq-ffd--rq">Not a valid image.</p>
           )}
           {editorOpen && (
-            <ModalDialog onClose={this.handleClose}>
+            <ModalDialog onClose={this.handleClose} registerModal={registerModal}>
               <ModalDialog.Body>
                 <ImageEditor
                   aspectRatio={aspectRatio}
