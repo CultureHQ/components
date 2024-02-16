@@ -28,7 +28,8 @@ class Modal extends React.Component<ModalProps, ModalState> {
     const { open } = this.state;
     const { onClose } = this.props;
 
-    if (open) {
+    const isThereModalPortal = !!document.getElementsByClassName("ReactModalPortal").length;
+    if (open || isThereModalPortal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
