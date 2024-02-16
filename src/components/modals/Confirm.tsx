@@ -12,6 +12,7 @@ type ConfirmProps = Pick<React.ComponentProps<typeof ModalDialog>, ForwardedProp
   onOpen?: () => void;
   startOpen?: boolean;
   trigger: (onTrigger: () => void) => React.ReactNode;
+  registerModal?: (isOpen: boolean) => void;
 };
 
 type ConfirmState = {
@@ -52,7 +53,8 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
   };
 
   render(): React.ReactElement {
-    const { accept = "Yes", appElement, children, className, contentRef, danger, disclaimer, entrance, trigger, width } = this.props;
+    const { accept = "Yes", appElement, children, className,
+      contentRef, danger, disclaimer, entrance, trigger, width, registerModal } = this.props;
     const { open } = this.state;
 
     const classList = classnames("chq-cnf", className);
@@ -66,8 +68,9 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
             className={classList}
             contentRef={contentRef}
             entrance={entrance}
-            onClose={this.handleClose}
             width={width}
+            onClose={this.handleClose}
+            registerModal={registerModal}
           >
             <ModalDialog.Body>
               {children}

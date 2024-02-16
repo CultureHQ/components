@@ -35,6 +35,7 @@ type MediaFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   asButtonView?: boolean;
   icon?: IconName;
   notReturnMetadata?: boolean;
+  registerModal?: (isOpen: boolean) => void;
 };
 
 type MediaFieldState = {
@@ -212,7 +213,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
       onFormChange, progress, required, submitted, submitting, validator, value,
       videoThumb, values, onProcessing, showControls = true, asButtonView, icon,
-      notReturnMetadata, ...props
+      notReturnMetadata, registerModal, ...props
     } = this.props;
 
     const {
@@ -261,7 +262,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
             <p className="chq-ffd--rq">Not a valid image.</p>
           )}
           {editorOpen && (
-            <ModalDialog onClose={this.handleClose}>
+            <ModalDialog onClose={this.handleClose} registerModal={registerModal}>
               <ModalDialog.Body>
                 <ImageEditor
                   aspectRatio={aspectRatio}
@@ -365,7 +366,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
             <p className="chq-ffd--rq">Not a valid image.</p>
           )}
           {editorOpen && (
-            <ModalDialog onClose={this.handleClose}>
+            <ModalDialog onClose={this.handleClose} registerModal={registerModal}>
               <ModalDialog.Body>
                 <ImageEditor
                   aspectRatio={aspectRatio}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import classnames from "../../classnames";
 
@@ -62,6 +62,7 @@ type ModalDialogProps = {
   onClose?: (event: (React.MouseEvent | React.KeyboardEvent)) => void;
   width?: keyof typeof widths;
   style?: any;
+  registerModal?: (isOpen: boolean) => void;
 };
 
 type ModalDialogComponent = React.FC<ModalDialogProps> & {
@@ -82,31 +83,42 @@ const ModalDialog: ModalDialogComponent = ({
   ariaDescribedby,
   onClose,
   style = undefined,
-  width = "normal"
-}) => (
-  <ReactModal
-    aria={{
-      labelledby: ariaLabelledBy,
-      describedby: ariaDescribedby,
-      modal: true
-    }}
-    appElement={appElement}
-    bodyOpenClassName={bodyOpenClassName || ""}
-    className={classnames("chq-mdl", className, entrances[entrance], widths[width])}
-    contentRef={contentRef}
-    onRequestClose={onClose}
-    isOpen
-    style={
-      style ? {
-        ...modalStyle,
-        overlay: { ...modalStyle.overlay, ...style.overlay },
-        content: style.content
-      } : modalStyle
-    }
-  >
-    {children}
-  </ReactModal>
-);
+  width = "normal",
+  registerModal = () => {}
+}) => {
+  useEffect(
+    () => {
+      registerModal(true);
+      return () => registerModal(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []
+  );
+
+  return (
+    <ReactModal
+      aria={{
+        labelledby: ariaLabelledBy,
+        describedby: ariaDescribedby,
+        modal: true
+      }}
+      appElement={appElement}
+      bodyOpenClassName={bodyOpenClassName || ""}
+      className={classnames("chq-mdl", className, entrances[entrance], widths[width])}
+      contentRef={contentRef}
+      onRequestClose={onClose}
+      isOpen
+      style={
+        style ? {
+          ...modalStyle,
+          overlay: { ...modalStyle.overlay, ...style.overlay },
+          content: style.content
+        } : modalStyle
+      }
+    >
+      {children}
+    </ReactModal>
+  );
+};
 
 ModalDialog.Heading = ModalDialogHeading;
 ModalDialog.Body = Panel.Body;

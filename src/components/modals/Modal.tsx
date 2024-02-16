@@ -11,6 +11,7 @@ type ModalProps = Pick<React.ComponentProps<typeof ModalDialog>, ForwardedProps>
   trigger: (onTrigger: () => void) => React.ReactNode;
   style?: any,
   bodyOpenClassName?: string;
+  registerModal?: (isOpen: boolean) => void;
 };
 
 type ModalState = {
@@ -22,19 +23,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
     super(props);
 
     this.state = { open: props.startOpen || false };
-  }
-
-  componentDidUpdate(): void {
-    const { open } = this.state;
-    const { onClose } = this.props;
-
-    const isThereModalPortal = !!document.getElementsByClassName("ReactModalPortal").length;
-    if (open || isThereModalPortal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-      if (onClose) onClose();
-    }
   }
 
   getChildren(): React.ReactNode {
@@ -81,7 +69,8 @@ class Modal extends React.Component<ModalProps, ModalState> {
       entrance,
       style,
       trigger,
-      width
+      width,
+      registerModal
     } = this.props;
     const { open } = this.state;
 
@@ -97,9 +86,10 @@ class Modal extends React.Component<ModalProps, ModalState> {
             className={className}
             contentRef={contentRef}
             entrance={entrance}
-            onClose={this.handleClose}
             style={style}
             width={width}
+            onClose={this.handleClose}
+            registerModal={registerModal}
           >
             {this.getChildren()}
           </ModalDialog>

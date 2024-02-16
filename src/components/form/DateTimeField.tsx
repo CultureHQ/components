@@ -76,6 +76,7 @@ type DateTimeFieldProps = FormState & {
   required?: boolean;
   validator?: (value: string) => FormFieldError;
   value?: string;
+  registerModal?: (isOpen: boolean) => void;
 };
 
 type DateTimeFieldState = {
@@ -217,7 +218,7 @@ class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldSta
   render() {
     const {
       children, className, disabled, onError, name, required, submitted,
-      validator
+      validator, registerModal
     } = this.props;
 
     const { open, touched } = this.state;
@@ -251,6 +252,7 @@ class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldSta
             className="chq-ffd--dtmd"
             entrance="zoomIn"
             onClose={this.handleClose}
+            registerModal={registerModal}
           >
             <ModalDialog.Heading onClose={this.handleClose}>
               {children}
