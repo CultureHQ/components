@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.13.5] - 2023-02-26
+
+### Changed
+
+- Validate zero value in number field component
+
 ## [19.13.4] - 2023-02-06
 
 ### Changed

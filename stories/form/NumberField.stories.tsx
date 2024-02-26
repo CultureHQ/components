@@ -36,10 +36,10 @@ storiesOf("Form/NumberField", module)
     const validator = (value: string) => {
       const number = parseFloat(value);
 
-      if (number >= 1 && number <= 10) {
+      if (number >= 0 && number <= 10) {
         return null;
       }
-      return "Value must be between 1 and 10.";
+      return "Value must be between 0 and 10.";
     };
 
     return (
