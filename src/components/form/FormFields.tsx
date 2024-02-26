@@ -61,7 +61,7 @@ const makeFormField = (type: string) => {
           type={type}
           id={name}
           name={name}
-          value={normal || ""}
+          value={normal !== undefined ? normal : ""}
           onBlur={onBlur}
           onChange={handleChange}
         />
