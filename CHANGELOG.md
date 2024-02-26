@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.13.6] - 2023-02-26
+
+### Changed
+
+- Validate min value in the number field
+
 ## [19.13.5] - 2023-02-26
 
 ### Changed

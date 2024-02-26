@@ -24,7 +24,7 @@ type FormFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacked
 const makeFormField = (type: string) => {
   const FormField: React.FC<FormFieldProps> = ({
     addon, autoFocus, children, className, disabled, name, onChange, required,
-    validator, value, max, ...props
+    validator, value, max, min, ...props
   }) => {
     const { submitted, values, onError, onFormChange } = useForm();
 
@@ -37,7 +37,7 @@ const makeFormField = (type: string) => {
     const onBlur = () => setTouched(true);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value: nextValue } = event.target;
-      if (max && nextValue?.length > max) {
+      if (max && nextValue?.length > +max) {
         return;
       }
 
@@ -47,7 +47,7 @@ const makeFormField = (type: string) => {
       onFormChange(name, nextValue);
     };
 
-    const normal = value || (values[name] as undefined | string);
+    const normal = value !== undefined ? value : (values[name] as undefined | string);
 
     return (
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
@@ -61,11 +61,11 @@ const makeFormField = (type: string) => {
           type={type}
           id={name}
           name={name}
-          value={normal !== undefined ? normal : ""}
+          value={normal || ""}
           onBlur={onBlur}
           onChange={handleChange}
         />
-        {max && (<span className="chq-ffd--ctrl--validation">{normal?.length || 0}/{max}</span>)}
+        {max && (<span className="chq-ffd--ctrl--validation">{min !== undefined ? min : normal?.length || 0}/{max}</span>)}
         <FormError
           name={name}
           onError={onError}
