@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.14.0] - 2023-02-27
+
+### Changed
+
+- Add new cloud icon
+
 ## [19.13.6] - 2023-02-26
 
 ### Changed
