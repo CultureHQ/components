@@ -4,6 +4,7 @@ import Cropper from "cropperjs";
 import ActionButton from "./buttons/ActionButton";
 import Button from "./buttons/Button";
 import Icon from "./Icon";
+import Loader from "./Loader";
 
 const cropperToImage = (cropper: Cropper) => {
   const type = "image/png";
@@ -28,6 +29,7 @@ type ImageEditorProps = {
   image: string | null;
   onEdit?: (blob: Blob, closeModal: boolean) => void;
   onFailure?: () => void;
+  isLoading?: boolean;
 };
 
 type ImageEditorState = {
@@ -128,8 +130,7 @@ Record<string, unknown>> {
   };
 
   render(): React.ReactElement {
-    const { image, onFailure } = this.props;
-
+    const { image, onFailure, isLoading } = this.props;
     return (
       <div className="chq-ied">
         <div className="chq-ied--ctrl">
@@ -157,11 +158,16 @@ Record<string, unknown>> {
             ref={this.buttonSaveRef}
             primary
             onClick={this.editSaveText}
+            disabled={isLoading}
           >
             <Icon icon="ios-camera-outline" /> Save
           </Button>
         </div>
         <div className="chq-ied--img">
+          {isLoading
+          && (
+            <Loader loading />
+          )}
           <img
             ref={this.imageRef}
             src={image || undefined}
