@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.15.0] - 2024-03-12
+
+### Changed
+
+- Validate the wait for image loading in the crop
+
 ## [19.14.0] - 2023-02-27
 
 ### Changed

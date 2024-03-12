@@ -4,6 +4,7 @@ import Cropper from "cropperjs";
 import ActionButton from "./buttons/ActionButton";
 import Button from "./buttons/Button";
 import Icon from "./Icon";
+import Loader from "./Loader";
 
 const cropperToImage = (cropper: Cropper) => {
   const type = "image/png";
@@ -31,7 +32,7 @@ type ImageEditorProps = {
 };
 
 type ImageEditorState = {
-  saveText: string;
+  isLoading: boolean;
 };
 
 class ImageEditor extends React.Component<ImageEditorProps, ImageEditorState,
@@ -43,6 +44,14 @@ Record<string, unknown>> {
   private componentIsMounted = false;
 
   private imageRef = React.createRef<HTMLImageElement>();
+
+  constructor(props: ImageEditorProps) {
+    super(props);
+
+    this.state = {
+      isLoading: true
+    };
+  }
 
   componentDidMount(): void {
     this.componentIsMounted = true;
@@ -58,7 +67,10 @@ Record<string, unknown>> {
             aspectRatio,
             dragMode: "move",
             autoCropArea: 1,
-            responsive: true
+            responsive: true,
+            ready: () => {
+              this.setState({ isLoading: false });
+            }
           });
         }
       }).catch(() => {
@@ -129,7 +141,7 @@ Record<string, unknown>> {
 
   render(): React.ReactElement {
     const { image, onFailure } = this.props;
-
+    const { isLoading } = this.state;
     return (
       <div className="chq-ied">
         <div className="chq-ied--ctrl">
@@ -157,11 +169,16 @@ Record<string, unknown>> {
             ref={this.buttonSaveRef}
             primary
             onClick={this.editSaveText}
+            disabled={isLoading}
           >
             <Icon icon="ios-camera-outline" /> Save
           </Button>
         </div>
         <div className="chq-ied--img">
+          {isLoading
+          && (
+            <Loader loading />
+          )}
           <img
             ref={this.imageRef}
             src={image || undefined}
