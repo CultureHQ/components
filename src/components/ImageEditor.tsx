@@ -29,11 +29,10 @@ type ImageEditorProps = {
   image: string | null;
   onEdit?: (blob: Blob, closeModal: boolean) => void;
   onFailure?: () => void;
-  isLoading?: boolean;
 };
 
 type ImageEditorState = {
-  saveText: string;
+  isLoading: boolean;
 };
 
 class ImageEditor extends React.Component<ImageEditorProps, ImageEditorState,
@@ -45,6 +44,14 @@ Record<string, unknown>> {
   private componentIsMounted = false;
 
   private imageRef = React.createRef<HTMLImageElement>();
+
+  constructor(props: ImageEditorProps) {
+    super(props);
+
+    this.state = {
+      isLoading: true
+    };
+  }
 
   componentDidMount(): void {
     this.componentIsMounted = true;
@@ -60,7 +67,10 @@ Record<string, unknown>> {
             aspectRatio,
             dragMode: "move",
             autoCropArea: 1,
-            responsive: true
+            responsive: true,
+            ready: () => {
+              this.setState({ isLoading: false });
+            }
           });
         }
       }).catch(() => {
@@ -130,7 +140,8 @@ Record<string, unknown>> {
   };
 
   render(): React.ReactElement {
-    const { image, onFailure, isLoading } = this.props;
+    const { image, onFailure } = this.props;
+    const { isLoading } = this.state;
     return (
       <div className="chq-ied">
         <div className="chq-ied--ctrl">
