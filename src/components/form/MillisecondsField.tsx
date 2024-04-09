@@ -15,7 +15,7 @@ const millisecondsValidator = (value: string) => {
   return null;
 };
 
-type MillisecondsFieldValue = number | null;
+export type MillisecondsFieldValue = number | null;
 
 type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
 type MillisecondsFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, HijackedProps> & {
