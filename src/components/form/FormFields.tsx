@@ -7,6 +7,7 @@ import FormError from "./FormError";
 import { useForm } from "./Form";
 import { FormFieldError } from "./typings";
 import useDisabled from "./useDisabled";
+import Icon, { IconName } from "../Icon";
 
 type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
 type FormFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, HijackedProps> & {
@@ -19,12 +20,13 @@ type FormFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacked
   required?: boolean;
   validator?: (value: string) => FormFieldError;
   value?: string;
+  suffixIcon?: IconName;
 };
 
 const makeFormField = (type: string) => {
   const FormField: React.FC<FormFieldProps> = ({
     addon, autoFocus, children, className, disabled, name, onChange, required,
-    validator, value, max, min, ...props
+    validator, value, max, min, suffixIcon, ...props
   }) => {
     const { submitted, values, onError, onFormChange } = useForm();
 
@@ -53,18 +55,24 @@ const makeFormField = (type: string) => {
       <label className={classnames("chq-ffd", className)} htmlFor={name}>
         <span className="chq-ffd--lb">{children}</span>
         {addon && <span className="chq-ffd--ad">{addon}</span>}
-        <input
-          className={`chq-ffd--ctrl ${max && "chq-ffd--ctrl--with-validation"}`}
-          ref={inputRef}
-          {...props}
-          disabled={disabled}
-          type={type}
-          id={name}
-          name={name}
-          value={normal || ""}
-          onBlur={onBlur}
-          onChange={handleChange}
-        />
+        <>
+          {suffixIcon && (
+            <Icon className="chq-ffd--sl--suffix-icon" icon={suffixIcon} />
+          ) }
+          <input
+            className={`chq-ffd--ctrl ${max && "chq-ffd--ctrl--with-validation"}`}
+            style={suffixIcon ? { paddingRight: "40px" } : {}}
+            ref={inputRef}
+            {...props}
+            disabled={disabled}
+            type={type}
+            id={name}
+            name={name}
+            value={normal || ""}
+            onBlur={onBlur}
+            onChange={handleChange}
+          />
+        </>
         {max && (<span className="chq-ffd--ctrl--validation">{min !== undefined ? min : normal?.length || 0}/{max}</span>)}
         <FormError
           name={name}

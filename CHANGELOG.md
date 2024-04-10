@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [19.15.2] - 2024-04-10
+
+### Added
+
+- Added suffix icon to the email field
+
 ## [19.15.1] - 2024-04-09
 
 ### Added
