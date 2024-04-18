@@ -21,12 +21,13 @@ type FormFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacked
   validator?: (value: string) => FormFieldError;
   value?: string;
   suffixIcon?: IconName;
+  suffixText?: string;
 };
 
 const makeFormField = (type: string) => {
   const FormField: React.FC<FormFieldProps> = ({
     addon, autoFocus, children, className, disabled, name, onChange, required,
-    validator, value, max, min, suffixIcon, ...props
+    validator, value, max, min, suffixIcon, suffixText, ...props
   }) => {
     const { submitted, values, onError, onFormChange } = useForm();
 
@@ -56,9 +57,12 @@ const makeFormField = (type: string) => {
         <span className="chq-ffd--lb">{children}</span>
         {addon && <span className="chq-ffd--ad">{addon}</span>}
         <>
-          {suffixIcon && (
-            <Icon className="chq-ffd--sl--suffix-icon" icon={suffixIcon} />
-          ) }
+          <div className="chq-sfx">
+            {suffixText && (<span className="chq-sfx-text">{suffixText}</span>)}
+            {suffixIcon && (
+              <Icon className="chq-ffd--sl--suffix-icon" icon={suffixIcon} />
+            ) }
+          </div>
           <input
             className={`chq-ffd--ctrl ${max && "chq-ffd--ctrl--with-validation"}`}
             style={suffixIcon ? { paddingRight: "40px" } : {}}
