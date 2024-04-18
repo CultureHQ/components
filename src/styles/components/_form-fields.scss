@@ -33,6 +33,14 @@
     margin: 0;
   }
 
+  .chq-sfx {
+    align-items: center;
+    bottom: 5px;
+    display: flex;
+    position: absolute;
+    right: 5px;
+  }
+
   .chq-ffd--ctrl {
     border: 0;
     border-bottom: 2px solid $color-border;

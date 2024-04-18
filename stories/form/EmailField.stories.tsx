@@ -44,4 +44,4 @@ storiesOf("Form/EmailField", module)
       <Container name="email" required validator={validator}>Email</Container>
     );
   })
-  .add("suffix icon", () => <Container name="email" suffixIcon="linkedin-share">Email</Container>);
+  .add("suffix icon", () => <Container name="email" suffixIcon="linkedin-share" suffixText="Enter">Email</Container>);
