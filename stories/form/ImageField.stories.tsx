@@ -45,6 +45,11 @@ storiesOf("Form/ImageField", module)
       <Container imageAsBackground onChange={onChange} name="image" required value={selectedImage} buttonLabel="Upload your own image"><></></Container>
     );
   })
+  .add("backgroundIcon", () => {
+    return (
+      <Container backgroundIcon="user-filled" aspectRatio={1} name="image" progress={0} required><></></Container>
+    );
+  })
   .add("asButton", () => <Container name="image" asButtonView><></></Container>)
   .add("validator", () => {
     const validator = (value: ImageFieldValue) => {

@@ -15,6 +15,7 @@ type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
 type ImageFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, HijackedProps> & {
   aspectRatio?: number;
   autoFocus?: boolean;
+  backgroundIcon?: IconName;
   imageAsBackground?: boolean;
   buttonLabel?: string;
   children: React.ReactNode;
@@ -146,7 +147,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
 
   render() {
     const {
-      aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
+      aspectRatio, autoFocus, backgroundIcon, imageAsBackground, buttonLabel, children, className,
       disabledStates, errors, name, onChange, onError, onFieldDisabledChange, asButtonView,
       onFormChange, progress, required, submitted, submitting, validator, value, values,
       icon, registerModal, ...props
@@ -240,7 +241,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
               <>
                 {!normal && (
                   <div className="chq-ffd--im--ph">
-                    <Icon icon={icon || "images"} />
+                    <Icon icon={backgroundIcon || icon || "images"} />
                   </div>
                 )}
                 <div className="chq-ffd--im--bt">
