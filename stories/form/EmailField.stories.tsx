@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, text } from "@storybook/addon-knobs";
@@ -44,4 +44,13 @@ storiesOf("Form/EmailField", module)
       <Container name="email" required validator={validator}>Email</Container>
     );
   })
-  .add("suffix icon", () => <Container name="email" suffixIcon="linkedin-share" suffixText="Enter">Email</Container>);
+  .add("suffix icon", () => <Container name="email" suffixIcon="linkedin-share" suffixText="Enter">Email</Container>)
+  .add("suffix animation", () => {
+    const [isValidEmail, setIsValidEmail] = useState(false);
+
+    const handleChange = (value: string) => {
+      setIsValidEmail(!!value);
+    };
+
+    return <Container name="email" onChange={handleChange} suffixIcon={"linkedin-share"} suffixText="Enter" validEmailAnimation validEmail={isValidEmail}>Email</Container>
+  });

@@ -75,9 +75,10 @@
     }
   }
 
-  &--icon, &--suffix-icon {
+  &--icon {
     max-width: 30px;
     padding: 5px;
+    position: absolute;
   }
 
   &--opts {

@@ -22,12 +22,14 @@ type FormFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacked
   value?: string;
   suffixIcon?: IconName;
   suffixText?: string;
+  validEmailAnimation?: boolean;
+  validEmail?: boolean;
 };
 
 const makeFormField = (type: string) => {
   const FormField: React.FC<FormFieldProps> = ({
     addon, autoFocus, children, className, disabled, name, onChange, required,
-    validator, value, max, min, suffixIcon, suffixText, ...props
+    validator, value, max, min, validEmailAnimation, validEmail, suffixIcon, suffixText, ...props
   }) => {
     const { submitted, values, onError, onFormChange } = useForm();
 
@@ -59,13 +61,29 @@ const makeFormField = (type: string) => {
         <>
           <div className="chq-sfx">
             {suffixText && (<span className="chq-sfx-text">{suffixText}</span>)}
-            {suffixIcon && (
-              <Icon className="chq-ffd--sl--suffix-icon" icon={suffixIcon} />
-            ) }
+            {suffixIcon && !validEmailAnimation && (
+              <Icon className="chq-sfx--suffix-icon" icon={suffixIcon} />
+            )}
+            {validEmailAnimation && (
+              <>
+                {validEmail ? (
+                  <div className="chq-sfx--suffix-icon chq-cmk chq-cmk-ck">
+                    <svg viewBox="0 0 52 52">
+                      <circle cx="26" cy="26" r="25" fill="none" />
+                      <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                  </div>
+                ) : (
+                  <div className="chq-sfx--suffix-icon">
+                    <Icon className="chq-sfx--suffix-icon" icon={suffixIcon || "arrow-left-c"} />
+                  </div>
+                )}
+              </>
+            )}
           </div>
           <input
             className={`chq-ffd--ctrl ${max && "chq-ffd--ctrl--with-validation"}`}
-            style={suffixIcon ? { paddingRight: "40px" } : {}}
+            style={suffixIcon || validEmailAnimation ? { paddingRight: "40px" } : {}}
             ref={inputRef}
             {...props}
             disabled={disabled}
