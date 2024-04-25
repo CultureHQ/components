@@ -75,7 +75,7 @@ const makeFormField = (type: string) => {
                   </div>
                 ) : (
                   <div className="chq-sfx--suffix-icon">
-                    <Icon className="chq-sfx--suffix-icon" icon={suffixIcon || "arrow-left-c"} />
+                    <Icon icon={suffixIcon || "arrow-left-c"} />
                   </div>
                 )}
               </>
