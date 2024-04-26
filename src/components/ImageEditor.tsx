@@ -6,13 +6,46 @@ import Button from "./buttons/Button";
 import Icon from "./Icon";
 import Loader from "./Loader";
 
-const cropperToImage = (cropper: Cropper) => {
+const resizeImage = (image: HTMLCanvasElement, maxWidth: number, maxHeight: number): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const canvas = document.createElement('canvas') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d');
+
+    const width = image.width;
+    const height = image.height;
+
+    let newWidth = width;
+    let newHeight = height;
+
+    if (width > height) {
+      if (width > maxWidth) {
+        newHeight *= maxWidth / width;
+        newWidth = maxWidth;
+      }
+    } else {
+      if (height > maxHeight) {
+        newWidth *= maxHeight / height;
+        newHeight = maxHeight;
+      }
+    }
+
+    canvas.width = newWidth;
+    canvas.height = newHeight;
+
+    ctx?.drawImage(image, 0, 0, newWidth, newHeight);
+
+    resolve(canvas.toDataURL('image/jpeg'));
+  });
+};
+
+const cropperToImage = async (cropper: Cropper): Promise<Blob> => {
   const type = "image/png";
   const canvas = cropper.getCroppedCanvas({
     imageSmoothingEnabled: true,
     imageSmoothingQuality: "high"
   });
-  const binary = window.atob(canvas.toDataURL(type, 1).split(",")[1]);
+  const resizedDataUrl = await resizeImage(canvas, 1024, 1024); // Resize image to a maximum of 1024x1024
+  const binary = window.atob(resizedDataUrl.split(",")[1]);
 
   const { length } = binary;
   const byteArray = new Uint8Array(length);
@@ -92,16 +125,18 @@ Record<string, unknown>> {
     }
   }
 
-  editSaveText =(): void => {
+  editSaveText = async (): Promise<void> => {
     const { onEdit } = this.props;
     const saveButtonRef = this.buttonSaveRef.current;
-
+  
     if (saveButtonRef) {
       saveButtonRef.innerText = "Saving...";
       saveButtonRef.disabled = true;
-      setTimeout(() => {
+  
+      setTimeout(async () => {
         if (onEdit && this.cropper) {
-          onEdit(cropperToImage(this.cropper), true);
+          const croppedImageBlob: Blob = await cropperToImage(this.cropper);
+          onEdit(croppedImageBlob, true);
         }
       }, 50);
     }
@@ -131,11 +166,12 @@ Record<string, unknown>> {
     }
   };
 
-  handleSave = (closeModal = false): void => {
+  handleSave = async (closeModal = false): Promise<void> => {
     const { onEdit } = this.props;
-
+  
     if (onEdit && this.cropper) {
-      onEdit(cropperToImage(this.cropper), closeModal);
+      const croppedImageBlob: Blob = await cropperToImage(this.cropper);
+      onEdit(croppedImageBlob, closeModal);
     }
   };
 
