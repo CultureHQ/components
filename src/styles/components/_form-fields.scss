@@ -21,9 +21,10 @@
 
   &--lb {
     border-bottom: 0;
-    color: $color-primary-light-font;
+    color: $color-primary-font;
     display: block;
     font-size: 1em;
+    font-weight: $font-weight-heavy;
     margin-bottom: 5px;
   }
 

@@ -6,11 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
-## [20.0.0] - 2024-05-15
+## [20.0.1] - 2024-05-15
 
 ## Added
 
-- Use font weight light with 400 because of accessibility restrictions
+- Use font weight light with 400 because of accessibility restrictions and form inputs with bold labels and stronger color
 
 ## [19.18.2] - 2024-04-26
 
