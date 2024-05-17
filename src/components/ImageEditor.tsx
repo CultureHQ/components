@@ -7,7 +7,7 @@ import Icon from "./Icon";
 import Loader from "./Loader";
 
 const resizeImage = (image: HTMLCanvasElement, maxWidth: number, maxHeight: number): Promise<string> => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, _reject) => {
     const canvas = document.createElement('canvas') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
 
@@ -34,7 +34,7 @@ const resizeImage = (image: HTMLCanvasElement, maxWidth: number, maxHeight: numb
 
     ctx?.drawImage(image, 0, 0, newWidth, newHeight);
 
-    resolve(canvas.toDataURL('image/jpeg'));
+    resolve(canvas.toDataURL('image/png'));
   });
 };
 

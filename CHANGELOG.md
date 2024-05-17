@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.0.2] - 2024-05-17
+
+## Added
+
+- Image editor using the canvas to resize the image with png, this is mostly because of ios phones memory restriction
+
 ## [20.0.1] - 2024-05-15
 
 ## Added
