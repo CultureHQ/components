@@ -12,4 +12,11 @@ storiesOf("ImagePreview", module)
         <ImagePreview image={image} preview="culture.png" />
       </Panel.Body>
     </Panel>
+  ))
+  .add("alt image", () => (
+    <Panel>
+      <Panel.Body className="min-height">
+        <ImagePreview altText="Preview Image" image={image} preview="culture.png" />
+      </Panel.Body>
+    </Panel>
   ));

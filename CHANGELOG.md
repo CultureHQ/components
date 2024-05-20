@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.1.0] - 2024-05-20
+
+## Added
+
+- Adding accesibility props to Image Preview and to circles image
+
 ## [20.0.2] - 2024-05-17
 
 ## Added

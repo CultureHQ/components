@@ -3,6 +3,7 @@ import React from "react";
 import readImage from "../utils/readImage";
 
 type ImagePreviewProps = {
+  altText?: string;
   editorOpen?: boolean;
   image: Blob | File | string | null;
   imageAsBackground?: boolean;
@@ -70,11 +71,11 @@ class ImagePreview extends React.Component<ImagePreviewProps, ImagePreviewState>
 
   render(): React.ReactElement {
     const { src, styles } = this.state;
-    const { editorOpen, imageAsBackground } = this.props;
+    const { altText, editorOpen, imageAsBackground } = this.props;
 
     return (
       <span ref={this.containerRef} style={imageAsBackground ? { alignItems: "center", display: "flex", justifyContent: "center" } : {}}>
-        {src && !editorOpen && <img className="chq-ipv" src={src || undefined} alt="Preview" style={styles} />}
+        {src && !editorOpen && <img className="chq-ipv" src={src || undefined} alt={altText || "Preview"} style={styles} />}
       </span>
     );
   }
