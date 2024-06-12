@@ -68,7 +68,7 @@ type CalendarProps = {
   month2?: null | number;
   day2?: null | number;
   range?: boolean;
-  onChange: (year: number, month: number, day: number, range: boolean) => void;
+  onChange: (year: number, month: number, day: number, range?: boolean) => void;
 };
 
 const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = null,

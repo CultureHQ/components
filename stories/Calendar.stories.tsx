@@ -7,10 +7,27 @@ import { Calendar } from "../src/components";
 type CalendarState = Pick<React.ComponentProps<typeof Calendar>, "year" | "month" | "day">;
 type ContainerProps = Pick<React.ComponentProps<typeof Calendar>, "onChange" | "range">;
 
-const Container: React.FC<ContainerProps> = ({ onChange, range }) => {
+const Container: React.FC<ContainerProps> = ({ onChange }) => {
+  const [value, setValue] = useState<CalendarState>({ year: null, month: null, day: null });
+  const onCalendarChange = (year: number, month: number, day: number) => {
+    setValue({ year, month, day });
+    onChange(year, month, day);
+  };
+
+  return (
+    <Calendar
+      year={value.year}
+      month={value.month}
+      day={value.day}
+      onChange={onCalendarChange}
+    />
+  );
+};
+
+const RangeContainer: React.FC<ContainerProps> = ({ onChange, range }) => {
   const [value, setValue] = useState<CalendarState>({ year: null, month: null, day: null });
   const [value2, setValue2] = useState<CalendarState>({ year: null, month: null, day: null });
-  const onCalendarChange = (year: number, month: number, day: number, isRange: boolean) => {
+  const onCalendarChange = (year: number, month: number, day: number, isRange?: boolean) => {
     if (value.day === null) {
       setValue({ year, month, day });
       onChange(year, month, day, isRange);
@@ -49,5 +66,5 @@ storiesOf("Calendar", module)
     <Container onChange={action("onChange")} />
   ))
   .add("range", () => (
-    <Container onChange={action("onChange")} range />
+    <RangeContainer onChange={action("onChange")} range />
   ));
