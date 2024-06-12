@@ -106,5 +106,11 @@
     &-out {
       color: lighten($color-primary-light-font, 25%);
     }
+
+    &-in-range {
+      background-color: lighten($color-primary-blue, 25%);
+      border-radius: 0;
+      color: $color-primary-font;
+    }
   }
 }

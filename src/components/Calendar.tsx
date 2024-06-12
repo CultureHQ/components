@@ -64,10 +64,15 @@ type CalendarProps = {
   year?: null | number;
   month?: null | number;
   day?: null | number;
-  onChange: (year: number, month: number, day: number) => void;
+  year2?: null | number;
+  month2?: null | number;
+  day2?: null | number;
+  range?: boolean;
+  onChange: (year: number, month: number, day: number, range?: boolean) => void;
 };
 
-const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = null, onChange }) => {
+const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = null,
+  onChange, range = false, year2, month2, day2 }) => {
   const [visible, setVisible] = useState<CalendarView>(() => ({
     year: year === null ? new Date().getFullYear() : year,
     month: month === null ? new Date().getMonth() : month
@@ -100,6 +105,7 @@ const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = nu
   });
 
   const activeHash = makeActiveHash(year, month, day);
+  const activeHash2 = year2 && day2 ? makeActiveHash(year2, month2 || 0, day2) : undefined;
   const values = useMemo(
     () => [
       ...getPrevMonthFillValues(visible),
@@ -108,6 +114,33 @@ const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = nu
     ],
     [visible]
   );
+
+  const startDate = () => {
+    // true: first date false: second date
+    const firstDate = new Date(year || 0, month || 0, day || 0);
+    const secondDate = new Date(year2 || 0, month2 || 0, day2 || 0);
+    return firstDate < secondDate;
+  };
+
+  const isInRange = (dYear: number, dMonth: number, dDay: number) => {
+    if (range) {
+      if (year === null || year2 === null
+        || month === null || month2 === null
+        || day === null || day2 === null
+      ) {
+        return false;
+      }
+      const currentDay = new Date(dYear, dMonth, dDay);
+      const firstDay = new Date(year, month, day);
+      const secondDay = new Date(year2 || 0, month2 || 0, day2 || 0);
+
+      if (startDate()) {
+        return currentDay > firstDay && currentDay < secondDay;
+      }
+      return currentDay > secondDay && currentDay < firstDay;
+    }
+    return false;
+  };
 
   const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -146,11 +179,12 @@ const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = nu
       <div className="chq-cal--days">
         {values.map(value => {
           const valueHash = `${value.year}-${value.month}-${value.day}`;
-          const onClick = () => onChange(value.year, value.month, value.day);
-
+          const onClick = () => onChange(value.year, value.month, value.day, range);
+          const inRange = isInRange(value.year, value.month, value.day);
           const className = classnames("chq-cal--day", {
-            "chq-cal--day-act": (valueHash === activeHash),
-            "chq-cal--day-out": value.fill
+            "chq-cal--day-act": (valueHash === activeHash || valueHash === activeHash2),
+            "chq-cal--day-out": value.fill,
+            "chq-cal--day-in-range": inRange
           });
 
           return (
