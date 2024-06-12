@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.1.1] - 2024-06-12
+
+## Added
+
+- Adding range to the `Calendar` component to allow the user to select a date range
+
 ## [20.1.0] - 2024-05-20
 
 ## Added
