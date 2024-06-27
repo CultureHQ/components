@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.2.0] - 2024-06-26
+
+## Added
+
+- Add new thumbsup-social icon
+
 ## [20.1.1] - 2024-06-12
 
 ## Added
