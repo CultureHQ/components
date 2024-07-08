@@ -6,7 +6,7 @@ import { Calendar } from "../src/components";
 
 type CalendarState = Pick<React.ComponentProps<typeof Calendar>, "year" | "month" | "day">;
 type ContainerProps = Pick<React.ComponentProps<typeof Calendar>, "onChange" | "range">;
-type DisableProps = Pick<React.ComponentProps<typeof Calendar>, "onChange" | "range" | "disable">;
+type DisableProps = Pick<React.ComponentProps<typeof Calendar>, "onChange" | "range" | "disableFuture">;
 
 const Container: React.FC<ContainerProps> = ({ onChange }) => {
   const [value, setValue] = useState<CalendarState>({ year: null, month: null, day: null });
@@ -62,7 +62,7 @@ const RangeContainer: React.FC<ContainerProps> = ({ onChange, range }) => {
   );
 };
 
-const RangeDisableFutureContainer: React.FC<DisableProps> = ({ onChange, range, disable }) => {
+const RangeDisableFutureContainer: React.FC<DisableProps> = ({ onChange, range, disableFuture }) => {
   const [value, setValue] = useState<CalendarState>({ year: null, month: null, day: null });
   const [value2, setValue2] = useState<CalendarState>({ year: null, month: null, day: null });
   const onCalendarChange = (year: number, month: number, day: number, isRange?: boolean) => {
@@ -95,7 +95,7 @@ const RangeDisableFutureContainer: React.FC<DisableProps> = ({ onChange, range, 
       day2={value2.day}
       onChange={onCalendarChange}
       range={range}
-      disable={disable}
+      disableFuture={disableFuture}
     />
   );
 };
@@ -108,5 +108,5 @@ storiesOf("Calendar", module)
     <RangeContainer onChange={action("onChange")} range />
   ))
   .add("disable  future", () => (
-    <RangeDisableFutureContainer onChange={action("onChange")} range disable />
+    <RangeDisableFutureContainer onChange={action("onChange")} range disableFuture />
   ));
