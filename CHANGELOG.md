@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.2.1] - 2024-07-08
+
+## Added
+
+- Adding disable future dates to the `Calendar` component
+
 ## [20.2.0] - 2024-06-26
 
 ## Added
