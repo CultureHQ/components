@@ -68,11 +68,12 @@ type CalendarProps = {
   month2?: null | number;
   day2?: null | number;
   range?: boolean;
+  disable?: boolean;
   onChange: (year: number, month: number, day: number, range?: boolean) => void;
 };
 
 const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = null,
-  onChange, range = false, year2, month2, day2 }) => {
+  onChange, range = false, year2, month2, day2, disable = false }) => {
   const [visible, setVisible] = useState<CalendarView>(() => ({
     year: year === null ? new Date().getFullYear() : year,
     month: month === null ? new Date().getMonth() : month
@@ -178,19 +179,21 @@ const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = nu
       </div>
       <div className="chq-cal--days">
         {values.map(value => {
+          const today = new Date();
+          const currentDay = new Date(value.year, value.month, value.day);
           const valueHash = `${value.year}-${value.month}-${value.day}`;
           const onClick = () => onChange(value.year, value.month, value.day, range);
           const inRange = isInRange(value.year, value.month, value.day);
           const className = classnames("chq-cal--day", {
             "chq-cal--day-act": (valueHash === activeHash || valueHash === activeHash2),
-            "chq-cal--day-out": value.fill,
+            "chq-cal--day-out": value.fill || (today < currentDay && disable),
             "chq-cal--day-in-range": inRange
           });
 
           return (
             <>
               <div id={`${value.month}-${value.day}-${value.year}`} style={{ display: "none" }}>{monthNames[value.month]} {value.day}, {value.year}</div>
-              <PlainButton key={valueHash} className={className} onClick={onClick} aria-labelledby={`${value.month}-${value.day}-${value.year}`}>
+              <PlainButton key={valueHash} className={className} onClick={today < currentDay && disable ? () => {} : onClick} aria-labelledby={`${value.month}-${value.day}-${value.year}`}>
                 {value.day}
               </PlainButton>
             </>
