@@ -88,6 +88,9 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
     if (media?.type?.startsWith("video/")) {
       this.handleVideoSelected(media, null, null, !notReturnMetadata);
     }
+
+    // eslint-disable-next-line no-param-reassign
+    event.target.value = "";
   };
 
   handleVideoEdited = (output: Blob, thumb: Blob) => {

@@ -72,6 +72,9 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
     const image = files && files[0];
 
     this.handleImageSelected({ editorOpen: !!image, failed: false, image: image || null });
+
+    // eslint-disable-next-line no-param-reassign
+    event.target.value = "";
   };
 
   handleImageEdited = (image: Blob, closeModal = false) => {

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.2.2] - 2024-09-26
+
+## Changed
+
+- Fix same file re-selected in `ImageField` and `VideoField` component
+
 ## [20.2.1] - 2024-07-08
 
 ## Added
