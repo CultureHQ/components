@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.2.4] - 2024-10-21
+
+## Added
+
+- Setting new resizeImage max width and height to 2880 to the ImageEditor component
+
 ## [20.2.3] - 2024-09-26
 
 ## Changed

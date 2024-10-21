@@ -44,7 +44,9 @@ const cropperToImage = async (cropper: Cropper): Promise<Blob> => {
     imageSmoothingEnabled: true,
     imageSmoothingQuality: "high"
   });
-  const resizedDataUrl = await resizeImage(canvas, 1024, 1024); // Resize image to a maximum of 1024x1024
+
+  // Resize image to a maximum of 1024x1024
+  const resizedDataUrl = await resizeImage(canvas, 2880, 2880);
   const binary = window.atob(resizedDataUrl.split(",")[1]);
 
   const { length } = binary;
