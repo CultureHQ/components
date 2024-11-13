@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.3.0] - 2024-11-13
+
+## Added
+
+- Adding the new connections icon
+
 ## [20.2.5] - 2024-10-21
 
 ## Added

@@ -219,6 +219,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
         viewBox = "28";
         break;
       case "cloud":
+      case "connections":
       case "linkedin-filled":
       case "linkedin-comment":
       case "linkedin-share":
