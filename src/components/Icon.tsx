@@ -218,6 +218,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "social-comment":
         viewBox = "28";
         break;
+      case "asterisk":
       case "cloud":
       case "connections":
       case "linkedin-filled":

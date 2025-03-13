@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.4.0] - 2025-03-13
+
+## Added
+
+- Adding the new asterisk icon
+
 ## [20.3.0] - 2024-11-13
 
 ## Added
