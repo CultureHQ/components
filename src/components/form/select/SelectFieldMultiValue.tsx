@@ -27,12 +27,12 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
     if (actionButtonCallback) {
       return (
         <div className="option-group">
-          <Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>
+          <Badge id="option-tag" aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>
             {label.length > MAX_LENGHT ? `${label.substring(0, MAX_LENGHT)}...` : label}
             {" "}
             <Icon icon={categoryIcon} className="category-icon" />
           </Badge>
-          <PlainButton aria-label={actionAriaLabel} className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
+          <PlainButton id="option-action" aria-label={actionAriaLabel} className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
             <Icon icon="plus" />
           </PlainButton>
           {" "}
@@ -42,7 +42,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
 
     return (
       <>
-        <Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>
+        <Badge id="option-tag" aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>
           {label.length > MAX_LENGHT ? `${label.substring(0, MAX_LENGHT)}...` : label}
           {" "}
           <Icon icon={categoryIcon} className="category-icon" />
@@ -56,8 +56,8 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
     if (actionButtonCallback) {
       return (
         <div className="option-group">
-          <Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>{label}</Badge>
-          <PlainButton aria-label={actionAriaLabel} className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
+          <Badge id="option-tag" aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>{label}</Badge>
+          <PlainButton id="option-action" aria-label={actionAriaLabel} className="option-action" onClick={() => { actionButtonCallback(value, category, label); }}>
             <Icon icon="plus" />
           </PlainButton>
           {" "}
@@ -67,7 +67,7 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
 
     return (
       <>
-        <Badge aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>
+        <Badge id="option-tag" aria-label={`Unselect ${label}`} icon="close" onClick={onClick}>
           {label.length > MAX_LENGHT ? `${label.substring(0, MAX_LENGHT)}...` : label}
         </Badge>
         {" "}
@@ -75,11 +75,14 @@ const SelectFieldMultiValueBadge: React.FC<SelectFieldMultiValueBadgeProps> = ({
     );
   }
 
-  return <><Badge icon="close" /></>;
+  return <><Badge id="option-tag" icon="close" /></>;
 };
 
 type SelectFieldMultiValueProps = Pick<SelectFieldPassedProps, "ariaLabel" | "disabled" | "imageIconPath" | "display" | "inputRef" | "name" | "onChange" | "onClose" | "onDeselect" | "onOpen" | "open" | "options" | "onSelected" | "onUnselected" | "placeholder" | "removePlacholder"> & {
   value: any;
+  placeholderIsVisible: boolean;
+  onInputBlur: (event:any) => void;
+  onInpuFocus: () => void;
 };
 
 class SelectFieldMultiValue extends React.Component<
@@ -132,7 +135,7 @@ class SelectFieldMultiValue extends React.Component<
   render(): React.ReactElement {
     const {
       ariaLabel, disabled, display, imageIconPath, inputRef, name, onChange,
-      onDeselect, onOpen, open, onSelected, onUnselected, placeholder, removePlacholder
+      onDeselect, onOpen, open, placeholder, onInpuFocus, onInputBlur, placeholderIsVisible
     } = this.props;
 
     const className = classnames("chq-ffd--ctrl", { "chq-ffd--ctrl-fc": open });
@@ -175,11 +178,11 @@ class SelectFieldMultiValue extends React.Component<
           ref={inputRef}
           onChange={onChange}
           onKeyDown={this.handleKeyDown}
-          onFocus={onSelected}
-          onBlur={onUnselected}
+          onFocus={onInpuFocus}
+          onBlur={onInputBlur}
           value={display}
         />
-        {placeholder && !display && !(removePlacholder && currentOptions.length >= 2) && <span className="chq-ffd--sl--place">{placeholder}</span>}
+        {placeholderIsVisible && <span id="sl-placeholder" className="chq-ffd--sl--place">{placeholder}</span>}
         <SelectFieldCaret open={open} />
       </div>
     );

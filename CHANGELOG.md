@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.4.1] - 2025-04-07
+
+## Changed
+
+- Fix the placeholder visibility of the select field
+
 ## [20.4.0] - 2025-03-13
 
 ## Added

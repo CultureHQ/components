@@ -25,6 +25,7 @@ type SelectFieldOptionProps = Pick<SelectFieldPassedProps, "onDeselect" | "onSel
   current: boolean;
   option: SelectOption;
   tabIndex: number;
+  created: boolean;
 };
 
 const SelectFieldOption: React.FC<SelectFieldOptionProps> = React.memo(({
@@ -32,7 +33,8 @@ const SelectFieldOption: React.FC<SelectFieldOptionProps> = React.memo(({
   option,
   onDeselect,
   onSelect,
-  tabIndex
+  tabIndex,
+  created
 }) => {
   const { label, value, icon, category } = option;
   const onClick = () => (
@@ -40,7 +42,7 @@ const SelectFieldOption: React.FC<SelectFieldOptionProps> = React.memo(({
   );
 
   return (
-    <PlainButton aria-current={current} aria-label={`${current ? "Unselect" : "Select"} ${label}${category ? ` - ${category}` : ""}`} onClick={onClick} tabIndex={tabIndex}>
+    <PlainButton id={created ? "create-field-option" : "select-field-option"} className="chq-ffd--sl--opts-chq-pbn" aria-current={current} aria-label={`${current ? "Unselect" : "Select"} ${label}${category ? ` - ${category}` : ""}`} onClick={onClick} tabIndex={tabIndex}>
       {icon && <><Icon className="option-icon" icon={icon} />{" "}</>}
       {label}
       {category && <span className="option-category">{" "}({category})</span>}
@@ -99,6 +101,7 @@ const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
               onSelect={onSelect}
               option={{ label: `${creatableLabel?.length > 0 ? creatableLabel : "Create option"}: ${display}`, value: display }}
               tabIndex={open ? 0 : -1}
+              created
             />
           )}
           {filteredOptions.map(option => (
@@ -109,6 +112,7 @@ const SelectFieldOptions: React.FC<SelectFieldOptionsProps> = React.memo(({
               onSelect={onSelect}
               option={option}
               tabIndex={open ? 0 : -1}
+              created={false}
             />
           ))}
           {!createOption && (filteredOptions?.length === 0) && (
