@@ -57,13 +57,9 @@
     outline: none;
     padding: 0;
     width: 1px;
-
-    &:focus {
+    
+    &__focus {
       width: auto;
-
-      & + .chq-ffd--sl--place {
-        display: none;
-      }
     }
   }
 

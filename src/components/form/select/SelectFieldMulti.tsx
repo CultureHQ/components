@@ -9,6 +9,7 @@ import SelectFieldOptions from "./SelectFieldOptions";
 import fuzzyFilter from "./fuzzyFilter";
 
 type SelectFieldMultiProps = Omit<FormState, "disabled"> & {
+  autoFocus?: boolean;
   allowEmpty?: boolean;
   allWordsMatch?: boolean;
   ariaLabel?: string;
@@ -41,6 +42,7 @@ type SelectFieldMultiState = {
   filteredOptions: SelectOption[];
   open: boolean;
   touched: boolean;
+  placeholderIsVisible: boolean;
 };
 
 class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFieldMultiState> {
@@ -48,12 +50,12 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
 
   constructor(props: SelectFieldMultiProps) {
     super(props);
-
     this.state = {
       display: "",
       filteredOptions: props.options,
       open: false,
-      touched: false
+      touched: false,
+      placeholderIsVisible: props.placeholder !== "" && !props.removePlacholder
     };
 
     this.timeout = null;
@@ -63,15 +65,30 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     window.addEventListener("click", this.handleWindowClick);
   }
 
-  componentDidUpdate(prevProps: SelectFieldMultiProps): void {
+  componentDidUpdate(prevProps: SelectFieldMultiProps, prevState: SelectFieldMultiState): void {
     const { allWordsMatch, initialDisplay, options } = this.props;
-    const { display } = this.state;
+    const { display, open, placeholderIsVisible, touched } = this.state;
 
     if (prevProps.options !== options) {
       this.setState({
         display: initialDisplay || "",
         filteredOptions: fuzzyFilter(options, display, allWordsMatch)
       });
+    }
+
+    if (!open && !prevState.open && !placeholderIsVisible) {
+      if (touched) {
+        this.inputFocusClass(false);
+        const { autoFocus } = this.props;
+
+        if (!autoFocus) {
+          this.setState({
+            placeholderIsVisible: true
+          });
+        } else {
+          this.inputFocusClass(true);
+        }
+      }
     }
   }
 
@@ -99,8 +116,14 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     return null;
   };
 
-  handleWindowClick = (event: Event): void => {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  handleWindowClick = (event: any): void => {
     const { createClickNeeded, onCloseAction, selectRef, onFocus } = this.props;
+    if (event.target) {
+      if (event.target.id === "sl-placeholder" || event.target.id === "create-field-option") {
+        return;
+      }
+    }
     const { display, open } = this.state;
     const select = selectRef.current;
     const normal = this.getValue();
@@ -149,6 +172,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
 
   handleDeselect = (deselected: SelectValue, category = ""): void => {
     const { onFocus } = this.props;
+    const { placeholderIsVisible } = this.state;
     const normal = this.getValue();
 
     let nextValue: any = null;
@@ -160,7 +184,9 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
       nextValue = normal ? (normal as SelectValue[]).filter(item => item !== deselected) : null;
     }
 
-    onFocus();
+    if (!placeholderIsVisible) {
+      onFocus();
+    }
     this.selectValue(nextValue, false);
     this.propagateValue(nextValue);
   };
@@ -190,6 +216,65 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
   handleClose = (): void => {
     this.setState({ open: false, touched: true });
   };
+
+  handleInputFocus = (): void => {
+    const { placeholderIsVisible } = this.state;
+    const { onSelected } = this.props;
+
+    if (onSelected) {
+      onSelected();
+    }
+
+    this.inputFocusClass(true);
+
+    if (!placeholderIsVisible) return;
+    this.inputFocusClass(true);
+    this.setState(prev => ({ ...prev, placeholderIsVisible: false }));
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  handleInputBlur = (event: any): void => {
+    const { placeholderIsVisible } = this.state;
+    const { onUnselected } = this.props;
+
+    if (onUnselected) {
+      onUnselected();
+    }
+    const shouldShowPlaceholder = !event.relatedTarget
+    || (event.relatedTarget.id !== "select-field-option" && event.relatedTarget.id !== "option-tag"
+    && event.relatedTarget.id !== "option-action" && event.relatedTarget.id !== "create-field-option");
+
+    if (placeholderIsVisible === shouldShowPlaceholder) return;
+
+    if (event.relatedTarget) {
+      if (event.relatedTarget.id) {
+        if (!(event.relatedTarget.id === "select-field-option" || event.relatedTarget.id === "option-tag" || event.relatedTarget.id === "create-field-option")) {
+          this.inputFocusClass(false);
+          this.setState(prev => ({ ...prev,
+            placeholderIsVisible: true }));
+        }
+      } else {
+        this.inputFocusClass(false);
+        this.setState(prev => ({ ...prev,
+          placeholderIsVisible: true }));
+      }
+    } else {
+      this.inputFocusClass(false);
+      this.setState(prev => ({ ...prev,
+        placeholderIsVisible: true }));
+    }
+  };
+
+  inputFocusClass = (focused: boolean): void => {
+    const { inputRef } = this.props;
+    if (inputRef.current) {
+      if (focused) {
+        inputRef.current.classList.add("chq-ffd--sl--match__focus");
+      } else {
+        inputRef.current.classList.remove("chq-ffd--sl--match__focus");
+      }
+    }
+  }
 
   propagateValue = (value: null | SelectValue[] | SelectValueWithCategory[]): void => {
     const { name, onChange, onFormChange } = this.props;
@@ -237,7 +322,7 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
       submitted, validator, removePlacholder
     } = this.props;
 
-    const { display, filteredOptions, open, touched } = this.state;
+    const { display, filteredOptions, open, touched, placeholderIsVisible } = this.state;
     const normal = this.getValue();
 
     return (
@@ -261,6 +346,9 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
             placeholder={placeholder}
             value={normal}
             removePlacholder={removePlacholder}
+            placeholderIsVisible={placeholderIsVisible}
+            onInpuFocus={this.handleInputFocus}
+            onInputBlur={this.handleInputBlur}
           />
           <SelectFieldOptions
             allowEmpty={allowEmpty}
