@@ -83,7 +83,6 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "facebook":
       case "file":
       case "file-filled":
-      case "flip":
       case "fullscreen":
       case "global":
       case "global-filled":
@@ -213,6 +212,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "crop":
       case "diagram":
       case "diagram-filled":
+      case "flip":
       case "upload-video":
         viewBox = "32";
         break;
@@ -290,38 +290,6 @@ class Icon extends React.PureComponent<IconProps, IconState> {
           <g><g><polygon fill={color} points="92.232,39.279 144.126,128.247 233.094,39.279" /></g></g>
           <g><g><polygon fill={color} points="155.076,153.145 256,472.721 356.924,153.145" /></g></g>
           <g><g><polygon fill={color} points="256,43.208 165.04,134.168 346.96,134.168" /></g></g>
-        </svg>
-      );
-    }
-
-    if (icon === "flip") {
-      return (
-        <svg
-          aria-hidden
-          role="presentation"
-          width="22px"
-          height="22px"
-          viewBox="0 0 32 32"
-          x="0px"
-          y="0px"
-          xmlSpace="preserve"
-          className={className}
-        >
-          <g id="_33-Flip" data-name="33-Flip">
-            <path
-              fill={color}
-              d="M25 2H7a1 1 0 0 0-.92.62 1 1 0 0 0 .21 1.09l9 9a1 1 0 0 0 1.42 0l9-9a1 1 0 0 0 .21-1.09A1 1 0 0 0 25 2z"
-            />
-            <path
-              fill={color}
-              d="M16.71 19.29a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0-.21 1.09A1 1 0 0 0 7 30h18a1 1 0 0 0 .92-.62 1 1 0 0 0-.21-1.09z"
-            />
-            <path fill={color} d="M29 15h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2z" />
-            <path fill={color} d="M23 17a1 1 0 0 0 0-2h-2a1 1 0 0 0 0 2z" />
-            <path fill={color} d="M17 17a1 1 0 0 0 0-2h-2a1 1 0 0 0 0 2z" />
-            <path fill={color} d="M11 17a1 1 0 0 0 0-2H9a1 1 0 0 0 0 2z" />
-            <path fill={color} d="M5 15H3a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2z" />
-          </g>
         </svg>
       );
     }
