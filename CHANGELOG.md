@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.5.0] - 2025-04-14
+
+## Changed
+
+- Add new flip icon
+
 ## [20.4.1] - 2025-04-07
 
 ## Changed

@@ -212,6 +212,7 @@ class Icon extends React.PureComponent<IconProps, IconState> {
       case "crop":
       case "diagram":
       case "diagram-filled":
+      case "flip":
       case "upload-video":
         viewBox = "32";
         break;
