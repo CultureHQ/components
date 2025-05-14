@@ -8,8 +8,9 @@ import FormError from "./FormError";
 import VideoEditor from "../VideoEditor";
 import { FormState, withForm } from "./Form";
 import { FormFieldError } from "./typings";
+import { MediaFieldVal } from "./MediaField";
 
-export type VideoFieldValue = Blob | File | string | null;
+export type VideoFieldValue = MediaFieldVal | null;
 export type UrlValue = string | null;
 
 type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
@@ -93,7 +94,7 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
     event.target.value = "";
   };
 
-  handleVideoEdited = (output: Blob, thumb: Blob) => {
+  handleVideoEdited = (output: MediaFieldVal, thumb: Blob) => {
     this.setState({ video: output, videoEditorOpen: false });
     this.handleVideoSelected(output, thumb, null, false);
   };
@@ -194,9 +195,9 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
           {failed && (
             <p className="chq-ffd--rq">Not a valid image.</p>
           )}
-          {videoEditorOpen && (
+          {videoEditorOpen && video && (
             <VideoEditor
-              video={video}
+              video={video as unknown as MediaFieldVal}
               onEdit={this.handleVideoEdited}
               onProcessing={onProcessing}
               asButtonView={asButtonView}
@@ -231,7 +232,7 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
                     onChange(video, thumb, null, target.duration, false);
                   }
                 }}
-                src={(videoThumb && !video) ? value as string : URL.createObjectURL(video)}
+                src={(videoThumb && !video) ? value as string : (video ? URL.createObjectURL(video as unknown as Blob) : "")}
               />
             )}
             {(image || preview || (normal && !video && !videoThumb)) && (
@@ -285,9 +286,9 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
           {failed && (
             <p className="chq-ffd--rq">Not a valid image.</p>
           )}
-          {videoEditorOpen && (
+          {videoEditorOpen && video && (
             <VideoEditor
-              video={video}
+              video={video as unknown as MediaFieldVal}
               onEdit={this.handleVideoEdited}
               onProcessing={onProcessing}
             />

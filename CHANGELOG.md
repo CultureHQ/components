@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.6.1] - 2025-05-14
+
+## Changed
+
+- Code validation to handle different media params
+
 ## [20.6.0] - 2025-05-14
 
 ## Changed

@@ -11,7 +11,8 @@ import VideoEditor from "../VideoEditor";
 import { FormState, withForm } from "./Form";
 import { FormFieldError } from "./typings";
 
-export type MediaFieldValue = Blob | File | string | null;
+export type MediaFieldVal = Blob | File | string;
+export type MediaFieldValue = MediaFieldVal | null;
 export type UrlValue = string | null;
 
 type HijackedProps = "className" | "name" | "onChange" | "required" | "value";
@@ -125,7 +126,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     this.handleImageSelected({ editorOpen: false, failed: true, image: null });
   };
 
-  handleVideoEdited = (output: Blob, thumb: Blob) => {
+  handleVideoEdited = (output: MediaFieldVal, thumb: Blob) => {
     this.setState({ video: output, videoEditorOpen: false });
     this.handleVideoSelected(output, thumb, null, false);
   };
@@ -159,7 +160,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
         editorOpen,
         failed,
         image,
-        preview: image ? URL.createObjectURL(image) : null,
+        preview: image ? URL.createObjectURL(image as unknown as Blob) : null,
         touched: true,
         video: null
       };
@@ -273,9 +274,9 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
               </ModalDialog.Body>
             </ModalDialog>
           )}
-          {videoEditorOpen && (
+          {videoEditorOpen && video && (
             <VideoEditor
-              video={video}
+              video={video as unknown as MediaFieldVal}
               onEdit={this.handleVideoEdited}
               onProcessing={onProcessing}
               asButtonView={asButtonView}
@@ -311,7 +312,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
                     onChange(video, thumb, null, target.duration, false);
                   }
                 }}
-                src={(videoThumb && !video) ? value as string : URL.createObjectURL(video)}
+                src={(videoThumb && !video) ? value as string : (video ? URL.createObjectURL(video as unknown as Blob) : "")}
               />
             )}
             {(image || preview || (normal && !video && !videoThumb)) && (
@@ -377,9 +378,9 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
               </ModalDialog.Body>
             </ModalDialog>
           )}
-          {videoEditorOpen && (
+          {videoEditorOpen && video && (
             <VideoEditor
-              video={video}
+              video={video as unknown as MediaFieldVal}
               onEdit={this.handleVideoEdited}
               onProcessing={onProcessing}
             />
