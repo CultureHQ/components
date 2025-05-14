@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [20.6.0] - 2025-05-14
+
+## Changed
+
+- Removing ffmpeg
+
 ## [20.5.0] - 2025-04-14
 
 ## Changed

@@ -1,13 +1,5 @@
-/* eslint-disable react/require-default-props */
-/* eslint-disable jsx-a11y/media-has-caption */
 import React, { useEffect } from "react";
-import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import Loader from "./Loader";
-
-const ffmpeg = createFFmpeg({
-  corePath: "https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js",
-  log: false
-});
 
 type ImageEditorProps = {
   video: any;
@@ -21,39 +13,55 @@ const VideoEditor = ({
 }: ImageEditorProps):React.ReactElement => {
   useEffect(() => {
     const processVideo = async () => {
-      // Write the file to memory
-      ffmpeg.FS("writeFile", "video.mp4", await fetchFile(video));
+      const videoUrl = URL.createObjectURL(video);
+      const videoElement = document.createElement("video");
+      videoElement.src = videoUrl;
+      videoElement.currentTime = 1;
 
-      // Run the FFMpeg command
-      await ffmpeg.run("-i", "video.mp4", "-ss", "00:00:00.000", "-vframes", "1", "thumbnail.png");
-      // await ffmpeg.run("-i", "video.mp4", "-vcodec", "libx264", "output.mp4");
+      const blobThumb = await new Promise<Blob>((resolve, reject) => {
+        videoElement.addEventListener("loadeddata", () => {
+          const canvas = document.createElement("canvas");
+          canvas.width = videoElement.videoWidth;
+          canvas.height = videoElement.videoHeight;
+          const context = canvas.getContext("2d");
 
-      // Read the result
-      // const output = ffmpeg.FS("readFile", "output.mp4");
-      const thumb = ffmpeg.FS("readFile", "thumbnail.png");
-      // const blobOutput = new Blob([output.buffer], { type: "video/mp4" });
-      const blobThumb = new Blob([thumb.buffer], { type: "image/png" });
+          if (context) {
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(blob => {
+              if (blob) {
+                // Cleanup the URL after we're done
+                URL.revokeObjectURL(videoUrl);
+                resolve(blob);
+              } else {
+                URL.revokeObjectURL(videoUrl);
+                reject(new Error("Failed to create blob from canvas"));
+              }
+            }, "image/png");
+          } else {
+            URL.revokeObjectURL(videoUrl);
+            reject(new Error("Failed to get canvas context"));
+          }
+        });
 
-      // return { blobOutput, blobThumb };
+        videoElement.addEventListener("error", () => {
+          URL.revokeObjectURL(videoUrl);
+          reject(new Error("Error loading video"));
+        });
+      });
+
       return { blobThumb };
     };
 
     const handleSave = async () => {
       if (onEdit) {
-        if (onProcessing) {
-          onProcessing(true);
-        }
+        if (onProcessing) onProcessing(true);
         const { blobThumb } = await processVideo();
-        if (onProcessing) {
-          onProcessing(false);
-        }
+        if (onProcessing) onProcessing(false);
         onEdit(video, blobThumb);
       }
     };
+
     const load = async () => {
-      if (!ffmpeg.isLoaded()) {
-        await ffmpeg.load();
-      }
       await handleSave();
     };
 
