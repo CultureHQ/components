@@ -64,6 +64,7 @@ type ImageEditorProps = {
   image: string | null;
   onEdit?: (blob: Blob, closeModal: boolean) => void;
   onFailure?: () => void;
+  clickOutsideCancel?: boolean;
 };
 
 type ImageEditorState = {
@@ -79,6 +80,8 @@ Record<string, unknown>> {
   private componentIsMounted = false;
 
   private imageRef = React.createRef<HTMLImageElement>();
+
+  private isSaveClicked = false;
 
   constructor(props: ImageEditorProps) {
     super(props);
@@ -117,11 +120,10 @@ Record<string, unknown>> {
 
   componentWillUnmount(): void {
     this.componentIsMounted = false;
-
-    // We have this here to ensure the image will be cropped even if the user
-    // closes the modal.
-    this.handleSave();
-
+    const { clickOutsideCancel } = this.props;
+    if (!clickOutsideCancel || this.isSaveClicked) {
+      this.handleSave();
+    }
     if (this.cropper) {
       this.cropper.destroy();
     }
@@ -130,17 +132,22 @@ Record<string, unknown>> {
   editSaveText = async (): Promise<void> => {
     const { onEdit } = this.props;
     const saveButtonRef = this.buttonSaveRef.current;
-  
     if (saveButtonRef) {
       saveButtonRef.innerText = "Saving...";
       saveButtonRef.disabled = true;
-  
-      setTimeout(async () => {
-        if (onEdit && this.cropper) {
+
+      this.isSaveClicked = true;
+
+      if (onEdit && this.cropper) {
+        try {
           const croppedImageBlob: Blob = await cropperToImage(this.cropper);
           onEdit(croppedImageBlob, true);
+        } catch (error) {
+          saveButtonRef.innerText = "Save";
+          saveButtonRef.disabled = false;
+          this.isSaveClicked = false;
         }
-      }, 50);
+      }
     }
   };
 
@@ -170,7 +177,6 @@ Record<string, unknown>> {
 
   handleSave = async (closeModal = false): Promise<void> => {
     const { onEdit } = this.props;
-  
     if (onEdit && this.cropper) {
       const croppedImageBlob: Blob = await cropperToImage(this.cropper);
       onEdit(croppedImageBlob, closeModal);

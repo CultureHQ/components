@@ -16,6 +16,7 @@ type ImageFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, Hijacke
   aspectRatio?: number;
   autoFocus?: boolean;
   backgroundIcon?: IconName;
+  clickOutsideCancel?: boolean;
   imageAsBackground?: boolean;
   buttonLabel?: string;
   children: React.ReactNode;
@@ -150,9 +151,9 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
 
   render() {
     const {
-      aspectRatio, autoFocus, backgroundIcon, imageAsBackground, buttonLabel, children, className,
-      disabledStates, errors, name, onChange, onError, onFieldDisabledChange, asButtonView,
-      onFormChange, progress, required, submitted, submitting, validator, value, values,
+      aspectRatio, autoFocus, backgroundIcon, clickOutsideCancel, imageAsBackground, buttonLabel,
+      children, className, disabledStates, errors, name, onChange, onError, onFieldDisabledChange,
+      asButtonView, onFormChange, progress, required, submitted, submitting, validator, value, values,
       icon, registerModal, ...props
     } = this.props;
 
@@ -206,6 +207,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
                   image={preview}
                   onEdit={this.handleImageEdited}
                   onFailure={this.handleImageFailure}
+                  clickOutsideCancel={clickOutsideCancel}
                 />
               </ModalDialog.Body>
             </ModalDialog>
@@ -286,6 +288,7 @@ class ImageField extends React.Component<ImageFieldProps & FormState, ImageField
                   image={preview}
                   onEdit={this.handleImageEdited}
                   onFailure={this.handleImageFailure}
+                  clickOutsideCancel={clickOutsideCancel}
                 />
               </ModalDialog.Body>
             </ModalDialog>
