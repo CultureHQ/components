@@ -51,6 +51,7 @@ storiesOf("Form/ImageField", module)
     );
   })
   .add("asButton", () => <Container name="image" asButtonView><></></Container>)
+  .add("cancelOption", () => <Container name="image" clickOutsideCancel>Image</Container>)
   .add("validator", () => {
     const validator = (value: ImageFieldValue) => {
       if (value instanceof File && value.type === "image/png") {
