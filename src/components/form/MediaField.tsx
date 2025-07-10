@@ -105,6 +105,9 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     } else {
       this.handleImageSelected({ editorOpen: !!media, failed: false, image: media || null });
     }
+
+    // eslint-disable-next-line no-param-reassign
+    event.target.value = "";
   };
 
   handleImageEdited = (image: Blob, closeModal = false) => {
