@@ -97,10 +97,7 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
     const media = files && files[0];
     if (media?.type?.startsWith("video/")) {
       this.handleVideoSelected(media, null, null, !notReturnMetadata);
-      return;
-    }
-
-    if (media?.type === "image/heic") {
+    } else if (media?.type === "image/heic") {
       this.handleImageSelected({ editorOpen: false, failed: false, image: media || null });
     } else {
       this.handleImageSelected({ editorOpen: !!media, failed: false, image: media || null });
