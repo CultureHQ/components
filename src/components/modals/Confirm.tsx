@@ -9,6 +9,7 @@ type ConfirmProps = Pick<React.ComponentProps<typeof ModalDialog>, ForwardedProp
   accept?: string;
   danger?: boolean;
   onAccept: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+  onCancel?: () => void;
   onOpen?: () => void;
   startOpen?: boolean;
   trigger: (onTrigger: () => void) => React.ReactNode;
@@ -37,6 +38,8 @@ class Confirm extends React.Component<ConfirmProps, ConfirmState> {
   };
 
   handleClose = (): void => {
+    const { onCancel } = this.props;
+    if (onCancel) onCancel();
     this.setState({ open: false });
   };
 

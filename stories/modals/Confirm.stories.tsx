@@ -16,7 +16,8 @@ storiesOf("Modals/Confirm", module)
     const props = {
       accept: text("accept", "Yes"),
       danger: boolean("danger", false),
-      onAccept: action("onAccept")
+      onAccept: action("onAccept"),
+      onCancel: action("onCanceled")
     };
 
     return (
