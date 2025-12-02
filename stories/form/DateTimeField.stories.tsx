@@ -77,4 +77,21 @@ storiesOf("Form/DateTimeField", module)
         DateTime
       </Container>
     );
+  })
+  .add("min and max", () => {
+    const today = new Date();
+
+    const twoWeeksAgo = new Date();
+    twoWeeksAgo.setDate(today.getDate() - 14);
+
+    return (
+      <Container
+        min={twoWeeksAgo}
+        max={today}
+        name="datetime"
+        required
+      >
+        DateTime
+      </Container>
+    );
   });

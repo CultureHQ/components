@@ -69,11 +69,14 @@ type CalendarProps = {
   day2?: null | number;
   range?: boolean;
   disableFuture?: boolean;
+  min?: null | Date;
+  max?: null | Date;
   onChange: (year: number, month: number, day: number, range?: boolean) => void;
 };
 
 const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = null,
-  onChange, range = false, year2, month2, day2, disableFuture = false }) => {
+  onChange, range = false, year2, month2, day2, disableFuture = false,
+  min = null, max = null }) => {
   const [visible, setVisible] = useState<CalendarView>(() => ({
     year: year === null ? new Date().getFullYear() : year,
     month: month === null ? new Date().getMonth() : month
@@ -121,6 +124,17 @@ const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = nu
     const firstDate = new Date(year || 0, month || 0, day || 0);
     const secondDate = new Date(year2 || 0, month2 || 0, day2 || 0);
     return firstDate < secondDate;
+  };
+
+  // if it is inside the provided min and max values
+  const isInLimit = (dYear: number, dMonth: number, dDay: number) => {
+    if (!min || !max) return true;
+
+    const currentDay = new Date(dYear, dMonth, dDay);
+    const minDay = new Date(min.getFullYear(), min.getMonth(), min.getDate());
+    const maxDay = new Date(max.getFullYear(), max.getMonth(), max.getDate());
+
+    return currentDay >= minDay && currentDay <= maxDay;
   };
 
   const isInRange = (dYear: number, dMonth: number, dDay: number) => {
@@ -184,16 +198,19 @@ const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = nu
           const valueHash = `${value.year}-${value.month}-${value.day}`;
           const onClick = () => onChange(value.year, value.month, value.day, range);
           const inRange = isInRange(value.year, value.month, value.day);
+          const inLimit = isInLimit(value.year, value.month, value.day);
           const className = classnames("chq-cal--day", {
             "chq-cal--day-act": (valueHash === activeHash || valueHash === activeHash2),
-            "chq-cal--day-out": value.fill || (today < currentDay && disableFuture),
+            "chq-cal--day-out": value.fill || (today < currentDay && disableFuture) || !inLimit,
             "chq-cal--day-in-range": inRange
           });
+
+          const emptyOnClick = (today < currentDay && disableFuture) || !inLimit;
 
           return (
             <>
               <div id={`${value.month}-${value.day}-${value.year}`} style={{ display: "none" }}>{monthNames[value.month]} {value.day}, {value.year}</div>
-              <PlainButton key={valueHash} className={className} onClick={today < currentDay && disableFuture ? () => {} : onClick} aria-labelledby={`${value.month}-${value.day}-${value.year}`}>
+              <PlainButton key={valueHash} className={className} onClick={emptyOnClick ? () => {} : onClick} aria-labelledby={`${value.month}-${value.day}-${value.year}`}>
                 {value.day}
               </PlainButton>
             </>
