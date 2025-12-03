@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 import PlainButton from "../buttons/PlainButton";
+import classnames from "../../classnames";
 
 type TimeSelectOption = {
   hours: number;
@@ -31,6 +32,9 @@ type TimeSelectButtonProps = {
   minutes: number;
   onChange: TimeSelectOnChange;
   option: TimeSelectOption;
+  min?: Date | null | undefined;
+  max?: Date | null | undefined;
+  dateValue?: string
 };
 
 const TimeSelectButton: React.FC<TimeSelectButtonProps> = ({
@@ -38,15 +42,55 @@ const TimeSelectButton: React.FC<TimeSelectButtonProps> = ({
   hours,
   minutes,
   onChange,
-  option
+  option,
+  min,
+  max,
+  dateValue
 }) => {
   const current = hours === option.hours && minutes === option.minutes;
+
+  const isInRange = () => {
+    if (!min || !max || !dateValue) return true;
+    const selectedDate = new Date(dateValue);
+
+    // is the min date
+    if (selectedDate.getDate() === min.getDate() && selectedDate.getMonth() === min.getMonth()) {
+      const optionDate = new Date(
+        min.getFullYear(),
+        min.getMonth(),
+        min.getDate(),
+        option.hours,
+        option.minutes
+      );
+      return optionDate.getTime() >= min.getTime();
+    }
+
+    // is the max date
+    if (selectedDate.getDate() === max.getDate() && selectedDate.getMonth() === max.getMonth()) {
+      const optionDate = new Date(
+        max.getFullYear(),
+        max.getMonth(),
+        max.getDate(),
+        option.hours,
+        option.minutes
+      );
+      return optionDate.getTime() <= max.getTime();
+    }
+
+    return true;
+  };
+
+  const inRange = isInRange();
+
+  const className = classnames("chq-tsl--op", {
+    "chq-tsl--op-out": !inRange
+  });
 
   return (
     <PlainButton
       aria-current={current}
-      className="chq-tsl--op"
-      onClick={() => onChange(option.hours, option.minutes)}
+      className={className}
+      onClick={inRange ? () => onChange(option.hours, option.minutes) : () => {}}
       ref={current ? currentOptionRef : null}
     >
       {option.label}
@@ -58,9 +102,13 @@ type TimeSelectProps = {
   hours: number;
   minutes: number;
   onChange: TimeSelectOnChange;
+  dateValue?: string;
+  min?: Date | null | undefined;
+  max?: Date | null | undefined;
 };
 
-const TimeSelect: React.FC<TimeSelectProps> = ({ hours, minutes, onChange }) => {
+const TimeSelect: React.FC<TimeSelectProps> = (
+  { hours, minutes, onChange, dateValue, min, max }) => {
   const currentOptionRef = useRef<HTMLButtonElement>(null);
   const selectRef = useRef<HTMLDivElement>(null);
 
@@ -86,6 +134,9 @@ const TimeSelect: React.FC<TimeSelectProps> = ({ hours, minutes, onChange }) => 
           minutes={minutes}
           onChange={onChange}
           option={option}
+          max={max}
+          min={min}
+          dateValue={dateValue}
         />
       ))}
     </div>

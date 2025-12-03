@@ -42,7 +42,9 @@ const makeDateTime = (value: string | undefined, offset: number) => {
   return components.join("");
 };
 
-const makeCalendarValue = (value: string | undefined, offset: number) => {
+const makeCalendarValue = (
+  value: string | undefined,
+  offset: number) => {
   const date = value ? new Date(value) : new Date();
   const offsetDate = new Date(+new Date(date) + offset * 60 * 1000);
 
@@ -53,7 +55,9 @@ const makeCalendarValue = (value: string | undefined, offset: number) => {
   };
 };
 
-const makeTimeSelectValue = (value: string | undefined, offset: number) => {
+const makeTimeSelectValue = (
+  value: string | undefined,
+  offset: number) => {
   if (!value) {
     return { hours: 12, minutes: 0 };
   }
@@ -77,6 +81,8 @@ type DateTimeFieldProps = FormState & {
   validator?: (value: string) => FormFieldError;
   value?: string;
   registerModal?: (isOpen: boolean) => void;
+  min?: null | Date;
+  max?: null | Date;
 };
 
 type DateTimeFieldState = {
@@ -218,7 +224,7 @@ class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldSta
   render() {
     const {
       children, className, disabled, onError, name, required, submitted,
-      validator, registerModal
+      validator, registerModal, min, max
     } = this.props;
 
     const { open, touched } = this.state;
@@ -260,10 +266,15 @@ class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldSta
             <ModalDialog.Body>
               <Calendar
                 {...makeCalendarValue(value, offset)}
+                min={min}
+                max={max}
                 onChange={this.handleDateChange}
               />
               <TimeSelect
                 {...makeTimeSelectValue(value, offset)}
+                min={min}
+                max={max}
+                dateValue={value}
                 onChange={this.handleTimeChange}
               />
             </ModalDialog.Body>

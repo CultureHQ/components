@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [20.9.2]
+
+### Changed
+
+- Adding new properties to the Calendar component to have a min and max date range
+- Adding new properties to the DateTime component to have a min and max date range
+
 ## [20.9.0] - 2025-08-01
 
 ### Changed
