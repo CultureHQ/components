@@ -175,7 +175,7 @@ test("working with a multiple non-creatable field", () => {
   const options = within(container.querySelector(".chq-ffd--sl--opts"));
 
   fireEvent.click(getAllByRole("button")[0]);
-  expect(document.activeElement.className).toEqual("chq-ffd--sl--match");
+  expect(document.activeElement.className).toEqual("chq-ffd--sl--match chq-ffd--sl--match--focus");
 
   fireChange("H");
   expect(options.getAllByRole("button")).toHaveLength(2);

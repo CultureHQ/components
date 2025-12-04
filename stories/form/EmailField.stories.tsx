@@ -52,5 +52,16 @@ storiesOf("Form/EmailField", module)
       setIsValidEmail(!!value);
     };
 
-    return <Container name="email" onChange={handleChange} suffixIcon={"linkedin-share"} suffixText="Enter" validEmailAnimation validEmail={isValidEmail}>Email</Container>
+    return (
+      <Container
+        name="email"
+        onChange={handleChange}
+        suffixIcon="linkedin-share"
+        suffixText="Enter"
+        validEmailAnimation
+        validEmail={isValidEmail}
+      >
+        Email
+      </Container>
+    );
   });

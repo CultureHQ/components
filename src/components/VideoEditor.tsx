@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Loader from "./Loader";
-import { MediaFieldVal } from "./form/MediaField";
+
+type MediaFieldVal = Blob | File | string;
 
 type ImageEditorProps = {
   video: MediaFieldVal;
@@ -15,7 +16,7 @@ const VideoEditor = ({
   useEffect(() => {
     const processVideo = async () => {
       const getVideoUrl = (input: MediaFieldVal): string => {
-        if (typeof input === 'string') return input;
+        if (typeof input === "string") return input;
 
         return URL.createObjectURL(input);
       };
@@ -37,21 +38,21 @@ const VideoEditor = ({
             canvas.toBlob(blob => {
               if (blob) {
                 // Only revoke URL if we created it
-                if (typeof video !== 'string') URL.revokeObjectURL(videoUrl);
+                if (typeof video !== "string") URL.revokeObjectURL(videoUrl);
                 resolve(blob);
               } else {
-                if (typeof video !== 'string') URL.revokeObjectURL(videoUrl);
+                if (typeof video !== "string") URL.revokeObjectURL(videoUrl);
                 reject(new Error("Failed to create blob from canvas"));
               }
             }, "image/png");
           } else {
-            if (typeof video !== 'string') URL.revokeObjectURL(videoUrl);
+            if (typeof video !== "string") URL.revokeObjectURL(videoUrl);
             reject(new Error("Failed to get canvas context"));
           }
         });
 
         videoElement.addEventListener("error", () => {
-          if (typeof video !== 'string') URL.revokeObjectURL(videoUrl);
+          if (typeof video !== "string") URL.revokeObjectURL(videoUrl);
           reject(new Error("Error loading video"));
         });
       });
@@ -75,11 +76,15 @@ const VideoEditor = ({
     load();
   }, [video, onEdit, onProcessing]);
 
-  if (asButtonView) {
-    return <></>;
-  }
+  if (asButtonView) return <></>;
 
   return <Loader loading />;
+};
+
+VideoEditor.defaultProps = {
+  onEdit: undefined,
+  onProcessing: undefined,
+  asButtonView: false
 };
 
 export default VideoEditor;

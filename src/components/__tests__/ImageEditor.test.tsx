@@ -7,12 +7,31 @@ import mockImage from "../../../test/image";
 let angle: number;
 let zoom: number;
 
+// Mock canvas methods that jsdom doesn't implement
+HTMLCanvasElement.prototype.getContext = jest.fn(() => ({
+  drawImage: jest.fn()
+})) as jest.Mock;
+
+HTMLCanvasElement.prototype.toDataURL = jest.fn(() => mockImage);
+
+const mockGetCroppedCanvas = jest.fn(() => {
+  const canvas = document.createElement("canvas");
+  canvas.width = 100;
+  canvas.height = 100;
+  return canvas;
+});
 
 jest.mock("cropperjs", () => class { /* eslint-disable class-methods-use-this */
+  constructor(_element: HTMLImageElement, options?: { ready?: () => void }) {
+    if (options?.ready) {
+      setTimeout(options.ready, 0);
+    }
+  }
+
   destroy() {}
 
   getCroppedCanvas() {
-    return { toDataURL: () => mockImage };
+    return mockGetCroppedCanvas();
   }
 
   rotate(delta: number) {
@@ -75,8 +94,16 @@ test("can click save to save", async () => {
     <ImageEditor image={mockImage} onEdit={onEdit} />
   );
 
-  await waitFor(() => {});
-  fireEvent.click(getByText("Save"));
+  const saveButton = getByText("Save");
 
-  expect(onEdit).toHaveBeenCalledTimes(1);
+  // Wait for the button to be enabled (cropper is ready)
+  await waitFor(() => {
+    expect((saveButton as HTMLButtonElement).disabled).toBe(false);
+  });
+
+  fireEvent.click(saveButton);
+
+  await waitFor(() => {
+    expect(onEdit).toHaveBeenCalledTimes(1);
+  });
 });

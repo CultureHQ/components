@@ -6,14 +6,14 @@ import Button from "./buttons/Button";
 import Icon from "./Icon";
 import Loader from "./Loader";
 
-const resizeImage = (image: HTMLCanvasElement, maxWidth: number, maxHeight: number): Promise<string> => {
-  return new Promise((resolve, _reject) => {
-    const canvas = document.createElement('canvas') as HTMLCanvasElement;
-    const ctx = canvas.getContext('2d');
+const resizeImage = (
+  image: HTMLCanvasElement, maxWidth: number, maxHeight: number
+): Promise<string> => (
+  new Promise((resolve, _reject) => {
+    const canvas = document.createElement("canvas") as HTMLCanvasElement;
+    const ctx = canvas.getContext("2d");
 
-    const width = image.width;
-    const height = image.height;
-
+    const { height, width } = image;
     let newWidth = width;
     let newHeight = height;
 
@@ -22,11 +22,9 @@ const resizeImage = (image: HTMLCanvasElement, maxWidth: number, maxHeight: numb
         newHeight *= maxWidth / width;
         newWidth = maxWidth;
       }
-    } else {
-      if (height > maxHeight) {
-        newWidth *= maxHeight / height;
-        newHeight = maxHeight;
-      }
+    } else if (height > maxHeight) {
+      newWidth *= maxHeight / height;
+      newHeight = maxHeight;
     }
 
     canvas.width = newWidth;
@@ -34,9 +32,9 @@ const resizeImage = (image: HTMLCanvasElement, maxWidth: number, maxHeight: numb
 
     ctx?.drawImage(image, 0, 0, newWidth, newHeight);
 
-    resolve(canvas.toDataURL('image/png'));
-  });
-};
+    resolve(canvas.toDataURL("image/png"));
+  })
+);
 
 const cropperToImage = async (cropper: Cropper): Promise<Blob> => {
   const type = "image/png";

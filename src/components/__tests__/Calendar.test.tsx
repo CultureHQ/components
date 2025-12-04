@@ -55,6 +55,6 @@ test("calls up to the onChange when a new date is clicked", () => {
 
   fireEvent.click(getByText("15"));
 
-  expect(onChange).toHaveBeenCalledWith(2018, 0, 15);
+  expect(onChange).toHaveBeenCalledWith(2018, 0, 15, false);
   expect(queryByText("January 2018")).toBeTruthy();
 });

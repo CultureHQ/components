@@ -20,9 +20,7 @@ const getDateWithOffset = (value: Date | string, offset: number) => (
 );
 
 const makeDateTime = (value: string | undefined, offset: number) => {
-  if (!value) {
-    return null;
-  }
+  if (!value) return null;
 
   const date = getDateWithOffset(value, offset);
   const components = [
@@ -44,7 +42,8 @@ const makeDateTime = (value: string | undefined, offset: number) => {
 
 const makeCalendarValue = (
   value: string | undefined,
-  offset: number) => {
+  offset: number
+) => {
   const date = value ? new Date(value) : new Date();
   const offsetDate = new Date(+new Date(date) + offset * 60 * 1000);
 
@@ -55,18 +54,46 @@ const makeCalendarValue = (
   };
 };
 
+const isToday = (date: Date) => {
+  const today = new Date();
+  return (
+    date.getUTCFullYear() === today.getUTCFullYear()
+    && date.getUTCMonth() === today.getUTCMonth()
+    && date.getUTCDate() === today.getUTCDate()
+  );
+};
+
 const makeTimeSelectValue = (
   value: string | undefined,
-  offset: number) => {
-  if (!value) {
-    return { hours: 12, minutes: 0 };
+  offset: number,
+  min?: Date | null,
+  max?: Date | null
+) => {
+  if (value) {
+    const date = new Date(value);
+    const hours = ((date.getUTCHours() + Math.floor(offset / 60)) + 24) % 24;
+    const minutes = Math.floor(date.getUTCMinutes() / 15) * 15 + (offset % 60);
+
+    return { hours, minutes };
   }
 
-  const date = new Date(value);
-  const hours = ((date.getUTCHours() + Math.floor(offset / 60)) + 24) % 24;
-  const minutes = Math.floor(date.getUTCMinutes() / 15) * 15 + (offset % 60);
+  const maxIsToday = max && isToday(max);
+  const minIsToday = min && isToday(min);
 
-  return { hours, minutes };
+  // Prioritize based on which constraint is today
+  if (maxIsToday && max) {
+    // Return previous hour from max
+    const hours = (max.getUTCHours() + Math.floor(offset / 60) + 24) % 24;
+    return { hours, minutes: 0 };
+  }
+
+  if (minIsToday && min) {
+    // Return next hour from min
+    const hours = ((min.getUTCHours() + Math.floor(offset / 60) + 1) + 24) % 24;
+    return { hours, minutes: 0 };
+  }
+
+  return { hours: 12, minutes: 0 };
 };
 
 type DateTimeFieldProps = FormState & {
@@ -133,10 +160,45 @@ class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldSta
   };
 
   handleDateChange = (year: number, month: number, day: number) => {
+    const { min, max } = this.props;
     const offset = this.getOffset();
     const value = this.getValue();
 
     const date = getDateWithOffset(value ? new Date(value) : new Date(), offset);
+    let hours = value ? date.getUTCHours() : (12 - Math.floor(offset / 60));
+    let minutes = value ? date.getUTCMinutes() : (0 - (offset % 60));
+
+    // Check if new date equals min date and adjust time if needed
+    if (min && year === min.getFullYear() && month === min.getMonth() && day === min.getDate()) {
+      const minHours = min.getHours();
+      const minMinutes = Math.ceil(min.getMinutes() / 15) * 15;
+      const currentTimeInMinutes = hours * 60 + minutes;
+      const minTimeInMinutes = minHours * 60 + minMinutes;
+
+      if (currentTimeInMinutes < minTimeInMinutes) {
+        hours = Math.floor(minTimeInMinutes / 60);
+        minutes = minTimeInMinutes % 60;
+        // Handle case where rounding up minutes exceeds 60
+        if (minutes >= 60) {
+          hours += 1;
+          minutes = 0;
+        }
+      }
+    }
+
+    // Check if new date equals max date and adjust time if needed
+    if (max && year === max.getFullYear() && month === max.getMonth() && day === max.getDate()) {
+      const maxHours = max.getHours();
+      const maxMinutes = Math.floor(max.getMinutes() / 15) * 15;
+      const currentTimeInMinutes = hours * 60 + minutes;
+      const maxTimeInMinutes = maxHours * 60 + maxMinutes;
+
+      if (currentTimeInMinutes > maxTimeInMinutes) {
+        hours = Math.floor(maxTimeInMinutes / 60);
+        minutes = maxTimeInMinutes % 60;
+      }
+    }
+
     const inUTC = new Date([
       year,
       "-",
@@ -144,9 +206,9 @@ class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldSta
       "-",
       padLeft(day),
       "T",
-      padLeft(value ? date.getUTCHours() : (12 - Math.floor(offset / 60))),
+      padLeft(hours),
       ":",
-      padLeft(value ? date.getUTCMinutes() : (0 - (offset % 60))),
+      padLeft(minutes),
       ":00",
       offset < 0 ? "-" : "+",
       padLeft(Math.abs(Math.floor(offset / 60))),
@@ -231,6 +293,7 @@ class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldSta
 
     const offset = this.getOffset();
     const value = this.getValue();
+    // console.log({ min, max, ...makeTimeSelectValue(value, offset, min, max) });
 
     return (
       <>
@@ -271,7 +334,7 @@ class DateTimeField extends React.Component<DateTimeFieldProps, DateTimeFieldSta
                 onChange={this.handleDateChange}
               />
               <TimeSelect
-                {...makeTimeSelectValue(value, offset)}
+                {...makeTimeSelectValue(value, offset, min, max)}
                 min={min}
                 max={max}
                 dateValue={value}

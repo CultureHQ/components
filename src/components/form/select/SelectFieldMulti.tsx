@@ -240,25 +240,13 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     if (onUnselected) {
       onUnselected();
     }
-    const shouldShowPlaceholder = !event.relatedTarget
-    || (event.relatedTarget.id !== "select-field-option" && event.relatedTarget.id !== "option-tag"
-    && event.relatedTarget.id !== "option-action" && event.relatedTarget.id !== "create-field-option");
+    const isSelectElement = event.relatedTarget?.dataset?.selectOption != null
+      || event.relatedTarget?.dataset?.selectElement != null;
+    const shouldShowPlaceholder = !isSelectElement;
 
     if (placeholderIsVisible === shouldShowPlaceholder) return;
 
-    if (event.relatedTarget) {
-      if (event.relatedTarget.id) {
-        if (!(event.relatedTarget.id === "select-field-option" || event.relatedTarget.id === "option-tag" || event.relatedTarget.id === "create-field-option")) {
-          this.inputFocusClass(false);
-          this.setState(prev => ({ ...prev,
-            placeholderIsVisible: true }));
-        }
-      } else {
-        this.inputFocusClass(false);
-        this.setState(prev => ({ ...prev,
-          placeholderIsVisible: true }));
-      }
-    } else {
+    if (!isSelectElement) {
       this.inputFocusClass(false);
       this.setState(prev => ({ ...prev,
         placeholderIsVisible: true }));
@@ -269,9 +257,9 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     const { inputRef } = this.props;
     if (inputRef.current) {
       if (focused) {
-        inputRef.current.classList.add("chq-ffd--sl--match__focus");
+        inputRef.current.classList.add("chq-ffd--sl--match--focus");
       } else {
-        inputRef.current.classList.remove("chq-ffd--sl--match__focus");
+        inputRef.current.classList.remove("chq-ffd--sl--match--focus");
       }
     }
   }

@@ -8,8 +8,8 @@ import FormError from "./FormError";
 import VideoEditor from "../VideoEditor";
 import { FormState, withForm } from "./Form";
 import { FormFieldError } from "./typings";
-import { MediaFieldVal } from "./MediaField";
 
+type MediaFieldVal = Blob | File | string;
 export type VideoFieldValue = MediaFieldVal | null;
 export type UrlValue = string | null;
 
@@ -142,6 +142,16 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
     return (video && thumb) ? URL.createObjectURL(thumb) : (preview || value) as string;
   };
 
+  getVideoSource = (): string => {
+    const { video } = this.state;
+    const { value, videoThumb } = this.props;
+
+    if (videoThumb && !video) return value as string;
+    if (video) return URL.createObjectURL(video as unknown as Blob);
+
+    return "";
+  };
+
   render() {
     const {
       aspectRatio, autoFocus, imageAsBackground, buttonLabel, children, className,
@@ -232,7 +242,7 @@ class VideoField extends React.Component<VideoFieldProps & FormState, VideoField
                     onChange(video, thumb, null, target.duration, false);
                   }
                 }}
-                src={(videoThumb && !video) ? value as string : (video ? URL.createObjectURL(video as unknown as Blob) : "")}
+                src={this.getVideoSource()}
               />
             )}
             {(image || preview || (normal && !video && !videoThumb)) && (

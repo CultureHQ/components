@@ -11,7 +11,7 @@ import VideoEditor from "../VideoEditor";
 import { FormState, withForm } from "./Form";
 import { FormFieldError } from "./typings";
 
-export type MediaFieldVal = Blob | File | string;
+type MediaFieldVal = Blob | File | string;
 export type MediaFieldValue = MediaFieldVal | null;
 export type UrlValue = string | null;
 
@@ -312,7 +312,11 @@ class MediaField extends React.Component<MediaFieldProps & FormState, MediaField
                     onChange(video, thumb, null, target.duration, false);
                   }
                 }}
-                src={(videoThumb && !video) ? value as string : (video ? URL.createObjectURL(video as unknown as Blob) : "")}
+                src={(() => {
+                  if (videoThumb && !video) return value as string;
+                  if (video) return URL.createObjectURL(video as unknown as Blob);
+                  return "";
+                })()}
               />
             )}
             {(image || preview || (normal && !video && !videoThumb)) && (

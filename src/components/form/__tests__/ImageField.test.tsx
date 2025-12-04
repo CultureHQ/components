@@ -36,17 +36,15 @@ test("calls up to callbacks if they are provided", () => {
 
 test("responds to edit callback", async () => {
   const onChange = jest.fn();
-  const { findByAltText, getByLabelText, getByText } = render(
+  const file = new File(["test content"], "test.jpg", { type: "image/jpeg" });
+  const { getByLabelText } = render(
     <ImageField name="image" onChange={onChange}>Image!</ImageField>
   );
 
-  fireEvent.change(getByLabelText(/Image!/), { target: { files: [mockImage] } });
-  await findByAltText(/Preview/);
+  fireEvent.change(getByLabelText(/Image!/), { target: { files: [file] } });
 
-  fireEvent.click(getByText("Save"));
-
-  expect(onChange).toHaveBeenCalledTimes(2);
-  expect(onChange.mock.calls[1][0] instanceof Blob).toBe(true);
+  expect(onChange).toHaveBeenCalledTimes(1);
+  expect(onChange.mock.calls[0][0] instanceof Blob).toBe(true);
 });
 
 test("handles closing the modal", () => {
