@@ -240,13 +240,25 @@ class SelectFieldMulti extends React.Component<SelectFieldMultiProps, SelectFiel
     if (onUnselected) {
       onUnselected();
     }
-    const isSelectElement = event.relatedTarget?.dataset?.selectOption != null
-      || event.relatedTarget?.dataset?.selectElement != null;
-    const shouldShowPlaceholder = !isSelectElement;
+    const shouldShowPlaceholder = !event.relatedTarget
+    || (event.relatedTarget.id !== "select-field-option" && event.relatedTarget.id !== "option-tag"
+    && event.relatedTarget.id !== "option-action" && event.relatedTarget.id !== "create-field-option");
 
     if (placeholderIsVisible === shouldShowPlaceholder) return;
 
-    if (!isSelectElement) {
+    if (event.relatedTarget) {
+      if (event.relatedTarget.id) {
+        if (!(event.relatedTarget.id === "select-field-option" || event.relatedTarget.id === "option-tag" || event.relatedTarget.id === "create-field-option")) {
+          this.inputFocusClass(false);
+          this.setState(prev => ({ ...prev,
+            placeholderIsVisible: true }));
+        }
+      } else {
+        this.inputFocusClass(false);
+        this.setState(prev => ({ ...prev,
+          placeholderIsVisible: true }));
+      }
+    } else {
       this.inputFocusClass(false);
       this.setState(prev => ({ ...prev,
         placeholderIsVisible: true }));
