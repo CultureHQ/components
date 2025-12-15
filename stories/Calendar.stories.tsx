@@ -7,7 +7,7 @@ import { Calendar } from "../src/components";
 type CalendarState = Pick<React.ComponentProps<typeof Calendar>, "year" | "month" | "day">;
 type ContainerProps = Pick<React.ComponentProps<typeof Calendar>, "onChange" | "range">;
 type DisableProps = Pick<React.ComponentProps<typeof Calendar>, "onChange" | "range" | "disableFuture">;
-type MinMaxPRops = Pick<React.ComponentProps<typeof Calendar>, "onChange" | "min" | "max">;
+type MinMaxProps = Pick<React.ComponentProps<typeof Calendar>, "onChange" | "min" | "max">;
 
 const Container: React.FC<ContainerProps> = ({ onChange }) => {
   const [value, setValue] = useState<CalendarState>({ year: null, month: null, day: null });
@@ -102,7 +102,7 @@ const RangeDisableFutureContainer: React.FC<DisableProps> = ({
   );
 };
 
-const MinMaxContainer: React.FC<MinMaxPRops> = ({ min, max, onChange }) => {
+const MinMaxContainer: React.FC<MinMaxProps> = ({ min, max, onChange }) => {
   const [value, setValue] = useState<CalendarState>({ year: null, month: null, day: null });
 
   const onCalendarChange = (year: number, month: number, day: number) => {

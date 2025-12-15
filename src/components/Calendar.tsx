@@ -128,13 +128,15 @@ const Calendar: React.FC<CalendarProps> = ({ year = null, month = null, day = nu
 
   // if it is inside the provided min and max values
   const isInLimit = (dYear: number, dMonth: number, dDay: number) => {
-    if (!min || !max) return true;
+    if (!min && !max) return true;
 
     const currentDay = new Date(dYear, dMonth, dDay);
-    const minDay = new Date(min.getFullYear(), min.getMonth(), min.getDate());
-    const maxDay = new Date(max.getFullYear(), max.getMonth(), max.getDate());
+    const minDay = min ? new Date(min.getFullYear(), min.getMonth(), min.getDate()) : null;
+    const maxDay = max ? new Date(max.getFullYear(), max.getMonth(), max.getDate()) : null;
 
-    return currentDay >= minDay && currentDay <= maxDay;
+    const minValidation = minDay ? currentDay >= minDay : true;
+    const maxValidation = maxDay ? currentDay <= maxDay : true;
+    return minValidation && maxValidation;
   };
 
   const isInRange = (dYear: number, dMonth: number, dDay: number) => {
