@@ -50,11 +50,13 @@ const TimeSelectButton: React.FC<TimeSelectButtonProps> = ({
   const current = hours === option.hours && minutes === option.minutes;
 
   const isInRange = () => {
-    if (!min || !max) return true;
+    if (!min && !max) return true;
     const selectedDate = dateValue ? new Date(dateValue) : new Date();
 
     // is the min date
-    if (selectedDate.getDate() === min.getDate() && selectedDate.getMonth() === min.getMonth()) {
+    if (min
+      && selectedDate.getDate() === min.getDate()
+      && selectedDate.getMonth() === min.getMonth()) {
       const optionDate = new Date(
         min.getFullYear(),
         min.getMonth(),
@@ -66,7 +68,9 @@ const TimeSelectButton: React.FC<TimeSelectButtonProps> = ({
     }
 
     // is the max date
-    if (selectedDate.getDate() === max.getDate() && selectedDate.getMonth() === max.getMonth()) {
+    if (max
+      && selectedDate.getDate() === max.getDate()
+      && selectedDate.getMonth() === max.getMonth()) {
       const optionDate = new Date(
         max.getFullYear(),
         max.getMonth(),
